@@ -98,10 +98,15 @@
         </dependency>
 
         <!-- uniprot kraken dependency-->
+        <!--<dependency>-->
+            <!--<groupId>uk.ac.ebi.uniprot.kraken</groupId>-->
+            <!--<artifactId>uniprotjapi</artifactId>-->
+            <!--<version>RELEASE</version>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>uk.ac.ebi.uniprot.kraken</groupId>
-            <artifactId>uniprotjapi</artifactId>
-            <version>RELEASE</version>
+            <groupId>uk.ac.ebi.uniprot</groupId>
+            <artifactId>japi</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <dependency>
