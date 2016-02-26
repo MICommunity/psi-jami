@@ -8,7 +8,7 @@ The JAMI model interfaces are abstracted from both formats to hide the complexit
 
 It avoids endless conversions to different formats and avoid code/unit test duplicate as the code becomes more modular.
 
-<img width='800' src='images/jamiIntroduction.png' />
+<img width='800' src='wiki/images/jamiIntroduction.png' />
 
 # JAMI data model #
 
@@ -19,9 +19,9 @@ In the JAMI data model, we distinguish several types of interactions:
   * **Modelled interactions**: abstract interactions which can be supported by experimental evidences (interaction evidences). Modelled interactions are abstracted from any experimental details apart from a list of interaction evidences
   * **Complexes**: A more specific modelled interaction which can be considered as a biological entity and then can interact with other molecules
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_interactions.png' />
+<img width='800' src='wiki/images/jami_interactions.png' />
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIInteraction.png' />
+<img width='800' src='wiki/images/JAMIInteraction.png' />
 
 ### Participants ###
 
@@ -33,13 +33,13 @@ A participant can be experimental or modelled.
 
 A participant pool is a specific case/extension of participant. It is composed of several participant candidates, each of them can refer to an interactor and features. This enable the complex case of interactor set where we don't know which interactor in the pool interact but one of them does. As each interactor may have different sequences, a participant candidate can also have features.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIParticipant.png' />
+<img width='800' src='wiki/images/JAMIParticipant.png' />
 
 ### Features ###
 
 Features are always attached to a participant which is always attached to an interaction. They are very dependent on the context of the interaction.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIFeature.png' />
+<img width='800' src='wiki/images/JAMIFeature.png' />
 
 ## Binary Interactions ##
 
@@ -55,7 +55,7 @@ In the JAMI data model, default complex expansion methods are provided to break 
   * **Matrix Expansion**
   * **Bipartite Expansion**
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_binary.png' />
+<img width='800' src='wiki/images/jami_binary.png' />
 
 ## Interaction Evidences ##
 
@@ -67,7 +67,7 @@ The participants are participant evidences with experimental description such as
 
 The participant features can be experimental but also binding sites. Experimental features can have feature detection method and parameters.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_interaction_evidence.png' />
+<img width='800' src='wiki/images/jami_interaction_evidence.png' />
 
 ### Publication and experiment ###
 
@@ -75,13 +75,13 @@ A publication can have one to many experiments. It also has a source/institution
 
 Each experiment have one interaction detection method and may have some confidence(s). Experimental can also descrive variable parameters in case of dynamic interactions.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIPublication.png' />
+<img width='800' src='wiki/images/JAMIPublication.png' />
 
 ### Dynamic interactions and variable parameters ###
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_dynamic_interactions.png' />
+<img width='800' src='wiki/images/jami_dynamic_interactions.png' />
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIVariableParameter.png' />
+<img width='800' src='wiki/images/JAMIVariableParameter.png' />
 
 ## Modelled Interactions ##
 
@@ -93,38 +93,38 @@ The participants are modelled participants and do not contain any experimental d
 
 The participant features are biological features such as binding sites, etc. They do not contain any experimental details.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_modelled_interaction.png' />
+<img width='800' src='wiki/images/jami_modelled_interaction.png' />
 
 ### Cooperative Effects ###
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMICooperativeEffect.png' />
+<img width='800' src='wiki/images/JAMICooperativeEffect.png' />
 
 ## Biological Complexes ##
 
 Biological Complexes are an extension of Modelled Interactions and do not have any experimental details. As they are biological entities, they can interact with other molecules and can be re-used a participants of another interaction.
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_complex.png' />
+<img width='800' src='wiki/images/jami_complex.png' />
 
 ## Interactor ##
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIInteractor.png' />
+<img width='800' src='wiki/images/JAMIInteractor.png' />
 
 ## Organism ##
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMIOrganism.png' />
+<img width='800' src='wiki/images/JAMIOrganism.png' />
 
 ## Simple data objects ##
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/JAMISimpleTypes.png' />
+<img width='800' src='wiki/images/JAMISimpleTypes.png' />
 
 ## Controlled vocabulary terms ##
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/MICvTerm.png' />
+<img width='800' src='wiki/images/MICvTerm.png' />
 
 # JAMI datasources/writers #
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_datasources.png' />
+<img width='800' src='wiki/images/jami_datasources.png' />
 
 # JAMI modules #
 
-<img width='800' src='http://psimi.googlecode.com/svn/wiki/images/jami_existing_modeules.png' />
+<img width='800' src='wiki/images/jami_existing_modeules.png' />
