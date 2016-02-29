@@ -32,14 +32,49 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>1.12</version>
-
                 <executions>
                     <execution>
+                        <id>wsimport-from-jdk</id>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <!-- using wsdl from an url -->
+                    <wsdlUrls>
+                        <wsdlUrl>
+                            http://www.ebi.ac.uk/europepmc/webservices/soap?wsdl
+                        </wsdlUrl>
+                    </wsdlUrls>
+                    <!-- or using wsdls file directory -->
+                    <!-- <wsdlDirectory>src/wsdl</wsdlDirectory> -->
+                    <!-- which wsdl file -->
+                    <!-- <wsdlFiles> -->
+                    <!-- <wsdlFile>myWSDL.wsdl</wsdlFile> -->
+                    <!--</wsdlFiles> -->
+                    <!-- Keep generated files -->
+                    <keep>true</keep>
+                    <!-- Package name -->
+                    <packageName>uk.ac.ebi.cdb.webservice</packageName>
+                    <!-- generated source files destination-->
+                    <sourceDestDir>target/generated-sources</sourceDestDir>
+
+                    <sei/>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>wsimport</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
 
                 <dependencies>
                     <dependency>
