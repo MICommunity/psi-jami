@@ -20,44 +20,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <!-- Need Java 5, which is the default since v2.3 of the maven-compiler-plugin. -->
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>jaxws-maven-plugin</artifactId>
-                    <version>1.12</version>
-
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>wsimport</goal>
-                            </goals>
-                            <configuration>
-                                <verbose>true</verbose>
-                                <wsdlUrls>
-                                    <wsdlUrl>${basedir}/src/main/wsdl/PicrService.wsdl</wsdlUrl>
-                                </wsdlUrls>
-                                <packageName>psidev.psi.mi.jami.bridges.picr</packageName>
-                            </configuration>
-                        </execution>
-                    </executions>
-
-                    <dependencies>
-                        <dependency>
-                            <groupId>javax.xml</groupId>
-                            <artifactId>webservices-api</artifactId>
-                            <version>1.4</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.xml.bind</groupId>
-                            <artifactId>jaxb-xjc</artifactId>
-                            <version>2.1.12</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.xml.ws</groupId>
-                            <artifactId>jaxws-rt</artifactId>
-                            <version>2.1.4</version>
-                        </dependency>
-                    </dependencies>
-
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -71,16 +38,42 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.9.1</version>
+                <version>0.8.2</version>
                 <configuration>
                     <schemaDirectory>src/main/resources</schemaDirectory>
-                    <generatePackage>psidev.psi.mi.jami.bridges.picr.jaxb</generatePackage>
+                    <generatePackage>psidev.psi.mi.jami.bridges.picr</generatePackage>
                     <strict>false</strict>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
                             <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>2.7.5</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>/Users/maximiliankoch/IdeaProjects/MICommunity/PSI-JAMI/jami-bridges/jami-picr/src/main/wsdl/PicrService.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-nexclude</extraarg>
+                                        <extraarg>NameSpaceOfxsd</extraarg>
+                                    </extraargs>
+
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
                         </goals>
                     </execution>
                 </executions>
