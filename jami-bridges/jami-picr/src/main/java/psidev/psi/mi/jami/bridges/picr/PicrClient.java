@@ -3,10 +3,13 @@ package psidev.psi.mi.jami.bridges.picr;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.picr.io.PicrParsingException;
 import psidev.psi.mi.jami.bridges.picr.io.PicrRESTParser;
-import psidev.psi.mi.jami.bridges.picr.jaxb.GetUPIForAccessionResponse;
-import psidev.psi.mi.jami.bridges.picr.jaxb.GetUPIForAccessionReturn;
-import psidev.psi.mi.jami.bridges.picr.jaxb.IdenticalCrossReferences;
-
+import psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionReturn;
+import psidev.psi.mi.jami.bridges.picr.IdenticalCrossReferences;
+import uk.ac.ebi.picr.accessionmappingservice.AccessionMapperInterface;
+import uk.ac.ebi.picr.accessionmappingservice.AccessionMapperService;
+import uk.ac.ebi.picr.accessionmappingservice.GetUPIForAccessionResponse;
+import uk.ac.ebi.picr.model.CrossReference;
+import uk.ac.ebi.picr.model.UPEntry;
 import javax.xml.namespace.QName;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -278,14 +281,13 @@ public class PicrClient {
         URL url = null;
         try {
             url = new URL(query);
-
-            GetUPIForAccessionResponse upiResponse = this.parser.read(url);
+            psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse upiResponse = this.parser.read(url);
 
             if (upiResponse == null){
                 return null;
             }
             else {
-                GetUPIForAccessionReturn upiResponeReturn = upiResponse.getGetUPIForAccessionReturn();
+                psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionReturn upiResponeReturn = upiResponse.getGetUPIForAccessionReturn();
                 if (upiResponeReturn == null){
                     return null;
                 }
