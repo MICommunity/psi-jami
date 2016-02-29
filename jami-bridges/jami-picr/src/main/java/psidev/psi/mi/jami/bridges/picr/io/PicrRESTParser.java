@@ -1,6 +1,8 @@
 package psidev.psi.mi.jami.bridges.picr.io;
 
-import psidev.psi.mi.jami.bridges.picr.jaxb.GetUPIForAccessionResponse;
+
+
+import psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -30,7 +32,7 @@ public class PicrRESTParser {
 
         // create a JAXBContext capable of handling classes generated into the
         // jaxb package
-        JAXBContext jc = JAXBContext.newInstance( "uk.ac.ebi.intact.bridges.picr.jaxb" );
+        JAXBContext jc = JAXBContext.newInstance( "psidev.psi.mi.jami.bridges.picr" );
 
         // create and return Unmarshaller
         return jc.createUnmarshaller();
