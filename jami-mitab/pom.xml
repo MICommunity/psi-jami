@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-mitab</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.2-SNAPSHOT</version>
     <name>PSI :: JAMI - MITAB</name>
     <description>JAMI - MITAB parser and writer</description>
 
@@ -20,15 +20,14 @@
         <connection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-mitab/</connection>
         <developerConnection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-mitab/</developerConnection>
         <url>http://psimi.googlecode.com/svn/trunk/psi-jami/jami-mitab/</url>
-      <tag>psi-jami-1.0.1</tag>
-  </scm>
+    </scm>
 
     <dependencies>
 
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-core</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.3-SNAPSHOT</version>
         </dependency>
 
         <dependency>
