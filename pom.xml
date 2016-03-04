@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>psidev.psi.mi</groupId>
-    <artifactId>psimi-master</artifactId>
-    <version>1.8.6-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>psidev.psi.mi</groupId>
+        <artifactId>psimi-master</artifactId>
+        <version>1.8.6-SNAPSHOT</version>
+    </parent>
 
-  <groupId>psidev.psi.mi.jami</groupId>
-  <artifactId>psi-jami</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+    <groupId>psidev.psi.mi.jami</groupId>
+    <artifactId>psi-jami</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-  <name>PSI :: JAMI - Java framework for molecular interactions</name>
-  <description>JAMI master module</description>
+    <name>PSI :: JAMI - Java framework for molecular interactions</name>
+    <description>JAMI master module</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <modules>
         <module>jami-core</module>
@@ -29,12 +30,12 @@
         <module>interactionviewer-app</module>
         <module>jami-batch</module>
         <module>jami-xml</module>
-    <module>jami-examples</module>
-    <module>jami-crosslink-csv</module>
-    <module>crosslink-uploader-app</module>
-    <!--<module>jami-ontology-index</module>-->
-    <module>jami-imex-updater</module>
-  </modules>
+        <module>jami-examples</module>
+        <module>jami-crosslink-csv</module>
+        <module>crosslink-uploader-app</module>
+        <!--<module>jami-ontology-index</module>-->
+        <module>jami-imex-updater</module>
+    </modules>
 
     <dependencies>
         <!-- Testing -->
