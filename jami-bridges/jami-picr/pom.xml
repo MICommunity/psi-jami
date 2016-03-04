@@ -63,7 +63,7 @@
                         <configuration>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>/Users/maximiliankoch/IdeaProjects/MICommunity/PSI-JAMI/jami-bridges/jami-picr/src/main/wsdl/PicrService.wsdl</wsdl>
+                                    <wsdl>src/main/wsdl/PicrService.wsdl</wsdl>
                                     <extraargs>
                                         <extraarg>-nexclude</extraarg>
                                         <extraarg>NameSpaceOfxsd</extraarg>
