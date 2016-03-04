@@ -186,63 +186,78 @@ public class UnisaveClientTest {
                 "FT   BINDING     162    162       Substrate. {ECO:0000250}.\n" +
                 "FT   BINDING     215    215       Substrate. {ECO:0000250}.\n" +
                 "FT   BINDING     407    407       Substrate. {ECO:0000250}.\n" +
-                "FT   MOD_RES      59     59       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT   MOD_RES      48     48       Phosphothreonine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
+                "FT   MOD_RES      59     59       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES      73     73       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES      73     73       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES      82     82       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES      82     82       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES      90     90       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES      90     90       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES      96     96       Nitrated tyrosine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES      96     96       Nitrated tyrosine; alternate.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES      96     96       Phosphotyrosine; alternate.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     122    122       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     122    122       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     143    143       Phosphoserine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     159    159       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     159    159       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     185    185       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     185    185       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES     227    227       N6-succinyllysine. {ECO:0000250}.\n" +
-                "FT   MOD_RES     234    234       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     227    227       N6-succinyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     234    234       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     279    279       N6-(pyridoxal phosphate)lysine;\n" +
                 "FT                                alternate. {ECO:0000250}.\n" +
                 "FT   MOD_RES     279    279       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     296    296       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     296    296       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES     302    302       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     302    302       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     309    309       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     309    309       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P12344}.\n" +
                 "FT   MOD_RES     338    338       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     338    338       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES     345    345       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     345    345       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     363    363       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     363    363       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
-                "FT   MOD_RES     364    364       N6-acetyllysine. {ECO:0000250}.\n" +
-                "FT   MOD_RES     387    387       N6-acetyllysine. {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     364    364       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
+                "FT   MOD_RES     387    387       N6-acetyllysine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     396    396       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     396    396       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     404    404       N6-acetyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P00505}.\n" +
                 "FT   MOD_RES     404    404       N6-succinyllysine; alternate.\n" +
-                "FT                                {ECO:0000250}.", sv.getSequence().getHeader() );
+                "FT                                {ECO:0000250|UniProtKB:P05202}.", sv.getSequence().getHeader() );
         Assert.assertEquals( 2, sv.getVersion() );
     }
 
