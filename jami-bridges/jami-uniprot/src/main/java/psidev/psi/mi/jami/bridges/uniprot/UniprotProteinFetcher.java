@@ -25,7 +25,13 @@ import uk.ac.ebi.kraken.interfaces.uniprot.features.*;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.GeneNameSynonym;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.ORFName;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.OrderedLocusName;
-import uk.ac.ebi.kraken.uuw.services.remoting.*;
+import uk.ac.ebi.uniprot.dataservice.client.Client;
+import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
+import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
+import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
+import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
+import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
+import uk.ac.ebi.uniprot.dataservice.query.Query;
 
 import java.util.*;
 
@@ -40,13 +46,13 @@ public class UniprotProteinFetcher
 
     private final Logger log = LoggerFactory.getLogger(UniprotProteinFetcher.class.getName());
 
-    private UniProtQueryService uniProtQueryService;
+    private UniProtService uniProtQueryService;
 
     private Map<DatabaseType,CvTerm> selectedDatabases = null;
     private RogidGenerator rogidGenerator;
 
     public UniprotProteinFetcher() {
-        uniProtQueryService = UniProtJAPI.factory.getUniProtQueryService();
+        uniProtQueryService = Client.getServiceFactoryInstance().getUniProtQueryService();
         rogidGenerator = new RogidGenerator();
     }
 
@@ -103,7 +109,7 @@ public class UniprotProteinFetcher
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         if(identifiers == null) throw new IllegalArgumentException("Could not perform search on null collection of identifiers.");
         if(identifiers.isEmpty()){
-           return Collections.EMPTY_LIST;
+            return Collections.EMPTY_LIST;
         }
 
         List<String> masterIdentifiers = new ArrayList<String>(identifiers.size());
@@ -146,22 +152,37 @@ public class UniprotProteinFetcher
     private Collection<Protein> fetchMasterProteinsByIdentifier(String identifier) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>();
 
-        try{
-            Query query = UniProtQueryBuilder.buildExactMatchIdentifierQuery(identifier);
-            EntryIterator<UniProtEntry> entries = uniProtQueryService.getEntryIterator(query);
-
-            while(entries.hasNext()){
-                proteins.add(createMasterProteinFromEntry(entries.next()));
+        try {
+            uniProtQueryService.start();
+            Query query = UniProtQueryBuilder.id(identifier);
+            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    proteins.add(createMasterProteinFromEntry(e));
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
             }
-        }catch (RemoteDataAccessException e){
-            throw new BridgeFailedException("Problem with Uniprot Service.",e);
+        } catch (ServiceException e) {
+            uniProtQueryService.stop();
+            throw new BridgeFailedException("Problem with Uniprot Service.", e);
         }
 
         // Examples:
         // - one single entry : P12345
         // - uniprot demerge (different uniprot entries with different organisms) : P77681
         // - uniprot demerge (different uniprot entries with same organisms) : P11163
-
+        uniProtQueryService.stop();
         return proteins;
     }
 
@@ -173,15 +194,36 @@ public class UniprotProteinFetcher
      */
     private Collection<Protein> fetchMasterProteinsByIdentifiers(List<String> identifiers) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>();
-
+        Query query = null;
         try{
-            Query query = UniProtQueryBuilder.buildIDListQuery(identifiers);
-            EntryIterator<UniProtEntry> entries = uniProtQueryService.getEntryIterator(query);
-
-            while(entries.hasNext()){
-                proteins.add(createMasterProteinFromEntry(entries.next()));
+            for(String id : identifiers){
+                if(query == null){
+                    query = UniProtQueryBuilder.id(id);
+                } else {
+                    query.or(UniProtQueryBuilder.id(id));
+                }
             }
-        }catch (RemoteDataAccessException e){
+            uniProtQueryService.start();
+            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    proteins.add(createMasterProteinFromEntry(e));
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
+            }
+        }catch (ServiceException e){
+            uniProtQueryService.stop();
             throw new BridgeFailedException("Problem with Uniprot Service.",e);
         }
 
@@ -190,6 +232,7 @@ public class UniprotProteinFetcher
         // - uniprot demerge (different uniprot entries with different organisms) : P77681
         // - uniprot demerge (different uniprot entries with same organisms) : P11163
 
+        uniProtQueryService.stop();
         return proteins;
     }
 
@@ -204,20 +247,35 @@ public class UniprotProteinFetcher
         Collection<Protein> proteins = new ArrayList<Protein>();
 
         try{
-            Query query = UniProtQueryBuilder.buildExactMatchIdentifierQuery(identifier);
-            EntryIterator<UniProtEntry> entries = uniProtQueryService.getEntryIterator(query);
-
-            while(entries.hasNext()){
-                UniProtEntry entry = entries.next();
-                AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
-                if(isoform == null) log.warn("No isoform in entry "+entry.getUniProtId());
-                else{
-                    proteins.add(createIsoformFrom(entry, isoform));
+            uniProtQueryService.start();
+            Query query = UniProtQueryBuilder.id(identifier);
+            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    AlternativeProductsIsoform isoform = findIsoformInEntry(e, identifier);
+                    if (isoform == null) log.warn("No isoform in entry " + e.getUniProtId());
+                    else {
+                        proteins.add(createIsoformFrom(e, isoform));
+                    }
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
                 }
             }
-        }catch (RemoteDataAccessException e){
+        }catch (ServiceException e){
+            uniProtQueryService.stop();
             throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.",e);
         }
+        uniProtQueryService.stop();
         return proteins;
     }
 
@@ -230,24 +288,45 @@ public class UniprotProteinFetcher
      */
     private Collection<Protein> fetchIsoformsByIdentifiers(List<String> identifiers) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>(identifiers.size());
-
+        Query query = null;
         try{
-            Query query = UniProtQueryBuilder.buildIDListQuery(identifiers);
-            EntryIterator<UniProtEntry> entries = uniProtQueryService.getEntryIterator(query);
-
-            while(entries.hasNext()){
-                UniProtEntry entry = entries.next();
-                Collection<AlternativeProductsIsoform> matchingIsoform = findIsoformsInEntry(entry, identifiers);
-                if(matchingIsoform.isEmpty()) log.warn("No isoform in entry "+entry.getUniProtId());
-                else{
-                    for (AlternativeProductsIsoform isoform : matchingIsoform){
-                        proteins.add(createIsoformFrom(entry, isoform));
-                    }
+            for(String id : identifiers){
+                if(query == null){
+                    query = UniProtQueryBuilder.id(id);
+                } else {
+                    query.or(UniProtQueryBuilder.id(id));
                 }
             }
-        }catch (RemoteDataAccessException e){
+            uniProtQueryService.start();
+            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    Collection<AlternativeProductsIsoform> matchingIsoform = findIsoformsInEntry(e, identifiers);
+                    if (matchingIsoform.isEmpty()) log.warn("No isoform in entry " + e.getUniProtId());
+                    else {
+                        for (AlternativeProductsIsoform isoform : matchingIsoform) {
+                            proteins.add(createIsoformFrom(e, isoform));
+                        }
+                    }
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
+            }
+        }catch (ServiceException e){
+            uniProtQueryService.stop();
             throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.",e);
         }
+        uniProtQueryService.stop();
         return proteins;
     }
 
@@ -267,24 +346,38 @@ public class UniprotProteinFetcher
         Collection<Protein> proteins = new ArrayList<Protein>();
 
         try{
-            Query query = UniProtQueryBuilder.buildFullTextSearch(
-                    UniprotUtils.FEATURE_CHAIN_FIELD + identifier + " OR " +
-                            UniprotUtils.FEATURE_PEPTIDE_FIELD + identifier + " OR " +
-                            UniprotUtils.FEATURE_PRO_PEPTIDE_FIELD + identifier );
+            uniProtQueryService.start();
+            Query query = UniProtQueryBuilder.features(FeatureType.CHAIN, identifier)
+                    .or(UniProtQueryBuilder.features(FeatureType.PEPTIDE, identifier)
+                            .or(UniProtQueryBuilder.features(FeatureType.PROPEP, identifier)));
 
-            EntryIterator<UniProtEntry> entries = uniProtQueryService.getEntryIterator(query);
-
-            while(entries.hasNext()){
-                UniProtEntry entry = entries.next();
-                Feature feature = findFeatureInEntry(entry, identifier);
-                if(feature == null) log.warn("No feature in entry "+entry.getUniProtId());
-                else{
-                    proteins.add(createProteinFeatureFrom(entry, feature));
+            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    Feature feature = findFeatureInEntry(e, identifier);
+                    if (feature == null) log.warn("No feature in entry " + e.getUniProtId());
+                    else {
+                        proteins.add(createProteinFeatureFrom(e, feature));
+                    }
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
                 }
             }
-        }catch (RemoteDataAccessException e){
+        }catch (ServiceException e){
+            uniProtQueryService.stop();
             throw new BridgeFailedException("Problem with Uniprot Service.",e);
         }
+        uniProtQueryService.stop();
         return proteins;
     }
 
@@ -443,7 +536,7 @@ public class UniprotProteinFetcher
                     }
                     break;
                 default:
-                break;
+                    break;
             }
 
             if(id != null) return refs;
