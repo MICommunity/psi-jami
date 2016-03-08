@@ -154,7 +154,7 @@ public class UniprotProteinFetcher
 
         try {
             uniProtQueryService.start();
-            Query query = UniProtQueryBuilder.accession(identifier);
+            Query query = UniProtQueryBuilder.accession(identifier).or(UniProtQueryBuilder.proteinName(identifier).or(UniProtQueryBuilder.id(identifier)));
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
             QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
             int count = 0;
