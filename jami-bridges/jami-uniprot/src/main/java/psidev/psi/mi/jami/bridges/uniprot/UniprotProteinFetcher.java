@@ -248,7 +248,7 @@ public class UniprotProteinFetcher
 
         try{
             uniProtQueryService.start();
-            Query query = UniProtQueryBuilder.id(identifier);
+            Query query = UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier);
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
             QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
             int count = 0;
