@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>jami-enricher</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.1.4</version>
 
     <name>jami-enricher</name>
     <properties>
@@ -19,7 +19,7 @@
         <connection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-enricher</connection>
         <developerConnection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-enricher</developerConnection>
         <url>http://psimi.googlecode.com/svn/trunk/psi-jami/jami-enricher</url>
-      <tag>HEAD</tag>
+      <tag>psi-jami-1.0.3</tag>
   </scm>
 
     <dependencies>
@@ -27,7 +27,7 @@
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
             <artifactId>bridges-core</artifactId>
-            <version>1.1.4-SNAPSHOT</version>
+            <version>1.1.4</version>
         </dependency>
 
         <dependency>

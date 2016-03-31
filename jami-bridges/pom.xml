@@ -4,12 +4,12 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <groupId>psidev.psi.mi.jami.bridges</groupId>
     <artifactId>jami-bridges</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>1.1.4</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Bridges</name>
     <description>Bridges master module based on JAMI core interfaces</description>
@@ -22,7 +22,7 @@
         <connection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-bridges</connection>
         <developerConnection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-bridges</developerConnection>
         <url>http://psimi.googlecode.com/svn/trunk/psi-jami/jami-bridges</url>
-      <tag>HEAD</tag>
+      <tag>psi-jami-1.0.3</tag>
   </scm>
 
     <dependencies>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-core</artifactId>
-            <version>1.2.5-SNAPSHOT</version>
+            <version>1.2.5</version>
         </dependency>
 
         <!-- Logging -->
