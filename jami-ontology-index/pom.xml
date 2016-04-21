@@ -9,7 +9,7 @@
 
     <groupId>psidev.psi.mi.jami.ontology</groupId>
     <artifactId>jami-ontology-index</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Ontology index parent module</name>
     <description>JAMI master module for indexing ontologies</description>

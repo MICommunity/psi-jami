@@ -4,13 +4,10 @@
   <parent>
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+      <version>3.0.0-SNAPSHOT</version>
   </parent>
 
-    <groupId>psidev.psi.mi.jami</groupId>
   <artifactId>crosslink-uploader-app</artifactId>
-  <version>1.1.4-SNAPSHOT</version>
-
     <name>PSI :: JAMI - cross-link CSV uploader application</name>
     <description>JAMI- cross-link CSV uploader application</description>
     <packaging>war</packaging>
@@ -22,14 +19,6 @@
         <jetty.stopKey>stopJetty</jetty.stopKey>
         <jetty.contextPath>/jami/crosslink</jetty.contextPath>
     </properties>
-
-    <scm>
-        <connection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/crosslink-uploader-app</connection>
-        <developerConnection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/crosslink-uploader-app</developerConnection>
-        <url>http://psimi.googlecode.com/svn/trunk/psi-jami/crosslink-uploader-app</url>
-      <tag>HEAD</tag>
-  </scm>
-
 
     <build>
         <finalName>${artifactId}-${version}</finalName>
@@ -71,14 +60,14 @@
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-commons</artifactId>
-            <version>1.1.6-SNAPSHOT</version>
+            <version>${pom.version}</version>
         </dependency>
 
         <!-- JAMI json-->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-crosslink-csv</artifactId>
-            <version>1.1.4-SNAPSHOT</version>
+            <version>${pom.version}</version>
         </dependency>
 
         <!-- java servlet -->

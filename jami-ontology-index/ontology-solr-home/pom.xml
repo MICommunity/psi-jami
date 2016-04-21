@@ -1,23 +1,22 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>psidev.psi.mi.jami.ontology</groupId>
-    <artifactId>jami-ontology-index</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
-  </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>psidev.psi.mi.jami.ontology</groupId>
+        <artifactId>jami-ontology-index</artifactId>
+        <version>3.0.3-SNAPSHOT</version>
+    </parent>
 
-  <groupId>uk.ac.ebi.intact.jami.ontology</groupId>
-  <artifactId>ontology-solr-home</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+    <groupId>uk.ac.ebi.intact.jami.ontology</groupId>
+    <artifactId>ontology-solr-home</artifactId>
     <name>PSI :: JAMI - Ontology solr-home</name>
     <description>JAMI module containing solr-home for ontologies</description>
 
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <repositories>
         <repository>
