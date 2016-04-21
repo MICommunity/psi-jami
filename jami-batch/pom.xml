@@ -22,13 +22,6 @@
     <batch.step.commitInterval />
   </properties>
 
-    <scm>
-        <connection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-batch</connection>
-        <developerConnection>scm:svn:https://psimi.googlecode.com/svn/trunk/psi-jami/jami-batch</developerConnection>
-        <url>http://psimi.googlecode.com/svn/trunk/psi-jami/jami-batch</url>
-      <tag>HEAD</tag>
-  </scm>
-
   <dependencies>
       <!-- commons for jdbc data sources and batch data source initializer-->
       <dependency>
@@ -92,12 +85,5 @@
           <artifactId>spring-aop</artifactId>
           <version>3.2.4.RELEASE</version>
       </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 </project>

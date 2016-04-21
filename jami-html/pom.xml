@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>jami-html</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
     <name>PSI :: PSI-JAMI html parser and writer</name>
 
     <build>
@@ -60,7 +59,6 @@
         </plugins>
     </build>
     <dependencies>
-
         <!-- JAMI core -->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
@@ -73,20 +71,5 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>

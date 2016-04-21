@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
@@ -17,7 +18,6 @@
     </properties>
 
     <dependencies>
-
         <!-- Bridges Core -->
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
@@ -39,31 +39,17 @@
             <version>2.1.19-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
-        </dependency>
-
-        <!-- Uniprot service -->
-        <!--<dependency>-->
-            <!--<groupId>uk.ac.ebi.uniprot.kraken</groupId>-->
-            <!--<artifactId>uniprotjapi</artifactId>-->
-            <!--<version>RELEASE</version>-->
-        <!--</dependency>-->
+        <!--uniprot-->
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>
             <artifactId>japi</artifactId>
             <version>RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.1</version>
+        </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>

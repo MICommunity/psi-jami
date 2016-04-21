@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>jami-xml</artifactId>
-
     <name>PSI :: JAMI - XML</name>
     <description>JAMI - PSI-XML parser and writer</description>
 
@@ -33,14 +32,12 @@
     </build>
 
     <dependencies>
-
         <!-- JAMI core -->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-core</artifactId>
             <version>${pom.version}</version>
         </dependency>
-
         <!-- JAXB -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -52,14 +49,12 @@
             <artifactId>jaxb-impl</artifactId>
             <version>2.2.7</version>
         </dependency>
-
         <!-- woodstox -->
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>wstx-asl</artifactId>
             <version>4.0.6</version>
         </dependency>
-
         <!-- stax utils -->
         <dependency>
             <groupId>net.java.dev.stax-utils</groupId>
@@ -72,7 +67,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <!-- apache commons -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -84,20 +78,5 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>

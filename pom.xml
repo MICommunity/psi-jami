@@ -41,65 +41,6 @@
         <module>jami-imex-updater</module>
     </modules>
 
-    <developers>
-        <developer>
-            <id>skerrien</id>
-            <name>Samuel Kerrien</name>
-            <email>skerrien@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>mmueller</id>
-            <name>Michael Mueller</name>
-            <email>mmueller@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>baranda</id>
-            <name>Bruno Aranda</name>
-            <email>baranda@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>nneuhaus</id>
-            <name>Nadin Neuhauser</name>
-            <email>nneuhaus@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>marine</id>
-            <name>Marine Dumousseau</name>
-            <email>marine@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>ntoro</id>
-            <name>Noemi del-Toro</name>
-            <email>ntoro@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-        <developer>
-            <id>rafael</id>
-            <name>Rafael Jimenez</name>
-            <email>rafael@ebi.ac.uk</email>
-            <organization>EBI</organization>
-            <timezone>0</timezone>
-        </developer>
-
-    </developers>
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>

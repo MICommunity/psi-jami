@@ -17,27 +17,17 @@
     </properties>
 
     <dependencies>
-
         <!-- bridges core -->
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
             <artifactId>bridges-core</artifactId>
             <version>${pom.version}</version>
         </dependency>
-
+        <!--uniprot-->
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>
             <artifactId>japi</artifactId>
             <version>RELEASE</version>
         </dependency>
-
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>

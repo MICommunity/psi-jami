@@ -23,22 +23,11 @@
             <artifactId>bridges-core</artifactId>
             <version>${pom.version}</version>
         </dependency>
-
         <!-- Ontology Lookup Service Client -->
         <dependency>
             <groupId>uk.ac.ebi.ols</groupId>
             <artifactId>ols-client</artifactId>
             <version>1.18</version>
         </dependency>
-
-
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>intact.nexus</id>
-            <name>IntAct Nexus</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>
