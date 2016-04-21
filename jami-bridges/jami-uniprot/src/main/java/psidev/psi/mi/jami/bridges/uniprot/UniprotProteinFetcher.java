@@ -246,34 +246,18 @@ public class UniprotProteinFetcher
     private Collection<Protein> fetchIsoformsByIdentifier(String identifier) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>();
 
-        try{
+        try {
             uniProtQueryService.start();
-            Query query = UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier);
-            QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
-            int count = 0;
-            while (true) {
-                for (UniProtEntry e : currentPage.getResults()) {
-                    AlternativeProductsIsoform isoform = findIsoformInEntry(e, identifier);
-                    if (isoform == null) log.warn("No isoform in entry " + e.getUniProtId());
-                    else {
-                        proteins.add(createIsoformFrom(e, isoform));
-                    }
-                    count++;
-                }
-                if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    break;
-                }
+            UniProtEntry entry = uniProtQueryService.getEntry(identifier);
+            AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
+            if (isoform == null) log.warn("No isoform in entry " + entry.getUniProtId());
+            else {
+                proteins.add(createIsoformFrom(entry, isoform));
             }
-        }catch (ServiceException e){
+
+        } catch (ServiceException e) {
             uniProtQueryService.stop();
-            throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.",e);
+            throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.", e);
         }
         uniProtQueryService.stop();
         return proteins;
@@ -294,7 +278,7 @@ public class UniprotProteinFetcher
                 if(query == null){
                     query = UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier);
                 } else {
-                    query.or(UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier));
+                    query = query.or(UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier));
                 }
             }
             uniProtQueryService.start();
@@ -574,7 +558,7 @@ public class UniprotProteinFetcher
      */
     private AlternativeProductsIsoform findIsoformInEntry(UniProtEntry entry, String identifier){
 
-        List<AlternativeProductsComment> comments = entry.getComments(CommentType.ALTERNATIVE_PRODUCTS );
+        List<AlternativeProductsComment> comments = entry.getComments(CommentType.ALTERNATIVE_PRODUCTS);
 
         for ( AlternativeProductsComment comment : comments ) {
             List<AlternativeProductsIsoform> isoforms = comment.getIsoforms();
@@ -848,6 +832,6 @@ public class UniprotProteinFetcher
                 }
             }
         }
-        return null;
+        return results;
     }
 }
