@@ -290,11 +290,11 @@ public class UniprotProteinFetcher
         Collection<Protein> proteins = new ArrayList<Protein>(identifiers.size());
         Query query = null;
         try{
-            for(String id : identifiers){
+            for(String identifier : identifiers){
                 if(query == null){
-                    query = UniProtQueryBuilder.id(id);
+                    query = UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier);
                 } else {
-                    query.or(UniProtQueryBuilder.id(id));
+                    query.or(UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier));
                 }
             }
             uniProtQueryService.start();
