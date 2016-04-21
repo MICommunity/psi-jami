@@ -79,7 +79,8 @@ public class UniprotProteinFetcherTest {
     public void test_isoform_returned_identifier()
             throws BridgeFailedException {
 
-        String[] identifiers = {"Q6ZRI6-3", "P13055-2"};
+        //TODO: P13055-2 makes trouble... UniProt is already informed
+        String[] identifiers = {"Q6ZRI6-3", "P17671-2"};
         for(String identifier : identifiers){
             //assertTrue(fetcher.UNIPROT_MASTER_REGEX.matcher(identifier).find());
             assertTrue(UniprotUtils.UNIPROT_ISOFORM_REGEX.matcher(identifier).find());
