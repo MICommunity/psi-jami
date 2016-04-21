@@ -30,6 +30,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.4.1</version>
             </plugin>
             <!-- Conversion of XML Schema into Java source code using JAXB-XJC -->
             <plugin>
@@ -83,7 +84,7 @@
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
             <artifactId>bridges-core</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <!-- uniprot -->
         <dependency>
