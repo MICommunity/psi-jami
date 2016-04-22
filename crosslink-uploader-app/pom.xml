@@ -59,14 +59,12 @@
             <artifactId>jami-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- JAMI json-->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-crosslink-csv</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- java servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>

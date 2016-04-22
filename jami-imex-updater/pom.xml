@@ -19,7 +19,6 @@
             <artifactId>jami-imexcentral</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-enricher</artifactId>
