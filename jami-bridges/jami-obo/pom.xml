@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - OBO</name>
     <description>JAMI-OBO bridge</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- bridges core -->
         <dependency>
@@ -23,7 +19,6 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- OBO parser -->
         <dependency>
             <groupId>uk.ac.ebi.ols</groupId>

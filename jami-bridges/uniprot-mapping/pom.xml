@@ -13,10 +13,6 @@
     <name>PSI :: JAMI - uniprot-mapping</name>
     <description>JAMI module to map proteins to uniprot</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- Bridges Core -->
         <dependency>
@@ -24,21 +20,18 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- intact protein-mapping tool -->
         <dependency>
             <groupId>uk.ac.ebi.intact.tools</groupId>
             <artifactId>protein-mapping</artifactId>
             <version>1.0.6-SNAPSHOT</version>
         </dependency>
-
         <!-- Unisave -->
         <dependency>
             <groupId>uk.ac.ebi.intact.bridges</groupId>
             <artifactId>intact-unisave</artifactId>
             <version>2.1.19-SNAPSHOT</version>
         </dependency>
-
         <!--uniprot-->
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>

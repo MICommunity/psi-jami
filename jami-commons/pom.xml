@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - commons</name>
     <description>JAMI commons</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    
     <dependencies>
         <!-- JAMI mitab-->
         <dependency>
@@ -23,14 +19,12 @@
             <artifactId>jami-mitab</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- JAMI xml-->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-xml</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- apache commons-->
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -11,10 +11,6 @@
     <artifactId>jami-imex-updater</artifactId>
     <name>PSI :: JAMI - IMEx assigner</name>
     <description>JAMI module to assign IMEx ids to publications</description>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <!-- jami dependencies-->

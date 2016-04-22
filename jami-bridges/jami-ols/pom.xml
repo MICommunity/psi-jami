@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - OLS</name>
     <description>JAMI-OLS bridge</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- Bridges Core -->
         <dependency>

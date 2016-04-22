@@ -13,10 +13,6 @@
     <name>PSI :: JAMI - examples</name>
     <description>JAMI - examples</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- jami commons to get factories utils, jami-core, xml and mitab implementations -->
         <dependency>
@@ -24,14 +20,12 @@
             <artifactId>jami-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- jami interaction viewer -->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-interactionviewer-json</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- jami bridges -->
         <!-- chebi -->
         <dependency>

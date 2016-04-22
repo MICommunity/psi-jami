@@ -14,7 +14,6 @@
     <packaging>war</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jetty.port>9095</jetty.port>
         <jetty.stopPort>9999</jetty.stopPort>
         <jetty.stopKey>stopJetty</jetty.stopKey>
@@ -23,7 +22,6 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
-
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -76,7 +74,6 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- apache commons fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>

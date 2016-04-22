@@ -9,13 +9,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jami-chebi</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
     <name>PSI :: JAMI - CHEBI</name>
     <description>JAMI-CHEBI bridge</description>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <!-- bridges core -->
@@ -24,7 +19,6 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!--Chebi webservice -->
         <dependency>
             <groupId>uk.ac.ebi.chebi.webapps.chebiWS.client</groupId>

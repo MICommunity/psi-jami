@@ -13,10 +13,6 @@
     <name>PSI :: JAMI - JSON</name>
     <description>JAMI - simple JSON writer</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!--JAMI core -->
         <dependency>

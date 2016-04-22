@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - EuroPubmedCentral</name>
     <description>JAMI-EuroPubmedCentral bridge</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- bridges core -->
         <dependency>

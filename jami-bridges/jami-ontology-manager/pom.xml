@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - Ontology manager</name>
     <description>Jami ontology manager extension</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    
     <dependencies>
         <!-- ontology manager -->
         <dependency>

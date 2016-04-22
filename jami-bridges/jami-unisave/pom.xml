@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - unisave</name>
     <description>Bridges module with unisave webservice</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- bridges core -->
         <dependency>

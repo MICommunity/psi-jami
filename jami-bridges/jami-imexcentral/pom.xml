@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - IMEx central</name>
     <description>Module to connect JAMI to IMEx central</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <build>
         <plugins>
             <plugin>

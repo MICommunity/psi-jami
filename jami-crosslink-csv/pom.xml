@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - Cross link CSV</name>
     <description>JAMI - Cross Link CSV parser and data model</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>

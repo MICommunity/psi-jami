@@ -11,10 +11,6 @@
     <artifactId>bridges-core</artifactId>
     <name>JAMI :: bridges core interfaces</name>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- Caching Service-->
         <dependency>

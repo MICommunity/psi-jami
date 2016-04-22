@@ -13,7 +13,6 @@
     <packaging>war</packaging>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.port>9095</jetty.port>
     <jetty.stopPort>9999</jetty.stopPort>
     <jetty.stopKey>stopJetty</jetty.stopKey>
@@ -52,7 +51,6 @@
             </plugin>
 
         </plugins>
-
     </build>
 
     <dependencies>
@@ -62,28 +60,24 @@
             <artifactId>jami-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- JAMI json-->
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>
             <artifactId>jami-interactionviewer-json</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- JAMI OLS-->
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
             <artifactId>jami-ols</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- JAMI OBO-->
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>
             <artifactId>jami-obo</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <!-- java servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -91,7 +85,6 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- apache commons fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>

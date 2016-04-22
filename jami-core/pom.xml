@@ -12,11 +12,6 @@
     <artifactId>jami-core</artifactId>
     <name>PSI :: JAMI - Core interfaces, default implementations and utility classes</name>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    </properties>
-
     <build>
         <plugins>
             <plugin>

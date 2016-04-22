@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - MITAB</name>
     <description>JAMI - MITAB parser and writer</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>psidev.psi.mi.jami</groupId>

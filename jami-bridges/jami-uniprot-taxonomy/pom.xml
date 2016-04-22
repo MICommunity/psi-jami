@@ -12,10 +12,6 @@
     <name>PSI :: JAMI - uniprot taxonomy</name>
     <description>JAMI bridge using the uniprot taxonomy webservice</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <!-- Bridges Core -->
         <dependency>
