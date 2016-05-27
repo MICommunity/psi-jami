@@ -12,10 +12,16 @@ import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
-import uk.ac.ebi.ols.soap.Query;
+import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
+import uk.ac.ebi.pride.utilities.ols.web.service.model.Identifier;
 
-import java.rmi.RemoteException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
+
+import static psidev.psi.mi.jami.bridges.ols.utils.OlsUtils.META_XREF_SEPARATOR;
+import static psidev.psi.mi.jami.bridges.ols.utils.OlsUtils.XREF_DEFINITION_KEY;
+import static psidev.psi.mi.jami.model.Annotation.SEARCH_URL;
+import static psidev.psi.mi.jami.model.Annotation.VALIDATION_REGEXP;
 
 /**
  * A lazy cvTerm which will only fetch metadata when required.
@@ -27,7 +33,7 @@ public class LazyCvTerm extends DefaultCvTerm {
 
     protected final Logger log = LoggerFactory.getLogger(LazyCvTerm.class.getName());
 
-    private Query queryService;
+    private OLSClient olsClient;
 
     private boolean hasShortName = false;
     private boolean hasSynonyms = false;
@@ -37,12 +43,12 @@ public class LazyCvTerm extends DefaultCvTerm {
     private String ontologyName;
     private Xref originalXref;
 
-    public LazyCvTerm(Query queryService, String fullName, Xref identityRef, String ontologyName) {
+    public LazyCvTerm(OLSClient olsClient, String fullName, Xref identityRef, String ontologyName) {
         super("");
-        if (queryService == null){
+        if (olsClient == null){
             throw new IllegalArgumentException("The lazy cv term needs the Ols query service which cannot be null.");
         }
-        this.queryService = queryService;
+        this.olsClient = olsClient;
 
         setFullName(fullName);
         originalXref = identityRef;
@@ -111,8 +117,8 @@ public class LazyCvTerm extends DefaultCvTerm {
         return ontologyName;
     }
 
-    protected Query getQueryService() {
-        return queryService;
+    protected OLSClient getOlsClient() {
+        return olsClient;
     }
 
     // == QUERY METHODS =======================================================================
@@ -123,48 +129,44 @@ public class LazyCvTerm extends DefaultCvTerm {
      * The identifier is used to find the metadata
      * which can be used to find the identifier phrases for short labels and synonyms.
      *
-     * @param identifier    The identifier that is being used.
+     * @param xref    The identifier that is being used.
      */
-    protected void initialiseMetaData(Xref identifier){
-        Map<String,String> metaDataMap = null;
-        try {
-            metaDataMap = queryService.getTermMetadata(identifier.getId(), ontologyName);
+    protected void initialiseMetaData(Xref xref){
+        Map metaDataMap = null;
+        Identifier identifier = new Identifier(xref.getId(), Identifier.IdentifierType.OBO);
+        metaDataMap = olsClient.getMetaData(identifier, ontologyName);
 
-            if (metaDataMap != null){
-                if (!hasSynonyms){
-                    for (Object key : metaDataMap.keySet()){
-                        String keyName = (String) key;
-
-                        // definition
-                        if (OlsUtils.DEFINITION_KEY.equalsIgnoreCase(keyName)){
-                            String description = (String) metaDataMap.get(keyName);
-                            Annotation url = processDefinition(description);
-                            if (url != null){
-                                description = description.replaceAll(url.getValue(),"");
-                            }
-                            initialiseDefinition(description);
+        if (metaDataMap != null) {
+            if (!hasSynonyms) {
+                for (Object key : metaDataMap.keySet()) {
+                    String keyName = (String) key;
+                    // definition
+                    if (OlsUtils.DEFINITION_KEY.equalsIgnoreCase(keyName)) {
+                        String description = (String) metaDataMap.get(keyName);
+                        Annotation url = processDefinition(description);
+                        if (url != null) {
+                            description = description.replaceAll(url.getValue(), "");
                         }
-                        // comment
-                        else if (OlsUtils.DEFINITION_KEY.equalsIgnoreCase(keyName) || keyName.startsWith(OlsUtils.COMMENT_KEY + OlsUtils.META_DATA_SEPARATOR)){
-                            String comment = (String) metaDataMap.get(keyName);
-                            initialiseDefinition(comment);
-                        }
-                        else {
-                            String synonym = (String) metaDataMap.get(keyName);
-                            processSynonym(keyName, synonym);
+                        initialiseDefinition(description);
+                    }
+                    // comment
+                    else if (OlsUtils.DEFINITION_KEY.equalsIgnoreCase(keyName) || keyName.startsWith(OlsUtils.COMMENT_KEY)) {
+                        String comment = (String) metaDataMap.get(keyName);
+                        initialiseDefinition(comment);
+                    } else {
+                        Map synonyms = (Map) metaDataMap.get(keyName);
+                        for(Object synonym : synonyms.keySet()){
+                            processSynonym((String)synonym, (String)synonyms.get(synonym));
                         }
                     }
                 }
             }
+        }
+        hasLoadedMetadata = true;
+        hasSynonyms = true;
 
-            hasLoadedMetadata = true;
-            hasSynonyms = true;
-
-            if (!hasShortName){
-                super.setShortName(getFullName());
-            }
-        } catch (RemoteException e) {
-            throw new LazyTermLoadingException("Impossible to load OLS metada for " + identifier.getId(),e);
+        if (!hasShortName) {
+            super.setShortName(getFullName());
         }
     }
 
@@ -181,38 +183,16 @@ public class LazyCvTerm extends DefaultCvTerm {
     }
 
     private void processSynonym(String synonymName, String synonym) {
-
-        if (synonymName.startsWith(OlsUtils.MI_SHORTLABEL_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR)
-                || synonymName.startsWith(OlsUtils.MOD_SHORTLABEL_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR)){
-            if (!hasShortName){
-                super.setShortName(synonym.toLowerCase());
-                hasShortName = true;
+        if(synonym != null){
+            if (synonym.equals(OlsUtils.MI_SHORTLABEL_IDENTIFIER)
+                    || synonym.equals(OlsUtils.MOD_SHORTLABEL_IDENTIFIER )){
+                if (!hasShortName){
+                    super.setShortName(synonymName.toLowerCase());
+                    hasShortName = true;
+                }
             }
         }
-        else if (synonymName.startsWith(OlsUtils.EXACT_SYNONYM_KEY + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.EXACT_SYNONYM_KEY.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.MI_ALIAS_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.MI_ALIAS_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.MOD_ALIAS_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.MOD_ALIAS_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.RESID_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.RESID_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.RESID_MISNOMER_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.RESID_MISNOMER_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.RESID_NAME_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.RESID_NAME_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.RESID_SYSTEMATIC_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.RESID_SYSTEMATIC_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
-        else if (synonymName.startsWith(OlsUtils.UNIPROT_FEATURE_IDENTIFIER + OlsUtils.META_DATA_SEPARATOR) || OlsUtils.UNIPROT_FEATURE_IDENTIFIER.equalsIgnoreCase(synonymName)){
-            super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-        }
+        super.getSynonyms().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonymName));
     }
 
     /**
@@ -275,76 +255,54 @@ public class LazyCvTerm extends DefaultCvTerm {
     /**
      * This method will initialize the xrefs of this object from the map of xrefs
      */
-    private void initialiseOlsXrefs(Xref identifier) {
-        Map<String,String> metaDataRefs = null;
-        try {
-            metaDataRefs = queryService.getTermXrefs(identifier.getId(), ontologyName);
+    private void initialiseOlsXrefs(Xref xref) {
+        Map<String, String> metaDataRefs = null;
+        Identifier identifier = new Identifier(xref.getId(), Identifier.IdentifierType.OBO);
+        metaDataRefs = olsClient.getTermXrefs(identifier, ontologyName);
 
-            if (metaDataRefs != null){
-                for (Object key : metaDataRefs.keySet()){
+        if (metaDataRefs != null) {
+                for (Object key : metaDataRefs.keySet()) {
                     String keyName = (String) key;
 
                     // xref definitions
-                    if (OlsUtils.XREF_DEFINITION_KEY.equalsIgnoreCase(keyName) || keyName.startsWith(OlsUtils.XREF_DEFINITION_KEY)) {
-                        String xref = (String) metaDataRefs.get(keyName);
+                    if (XREF_DEFINITION_KEY.equalsIgnoreCase(keyName) || keyName.startsWith(XREF_DEFINITION_KEY)) {
+                        String value = metaDataRefs.get(keyName);
 
-                        if (xref.contains(OlsUtils.META_XREF_SEPARATOR)){
-                            String [] xrefDef = xref.split(OlsUtils.META_XREF_SEPARATOR);
+                        if (value.contains(META_XREF_SEPARATOR)) {
+                            String[] xrefDef = value.split(META_XREF_SEPARATOR);
                             String database = null;
                             String accession = null;
                             String pubmedPrimary = null;
 
-                            if (xrefDef.length == 2){
+                            if (xrefDef.length == 2) {
                                 database = xrefDef[0];
                                 accession = xrefDef[1].trim();
-                            }
-                            else if (xrefDef.length > 2){
+                            } else if (xrefDef.length > 2) {
                                 database = xrefDef[0];
-                                accession = xref.substring(database.length() + 1).trim();
+                                accession = value.substring(database.length() + 1).trim();
                             }
 
-                            if (database != null && accession != null){
-                                pubmedPrimary = processXrefDefinition(xref, database, accession, pubmedPrimary);
+                            if (database != null && accession != null) {
+                                pubmedPrimary = processXrefDefinition(value, database, accession, pubmedPrimary);
                             }
                         }
-                    }
-                    else {
-                        String xref = (String) metaDataRefs.get(keyName);
-
-                        if (xref.contains(OlsUtils.META_XREF_SEPARATOR)){
-                            String [] xrefDef = xref.split(OlsUtils.META_XREF_SEPARATOR);
-                            String database = null;
-                            String accession = null;
-
-                            if (xrefDef.length == 2){
-                                database = xrefDef[0];
-                                accession = xrefDef[1].trim();
-                            }
-                            else if (xrefDef.length > 2){
-                                database = xrefDef[0];
-                                accession = xref.substring(database.length() + 1).trim();
-                            }
-
-                            if (database != null && accession != null){
-                                processXref(database, accession);
-                            }
-                        }
-                        else {
-                            processXref(null, xref);
+                    } else {
+                        String value = metaDataRefs.get(keyName);
+                        if ((keyName.startsWith(VALIDATION_REGEXP) || keyName.startsWith(SEARCH_URL)) && value != null) {
+                            processXref(keyName.replace(":", ""), value);
+                        } else {
+                            processXref(null, value);
                         }
                     }
                 }
-            }
 
-            hasLoadedXrefs = true;
-        } catch (RemoteException e) {
-            throw new LazyTermLoadingException("Impossible to load OLS metada for " + identifier.getId(),e);
-        }
+            }
+        hasLoadedXrefs = true;
     }
 
     private void processXref(String db, String accession) {
         // xref validation regexp
-        if (Annotation.VALIDATION_REGEXP.equalsIgnoreCase(db)){
+        if (VALIDATION_REGEXP.equalsIgnoreCase(db)){
 
             String annotationText = accession.trim();
 
@@ -355,12 +313,12 @@ public class LazyCvTerm extends DefaultCvTerm {
                 annotationText = annotationText.substring(0, annotationText.indexOf(OlsUtils.QUOTE));
             }
 
-            Annotation validation = AnnotationUtils.createAnnotation(Annotation.VALIDATION_REGEXP, Annotation.VALIDATION_REGEXP_MI, annotationText);  // MI xref
+            Annotation validation = AnnotationUtils.createAnnotation(VALIDATION_REGEXP, Annotation.VALIDATION_REGEXP_MI, annotationText);  // MI xref
             super.getAnnotations().add(validation);
         }
         // search url
-        else if (db == null && accession.startsWith(Annotation.SEARCH_URL)){
-            String url = accession.substring(Annotation.SEARCH_URL.length());
+        else if (db == null && accession.startsWith(SEARCH_URL)){
+            String url = accession.substring(SEARCH_URL.length());
 
             if (url.startsWith("\\")){
                 url = url.substring(1);
@@ -369,18 +327,18 @@ public class LazyCvTerm extends DefaultCvTerm {
                 url = url.substring(0, url.length() - 1);
             }
 
-            Annotation validation = AnnotationUtils.createAnnotation(Annotation.SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
             super.getAnnotations().add(validation);
         }
-        else if (db.equalsIgnoreCase(Annotation.SEARCH_URL)){
+        else if (db != null && db.equalsIgnoreCase(SEARCH_URL)){
             String url = accession.trim();
 
-            Annotation validation = AnnotationUtils.createAnnotation(Annotation.SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
             super.getAnnotations().add(validation);
         }
-        else if (db.startsWith(Annotation.SEARCH_URL)){
-            String prefix = db.substring(Annotation.SEARCH_URL.length());
-            String url = prefix + OlsUtils.META_XREF_SEPARATOR + accession;
+        else if (db != null && db.startsWith(SEARCH_URL)){
+            String prefix = db.substring(SEARCH_URL.length());
+            String url = prefix + META_XREF_SEPARATOR + accession;
 
             if (url.startsWith("\"")){
                 url = url.substring(1);
@@ -389,7 +347,7 @@ public class LazyCvTerm extends DefaultCvTerm {
                 url = url.substring(0, url.length() - 1);
             }
 
-            Annotation validation = AnnotationUtils.createAnnotation(Annotation.SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
             super.getAnnotations().add(validation);
         }
     }
