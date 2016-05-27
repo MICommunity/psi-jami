@@ -21,7 +21,7 @@ public class OlsSourceFetcher extends AbstractOlsFetcher<Source> implements Sour
 
     @Override
     protected Source instantiateCvTerm(String termName, Xref identity, String ontologyName) {
-        return new LazySource(queryService, termName, identity, ontologyName);
+        return new LazySource(olsClient, termName, identity, ontologyName);
     }
 
 }
