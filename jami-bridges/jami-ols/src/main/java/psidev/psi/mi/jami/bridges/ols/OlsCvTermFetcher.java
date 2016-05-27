@@ -20,7 +20,7 @@ public class OlsCvTermFetcher extends AbstractOlsFetcher<CvTerm>{
 
     @Override
     protected CvTerm instantiateCvTerm(String termName, Xref identity, String ontologyName) {
-        return new LazyCvTerm(queryService, termName, identity, ontologyName);
+        return new LazyCvTerm(olsClient, termName, identity, ontologyName);
     }
 
 }
