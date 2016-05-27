@@ -7,6 +7,7 @@ import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.OntologyTerm;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.utils.XrefUtils;
+import uk.ac.ebi.pride.utilities.ols.web.service.model.Term;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -29,7 +30,7 @@ public class OlsOntologyTermFetcher extends AbstractOlsFetcher<OntologyTerm> imp
 
     @Override
     protected OntologyTerm instantiateCvTerm(String termName, Xref identity, String ontologyName) {
-        return new LazyOntologyTerm(queryService, termName, identity, ontologyName);
+        return new LazyOntologyTerm(olsClient, termName, identity, ontologyName);
     }
 
     public Set<OntologyTerm> fetchRootTerms(String databaseName) throws BridgeFailedException{
@@ -40,18 +41,17 @@ public class OlsOntologyTermFetcher extends AbstractOlsFetcher<OntologyTerm> imp
         if(dbMap.containsKey(databaseName))
             olsOntologyName = dbMap.get(databaseName);
 
-        try {
-            Map roots = this.queryService.getRootTerms(olsOntologyName);
-            Set<OntologyTerm> rootTerms = new HashSet<OntologyTerm>();
-            for (Object obj : roots.keySet()){
-                if (obj != null){
-                    rootTerms.add(new LazyOntologyTerm(queryService, null, createXref((String)obj , databaseName), olsOntologyName));
-                }
-            }
-            return rootTerms;
-        } catch (RemoteException e) {
-            throw new BridgeFailedException("Cannot query for the root term of "+databaseName, e);
+        Map roots = new HashMap<>();
+        for(Term term : this.olsClient.getRootTerms(olsOntologyName)){
+            roots.put(term.getTermOBOId().getIdentifier(), term);
         }
+        Set<OntologyTerm> rootTerms = new HashSet<>();
+        for (Object obj : roots.keySet()){
+            if (obj != null){
+                rootTerms.add(new LazyOntologyTerm(olsClient, null, createXref((String)obj , databaseName), olsOntologyName));
+            }
+        }
+        return rootTerms;
     }
 
     public Set<OntologyTerm> fetchRootTerms(CvTerm database) throws BridgeFailedException {
@@ -62,18 +62,17 @@ public class OlsOntologyTermFetcher extends AbstractOlsFetcher<OntologyTerm> imp
         if(dbMap.containsKey(database.getShortName()))
             olsOntologyName = dbMap.get(database.getShortName());
 
-        try {
-            Map roots = this.queryService.getRootTerms(olsOntologyName);
-            Set<OntologyTerm> rootTerms = new HashSet<OntologyTerm>();
-            for (Object obj : roots.keySet()){
-                if (obj != null){
-                    rootTerms.add(new LazyOntologyTerm(queryService, null, XrefUtils.createIdentityXref(database.getShortName(), database.getMIIdentifier(), (String)obj),
-                            olsOntologyName));
-                }
-            }
-            return rootTerms;
-        } catch (RemoteException e) {
-            throw new BridgeFailedException("Cannot query for the root term of "+database.getShortName(), e);
+        Map roots = new HashMap<>();
+        for(Term term : this.olsClient.getRootTerms(olsOntologyName)){
+            roots.put(term.getTermOBOId().getIdentifier(), term);
         }
+        Set<OntologyTerm> rootTerms = new HashSet<OntologyTerm>();
+        for (Object obj : roots.keySet()){
+            if (obj != null){
+                rootTerms.add(new LazyOntologyTerm(olsClient, null, XrefUtils.createIdentityXref(database.getShortName(), database.getMIIdentifier(), (String)obj),
+                        olsOntologyName));
+            }
+        }
+        return rootTerms;
     }
 }
