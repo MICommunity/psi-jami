@@ -21,9 +21,9 @@
         </dependency>
         <!-- Ontology Lookup Service Client -->
         <dependency>
-            <groupId>uk.ac.ebi.ols</groupId>
+            <groupId>uk.ac.ebi.pride.utilities</groupId>
             <artifactId>ols-client</artifactId>
-            <version>1.18</version>
+            <version>2.4-SNAPSHOT-IntAct</version>
         </dependency>
     </dependencies>
 </project>
