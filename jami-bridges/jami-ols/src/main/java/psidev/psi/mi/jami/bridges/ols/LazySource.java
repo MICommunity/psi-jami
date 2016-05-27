@@ -9,7 +9,7 @@ import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
-import uk.ac.ebi.ols.soap.Query;
+import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
 
 /**
  * A lazy cvTerm which will only fetch metadata when required.
@@ -25,8 +25,8 @@ public class LazySource extends LazyCvTerm implements Source {
     private Annotation postalAddress;
     private Publication bibRef;
 
-    public LazySource(Query queryService, String fullName, Xref identityRef, String ontologyName) {
-        super(queryService, fullName, identityRef, ontologyName);
+    public LazySource(OLSClient olsClient, String fullName, Xref identityRef, String ontologyName) {
+        super(olsClient, fullName, identityRef, ontologyName);
     }
 
     @Override
