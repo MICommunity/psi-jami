@@ -5,12 +5,12 @@ import psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.utils.XrefUtils;
-import uk.ac.ebi.ols.soap.Query;
-import uk.ac.ebi.ols.soap.QueryServiceLocator;
+import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
+import uk.ac.ebi.pride.utilities.ols.web.service.config.OLSWsConfigDev;
+import uk.ac.ebi.pride.utilities.ols.web.service.config.OLSWsConfigProd;
+import uk.ac.ebi.pride.utilities.ols.web.service.model.Identifier;
+import uk.ac.ebi.pride.utilities.ols.web.service.model.Term;
 
-import javax.xml.namespace.QName;
-import javax.xml.rpc.ServiceException;
-import java.rmi.RemoteException;
 import java.util.*;
 
 /**
@@ -23,19 +23,11 @@ import java.util.*;
 
 public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetcher<T> {
 
-    protected Query queryService;
+    protected OLSClient olsClient;
     protected Map<String,String> dbMap = new HashMap<String, String>();
-    private static final String wsdlURL = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery.wsdl";
-    private static final String ontologyQueryURL = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery";
-    private static final String ontologyQueryName = "QueryService";
 
     public AbstractOlsFetcher() throws BridgeFailedException {
-        try{
-            queryService = new QueryServiceLocator(wsdlURL, new QName(ontologyQueryURL, ontologyQueryName)).getOntologyQuery();
-        }catch (ServiceException e) {
-            queryService = null;
-            throw new BridgeFailedException("Cannot create OLS fetcher.", e);
-        }
+        this.olsClient = new OLSClient(new OLSWsConfigProd());
         initialiseDbMap();
     }
 
@@ -70,11 +62,8 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         String fullName = null;
 
         // 1) query ols which returns full name.
-        try{
-             fullName = queryService.getTermById(termIdentifier , olsOntologyName);
-        } catch (RemoteException e) {
-            throw new BridgeFailedException("Failed to query in OLS fetcher.", e);
-        }
+        Identifier identifier = new Identifier(termIdentifier, Identifier.IdentifierType.OBO);
+        fullName = olsClient.getTermById(identifier , olsOntologyName).getLabel();
 
         // 2) if no results, return null
         if (fullName == null || fullName.equals(termIdentifier))
@@ -97,11 +86,8 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         String fullName = null;
 
         // 1) query ols which returns full name.
-        try{
-            fullName = queryService.getTermById(termIdentifier , null);
-        } catch (RemoteException e) {
-            throw new BridgeFailedException("Failed to query in OLS fetcher.", e);
-        }
+        Identifier identifier = new Identifier(termIdentifier, Identifier.IdentifierType.OBO);
+        fullName = olsClient.getTermById(identifier , olsOntologyName).getLabel();
 
         // 2) if no results, return null
         if (fullName == null || fullName.equals(termIdentifier))
@@ -118,15 +104,12 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
 
         String olsOntologyName = null;
         if(dbMap.containsKey(miOntologyName))
-            olsOntologyName = dbMap.get(miOntologyName);
+            olsOntologyName = dbMap.get(miOntologyName).toLowerCase();
 
         // 1) query ols which returns full name.
-        HashMap<String,String> termNamesMap;
-        try{
-            termNamesMap = queryService.getTermsByExactName(searchName, olsOntologyName);
-        }catch (RemoteException e) {
-            throw new BridgeFailedException("Failed to query in OLS fetcher.",e);
-        }
+        HashMap<String,String> termNamesMap = new HashMap<>();
+        Term term = olsClient.getExactTermByName(searchName, olsOntologyName);
+        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
 
         // 2) if no results, return null
         if(termNamesMap.size() != 1)
@@ -144,12 +127,9 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
             throw new IllegalArgumentException("Can not search for an identifier without a value.");
 
         // 1) query ols which returns full name.
-        HashMap<String,String> termNamesMap;
-        try{
-            termNamesMap = queryService.getTermsByExactName(searchName, null);
-        }catch (RemoteException e) {
-            throw new BridgeFailedException("Failed to query in OLS fetcher.",e);
-        }
+        HashMap<String,String> termNamesMap = new HashMap<>();
+        Term term = olsClient.getExactTermByName(searchName, null);
+        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
 
         // 2) if no results, return null
         if(termNamesMap.isEmpty())
@@ -157,11 +137,11 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
 
         Collection<T> results = new ArrayList<T>(termNamesMap.size());
 
-        for (Map.Entry<String, String> entry : termNamesMap.entrySet()){
-            String fullName = entry.getValue();
+        for (String key : termNamesMap.keySet()){
+            String fullName = termNamesMap.get(key);
 
             // 3) if a result, call instantiateCvTerm with provided fullName and create identity xref
-            results.add(instantiateCvTerm(fullName, createXref(entry.getKey(), "unknown"), null));
+            results.add(instantiateCvTerm(fullName, createXref(key, "unknown"), term.getOntologyName().toLowerCase()));
         }
 
         return results;
