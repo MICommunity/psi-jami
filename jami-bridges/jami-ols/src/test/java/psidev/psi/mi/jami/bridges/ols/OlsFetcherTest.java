@@ -51,7 +51,7 @@ public class OlsFetcherTest {
         CvTerm cvTermFetched =  fetcher.fetchByIdentifier(identifier, ontologyName);
 
         assertNotNull(cvTermFetched);
-//        assertEquals("participant xref" , cvTermFetched.getShortName());
+        assertEquals("participant xref" , cvTermFetched.getShortName());
         assertEquals("participant database" , cvTermFetched.getFullName());
         assertEquals(identifier , cvTermFetched.getMIIdentifier());
     }
@@ -63,7 +63,7 @@ public class OlsFetcherTest {
         CvTerm cvTermFetched =  fetcher.fetchByIdentifier(identifier, ontologyName);
 
         assertNotNull(cvTermFetched);
-//        assertEquals("confidence" , cvTermFetched.getShortName());
+        assertEquals("confidence" , cvTermFetched.getShortName());
         assertEquals("interaction confidence" , cvTermFetched.getFullName());
         assertEquals(1 , cvTermFetched.getSynonyms().size());
         assertEquals("confidence" , cvTermFetched.getSynonyms().iterator().next().getName());
