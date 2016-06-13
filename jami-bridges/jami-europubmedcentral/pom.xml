@@ -21,12 +21,14 @@
         </dependency>
     </dependencies>
 
+
+
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
-                <version>1.12</version>
+                <version>2.3</version>
                 <executions>
                     <execution>
                         <id>wsimport-from-jdk</id>
@@ -39,9 +41,12 @@
                     <!-- using wsdl from an url -->
                     <wsdlUrls>
                         <wsdlUrl>
-                            http://www.ebi.ac.uk/europepmc/webservices/soap?wsdl
+                            https://www.ebi.ac.uk/europepmc/webservices/soap?wsdl
                         </wsdlUrl>
                     </wsdlUrls>
+                    <vmArgs>
+                        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                    </vmArgs>
                     <!-- or using wsdls file directory -->
                     <!-- <wsdlDirectory>src/wsdl</wsdlDirectory> -->
                     <!-- which wsdl file -->
@@ -50,7 +55,6 @@
                     <!--</wsdlFiles> -->
                     <!-- Keep generated files -->
                     <keep>true</keep>
-                    <!-- Package name -->
                     <packageName>uk.ac.ebi.cdb.webservice</packageName>
                     <!-- generated source files destination-->
                     <sourceDestDir>target/generated-sources</sourceDestDir>
