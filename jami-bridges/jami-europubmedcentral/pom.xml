@@ -39,7 +39,7 @@
                     <!-- using wsdl from an url -->
                     <wsdlUrls>
                         <wsdlUrl>
-                            http://www.ebi.ac.uk/europepmc/webservices/soap?wsdl
+                            https://www.ebi.ac.uk/europepmc/webservices/soap?wsdl
                         </wsdlUrl>
                     </wsdlUrls>
                     <!-- or using wsdls file directory -->
