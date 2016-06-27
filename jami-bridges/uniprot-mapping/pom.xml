@@ -23,13 +23,13 @@
         <dependency>
             <groupId>uk.ac.ebi.intact.tools</groupId>
             <artifactId>protein-mapping</artifactId>
-            <version>1.0.7-SNAPSHOT</version>
+            <version>${protein.mapping.version}</version>
         </dependency>
         <!-- Unisave -->
         <dependency>
             <groupId>uk.ac.ebi.intact.bridges</groupId>
             <artifactId>intact-unisave</artifactId>
-            <version>2.1.20-SNAPSHOT</version>
+            <version>${intact.bridges.version}</version>
         </dependency>
         <!--uniprot-->
         <dependency>

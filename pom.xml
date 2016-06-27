@@ -13,6 +13,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <calimocho.version>2.5.2-SNAPSHOT</calimocho.version>
         <validator.version>3.0.2-SNAPSHOT</validator.version>
+        <spring.version>3.2.9.RELEASE</spring.version>
+        <ols.client.version>2.5-SNAPSHOT</ols.client.version>
+        <ontology.manager.version>2.0.7-SNAPSHOT</ontology.manager.version>
+        <intact.bridges.version>2.1.20-SNAPSHOT</intact.bridges.version>
+        <protein.mapping.version>1.0.7-SNAPSHOT</protein.mapping.version>
+        <uniprot.japi.version>RELEASE</uniprot.japi.version>
     </properties>
 
     <scm>
@@ -64,8 +70,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <target>1.7</target>
-                    <source>1.7</source>
+                    <target>1.8</target>
+                    <source>1.8</source>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
