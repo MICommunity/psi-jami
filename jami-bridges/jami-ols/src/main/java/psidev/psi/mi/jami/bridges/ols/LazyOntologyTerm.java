@@ -78,26 +78,6 @@ public class LazyOntologyTerm
         for(Term term : getOlsClient().getTermChildren(identifier, getOntologyName(), 1)){
             childrenIDs.put(term.getTermOBOId().getIdentifier(), term.getLabel());
         }
-//        String id = !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next().getId():null;
-//        Iterator<Map.Entry<String,String>> childrenIterator = childrenIDs.entrySet().iterator();
-//
-//        try {
-//            Map<String, String> relations = getOlsClient().getTermRelations(id, getOntologyName());
-//
-//            while (childrenIterator.hasNext()){
-//                Map.Entry<String,String> child = childrenIterator.next();
-//
-//                if (relations.containsKey(child.getKey())){
-//                    String relation = relations.get(child.getKey());
-//                    // remove other parents to avoid cyclic dependencies
-//                    if (relation == null || (!relation.equals("part_of") && !relation.equals("is_a"))){
-//                        childrenIterator.remove();
-//                    }
-//                }
-//            }
-//        } catch (RemoteException e) {
-//            throw new IllegalStateException( "RemoteException while trying to connect to OLS." );
-//        }
 
         for(Map.Entry<String,String> entry: childrenIDs.entrySet()){
             this.children.add( new LazyOntologyTerm(getOlsClient(),
@@ -111,28 +91,9 @@ public class LazyOntologyTerm
         this.parents = new ArrayList<OntologyTerm>();
         HashMap<String,String> parentIDs = new HashMap<>();
         Identifier identifier = new Identifier(xref.getId(), Identifier.IdentifierType.OBO);
-        for(Term term : getOlsClient().getTermChildren(identifier, getOntologyName(), 1)){
+        for(Term term : getOlsClient().getTermParents(identifier, getOntologyName(), 1)){
             parentIDs.put(term.getTermOBOId().getIdentifier(), term.getLabel());
         }
-        //        Iterator<Map.Entry<String,String>> parentIterator = parentIDs.entrySet().iterator();
-//
-//        while (parentIterator.hasNext()){
-//            Map.Entry<String,String> parent = parentIterator.next();
-//
-//            try {
-//                Map<String, String> relations = getOlsClient().getTermRelations(parent.getKey(), getOntologyName());
-//                String id = !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next().getId():null;
-//                if (relations.containsKey(id)){
-//                    String relation = relations.get(id);
-//                    // remove other parents to avoid cyclic dependencies
-//                    if (relation == null || (!relation.equals("part_of") && !relation.equals("is_a"))){
-//                        parentIterator.remove();
-//                    }
-//                }
-//            } catch (RemoteException e) {
-//                throw new IllegalStateException( "RemoteException while trying to connect to OLS." );
-//            }
-//        }
 
         for(Map.Entry<String,String> entry: parentIDs.entrySet()){
             this.parents.add( new LazyOntologyTerm(getOlsClient(),
