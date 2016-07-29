@@ -132,7 +132,7 @@ public class EuroPubmedCentralFetcher
         publication.setPubmedId(result.getPmid());
 
         // DOI number
-        publication.setDoi(result.getDoi());
+        publication.setDoi(result.getDOI());
 
         // Publication Title
         publication.setTitle(result.getTitle());
