@@ -25,7 +25,7 @@
         <module>jami-unisave</module>
         <module>jami-picr</module>
         <module>jami-ontology-manager</module>
-        <module>jami-imexcentral</module>
+        <!--<module>jami-imexcentral</module>-->
     </modules>
 
     <dependencies>
