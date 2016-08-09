@@ -44,7 +44,7 @@ import java.util.Map;
 public class InteractionViewerJson {
 
     /**
-     * Register all existing MI html writers in the MI interaction writer factory
+     * Register all existing MI JSON writers in the MI interaction writer factory
      */
     public static void initialiseAllMIJsonWriters(){
         InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
