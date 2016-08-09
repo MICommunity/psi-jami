@@ -1,6 +1,6 @@
 # jami-html
 
-# This JAMI module writes an HTML file that represents PSI-MI data in a nested table format.
+This JAMI module writes an HTML file that represents PSI-MI data in a nested table format.
 
 ### Examples
 
