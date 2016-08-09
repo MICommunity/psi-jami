@@ -34,10 +34,7 @@ https://github.com/MICommunity/psi-jami/tree/develop/jami-xml/src/test
 #**How to Write 2.5 and 3.0 xmls ?**
 
 This example is for compact, for expanded you can choose choose to use optionFactory.getDefaultExpandedXmlOptions
-  
-
-
-
+```java  
 InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
 
 
@@ -71,7 +68,7 @@ public static void initialiseAllIntactXmlWriters() {
    Map supportedOptions4 = createXMLInteractionWriterOptions((InteractionCategory)null, (ComplexType)null, (PsiXmlType)null, (Boolean)null, (Boolean)null);
    writerFactory.registerDataSourceWriter(DefaultIntactXmlWriter.class, supportedOptions4);
 }
-
+```java
 #Reading xml file
 
 ```java
