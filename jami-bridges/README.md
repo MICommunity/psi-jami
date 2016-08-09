@@ -2,7 +2,7 @@ The `jami-bridges` package is the home of packages that use web services.
 
 The `jami-enricher` package uses these "fetchers" to get the data.
 
-```
+```java
         // create fetcher from chebi
         // simple chebi fetcher
         BioactiveEntityFetcher fetcher = new ChebiFetcher();
