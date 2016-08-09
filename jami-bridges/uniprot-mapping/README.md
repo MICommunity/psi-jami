@@ -1,6 +1,6 @@
 The UniprotProteinMapper fetches uniprot identifiers for a protein sequence, given a protein with known xrefs and sequence.
 
-There are two mapping strategies available to choose from, based on a preference for giving identifiers or sequence the priority. Both can be set to true. 
+There are two mapping strategies available to choose from, based on a preference for giving identifiers or sequence the priority. Both can be set to true.
 
 To run:
 
