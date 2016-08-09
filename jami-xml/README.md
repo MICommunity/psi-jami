@@ -20,11 +20,11 @@ psi-jami
 
 It has the potential of giving out writers for following interaction categories, there are more detailed options available :-
 
-* - evidence : for InteractionEvidence implementations.
-* - modelled: for ModelledInteraction implementations.
-* - basic: for basic implementations of Interaction
-* - mixed: for a mix of any kind of interactions
-* - complex: for biological complexes. Not all datasources support this kind of interactions
+ - evidence : for InteractionEvidence implementations.
+ - modelled: for ModelledInteraction implementations.
+ - basic: for basic implementations of Interaction
+ - mixed: for a mix of any kind of interactions
+ - complex: for biological complexes. Not all datasources support this kind of interactions
 
 ##Java Examples
 
