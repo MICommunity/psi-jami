@@ -68,8 +68,9 @@ public static void initialiseAllIntactXmlWriters() {
    Map supportedOptions4 = createXMLInteractionWriterOptions((InteractionCategory)null, (ComplexType)null, (PsiXmlType)null, (Boolean)null, (Boolean)null);
    writerFactory.registerDataSourceWriter(DefaultIntactXmlWriter.class, supportedOptions4);
 }
-```java
-#Reading xml file
+```
+
+#**Reading xml file**
 
 ```java
 //File is your xml file to read
