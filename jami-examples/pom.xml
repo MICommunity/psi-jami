@@ -32,5 +32,11 @@
             <artifactId>jami-chebi</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- html -->
+        <dependency>
+            <groupId>psidev.psi.mi.jami</groupId>
+            <artifactId>jami-html</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
