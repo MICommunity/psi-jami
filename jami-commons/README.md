@@ -44,3 +44,5 @@ Code example drawn from https://github.com/intermine/intermine/blob/14e50d301e6e
 
         }
  ```
+ 
+ Se also https://github.com/MICommunity/psi-jami/blob/53b6c7c4c867e07d87ac1da7953109f14507dbea/jami-examples/src/main/java/psidev/psi/mi/jami/examples/core/ReadWriteWithJami.java for example usages. Note that this package is reasonable coupled with the core package as an entry package.
