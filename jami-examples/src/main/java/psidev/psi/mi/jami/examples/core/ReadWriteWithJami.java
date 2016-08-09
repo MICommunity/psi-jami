@@ -81,7 +81,7 @@ public class ReadWriteWithJami {
             // Get the default MITAB writer
             mitabInteractionWriter = writerFactory.getInteractionWriterWith(mitabWritingOptions);
             // Get the default PSI-MI XML writer
-            mitabInteractionWriter = writerFactory.getInteractionWriterWith(mitabWritingOptions);
+            xmlInteractionWriter = writerFactory.getInteractionWriterWith(xmlWritingOptions);
 
             // parse the stream and write as we parse
             // the interactionSource can be null if the file is not recognized or the provided options are not matching any existing/registered datasources
