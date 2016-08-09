@@ -5,7 +5,7 @@ This package will allow you to initialise the various relevant factories needed 
 
 Code example drawn from https://github.com/intermine/intermine/blob/14e50d301e6ef61146026071ea838b48e4f2b63a/bio/sources/psi-complexes/main/src/org/intermine/bio/dataconversion/PsiComplexesConverter.java, given a datasource `Reader reader`.
 
-```
+```java
     // initialise default factories for reading and writing MITAB/PSI-MI XML files
         PsiJami.initialiseAllFactories();
 
