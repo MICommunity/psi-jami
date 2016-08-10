@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.org/MICommunity/psi-jami.svg?branch=develop)](https://travis-ci.org/MICommunity/psi-jami)
 
 # Introduction #
 
