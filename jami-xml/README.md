@@ -11,7 +11,7 @@ Only `jami-commons` uses this package. But `jami-commons` is used by following p
 `psi-jami`
 
 ##Examples
-**Reading PSI-XML files **
+###Reading PSI-XML files
 
 ```java
 //File is your xml file to read
@@ -49,7 +49,7 @@ finally {
     }
 }
 ```
-**Writing PSI-XML files**
+###Writing PSI-XML files
 
 ```java  
 
