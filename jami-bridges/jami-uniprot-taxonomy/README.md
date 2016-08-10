@@ -1,6 +1,6 @@
-Fetcher for Uniprot taxonomy
+Gets Organism using Uniprot taxonomy
 
-Example  
+Example
 ```java
 UniprotTaxonomyFetcher taxonomyFetcher = new UniprotTaxonomyFetcher();
 Organism organism = taxonomyFetcher.fetchByTaxID(9615);
