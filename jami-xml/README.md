@@ -57,54 +57,54 @@ finally {
 
 ```java  
 
-     PsiJami.initialiseAllInteractionWriters();
-     
-     InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
-     MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
-     
-     // By default, the writer will be a PSI-MI XML 2.5.4 writer and it will write expanded PSI-MI XML
-     // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
-     // PsiXmlWriterOptions
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultXmlOptions(new File("xmlFileName"));
-     
-     
-     // This example is for compact 2.5 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
-     // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
-           new File("xmlFileName"),
-           InteractionCategory.evidence,
-           ComplexType.n_ary,
-           PsiXmlVersion.v2_5_4);
-     
-     
-     // This example is for compact 3.0 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
-     // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
-           new File("xmlFileName"),
-           InteractionCategory.evidence,
-           ComplexType.n_ary,
-           PsiXmlVersion.v3_0_0);
-     
-     InteractionWriter writer = writerFactory.getInteractionWriterWith(xmlWritingOptions);
-     
-     
-     try {
-       // start writing
-       writer.start();
-     
-       // write the interaction evidences
-       // here evidences are Collection<InteractionEvidence>
-       writer.write(evidences);
-     
-       // finish writing
-       writer.end();
-     }
-     //close the writer
-     finally {
-       if (writer != null) {
-           writer.close();
-       }
-     }
+PsiJami.initialiseAllInteractionWriters();
+
+InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
+MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
+
+// By default, the writer will be a PSI-MI XML 2.5.4 writer and it will write expanded PSI-MI XML
+// The default options can be overridden using the optionWriterfactory or by manually adding options listed in
+// PsiXmlWriterOptions
+Map<String, Object> xmlWritingOptions = optionFactory.getDefaultXmlOptions(new File("xmlFileName"));
+
+
+// This example is for compact 2.5 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
+// For other type of InteractionCategory or ComplexType you can refer to the advance options
+Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
+     new File("xmlFileName"),
+     InteractionCategory.evidence,
+     ComplexType.n_ary,
+     PsiXmlVersion.v2_5_4);
+
+
+// This example is for compact 3.0 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
+// For other type of InteractionCategory or ComplexType you can refer to the advance options
+Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
+     new File("xmlFileName"),
+     InteractionCategory.evidence,
+     ComplexType.n_ary,
+     PsiXmlVersion.v3_0_0);
+
+InteractionWriter writer = writerFactory.getInteractionWriterWith(xmlWritingOptions);
+
+
+try {
+ // start writing
+ writer.start();
+
+ // write the interaction evidences
+ // here evidences are Collection<InteractionEvidence>
+ writer.write(evidences);
+
+ // finish writing
+ writer.end();
+}
+//close the writer
+finally {
+ if (writer != null) {
+     writer.close();
+ }
+}
 ```
 
 #Advance configuration for readers and writers
