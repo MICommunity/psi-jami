@@ -1,6 +1,6 @@
 # jami-xml
 
-`jami-xml` was made for reading and writing all the standard PSI-MI-XML formtas (or MIF) availables.
+`jami-xml` was made for reading and writing all the standard PSI-MI-XML formats (or MIF) availables.
 
 For more information about the molecular interaction standards you can refer to HUPO PSI-MI working group http://www.psidev.info/groups/molecular-interactions
 
