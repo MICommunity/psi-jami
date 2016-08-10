@@ -12,7 +12,7 @@ Only `jami-commons` uses this package. But `jami-commons` is used by following p
 `psi-jami`
 
 ##Examples
-###Reading PSI-XML files
+###Reading PSI-MITAB files
 
 ```java
 //File is your mitab file to read
