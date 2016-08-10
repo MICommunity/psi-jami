@@ -1,3 +1,4 @@
+#jami-core
 Core package for JAMI. 
 
 Includes:
