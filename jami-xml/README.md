@@ -1,9 +1,10 @@
+# jami-xml
 
-##jami-xml was made for reading and writing all the standard PSI-MI-XML formtas (or MIF) availables.
+`jami-xml` was made for reading and writing all the standard PSI-MI-XML formtas (or MIF) availables.
 
 For more information about the molecular interaction standards you can refer to HUPO PSI-MI working group http://www.psidev.info/groups/molecular-interactions
 
-##How does it relate to other packages ?
+## How does it relate to other packages ?
 
 Only `jami-commons` uses this package. But `jami-commons` is used by following packages
 `jami-examples`
