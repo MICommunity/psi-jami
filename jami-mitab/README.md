@@ -63,11 +63,10 @@ PsiJami.initialiseAllInteractionWriters();
 InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
 MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
  
-// By default, the writer will be a 2.7 PSI-MI TAB format writer and it will write the header
+// By default, the writer will be a 2.7 PSI-MI TAB format writer, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects, complex type n-ary and interaction category mixed
 // The default options can be overridden using the MIWriterOptionFactory or by manually adding options listed in
 // MitabWriterOptions
 Map<String, Object> mitabWritingOptions = optionFactory.getDefaultMitabOptions(new File("mitabFileName'"));
- 
  
 // This example is for 2.6 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects
 // For other type of InteractionCategory or ComplexType you can refer to the advance options
@@ -132,8 +131,6 @@ Could be any of the implementation of the [ComplexExpansionMethod](https://githu
  - BipartiteExpansion
  - MatrixExpansion
  - SpokeExpansion
-
-
 
 For more details about all the possible configuration for readers and writers you can have a look to jami-commoms factories [MIWriterOptionFactory](https://github.com/MICommunity/psi-jami/blob/master/jami-commons/src/main/java/psidev/psi/mi/jami/commons/MIWriterOptionFactory.java) and [MIDataSourceOptionFactory](https://github.com/MICommunity/psi-jami/blob/master/jami-commons/src/main/java/psidev/psi/mi/jami/commons/MIDataSourceOptionFactory.java) in
 
