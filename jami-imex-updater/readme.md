@@ -13,7 +13,7 @@ https://github.com/MICommunity/psi-jami/tree/develop/jami-imex-updater/src/test/
 
 ###Update Imex Id of a Publication - Example
 
-'''java
+```java
 
 public class ImexPublicationUpdaterTest {
 
@@ -53,7 +53,79 @@ public class ImexPublicationUpdaterTest {
     }
 }
 
-'''
+```
+
+    ###How to update imex id of a experiment
+    
+    ```java
+    public class ImexExperimentUpdaterTest {
+
+    private ImexExperimentUpdater updater;
+
+
+    @Before
+    public void initUpdater() throws BridgeFailedException {
+        this.updater = new ImexExperimentUpdater();
+        this.updater.setImexAssigner(new ImexAssignerImpl(new MockImexCentralClient()));
+    }
+
+    @Test
+    public void update_publication_successful() throws EnricherException {
+
+        psidev.psi.mi.jami.model.Publication pub = new DefaultPublication("12345");
+        pub.assignImexId("IM-1");
+        Experiment exp = new DefaultExperiment(pub);
+        pub.getExperiments().add(exp);
+
+        updater.enrich(exp);
+
+        Assert.assertEquals(1, exp.getXrefs().size());
+
+        Assert.assertNotNull(XrefUtils.collectAllXrefsHavingDatabaseQualifierAndId(exp.getXrefs(),
+                Xref.IMEX_MI, Xref.IMEX, "IM-1", Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY));
+    }
+}
+    ```
+    
+    
+    ###Update Imex Id of a Interaction
+
+```java
+
+private ImexInteractionUpdater updater;
+
+
+    @Before
+    public void initUpdater() throws BridgeFailedException {
+        this.updater = new ImexInteractionUpdater();
+        this.updater.setImexAssigner(new ImexAssignerImpl(new MockImexCentralClient()));
+    }
+
+    @Test
+    public void update_publication_successful() throws EnricherException {
+
+        psidev.psi.mi.jami.model.Publication pub = new DefaultPublication("12345");
+        pub.assignImexId("IM-1");
+        Experiment exp = new DefaultExperiment(pub);
+        pub.getExperiments().add(exp);
+
+        InteractionEvidence ev1 = new DefaultInteractionEvidence();
+        ev1.addParticipant(new DefaultParticipantEvidence(new DefaultProtein("P12345")));
+        exp.addInteractionEvidence(ev1);
+        InteractionEvidence ev2 = new DefaultInteractionEvidence();
+        ev2.addParticipant(new DefaultParticipantEvidence(new DefaultProtein("P12346")));
+        exp.addInteractionEvidence(ev2);
+
+        updater.enrich(ev1);
+        updater.enrich(ev2);
+
+        Assert.assertEquals(1, ev1.getXrefs().size());
+        Assert.assertEquals(1, ev2.getXrefs().size());
+
+        Assert.assertEquals("IM-1-1", ev1.getImexId());
+        Assert.assertEquals("IM-1-2", ev2.getImexId());
+    }
+```
 
 
 
