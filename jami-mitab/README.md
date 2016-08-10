@@ -58,58 +58,57 @@ finally {
 
 ```java  
 
-     PsiJami.initialiseAllInteractionWriters();
-     
-     InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
-     MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
-     
-    // By default, the writer will be a 2.7 PSI-MI TAB format writer and it will write the header
-    // The default options can be overridden using the MIWriterOptionFactory or by manually adding options listed in
-    // MitabWriterOptions
-    Map<String, Object> mitabWritingOptions = optionFactory.getDefaultMitabOptions(new File("mitabFileName'"));
-     
-     
-     // This example is for 2.6 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects
-      // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(
-            new File("mitabFileName"),
-            InteractionCategory.evidence,
-            ComplexType.n_ary,
-            new InteractionEvidenceSpokeExpansion(),
-            true,
-            MitabVersion.v2_6,
-            false);
-     
-     
-     // This example is for 2.5 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects 
-     // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(
-            new File("mitabFileName"), InteractionCategory.evidence, ComplexType.n_ary,
-            new InteractionEvidenceSpokeExpansion(),
-            true,
-            MitabVersion.v2_5,
-            false);
-     
-     InteractionWriter writer = writerFactory.getInteractionWriterWith(mitabWritingOptions);
-     
-     
-     try {
-       // start writing
-       writer.start();
-     
-       // write the interaction evidences
-       // here evidences are Collection<InteractionEvidence>
-       writer.write(evidences);
-     
-       // finish writing
-       writer.end();
-     }
-     //close the writer
-     finally {
-       if (writer != null) {
-           writer.close();
-       }
-     }
+PsiJami.initialiseAllInteractionWriters();
+
+InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
+MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
+ 
+// By default, the writer will be a 2.7 PSI-MI TAB format writer and it will write the header
+// The default options can be overridden using the MIWriterOptionFactory or by manually adding options listed in
+// MitabWriterOptions
+Map<String, Object> mitabWritingOptions = optionFactory.getDefaultMitabOptions(new File("mitabFileName'"));
+ 
+ 
+// This example is for 2.6 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects
+// For other type of InteractionCategory or ComplexType you can refer to the advance options
+Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(
+        new File("mitabFileName"),
+        InteractionCategory.evidence,
+        ComplexType.n_ary,
+        new InteractionEvidenceSpokeExpansion(),
+        true,
+        MitabVersion.v2_6,
+        false);
+
+
+// This example is for 2.5 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects 
+// For other type of InteractionCategory or ComplexType you can refer to the advance options
+Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(
+        new File("mitabFileName"), InteractionCategory.evidence, ComplexType.n_ary,
+        new InteractionEvidenceSpokeExpansion(),
+        true,
+        MitabVersion.v2_5,
+        false);
+ 
+InteractionWriter writer = writerFactory.getInteractionWriterWith(mitabWritingOptions);
+ 
+try {
+    // start writing
+    writer.start();
+    
+    // write the interaction evidences
+    // here evidences are Collection<InteractionEvidence>
+    writer.write(evidences);
+    
+    // finish writing
+    writer.end();
+}
+//close the writer
+finally {
+    if (writer != null) {
+       writer.close();
+    }
+}
 ```
 
 #Advance configuration for readers and writers
@@ -128,7 +127,6 @@ It has the potential of giving out readers and writers the following configurati
  - self_intra_molecular: for intra molecule interactions
  - self_inter_molecular: for inter molecule interactions
  
-
 ##ComplexExpansionMethod
 Could be any of the implementation of the [ComplexExpansionMethod](https://github.com/MICommunity/psi-jami/tree/master/jami-core/src/main/java/psidev/psi/mi/jami/binary/expansion) interface, like:
  - BipartiteExpansion
