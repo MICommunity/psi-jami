@@ -127,9 +127,10 @@ It has the potential of giving out readers and writers the following configurati
  - n_ary: for n-ary interactions
  - self_intra_molecular: for intra molecule interactions
  - self_inter_molecular: for inter molecule interactions
- - 
+ 
 
-##ComplexExpansionMethod could be any of the implementation of this interface, like:
+##ComplexExpansionMethod
+Could be any of the implementation of the [ComplexExpansionMethod](https://github.com/MICommunity/psi-jami/tree/master/jami-core/src/main/java/psidev/psi/mi/jami/binary/expansion) interface, like:
  - BipartiteExpansion
  - MatrixExpansion
  - SpokeExpansion
