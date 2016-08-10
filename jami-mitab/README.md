@@ -11,6 +11,10 @@ Only `jami-commons` uses this package. But `jami-commons` is used by following p
 `jami-ontology-manager`
 `psi-jami`
 
+but 
+
+`jami-mitab` itself uses `jami-core` internally
+
 ##Examples
 ###Reading PSI-MITAB files
 
