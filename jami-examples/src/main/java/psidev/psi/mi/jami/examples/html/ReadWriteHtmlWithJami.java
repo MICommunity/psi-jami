@@ -6,7 +6,8 @@ import psidev.psi.mi.jami.datasource.InteractionStream;
 import psidev.psi.mi.jami.datasource.InteractionWriter;
 import psidev.psi.mi.jami.factory.InteractionWriterFactory;
 import psidev.psi.mi.jami.factory.MIDataSourceFactory;
-import psidev.psi.mi.jami.html.*;
+import psidev.psi.mi.jami.html.MIHtml;
+import psidev.psi.mi.jami.html.MIHtmlOptionFactory;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ModelledInteraction;
@@ -29,7 +30,7 @@ public class ReadWriteHtmlWithJami {
     public static void main(String[] args) throws Exception {
 
         if (args.length < 2){
-            System.err.println("We need two arguments : the path to the MITAB/XML file to parse, the name of the JSON file where to write");
+            System.err.println("We need two arguments : the path to the MITAB/XML file to parse, the name of the HTML file where to write");
         }
         String fileName = args[0];
         String htmlFileName = args[1];
