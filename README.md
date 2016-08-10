@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/MICommunity/psi-jami.svg?branch=develop)](https://travis-ci.org/MICommunity/psi-jami)
+Master: [![Build Status: master][travis-badge-master]][ci]
+Dev: [![Build Status: dev][travis-badge-dev]][ci]
 
 # Introduction #
 
