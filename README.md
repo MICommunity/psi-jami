@@ -1,3 +1,6 @@
+Master: [![Build Status: master][travis-badge-master]][ci]
+Dev: [![Build Status: dev][travis-badge-dev]][ci]
+[![Version](http://img.shields.io/badge/version-3.0.1-blue.svg?style=flat)](https://github.com/MICommunity/psi-jami/tree/psi-jami-3.0.1)
 
 # Introduction #
 
@@ -16,3 +19,6 @@ It avoids endless conversions to different formats and avoid code/unit test dupl
 # JAMI modules #
 
 <img width='800' src='wiki/images/jami_existing_modeules.png' />
+[travis-badge-master]: https://travis-ci.org/MICommunity/psi-jami.svg?branch=master
+[travis-badge-dev]: https://travis-ci.org/MICommunity/psi-jami.svg?branch=develop
+[ci]: https://travis-ci.org/MICommunity/psi-jami
