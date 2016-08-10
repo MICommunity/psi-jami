@@ -63,30 +63,31 @@ finally {
      InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
      MIWriterOptionFactory optionFactory = MIWriterOptionFactory.getInstance();
      
-     // By default, the writer will be a PSI-MI XML 2.5.4 writer and it will write expanded PSI-MI XML
-     // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
-     // PsiXmlWriterOptions
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultXmlOptions(new File("xmlFileName"));
+    // get default options for writing MITAB file.
+    // By default, the writer will be a MITAB 2.7 writer and it will write the header
+    // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
+    // MitabWriterOptions
+    Map<String, Object> mitabWritingOptions = optionwriterFactory.getDefaultMitabOptions(new File('mitabFileName'));
      
      
-     // This example is for compact 2.5 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
+     // This example is for 2.6 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects
+      // For other type of InteractionCategory or ComplexType you can refer to the advance options
+     Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(new File('mitabFileName'), InteractionCategory.evidence, ComplexType.n_ary,
+     new InteractionEvidenceSpokeExpansion(),
+     true,
+     MitabVersion.v2_6,
+     false)
+     
+     
+     // This example is for 2.5 PSI-MI TAB format, spoke expanded, with header, when all the aliases, features and confidences are not pure mitab objects 
      // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
-           new File("xmlFileName"),
-           InteractionCategory.evidence,
-           ComplexType.n_ary,
-           PsiXmlVersion.v2_5_4);
+     Map<String, Object> mitabWritingOptions = optionFactory.getMitabOptions(new File('mitabFileName'), InteractionCategory.evidence, ComplexType.n_ary,
+     new InteractionEvidenceSpokeExpansion(),
+     true,
+     MitabVersion.v2_5,
+     false)
      
-     
-     // This example is for compact 3.0 PSI-XML format, for expanded you can use optionFactory.getDefaultExpandedXmlOptions()
-     // For other type of InteractionCategory or ComplexType you can refer to the advance options
-     Map<String, Object> xmlWritingOptions = optionFactory.getDefaultCompactXmlOptions(
-           new File("xmlFileName"),
-           InteractionCategory.evidence,
-           ComplexType.n_ary,
-           PsiXmlVersion.v3_0_0);
-     
-     InteractionWriter writer = writerFactory.getInteractionWriterWith(xmlWritingOptions);
+     InteractionWriter writer = writerFactory.getInteractionWriterWith(mitabWritingOptions);
      
      
      try {
