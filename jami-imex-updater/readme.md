@@ -1,3 +1,4 @@
+
 ##**This package was made to assign or update imex identifiers to Interaction,Experiment or Publication**
 
 ##**How does it relate to other packages?**
@@ -11,7 +12,7 @@ It is not used by any package in psi-jami but it uses internally following packa
 
 https://github.com/MICommunity/psi-jami/tree/develop/jami-imex-updater/src/test/java/psidev/psi/mi/jami/imex
 
-###Update Imex Id of a Publication - Example
+###How to Update Imex Id of a Publication?
 
 ```java
 
@@ -52,43 +53,42 @@ public class ImexPublicationUpdaterTest {
                 ImexPublicationUpdater.IMEX_CURATION_MI, ImexPublicationUpdater.IMEX_CURATION));-->
     }
 }
-
 ```
 
-    ###How to update imex id of a experiment
-    
-    ```java
-    public class ImexExperimentUpdaterTest {
-
-    private ImexExperimentUpdater updater;
+###How to update imex id of a experiment?
 
 
-    @Before
-    public void initUpdater() throws BridgeFailedException {
-        this.updater = new ImexExperimentUpdater();
-        this.updater.setImexAssigner(new ImexAssignerImpl(new MockImexCentralClient()));
-    }
+```java
+  public class ImexExperimentUpdaterTest {
 
-    @Test
-    public void update_publication_successful() throws EnricherException {
+  private ImexExperimentUpdater updater;
 
-        psidev.psi.mi.jami.model.Publication pub = new DefaultPublication("12345");
-        pub.assignImexId("IM-1");
-        Experiment exp = new DefaultExperiment(pub);
-        pub.getExperiments().add(exp);
 
-        updater.enrich(exp);
+  @Before
+  public void initUpdater() throws BridgeFailedException {
+      this.updater = new ImexExperimentUpdater();
+      this.updater.setImexAssigner(new ImexAssignerImpl(new MockImexCentralClient()));
+  }
 
-        Assert.assertEquals(1, exp.getXrefs().size());
+  @Test
+  public void update_publication_successful() throws EnricherException {
 
-        Assert.assertNotNull(XrefUtils.collectAllXrefsHavingDatabaseQualifierAndId(exp.getXrefs(),
-                Xref.IMEX_MI, Xref.IMEX, "IM-1", Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY));
-    }
+      psidev.psi.mi.jami.model.Publication pub = new DefaultPublication("12345");
+      pub.assignImexId("IM-1");
+      Experiment exp = new DefaultExperiment(pub);
+      pub.getExperiments().add(exp);
+
+      updater.enrich(exp);
+
+      Assert.assertEquals(1, exp.getXrefs().size());
+
+      Assert.assertNotNull(XrefUtils.collectAllXrefsHavingDatabaseQualifierAndId(exp.getXrefs(),
+              Xref.IMEX_MI, Xref.IMEX, "IM-1", Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY));
+  }
 }
-    ```
-    
-    
-    ###Update Imex Id of a Interaction
+```
+
+###How to update Imex Id of a Interaction?
 
 ```java
 
