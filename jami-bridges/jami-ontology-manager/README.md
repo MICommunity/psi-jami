@@ -1,6 +1,6 @@
-JAMI extension of the psi-tools ontologyManager
+JAMI extension of the psi-tools OntologyManager
 
-Example  
+Example
 ```java
 InputStream ontology = ...
 MIOntologyManager om = new MIOntologyManager(ontology);
