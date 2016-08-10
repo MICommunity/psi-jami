@@ -1,8 +1,8 @@
+#PSI-JAMI
+
 Master | Develop | Latest release
 --- | --- | ---
 [![Build Status: master][travis-badge-master]][ci]| [![Build Status: dev][travis-badge-dev]][ci] | [![Version](http://img.shields.io/badge/version-3.0.1-blue.svg?style=flat)](https://github.com/MICommunity/psi-jami/tree/psi-jami-3.0.1)
-
-#PSI-JAMI
 
 ###Introduction
 
@@ -16,13 +16,6 @@ The utils package contains a collection of various helper classes. We're not sur
 
 <img width='800' src='wiki/images/jamiIntroduction.png' />
 
-# JAMI datasources/writers #
-
-<img width='800' src='wiki/images/jami_datasources.png' />
-
-# JAMI modules #
-
-<img width='800' src='wiki/images/jami_existing_modeules.png' />
 [travis-badge-master]: https://travis-ci.org/MICommunity/psi-jami.svg?branch=master
 [travis-badge-dev]: https://travis-ci.org/MICommunity/psi-jami.svg?branch=develop
 [ci]: https://travis-ci.org/MICommunity/psi-jami
