@@ -38,5 +38,11 @@
             <artifactId>jami-html</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- crosslink csv -->
+        <dependency>
+            <groupId>psidev.psi.mi.jami</groupId>
+            <artifactId>jami-crosslink-csv</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
