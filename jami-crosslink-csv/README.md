@@ -17,12 +17,10 @@ COLUMN NAME|REQUIRED?|NOTES
 ------------ | ------------ | --------------------------------------
 Protein1|Yes|Identifier for protein 1
 PepPos1|No|One-based residue number for peptide 1 start position in protein 1.
-PepSeq1|No|Sequence for peptide 1,  lowercase characters ignored.
-LinkPos1|If PepSeq1 is present|One-based residue number for linkage site in peptide 1, or absolute position for  link in Protein 1 if peptide position is ommitted.
-Protein2|See note|Identifier for protein 2. This value is omitted for a linker modified peptide or an internally cross-linked peptide.
+LinkPos1|If PepPos1 is present|One-based residue number for linkage site in peptide 1, or one-based absolute position for  link in Protein 1 if peptide position is ommitted.
+Protein2|See note|Identifier for protein 2.
 PepPos2|No|One-based residue number for peptide 2 start position in protein 2.
-PepSeq2|No|Sequence for peptide 2,  lowercase characters ignored.
-LinkPos2|If PepSeq2 is present (also see note)|One-based residue number for linkage site in peptide 2, or absolute position for link in Protein 2 if peptide position is ommitted. Ommitted for linker modified peptides (mono-links).
+LinkPos2|If Peppos2 is present|One-based residue number for linkage site in peptide 2, or one-based absolute position for link in Protein 2 if peptide position is ommitted.
 
 ### Audience
 
