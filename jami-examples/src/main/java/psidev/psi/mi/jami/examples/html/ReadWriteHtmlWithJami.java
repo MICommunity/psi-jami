@@ -1,12 +1,13 @@
-package psidev.psi.mi.jami.examples.core;
+package psidev.psi.mi.jami.examples.html;
 
 import psidev.psi.mi.jami.commons.MIDataSourceOptionFactory;
-import psidev.psi.mi.jami.commons.MIWriterOptionFactory;
 import psidev.psi.mi.jami.commons.PsiJami;
 import psidev.psi.mi.jami.datasource.InteractionStream;
 import psidev.psi.mi.jami.datasource.InteractionWriter;
 import psidev.psi.mi.jami.factory.InteractionWriterFactory;
 import psidev.psi.mi.jami.factory.MIDataSourceFactory;
+import psidev.psi.mi.jami.html.MIHtml;
+import psidev.psi.mi.jami.html.MIHtmlOptionFactory;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ModelledInteraction;
@@ -24,20 +25,20 @@ import java.util.Map;
  * @since <pre>27/06/14</pre>
  */
 
-public class ReadWriteWithJami {
+public class ReadWriteHtmlWithJami {
 
     public static void main(String[] args) throws Exception {
 
-        if (args.length < 3){
-            System.err.println("We need three arguments : the path to the MITAB/XML file to parse, the name of the MITAB file where to write " +
-                    "the interactions and the name of the XML file where to write the interactions");
+        if (args.length < 2){
+            System.err.println("We need two arguments : the path to the MITAB/XML file to parse, the name of the HTML file where to write");
         }
         String fileName = args[0];
-        String mitabFileName = args[1];
-        String xmlFileName = args[2];
+        String htmlFileName = args[1];
 
         // initialise default factories for reading and writing MITAB/PSI-MI XML files
-        PsiJami.initialiseAllFactories();
+        PsiJami.initialiseAllMIDataSources();
+        // initialise all html writers
+        MIHtml.initialiseAllMIHtmlWriters();
 
         // reading MITAB and PSI-MI XML files
 
@@ -52,8 +53,7 @@ public class ReadWriteWithJami {
         Map<String, Object> parsingOptions = optionfactory.getDefaultOptions(new File(fileName));
 
         InteractionStream interactionSource = null;
-        InteractionWriter xmlInteractionWriter = null;
-        InteractionWriter mitabInteractionWriter = null;
+        InteractionWriter htmlInteractionWriter = null;
         try{
             // Get the stream of interactions knowing the default options for this file
             interactionSource = dataSourceFactory.
@@ -61,27 +61,17 @@ public class ReadWriteWithJami {
 
             // writing MITAB and PSI-XML files
 
-            // the option factory for reading files and other datasources
-            MIWriterOptionFactory optionwriterFactory = MIWriterOptionFactory.getInstance();
-            // the interaction writer factory for writing MITAB/PSI-MI XML files. Other writers can be dynamically added to the interactionWriterFactory
+            // the option factory for writing in html
+            MIHtmlOptionFactory optionwriterFactory = MIHtmlOptionFactory.getInstance();
+            // the interaction writer factory for writing MI files. Other writers can be dynamically added to the interactionWriterFactory
             InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
 
-            // get default options for writing MITAB file.
-            // By default, the writer will be a MITAB 2.7 writer and it will write the header
-            // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
-            // MitabWriterOptions
-            Map<String, Object> mitabWritingOptions = optionwriterFactory.getDefaultMitabOptions(new File(mitabFileName));
+            // get default options for writing Json file.
+            // By default, the writer will be a n-ary html writer
+            Map<String, Object> htmlWritingOptions = optionwriterFactory.getDefaultHtmlOptions(new File(htmlFileName));
 
-            // get default options for writing PSI-MI XML file.
-            // By default, the writer will be a PSI-MI XML 2.5.4 writer and it will write expanded PSI-MI XML
-            // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
-            // PsiXmlWriterOptions
-            Map<String, Object> xmlWritingOptions = optionwriterFactory.getDefaultXmlOptions(new File(xmlFileName));
-
-            // Get the default MITAB writer
-            mitabInteractionWriter = writerFactory.getInteractionWriterWith(mitabWritingOptions);
-            // Get the default PSI-MI XML writer
-            xmlInteractionWriter = writerFactory.getInteractionWriterWith(xmlWritingOptions);
+            // Get the default Json writer
+            htmlInteractionWriter = writerFactory.getInteractionWriterWith(htmlWritingOptions);
 
             // parse the stream and write as we parse
             // the interactionSource can be null if the file is not recognized or the provided options are not matching any existing/registered datasources
@@ -89,8 +79,7 @@ public class ReadWriteWithJami {
                 Iterator interactionIterator = interactionSource.getInteractionsIterator();
 
                 // start the writers (write headers, etc.)
-                mitabInteractionWriter.start();
-                xmlInteractionWriter.start();
+                htmlInteractionWriter.start();
 
                 while (interactionIterator.hasNext()){
                     Interaction interaction = (Interaction)interactionIterator.next();
@@ -107,14 +96,12 @@ public class ReadWriteWithJami {
                         // process the modelled interaction
                     }
 
-                    // write the interaction in MITAB and XML
-                    mitabInteractionWriter.write(interaction);
-                    xmlInteractionWriter.write(interaction);
+                    // write the interaction in Json
+                    htmlInteractionWriter.write(interaction);
                 }
 
                 // end the writers (write end tags, etc.)
-                mitabInteractionWriter.end();
-                xmlInteractionWriter.end();
+                htmlInteractionWriter.end();
             }
         }
         finally {
@@ -123,11 +110,8 @@ public class ReadWriteWithJami {
                 interactionSource.close();
             }
             // always close the opened interaction writers
-            if (mitabInteractionWriter != null){
-                mitabInteractionWriter.close();
-            }
-            if (xmlInteractionWriter != null){
-                xmlInteractionWriter.close();
+            if (htmlInteractionWriter != null){
+                htmlInteractionWriter.close();
             }
         }
     }
