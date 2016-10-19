@@ -14,10 +14,10 @@
         <!--<calimocho.version>2.5.2-SNAPSHOT</calimocho.version>-->
         <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
         <spring.version>3.2.9.RELEASE</spring.version>
-        <ols.client.version>2.5-SNAPSHOT</ols.client.version>
-        <ontology.manager.version>2.0.7-SNAPSHOT</ontology.manager.version>
-        <intact.bridges.version>2.1.20-SNAPSHOT</intact.bridges.version>
-        <protein.mapping.version>1.0.7-SNAPSHOT</protein.mapping.version>
+        <ols.client.version>2.4</ols.client.version>
+        <ontology.manager.version>2.0.6</ontology.manager.version>
+        <intact.bridges.version>2.1.20</intact.bridges.version>
+        <protein.mapping.version>1.0.6</protein.mapping.version>
         <uniprot.japi.version>1.0.8</uniprot.japi.version>
         <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
@@ -96,11 +96,8 @@
         </dependency>
     </dependencies>
 
+    <!-- EBI repositories -->
     <repositories>
-        <repository>
-            <id>imex-repo</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/imex-public</url>
-        </repository>
         <repository>
             <id>nexus-ebi-repo-old</id>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
