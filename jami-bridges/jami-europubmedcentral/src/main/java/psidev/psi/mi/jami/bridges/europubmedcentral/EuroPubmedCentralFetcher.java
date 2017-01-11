@@ -86,7 +86,7 @@ public class EuroPubmedCentralFetcher
         }
 
         try {
-            ResponseWrapper wrapper = getPort().searchPublications(query, RESULT_TYPE, 0, "1000", false, EMAIL);
+            ResponseWrapper wrapper = getPort().searchPublications(query, RESULT_TYPE, "*", "1000", "", false, EMAIL);
             if(wrapper.getResultList() != null)
                 results = wrapper.getResultList().getResult();
         } catch (QueryException_Exception e) {
@@ -132,7 +132,7 @@ public class EuroPubmedCentralFetcher
         publication.setPubmedId(result.getPmid());
 
         // DOI number
-        publication.setDoi(result.getDOI());
+        publication.setDoi(result.getDoi());
 
         // Publication Title
         publication.setTitle(result.getTitle());
