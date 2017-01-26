@@ -110,6 +110,10 @@
             <id>nexus-ebi-snapshot-repo</id>
             <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
         </repository>
+        <repository>
+            <id>m2repo</id>
+            <url>http://www.ebi.ac.uk/~maven/m2repo/</url>
+        </repository>
     </repositories>
 
     <!-- Overwrites the previous repositories-->
