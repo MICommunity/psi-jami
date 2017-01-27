@@ -808,11 +808,10 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
                             hasReadEncoding = true;
                             // check what start tag it is
                             String line = sb.toString();
-                            if (line.contains("encoding=")){
-                                int indexOfEncoding = line.indexOf("encoding=\"");
-                                String truncatedLine = line.substring(indexOfEncoding+10);
-                                int indexOfEndEncoding = truncatedLine.indexOf("\"");
-                                this.encoding = truncatedLine.substring(0, indexOfEndEncoding);
+                            Pattern encodingRegex = Pattern.compile(".*encoding=['\"](.*?)['\"].*");
+                            Matcher encodingMatcher = encodingRegex.matcher(line);
+                            if (encodingMatcher.find()) {
+                                this.encoding = encodingMatcher.group(1);
                             }
                         }
                         else if ( read == '!' ) {
