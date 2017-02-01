@@ -43,7 +43,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
     /**
      * Captures the identifier from a String looking like: id="1"
      */
-    private static final Pattern ID_PATTERN = Pattern.compile( "id(?:\\s*)=(?:\\s*)['\"](\\d*)['\"]", Pattern.CANON_EQ );
+    private static final Pattern ID_PATTERN = Pattern.compile( "id(?:\\s*)=(?:\\s*)['\"](\\d*?)['\"]", Pattern.CANON_EQ );
 
     private File file;
     private Unmarshaller unmarshaller;

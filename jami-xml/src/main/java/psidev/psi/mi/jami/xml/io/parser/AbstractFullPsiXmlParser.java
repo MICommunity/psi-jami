@@ -22,6 +22,8 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class if for parser that will load the all file in memory
@@ -370,11 +372,10 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
 
     private String readElementValue(String sb, String elementName) {
         String value = null;
-
-        if ( sb.indexOf( elementName ) > -1 ) {
-            int verindex = sb.lastIndexOf( elementName+"=" ) + ( elementName + "=\"" ).length();
-            String textFromElement = sb.substring( verindex );
-            value = textFromElement.substring(0, textFromElement.indexOf("\""));
+        Pattern elementRegex = Pattern.compile(".*"+elementName+"=['\"](.*?)['\"].*");
+        Matcher elementMatcher = elementRegex.matcher(sb);
+        while (elementMatcher.find()) {
+            value = elementMatcher.group(1);
         }
         return value;
     }
