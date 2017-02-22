@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-uniprot-taxonomy</artifactId>
-    <name>PSI :: JAMI - uniprot taxonomy</name>
+    <name>PSI :: JAMI - Uniprot taxonomy</name>
     <description>JAMI bridge using the uniprot taxonomy webservice</description>
 
     <dependencies>

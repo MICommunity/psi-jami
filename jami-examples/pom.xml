@@ -9,8 +9,8 @@
 
     <artifactId>jami-examples</artifactId>
 
-    <name>PSI :: JAMI - examples</name>
-    <description>JAMI - examples</description>
+    <name>PSI :: JAMI - Examples</name>
+    <description>JAMI - Examples</description>
 
     <dependencies>
         <!-- jami commons to get factories utils, jami-core, xml and mitab implementations -->

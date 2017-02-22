@@ -8,8 +8,8 @@
     </parent>
 
     <artifactId>jami-commons</artifactId>
-    <name>PSI :: JAMI - commons</name>
-    <description>JAMI commons</description>
+    <name>PSI :: JAMI - Commons</name>
+    <description>JAMI Commons</description>
 
     <dependencies>
         <!-- JAMI mitab-->

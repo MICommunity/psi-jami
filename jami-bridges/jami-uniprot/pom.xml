@@ -8,8 +8,8 @@
     </parent>
 
     <artifactId>jami-uniprot</artifactId>
-    <name>PSI :: JAMI - uniprot</name>
-    <description>JAMI-uniprot bridge based on uniprot kraken java API</description>
+    <name>PSI :: JAMI - Uniprot</name>
+    <description>JAMI- Uniprot bridge based on Uniprot java API</description>
 
     <dependencies>
         <!-- bridges core -->
