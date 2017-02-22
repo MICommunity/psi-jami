@@ -7,7 +7,8 @@ import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.model.impl.DefaultModelledInteraction;
 import psidev.psi.mi.jami.model.impl.DefaultSource;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Unit tester for UnambiguousExactCuratedModelledInteractionComparator
@@ -33,9 +34,9 @@ public class UnambiguousExactCuratedModelledInteractionComparatorTest {
     }
 
     @Test
-    public void test_different_basic_properties(){
+    public void test_different_basic_properties() throws ParseException {
         ModelledInteraction interaction1 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction1.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction1.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         ModelledInteraction interaction2 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
 
         Assert.assertTrue(comparator.compare(interaction1, interaction2) < 0);
@@ -45,11 +46,11 @@ public class UnambiguousExactCuratedModelledInteractionComparatorTest {
     }
 
     @Test
-    public void test_same_basic_properties(){
+    public void test_same_basic_properties() throws ParseException {
         ModelledInteraction interaction1 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction1.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction1.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         ModelledInteraction interaction2 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction2.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction2.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
 
         Assert.assertTrue(comparator.compare(interaction1, interaction2) == 0);
         Assert.assertTrue(comparator.compare(interaction2, interaction1) == 0);
@@ -58,12 +59,12 @@ public class UnambiguousExactCuratedModelledInteractionComparatorTest {
     }
 
     @Test
-    public void test_different_sources(){
+    public void test_different_sources() throws ParseException {
         ModelledInteraction interaction1 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction1.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction1.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         interaction1.setSource(new DefaultSource("intact"));
         ModelledInteraction interaction2 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction2.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction2.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         interaction2.setSource(new DefaultSource("mint"));
 
         Assert.assertTrue(comparator.compare(interaction1, interaction2) < 0);
@@ -73,12 +74,12 @@ public class UnambiguousExactCuratedModelledInteractionComparatorTest {
     }
 
     @Test
-    public void test_same_source(){
+    public void test_same_source() throws ParseException{
         ModelledInteraction interaction1 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction1.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction1.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         interaction1.setSource(new DefaultSource("mint"));
         ModelledInteraction interaction2 = new DefaultModelledInteraction("test", new DefaultCvTerm("prediction"));
-        interaction2.setCreatedDate(new Date(System.currentTimeMillis()));
+        interaction2.setCreatedDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         interaction2.setSource(new DefaultSource("mint"));
 
         Assert.assertTrue(comparator.compare(interaction1, interaction2) == 0);

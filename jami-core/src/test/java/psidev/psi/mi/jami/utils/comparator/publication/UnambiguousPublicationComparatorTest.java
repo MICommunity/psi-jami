@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Publication;
 import psidev.psi.mi.jami.model.impl.DefaultPublication;
 import psidev.psi.mi.jami.utils.XrefUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -366,11 +367,11 @@ public class UnambiguousPublicationComparatorTest {
         pub1.setTitle("title TEst ");
         pub1.setJournal("PROTEOMICS");
         pub1.setPubmedId("12345");
-        pub1.setPublicationDate(new Date(System.currentTimeMillis()));
+        pub1.setPublicationDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
         Publication pub2 = new DefaultPublication();
         pub2.setTitle("Title test");
         pub2.setJournal(" PROTEOMICS ");
-        pub2.setPublicationDate(new Date(System.currentTimeMillis()));
+        pub2.setPublicationDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/02/2016"));
 
         Assert.assertTrue(comparator.compare(pub1, pub2) < 0);
         Assert.assertTrue(comparator.compare(pub2, pub1) > 0);
