@@ -84,7 +84,13 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     }
 
     public String getImexId() {
-        return getJAXBXref() != null ? getJAXBXref().getImexId() : null;
+        String imexId = super.getImexId();
+        // If the imexId is not defined in the attributes
+        // of the interaction we try to retrieve from the xrefs
+        if (imexId == null){
+            return getJAXBXref() != null ? getJAXBXref().getImexId() : null;
+        }
+        return imexId;
     }
 
     public void assignImexId(String identifier) {
@@ -92,6 +98,9 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
             setJAXBXref(new InteractionXrefContainer());
         }
         getJAXBXref().assignImexId(identifier);
+        if (getImexId() == null){
+            setJAXBImexId(identifier);
+        }
     }
 
     public Experiment getExperiment() {
@@ -197,6 +206,11 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         super.setId(value);
+    }
+
+    @XmlAttribute(name = "imexId")
+    public void setJAXBImexId(String identifier) {
+        super.assignImexId(identifier);
     }
 
     @XmlElement(name="participantList", required = true)

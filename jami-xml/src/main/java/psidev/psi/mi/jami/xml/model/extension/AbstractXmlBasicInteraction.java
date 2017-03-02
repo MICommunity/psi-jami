@@ -75,6 +75,11 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
         super.setId(value);
     }
 
+    @XmlAttribute(name = "imexId")
+    public void setJAXBImexId(String value) {
+        super.assignImexId(value);
+    }
+
     @Override
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {

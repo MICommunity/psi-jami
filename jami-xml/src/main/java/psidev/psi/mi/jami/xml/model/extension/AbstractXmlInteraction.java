@@ -35,6 +35,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     private InteractionXrefContainer xrefContainer;
     private Boolean intraMolecular;
     private int id;
+    private String imexId;
     private Date updatedDate;
     private Date createdDate;
     private PsiXmlLocator sourceLocator;
@@ -244,6 +245,9 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      */
     public void setJAXBXref(InteractionXrefContainer value) {
         this.xrefContainer = value;
+        if (value != null && imexId != null){
+            this.xrefContainer.assignImexId(imexId);
+        }
     }
 
     public boolean isIntraMolecular(){
@@ -281,6 +285,29 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
             sourceLocator.setObjectId(this.id);
         }
     }
+
+    /**
+     * Gets the value of the imexId property.
+     *
+     */
+    public String getImexId() {
+        return imexId;
+    }
+
+    /**
+     * Sets the value of the imexId property
+     *
+     */
+    public void assignImexId(String value) {
+        this.imexId = value;
+        if (value != null) {
+            if (this.xrefContainer == null) {
+                this.xrefContainer = new InteractionXrefContainer();
+            }
+            this.xrefContainer.assignImexId(value);
+        }
+    }
+
 
     @Override
     public Locator sourceLocation() {
