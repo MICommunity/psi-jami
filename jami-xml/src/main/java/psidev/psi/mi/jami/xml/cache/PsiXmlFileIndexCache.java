@@ -43,7 +43,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
     /**
      * Captures the identifier from a String looking like: id="1"
      */
-    private static final Pattern ID_PATTERN = Pattern.compile( "id(?:\\s*)=(?:\\s*)\"(\\d*)\"", Pattern.CANON_EQ );
+    private static final Pattern ID_PATTERN = Pattern.compile( "id(?:\\s*)=(?:\\s*)['\"](\\d*?)['\"]", Pattern.CANON_EQ );
 
     private File file;
     private Unmarshaller unmarshaller;
@@ -808,11 +808,10 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
                             hasReadEncoding = true;
                             // check what start tag it is
                             String line = sb.toString();
-                            if (line.contains("encoding=")){
-                                int indexOfEncoding = line.indexOf("encoding=\"");
-                                String truncatedLine = line.substring(indexOfEncoding+10);
-                                int indexOfEndEncoding = truncatedLine.indexOf("\"");
-                                this.encoding = truncatedLine.substring(0, indexOfEndEncoding);
+                            Pattern encodingRegex = Pattern.compile(".*encoding=['\"](.*?)['\"].*");
+                            Matcher encodingMatcher = encodingRegex.matcher(line);
+                            if (encodingMatcher.find()) {
+                                this.encoding = encodingMatcher.group(1);
                             }
                         }
                         else if ( read == '!' ) {
