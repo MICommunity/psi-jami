@@ -59,7 +59,7 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
         if(participantToEnrich == null) throw new IllegalArgumentException("Attempted to enrich a null participant.");
 
         // == Prepare Features =====================================
-        if( getFeatureEnricher() != null )
+        if( getFeatureEnricher() != null ) //This could trigger the initialization of the FeatureEnricher in a subclass
             getFeatureEnricher().setFeaturesWithRangesToUpdate((Collection<F>)participantToEnrich.getFeatures());
         // == Enrich Features =========================================================
         processFeatures(participantToEnrich);

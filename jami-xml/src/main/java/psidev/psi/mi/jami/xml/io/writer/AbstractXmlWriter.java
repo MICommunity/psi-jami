@@ -543,9 +543,15 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         // confidences
         PsiXmlElementWriter<Confidence>[] confidenceWriters = this.subWritersFactory.createConfidenceWriters(this.streamWriter, extended,
                 getElementCache(), this.version, openCvWriter, publicationWriter);
+
         // organism writer
         PsiXmlElementWriter<Organism> organismWriter = this.subWritersFactory.createOrganismWriter(this.streamWriter, extended, aliasWriter,
                 attributeWriter, xrefWriter, openCvWriter);
+
+        // host organism (expressed in) writer
+        PsiXmlElementWriter<Organism> hostOrganismWriter = this.subWritersFactory.createHostOrganismWriter(this.streamWriter, extended, getElementCache(), aliasWriter,
+                attributeWriter, xrefWriter, openCvWriter);
+
         // checksum writer
         PsiXmlElementWriter<Checksum> checksumWriter = this.subWritersFactory.createChecksumWriter(this.streamWriter);
         // interactor writer
@@ -553,7 +559,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
                 aliasWriter, attributeWriter, xrefWriter, cvWriter, organismWriter, checksumWriter);
         // experiment Writer
         PsiXmlExperimentWriter experimentWriter = this.subWritersFactory.createExperimentWriter(this.streamWriter, extended, getElementCache(),
-                this.version, named, aliasWriter, attributeWriter, xrefWriter, publicationWriter, organismWriter, cvWriter,
+                this.version, named, aliasWriter, attributeWriter, xrefWriter, publicationWriter, hostOrganismWriter, cvWriter,
                 confidenceWriters[0]);
         // availability writer
         PsiXmlElementWriter<String> availabilityWriter = this.subWritersFactory.createAvailabilityWriter(this.streamWriter, getElementCache());

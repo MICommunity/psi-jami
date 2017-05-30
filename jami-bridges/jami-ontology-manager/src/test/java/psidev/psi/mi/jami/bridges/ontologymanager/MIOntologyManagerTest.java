@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.bridges.ontologymanager;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import psidev.psi.mi.jami.bridges.ontologymanager.impl.local.MILocalOntology;
 import psidev.psi.mi.jami.bridges.ontologymanager.impl.ols.MIOlsOntology;
@@ -20,6 +21,11 @@ import java.io.InputStream;
 
 public class MIOntologyManagerTest {
 
+    /*
+        Multicast problem in ehcache for MAC.
+        -Djava.net.preferIPv4Stack=true needs to be added as a JVM options to be able to run this test in a Mac computer.
+        See http://stackoverflow.com/questions/18747134/getting-cant-assign-requested-address-java-net-socketexception-using-ehcache
+     */
     @Test
     public void test_simulation() throws IOException, OntologyLoaderException {
 

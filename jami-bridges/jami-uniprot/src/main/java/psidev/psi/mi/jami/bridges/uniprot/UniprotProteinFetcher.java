@@ -154,7 +154,7 @@ public class UniprotProteinFetcher
 
         try {
             uniProtQueryService.start();
-            Query query = UniProtQueryBuilder.accession(identifier).or(UniProtQueryBuilder.proteinName(identifier).or(UniProtQueryBuilder.id(identifier)));
+            Query query = UniProtQueryBuilder.accession(identifier).or(UniProtQueryBuilder.id(identifier));
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
             QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
             int count = 0;
@@ -249,12 +249,15 @@ public class UniprotProteinFetcher
         try {
             uniProtQueryService.start();
             UniProtEntry entry = uniProtQueryService.getEntry(identifier);
-            AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
-            if (isoform == null) log.warn("No isoform in entry " + entry.getUniProtId());
-            else {
-                proteins.add(createIsoformFrom(entry, isoform));
+            if(entry!=null) {
+                AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
+                if (isoform == null) log.warn("No isoform in entry " + entry.getUniProtId());
+                else {
+                    proteins.add(createIsoformFrom(entry, isoform));
+                }
+            }else {
+                log.warn("The entry for "+ identifier + " cannot be retrieved from Uniprot");
             }
-
         } catch (ServiceException e) {
             uniProtQueryService.stop();
             throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.", e);

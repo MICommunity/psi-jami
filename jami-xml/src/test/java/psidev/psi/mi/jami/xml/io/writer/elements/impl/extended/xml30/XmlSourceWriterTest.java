@@ -139,8 +139,7 @@ public class XmlSourceWriterTest extends AbstractXmlWriterTest {
 
         XmlSourceWriter writer = new XmlSourceWriter(createStreamWriter());
         try {
-            DatatypeFactory datatypeFactory = null;
-            datatypeFactory = DatatypeFactory.newInstance();
+            DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
             writer.setDefaultReleaseDate(datatypeFactory.newXMLGregorianCalendar("2013-09-02+00:00"));
 
         } catch (DatatypeConfigurationException e) {
@@ -181,8 +180,7 @@ public class XmlSourceWriterTest extends AbstractXmlWriterTest {
 
         XmlSourceWriter writer = new XmlSourceWriter(createStreamWriter());
         try {
-            DatatypeFactory datatypeFactory = null;
-            datatypeFactory = DatatypeFactory.newInstance();
+            DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
             writer.setDefaultReleaseDate(datatypeFactory.newXMLGregorianCalendar("2013-09-02+00:00"));
 
         } catch (DatatypeConfigurationException e) {
@@ -224,8 +222,7 @@ public class XmlSourceWriterTest extends AbstractXmlWriterTest {
 
         XmlSourceWriter writer = new XmlSourceWriter(createStreamWriter());
         try {
-            DatatypeFactory datatypeFactory = null;
-            datatypeFactory = DatatypeFactory.newInstance();
+            DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
             writer.setDefaultReleaseDate(datatypeFactory.newXMLGregorianCalendar("2013-09-02+00:00"));
 
         } catch (DatatypeConfigurationException e) {

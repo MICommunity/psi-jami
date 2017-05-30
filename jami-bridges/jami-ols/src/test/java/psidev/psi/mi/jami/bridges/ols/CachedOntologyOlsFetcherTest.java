@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.bridges.ols;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,7 @@ public class CachedOntologyOlsFetcherTest {
      * @throws BridgeFailedException
      */
     @Test
+    @Ignore("Multicast requests fail in MAC needs investigation")
     public void test_getCvTermByIdentifier_without_relations() throws BridgeFailedException {
         OntologyTerm result = ontologyOLSFetcher.fetchByIdentifier(
                 TEST_TERM_A_IDENTIFIER , TEST_TERM_A_DBNAME);
@@ -64,6 +66,11 @@ public class CachedOntologyOlsFetcherTest {
     /**
      * Confirm that the Ontology term is correctly retrieved
      * @throws BridgeFailedException
+     */
+    /*
+        Multicast problem in ehcache for MAC.
+        -Djava.net.preferIPv4Stack=true needs to be added as a JVM options to be able to run this test in a Mac computer.
+        See http://stackoverflow.com/questions/18747134/getting-cant-assign-requested-address-java-net-socketexception-using-ehcache
      */
     @Test
     public void test_getCvTermByExactName_without_relations() throws BridgeFailedException {

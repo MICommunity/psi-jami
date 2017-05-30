@@ -236,6 +236,8 @@ public class UnisaveClientTest {
                 "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     309    309       N6-succinyllysine; alternate.\n" +
                 "FT                                {ECO:0000250|UniProtKB:P12344}.\n" +
+                "FT   MOD_RES     313    313       Asymmetric dimethylarginine.\n" +
+                "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     338    338       N6-acetyllysine; alternate.\n" +
                 "FT                                {ECO:0000250|UniProtKB:P05202}.\n" +
                 "FT   MOD_RES     338    338       N6-succinyllysine; alternate.\n" +

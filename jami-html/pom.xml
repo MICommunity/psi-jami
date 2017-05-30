@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.5</version>
+        <version>3.0.6</version>
     </parent>
 
     <artifactId>jami-html</artifactId>
-    <name>PSI :: PSI-JAMI html parser and writer</name>
+    <name>PSI :: JAMI Html parser and writer</name>
 
     <build>
         <plugins>

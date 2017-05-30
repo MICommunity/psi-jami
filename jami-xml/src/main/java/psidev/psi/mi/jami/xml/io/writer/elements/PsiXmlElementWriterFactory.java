@@ -25,7 +25,7 @@ public class PsiXmlElementWriterFactory {
 
     private static final PsiXmlElementWriterFactory instance = new PsiXmlElementWriterFactory();
 
-    private PsiXmlElementWriterFactory(){
+    private PsiXmlElementWriterFactory() {
         // nothing to do here
     }
 
@@ -46,26 +46,24 @@ public class PsiXmlElementWriterFactory {
                                                                         PsiXmlExperimentWriter experimentWriter,
                                                                         PsiXmlElementWriter<String> availabilityWriter,
                                                                         PsiXmlElementWriter<Interactor> interactorWriter,
-                                                                        PsiXmlPublicationWriter publicationWriter){
+                                                                        PsiXmlPublicationWriter publicationWriter) {
 
         PsiXmlParameterWriter[] parameterWriters = createParameterWriters(streamWriter, extended, objectIndex, version, publicationWriter);
         PsiXmlParticipantWriter[] participantWriters = createParticipantWriter(streamWriter, extended, objectIndex, version, xmlType, interactionCategory,
                 aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], interactorWriter, interactionTypeWriter, openCvWriter, parameterWriters[0]);
         PsiXmlElementWriter inferredInteractionWriter = createInferredInteractionWriter(streamWriter, objectIndex);
 
-        if (extended){
+        if (extended) {
             return createExtendedPsiXmlInteractionWriters(streamWriter, objectIndex, version, xmlType, interactionCategory, complexType,
                     aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters, checksumWriter, interactionTypeWriter,
                     experimentWriter, availabilityWriter, parameterWriters, participantWriters, inferredInteractionWriter, publicationWriter,
                     openCvWriter);
-        }
-        else if (named){
+        } else if (named) {
             return createNamedPsiXmlInteractionWriters(streamWriter, objectIndex, version, xmlType, interactionCategory, complexType,
                     aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters, checksumWriter, interactionTypeWriter,
                     experimentWriter, availabilityWriter, parameterWriters, participantWriters, inferredInteractionWriter, publicationWriter,
                     openCvWriter);
-        }
-        else{
+        } else {
             return createDefaultPsiXmlInteractionWriters(streamWriter, objectIndex, version, xmlType, interactionCategory, complexType,
                     aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters, checksumWriter, interactionTypeWriter,
                     experimentWriter, availabilityWriter, parameterWriters, participantWriters, inferredInteractionWriter, publicationWriter,
@@ -74,27 +72,27 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlInteractionWriter[] createDefaultPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
-                                                                                   PsiXmlVersion version, PsiXmlType xmlType,
-                                                                                   InteractionCategory interactionCategory, ComplexType complexType,
-                                                                                   PsiXmlElementWriter<Alias> aliasWriter,
-                                                                                   PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                                   PsiXmlXrefWriter primaryRefWriter,
-                                                                                   PsiXmlElementWriter[] confidenceWriters,
-                                                                                   PsiXmlElementWriter<Checksum> checksumWriter,
-                                                                                   PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-                                                                                   PsiXmlExperimentWriter experimentWriter,
-                                                                                   PsiXmlElementWriter<String> availabilityWriter,
-                                                                                   PsiXmlParameterWriter[] parameterWriters,
-                                                                                   PsiXmlParticipantWriter[] participantWriters,
-                                                                                   PsiXmlElementWriter inferredInteractionWriter,
-                                                                                   PsiXmlPublicationWriter publicationWriter,
-                                                                                   PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
-        switch (version){
+                                                                                  PsiXmlVersion version, PsiXmlType xmlType,
+                                                                                  InteractionCategory interactionCategory, ComplexType complexType,
+                                                                                  PsiXmlElementWriter<Alias> aliasWriter,
+                                                                                  PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                                  PsiXmlXrefWriter primaryRefWriter,
+                                                                                  PsiXmlElementWriter[] confidenceWriters,
+                                                                                  PsiXmlElementWriter<Checksum> checksumWriter,
+                                                                                  PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
+                                                                                  PsiXmlExperimentWriter experimentWriter,
+                                                                                  PsiXmlElementWriter<String> availabilityWriter,
+                                                                                  PsiXmlParameterWriter[] parameterWriters,
+                                                                                  PsiXmlParticipantWriter[] participantWriters,
+                                                                                  PsiXmlElementWriter inferredInteractionWriter,
+                                                                                  PsiXmlPublicationWriter publicationWriter,
+                                                                                  PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
+        switch (version) {
             case v3_0_0:
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
-                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -118,9 +116,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setAllosteryWriter(allosteryWriter);
                         modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -161,7 +159,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -187,8 +185,8 @@ public class PsiXmlElementWriterFactory {
                         }
 
                     default:
-                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -212,9 +210,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setAllosteryWriter(allosteryWriter);
                         modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -255,7 +253,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -283,7 +281,7 @@ public class PsiXmlElementWriterFactory {
 
             default:
 
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledInteractionWriter(streamWriter, objectIndex);
@@ -298,9 +296,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setExperimentWriter(experimentWriter);
                         modelledWriter2.setParameterWriter(parameterWriters[1]);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -347,7 +345,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -408,9 +406,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setExperimentWriter(experimentWriter);
                         modelledWriter3.setParameterWriter(parameterWriters[1]);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -457,7 +455,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -508,27 +506,27 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlInteractionWriter[] createNamedPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
-                                                                                 PsiXmlVersion version, PsiXmlType xmlType,
-                                                                                 InteractionCategory interactionCategory, ComplexType complexType,
-                                                                                 PsiXmlElementWriter<Alias> aliasWriter,
-                                                                                 PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                                 PsiXmlXrefWriter primaryRefWriter,
-                                                                                 PsiXmlElementWriter[] confidenceWriters,
-                                                                                 PsiXmlElementWriter<Checksum> checksumWriter,
-                                                                                 PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-                                                                                 PsiXmlExperimentWriter experimentWriter,
-                                                                                 PsiXmlElementWriter<String> availabilityWriter,
-                                                                                 PsiXmlParameterWriter[] parameterWriters,
-                                                                                 PsiXmlParticipantWriter[] participantWriters,
-                                                                                 PsiXmlElementWriter inferredInteractionWriter,
-                                                                                 PsiXmlPublicationWriter publicationWriter,
-                                                                                 PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
-        switch (version){
+                                                                                PsiXmlVersion version, PsiXmlType xmlType,
+                                                                                InteractionCategory interactionCategory, ComplexType complexType,
+                                                                                PsiXmlElementWriter<Alias> aliasWriter,
+                                                                                PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                                PsiXmlXrefWriter primaryRefWriter,
+                                                                                PsiXmlElementWriter[] confidenceWriters,
+                                                                                PsiXmlElementWriter<Checksum> checksumWriter,
+                                                                                PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
+                                                                                PsiXmlExperimentWriter experimentWriter,
+                                                                                PsiXmlElementWriter<String> availabilityWriter,
+                                                                                PsiXmlParameterWriter[] parameterWriters,
+                                                                                PsiXmlParticipantWriter[] participantWriters,
+                                                                                PsiXmlElementWriter inferredInteractionWriter,
+                                                                                PsiXmlPublicationWriter publicationWriter,
+                                                                                PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
+        switch (version) {
             case v3_0_0:
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
-                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -552,9 +550,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
                         modelledWriter2.setCausalRelationshipWriter(relationshipWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -595,7 +593,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -621,8 +619,8 @@ public class PsiXmlElementWriterFactory {
                         }
 
                     default:
-                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -646,9 +644,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
                         modelledWriter3.setCausalRelationshipWriter(relationshipWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -689,7 +687,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -717,7 +715,7 @@ public class PsiXmlElementWriterFactory {
 
             default:
 
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
@@ -732,9 +730,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setExperimentWriter(experimentWriter);
                         modelledWriter2.setParameterWriter(parameterWriters[1]);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -781,7 +779,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -842,9 +840,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setExperimentWriter(experimentWriter);
                         modelledWriter3.setParameterWriter(parameterWriters[1]);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -891,7 +889,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -942,30 +940,30 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlInteractionWriter[] createExtendedPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
-                                                                                    PsiXmlVersion version, PsiXmlType xmlType,
-                                                                                    InteractionCategory interactionCategory, ComplexType complexType,
-                                                                                    PsiXmlElementWriter<Alias> aliasWriter,
-                                                                                    PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                                    PsiXmlXrefWriter primaryRefWriter,
-                                                                                    PsiXmlElementWriter[] confidenceWriters,
-                                                                                    PsiXmlElementWriter<Checksum> checksumWriter,
-                                                                                    PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-                                                                                    PsiXmlExperimentWriter experimentWriter,
-                                                                                    PsiXmlElementWriter<String> availabilityWriter,
-                                                                                    PsiXmlParameterWriter[] parameterWriters,
-                                                                                    PsiXmlParticipantWriter[] participantWriters,
-                                                                                    PsiXmlElementWriter inferredInteractionWriter,
-                                                                                    PsiXmlPublicationWriter publicationWriter,
-                                                                                    PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
+                                                                                   PsiXmlVersion version, PsiXmlType xmlType,
+                                                                                   InteractionCategory interactionCategory, ComplexType complexType,
+                                                                                   PsiXmlElementWriter<Alias> aliasWriter,
+                                                                                   PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                                   PsiXmlXrefWriter primaryRefWriter,
+                                                                                   PsiXmlElementWriter[] confidenceWriters,
+                                                                                   PsiXmlElementWriter<Checksum> checksumWriter,
+                                                                                   PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
+                                                                                   PsiXmlExperimentWriter experimentWriter,
+                                                                                   PsiXmlElementWriter<String> availabilityWriter,
+                                                                                   PsiXmlParameterWriter[] parameterWriters,
+                                                                                   PsiXmlParticipantWriter[] participantWriters,
+                                                                                   PsiXmlElementWriter inferredInteractionWriter,
+                                                                                   PsiXmlPublicationWriter publicationWriter,
+                                                                                   PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
         PsiXmlElementWriter<InferredInteraction> extendedInferredInteractionWriter = createExtendedInferredInteractionWriter(streamWriter,
                 objectIndex);
 
-        switch (version){
+        switch (version) {
             case v3_0_0:
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
-                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -989,9 +987,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
                         modelledWriter2.setCausalRelationshipWriter(relationshipWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -1033,7 +1031,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -1060,8 +1058,8 @@ public class PsiXmlElementWriterFactory {
                         }
 
                     default:
-                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter,  objectIndex);
-                        relationshipWriter = createCausalRelationshipWriter(streamWriter,false,  objectIndex,
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
                                 openCvWriter);
                         preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
                                 attributeWriter, publicationWriter);
@@ -1085,9 +1083,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
                         modelledWriter3.setCausalRelationshipWriter(relationshipWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -1129,7 +1127,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -1158,7 +1156,7 @@ public class PsiXmlElementWriterFactory {
 
             default:
 
-                switch (xmlType){
+                switch (xmlType) {
                     case compact:
                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledInteractionWriter(streamWriter, objectIndex);
@@ -1174,9 +1172,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter2.setParameterWriter(parameterWriters[1]);
                         modelledWriter2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -1226,7 +1224,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
@@ -1290,9 +1288,9 @@ public class PsiXmlElementWriterFactory {
                         modelledWriter3.setParameterWriter(parameterWriters[1]);
                         modelledWriter3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                        switch (complexType){
+                        switch (complexType) {
                             case binary:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
@@ -1342,7 +1340,7 @@ public class PsiXmlElementWriterFactory {
                                         return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
-                                switch (interactionCategory){
+                                switch (interactionCategory) {
                                     case modelled:
                                         return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
@@ -1394,22 +1392,21 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
-    public static PsiXmlElementWriter<Alias> createAliasWriter(XMLStreamWriter streamWriter){
+    public static PsiXmlElementWriter<Alias> createAliasWriter(XMLStreamWriter streamWriter) {
         return new XmlAliasWriter(streamWriter);
     }
 
-    public static PsiXmlElementWriter<Annotation> createAnnotationWriter(XMLStreamWriter streamWriter){
+    public static PsiXmlElementWriter<Annotation> createAnnotationWriter(XMLStreamWriter streamWriter) {
         return new XmlAnnotationWriter(streamWriter);
     }
 
     public static PsiXmlXrefWriter createXrefWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                    PsiXmlElementWriter<Annotation> annotationWriter){
+                                                    PsiXmlElementWriter<Annotation> annotationWriter) {
         PsiXmlXrefWriter writer;
-        if (extended){
+        if (extended) {
             writer = new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter(streamWriter);
-            ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter)writer).setAnnotationWriter(annotationWriter);
-        }
-        else{
+            ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter) writer).setAnnotationWriter(annotationWriter);
+        } else {
             writer = new XmlDbXrefWriter(streamWriter);
         }
         return writer;
@@ -1419,38 +1416,37 @@ public class PsiXmlElementWriterFactory {
                                                                   PsiXmlElementWriter<Annotation> attributeWriter, PsiXmlXrefWriter primaryRefWriter,
                                                                   PsiXmlVersion version) {
         PsiXmlPublicationWriter publicationWriter;
-        if (extended){
-            switch (version){
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     publicationWriter = new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter(streamWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter) publicationWriter)
                             .setAttributeWriter(attributeWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter) publicationWriter)
                             .setXrefWriter(primaryRefWriter);
                     break;
                 default:
                     publicationWriter = new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlPublicationWriter(streamWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlPublicationWriter) publicationWriter)
                             .setAttributeWriter(attributeWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlPublicationWriter) publicationWriter)
                             .setXrefWriter(primaryRefWriter);
                     break;
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     publicationWriter = new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter(streamWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter) publicationWriter)
                             .setAttributeWriter(attributeWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter) publicationWriter)
                             .setXrefWriter(primaryRefWriter);
                     break;
                 default:
                     publicationWriter = new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlPublicationWriter(streamWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlPublicationWriter) publicationWriter)
                             .setAttributeWriter(attributeWriter);
-                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlPublicationWriter)publicationWriter)
+                    ((psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlPublicationWriter) publicationWriter)
                             .setXrefWriter(primaryRefWriter);
                     break;
             }
@@ -1461,15 +1457,14 @@ public class PsiXmlElementWriterFactory {
     public static PsiXmlVariableNameWriter<CvTerm> createOpenCvWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                       PsiXmlElementWriter<Alias> aliasWriter, PsiXmlElementWriter<Annotation> attributeWriter,
                                                                       PsiXmlXrefWriter primaryRefWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlOpenCvTermWriter cellTypeWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlOpenCvTermWriter(streamWriter);
             cellTypeWriter.setAttributeWriter(attributeWriter);
             cellTypeWriter.setAliasWriter(aliasWriter);
             cellTypeWriter.setXrefWriter(primaryRefWriter);
             return cellTypeWriter;
-        }
-        else{
+        } else {
             XmlOpenCvTermWriter cellTypeWriter = new XmlOpenCvTermWriter(streamWriter);
             cellTypeWriter.setAttributeWriter(attributeWriter);
             cellTypeWriter.setAliasWriter(aliasWriter);
@@ -1482,14 +1477,13 @@ public class PsiXmlElementWriterFactory {
                                                                               PsiXmlObjectCache objectIndex,
                                                                               PsiXmlElementWriter<Alias> aliasWriter,
                                                                               PsiXmlXrefWriter primaryRefWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlExperimentalCvTermWriter cellTypeWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlExperimentalCvTermWriter(streamWriter, objectIndex);
             cellTypeWriter.setAliasWriter(aliasWriter);
             cellTypeWriter.setXrefWriter(primaryRefWriter);
             return cellTypeWriter;
-        }
-        else{
+        } else {
             XmlCvTermWriter cellTypeWriter = new XmlCvTermWriter(streamWriter);
             cellTypeWriter.setAliasWriter(aliasWriter);
             cellTypeWriter.setXrefWriter(primaryRefWriter);
@@ -1499,14 +1493,13 @@ public class PsiXmlElementWriterFactory {
 
     public static PsiXmlVariableNameWriter<CvTerm> createCvWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                   PsiXmlElementWriter<Alias> aliasWriter, PsiXmlXrefWriter primaryRefWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter tissueWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter(streamWriter);
             tissueWriter.setAliasWriter(aliasWriter);
             tissueWriter.setXrefWriter(primaryRefWriter);
             return tissueWriter;
-        }
-        else{
+        } else {
             XmlCvTermWriter tissueWriter = new XmlCvTermWriter(streamWriter);
             tissueWriter.setAliasWriter(aliasWriter);
             tissueWriter.setXrefWriter(primaryRefWriter);
@@ -1519,14 +1512,13 @@ public class PsiXmlElementWriterFactory {
                                                                          PsiXmlElementWriter<Annotation> annotationWriter,
                                                                          PsiXmlXrefWriter xrefWriter,
                                                                          PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlHostOrganismWriter hostWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlHostOrganismWriter(streamWriter, objectIndex);
             hostWriter.setAliasWriter(aliasWriter);
             hostWriter.setCvWriter(openCvWriter);
             return hostWriter;
-        }
-        else{
+        } else {
             XmlHostOrganismWriter hostWriter = new XmlHostOrganismWriter(streamWriter);
             hostWriter.setAliasWriter(aliasWriter);
             hostWriter.setCvWriter(openCvWriter);
@@ -1534,6 +1526,7 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    //TODO check if the organism can be extended, becasue for schema definition looks like it is not
     public static PsiXmlElementWriter<Organism> createOrganismWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                      PsiXmlElementWriter<Alias> aliasWriter,
                                                                      PsiXmlElementWriter<Annotation> annotationWriter,
@@ -1555,18 +1548,18 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlElementWriter<Checksum> createChecksumWriter(XMLStreamWriter streamWriter) {
-        return  new XmlChecksumWriter(streamWriter);
+        return new XmlChecksumWriter(streamWriter);
     }
 
     public static PsiXmlElementWriter<Confidence>[] createConfidenceWriters(XMLStreamWriter streamWriter, boolean extended,
                                                                             PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                             PsiXmlVariableNameWriter<CvTerm> confidenceTypeWriter,
                                                                             PsiXmlPublicationWriter publicationWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlConfidenceWriter confWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlConfidenceWriter(streamWriter, objectIndex);
             confWriter.setTypeWriter(confidenceTypeWriter);
-            switch (version){
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlModelledConfidenceWriter modelledConfWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlModelledConfidenceWriter(streamWriter);
@@ -1576,11 +1569,10 @@ public class PsiXmlElementWriterFactory {
                 default:
                     return new PsiXmlElementWriter[]{confWriter, confWriter};
             }
-        }
-        else{
+        } else {
             XmlConfidenceWriter confWriter = new XmlConfidenceWriter(streamWriter);
             confWriter.setTypeWriter(confidenceTypeWriter);
-            switch (version){
+            switch (version) {
                 case v3_0_0:
                     XmlModelledConfidenceWriter modelledConfWriter = new XmlModelledConfidenceWriter(streamWriter);
                     modelledConfWriter.setTypeWriter(confidenceTypeWriter);
@@ -1594,13 +1586,12 @@ public class PsiXmlElementWriterFactory {
 
     public static PsiXmlElementWriter<ResultingSequence> createResultingSequenceWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                        PsiXmlXrefWriter refWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlResultingSequenceWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlResultingSequenceWriter(streamWriter);
             writer.setXrefWriter(refWriter);
             return writer;
-        }
-        else{
+        } else {
             XmlResultingSequenceWriter writer = new XmlResultingSequenceWriter(streamWriter);
             writer.setXrefWriter(refWriter);
             return writer;
@@ -1611,14 +1602,13 @@ public class PsiXmlElementWriterFactory {
                                                                                                PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                                                PsiXmlPublicationWriter publicationWriter) {
 
-        if (expanded){
+        if (expanded) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlCooperativityEvidenceWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlCooperativityEvidenceWriter(streamWriter);
             writer.setCvWriter(cvWriter);
             writer.setPublicationWriter(publicationWriter);
             return writer;
-        }
-        else{
+        } else {
             XmlCooperativityEvidenceWriter writer = new XmlCooperativityEvidenceWriter(streamWriter);
             writer.setCvWriter(cvWriter);
             writer.setPublicationWriter(publicationWriter);
@@ -1630,15 +1620,14 @@ public class PsiXmlElementWriterFactory {
                                                                        PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                        PsiXmlElementWriter<Annotation> attributeWriter,
                                                                        PsiXmlPublicationWriter publicationWriter) {
-        if (expanded){
+        if (expanded) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlAllosteryWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlAllosteryWriter(streamWriter, objectIndex);
             writer.setCvWriter(cvWriter);
             writer.setAttributeWriter(attributeWriter);
             writer.setCooperativityEvidenceWriter(createCooperativityEvidenceWriter(streamWriter, expanded, cvWriter, publicationWriter));
             return writer;
-        }
-        else{
+        } else {
             XmlAllosteryWriter writer = new XmlAllosteryWriter(streamWriter, objectIndex);
             writer.setCvWriter(cvWriter);
             writer.setAttributeWriter(attributeWriter);
@@ -1651,15 +1640,14 @@ public class PsiXmlElementWriterFactory {
                                                                            PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                            PsiXmlElementWriter<Annotation> attributeWriter,
                                                                            PsiXmlPublicationWriter publicationWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPreAssemblyWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPreAssemblyWriter(streamWriter, objectIndex);
             writer.setCvWriter(cvWriter);
             writer.setAttributeWriter(attributeWriter);
             writer.setCooperativityEvidenceWriter(createCooperativityEvidenceWriter(streamWriter, extended, cvWriter, publicationWriter));
             return writer;
-        }
-        else{
+        } else {
             XmlPreAssemblyWriter writer = new XmlPreAssemblyWriter(streamWriter, objectIndex);
             writer.setCvWriter(cvWriter);
             writer.setAttributeWriter(attributeWriter);
@@ -1670,13 +1658,12 @@ public class PsiXmlElementWriterFactory {
 
     public static PsiXmlCausalRelationshipWriter createCausalRelationshipWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                 PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlCausalRelationshipWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlCausalRelationshipWriter(streamWriter, objectIndex);
             writer.setCausalStatementWriter(cvWriter);
             return writer;
-        }
-        else{
+        } else {
             XmlCausalRelationshipWriter writer = new XmlCausalRelationshipWriter(streamWriter, objectIndex);
             writer.setCausalStatementWriter(cvWriter);
             return writer;
@@ -1695,14 +1682,13 @@ public class PsiXmlElementWriterFactory {
 
     public static PsiXmlElementWriter<VariableParameter> createVariableParameterWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                        PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlVariableParameterWriter writer =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlVariableParameterWriter(streamWriter, objectIndex);
             writer.setUnitWriter(cvWriter);
             writer.setVariableParameterValueWriter(createVariableParameterValueWriter(streamWriter, objectIndex));
             return writer;
-        }
-        else{
+        } else {
             XmlVariableParameterWriter writer = new XmlVariableParameterWriter(streamWriter, objectIndex);
             writer.setUnitWriter(cvWriter);
             writer.setVariableParameterValueWriter(createVariableParameterValueWriter(streamWriter, objectIndex));
@@ -1712,7 +1698,7 @@ public class PsiXmlElementWriterFactory {
 
     public static PsiXmlElementWriter<Position>[] createPositionsWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                         PsiXmlVariableNameWriter<CvTerm> statusWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlBeginPositionWriter startWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlBeginPositionWriter(streamWriter);
             startWriter.setStatusWriter(statusWriter);
@@ -1720,8 +1706,7 @@ public class PsiXmlElementWriterFactory {
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlEndPositionWriter(streamWriter);
             endWriter.setStatusWriter(statusWriter);
             return new PsiXmlElementWriter[]{startWriter, endWriter};
-        }
-        else{
+        } else {
             XmlBeginPositionWriter startWriter = new XmlBeginPositionWriter(streamWriter);
             startWriter.setStatusWriter(statusWriter);
             XmlEndPositionWriter endWriter = new XmlEndPositionWriter(streamWriter);
@@ -1735,8 +1720,8 @@ public class PsiXmlElementWriterFactory {
                                                                PsiXmlXrefWriter refWriter, PsiXmlVariableNameWriter<CvTerm> statusWriter) {
         PsiXmlElementWriter<Position>[] positionsWriter = createPositionsWriter(streamWriter, extended, statusWriter);
 
-        if (extended){
-            switch (version){
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlRangeWriter writer =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlRangeWriter(streamWriter, objectIndex);
@@ -1751,9 +1736,8 @@ public class PsiXmlElementWriterFactory {
                     writer2.setEndPositionWriter(positionsWriter[1]);
                     return writer2;
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlRangeWriter writer =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlRangeWriter(streamWriter, objectIndex);
@@ -1772,10 +1756,10 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlParameterWriter[] createParameterWriters(XMLStreamWriter streamWriter, boolean extended,
-                                                                          PsiXmlObjectCache objectIndex, PsiXmlVersion version,
-                                                                          PsiXmlPublicationWriter publicationWriter) {
-        if (extended){
-            switch (version){
+                                                                 PsiXmlObjectCache objectIndex, PsiXmlVersion version,
+                                                                 PsiXmlPublicationWriter publicationWriter) {
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlParameterWriter paramWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlParameterWriter(streamWriter, objectIndex);
@@ -1787,9 +1771,8 @@ public class PsiXmlElementWriterFactory {
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlParameterWriter(streamWriter, objectIndex);
                     return new PsiXmlParameterWriter[]{paramWriter2, paramWriter2};
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlParameterWriter paramWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlParameterWriter(streamWriter, objectIndex);
@@ -1823,7 +1806,7 @@ public class PsiXmlElementWriterFactory {
     public static PsiXmlElementWriter<ExperimentalInteractor> createExperimentalInteractorWriter(XMLStreamWriter streamWriter,
                                                                                                  PsiXmlObjectCache objectIndex,
                                                                                                  PsiXmlType xmlType) {
-        switch (xmlType){
+        switch (xmlType) {
             case compact:
                 return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.XmlExperimentalInteractorWriter(streamWriter, objectIndex);
             default:
@@ -1832,12 +1815,12 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlSourceWriter createSourceWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                             PsiXmlVersion version,
-                                                             PsiXmlElementWriter<Alias> aliasWriter, PsiXmlElementWriter<Annotation> attributeWriter,
-                                                         PsiXmlXrefWriter primaryRefWriter,
-                                                         PsiXmlPublicationWriter publicationWriter) {
-        if (extended){
-            switch (version){
+                                                        PsiXmlVersion version,
+                                                        PsiXmlElementWriter<Alias> aliasWriter, PsiXmlElementWriter<Annotation> attributeWriter,
+                                                        PsiXmlXrefWriter primaryRefWriter,
+                                                        PsiXmlPublicationWriter publicationWriter) {
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlSourceWriter sourceWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlSourceWriter(streamWriter);
@@ -1855,9 +1838,8 @@ public class PsiXmlElementWriterFactory {
                     sourceWriter2.setPublicationWriter(publicationWriter);
                     return sourceWriter2;
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlSourceWriter sourceWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlSourceWriter(streamWriter);
@@ -1880,16 +1862,16 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static PsiXmlExperimentWriter createExperimentWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                                     PsiXmlObjectCache objectIndex, PsiXmlVersion version,
-                                                                     boolean named, PsiXmlElementWriter<Alias> aliasWriter,
-                                                                     PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                 PsiXmlXrefWriter primaryRefWriter,
-                                                                 PsiXmlPublicationWriter publicationWriter,
-                                                                 PsiXmlElementWriter<Organism> nonExperimentalHostOrganismWriter,
-                                                                 PsiXmlVariableNameWriter<CvTerm> detectionMethodWriter,
-                                                                 PsiXmlElementWriter<Confidence> confidenceWriter) {
-        if (extended){
-            switch (version){
+                                                                PsiXmlObjectCache objectIndex, PsiXmlVersion version,
+                                                                boolean named, PsiXmlElementWriter<Alias> aliasWriter,
+                                                                PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                PsiXmlXrefWriter primaryRefWriter,
+                                                                PsiXmlPublicationWriter publicationWriter,
+                                                                PsiXmlElementWriter<Organism> nonExperimentalHostOrganismWriter,
+                                                                PsiXmlVariableNameWriter<CvTerm> detectionMethodWriter,
+                                                                PsiXmlElementWriter<Confidence> confidenceWriter) {
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlExperimentWriter expWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlExperimentWriter(streamWriter, objectIndex);
@@ -1913,9 +1895,8 @@ public class PsiXmlElementWriterFactory {
                     expWriter2.setAliasWriter(aliasWriter);
                     return expWriter2;
             }
-        }
-        else if (named){
-            switch (version){
+        } else if (named) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlNamedExperimentWriter expWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlNamedExperimentWriter(streamWriter, objectIndex);
@@ -1939,9 +1920,8 @@ public class PsiXmlElementWriterFactory {
                     expWriter2.setAliasWriter(aliasWriter);
                     return expWriter2;
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlExperimentWriter expWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlExperimentWriter(streamWriter, objectIndex);
@@ -1973,7 +1953,7 @@ public class PsiXmlElementWriterFactory {
                                                                          PsiXmlVariableNameWriter<CvTerm> interactorTypeWriter,
                                                                          PsiXmlElementWriter<Organism> organismWriter,
                                                                          PsiXmlElementWriter<Checksum> checksumWriter) {
-        if (extended){
+        if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInteractorWriter interactorWriter =
                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInteractorWriter(streamWriter, objectIndex);
             interactorWriter.setAliasWriter(aliasWriter);
@@ -1983,8 +1963,7 @@ public class PsiXmlElementWriterFactory {
             interactorWriter.setOrganismWriter(organismWriter);
             interactorWriter.setChecksumWriter(checksumWriter);
             return interactorWriter;
-        }
-        else{
+        } else {
             XmlInteractorWriter interactorWriter = new XmlInteractorWriter(streamWriter, objectIndex);
             interactorWriter.setAliasWriter(aliasWriter);
             interactorWriter.setAttributeWriter(attributeWriter);
@@ -1997,17 +1976,17 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static <F extends Feature> PsiXmlElementWriter<F>[] createFeatureWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                                          PsiXmlObjectCache objectIndex, PsiXmlVersion version,
-                                                                          InteractionCategory category, PsiXmlElementWriter<Alias> aliasWriter,
-                                                                          PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                          PsiXmlXrefWriter primaryRefWriter,
-                                                                          PsiXmlVariableNameWriter<CvTerm> featureTypeWriter,
-                                                                          PsiXmlParameterWriter parameterWriter){
+                                                                                   PsiXmlObjectCache objectIndex, PsiXmlVersion version,
+                                                                                   InteractionCategory category, PsiXmlElementWriter<Alias> aliasWriter,
+                                                                                   PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                                   PsiXmlXrefWriter primaryRefWriter,
+                                                                                   PsiXmlVariableNameWriter<CvTerm> featureTypeWriter,
+                                                                                   PsiXmlParameterWriter parameterWriter) {
         PsiXmlElementWriter<Range> rangeWriter = createRangeWriter(streamWriter, extended, objectIndex, version, primaryRefWriter,
                 featureTypeWriter);
 
-        if (extended){
-            switch (version){
+        if (extended) {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlModelledFeatureWriter modelledWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlModelledFeatureWriter(streamWriter, objectIndex);
@@ -2017,7 +1996,7 @@ public class PsiXmlElementWriterFactory {
                     modelledWriter.setRangeWriter(rangeWriter);
                     modelledWriter.setXrefWriter(primaryRefWriter);
 
-                    switch (category){
+                    switch (category) {
                         case modelled:
                             return new PsiXmlElementWriter[]{modelledWriter, modelledWriter};
                         default:
@@ -2042,7 +2021,7 @@ public class PsiXmlElementWriterFactory {
                     modelledWriter2.setRangeWriter(rangeWriter);
                     modelledWriter2.setXrefWriter(primaryRefWriter);
 
-                    switch (category){
+                    switch (category) {
                         case modelled:
                             return new PsiXmlElementWriter[]{modelledWriter2, modelledWriter2};
                         case basic:
@@ -2067,9 +2046,8 @@ public class PsiXmlElementWriterFactory {
                             return new PsiXmlElementWriter[]{writer2, modelledWriter2};
                     }
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlModelledFeatureWriter modelledWriter =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlModelledFeatureWriter(streamWriter, objectIndex);
@@ -2079,7 +2057,7 @@ public class PsiXmlElementWriterFactory {
                     modelledWriter.setRangeWriter(rangeWriter);
                     modelledWriter.setXrefWriter(primaryRefWriter);
 
-                    switch (category){
+                    switch (category) {
                         case modelled:
                             return new PsiXmlElementWriter[]{modelledWriter, modelledWriter};
                         default:
@@ -2104,7 +2082,7 @@ public class PsiXmlElementWriterFactory {
                     modelledWriter2.setRangeWriter(rangeWriter);
                     modelledWriter2.setXrefWriter(primaryRefWriter);
 
-                    switch (category){
+                    switch (category) {
                         case modelled:
                             return new PsiXmlElementWriter[]{modelledWriter2, modelledWriter2};
                         case basic:
@@ -2133,16 +2111,16 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static <P extends Participant> PsiXmlParticipantWriter<P>[] createParticipantWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                                     PsiXmlObjectCache objectIndex, PsiXmlVersion version,
-                                                                     PsiXmlType xmlType,
-                                                                     InteractionCategory category, PsiXmlElementWriter<Alias> aliasWriter,
-                                                                     PsiXmlElementWriter<Annotation> attributeWriter,
-                                                                     PsiXmlXrefWriter primaryRefWriter,
-                                                                     PsiXmlElementWriter<Confidence> confidenceWriter,
-                                                                     PsiXmlElementWriter<Interactor> interactorWriter,
-                                                                     PsiXmlVariableNameWriter<CvTerm> cvWriter,
-                                                                     PsiXmlVariableNameWriter<CvTerm> openCvWriter,
-                                                                     PsiXmlParameterWriter parameterWriter){
+                                                                                               PsiXmlObjectCache objectIndex, PsiXmlVersion version,
+                                                                                               PsiXmlType xmlType,
+                                                                                               InteractionCategory category, PsiXmlElementWriter<Alias> aliasWriter,
+                                                                                               PsiXmlElementWriter<Annotation> attributeWriter,
+                                                                                               PsiXmlXrefWriter primaryRefWriter,
+                                                                                               PsiXmlElementWriter<Confidence> confidenceWriter,
+                                                                                               PsiXmlElementWriter<Interactor> interactorWriter,
+                                                                                               PsiXmlVariableNameWriter<CvTerm> cvWriter,
+                                                                                               PsiXmlVariableNameWriter<CvTerm> openCvWriter,
+                                                                                               PsiXmlParameterWriter parameterWriter) {
 
         PsiXmlElementWriter[] featureWriters = createFeatureWriter(streamWriter, extended, objectIndex, version, category, aliasWriter,
                 attributeWriter, primaryRefWriter, cvWriter, parameterWriter);
@@ -2153,7 +2131,7 @@ public class PsiXmlElementWriterFactory {
                 (PsiXmlElementWriter<FeatureEvidence>) featureWriters[0]);
 
 
-        if (extended){
+        if (extended) {
             PsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter = createExperimentalInteractorWriter(streamWriter, objectIndex,
                     xmlType);
 
@@ -2317,11 +2295,10 @@ public class PsiXmlElementWriterFactory {
                             }
                     }
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
-                    switch (xmlType){
+                    switch (xmlType) {
                         case compact:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledParticipantWriter modelledWriter2 =
                                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledParticipantWriter(streamWriter, objectIndex);
@@ -2333,7 +2310,7 @@ public class PsiXmlElementWriterFactory {
                             modelledWriter2.setBiologicalRoleWriter(cvWriter);
                             modelledWriter2.setParticipantCandidateWriter(candidateWriters[1]);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlParticipantWriter[]{modelledWriter2, modelledWriter2};
                                 default:
@@ -2365,7 +2342,7 @@ public class PsiXmlElementWriterFactory {
                             modelledWriter3.setBiologicalRoleWriter(cvWriter);
                             modelledWriter3.setParticipantCandidateWriter(candidateWriters[1]);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlParticipantWriter[]{modelledWriter3, modelledWriter3};
                                 default:
@@ -2390,18 +2367,18 @@ public class PsiXmlElementWriterFactory {
 
                 default:
 
-                    switch (xmlType){
+                    switch (xmlType) {
                         case compact:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledParticipantWriter modelledWriter2 =
                                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
                             modelledWriter2.setAliasWriter(aliasWriter);
                             modelledWriter2.setAttributeWriter(attributeWriter);
                             modelledWriter2.setXrefWriter(primaryRefWriter);
-                            modelledWriter2.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>)featureWriters[1]);
+                            modelledWriter2.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>) featureWriters[1]);
                             modelledWriter2.setInteractorWriter(interactorWriter);
                             modelledWriter2.setBiologicalRoleWriter(cvWriter);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlParticipantWriter[]{modelledWriter2, modelledWriter2};
                                 case basic:
@@ -2410,7 +2387,7 @@ public class PsiXmlElementWriterFactory {
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
-                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>)featureWriters[0]);
+                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>) featureWriters[0]);
                                     writer3.setInteractorWriter(interactorWriter);
                                     writer3.setBiologicalRoleWriter(cvWriter);
 
@@ -2438,11 +2415,11 @@ public class PsiXmlElementWriterFactory {
                             modelledWriter3.setAliasWriter(aliasWriter);
                             modelledWriter3.setAttributeWriter(attributeWriter);
                             modelledWriter3.setXrefWriter(primaryRefWriter);
-                            modelledWriter3.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>)featureWriters[1]);
+                            modelledWriter3.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>) featureWriters[1]);
                             modelledWriter3.setInteractorWriter(interactorWriter);
                             modelledWriter3.setBiologicalRoleWriter(cvWriter);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlParticipantWriter[]{modelledWriter3, modelledWriter3};
                                 case basic:
@@ -2451,7 +2428,7 @@ public class PsiXmlElementWriterFactory {
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
-                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>)featureWriters[0]);
+                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>) featureWriters[0]);
                                     writer3.setInteractorWriter(interactorWriter);
                                     writer3.setBiologicalRoleWriter(cvWriter);
 
@@ -2479,13 +2456,13 @@ public class PsiXmlElementWriterFactory {
     }
 
     public static <P extends ParticipantCandidate> PsiXmlElementWriter<P>[] createParticipantCandidateWriter(XMLStreamWriter streamWriter, boolean extended,
-                                                                                               PsiXmlObjectCache objectIndex, PsiXmlVersion version,
-                                                                                               PsiXmlType xmlType,
-                                                                                               InteractionCategory category, PsiXmlElementWriter<Interactor> interactorWriter,
-                                                                                               PsiXmlElementWriter<ModelledFeature> modelledFeatureWriter,
-                                                                                               PsiXmlElementWriter<FeatureEvidence> featureEvidenceWriter){
+                                                                                                             PsiXmlObjectCache objectIndex, PsiXmlVersion version,
+                                                                                                             PsiXmlType xmlType,
+                                                                                                             InteractionCategory category, PsiXmlElementWriter<Interactor> interactorWriter,
+                                                                                                             PsiXmlElementWriter<ModelledFeature> modelledFeatureWriter,
+                                                                                                             PsiXmlElementWriter<FeatureEvidence> featureEvidenceWriter) {
 
-        if (extended){
+        if (extended) {
             switch (version) {
                 case v3_0_0:
                     switch (xmlType) {
@@ -2529,18 +2506,17 @@ public class PsiXmlElementWriterFactory {
                 default:
                     return null;
             }
-        }
-        else{
-            switch (version){
+        } else {
+            switch (version) {
                 case v3_0_0:
-                    switch (xmlType){
+                    switch (xmlType) {
                         case compact:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledParticipantCandidateWriter modelledWriter2 =
                                     new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledParticipantCandidateWriter(streamWriter, objectIndex);
                             modelledWriter2.setFeatureWriter(modelledFeatureWriter);
                             modelledWriter2.setInteractorWriter(interactorWriter);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlElementWriter[]{modelledWriter2, modelledWriter2};
                                 default:
@@ -2558,7 +2534,7 @@ public class PsiXmlElementWriterFactory {
                             modelledWriter3.setFeatureWriter(modelledFeatureWriter);
                             modelledWriter3.setInteractorWriter(interactorWriter);
 
-                            switch (category){
+                            switch (category) {
                                 case modelled:
                                     return new PsiXmlElementWriter[]{modelledWriter3, modelledWriter3};
                                 default:
