@@ -53,7 +53,7 @@ public class PicrClientTest {
             for (String upi : upis){
                 System.out.println(upi);
             }
-            Assert.assertEquals(41, upis.size());
+            Assert.assertEquals(35, upis.size());
         } catch (BridgeFailedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
@@ -81,7 +81,7 @@ public class PicrClientTest {
             for (String upi : upis){
                 System.out.println(upi);
             }
-            Assert.assertEquals(41, upis.size());
+            Assert.assertEquals(35, upis.size());
         } catch (BridgeFailedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
