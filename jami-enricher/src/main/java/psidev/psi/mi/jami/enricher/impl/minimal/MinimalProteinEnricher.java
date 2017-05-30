@@ -110,7 +110,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
             if(proteinToEnrich.getOrganism() == null
                     || proteinToEnrich.getOrganism().getTaxId() == -3){
                 if(getListener() != null)
-                    getListener().onEnrichmentError(proteinToEnrich,  "The protein does not have a valid organism and could match "+proteinsEnriched.size()+" uniprot entries.", new EnricherException("Cannot enrich a demerged protein"));
+                    getListener().onEnrichmentError(proteinToEnrich,  "The protein ["+ proteinToEnrich.getUniprotkb() +"] does not have a valid organism and could match "+proteinsEnriched.size()+" uniprot entries.", new EnricherException("Cannot enrich a demerged protein"));
                 return null;
             }
 
@@ -122,7 +122,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
                     else{
                         // Multiple proteins share this organism - impossible to choose
                         if(getListener() != null)
-                            getListener().onEnrichmentError(proteinToEnrich,  "The protein could match "+proteinsEnriched.size()+" uniprot entries and several have the same organism taxid.", new EnricherException("Cannot enrich a demerged protein"));
+                            getListener().onEnrichmentError(proteinToEnrich,  "The protein ["+ proteinToEnrich.getUniprotkb() +"] could match "+proteinsEnriched.size()+" uniprot entries and several have the same organism taxid.", new EnricherException("Cannot enrich a demerged protein"));
                         return null;
                     }
                 }
@@ -131,7 +131,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
             if(proteinFetched == null){
                 // No proteins share this organism - impossible to choose
                 if(getListener() != null)
-                    getListener().onEnrichmentError(proteinToEnrich,  "The protein could match "+proteinsEnriched.size()+" uniprot entries and non of them have the same organism taxid.", new EnricherException("Cannot enrich a demerged protein"));
+                    getListener().onEnrichmentError(proteinToEnrich,  "The protein ["+ proteinToEnrich.getUniprotkb() +"] could match "+proteinsEnriched.size()+" uniprot entries and non of them have the same organism taxid.", new EnricherException("Cannot enrich a demerged protein"));
                 return null;
             }
 
@@ -144,7 +144,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
         if (getListener() != null){
             getListener().onEnrichmentComplete(
                     objectToEnrich , EnrichmentStatus.FAILED ,
-                    "Could not fetch a protein with the provided identifier/sequence.");
+                    "Could not fetch a protein ["+ objectToEnrich.getUniprotkb() +"] with the provided identifier/sequence.");
         }
     }
 
@@ -157,14 +157,14 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
     protected void onCompletedEnrichment(Protein objectToEnrich) {
         if(getListener() != null)
             getListener().onEnrichmentComplete(
-                    objectToEnrich , EnrichmentStatus.SUCCESS , "The protein has been successfully enriched.");
+                    objectToEnrich , EnrichmentStatus.SUCCESS , "The protein ["+ objectToEnrich.getUniprotkb() +"] has been successfully enriched.");
     }
 
     @Override
     protected void onInteractorCheckFailure(Protein objectToEnrich, Protein fetchedObject) throws EnricherException{
         if(getListener() != null)
             getListener().onEnrichmentComplete(
-                    objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the protein because the interactor type is not a protein/peptide type and/or there is a conflict with the organism.");
+                    objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the protein ["+ objectToEnrich.getUniprotkb() +"] because the interactor type is not a protein/peptide type and/or there is a conflict with the organism.");
     }
 
     @Override

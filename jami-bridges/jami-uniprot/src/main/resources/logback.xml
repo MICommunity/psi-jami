@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%.-1level|%-40.40logger{0}|%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="uk.ac.ebi.kraken" level="error" />
+    <logger name="uk.ac.ebi.uniprot.dataservice.client.uniprot.impl" level="error" />
+
+    <root level="error">
+        <appender-ref ref="console" />
+    </root>
+
+</configuration>
