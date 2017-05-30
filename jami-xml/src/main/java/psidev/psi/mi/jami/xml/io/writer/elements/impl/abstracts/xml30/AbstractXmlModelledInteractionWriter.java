@@ -133,7 +133,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     protected void writeInferredInteractions(I object) throws XMLStreamException {
         Collection<Set<Feature>> inferredInteractions = collectInferredInteractionsFrom(object);
         if (inferredInteractions != null && !inferredInteractions.isEmpty()){
-            getStreamWriter().writeStartElement("bindingFeaturesList");
+            getStreamWriter().writeStartElement("bindingFeatureList");
             for (Set<Feature> inferred : inferredInteractions){
                 getBindingFeaturesWriter().write(inferred);
             }

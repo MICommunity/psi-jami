@@ -2,7 +2,7 @@
 <!-- Curated IntAct publication 22267217 registered in IMEx central. Two variable parameters : Curdlan (ug/ml) with two different values 0 and 10
 and Piceatannol (uM) with two different values 0 and 40.-->
 <entrySet xmlns="http://psi.hupo.org/mi/mif300" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" level="3" version="0" minorVersion="0"
-          xsi:schemaLocation="http://psi.hupo.org/mi/mif300 http://psidev.cvs.sourceforge.net/viewvc/psidev/psi/mi/rel30/src/MIF300.xsd">
+          xsi:schemaLocation="http://psi.hupo.org/mi/mif300 https://raw.githubusercontent.com/HUPO-PSI/miXML/master/3.0/src/MIF300.xsd">
     <entry>
         <source releaseDate="2012-08-20+01:00">
             <names>
@@ -47,13 +47,13 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         </names>
                         <tissue>
                             <names>
-<shortLabel>monocyte-derived_dendritic_cell</shortLabel>
-<fullName>Monocyte-derived dendritic cell (MDDC)</fullName>
+                                <shortLabel>monocyte-derived_dendritic_cell</shortLabel>
+                                <fullName>Monocyte-derived dendritic cell (MDDC)</fullName>
                             </names>
                             <xref>
-<primaryRef db="intact" dbAc="MI:0469" id="IA:2386" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-6859240" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="brenda" dbAc="MI:0864" id="BTO:0002900" refType="identity" refTypeAc="MI:0356"/>
+                                <primaryRef db="intact" dbAc="MI:0469" id="IA:2386" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-6859240" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="brenda" dbAc="MI:0864" id="BTO:0002900" refType="identity" refTypeAc="MI:0356"/>
                             </xref>
                         </tissue>
                     </hostOrganism>
@@ -672,26 +672,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>26</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -705,26 +705,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>27</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -738,26 +738,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>28</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>bait</shortLabel>
-    <fullName>bait</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>bait</shortLabel>
+                                    <fullName>bait</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -771,26 +771,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>29</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -804,26 +804,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>30</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -891,26 +891,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>29</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -924,26 +924,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>28</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>bait</shortLabel>
-    <fullName>bait</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>bait</shortLabel>
+                                    <fullName>bait</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -957,26 +957,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>27</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1030,26 +1030,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>29</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1063,26 +1063,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>28</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>bait</shortLabel>
-    <fullName>bait</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>bait</shortLabel>
+                                    <fullName>bait</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1096,26 +1096,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>27</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1169,26 +1169,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>28</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>bait</shortLabel>
-    <fullName>bait</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>bait</shortLabel>
+                                    <fullName>bait</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0496" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-49" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1202,26 +1202,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>29</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
@@ -1235,26 +1235,26 @@ and Piceatannol (uM) with two different values 0 and 40.-->
                         <interactorRef>27</interactorRef>
                         <biologicalRole>
                             <names>
-<shortLabel>unspecified role</shortLabel>
-<fullName>unspecified role</fullName>
+                                <shortLabel>unspecified role</shortLabel>
+                                <fullName>unspecified role</fullName>
                             </names>
                             <xref>
-<primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
-<secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
                             </xref>
                         </biologicalRole>
                         <experimentalRoleList>
                             <experimentalRole>
-<names>
-    <shortLabel>prey</shortLabel>
-    <fullName>prey</fullName>
-</names>
-<xref>
-    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
-    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
-</xref>
+                                <names>
+                                    <shortLabel>prey</shortLabel>
+                                    <fullName>prey</fullName>
+                                </names>
+                                <xref>
+                                    <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0498" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="intact" dbAc="MI:0469" id="EBI-58" refType="identity" refTypeAc="MI:0356"/>
+                                    <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+                                </xref>
                             </experimentalRole>
                         </experimentalRoleList>
                     </participant>
