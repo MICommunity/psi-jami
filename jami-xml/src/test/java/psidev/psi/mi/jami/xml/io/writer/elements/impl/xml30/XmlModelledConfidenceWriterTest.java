@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class XmlModelledConfidenceWriterTest extends AbstractXmlWriterTest {
     private String confidence = "<confidence>\n" +
-            "  <unit>\n" +
+            "  <type>\n" +
             "    <names>\n" +
             "      <shortLabel>intact-miscore</shortLabel>\n"+
             "    </names>\n"+
@@ -31,12 +31,12 @@ public class XmlModelledConfidenceWriterTest extends AbstractXmlWriterTest {
             "      <attribute name=\"test2\"/>\n"+
             "      <attribute name=\"test3\"/>\n"+
             "    </attributeList>\n"+
-            "  </unit>\n" +
+            "  </type>\n" +
             "  <value>0.8</value>\n" +
             "</confidence>";
 
     private String confidence_bibref = "<confidence>\n" +
-            "  <unit>\n" +
+            "  <type>\n" +
             "    <names>\n" +
             "      <shortLabel>intact-miscore</shortLabel>\n"+
             "    </names>\n"+
@@ -44,7 +44,7 @@ public class XmlModelledConfidenceWriterTest extends AbstractXmlWriterTest {
             "      <attribute name=\"test2\"/>\n"+
             "      <attribute name=\"test3\"/>\n"+
             "    </attributeList>\n"+
-            "  </unit>\n" +
+            "  </type>\n" +
             "  <value>0.8</value>\n" +
             "  <bibref>\n" +
             "    <xref>\n" +

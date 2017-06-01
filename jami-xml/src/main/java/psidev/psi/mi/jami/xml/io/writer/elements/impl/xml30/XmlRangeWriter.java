@@ -51,7 +51,8 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
     protected void writeOtherProperties(Range object) throws XMLStreamException {
         // resulting sequence to write only when we have resulting sequence or xrefs
         if (object.getResultingSequence() != null
-                && (object.getResultingSequence().getNewSequence() != null
+                && ((object.getResultingSequence().getNewSequence() != null
+                && object.getResultingSequence().getOriginalSequence() != null)
                 || !object.getResultingSequence().getXrefs().isEmpty())){
              getResultingSequenceWriter().write(object.getResultingSequence());
         }

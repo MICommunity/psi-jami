@@ -332,11 +332,11 @@ public class XmlNamedModelledBinaryInteractionWriterTest extends AbstractXmlWrit
             "  </participantList>\n" +
             "  <confidenceList>\n" +
             "    <confidence>\n" +
-            "      <unit>\n" +
+            "      <type>\n" +
             "        <names>\n" +
             "          <shortLabel>intact-miscore</shortLabel>\n"+
             "        </names>\n"+
-            "      </unit>\n" +
+            "      </type>\n" +
             "      <value>0.8</value>\n" +
             "    </confidence>\n"+
             "  </confidenceList>\n" +
