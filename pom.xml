@@ -42,7 +42,7 @@
         <module>jami-examples</module>
         <module>jami-crosslink-csv</module>
         <!--<module>jami-ontology-index</module>-->
-        <!--<module>jami-imex-updater</module>-->
+        <module>jami-imex-updater</module>
     </modules>
 
     <licenses>

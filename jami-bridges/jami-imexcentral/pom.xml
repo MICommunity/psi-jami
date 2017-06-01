@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.2-SNAPSHOT</version>
+        <version>3.0.7-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-imexcentral</artifactId>
@@ -68,4 +68,18 @@
             <version>2.7.2</version>
         </dependency>
     </dependencies>
+
+    <!--Temporary solution to find all the imex central dependencies. -->
+    <!--TODO: deploy dependencies in ebi nexus-->
+    <repositories>
+        <repository>
+            <id>imex-repo</id>
+            <url>http://imex.mbi.ucla.edu/archiva/repository/imex-public/</url>
+        </repository>
+        <repository>
+            <id>nexus-ebi-repo-old</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots/</url>
+        </repository>
+    </repositories>
+
 </project>
