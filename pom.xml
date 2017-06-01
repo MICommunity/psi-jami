@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.6</version>
+    <version>3.0.7</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -42,7 +42,7 @@
         <module>jami-examples</module>
         <module>jami-crosslink-csv</module>
         <!--<module>jami-ontology-index</module>-->
-        <!--<module>jami-imex-updater</module>-->
+        <module>jami-imex-updater</module>
     </modules>
 
     <licenses>
