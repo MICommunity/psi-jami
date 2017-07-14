@@ -14,6 +14,24 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     public static final String COMPLEX_MI="MI:0314";
 
     /**
+     * Complex accession if the complex has been curated under the Complex Portal curation rules.
+     * It can be null if the complex is not registered in the Complex Portal.
+     * This complex accession should be a shortcut to the complex-primary Xref in the collection of xrefs.
+     * Ex: CP-123-2
+     * @return the complex accession
+     */
+    public String getComplexAc();
+
+    /**
+     * Assign a complex accession to a complex.
+     * It will add the new complex-primary ref to the collection of xrefs
+     * @param accession : the complex accession
+     * @throws IllegalArgumentException if
+     * - the accession is null or empty
+     */
+    public void assignComplexAc(String accession);
+
+    /**
      * The physical properties for this complex.
      * It is a shortcut which should point to the first complex-properties annotation in the collection of annotations.
      * Example: Molecular mass = 154 kDa

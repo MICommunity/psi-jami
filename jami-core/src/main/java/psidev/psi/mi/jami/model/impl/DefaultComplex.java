@@ -1,10 +1,7 @@
 package psidev.psi.mi.jami.model.impl;
 
 import psidev.psi.mi.jami.model.*;
-import psidev.psi.mi.jami.utils.AliasUtils;
-import psidev.psi.mi.jami.utils.AnnotationUtils;
-import psidev.psi.mi.jami.utils.ChecksumUtils;
-import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.*;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
 
 import java.util.ArrayList;
@@ -47,6 +44,8 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     private Alias systematicName;
 
     private CvTerm evidenceType;
+
+    private Xref complexAc;
 
     public DefaultComplex(String name, CvTerm interactorType) {
         super(name, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType());
@@ -288,6 +287,31 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.cooperativeEffects;
     }
 
+    @Override
+    public String getComplexAc() {
+        return this.complexAc != null ? this.complexAc.getId() : null;
+    }
+
+    @Override
+    public void assignComplexAc(String accession) {
+        // add new imex if not null
+        if (identifier != null){
+            ExperimentalInteractionXrefList interactionXrefs = (ExperimentalInteractionXrefList) getXrefs();
+            CvTerm imexDatabase = CvTermUtils.createImexDatabase();
+            CvTerm imexPrimaryQualifier = CvTermUtils.createImexPrimaryQualifier();
+            // first remove old doi if not null
+            if (this.imexId != null){
+                interactionXrefs.removeOnly(this.imexId);
+            }
+            this.imexId = new DefaultXref(imexDatabase, identifier, imexPrimaryQualifier);
+            interactionXrefs.addOnly(this.imexId);
+        }
+        else {
+            throw new IllegalArgumentException("The imex id has to be non null.");
+        };
+
+    }
+
     public String getPhysicalProperties() {
         return this.physicalProperties != null ? this.physicalProperties.getValue() : null;
     }
@@ -512,6 +536,30 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         this.systematicName = null;
     }
 
+    protected void processAddedXrefEvent(Xref added) {
+        // the added identifier is imex and the current imex is not set
+        if (complexAc == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)){
+            // the added xref is imex-primary
+            if (XrefUtils.doesXrefHaveQualifier(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)){
+                complexAc = added;
+            }
+        }
+    }
+
+    protected void processRemovedXrefEvent(Xref removed) {
+        // the removed identifier is pubmed
+        if (complexAc != null && complexAc.equals(removed)){
+            Collection<Xref> existingComplexAc = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+            if (!existingComplexAc.isEmpty()){
+                complexAc = existingComplexAc.iterator().next();
+            }
+        }
+    }
+
+    protected void clearPropertiesLinkedToXrefs() {
+        complexAc = null;
+    }
+
     private class ComplexAnnotationList extends AbstractListHavingProperties<Annotation> {
         public ComplexAnnotationList(){
             super();
@@ -572,6 +620,30 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         @Override
         protected void clearProperties() {
             clearPropertiesLinkedToAliases();
+        }
+    }
+
+    /**
+     * Experimental interaction Xref list
+     */
+    private class ComplexXrefList extends AbstractListHavingProperties<Xref> {
+        public ComplexXrefList(){
+            super();
+        }
+
+        @Override
+        protected void processAddedObjectEvent(Xref added) {
+            processAddedXrefEvent(added);
+        }
+
+        @Override
+        protected void processRemovedObjectEvent(Xref removed) {
+            processRemovedXrefEvent(removed);
+        }
+
+        @Override
+        protected void clearProperties() {
+            clearPropertiesLinkedToXrefs();
         }
     }
 }

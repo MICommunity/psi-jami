@@ -70,6 +70,9 @@ public interface Xref {
     public static final String INTERACTOR_SET_QUALIFIER="set member";
     public static final String INTERACTOR_SET_QUALIFIER_MI="MI:1341";
 
+    public static final String COMPLEX_PRIMARY="complex-primary";
+    public static final String COMPLEX_PRIMARY_MI="MI:XXXX";
+
     /**
      * The database is a controlled vocabulary term. It cannot be null.
      * @return the database
