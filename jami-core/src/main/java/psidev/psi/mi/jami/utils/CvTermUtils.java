@@ -469,6 +469,10 @@ public class CvTermUtils {
         return createMICvTerm(Xref.IMEX_PRIMARY, Xref.IMEX_PRIMARY_MI);
     }
 
+    public static CvTerm createComplexPrimaryQualifier(){
+        return createMICvTerm(Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI);
+    }
+
     public static CvTerm createAllosteryCooperativeMechanism(){
         return createMICvTerm(CooperativeEffect.ALLOSTERY, CooperativeEffect.ALLOSTERY_ID);
     }
