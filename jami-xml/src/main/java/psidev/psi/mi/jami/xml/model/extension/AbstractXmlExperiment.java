@@ -17,6 +17,8 @@ import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 import javax.xml.bind.annotation.*;
 import java.text.ParseException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Xml im
@@ -27,6 +29,8 @@ import java.util.*;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment, FileSourceContext, Locatable{
+
+    private static final Logger logger = Logger.getLogger("AbstractXmlExperiment");
 
     private NamesContainer namesContainer;
     private ExperimentXrefContainer xrefContainer;
@@ -439,82 +443,103 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;
-        // in case we have publication annotations, we can update publication
-        if (this.jaxbAttributeWrapper != null){
-            if (publication == null){
+        // in case we have publication annotations in the experiment, we can update the publication annotations
+        if (this.jaxbAttributeWrapper != null) {
+            if (publication == null) {
                 publication = new BibRef();
-                publication.setCurationDepth(this.jaxbAttributeWrapper.curationDepth);
-                publication.setTitle(this.jaxbAttributeWrapper.title);
-                publication.setPublicationDate(this.jaxbAttributeWrapper.publicationDate);
-                publication.setJournal(this.jaxbAttributeWrapper.journal);
-                if (!this.jaxbAttributeWrapper.authors.isEmpty()){
-                    publication.getAuthors().addAll(this.jaxbAttributeWrapper.authors);
+            }
+            //we have some publication annotations
+            // set curation depth
+            if (this.jaxbAttributeWrapper.curationDepth != CurationDepth.undefined) {
+                if (publication.getCurationDepth() == null || publication.getCurationDepth() == CurationDepth.undefined) {
+                    publication.setCurationDepth(this.jaxbAttributeWrapper.curationDepth);
+                }
+                this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                        Annotation.CURATION_DEPTH, Annotation.CURATION_DEPTH_MI),
+                        this.jaxbAttributeWrapper.curationDepth.toString()));
+                this.jaxbAttributeWrapper.curationDepth = null;
+            } else {
+                //we check if we can copy the value form the publication and create the annotation
+                if (publication.getCurationDepth() != null && publication.getCurationDepth() != CurationDepth.undefined) {
+                    this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                            Annotation.CURATION_DEPTH, Annotation.CURATION_DEPTH_MI),
+                            publication.getCurationDepth().toString()));
+                    this.jaxbAttributeWrapper.curationDepth = null;
                 }
             }
-            else{
-                // set curation depth
-                if (this.jaxbAttributeWrapper.curationDepth != CurationDepth.undefined){
-                    if (publication.getCurationDepth() == CurationDepth.undefined){
-                        publication.setCurationDepth(this.jaxbAttributeWrapper.curationDepth);
-                    }
-                    else {
-                        this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
-                                        Annotation.CURATION_DEPTH, Annotation.CURATION_DEPTH_MI),
-                                        this.jaxbAttributeWrapper.curationDepth.toString()));
-                        this.jaxbAttributeWrapper.curationDepth = null;
-                    }
-                }
-                // authors
-                if (!this.jaxbAttributeWrapper.authors.isEmpty() && this.publication.getAuthors().isEmpty()){
+            // authors
+            if (!this.jaxbAttributeWrapper.authors.isEmpty()) {
+                if (this.publication.getAuthors().isEmpty()) {
                     this.publication.getAuthors().addAll(this.jaxbAttributeWrapper.authors);
-                    this.jaxbAttributeWrapper.authors = null;
                 }
-                else {
+                this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                        Annotation.AUTHOR, Annotation.AUTHOR_MI),
+                        StringUtils.join(this.jaxbAttributeWrapper.authors, ",")));
+                this.jaxbAttributeWrapper.authors = null;
+            } else {
+                if (!this.publication.getAuthors().isEmpty()) {
                     this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
                             Annotation.AUTHOR, Annotation.AUTHOR_MI),
-                            StringUtils.join(this.jaxbAttributeWrapper.authors,",")));
+                            StringUtils.join(this.publication.getAuthors(), ",")));
                     this.jaxbAttributeWrapper.authors = null;
                 }
-                // title
-                if (this.jaxbAttributeWrapper.title != null && this.publication.getTitle() == null){
+            }
+            // title
+            if (this.jaxbAttributeWrapper.title != null){
+                if(this.publication.getTitle() == null){
                     this.publication.setTitle(this.jaxbAttributeWrapper.title);
-                    this.jaxbAttributeWrapper.title = null;
                 }
-                else if (getFullName() != null && this.publication.getTitle() == null){
+                this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                        Annotation.PUBLICATION_TITLE, Annotation.PUBLICATION_TITLE_MI),
+                        this.jaxbAttributeWrapper.title));
+                this.jaxbAttributeWrapper.title = null;
+            } else { //this.jaxbAttributeWrapper.title = null
+                if (this.publication.getTitle() == null && getFullName() != null) {
                     this.publication.setTitle(getFullName());
-                    this.jaxbAttributeWrapper.title = null;
                 }
-                else {
-                    this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
-                            Annotation.PUBLICATION_TITLE, Annotation.PUBLICATION_TITLE_MI),
-                            this.jaxbAttributeWrapper.title));
-                    this.jaxbAttributeWrapper.title = null;
-                }
-                // journal
-                if (this.jaxbAttributeWrapper.journal != null && this.publication.getJournal()== null){
-                    this.publication.setJournal(this.jaxbAttributeWrapper.journal);
-                    this.jaxbAttributeWrapper.journal = null;
-                }
-                else {
+
+                if (this.publication.getTitle() != null) {
                     this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
                             Annotation.PUBLICATION_JOURNAL, Annotation.PUBLICATION_JOURNAL_MI),
-                            this.jaxbAttributeWrapper.journal));
-                    this.jaxbAttributeWrapper.journal = null;
+                            this.publication.getTitle()));
+
                 }
-                // publicationDate
-                if (this.jaxbAttributeWrapper.publicationDate != null && this.publication.getPublicationDate() == null){
+            }
+            // journal
+            if (this.jaxbAttributeWrapper.journal != null) {
+                if (this.publication.getJournal() == null) {
+                    this.publication.setJournal(this.jaxbAttributeWrapper.journal);
+                }
+                this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                        Annotation.PUBLICATION_JOURNAL, Annotation.PUBLICATION_JOURNAL_MI),
+                        this.jaxbAttributeWrapper.journal));
+                this.jaxbAttributeWrapper.journal = null;
+            } else { // this.jaxbAttributeWrapper.journal = null
+                if (this.publication.getJournal() != null) {
+                    this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                            Annotation.PUBLICATION_JOURNAL, Annotation.PUBLICATION_JOURNAL_MI),
+                            this.publication.getJournal()));
+                }
+            }
+            // publicationDate
+            if (this.jaxbAttributeWrapper.publicationDate != null) {
+                if (this.publication.getPublicationDate() == null) {
                     this.publication.setPublicationDate(this.jaxbAttributeWrapper.publicationDate);
-                    this.jaxbAttributeWrapper.publicationDate = null;
                 }
-                else if (this.jaxbAttributeWrapper.publicationDate != null){
+                this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
+                        Annotation.PUBLICATION_YEAR, Annotation.PUBLICATION_YEAR_MI),
+                        PsiXmlUtils.YEAR_FORMAT.format(this.jaxbAttributeWrapper.publicationDate)));
+                this.jaxbAttributeWrapper.publicationDate = null;
+            } else { //this.jaxbAttributeWrapper.publicationDate = null
+                if (this.publication.getPublicationDate() != null) {
                     this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
                             Annotation.PUBLICATION_YEAR, Annotation.PUBLICATION_YEAR_MI),
-                            PsiXmlUtils.YEAR_FORMAT.format(this.jaxbAttributeWrapper.publicationDate)));
-                    this.jaxbAttributeWrapper.publicationDate = null;
+                            PsiXmlUtils.YEAR_FORMAT.format(this.publication.getPublicationDate())));
                 }
             }
         }
     }
+
 
     /**
      * Gets the value of the id property.
@@ -787,16 +812,39 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
                             return true;
                         }
                     }
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.IMEX_CURATION_MI, Annotation.IMEX_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.CURATION_DEPTH_MI, Annotation.CURATION_DEPTH) && annot.getValue() != null) {
+                    if (Annotation.IMEX_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.IMEx;
+                        return false;
+                    } else if (Annotation.MIMIX_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.MIMIx;
+                        return false;
+                    } else if (Annotation.RAPID_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.rapid_curation;
+                        return false;
+                    } else {
+                        curationDepth = CurationDepth.undefined;
+                        return false;
+                    }
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.IMEX_CURATION_MI, Annotation.IMEX_CURATION)) {
+                    if(curationDepth!=null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.IMEx)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth had already assigned a different value: " +  curationDepth + " it will be overwritten with " +  CurationDepth.IMEx);
+                    }
                     curationDepth = CurationDepth.IMEx;
                     return false;
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.MIMIX_CURATION_MI, Annotation.MIMIX_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.MIMIX_CURATION_MI, Annotation.MIMIX_CURATION)) {
+                    if(curationDepth!=null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.MIMIx)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth had already assigned a different value: " +  curationDepth + " it will be overwritten with " +  CurationDepth.MIMIx);
+                    }
                     curationDepth = CurationDepth.MIMIx;
                     return false;
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.RAPID_CURATION_MI, Annotation.RAPID_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.RAPID_CURATION_MI, Annotation.RAPID_CURATION)) {
+                    if(curationDepth!=null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.rapid_curation)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth had already assigned a different value: " +  curationDepth + " it will be overwritten with " +  CurationDepth.rapid_curation);
+                    }
                     curationDepth = CurationDepth.rapid_curation;
                     return false;
                 }
