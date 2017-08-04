@@ -221,7 +221,7 @@ public class PublicationXrefContainer extends XrefContainer {
         }
 
         protected boolean addXref(Integer index, Xref xref) {
-            if (XrefUtils.isXrefAnIdentifier(xref)){
+            if (XrefUtils.isXrefAnIdentifier(xref) || XrefUtils.doesXrefHaveQualifier(xref, Xref.PRIMARY_MI, Xref.PRIMARY)){
                 return addIdentifier(index, xref);
             }
             else{
