@@ -497,12 +497,10 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
                 if (this.publication.getTitle() == null && getFullName() != null) {
                     this.publication.setTitle(getFullName());
                 }
-
                 if (this.publication.getTitle() != null) {
                     this.jaxbAttributeWrapper.annotations.add(new XmlAnnotation(CvTermUtils.createMICvTerm(
-                            Annotation.PUBLICATION_JOURNAL, Annotation.PUBLICATION_JOURNAL_MI),
+                            Annotation.PUBLICATION_TITLE, Annotation.PUBLICATION_TITLE_MI),
                             this.publication.getTitle()));
-
                 }
             }
             // journal
