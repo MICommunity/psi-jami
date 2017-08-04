@@ -113,6 +113,10 @@
     <!-- EBI repositories -->
     <repositories>
         <repository>
+            <id>imex-repo</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/imex-public</url>
+        </repository>
+        <repository>
             <id>nexus-ebi-repo-old</id>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
         </repository>
