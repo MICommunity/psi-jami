@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.7</version>
+    <version>3.0.8</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -112,6 +112,10 @@
 
     <!-- EBI repositories -->
     <repositories>
+        <repository>
+            <id>imex-repo</id>
+            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/imex-public</url>
+        </repository>
         <repository>
             <id>nexus-ebi-repo-old</id>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
