@@ -73,7 +73,7 @@
     <!--TODO: deploy dependencies in ebi nexus-->
     <repositories>
         <repository>
-            <id>imex-repo</id>
+            <id>imex-ucl</id>
             <url>http://imex.mbi.ucla.edu/archiva/repository/imex-public/</url>
         </repository>
         <repository>
