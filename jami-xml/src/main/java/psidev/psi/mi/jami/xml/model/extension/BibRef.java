@@ -12,6 +12,8 @@ import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 import javax.xml.bind.annotation.*;
 import java.text.ParseException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Xml implementation of a Publication
@@ -25,6 +27,8 @@ import java.util.*;
 public class BibRef
         implements Publication, FileSourceContext, Locatable
 {
+
+    private static final Logger logger = Logger.getLogger("BibRef");
 
     private PublicationXrefContainer xrefContainer;
     @XmlLocation
@@ -487,16 +491,39 @@ public class BibRef
                             return addAnnotation(index, annot);
                         }
                     }
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.IMEX_CURATION_MI, Annotation.IMEX_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.CURATION_DEPTH_MI, Annotation.CURATION_DEPTH) && annot.getValue() != null) {
+                    if (Annotation.IMEX_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.IMEx;
+                        return false;
+                    } else if (Annotation.MIMIX_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.MIMIx;
+                        return false;
+                    } else if (Annotation.RAPID_CURATION.equalsIgnoreCase(annot.getValue())) {
+                        curationDepth = CurationDepth.rapid_curation;
+                        return false;
+                    } else {
+                        curationDepth = CurationDepth.undefined;
+                        return false;
+                    }
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.IMEX_CURATION_MI, Annotation.IMEX_CURATION)) {
+                    if(curationDepth!=null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.IMEx)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth has already assigned a different value: " +  curationDepth + " it will be overwritten with " +  CurationDepth.IMEx);
+                    }
                     curationDepth = CurationDepth.IMEx;
                     return false;
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.MIMIX_CURATION_MI, Annotation.MIMIX_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.MIMIX_CURATION_MI, Annotation.MIMIX_CURATION)) {
+                    if(curationDepth!=null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.MIMIx)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth has already assigned a different value: " +  curationDepth + " it will be overwritten with " +  CurationDepth.MIMIx);
+                    }
                     curationDepth = CurationDepth.MIMIx;
                     return false;
-                }
-                else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.RAPID_CURATION_MI, Annotation.RAPID_CURATION)){
+                } else if (AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.RAPID_CURATION_MI, Annotation.RAPID_CURATION)) {
+                    if (curationDepth != null && !curationDepth.equals(CurationDepth.undefined) && !curationDepth.equals(CurationDepth.rapid_curation)) {
+                        //just in case was annotated twice in the file we check for consistency
+                        logger.log(Level.WARNING, "The curationDepth has already assigned a different value: " + curationDepth + " it will be overwritten with " + CurationDepth.rapid_curation);
+                    }
                     curationDepth = CurationDepth.rapid_curation;
                     return false;
                 }
