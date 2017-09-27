@@ -117,14 +117,14 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
 
     @Override
     @XmlElement(name = "names")
-    public void setJAXBNames(NamesContainer value) {
-        super.setJAXBNames(value);
+    public void setInteractionNamesContainer(NamesContainer value) {
+        super.setInteractionNamesContainer(value);
     }
 
     @Override
     @XmlElement(name = "xref")
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
     }
 
     @XmlElement(name = "intraMolecular", defaultValue = "false", type = Boolean.class)

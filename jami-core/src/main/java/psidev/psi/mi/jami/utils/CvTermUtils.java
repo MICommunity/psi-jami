@@ -314,6 +314,10 @@ public class CvTermUtils {
         return createMICvTerm(Xref.IMEX, Xref.IMEX_MI);
     }
 
+    public static CvTerm createComplexPortalDatabase() {
+        return createMICvTerm(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI);
+    }
+
     public static CvTerm createPubmedDatabase(){
         return createMICvTerm(Xref.PUBMED, Xref.PUBMED_MI);
     }

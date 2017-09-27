@@ -232,6 +232,7 @@
                 </names>
                 <xref>
                     <primaryRef db="reactome" dbAc="MI:0467" id="REACT_26202.2" refType="identity" refTypeAc="MI:0356"/>
+                    <secondaryRef db="complex portal" dbAc="MI:2279" id="CPX-12345" version="1" refType="complex-primary" refTypeAc="MI:2282"/>
                     <secondaryRef db="go" dbAc="MI:0448" id="GO:0008503" secondary="benzodiazepine receptor activity" refType="function" refTypeAc="MI:0355"/>
                     <secondaryRef db="pubmed" dbAc="MI:0446" id="18790874" refType="see-also" refTypeAc="MI:0361"/>
                     <secondaryRef db="go" dbAc="MI:0448" id="GO:0004890" secondary="GABA-A receptor activity" refType="function" refTypeAc="MI:0355"/>

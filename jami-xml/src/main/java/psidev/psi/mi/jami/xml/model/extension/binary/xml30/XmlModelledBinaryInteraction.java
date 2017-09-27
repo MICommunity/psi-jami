@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.xml.model.extension.XmlAlias;
 import psidev.psi.mi.jami.xml.model.extension.XmlAnnotation;
 import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
@@ -157,6 +158,20 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
             this.causalRelationships = new ArrayList<ExtendedPsiXmlCausalRelationship>();
         }
         return this.causalRelationships;
+    }
+
+    @Override
+    public String getComplexAc() {
+        Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getId() : null;
+    }
+
+    @Override
+    public void assignComplexAc(String accession) {
+        XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        if (accession != null){
+            getXrefs().add(new XmlXref(CvTermUtils.createComplexPortalDatabase(), accession, CvTermUtils.createComplexPrimaryQualifier()));
+        }
     }
 
     @Override

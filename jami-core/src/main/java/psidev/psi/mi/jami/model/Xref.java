@@ -43,6 +43,8 @@ public interface Xref {
     public static final String DOI_MI = "MI:0574";
     public static final String INTERPRO = "interpro";
     public static final String INTERPRO_MI = "MI:0449";
+    public static final String COMPLEX_PORTAL="complex portal";
+    public static final String COMPLEX_PORTAL_MI="MI:2279";
 
     public static final String IMEX_PRIMARY = "imex-primary";
     public static final String IMEX_PRIMARY_MI = "MI:0662";
@@ -71,7 +73,7 @@ public interface Xref {
     public static final String INTERACTOR_SET_QUALIFIER_MI="MI:1341";
 
     public static final String COMPLEX_PRIMARY="complex-primary";
-    public static final String COMPLEX_PRIMARY_MI="MI:XXXX";
+    public static final String COMPLEX_PRIMARY_MI="MI:2282";
 
     /**
      * The database is a controlled vocabulary term. It cannot be null.

@@ -17,7 +17,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * Complex accession if the complex has been curated under the Complex Portal curation rules.
      * It can be null if the complex is not registered in the Complex Portal.
      * This complex accession should be a shortcut to the complex-primary Xref in the collection of xrefs.
-     * Ex: CP-123-2
+     * Ex: CP-123.2
      * @return the complex accession
      */
     public String getComplexAc();

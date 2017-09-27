@@ -122,6 +122,21 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
         return this.jaxbCooperativeEffectWrapper.cooperativeEffects;
     }
 
+    public String getComplexAc() {
+        String complexAc = super.getComplexAc();
+        if (complexAc == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexAc() : null;
+        }
+        return complexAc;
+    }
+
+    public void assignComplexAc(String accession) {
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession);
+    }
+
     public String getPhysicalProperties() {
         Annotation prop = getAttributeWrapper().physicalProperties;
         return prop != null ? prop.getValue() : null;
@@ -149,19 +164,19 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     public String getRecommendedName() {
-        return getNamesContainer().getRecommendedName();
+        return getInteractionNamesContainer().getRecommendedName();
     }
 
     public void setRecommendedName(String name) {
-        getNamesContainer().setRecommendedName(name);
+        getInteractionNamesContainer().setRecommendedName(name);
     }
 
     public String getSystematicName() {
-        return getNamesContainer().getSystematicName();
+        return getInteractionNamesContainer().getSystematicName();
     }
 
     public void setSystematicName(String name) {
-        getNamesContainer().setSystematicName(name);
+        getInteractionNamesContainer().setSystematicName(name);
     }
 
     @Override
@@ -259,13 +274,13 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
 
     @XmlElement(name = "names")
     public void setJAXBNames(ComplexNamesContainer value) {
-        super.setJAXBNames(value);
+        super.setInteractionNamesContainer(value);
     }
 
     @Override
     @XmlElement(name = "xref")
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
     }
 
     @XmlElement(name = "intraMolecular", defaultValue = "false", type = Boolean.class)
@@ -342,12 +357,12 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
 
     @Override
     protected void initialiseNamesContainer() {
-        super.setJAXBNames(new ComplexNamesContainer());
+        super.setInteractionNamesContainer(new ComplexNamesContainer());
     }
 
     @Override
-    protected ComplexNamesContainer getNamesContainer() {
-        return (ComplexNamesContainer) super.getNamesContainer();
+    protected ComplexNamesContainer getInteractionNamesContainer() {
+        return (ComplexNamesContainer) super.getInteractionNamesContainer();
     }
 
     protected JAXBAttributeWrapper getAttributeWrapper() {
@@ -676,7 +691,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
 
         @Override
         public String toString() {
-            return "Com-lex Attribute List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Complex Attribute List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
         }
     }
 }

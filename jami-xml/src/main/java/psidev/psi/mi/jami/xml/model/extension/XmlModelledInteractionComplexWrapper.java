@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.Entry;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
@@ -204,6 +205,20 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     @Override
     public void setRigid(String rigid) {
         this.modelledInteraction.setRigid(rigid);
+    }
+
+    @Override
+    public String getComplexAc() {
+        Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.modelledInteraction.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getId() : null;
+    }
+
+    @Override
+    public void assignComplexAc(String accession) {
+        XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.modelledInteraction.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        if (accession != null){
+            this.modelledInteraction.getXrefs().add(new XmlXref(CvTermUtils.createComplexPortalDatabase(), accession, CvTermUtils.createComplexPrimaryQualifier()));
+        }
     }
 
     @Override

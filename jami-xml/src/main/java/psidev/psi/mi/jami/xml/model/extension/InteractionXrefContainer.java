@@ -24,6 +24,8 @@ import java.util.List;
 @XmlType(name = "interactionXrefContainer")
 public class InteractionXrefContainer extends XrefContainer {
     private Xref imexId;
+    private Xref complexAc;
+
     private List<Xref> identifiers;
 
     @Override
@@ -66,6 +68,28 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    public String getComplexAc() {
+        return this.complexAc != null ? this.complexAc.getId() : null;
+    }
+
+    public void assignComplexAc(String identifier) {
+        FullXrefList xrefs = (FullXrefList) getXrefs();
+        // add new complex ac if not null
+        if (identifier != null){
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPrimaryQualifier = CvTermUtils.createComplexPrimaryQualifier();
+            // first remove old imex if not null
+            if (this.complexAc != null){
+                xrefs.removeOnly(this.complexAc);
+            }
+            this.complexAc = new XmlXref(complexPortalDatabase, identifier, complexPrimaryQualifier);
+            xrefs.addOnly(this.complexAc);
+        }
+        else if (this.complexAc != null){
+            throw new IllegalArgumentException("The complex portal accession has to be non null.");
+        }
+    }
+
     protected void processAddedPotentialImex(Xref added) {
 
         // the added identifier is imex and the current imex is not set
@@ -86,6 +110,28 @@ public class InteractionXrefContainer extends XrefContainer {
 
     protected void clearImexId() {
         imexId = null;
+    }
+
+    protected void processAddedPotentialComplexAc(Xref added) {
+
+        // the added identifier is a complex portal accession and the current complex portal accession is not set
+        if (complexAc == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)){
+            // the added xrefContainer is complex-primary
+            if (XrefUtils.doesXrefHaveQualifier(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)){
+                complexAc = added;
+            }
+        }
+    }
+
+    protected void processRemovedPotentialComplexAc(Xref removed) {
+        // the removed identifier is pubmed
+        if (complexAc != null && complexAc.equals(removed)){
+            complexAc = null;
+        }
+    }
+
+    protected void clearComplexAc() {
+        complexAc = null;
     }
 
     protected void initialiseIdentifiers(){
@@ -146,16 +192,20 @@ public class InteractionXrefContainer extends XrefContainer {
         @Override
         protected void processAddedObjectEvent(Xref added) {
             processAddedPotentialImex(added);
+            processAddedPotentialComplexAc(added);
         }
 
         @Override
         protected void processRemovedObjectEvent(Xref removed) {
             processRemovedPotentialImex(removed);
+            processRemovedPotentialComplexAc(removed);
+
         }
 
         @Override
         protected void clearProperties() {
             clearImexId();
+            clearComplexAc();
         }
     }
 }

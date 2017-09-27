@@ -29,6 +29,15 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     }
 
     @Override
+    public CvTerm getEvidenceType() {
+        logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+            initialiseInteractorDelegate();
+        }
+        return getDelegate().getEvidenceType();
+    }
+
+    @Override
     public void setEvidenceType(CvTerm eco) {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (getDelegate() == null){
@@ -38,12 +47,21 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     }
 
     @Override
-    public CvTerm getEvidenceType() {
+    public String getComplexAc() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (getDelegate() == null){
             initialiseInteractorDelegate();
         }
-        return getDelegate().getEvidenceType();
+        return getDelegate().getComplexAc();
+    }
+
+    @Override
+    public void assignComplexAc(String accession) {
+        logger.log(Level.WARNING, "The interaction reference " + ref + " is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null) {
+            initialiseInteractorDelegate();
+        }
+        getDelegate().assignComplexAc(accession);
     }
 
     public String getPhysicalProperties() {

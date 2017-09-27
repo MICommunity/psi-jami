@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entrySet xmlns="http://psi.hupo.org/mi/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://psi.hupo.org/mi/mif https://raw.githubusercontent.com/HUPO-PSI/miXML/master/2.5/src/MIF254.xsd" level="2" version="5" minorVersion="4">
+  <entry>
+    <source releaseDate="2017-09-22">
+      <names>
+        <shortLabel>IntAct</shortLabel>
+        <fullName>European Bioinformatics Institute</fullName>
+        <alias type="synonym" typeAc="MI:1041">IntAct</alias>
+      </names>
+      <bibref>
+        <xref>
+          <primaryRef db="pubmed" dbAc="MI:0446" id="14681455" refType="primary-reference" refTypeAc="MI:0358"/>
+        </xref>
+      </bibref>
+      <xref>
+        <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0469" refType="identity" refTypeAc="MI:0356"/>
+        <secondaryRef db="intact" dbAc="MI:0469" id="EBI-10" refType="identity" refTypeAc="MI:0356"/>
+        <secondaryRef db="pubmed" dbAc="MI:0446" id="14681455" refType="primary-reference" refTypeAc="MI:0358"/>
+        <secondaryRef db="pubmed" dbAc="MI:0446" id="22121220" refType="method reference" refTypeAc="MI:0357"/>
+        <secondaryRef db="pubmed" dbAc="MI:0446" id="19850723" refType="method reference" refTypeAc="MI:0357"/>
+      </xref>
+      <attributeList>
+        <attribute name="url" nameAc="MI:0614">http://www.ebi.ac.uk/</attribute>
+        <attribute name="search-url" nameAc="MI:0615">http://www.ebi.ac.uk/intact/query/${ac}</attribute>
+        <attribute name="id-validation-regexp" nameAc="MI:0628">EBI-[0-9]+|IA:[0-9]+</attribute>
+        <attribute name="definition">INTerAction database (IntAct) provides an open source database and toolkit for the storage, presentation and analysis of molecular interactions.</attribute>
+        <attribute name="url" nameAc="MI:0614">http://www.ebi.ac.uk/intact</attribute>
+        <attribute name="postaladdress">European Bioinformatics Institute; Wellcome Trust Genome Campus; Hinxton, Cambridge; CB10 1SD; United Kingdom</attribute>
+        <attribute name="url" nameAc="MI:0614">http://www.ebi.ac.uk/intact/</attribute>
+      </attributeList>
+    </source>
+    <experimentList>
+      <experimentDescription id="1">
+        <bibref>
+          <xref>
+            <primaryRef db="pubmed" dbAc="MI:0446" id="Mock publication for biological complexes." refType="identity" refTypeAc="MI:0356"/>
+          </xref>
+        </bibref>
+        <hostOrganismList>
+          <hostOrganism ncbiTaxId="9606">
+            <names>
+              <shortLabel>human</shortLabel>
+              <fullName>Homo sapiens</fullName>
+              <alias type="synonym" typeAc="MI:1041">Human</alias>
+            </names>
+          </hostOrganism>
+        </hostOrganismList>
+        <interactionDetectionMethod>
+          <names>
+            <shortLabel>inferred by curator</shortLabel>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0364" refType="identity" refTypeAc="MI:0356"/>
+          </xref>
+        </interactionDetectionMethod>
+      </experimentDescription>
+    </experimentList>
+    <interactorList>
+      <interactor id="2">
+        <names>
+          <shortLabel>csde1_human</shortLabel>
+          <fullName>Cold shock domain-containing protein E1</fullName>
+          <alias type="gene name synonym" typeAc="MI:0302">Protein UNR</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">N-ras upstream gene protein</alias>
+          <alias type="gene name" typeAc="MI:0301">CSDE1</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">D1S155E</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">KIAA0885</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">NRU</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">UNR</alias>
+        </names>
+        <xref>
+          <primaryRef db="uniprotkb" dbAc="MI:0486" id="O75534" version="SP_77" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="G5E9Q2" version="SP_147" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="O94961" version="SP_77" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q5TF04" version="SP_77" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q5TF05" version="SP_77" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q68DI9" version="SP_77" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q9Y2S4" version="SP_77" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="E9PGZ0" version="SP_135" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q68DF1" version="SP_135" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-1059183" refType="intact-secondary"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="A8K281" version="SP_103" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-719186" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005743"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000358528"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000369530"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000438362"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000534699"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000610726"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSG00000009307"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000351329"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000358543"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000407724"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000432958"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005794"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005886"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000261443"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000342408"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000261443"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000339438"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070937"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070966"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000481762"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003677"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008584"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006355"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001007554.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001123995.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001229820.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001229821.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001229822.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_009089.4"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR019844"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR011129"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR002059"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012340"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR024642"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1WFQ"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1X65"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2YTV"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2YTX"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2YTY"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003723"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829"/>
+        </xref>
+        <interactorType>
+          <names>
+            <shortLabel>protein</shortLabel>
+            <fullName>protein</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-619654" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+            <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="see-also" refTypeAc="MI:0361"/>
+          </xref>
+        </interactorType>
+        <organism ncbiTaxId="9606">
+          <names>
+            <shortLabel>human</shortLabel>
+            <fullName>Homo sapiens</fullName>
+            <alias type="synonym" typeAc="MI:1041">Human</alias>
+          </names>
+        </organism>
+        <sequence>MSFDPNLLHNNGHNGYPNGTSAALRETGVIEKLLTSYGFIQCSERQARLFFHCSQYNGNLQDLKVGDDVEFEVSSDRRTGKPIAVKLVKIKQEILPEERMNGQVVCAVPHNLESKSPAAPGQSPTGSVCYERNGEVFYLTYTPEDVEGNVQLETGDKINFVIDNNKHTGAVSARNIMLLKKKQARCQGVVCAMKEAFGFIERGDVVKEIFFHYSEFKGDLETLQPGDDVEFTIKDRNGKEVATDVRLLPQGTVIFEDISIEHFEGTVTKVIPKVPSKNQNDPLPGRIKVDFVIPKELPFGDKDTKSKVTLLEGDHVRFNISTDRRDKLERATNIEVLSNTFQFTNEAREMGVIAAMRDGFGFIKCVDRDVRMFFHFSEILDGNQLHIADEVEFTVVPDMLSAQRNHAIRIKKLPKGTVSFHSHSDHRFLGTVEKEATFSNPKTTSPNKGKEKEAEDGIIAYDDCGVKLTIAFQAKDVEGSTSPQIGDKVEFSISDKQRPGQQVATCVRLLGRNSNSKRLLGYVATLKDNFGFIETANHDKEIFFHYSEFSGDVDSLELGDMVEYSLSKGKGNKVSAEKVNKTHSVNGITEEADPTIYSGKVIRPLRSVDPTQTEYQGMIEIVEEGDMKGEVYPFGIVGMANKGDCLQKGESVKFQLCVLGQNAQTMAYNITPLRRATVECVKDQFGFINYEVGDSKKLFFHVKEVQDGIELQAGDEVEFSVILNQRTGKCSACNVWRVCEGPKAVAAPRPDRLVNRLKNITLDDASAPRLMVLRQPRGPDNSMGFGAERKIRQAGVID</sequence>
+        <attributeList>
+          <attribute name="crc64">2BD0B32F33D454DA</attribute>
+        </attributeList>
+      </interactor>
+      <interactor id="3">
+        <names>
+          <shortLabel>paip1_human</shortLabel>
+          <fullName>Polyadenylate-binding protein-interacting protein 1</fullName>
+          <alias type="gene name" typeAc="MI:0301">PAIP1</alias>
+        </names>
+        <xref>
+          <primaryRef db="uniprotkb" dbAc="MI:0486" id="Q9H074" version="SP_48" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="A6NKV8" version="SP_111" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="O60455" version="SP_48" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q96B61" version="SP_48" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q9BS63" version="SP_48" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-11149865" refType="intact-secondary"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-81519" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="XP_005248287.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="XP_016864445.1"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSG00000172239"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000302768"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000339622"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000387729"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005737"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003723"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008494"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0048255"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000289"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006413"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_006442.2"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_877590.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_899152.1"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR016024"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR009818"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR003890"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1JH4"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3NTW"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3RK6"/>
+          <secondaryRef db="mint" dbAc="MI:0471" id="MINT-196116"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000306846"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000338972"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000436644"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-429947"/>
+        </xref>
+        <interactorType>
+          <names>
+            <shortLabel>protein</shortLabel>
+            <fullName>protein</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-619654" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+            <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="see-also" refTypeAc="MI:0361"/>
+          </xref>
+        </interactorType>
+        <organism ncbiTaxId="9606">
+          <names>
+            <shortLabel>human</shortLabel>
+            <fullName>Homo sapiens</fullName>
+            <alias type="synonym" typeAc="MI:1041">Human</alias>
+          </names>
+        </organism>
+        <sequence>MSDGFDRAPGAGRGRSRGLGRGGGGPEGGGFPNGAGPAERARHQPPQPKAPGFLQPPPLRQPRTTPPPGAQCEVPASPQRPSRPGALPEQTRPLRAPPSSQDKIPQQNSESAMAKPQVVVAPVLMSKLSVNAPEFYPSGYSSSYTESYEDGCEDYPTLSEYVQDFLNHLTEQPGSFETEIEQFAETLNGCVTTDDALQELVELIYQQATSIPNFSYMGARLCNYLSHHLTISPQSGNFRQLLLQRCRTEYEVKDQAAKGDEVTRKRFHAFVLFLGELYLNLEIKGTNGQVTRADILQVGLRELLNALFSNPMDDNLICAVKLLKLTGSVLEDAWKEKGKMDMEEIIQRIENVVLDANCSRDVKQMLLKLVELRSSNWGRVHATSTYREATPENDPNYFMNEPTFYTSDGVPFTAADPDYQEKYQELLEREDFFPDYEENGTDLSGAGDPYLDDIDDEMDPEIEEAYEKFCLESERKRKQ</sequence>
+        <attributeList>
+          <attribute name="crc64">A4820607190A3A43</attribute>
+          <attribute name="crc64">A4820607190A3A43</attribute>
+        </attributeList>
+      </interactor>
+      <interactor id="4">
+        <names>
+          <shortLabel>hnrpq_human</shortLabel>
+          <fullName>Heterogeneous nuclear ribonucleoprotein Q</fullName>
+          <alias type="gene name synonym" typeAc="MI:0302">Synaptotagmin-binding, cytoplasmic RNA-interacting protein</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">Glycine- and tyrosine-rich RNA-binding protein</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">NS1-associated protein 1</alias>
+          <alias type="gene name" typeAc="MI:0301">SYNCRIP</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">HNRPQ</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">NSAP1</alias>
+        </names>
+        <xref>
+          <primaryRef db="uniprotkb" dbAc="MI:0486" id="O60506" version="SP_69" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q53H05" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q5TCG2" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q8IW78" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q8N599" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q96LC1" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q96LC2" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q9Y583" version="SP_69" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q5TCG3" version="SP_95" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="E1P501" version="SP_108" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="E1P502" version="SP_108" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-1024357" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="XP_016865667.1"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003723"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008143"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSG00000135316"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000347380"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000358635"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005654"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="XP_005248694.1"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR034544"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR034548"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0097452"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0001649"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0016020"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0017148"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071346"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2NBB"/>
+          <secondaryRef db="dip" dbAc="MI:0465" id="DIP-35540N"/>
+          <secondaryRef db="mint" dbAc="MI:0471" id="MINT-2796763"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0016032"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000355238"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000369622"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071013"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070937"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005783"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071204"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070934"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000398"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001153145.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001153146.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001153147.1"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005634"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006396"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008380"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0030529"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001240700.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001153148.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001153149.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_006363.4"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR006535"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR000504"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2DGU"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2MXT"/>
+        </xref>
+        <interactorType>
+          <names>
+            <shortLabel>protein</shortLabel>
+            <fullName>protein</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-619654" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+            <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="see-also" refTypeAc="MI:0361"/>
+          </xref>
+        </interactorType>
+        <organism ncbiTaxId="9606">
+          <names>
+            <shortLabel>human</shortLabel>
+            <fullName>Homo sapiens</fullName>
+            <alias type="synonym" typeAc="MI:1041">Human</alias>
+          </names>
+        </organism>
+        <sequence>MATEHVNGNGTEEPMDTTSAVIHSENFQTLLDAGLPQKVAEKLDEIYVAGLVAHSDLDERAIEALKEFNEDGALAVLQQFKDSDLSHVQNKSAFLCGVMKTYRQREKQGTKVADSSKGPDEAKIKALLERTGYTLDVTTGQRKYGGPPPDSVYSGQQPSVGTEIFVGKIPRDLFEDELVPLFEKAGPIWDLRLMMDPLTGLNRGYAFVTFCTKEAAQEAVKLYNNHEIRSGKHIGVCISVANNRLFVGSIPKSKTKEQILEEFSKVTEGLTDVILYHQPDDKKKNRGFCFLEYEDHKTAAQARRRLMSGKVKVWGNVGTVEWADPIEDPDPEVMAKVKVLFVRNLANTVTEEILEKAFSQFGKLERVKKLKDYAFIHFDERDGAVKAMEEMNGKDLEGENIEIVFAKPPDQKRKERKAQRQAAKNQMYDDYYYYGPPHMPPPTRGRGRGGRGGYGYPPDYYGYEDYYDYYGYDYHNYRGGYEDPYYGYEDFQVGARGRGGRGARGAAPSRGRGAAPPRGRAGYSQRGGPGSARGVRGARGGAQQQRGRGVRGARGGRGGNVGGKRKADGYNQPDSKRRQTNNQNWGSQPIAQQPLQGGDHSGNYGYKSENQEFYQDTFGQQWK</sequence>
+        <attributeList>
+          <attribute name="comment" nameAc="MI:0612">DIP protein O60506 original sequence version: 144</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein O60506 original sequence version: 124</attribute>
+          <attribute name="crc64">0669FA604E8FBBDF</attribute>
+        </attributeList>
+      </interactor>
+      <interactor id="5">
+        <names>
+          <shortLabel>hnrpd_human</shortLabel>
+          <fullName>Heterogeneous nuclear ribonucleoprotein D0</fullName>
+          <alias type="gene name" typeAc="MI:0301">HNRNPD</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">AUF1</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">HNRPD</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">AU-rich element RNA-binding protein 1</alias>
+        </names>
+        <xref>
+          <primaryRef db="uniprotkb" dbAc="MI:0486" id="Q14103" version="SP_91" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="P07029" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q01858" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q14100" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q14101" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="dip" dbAc="MI:0465" id="DIP-31163N" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q14102" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q4W5A1" version="SP_91" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="A8K9J2" version="SP_107" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q9UCE8" version="SP_107" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q9UCE9" version="SP_107" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-299674" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0043488"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0030529"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0042752"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0045727"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0097167"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-450408"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-72163"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-72203"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000305860"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000313327"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000352301"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000353341"/>
+          <secondaryRef db="mint" dbAc="MI:0471" id="MINT-5001251"/>
+          <secondaryRef db="dip" dbAc="MI:0465" id="DIP-31163N"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0001889"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1904586"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003680"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003682"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0021549"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0035925"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0051592"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0051602"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0061158"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071230"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071392"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071732"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1901355"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1904383"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0048255"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070062"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSG00000138668"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000313199"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005634"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006355"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006396"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0010467"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008134"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1990828"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0032204"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0042826"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5IM0"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0010628"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0042493"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0042789"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1904355"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1905663"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005654"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003723"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0042162"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000398"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0045893"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006401"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006351"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_001003810.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_002129.2"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_112737.1"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_112738.1"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR012956"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR000504"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1HD0"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1HD1"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1IQT"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1WTB"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1X0F"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2Z5N"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000313899"/>
+        </xref>
+        <interactorType>
+          <names>
+            <shortLabel>protein</shortLabel>
+            <fullName>protein</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-619654" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+            <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="see-also" refTypeAc="MI:0361"/>
+          </xref>
+        </interactorType>
+        <organism ncbiTaxId="9606">
+          <names>
+            <shortLabel>human</shortLabel>
+            <fullName>Homo sapiens</fullName>
+            <alias type="synonym" typeAc="MI:1041">Human</alias>
+          </names>
+        </organism>
+        <sequence>MSEEQFGGDGAAAAATAAVGGSAGEQEGAMVAATQGAAAAAGSGAGTGGGTASGGTEGGSAESEGAKIDASKNEEDEGHSNSSPRHSEAATAQREEWKMFIGGLSWDTTKKDLKDYFSKFGEVVDCTLKLDPITGRSRGFGFVLFKESESVDKVMDQKEHKLNGKVIDPKRAKAMKTKEPVKKIFVGGLSPDTPEEKIREYFGGFGEVESIELPMDNKTNKRRGFCFITFKEEEPVKKIMEKKYHNVGLSKCEIKVAMSKEQYQQQQQWGSRGGFAGRARGRGGGPSQNWNQGYSNYWNQGYGNYGYNSQGYGGYGGYDYTGYNNYYGYGDYSNQQSGYGKVSRRGGHQNSYKPY</sequence>
+        <attributeList>
+          <attribute name="comment" nameAc="MI:0612">DIP protein Q14103 original sequence version: 199</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein Q14103 original sequence version: 164</attribute>
+          <attribute name="crc64">D0B6EA177BEF789E</attribute>
+        </attributeList>
+      </interactor>
+      <interactor id="6">
+        <names>
+          <shortLabel>pabp1_human</shortLabel>
+          <fullName>Polyadenylate-binding protein 1</fullName>
+          <alias type="gene name" typeAc="MI:0301">PABPC1</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">PAB1</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">PABP1</alias>
+          <alias type="gene name synonym" typeAc="MI:0302">PABPC2</alias>
+        </names>
+        <xref>
+          <primaryRef db="uniprotkb" dbAc="MI:0486" id="P11940" version="SP_108" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q15097" version="SP_108" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="uniprotkb" dbAc="MI:0486" id="Q93004" version="SP_108" refType="secondary-ac" refTypeAc="MI:0360"/>
+          <secondaryRef db="dip" dbAc="MI:0465" id="DIP-31613N" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-81531" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0031047"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0060213"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1900153"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="4F02"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="4F25"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="4F26"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0010494"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="XP_005250918.1"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003730"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0016020"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0036464"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070062"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-156827"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-429947"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-450408"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-72649"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-975956"/>
+          <secondaryRef db="reactome" dbAc="MI:0467" id="R-HSA-975957"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSG00000070756"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENSP00000313007"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005634"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005737"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008022"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0030529"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008143"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008494"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006378"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0048255"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:2000623"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000398"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000184"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0000289"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR006515"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR002004"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR000504"/>
+          <secondaryRef db="refseq" dbAc="MI:0481" id="NP_002559.2"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1CVJ"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1G9L"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0071013"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829"/>
+          <secondaryRef db="interpro" dbAc="MI:0449" id="IPR003954"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0043488"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5DX1"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0045070"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0003723"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5LGP"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5LGQ"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5LGR"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5LGS"/>
+          <secondaryRef db="dip" dbAc="MI:0465" id="DIP-31613N"/>
+          <secondaryRef db="mint" dbAc="MI:0471" id="MINT-96210"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1JGN"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="1JH4"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2K8G"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2RQG"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2RQH"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="2X04"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KTP"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KTR"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KUI"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KUJ"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KUR"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KUS"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3KUT"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3PKN"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005925"/>
+          <secondaryRef db="ensembl" dbAc="MI:0476" id="ENST00000318607"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5DX8"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="5DXA"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0006413"/>
+          <secondaryRef db="rcsb pdb" dbAc="MI:0460" id="3PTH"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008266"/>
+        </xref>
+        <interactorType>
+          <names>
+            <shortLabel>protein</shortLabel>
+            <fullName>protein</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0326" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-619654" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+            <secondaryRef db="so" dbAc="MI:0601" id="SO:0000358" refType="see-also" refTypeAc="MI:0361"/>
+          </xref>
+        </interactorType>
+        <organism ncbiTaxId="9606">
+          <names>
+            <shortLabel>human</shortLabel>
+            <fullName>Homo sapiens</fullName>
+            <alias type="synonym" typeAc="MI:1041">Human</alias>
+          </names>
+        </organism>
+        <sequence>MNPSAPSYPMASLYVGDLHPDVTEAMLYEKFSPAGPILSIRVCRDMITRRSLGYAYVNFQQPADAERALDTMNFDVIKGKPVRIMWSQRDPSLRKSGVGNIFIKNLDKSIDNKALYDTFSAFGNILSCKVVCDENGSKGYGFVHFETQEAAERAIEKMNGMLLNDRKVFVGRFKSRKEREAELGARAKEFTNVYIKNFGEDMDDERLKDLFGKFGPALSVKVMTDESGKSKGFGFVSFERHEDAQKAVDEMNGKELNGKQIYVGRAQKKVERQTELKRKFEQMKQDRITRYQGVNLYVKNLDDGIDDERLRKEFSPFGTITSAKVMMEGGRSKGFGFVCFSSPEEATKAVTEMNGRIVATKPLYVALAQRKEERQAHLTNQYMQRMASVRAVPNPVINPYQPAPPSGYFMAAIPQTQNRAAYYPPSQIAQLRPSPRWTAQGARPHPFQNMPGAIRPAAPRPPFSTMRPASSQVPRVMSTQRVANTSTQTMGPRPAAAAAAATPAVRTVPQYKYAAGVRNPQQHLNAQPQVTMQQPAVHVQGQEPLTASMLASAPPQEQKQMLGERLFPLIQAMHPTLAGKITGMLLEIDNSELLHMLESPESLRSKVDEAVAVLQAHQAKEAAQKAVNSATGVPTV</sequence>
+        <attributeList>
+          <attribute name="comment" nameAc="MI:0612">DIP protein P11940 original sequence version: 187</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein P11940 original sequence version: 181</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein P11940-1 original sequence version: 136</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein P11940 original sequence version: 148</attribute>
+          <attribute name="comment" nameAc="MI:0612">DIP protein P11940 original sequence version: 172</attribute>
+          <attribute name="crc64">2EB1B02A346132EE</attribute>
+        </attributeList>
+      </interactor>
+    </interactorList>
+    <interactionList>
+      <interaction id="7">
+        <names>
+          <shortLabel>mcrd-polya-bridging_human</shortLabel>
+          <alias type="complex recommended name" typeAc="MI:1315">mCRD-poly(A)-bridging complex</alias>
+          <alias type="complex synonym" typeAc="MI:0673">major coding region determinant of instability-mediated mRNA stability complex</alias>
+          <alias type="complex synonym" typeAc="MI:0673">major coding-region instability determinant - poly(A) tail-bridging complex</alias>
+          <alias type="complex systematic name" typeAc="MI:1316">CSDE1:HNRNPD:PABPC1:PAIP1:SYNCRIP</alias>
+          <alias type="complex synonym" typeAc="MI:0673">major coding-region determinant of instability - poly(A) tail-bridging complex</alias>
+          <alias type="complex synonym" typeAc="MI:0673">mCRD-mediated mRNA stability complex</alias>
+          <alias type="complex synonym" typeAc="MI:0673">major coding region instability determinant-mediated mRNA stability complex</alias>
+        </names>
+        <xref>
+          <primaryRef db="intact" dbAc="MI:0469" id="EBI-13948957" refType="identity" refTypeAc="MI:0356"/>
+          <secondaryRef db="complex portal" dbAc="MI:2279" id="CPX-12345" version="1" refType="complex-primary" refTypeAc="MI:2282"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0106002" refType="component" refTypeAc="MI:0354"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0008143" refType="function" refTypeAc="MI:0355"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1900152" refType="process" refTypeAc="MI:0359"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:2000767" refType="process" refTypeAc="MI:0359"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0005829" refType="component" refTypeAc="MI:0354"/>
+          <secondaryRef db="evidence ontology" dbAc="MI:1331" id="ECO:0000353"/>
+          <secondaryRef db="intact" dbAc="MI:0469" id="EBI-13949061" refType="exp-evidence"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:1990825" refType="function" refTypeAc="MI:0355"/>
+          <secondaryRef db="go" dbAc="MI:0448" id="GO:0070934" refType="process" refTypeAc="MI:0359"/>
+          <secondaryRef db="pubmed" dbAc="MI:0446" id="11051545" refType="see-also" refTypeAc="MI:0361"/>
+        </xref>
+        <experimentList>
+          <experimentRef>8</experimentRef>
+        </experimentList>
+        <participantList>
+          <participant id="9">
+            <interactorRef>4</interactorRef>
+            <biologicalRole>
+              <names>
+                <shortLabel>unspecified role</shortLabel>
+                <fullName>unspecified role</fullName>
+              </names>
+              <xref>
+                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+              </xref>
+            </biologicalRole>
+            <attributeList>
+              <attribute name="comment" nameAc="MI:0612">stoichiometry: 0</attribute>
+            </attributeList>
+          </participant>
+          <participant id="10">
+            <interactorRef>6</interactorRef>
+            <biologicalRole>
+              <names>
+                <shortLabel>unspecified role</shortLabel>
+                <fullName>unspecified role</fullName>
+              </names>
+              <xref>
+                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+              </xref>
+            </biologicalRole>
+            <attributeList>
+              <attribute name="comment" nameAc="MI:0612">stoichiometry: 0</attribute>
+            </attributeList>
+          </participant>
+          <participant id="11">
+            <interactorRef>3</interactorRef>
+            <biologicalRole>
+              <names>
+                <shortLabel>unspecified role</shortLabel>
+                <fullName>unspecified role</fullName>
+              </names>
+              <xref>
+                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+              </xref>
+            </biologicalRole>
+            <attributeList>
+              <attribute name="comment" nameAc="MI:0612">stoichiometry: 0</attribute>
+            </attributeList>
+          </participant>
+          <participant id="12">
+            <interactorRef>2</interactorRef>
+            <biologicalRole>
+              <names>
+                <shortLabel>unspecified role</shortLabel>
+                <fullName>unspecified role</fullName>
+              </names>
+              <xref>
+                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+              </xref>
+            </biologicalRole>
+            <attributeList>
+              <attribute name="comment" nameAc="MI:0612">stoichiometry: 0</attribute>
+            </attributeList>
+          </participant>
+          <participant id="13">
+            <interactorRef>5</interactorRef>
+            <biologicalRole>
+              <names>
+                <shortLabel>unspecified role</shortLabel>
+                <fullName>unspecified role</fullName>
+              </names>
+              <xref>
+                <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0499" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="intact" dbAc="MI:0469" id="EBI-77781" refType="identity" refTypeAc="MI:0356"/>
+                <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+              </xref>
+            </biologicalRole>
+            <attributeList>
+              <attribute name="comment" nameAc="MI:0612">stoichiometry: 0</attribute>
+            </attributeList>
+          </participant>
+        </participantList>
+        <interactionType>
+          <names>
+            <shortLabel>physical association</shortLabel>
+            <fullName>physical association</fullName>
+          </names>
+          <xref>
+            <primaryRef db="psi-mi" dbAc="MI:0488" id="MI:0915" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="intact" dbAc="MI:0469" id="EBI-1813147" refType="identity" refTypeAc="MI:0356"/>
+            <secondaryRef db="pubmed" dbAc="MI:0446" id="14755292" refType="primary-reference" refTypeAc="MI:0358"/>
+          </xref>
+        </interactionType>
+        <attributeList>
+          <attribute name="curated-complex">mRNA-bridging complex that forms between the 3-prime poly(A) tail and the major coding-region determinant of instability (mCRD) domain. Protects mRNA containing an mCRD domain prior to translation by stabilizing the poly(A) tail/PABP complex, thus blocking poly(A) nuclease access to the poly(A) tail. During translation, ribosomal movement up to or across the mCRD displaces or reorganizes the bridging complex, thereby allowing formation of metastable structures which expose the poly(A) tail to nuclease attack.
+The complex is disrupted by competitive binding of PAIP2 (Q9BPZ3) to PABPC1, thus displacing PAIP1 from PABPC1 and PABPC1 from the poly(A) tail leading to premature deadenylation and mRNA decay. </attribute>
+          <attribute name="complex-properties" nameAc="MI:0629">HNRNPD binds with high affinity to RNA molecules that contain AU-rich elements (AREs) found within the 3'-UTR. PABPC1 binds the poly(A) tail of mRNA. SYNCRIP (NSAP-1) interacts preferentially with poly(A) and poly(U) RNA sequences. 
+
+</attribute>
+          <attribute name="accepted">Accepted 2017-MAR-24 by ORCHARD</attribute>
+        </attributeList>
+      </interaction>
+    </interactionList>
+  </entry>
+</entrySet>

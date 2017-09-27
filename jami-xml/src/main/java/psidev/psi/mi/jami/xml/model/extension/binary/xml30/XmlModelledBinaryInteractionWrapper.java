@@ -316,6 +316,16 @@ public class XmlModelledBinaryInteractionWrapper implements ModelledBinaryIntera
     }
 
     @Override
+    public String getComplexAc() {
+        return this.wrappedInteraction.getComplexAc();
+    }
+
+    @Override
+    public void assignComplexAc(String accession) {
+        this.wrappedInteraction.setPhysicalProperties(accession);
+    }
+
+    @Override
     public String getPhysicalProperties() {
         return this.wrappedInteraction.getPhysicalProperties();
     }

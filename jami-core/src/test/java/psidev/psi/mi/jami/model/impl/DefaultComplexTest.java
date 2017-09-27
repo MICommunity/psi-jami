@@ -5,10 +5,8 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.ModelledParticipant;
-import psidev.psi.mi.jami.utils.AnnotationUtils;
-import psidev.psi.mi.jami.utils.ChecksumUtils;
-import psidev.psi.mi.jami.utils.CvTermUtils;
-import psidev.psi.mi.jami.utils.InteractorUtils;
+import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.utils.*;
 
 /**
  * Unit tester for DefaultComplex
@@ -133,5 +131,33 @@ public class DefaultComplexTest {
         interaction.getAnnotations().clear();
         Assert.assertNull(interaction.getPhysicalProperties());
         Assert.assertEquals(0, interaction.getAnnotations().size());
+    }
+
+    @Test
+    public void test_add_remove_complex_ac(){
+        Complex interaction = new DefaultComplex("test interaction");
+        Assert.assertNull(interaction.getComplexAc());
+
+        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        Assert.assertEquals("CPX-1", interaction.getComplexAc());
+
+        interaction.getXrefs().remove(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        Assert.assertNull(interaction.getComplexAc());
+
+        interaction.getXrefs().clear();
+        Assert.assertNull(interaction.getComplexAc());
+
+        interaction.assignComplexAc("CPX-1");
+        Assert.assertEquals("CPX-1", interaction.getComplexAc());
+        Assert.assertEquals(1, interaction.getXrefs().size());
+        Assert.assertEquals(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI), interaction.getXrefs().iterator().next());
+
+        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-2", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        Assert.assertEquals("CPX-1", interaction.getComplexAc());
+        Assert.assertEquals(2, interaction.getXrefs().size());
+
+        interaction.getXrefs().clear();
+        Assert.assertNull(interaction.getComplexAc());
+        Assert.assertEquals(0, interaction.getXrefs().size());
     }
 }

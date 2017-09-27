@@ -60,6 +60,9 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
             "  <names>\n" +
             "    <shortLabel>test complex</shortLabel>\n" +
             "  </names>\n" +
+            "  <xref>\n" +
+            "    <primaryRef db=\"complex portal\" dbAc=\"MI:2279\" id=\"CPX-12345\" refType=\"complex-primary\" refTypeAc=\"MI:2282\"/>\n" +
+            "  </xref>\n" +
             "  <participantList>\n" +
             "    <participant id=\"2\">\n" +
             "      <interactor id=\"3\">\n" +
@@ -245,6 +248,40 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
             "    </participant>\n"+
             "  </participantList>\n" +
             "</abstractInteraction>";
+
+    private String interaction_xref_complex_ac = "<abstractInteraction id=\"1\">\n" +
+            "  <xref>\n" +
+            "    <primaryRef db=\"test2\" id=\"xxxx2\"/>\n" +
+            "    <secondaryRef db=\"test\" id=\"xxxx1\"/>\n"+
+            "    <secondaryRef db=\"complex portal\" dbAc=\"MI:2279\" id=\"CPX-12345\" version=\"1\" refType=\"complex-primary\" refTypeAc=\"MI:2282\"/>\n" +
+            "  </xref>\n"+
+            "  <participantList>\n" +
+            "    <participant id=\"2\">\n" +
+            "      <interactor id=\"3\">\n" +
+            "        <names>\n" +
+            "          <shortLabel>protein test</shortLabel>\n" +
+            "        </names>\n" +
+            "        <interactorType>\n" +
+            "          <names>\n" +
+            "            <shortLabel>protein</shortLabel>\n" +
+            "          </names>\n" +
+            "          <xref>\n" +
+            "            <primaryRef db=\"psi-mi\" dbAc=\"MI:0488\" id=\"MI:0326\" refType=\"identity\" refTypeAc=\"MI:0356\"/>\n" +
+            "          </xref>\n" +
+            "        </interactorType>\n" +
+            "      </interactor>\n" +
+            "      <biologicalRole>\n" +
+            "        <names>\n" +
+            "          <shortLabel>unspecified role</shortLabel>\n" +
+            "        </names>\n" +
+            "        <xref>\n" +
+            "          <primaryRef db=\"psi-mi\" dbAc=\"MI:0488\" id=\"MI:0499\" refType=\"identity\" refTypeAc=\"MI:0356\"/>\n" +
+            "        </xref>\n" +
+            "      </biologicalRole>\n" +
+            "    </participant>\n"+
+            "  </participantList>\n" +
+            "</abstractInteraction>";
+
     private String interaction_inferred = "<abstractInteraction id=\"1\">\n" +
             "  <participantList>\n" +
             "    <participant id=\"2\">\n" +
@@ -825,6 +862,8 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
     @Test
     public void test_full_complex() throws XMLStreamException, IOException, IllegalRangeException {
         Complex interaction = new DefaultComplex("test complex");
+        interaction.assignComplexAc("CPX-12345");
+
         ModelledParticipant participant = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.setOrganism(new DefaultOrganism(9606,"human"));
@@ -937,6 +976,26 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
 
         Assert.assertEquals(this.interaction_xref, output.toString());
     }
+
+    @Test
+    public void test_write_interaction_xref_complex_ac() throws XMLStreamException, IOException, IllegalRangeException {
+        ModelledInteraction interaction = new DefaultModelledInteraction();
+        ModelledParticipant participant = new DefaultModelledParticipant(new DefaultProtein("protein test"));
+        interaction.addParticipant(participant);
+        interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"), "xxxx2"));
+        interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
+        interaction.getXrefs().add(new DefaultXref(CvTermUtils.createComplexPortalDatabase(),"CPX-12345","1",CvTermUtils.createComplexPrimaryQualifier()));
+
+        elementCache.clear();
+
+        XmlModelledInteractionWriter writer = new XmlModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        writer.setDefaultExperiment(new DefaultExperiment(new DefaultPublication("xxxxxx")));
+        writer.write(interaction);
+        streamWriter.flush();
+
+        Assert.assertEquals(this.interaction_xref_complex_ac, output.toString());
+    }
+
 
     @Test
     @Ignore
