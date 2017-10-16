@@ -88,7 +88,7 @@ public class OlsFetcherTest {
         CvTerm cvTermFetched =  fetcher.fetchByIdentifier(identifier, ontologyName);
 
         assertNotNull(cvTermFetched);
-        assertEquals("electron carrier activity" , cvTermFetched.getShortName());
+        assertEquals("electron transfer activity" , cvTermFetched.getShortName());
     }
 
 

@@ -1,6 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.7-b01-. --><definitions xmlns:tns="http://www.ebi.ac.uk/webservices/chebi" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="ChebiWebServices" targetNamespace="http://www.ebi.ac.uk/webservices/chebi">
-   <types>
-      <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.ebi.ac.uk/webservices/chebi">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.7-b01-. -->
+<definitions xmlns:tns="https://www.ebi.ac.uk/webservices/chebi" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="ChebiWebServices" targetNamespace="https://www.ebi.ac.uk/webservices/chebi">
+<types>
+      <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://www.ebi.ac.uk/webservices/chebi">
 
          <xsd:complexType name="LiteEntity">
             <xsd:sequence>
@@ -61,18 +64,18 @@
             </xsd:sequence>
          </xsd:complexType>
 
-          <xsd:complexType name="CompoundOrigins">
-              <xsd:sequence>
-                  <xsd:element maxOccurs="1" minOccurs="1" name="speciesText" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="0" name="speciesAccession" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="0" name="componentText" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="0" name="componentAccession" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="0" name="strainText" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="0" name="strainAccession" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="1" name="SourceType" type="xsd:string" />
-                  <xsd:element maxOccurs="1" minOccurs="1" name="SourceAccession" type="xsd:string" />
-              </xsd:sequence>
-          </xsd:complexType>
+         <xsd:complexType name="CompoundOriginDataItem">
+            <xsd:sequence>
+               <xsd:element maxOccurs="1" minOccurs="1" name="speciesText" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="speciesAccession" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="componentText" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="componentAccession" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="strainText" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="strainAccession" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="1" name="SourceType" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="1" name="SourceAccession" type="xsd:string" />
+            </xsd:sequence>
+         </xsd:complexType>
 
          <xsd:complexType name="Entity">
             <xsd:sequence>
@@ -85,6 +88,7 @@
                <xsd:element maxOccurs="1" minOccurs="0" name="inchiKey" type="xsd:string" />
                <xsd:element maxOccurs="1" minOccurs="0" name="charge" type="xsd:string" />
                <xsd:element maxOccurs="1" minOccurs="0" name="mass" type="xsd:string" />
+               <xsd:element maxOccurs="1" minOccurs="0" name="monoisotopicMass" type="xsd:string" />
                <xsd:element maxOccurs="1" minOccurs="0" name="entityStar" type="xsd:int" />
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="SecondaryChEBIIds" type="xsd:string" />
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="Synonyms" type="tns:DataItem" />
@@ -97,7 +101,7 @@
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="OntologyParents" type="tns:OntologyDataItem" />
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="OntologyChildren" type="tns:OntologyDataItem" />
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="GeneralComments" type="tns:CommentDataItem" />
-                <xsd:element maxOccurs="unbounded" minOccurs="0" name="CompoundOrigins" type="tns:CompoundOrigins" />
+               <xsd:element maxOccurs="unbounded" minOccurs="0" name="CompoundOrigins" type="tns:CompoundOriginDataItem" />
             </xsd:sequence>
          </xsd:complexType>
 
@@ -123,15 +127,17 @@
                <enumeration value="ALL" />
                <enumeration value="CHEBI ID" />
                <enumeration value="CHEBI NAME" />
-                <enumeration value="DEFINITION" />
+               <enumeration value="DEFINITION" />
                <enumeration value="ALL NAMES" />
                <enumeration value="IUPAC NAME" />
                <enumeration value="DATABASE LINK/REGISTRY NUMBER/CITATION" />
                <enumeration value="FORMULA" />
                <enumeration value="MASS" />
+               <enumeration value="MONOISOTOPIC MASS" />
                <enumeration value="CHARGE" />
                <enumeration value="INCHI/INCHI KEY" />
                <enumeration value="SMILES" />
+               <enumeration value="SPECIES" />
             </restriction>
          </simpleType>
 
@@ -148,6 +154,7 @@
                <enumeration value="MOLFILE" />
                <enumeration value="CML" />
                <enumeration value="SMILES" />
+               <!--<enumeration value="INCHI"/>-->
             </restriction>
          </simpleType>
 
@@ -198,7 +205,7 @@
          </complexType>
          <element name="getCompleteEntity" type="tns:getCompleteEntity" />
 
-          <!--Returns a the complete entity's using a list of LiteEntities. The maximum list passed is 50-->
+         <!--Returns a the complete entity's using a list of LiteEntities. The maximum list passed is 50-->
          <complexType name="getCompleteEntityByListResponse">
             <sequence>
                <xsd:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Entity" />
@@ -274,12 +281,12 @@
          </complexType>
          <element name="getStructureSearch" type="tns:getStructureSearch" />
 
-          <complexType name="getUpdatedPolymer">
-              <sequence>
-                  <element name="chebiId" type="xsd:string" />
-                  <xsd:element maxOccurs="unbounded" minOccurs="1" name="polymerisationIndex" type="xsd:string" />
-              </sequence>
-          </complexType>
+         <complexType name="getUpdatedPolymer">
+            <sequence>
+               <element name="chebiId" type="xsd:string" />
+               <xsd:element maxOccurs="unbounded" minOccurs="1" name="polymerisationIndex" type="xsd:string" />
+            </sequence>
+         </complexType>
          <element name="getUpdatedPolymer" type="tns:getUpdatedPolymer" />
 
          <complexType name="getUpdatedPolymerResponse">
