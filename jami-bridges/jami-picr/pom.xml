@@ -3,7 +3,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.11-SNAPSHOT</version>
+        <version>3.0.12-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-picr</artifactId>
