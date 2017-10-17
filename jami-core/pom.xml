@@ -5,7 +5,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.11</version>
+        <version>3.0.12-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-core</artifactId>
