@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.10</version>
+        <version>3.0.11</version>
     </parent>
 
     <artifactId>jami-obo</artifactId>
@@ -18,6 +18,7 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- OBO parser -->
         <dependency>
             <groupId>uk.ac.ebi.ols</groupId>
