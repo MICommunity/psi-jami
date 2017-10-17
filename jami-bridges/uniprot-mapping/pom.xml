@@ -31,11 +31,16 @@
             <artifactId>intact-unisave</artifactId>
             <version>${intact.bridges.version}</version>
         </dependency>
+
         <!--uniprot-->
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>
             <artifactId>japi</artifactId>
-            <version>${uniprot.japi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
         </dependency>
 
         <dependency>
