@@ -55,6 +55,7 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- IMEx central dependencies -->
         <dependency>
             <groupId>edu.ucla.mbi.imex</groupId>

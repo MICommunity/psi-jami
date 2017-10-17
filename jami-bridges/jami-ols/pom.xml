@@ -18,6 +18,7 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- Ontology Lookup Service Client -->
         <dependency>
             <groupId>uk.ac.ebi.pride.utilities</groupId>

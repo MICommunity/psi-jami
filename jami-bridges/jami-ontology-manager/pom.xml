@@ -17,12 +17,6 @@
             <groupId>psidev.psi.tools</groupId>
             <artifactId>ontology-manager</artifactId>
             <version>${ontology.manager.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>uk.ac.ebi.pride.utilities</groupId>
-                    <artifactId>ols-client</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- jami obo and jami ols-->
         <dependency>

@@ -18,6 +18,7 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- OBO parser -->
         <dependency>
             <groupId>uk.ac.ebi.ols</groupId>
