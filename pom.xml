@@ -15,12 +15,12 @@
         <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
         <spring.version>3.2.9.RELEASE</spring.version>
 
-        <ontology.manager.version>2.0.8</ontology.manager.version>
+        <ontology.manager.version>2.0.9</ontology.manager.version>
 
-        <intact.bridges.version>2.1.22</intact.bridges.version>
-        <protein.mapping.version>1.0.7</protein.mapping.version>
+        <intact.bridges.version>2.1.23</intact.bridges.version>
+        <protein.mapping.version>1.0.8</protein.mapping.version>
 
-        <ols.client.version>2.10</ols.client.version>
+        <ols.client.version>2.11</ols.client.version>
         <uniprot.japi.version>1.0.15</uniprot.japi.version>
         <chebiws.client.version>2.3.2</chebiws.client.version>
 
