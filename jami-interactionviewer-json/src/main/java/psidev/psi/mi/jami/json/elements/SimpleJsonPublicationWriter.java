@@ -46,16 +46,22 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
             }
 
             if (object.getImexId() != null){
-                MIJsonUtils.writeSeparator(writer);
-                MIJsonUtils.writeProperty("imex", JSONValue.escape(object.getImexId()), writer);
+                Xref imexXref=getImexXref(object);
+                if(imexXref!=null) {
+                    MIJsonUtils.writeSeparator(writer);
+                    getIdentifierWriter().write(imexXref);
+                }
             }
             MIJsonUtils.writeEndArray(writer);
         }
         else if (object.getImexId() != null){
-            MIJsonUtils.writePropertyKey("pubid", writer);
-            MIJsonUtils.writeOpenArray(writer);
-            MIJsonUtils.writeProperty("imex", JSONValue.escape(object.getImexId()), writer);
-            MIJsonUtils.writeEndArray(writer);
+            Xref imexXref=getImexXref(object);
+            if(imexXref!=null) {
+                MIJsonUtils.writePropertyKey("pubid", writer);
+                MIJsonUtils.writeOpenArray(writer);
+                getIdentifierWriter().write(imexXref);
+                MIJsonUtils.writeEndArray(writer);
+            }
         }
 
         // publication source
@@ -64,6 +70,16 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
             MIJsonUtils.writePropertyKey("sourceDatabase", writer);
             getCvWriter().write(object.getSource());
         }
+    }
+
+    private Xref getImexXref(Publication object){
+        for(Xref xref:object.getXrefs()){
+            if(xref.getDatabase().getShortName().equals("imex")){
+                return xref;
+            }
+        }
+
+        return null;
     }
 
     public JsonElementWriter<CvTerm> getCvWriter() {

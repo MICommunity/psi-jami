@@ -52,6 +52,18 @@
                 </exclusions>
             </dependency>
 
+            <!-- Logging - added back due to compilation error-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.6.1</version>
+            </dependency>
+
             <!--Add it back to avoid a dependency conflict inside of the uniprot-japi.
             Related to the exclusion in jami-uniprot of jackson-core -->
             <!--TODO check if it is solve in a future release of uniprot-japi-->
