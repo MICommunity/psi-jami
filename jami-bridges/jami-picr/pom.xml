@@ -3,7 +3,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.12</version>
+        <version>3.0.13</version>
     </parent>
 
     <artifactId>jami-picr</artifactId>
@@ -82,6 +82,16 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>uk.ac.ebi.intact.bridges</groupId>
+            <artifactId>intact-picr</artifactId>
+            <version>2.1.23</version>
+        </dependency>
+
+
+
+
 
     </dependencies>
 </project>
