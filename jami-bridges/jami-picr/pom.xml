@@ -3,7 +3,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.11-SNAPSHOT</version>
+        <version>3.0.13-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-picr</artifactId>
@@ -71,11 +71,17 @@
             <artifactId>bridges-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!-- uniprot -->
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>
             <artifactId>japi</artifactId>
-            <version>${uniprot.japi.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
     </dependencies>
 </project>
