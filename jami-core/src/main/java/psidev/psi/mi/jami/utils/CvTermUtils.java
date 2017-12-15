@@ -473,7 +473,7 @@ public class CvTermUtils {
         return createMICvTerm(Xref.IMEX_PRIMARY, Xref.IMEX_PRIMARY_MI);
     }
 
-    public static CvTerm createComplexPrimaryQualifier(){
+    public static CvTerm createComplexPortalPrimaryQualifier(){
         return createMICvTerm(Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI);
     }
 
