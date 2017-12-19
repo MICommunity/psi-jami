@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.model.extension;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.DefaultXref;
 import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
@@ -34,6 +35,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     private Collection<CooperativeEffect> cooperativeEffects;
     private Collection<ModelledParticipant> modelledParticipants;
     private CvTerm evidenceType;
+    private Xref complexAcXref;
 
     public XmlInteractionEvidenceComplexWrapper(ExtendedPsiXmlInteractionEvidence interaction){
         if (interaction == null){
@@ -308,11 +310,45 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getId() : null;
     }
 
+    //TODO Review
     @Override
     public void assignComplexAc(String accession) {
-        XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.interactionEvidence.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
-        if (accession != null){
-            this.interactionEvidence.getXrefs().add(new XmlXref(CvTermUtils.createComplexPortalDatabase(), accession, CvTermUtils.createComplexPrimaryQualifier()));
+        // add new complex ac if not null
+        if (accession != null) {
+            Collection<Xref> complexXrefList = getXrefs();
+            String id;
+            String version;
+
+            //It checks if the accession is valid and split the version if it is provided
+            String[] splittedComplexAc = accession.split("\\.");
+            if (splittedComplexAc.length == 1) {
+                id = splittedComplexAc[0];
+                version = "1";
+            } else if (splittedComplexAc.length == 2) {
+                {
+                    id = splittedComplexAc[0];
+                    version = splittedComplexAc[1];
+                }
+            } else {
+                throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
+            }
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!id.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    complexXrefList.remove(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                    complexXrefList.add(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                complexXrefList.add(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
         }
     }
 

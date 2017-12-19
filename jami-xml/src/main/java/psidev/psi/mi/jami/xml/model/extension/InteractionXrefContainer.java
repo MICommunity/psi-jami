@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.model.extension;
 
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.model.impl.DefaultXref;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
@@ -24,7 +25,7 @@ import java.util.List;
 @XmlType(name = "interactionXrefContainer")
 public class InteractionXrefContainer extends XrefContainer {
     private Xref imexId;
-    private Xref complexAc;
+    private Xref complexAcXref;
 
     private List<Xref> identifiers;
 
@@ -50,6 +51,7 @@ public class InteractionXrefContainer extends XrefContainer {
         return this.imexId != null ? this.imexId.getId() : null;
     }
 
+    //TODO Review
     public void assignImexId(String identifier) {
         FullXrefList xrefs = (FullXrefList) getXrefs();
         // add new imex if not null
@@ -69,24 +71,46 @@ public class InteractionXrefContainer extends XrefContainer {
     }
 
     public String getComplexAc() {
-        return this.complexAc != null ? this.complexAc.getId() : null;
+        return this.complexAcXref != null ? this.complexAcXref.getId() : null;
     }
 
-    public void assignComplexAc(String identifier) {
-        FullXrefList xrefs = (FullXrefList) getXrefs();
+    public void assignComplexAc(String accession) {
         // add new complex ac if not null
-        if (identifier != null){
-            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
-            CvTerm complexPrimaryQualifier = CvTermUtils.createComplexPrimaryQualifier();
-            // first remove old imex if not null
-            if (this.complexAc != null){
-                xrefs.removeOnly(this.complexAc);
+        if (accession != null) {
+            FullXrefList interactionXrefs = (FullXrefList) getXrefs();
+            String id;
+            String version;
+
+            //It checks if the accession is valid and split the version if it is provided
+            String[] splittedComplexAc = accession.split("\\.");
+            if (splittedComplexAc.length == 1) {
+                id = splittedComplexAc[0];
+                version = "1";
+            } else if (splittedComplexAc.length == 2) {
+                {
+                    id = splittedComplexAc[0];
+                    version = splittedComplexAc[1];
+                }
+            } else {
+                throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
             }
-            this.complexAc = new XmlXref(complexPortalDatabase, identifier, complexPrimaryQualifier);
-            xrefs.addOnly(this.complexAc);
-        }
-        else if (this.complexAc != null){
-            throw new IllegalArgumentException("The complex portal accession has to be non null.");
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!id.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    interactionXrefs.removeOnly(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                    interactionXrefs.addOnly(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                interactionXrefs.addOnly(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
         }
     }
 
@@ -115,23 +139,23 @@ public class InteractionXrefContainer extends XrefContainer {
     protected void processAddedPotentialComplexAc(Xref added) {
 
         // the added identifier is a complex portal accession and the current complex portal accession is not set
-        if (complexAc == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)){
+        if (complexAcXref == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)){
             // the added xrefContainer is complex-primary
             if (XrefUtils.doesXrefHaveQualifier(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)){
-                complexAc = added;
+                complexAcXref = added;
             }
         }
     }
 
     protected void processRemovedPotentialComplexAc(Xref removed) {
         // the removed identifier is pubmed
-        if (complexAc != null && complexAc.equals(removed)){
-            complexAc = null;
+        if (complexAcXref != null && complexAcXref.equals(removed)){
+            complexAcXref = null;
         }
     }
 
     protected void clearComplexAc() {
-        complexAc = null;
+        complexAcXref = null;
     }
 
     protected void initialiseIdentifiers(){

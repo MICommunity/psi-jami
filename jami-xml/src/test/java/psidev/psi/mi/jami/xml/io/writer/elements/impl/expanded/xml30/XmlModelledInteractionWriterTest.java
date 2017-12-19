@@ -984,7 +984,7 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"), "xxxx2"));
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
-        interaction.getXrefs().add(new DefaultXref(CvTermUtils.createComplexPortalDatabase(),"CPX-12345","1",CvTermUtils.createComplexPrimaryQualifier()));
+        interaction.getXrefs().add(new DefaultXref(CvTermUtils.createComplexPortalDatabase(),"CPX-12345","1",CvTermUtils.createComplexPortalPrimaryQualifier()));
 
         elementCache.clear();
 

@@ -45,7 +45,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
 
     private CvTerm evidenceType;
 
-    private Xref complexAc;
+    private Xref complexAcXref;
 
     public DefaultComplex(String name, CvTerm interactorType) {
         super(name, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType());
@@ -290,26 +290,47 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
 
     @Override
     public String getComplexAc() {
-        return this.complexAc != null ? this.complexAc.getId() : null;
+        return this.complexAcXref != null ? this.complexAcXref.getId() : null;
     }
 
-    @Override
     public void assignComplexAc(String accession) {
         // add new complex ac if not null
         if (accession != null) {
-            ComplexXrefList interactionXrefs = (ComplexXrefList) getXrefs();
-            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
-            CvTerm complexPrimaryQualifier = CvTermUtils.createComplexPrimaryQualifier();
-            // first remove old doi if not null
-            if (this.complexAc != null) {
-                interactionXrefs.removeOnly(this.complexAc);
+            ComplexXrefList complexXrefList = (ComplexXrefList) getXrefs();
+            String id;
+            String version;
+
+            //It checks if the accession is valid and split the version if it is provided
+            String[] splittedComplexAc = accession.split("\\.");
+            if (splittedComplexAc.length == 1) {
+                id = splittedComplexAc[0];
+                version = "1";
+            } else if (splittedComplexAc.length == 2) {
+                {
+                    id = splittedComplexAc[0];
+                    version = splittedComplexAc[1];
+                }
+            } else {
+                throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
             }
-            this.complexAc = new DefaultXref(complexPortalDatabase, accession, complexPrimaryQualifier);
-            interactionXrefs.addOnly(this.complexAc);
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!id.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    complexXrefList.remove(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                    complexXrefList.add(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
+                complexXrefList.add(this.complexAcXref);
+            }
         } else {
             throw new IllegalArgumentException("The complex ac has to be non null.");
         }
-
     }
 
     public String getPhysicalProperties() {
@@ -536,27 +557,27 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     }
 
     protected void processAddedXrefEvent(Xref added) {
-        // the added identifier is a complexAc and the current complexAc is not set
-        if (complexAc == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)) {
+        // the added identifier is a complexAcXref and the current complexAcXref is not set
+        if (complexAcXref == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)) {
             // the added xref is complex-primary
             if (XrefUtils.doesXrefHaveQualifier(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)) {
-                complexAc = added;
+                complexAcXref = added;
             }
         }
     }
 
     protected void processRemovedXrefEvent(Xref removed) {
         // the removed identifier is pubmed
-        if (complexAc != null && complexAc.equals(removed)) {
+        if (complexAcXref != null && complexAcXref.equals(removed)) {
             Collection<Xref> existingComplexAc = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
             if (!existingComplexAc.isEmpty()) {
-                complexAc = existingComplexAc.iterator().next();
+                complexAcXref = existingComplexAc.iterator().next();
             }
         }
     }
 
     protected void clearPropertiesLinkedToXrefs() {
-        complexAc = null;
+        complexAcXref = null;
     }
 
 
