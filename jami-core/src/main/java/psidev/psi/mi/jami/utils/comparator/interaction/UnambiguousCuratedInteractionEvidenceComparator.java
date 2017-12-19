@@ -43,7 +43,7 @@ public class UnambiguousCuratedInteractionEvidenceComparator extends Interaction
     public UnambiguousCuratedInteractionBaseComparator getInteractionBaseComparator() {
         return (UnambiguousCuratedInteractionBaseComparator) super.getInteractionBaseComparator();
     }
-    @Override
+
     /**
      * It will first compare the basic interaction properties using UnambiguousCuratedInteractionBaseComparator.
      * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
@@ -53,6 +53,7 @@ public class UnambiguousCuratedInteractionEvidenceComparator extends Interaction
      *
      *
      **/
+    @Override
     public int compare(InteractionEvidence interaction1, InteractionEvidence interaction2) {
         return super.compare(interaction1, interaction2);
     }

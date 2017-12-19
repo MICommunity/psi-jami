@@ -26,7 +26,6 @@ public abstract class AbstractMIEdge<T> implements MIEdge<T> {
      * @param nodeA a T object.
      * @param nodeB a T object.
      * @param nodeComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
-     * @param <T> a T object.
      */
     public AbstractMIEdge(T nodeA, T nodeB, MIComparator<T> nodeComparator){
          if (nodeA == null){

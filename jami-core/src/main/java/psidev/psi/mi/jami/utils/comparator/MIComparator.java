@@ -16,7 +16,6 @@ public interface MIComparator<T> extends Comparator<T>{
      * <p>computeHashCode</p>
      *
      * @param object a T object.
-     * @param <T> a T object.
      * @return a int.
      */
     public int computeHashCode(T object);

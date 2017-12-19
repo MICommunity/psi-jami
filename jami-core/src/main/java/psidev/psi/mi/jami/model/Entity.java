@@ -35,6 +35,7 @@ public interface Entity<F extends Feature> {
      * Ex: increasing, decreasing, disrupting, etc.
      *
      * @return the collection of causal relationships attached to this entity
+     * @param <C> a C object
      */
     public <C extends CausalRelationship> Collection<C> getCausalRelationships();
 
@@ -43,6 +44,7 @@ public interface Entity<F extends Feature> {
      * The collection cannot be null. If the entity does not have any features, the method should return an empty collection.
      *
      * @return the features
+     * @param <F2> a F2 object
      */
     public <F2 extends F> Collection<F2> getFeatures();
 

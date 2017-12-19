@@ -61,6 +61,7 @@ public interface InteractionEvidence extends Interaction<ParticipantEvidence>{
      * an empty set.
      *
      * @return the collection of variableParameterValueSet
+     * @param <V> a V object
      */
     public <V extends VariableParameterValueSet> Collection<V> getVariableParameterValues();
 
@@ -85,6 +86,7 @@ public interface InteractionEvidence extends Interaction<ParticipantEvidence>{
      * Ex: IC50, ...
      *
      * @return the parameters
+     * @param <P> an P object
      */
     public <P extends Parameter> Collection<P> getParameters();
 
@@ -109,6 +111,7 @@ public interface InteractionEvidence extends Interaction<ParticipantEvidence>{
      * Ex: author based scores, statistical confidences, ...
      *
      * @return the confidences
+     * @param <C> a C object
      */
     public <C extends Confidence> Collection<C> getConfidences();
 

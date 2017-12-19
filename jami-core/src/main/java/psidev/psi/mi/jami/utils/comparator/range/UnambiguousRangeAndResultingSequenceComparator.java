@@ -33,7 +33,7 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
     public UnambiguousPositionComparator getPositionComparator() {
         return (UnambiguousPositionComparator) super.getPositionComparator();
     }
-    @Override
+
     /**
      * It compares first the start Position, then the end Position using a UnambiguousPositionComparator,
      * If start/end positions are equals, the linked ranges will always come before the ranges that are not linked.
@@ -41,6 +41,7 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
      * - Two ranges which are null are equals
      * - The range which is not null is before null.
      */
+    @Override
     public int compare(Range range1, Range range2) {
         return super.compare(range1, range2);
     }

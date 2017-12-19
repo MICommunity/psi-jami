@@ -20,7 +20,6 @@ public abstract class AbstractMatrixExpansion<T extends Interaction, B extends B
 
     /**
      * <p>Constructor for AbstractMatrixExpansion.</p>
-     *
      */
     public AbstractMatrixExpansion(){
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.MATRIX_EXPANSION, ComplexExpansionMethod.MATRIX_EXPANSION_MI));

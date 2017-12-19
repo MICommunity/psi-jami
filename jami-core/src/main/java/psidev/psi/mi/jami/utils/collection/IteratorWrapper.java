@@ -21,7 +21,6 @@ public class IteratorWrapper<T> implements Iterator<T> {
      *
      * @param originalCollection a {@link psidev.psi.mi.jami.utils.collection.AbstractCollectionWrapper} object.
      * @param originalIterator a {@link java.util.Iterator} object.
-     * @param <T> a T object.
      */
     public IteratorWrapper(AbstractCollectionWrapper<T> originalCollection, Iterator<T> originalIterator){
         if (originalCollection == null){

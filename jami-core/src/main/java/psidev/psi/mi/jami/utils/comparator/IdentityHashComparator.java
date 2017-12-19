@@ -12,8 +12,8 @@ public class IdentityHashComparator<T> implements MIComparator<T>{
     /**
      * Compares two objects based on their hashcode methods
      *
-     * @param t
-     * @param t2
+     * @param t a T object.
+     * @param t2 a T object.
      * @return a int.
      */
     public int compare(T t, T t2) {

@@ -156,6 +156,7 @@ public interface Participant<I extends Interaction, F extends Feature> extends E
      * Ex: author identifiers, ...
      *
      * @return the xrefs
+     * @param <X> a X object
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -164,6 +165,7 @@ public interface Participant<I extends Interaction, F extends Feature> extends E
      * The set cannot be null. If the participant does not have any annotations, the method should return an empty Collection.
      *
      * @return the annotations
+     * @param <A> an A object
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -173,6 +175,7 @@ public interface Participant<I extends Interaction, F extends Feature> extends E
      * Ex: author assigned name, ...
      *
      * @return the xrefs
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 }

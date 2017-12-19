@@ -37,11 +37,12 @@ public class UnambiguousCausalRelationshipComparator extends CausalRelationshipC
     public UnambiguousEntityComparator getParticipantComparator() {
         return (UnambiguousEntityComparator) super.getParticipantComparator();
     }
-    @Override
+
     /**
      * It will first compare the relationType using UnambiguousCvTermComparator. If both relationTypes are identical, it will compare the
      * target using UnambiguousParticipantBaseComparator
      */
+    @Override
     public int compare(CausalRelationship rel1, CausalRelationship rel2) {
         return super.compare(rel1, rel2);
     }

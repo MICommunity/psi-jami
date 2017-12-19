@@ -59,6 +59,8 @@ package psidev.psi.mi.jami.utils.checksum;
  * periodically to check for updates or to contribute improvements.
  * </p>
  *
+ * @author ntoro
+ * @version $Id: $
  */
 public class Base64 {
 
@@ -1622,6 +1624,7 @@ public class Base64 {
         /**
          * Method added by PHIL. [Thanks, PHIL. -Rob]
          * This pads the buffer without closing the stream.
+         * @throws java.io.IOException if Base64 input not properly padded
          */
         public void flushBase64() throws java.io.IOException {
             if (position > 0) {
@@ -1661,6 +1664,7 @@ public class Base64 {
          * base640-encoded data in a stream.
          *
          * @since 1.5.1
+         * @throws java.io.IOException if there is an error flushing the stream
          */
         public void suspendEncoding() throws java.io.IOException {
             flushBase64();

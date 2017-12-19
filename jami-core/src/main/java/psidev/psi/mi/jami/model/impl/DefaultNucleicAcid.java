@@ -321,6 +321,8 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * <p>processRemovedIdentifierEvent</p>
      *
      * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -337,11 +339,12 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         ddbjEmblGenbank = null;
         refseq = null;
     }
-    @Override
+
     /**
      * Sets the interactor type of this NucleicAcid.
      * If the interactor type is null, it will set the interactor type to nucleic acid (MI:0318)
      */
+    @Override
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null) {
             super.setInteractorType(CvTermUtils.createNucleicAcidInteractorType());

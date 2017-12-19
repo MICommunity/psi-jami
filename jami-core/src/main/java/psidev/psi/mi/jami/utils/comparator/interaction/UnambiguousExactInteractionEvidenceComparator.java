@@ -43,7 +43,7 @@ public class UnambiguousExactInteractionEvidenceComparator extends InteractionEv
     public UnambiguousInteractionBaseComparator getInteractionBaseComparator() {
         return (UnambiguousInteractionBaseComparator) super.getInteractionBaseComparator();
     }
-    @Override
+
     /**
      * It will first compare the basic interaction properties using UnambiguousInteractionBaseComparator.
      * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
@@ -52,6 +52,7 @@ public class UnambiguousExactInteractionEvidenceComparator extends InteractionEv
      * If the parameters are the same, it will first compare the experimental variableParameters using VariableParameterValueSetComparator and then it will compare the inferred boolean value (Inferred interactions will always come after).
      *
      **/
+    @Override
     public int compare(InteractionEvidence interaction1, InteractionEvidence interaction2) {
         return super.compare(interaction1, interaction2);
     }

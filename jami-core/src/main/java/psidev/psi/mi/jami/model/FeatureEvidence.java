@@ -18,6 +18,7 @@ public interface FeatureEvidence extends Feature<ExperimentalEntity, FeatureEvid
      * Ex: autoradiography, predetermined feature, ...
      *
      * @return the collection of detection methods for this feature
+     * @param <C> a C object
      */
     public <C extends CvTerm> Collection<C> getDetectionMethods();
 
@@ -26,6 +27,7 @@ public interface FeatureEvidence extends Feature<ExperimentalEntity, FeatureEvid
      * The Collection cannot be null. If the feature does not have any parameters, the method should return an empty Collection.
      *
      * @return the parameters
+     * @param <P> a P object
      */
     public <P extends Parameter> Collection<P> getParameters();
 }

@@ -21,7 +21,6 @@ public interface InteractionSource<T extends Interaction> extends InteractionStr
      *
      * @return collection of Interactions for this datasource
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     * @param <T> a T object.
      */
     public Collection<T> getInteractions() throws MIIOException;
 

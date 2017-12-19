@@ -37,13 +37,13 @@ public class OrganismComparator extends OrganismTaxIdComparator {
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
-    @Override
     /**
      * It will first look at the taxids. If taxIds are the same , it will look at the cell types.
      * If the cell types are the same, it will look at the tissues. If the tissues are the same, it will look at the compartments.
      * - Two organisms which are null are equals
      * - The organism which is not null is before null.
      */
+    @Override
     public int compare(Organism organism1, Organism organism2) {
         int EQUAL = 0;
         int BEFORE = -1;

@@ -19,6 +19,7 @@ public class IntegerComparator implements Comparator<Integer>{
      *
      * @param integer a {@link java.lang.Integer} object.
      * @param integer2 a {@link java.lang.Integer} object.
+     * @param integer2 a {@link java.lang.Integer} object.
      * @return a int.
      */
     public int compare(Integer integer, Integer integer2) {

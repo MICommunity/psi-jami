@@ -28,7 +28,6 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
 
     /**
      * <p>Constructor for AbstractBipartiteExpansion.</p>
-     *
      */
     public AbstractBipartiteExpansion(){
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.BIPARTITE_EXPANSION, ComplexExpansionMethod.BIPARTITE_EXPANSION_MI));

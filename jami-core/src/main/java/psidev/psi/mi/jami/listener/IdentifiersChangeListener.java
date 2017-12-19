@@ -19,7 +19,6 @@ public interface IdentifiersChangeListener<T> extends EventListener {
      *
      * @param o        The object which has changed.
      * @param added             The added identifier
-     * @param <T> a T object.
      */
     public void onAddedIdentifier(T o , Xref added);
 

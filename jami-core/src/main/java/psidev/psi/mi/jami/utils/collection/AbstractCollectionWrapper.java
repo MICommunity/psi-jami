@@ -18,7 +18,6 @@ public abstract class AbstractCollectionWrapper<T> implements Collection<T> {
      * <p>Constructor for AbstractCollectionWrapper.</p>
      *
      * @param list a {@link java.util.Collection} object.
-     * @param <T> a T object.
      */
     public AbstractCollectionWrapper(Collection<T> list){
         super();

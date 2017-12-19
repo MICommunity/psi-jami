@@ -75,6 +75,7 @@ public interface Organism {
      * Ex: Mus muscaris, transgenic mice and house mouse are mouse synonyms/aliases.
      *
      * @return the aliases
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 

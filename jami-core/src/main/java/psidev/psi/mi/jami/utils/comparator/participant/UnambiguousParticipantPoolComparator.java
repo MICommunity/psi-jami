@@ -24,14 +24,14 @@ public class UnambiguousParticipantPoolComparator extends ParticipantPoolCompara
         super(new UnambiguousParticipantBaseComparator());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousParticipantBaseComparator getParticipantBaseComparator() {
         return (UnambiguousParticipantBaseComparator) super.getParticipantBaseComparator();
     }
     /**
+     * {@inheritDoc}
+     *
      * It will first compares basic participant properties using UnambiguousParticipantBaseComparator, then it will compare participant pool type using cv term comparator and then it will compare
      * each participant candidate using UnambiguousEntityBaseComparator
      */

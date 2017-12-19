@@ -41,7 +41,7 @@ public class UnambiguousCuratedInteractionComparator extends InteractionComparat
     public UnambiguousCuratedModelledInteractionComparator getModelledInteractionComparator() {
         return (UnambiguousCuratedModelledInteractionComparator) super.getModelledInteractionComparator();
     }
-    @Override
+
     /**
      * Experimental interactions come first, then allosteric interactions, then cooperative interactions, then modelled interactions.
      * Modelled interactions come first and then experimental interactions
@@ -49,6 +49,7 @@ public class UnambiguousCuratedInteractionComparator extends InteractionComparat
      * - It uses UnambiguousCuratedModelledInteractionComparator to compare modelled interactions
      * - It uses UnambiguousCuratedInteractionBaseComparator to compare basic interaction properties
      */
+    @Override
     public int compare(Interaction interaction1, Interaction interaction2) {
         return super.compare(interaction1, interaction2);
     }

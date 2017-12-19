@@ -20,7 +20,6 @@ public abstract class AbstractSpokeExpansion<T extends Interaction, B extends Bi
 
     /**
      * <p>Constructor for AbstractSpokeExpansion.</p>
-     *
      */
     public AbstractSpokeExpansion() {
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.SPOKE_EXPANSION, ComplexExpansionMethod.SPOKE_EXPANSION_MI));

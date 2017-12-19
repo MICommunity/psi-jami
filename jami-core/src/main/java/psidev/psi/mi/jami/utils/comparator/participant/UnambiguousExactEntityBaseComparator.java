@@ -81,11 +81,12 @@ public class UnambiguousExactEntityBaseComparator extends EntityBaseComparator {
     public UnambiguousExactInteractorComparator getInteractorComparator() {
         return (UnambiguousExactInteractorComparator) super.getInteractorComparator();
     }
-    @Override
+
     /**
      * It will first compare the interactors using UnambiguousExactInteractorComparator. If both interactors are the same,
      * it will look at the stoichiometry (participant with lower stoichiometry will come first).
      */
+    @Override
     public int compare(Entity participant1, Entity participant2) {
         return super.compare(participant1, participant2);
     }

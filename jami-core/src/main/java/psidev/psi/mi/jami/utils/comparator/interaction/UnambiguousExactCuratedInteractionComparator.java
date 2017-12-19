@@ -42,13 +42,14 @@ public class UnambiguousExactCuratedInteractionComparator extends InteractionCom
     public UnambiguousExactCuratedModelledInteractionComparator getModelledInteractionComparator() {
         return (UnambiguousExactCuratedModelledInteractionComparator) super.getModelledInteractionComparator();
     }
-    @Override
+
     /**
      * Modelled interactions come first and then experimental interactions
      * - It uses UnambiguousExactCuratedInteractionEvidenceComparator to compare experimental interactions
      * - It uses UnambiguousExactCuratedModelledInteractionComparator to compare modelled interactions
      * - It uses UnambiguousCuratedInteractionBaseComparator to compare basic interaction properties
      */
+    @Override
     public int compare(Interaction interaction1, Interaction interaction2) {
         return super.compare(interaction1, interaction2);
     }

@@ -36,12 +36,13 @@ public class UnambiguousExactModelledParticipantInteractorComparator extends
     public UnambiguousExactInteractorComparator getInteractorComparator() {
         return (UnambiguousExactInteractorComparator) super.getInteractorComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
      *
      * This comparator will ignore all the other properties of a biological participant.
      */
+    @Override
     public int compare(ModelledEntity component1, ModelledEntity component2) {
         return checkComplexesAsInteractor ? super.compare(component1, component2) : 0;
     }

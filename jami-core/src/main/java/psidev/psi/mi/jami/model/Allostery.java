@@ -19,7 +19,6 @@ public interface Allostery<T extends AllostericEffector> extends CooperativeEffe
      * Ex: allosteric change in dynamics, allosteric change in structure, ...
      *
      * @return the allosteric mechanism
-     * @param <T> a T object.
      */
     public CvTerm getAllostericMechanism();
 

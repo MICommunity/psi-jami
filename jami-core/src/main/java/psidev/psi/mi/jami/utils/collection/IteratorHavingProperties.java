@@ -21,7 +21,6 @@ public class IteratorHavingProperties<T> implements Iterator<T> {
      *
      * @param originalCollection a {@link psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties} object.
      * @param originalIterator a {@link java.util.Iterator} object.
-     * @param <T> a T object.
      */
     public IteratorHavingProperties(AbstractListHavingProperties<T> originalCollection, Iterator<T> originalIterator){
         if (originalCollection == null){

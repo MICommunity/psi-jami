@@ -253,7 +253,6 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
      *
      * @param i a int.
      * @param i2 a int.
-     * @param i2 a int.
      */
     protected void removeRangeOnly(int i, int i2) {
         super.removeRange(i, i2);

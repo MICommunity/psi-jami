@@ -86,11 +86,11 @@ public class UnambiguousExactParticipantBaseComparator extends ParticipantBaseCo
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
-    @Override
     /**
      * It will first compare the interactors using UnambiguousExactEntityBaseComparator. If both interactors are the same,
      * it will compare the biological roles using UnambiguousCvTermComparator.
      */
+    @Override
     public int compare(Participant participant1, Participant participant2) {
         return super.compare(participant1, participant2);
     }

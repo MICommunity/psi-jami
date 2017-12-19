@@ -31,15 +31,15 @@ public class UnambiguousPositionComparator extends PositionComparator {
         super(new UnambiguousCvTermComparator());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getStatusComparator() {
         return (UnambiguousCvTermComparator) super.getStatusComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will first compare the status (using UnambiguousCvTermComparator) and then will check if the position is undetermined. It will then check the start and the end.
      * - Two positions which are null are equals
      * - The position which is not null is before null.

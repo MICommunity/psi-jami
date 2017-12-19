@@ -31,12 +31,13 @@ public class UnambiguousExactParticipantEvidenceInteractorComparator extends Par
     public UnambiguousExactInteractorComparator getInteractorComparator() {
         return (UnambiguousExactInteractorComparator) super.getInteractorComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
      *
      * This comparator will ignore all the other properties of an experimental participant.
      */
+    @Override
     public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }

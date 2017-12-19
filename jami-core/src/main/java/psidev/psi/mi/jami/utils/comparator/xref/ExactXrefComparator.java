@@ -29,7 +29,6 @@ public class ExactXrefComparator extends UnambiguousXrefComparator {
         super();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      *
@@ -41,9 +40,10 @@ public class ExactXrefComparator extends UnambiguousXrefComparator {
      *     - compare the databases. If both databases are equal, compare the ids (is case sensitive)
      *     - if both ids are the same, compares the versions.
      * - If both xref databases and ids are the same, use UnambiguousCvTermComparator to compare the qualifiers.
-     * @param xref1
-     * @param xref2
+     * @param xref1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param xref2 a {@link psidev.psi.mi.jami.model.Xref} object.
      */
+    @Override
     public int compare(Xref xref1, Xref xref2) {
         int EQUAL = 0;
         int BEFORE = -1;

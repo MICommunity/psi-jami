@@ -32,6 +32,7 @@ public interface CooperativityEvidence {
      * This collection cannot be null. If the CooperativityEvidence does not have any methods, the method should return an empty collection
      *
      * @return The collection of methods
+     * @param <T> a T object
      */
     public <T extends CvTerm> Collection<T> getEvidenceMethods();
 }

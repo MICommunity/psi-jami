@@ -31,7 +31,7 @@ public class UnambiguousFeatureComparator extends FeatureComparator {
     public UnambiguousFeatureBaseComparator getFeatureBaseComparator() {
         return (UnambiguousFeatureBaseComparator) super.getFeatureBaseComparator();
     }
-    @Override
+
     /**
      * Biological features come first and then experimental features.
      * - It uses UnambiguousBiologicalFeatureComparator to compare biological features
@@ -39,6 +39,7 @@ public class UnambiguousFeatureComparator extends FeatureComparator {
      * - It uses UnambiguousFeatureBaseComparator to compare basic feature properties
      *
      */
+    @Override
     public int compare(Feature feature1, Feature feature2) {
         return super.compare(feature1, feature2);
     }

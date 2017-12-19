@@ -24,7 +24,6 @@ public class ParticipantInteractorComparator<T extends Entity> implements Compar
      * Creates a new ParticipantInteractorComparator.
      *
      * @param interactorComparator : the interactor comparator required to compare the interactor
-     * @param <T> a T object.
      */
     public ParticipantInteractorComparator(InteractorComparator interactorComparator){
         this.interactorComparator = interactorComparator;

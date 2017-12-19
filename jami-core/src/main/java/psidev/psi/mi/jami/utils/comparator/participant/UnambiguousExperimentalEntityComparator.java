@@ -1,9 +1,7 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
 import psidev.psi.mi.jami.model.ExperimentalEntity;
-import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
 import psidev.psi.mi.jami.utils.comparator.feature.UnambiguousFeatureEvidenceComparator;
-import psidev.psi.mi.jami.utils.comparator.organism.UnambiguousOrganismComparator;
 
 /**
  * Unambiguous Experimental entity comparator.
@@ -32,9 +30,8 @@ public class UnambiguousExperimentalEntityComparator extends ExperimentalEntityC
     public UnambiguousEntityBaseComparator getParticipantBaseComparator() {
         return (UnambiguousEntityBaseComparator) super.getParticipantBaseComparator();
     }
+
     @Override
-    /**
-     */
     public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }

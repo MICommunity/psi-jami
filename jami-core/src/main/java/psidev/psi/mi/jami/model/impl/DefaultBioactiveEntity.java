@@ -510,6 +510,8 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
     }
 
     /**
+     * {@inheritDoc}
+     *
      * <p>processRemovedIdentifierEvent</p>
      *
      * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -524,11 +526,12 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
     protected void clearPropertiesLinkedToIdentifiers() {
         chebi = null;
     }
-    @Override
+
     /**
      * Sets the interactor type of this bioactive entity.
      * If the given interactorType is null, it sets the interactorType to 'bioactive entity'(MI:1100)
      */
+    @Override
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null){
             super.setInteractorType(CvTermUtils.createBioactiveEntityType());

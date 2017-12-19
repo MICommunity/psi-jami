@@ -310,12 +310,15 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseIdentifiers() {
         initialiseIdentifiersWith(new GeneIdentifierList());
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Return the first ensembl identifier if provided, otherwise the first ensemblGenomes if provided, otherwise
      * the first entrez/gene id if provided, otherwise the first refseq id if provided
      * otherwise the first identifier in the list of identifiers

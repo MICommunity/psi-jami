@@ -48,6 +48,7 @@ public interface NamedExperiment extends Experiment {
      * The Collection cannot be null and if the experiment does not have any aliases, the method should return an empty Collection.
      *
      * @return the aliases
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 }

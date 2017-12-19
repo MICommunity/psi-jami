@@ -53,12 +53,13 @@ public class UnambiguousExactModelledParticipantComparator extends ModelledParti
     public UnambiguousExactModelledParticipantPoolComparator getParticipantPoolComparator() {
         return (UnambiguousExactModelledParticipantPoolComparator) super.getParticipantPoolComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of a component using UnambiguousExactParticipantBaseComparator.
      *
      * This comparator will ignore all the other properties of a component.
      */
+    @Override
     public int compare(ModelledParticipant component1, ModelledParticipant component2) {
         return super.compare(component1, component2);
     }

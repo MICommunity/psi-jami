@@ -41,12 +41,13 @@ public class UnambiguousExactModelledEntityComparator extends ModelledEntityComp
     public UnambiguousExactEntityBaseComparator getEntityBaseComparator() {
         return (UnambiguousExactEntityBaseComparator) super.getEntityBaseComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of a component using UnambiguousExactParticipantBaseComparator.
      *
      * This comparator will ignore all the other properties of a component.
      */
+    @Override
     public int compare(ModelledEntity component1, ModelledEntity component2) {
         return super.compare(component1, component2);
     }

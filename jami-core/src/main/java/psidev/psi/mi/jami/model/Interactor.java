@@ -55,6 +55,7 @@ public interface Interactor {
      * Ex: uniprotkb secondary accession O00183, primary accessions, ...
      *
      * @return the alternative identifier
+     * @param <X> a X object
      */
     public <X extends Xref> Collection<X> getIdentifiers();
 
@@ -73,6 +74,7 @@ public interface Interactor {
      * Ex: rogid:u1FCes02jPb3CGRj1aDkzpbSiuI9606, standard Inchi key, ...
      *
      * @return the set of checksums
+     * @param <C> a C object
      */
     public <C extends Checksum> Collection<C> getChecksums();
 
@@ -81,6 +83,7 @@ public interface Interactor {
      * Ex: GO references to gives function/process/location information
      *
      * @return other xrefs
+     * @param <X> a X object
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -90,6 +93,7 @@ public interface Interactor {
      * Ex: pharmacology, isoform-comment, etc.
      *
      * @return the annotations
+     * @param <A> an A object
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -99,6 +103,7 @@ public interface Interactor {
      * Ex: complex-synonym, author-assigned name, ...
      *
      * @return the aliases
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 

@@ -33,7 +33,6 @@ public class UnambiguousAliasComparator extends AliasComparator {
         return (UnambiguousCvTermComparator) super.getTypeComparator();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      *
@@ -45,6 +44,7 @@ public class UnambiguousAliasComparator extends AliasComparator {
      * @param alias1 a {@link psidev.psi.mi.jami.model.Alias} object.
      * @param alias2 a {@link psidev.psi.mi.jami.model.Alias} object.
      */
+    @Override
     public int compare(Alias alias1, Alias alias2) {
         return super.compare(alias1, alias2);
     }

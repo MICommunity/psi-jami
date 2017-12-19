@@ -30,12 +30,13 @@ public class UnambiguousParticipantInteractorComparator extends ParticipantInter
     public UnambiguousInteractorComparator getInteractorComparator() {
         return (UnambiguousInteractorComparator) super.getInteractorComparator();
     }
-    @Override
+
     /**
      * It will compare the interactors using UnambiguousInteractorComparator.
      *
      * This comparator will ignore all the other properties of a participant.
      */
+    @Override
     public int compare(Entity participant1, Entity participant2) {
         return super.compare(participant1, participant2);
     }

@@ -20,7 +20,6 @@ public class CollectionComparator<T> implements Comparator<Collection<? extends 
      * Creates a new CollectionComparator. It requires a Comparator for the obejcts in the Collection
      *
      * @param objectComparator a {@link java.util.Comparator} object.
-     * @param <T> a T object.
      */
     public CollectionComparator(Comparator<T> objectComparator){
         if (objectComparator == null){

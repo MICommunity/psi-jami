@@ -128,6 +128,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * Ex: interpro:IPR003121
      *
      * @return the identifier
+     * @param <X> a X object
      */
     public <X extends Xref> Collection<X> getIdentifiers();
 
@@ -137,6 +138,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * Ex: GO xrefs to give information about process or function
      *
      * @return the xrefs
+     * @param <X> a X object
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -146,6 +148,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * Ex: observed ptm, cautions, comments, ...
      *
      * @return the annotations
+     * @param <A> an A object
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -169,6 +172,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * The collection cannot be null. If the feature does not have any ranges, the method should return an empty collection
      *
      * @return a collection of ranges
+     * @param <R> a R object.
      */
     public <R extends Range> Collection<R> getRanges();
 
@@ -218,6 +222,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * The collection cannot be null. If the feature does not bind with any other features, the method should return an empty collection
      *
      * @return the binding features
+     * @param <T> a T object.
      */
     public <T extends F> Collection<T> getLinkedFeatures();
 
@@ -226,6 +231,7 @@ public interface Feature<P extends Entity, F extends Feature> {
      * The Collection cannot be null and if the experiment does not have any aliases, the method should return an empty Collection.
      *
      * @return the aliases
+     * @param <A> a A object.
      */
     public <A extends Alias> Collection<A> getAliases();
 }

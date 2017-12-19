@@ -16,7 +16,6 @@ public interface NamedInteraction<T extends Participant> extends Interaction<T>{
      * It can be null
      *
      * @return the full name
-     * @param <T> a T object.
      */
     public String getFullName();
 
@@ -32,6 +31,7 @@ public interface NamedInteraction<T extends Participant> extends Interaction<T>{
      * The Collection cannot be null and if the interaction does not have any aliases, the method should return an empty Collection.
      *
      * @return the aliases
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 }

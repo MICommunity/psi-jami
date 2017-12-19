@@ -52,13 +52,14 @@ public class UnambiguousExactExperimentalParticipantPoolComparator extends Exper
     public UnambiguousExactExperimentalEntityComparator getExperimentalEntityComparator() {
         return (UnambiguousExactExperimentalEntityComparator) super.getExperimentalEntityComparator();
     }
-    @Override
+
     /**
      * It will first compares experimental roles using UnambiguousCvTermComparator. If both experimental roles are equals, it
      * will look at the identification methods using UnambiguousCvTermComparator. If both identification methods are equals, it will
      * look at the experimental preparations using UnambiguousCvTermComparator. If both experimental preparations are equals, it will
      * look at the expressed in organisms using UnambiguousOrganismComparator.
      */
+    @Override
     public int compare(ExperimentalParticipantPool experimentalParticipant1, ExperimentalParticipantPool experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }

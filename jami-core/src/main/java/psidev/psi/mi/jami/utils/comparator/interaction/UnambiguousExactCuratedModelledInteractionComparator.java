@@ -38,12 +38,13 @@ public class UnambiguousExactCuratedModelledInteractionComparator extends Curate
     public UnambiguousCvTermComparator getSourceComparator() {
         return (UnambiguousCvTermComparator) super.getSourceComparator();
     }
-    @Override
+
     /**
      * It will use a UnambiguousCuratedInteractionBase to compare basic interaction properties.
      * Then it will compare the modelledParticipants using UnambiguousExactModelledParticipantComparator.
      * Finally, it will compare the source of the modelledInteraction using UnambiguousCvTermComparator
      * */
+    @Override
     public int compare(ModelledInteraction interaction1, ModelledInteraction interaction2) {
         return super.compare(interaction1, interaction2);
     }

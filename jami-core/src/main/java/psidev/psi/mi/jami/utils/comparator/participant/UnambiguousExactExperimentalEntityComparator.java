@@ -30,9 +30,8 @@ public class UnambiguousExactExperimentalEntityComparator extends ExperimentalEn
     public UnambiguousExactEntityBaseComparator getParticipantBaseComparator() {
         return (UnambiguousExactEntityBaseComparator) super.getParticipantBaseComparator();
     }
+
     @Override
-    /**
-     */
     public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }

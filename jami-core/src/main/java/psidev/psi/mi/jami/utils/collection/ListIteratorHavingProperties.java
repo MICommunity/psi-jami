@@ -18,7 +18,6 @@ public class ListIteratorHavingProperties<T> extends IteratorHavingProperties<T>
      *
      * @param originalCollection a {@link psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties} object.
      * @param originalIterator a {@link java.util.ListIterator} object.
-     * @param <T> a T object.
      */
     public ListIteratorHavingProperties(AbstractListHavingProperties<T> originalCollection, ListIterator<T> originalIterator){
         super(originalCollection, originalIterator);

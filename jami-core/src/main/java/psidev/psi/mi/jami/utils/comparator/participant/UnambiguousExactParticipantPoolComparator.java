@@ -28,11 +28,12 @@ public class UnambiguousExactParticipantPoolComparator extends ParticipantPoolCo
     public UnambiguousExactParticipantBaseComparator getParticipantBaseComparator() {
         return (UnambiguousExactParticipantBaseComparator) super.getParticipantBaseComparator();
     }
-    @Override
+
     /**
      * It will first compares basic participant properties using UnambiguousExactParticipantBaseComparator, then it will compare participant pool type using cv term comparator and then it will compare
      * each participant candidate using UnambiguousExactEntityBaseComparator
      */
+    @Override
     public int compare(ParticipantPool participant1, ParticipantPool participant2) {
         return super.compare(participant1, participant2);
     }

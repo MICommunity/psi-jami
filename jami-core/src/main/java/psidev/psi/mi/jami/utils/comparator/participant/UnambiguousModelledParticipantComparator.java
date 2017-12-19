@@ -35,12 +35,13 @@ public class UnambiguousModelledParticipantComparator extends ModelledParticipan
     public UnambiguousModelledParticipantPoolComparator getParticipantPoolComparator() {
         return (UnambiguousModelledParticipantPoolComparator) super.getParticipantPoolComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of a biological participant using UnambiguousParticipantBaseComparator.
      *
      * This comparator will ignore all the other properties of a biological participant.
      */
+    @Override
     public int compare(ModelledParticipant component1, ModelledParticipant component2) {
         return super.compare(component1, component2);
     }

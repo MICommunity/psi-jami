@@ -51,7 +51,7 @@ public class UnambiguousExactParticipantComparator extends ParticipantComparator
     public UnambiguousExactParticipantPoolComparator getPoolComparator() {
         return (UnambiguousExactParticipantPoolComparator) super.getPoolComparator();
     }
-    @Override
+
     /**
      * Modelled participants come first and then experimental participants.
      * - It uses UnambiguousExactParticipantPoolComparator to compare participant sets
@@ -60,6 +60,7 @@ public class UnambiguousExactParticipantComparator extends ParticipantComparator
      * - It uses UnambiguousExactParticipantBaseComparator to compare basic participant properties
      *
      */
+    @Override
     public int compare(Participant participant1, Participant participant2) {
         return super.compare(participant1, participant2);
     }

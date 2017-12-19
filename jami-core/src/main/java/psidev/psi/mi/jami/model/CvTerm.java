@@ -63,6 +63,7 @@ public interface CvTerm {
      * Ex: MI:0982 from the psi-mi ontology
      *
      * @return the ontology identifier
+     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getIdentifiers();
 
@@ -129,6 +130,7 @@ public interface CvTerm {
      * Ex: publication primary references
      *
      * @return the set of Xrefs
+     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -138,6 +140,7 @@ public interface CvTerm {
      * Ex: search url, validation regexp, etc
      *
      * @return the set of annotations
+     * @param <A> a A object.
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -147,6 +150,7 @@ public interface CvTerm {
      * Ex: participant detection is a synonym of participant identification method (MI:0002)
      *
      * @return the se of synonyms
+     * @param <A> a A object.
      */
     public <A extends Alias> Collection<A> getSynonyms();
 }

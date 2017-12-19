@@ -20,7 +20,6 @@ public interface InteractionStream<T extends Interaction> extends MIDataSource {
      *
      * @return iterator of Interactions for this datasource
      * @throws psidev.psi.mi.jami.exception.MIIOException exception thrown when it cannot iterate MI data
-     * @param <T> a T object.
      */
     public Iterator<T> getInteractionsIterator() throws MIIOException;
 }

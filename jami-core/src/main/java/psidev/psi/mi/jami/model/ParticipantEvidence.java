@@ -36,6 +36,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * Ex: western blot, immunostaining, ...
      *
      * @return the participant identification method
+     * @param <C> a C object
      */
     public <C extends CvTerm> Collection<C> getIdentificationMethods();
 
@@ -46,6 +47,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * Ex: engineered, cDNA library, ...
      *
      * @return the experimental preparations.
+     * @param <C> a C object
      */
     public <C extends CvTerm> Collection<C> getExperimentalPreparations();
 
@@ -71,6 +73,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * Ex: author based scores, statistical confidences, ...
      *
      * @return the confidences
+     * @param <C> a C object
      */
     public <C extends Confidence> Collection<C> getConfidences();
 
@@ -79,6 +82,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * The Collection cannot be null. If the participant does not have any parameters, the method should return an empty Collection.
      *
      * @return the parameters
+     * @param <P> a P object
      */
     public <P extends Parameter> Collection<P> getParameters();
 }

@@ -20,7 +20,6 @@ public interface BinaryInteraction<T extends Participant> extends Interaction<T>
      * The first participant of the binary interaction.
      *
      * @return first participant of the binary interaction
-     * @param <T> a T object.
      */
     public T getParticipantA();
 

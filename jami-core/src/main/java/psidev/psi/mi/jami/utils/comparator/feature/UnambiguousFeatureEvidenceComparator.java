@@ -45,13 +45,14 @@ public class UnambiguousFeatureEvidenceComparator extends FeatureEvidenceCompara
     public ParameterCollectionComparator getParameterCollectionComparator() {
         return parameterCollectionComparator;
     }
-    @Override
+
     /**
      * It will first compare feature detection methods using UnambiguousCvTermComparator. If both feature detection methods are the same,
      * it will use a UnambiguousFeatureBaseComparator to compare basic properties of a feature.
      *
      * This comparator will ignore all the other properties of an experimental feature.
      */
+    @Override
     public int compare(FeatureEvidence experimentalFeature1, FeatureEvidence experimentalFeature2) {
         int comp = super.compare(experimentalFeature1, experimentalFeature2);
         if (comp != 0){

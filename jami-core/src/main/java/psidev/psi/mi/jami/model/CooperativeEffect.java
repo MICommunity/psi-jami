@@ -105,6 +105,7 @@ public interface CooperativeEffect {
      * return an empty collection.
      *
      * @return Collection of experimental methods and publications
+     * @param <T> a T object
      */
     public <T extends CooperativityEvidence> Collection<T> getCooperativityEvidences();
 
@@ -114,6 +115,7 @@ public interface CooperativeEffect {
      * return an empty collection.
      *
      * @return collection of model interactions affected by this model interaction
+     * @param <T> a T object
      */
     public <T extends ModelledInteraction> Collection<T> getAffectedInteractions();
 
@@ -123,6 +125,7 @@ public interface CooperativeEffect {
      * Ex: comments, cautions, ...
      *
      * @return the annotations
+     * @param <T> a T object
      */
     public <T extends Annotation> Collection<T> getAnnotations();
 

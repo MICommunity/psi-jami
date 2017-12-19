@@ -13,7 +13,6 @@ public interface MIEdge<T> {
      * The first node. It cannot be null.
      *
      * @return the first node
-     * @param <T> a T object.
      */
     public T getNodeA();
 

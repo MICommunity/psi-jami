@@ -616,11 +616,16 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToAnnotations</p>
+     */
     protected void clearPropertiesLinkedToAnnotations() {
         physicalProperties = null;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the interactor type for this complex.
      * If the given interactorType is null, it will set the interactor type to 'complex' (MI:0314)
      */
