@@ -38,7 +38,6 @@ public class UnambiguousExactInteractionComparator extends InteractionComparator
         return (UnambiguousExactInteractionEvidenceComparator) super.getExperimentalInteractionComparator();
     }
 
-
     @Override
     public UnambiguousExactModelledInteractionComparator getModelledInteractionComparator() {
         return (UnambiguousExactModelledInteractionComparator) super.getModelledInteractionComparator();

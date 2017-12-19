@@ -19,7 +19,6 @@ public interface AliasesChangeListener<T extends Object> extends EventListener {
      *
      * @param o        The object which has changed.
      * @param added             The added alias.
-     * @param <T> a T object.
      */
     public void onAddedAlias(T o , Alias added);
 

@@ -19,7 +19,6 @@ public interface XrefsChangeListener<T extends Object> extends EventListener{
      *
      * @param o        The object which has changed.
      * @param added             The added Xref.
-     * @param <T> a T object.
      */
     public void onAddedXref(T o , Xref added);
 

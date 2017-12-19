@@ -80,7 +80,7 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will compare the biological roles using AbstractCvTermComparator. If both biological roles are the same, it
      * will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
-     * it will compare the features using a Comparator<Feature>.
+     * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
      *
      * This comparator will ignore all the other properties of a participant.
      *

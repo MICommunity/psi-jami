@@ -26,11 +26,14 @@ public class UnambiguousExactParticipantInteractorComparator extends Participant
         super(new UnambiguousExactInteractorComparator(new UnambiguousExactComplexComparator(new UnambiguousExactModelledParticipantInteractorComparator())));
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorComparator getInteractorComparator() {
         return (UnambiguousExactInteractorComparator) super.getInteractorComparator();
     }
     /**
+     * {@inheritDoc}
+     *
      * It will compare the interactors using UnambiguousInteractorComparator.
      *
      * This comparator will ignore all the other properties of a participant.

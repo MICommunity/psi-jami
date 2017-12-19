@@ -17,7 +17,6 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
      *
      * @param interaction : updated interaction
      * @param added : added effect
-     * @param <I> a I object.
      */
     public void onAddedCooperativeEffect(I interaction, CooperativeEffect added);
 

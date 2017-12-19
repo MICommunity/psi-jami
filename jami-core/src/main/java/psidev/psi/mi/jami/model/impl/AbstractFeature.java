@@ -34,9 +34,6 @@ public abstract class AbstractFeature<P extends Entity, F extends Feature> imple
 
     /**
      * <p>Constructor for AbstractFeature.</p>
-     *
-     * @param <P> a P object.
-     * @param <F> a F object.
      */
     public AbstractFeature(){
     }

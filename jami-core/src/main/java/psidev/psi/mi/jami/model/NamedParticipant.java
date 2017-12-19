@@ -14,8 +14,6 @@ public interface NamedParticipant<I extends Interaction, F extends Feature> exte
      * It can be null or empty.
      *
      * @return the short name
-     * @param <I> a I object.
-     * @param <F> a F object.
      */
     public String getShortName();
 

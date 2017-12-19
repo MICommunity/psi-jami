@@ -32,7 +32,6 @@ public interface NamedInteraction<T extends Participant> extends Interaction<T>{
      * The Collection cannot be null and if the interaction does not have any aliases, the method should return an empty Collection.
      *
      * @return the aliases
-     * @param <A> a A object.
      */
     public <A extends Alias> Collection<A> getAliases();
 }

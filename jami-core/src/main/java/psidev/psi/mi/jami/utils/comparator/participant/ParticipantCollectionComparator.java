@@ -18,7 +18,6 @@ public class ParticipantCollectionComparator<T extends Entity>  extends Collecti
      * Creates a new participant CollectionComparator. It requires a Comparator for the participants in the Collection
      *
      * @param participantComparator a {@link java.util.Comparator} object.
-     * @param <T> a T object.
      */
     public ParticipantCollectionComparator(Comparator<T> participantComparator) {
         super(participantComparator);

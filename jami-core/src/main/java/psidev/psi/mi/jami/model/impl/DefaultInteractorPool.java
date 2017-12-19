@@ -224,6 +224,8 @@ public class DefaultInteractorPool extends DefaultInteractor implements Interact
 
 
     /**
+     * {@inheritDoc}
+     *
      * <p>initialiseInteractorCandidatesSet</p>
      */
     protected void initialiseInteractorCandidatesSetWith(Set<Interactor> interactorCandidates) {
@@ -233,7 +235,6 @@ public class DefaultInteractorPool extends DefaultInteractor implements Interact
             this.interactors = interactorCandidates;
         }
     }
-
     @Override
     /**
      * Sets the interactor type.
@@ -265,9 +266,7 @@ public class DefaultInteractorPool extends DefaultInteractor implements Interact
         return interactors.isEmpty();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean contains(Object o) {
         return interactors.contains(o);
     }
@@ -311,37 +310,27 @@ public class DefaultInteractorPool extends DefaultInteractor implements Interact
         return interactors.add(interactor);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean remove(Object o) {
         return interactors.remove(o);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean containsAll(Collection<?> objects) {
         return interactors.containsAll(objects);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean addAll(Collection<? extends Interactor> interactors) {
         return this.interactors.addAll(interactors);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean retainAll(Collection<?> objects) {
         return interactors.retainAll(objects);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public boolean removeAll(Collection<?> objects) {
         return interactors.removeAll(objects);
     }

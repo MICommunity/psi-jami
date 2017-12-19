@@ -21,8 +21,6 @@ public class BindingPairFactory<F extends Feature> implements EdgeFactory<F,Bind
 
     /**
      * <p>Constructor for BindingPairFactory.</p>
-     *
-     * @param <F> a F object.
      */
     public BindingPairFactory(){
         customFeatureComparator = new IdentityHashComparator<F>();

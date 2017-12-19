@@ -28,16 +28,20 @@ public class UnambiguousParticipantEvidenceInteractorComparator extends
         super(new UnambiguousInteractorComparator(new UnambiguousComplexComparator(new UnambiguousModelledParticipantInteractorComparator())));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UnambiguousInteractorComparator getInteractorComparator() {
         return (UnambiguousInteractorComparator) super.getInteractorComparator();
     }
-    @Override
+
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
      *
      * This comparator will ignore all the other properties of an experimental participant.
      */
+    @Override
     public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }

@@ -40,6 +40,7 @@ public class CooperativeEffectCloner {
      *
      * @param source : the allostery effect source to copy from
      * @param target : the allostery effect target to copy to
+     * @param <T> a T object.
      */
     public static <T extends AllostericEffector> void copyAndOverrideAllosteryProperties(Allostery<T> source, Allostery<T> target){
         if (source != null && target != null){

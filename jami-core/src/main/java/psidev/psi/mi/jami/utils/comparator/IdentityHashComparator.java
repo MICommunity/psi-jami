@@ -14,8 +14,6 @@ public class IdentityHashComparator<T> implements MIComparator<T>{
      *
      * @param t
      * @param t2
-     * @param t2 a T object.
-     * @param <T> a T object.
      * @return a int.
      */
     public int compare(T t, T t2) {

@@ -21,8 +21,6 @@ public abstract class AbstractSpokeExpansion<T extends Interaction, B extends Bi
     /**
      * <p>Constructor for AbstractSpokeExpansion.</p>
      *
-     * @param <T> a T object.
-     * @param <B> a B object.
      */
     public AbstractSpokeExpansion() {
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.SPOKE_EXPANSION, ComplexExpansionMethod.SPOKE_EXPANSION_MI));
@@ -54,6 +52,7 @@ public abstract class AbstractSpokeExpansion<T extends Interaction, B extends Bi
      * @param c1 : the bait
      * @param c2 : the prey
      * @return the binary interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> B createBinaryInteraction(T interaction, P c1, P c2);
 
@@ -62,6 +61,7 @@ public abstract class AbstractSpokeExpansion<T extends Interaction, B extends Bi
      *
      * @param interaction : the interaction to expand
      * @return the best bait to use for complex expansion among all participants of this interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> P collectBestBaitForSpokeExpansion(T interaction);
 }

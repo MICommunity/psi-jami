@@ -21,8 +21,6 @@ public abstract class AbstractMatrixExpansion<T extends Interaction, B extends B
     /**
      * <p>Constructor for AbstractMatrixExpansion.</p>
      *
-     * @param <T> a T object.
-     * @param <B> a B object.
      */
     public AbstractMatrixExpansion(){
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.MATRIX_EXPANSION, ComplexExpansionMethod.MATRIX_EXPANSION_MI));
@@ -55,6 +53,7 @@ public abstract class AbstractMatrixExpansion<T extends Interaction, B extends B
      * @param c1 : participant A
      * @param c2 : participant B
      * @return  the binary interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> B createBinaryInteraction(T interaction, P c1, P c2);
 
@@ -63,6 +62,7 @@ public abstract class AbstractMatrixExpansion<T extends Interaction, B extends B
      *
      * @param interaction : the interaction to expand
      * @return the array of participants involved in this interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> P[] createParticipantsArray(T interaction);
 }

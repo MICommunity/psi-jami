@@ -22,10 +22,15 @@ public class UnambiguousVariableParameterComparator extends VariableParameterCom
 
     private static UnambiguousVariableParameterComparator unambiguousVariableParameterComparator;
 
+    /**
+     * <p>Constructor for UnambiguousVariableParameterComparator.</p>
+     */
     public UnambiguousVariableParameterComparator() {
         super(new UnambiguousCvTermComparator());
     }
     /**
+     * {@inheritDoc}
+     *
      * It will first compare the description (case insensitive). Then it will compare the unit using DefaultCvTermComparator.
      * Then it will compare the collection of VariableParameterValue using the VariableParameterValueComparator.
      */

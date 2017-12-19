@@ -25,7 +25,6 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
      * <p>Constructor for AbstractEntity.</p>
      *
      * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
-     * @param <F> a F object.
      */
     public AbstractEntity(Interactor interactor){
         if (interactor == null){

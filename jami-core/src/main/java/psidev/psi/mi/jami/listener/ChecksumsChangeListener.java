@@ -18,7 +18,6 @@ public interface ChecksumsChangeListener<T extends Object> extends EventListener
      *
      * @param interactor        The interactor which has changed.
      * @param added             The added checksum.
-     * @param <T> a T object.
      */
     public void onAddedChecksum(T interactor , Checksum added);
 

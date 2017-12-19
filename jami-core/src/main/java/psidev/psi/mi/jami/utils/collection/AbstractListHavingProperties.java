@@ -13,8 +13,6 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
 
     /**
      * <p>Constructor for AbstractListHavingProperties.</p>
-     *
-     * @param <T> a T object.
      */
     public AbstractListHavingProperties(){
         super();
@@ -254,6 +252,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
      * <p>removeRangeOnly</p>
      *
      * @param i a int.
+     * @param i2 a int.
      * @param i2 a int.
      */
     protected void removeRangeOnly(int i, int i2) {

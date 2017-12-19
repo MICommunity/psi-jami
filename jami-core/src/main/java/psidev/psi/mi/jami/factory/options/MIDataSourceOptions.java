@@ -26,7 +26,7 @@ public class MIDataSourceOptions {
      * - n-ary : we want to have interactions with a list of participants. They can have only two participants and so be binary but they should all implement
      * Interaction interface
      * - binary : we want to have interactions with only two participants and implementing BinaryInteraction interface. When the datasources provide n-ary interactions,
-     * it is up to them to expand the complexes in several binary interactions so only binary interactions are returned. When COMPLEX_TYPE_OPTION_KEY -> binary,
+     * it is up to them to expand the complexes in several binary interactions so only binary interactions are returned. When COMPLEX_TYPE_OPTION_KEY is binary,
      * the option COMPLEX_EXPANSION_OPTION_KEY should be used to specify the complex expansion in case n-ary interactions need to be expanded
      * - the other complex types such a self_inter and self_intra are equivalent to n-ary. It should return interactions implementing
      * Interaction interface but not always BinaryInteraction
@@ -35,7 +35,7 @@ public class MIDataSourceOptions {
 
     /**
      * The option to provide a complex expansion method to expand n-ary interactions in binary interactions.
-     * It has to be an object instance which implements the ComplexExpansionMethod<T extends Interaction, B extends BinaryInteraction> interface
+     * It has to be an object instance which implements the {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} interface
      * This option make sense in case of datasources that may provide n-ary interactions but will not be recognized by datasources providing
      * only binary interactions.
      */
@@ -52,7 +52,7 @@ public class MIDataSourceOptions {
     /**
      * The input type (for instance psi25_xml, mitab).
      * It must be a String.
-     * This option must always be provided to the MIDataSourceFactory to select the adapted datasource implementation
+     * This option must always be provided to the {@link psidev.psi.mi.jami.factory.MIDataSourceFactory} to select the adapted datasource implementation
      * that can read the datasource.
      */
     public static final String INPUT_TYPE_OPTION_KEY = "input_format_key";
@@ -60,7 +60,7 @@ public class MIDataSourceOptions {
     /**
      * The interactor factory used to create the proper interactor instance based on the interactor type and/or xrefs
      * It must be an instance of InteractorFactory.
-     * If this option is not specified, it will create a new DefaultInteractorFactory to create the interactors or use another factory depending on the data source implementations.
+     * If this option is not specified, it will create a new {@link psidev.psi.mi.jami.factory.DefaultInteractorFactory} to create the interactors or use another factory depending on the data source implementations.
      */
     public static final String INTERACTOR_FACTORY_OPTION_KEY = "interactor_factory_key";
 }

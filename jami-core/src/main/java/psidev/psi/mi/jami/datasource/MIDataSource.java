@@ -28,7 +28,7 @@ public interface MIDataSource {
     /**
      * This method close the file data source and all opened streams and readers
      *
-     * @throws psidev.psi.mi.jami.exception.MIIOException: if the dataSource cannot be closed
+     * @throws psidev.psi.mi.jami.exception.MIIOException if the dataSource cannot be closed
      */
     public void close() throws MIIOException;
 
@@ -36,10 +36,11 @@ public interface MIDataSource {
      * This method will reset the data sources from all loaded options.
      * The data source will be back to what is was before the initialiseContext was called.
      * To re-use the data source after calling the reset() method, the data source needs to be re-initialised with
-     * initialiseContext(Map<String, Object> options).
+     * initialiseContext.
+     *
      * Any provided inputStream or reader will not be closed and will have to be closed separately.
      *
-     * @throws psidev.psi.mi.jami.exception.MIIOException : if the dataSource cannot be reset
+     * @throws psidev.psi.mi.jami.exception.MIIOException  if the dataSource cannot be reset
      */
     public void reset() throws MIIOException;
 }

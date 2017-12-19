@@ -15,8 +15,6 @@ public interface ParticipantCandidate<P extends ParticipantPool, F extends Featu
      * It can be null if the participant candidate is not part of any participant pool. It can happen if the participant candidate has been removed from a participant pool and is now invalid.
      *
      * @return the participant pool parent
-     * @param <P> a P object.
-     * @param <F> a F object.
      */
     public P getParentPool();
 

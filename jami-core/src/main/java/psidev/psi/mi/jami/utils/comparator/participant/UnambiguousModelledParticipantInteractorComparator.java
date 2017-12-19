@@ -32,6 +32,8 @@ public class UnambiguousModelledParticipantInteractorComparator extends Particip
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Use UnambiguousModelledParticipantInteractorComparator to know if two biological participants are equals.
      *
      * @param component1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
@@ -50,7 +52,6 @@ public class UnambiguousModelledParticipantInteractorComparator extends Particip
     public UnambiguousInteractorComparator getInteractorComparator() {
         return (UnambiguousInteractorComparator) super.getInteractorComparator();
     }
-
     @Override
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
@@ -70,9 +71,7 @@ public class UnambiguousModelledParticipantInteractorComparator extends Particip
         return checkComplexesAsInteractor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setCheckComplexesAsInteractors(boolean checkComplexesAsInteractors) {
         this.checkComplexesAsInteractor = checkComplexesAsInteractors;
     }

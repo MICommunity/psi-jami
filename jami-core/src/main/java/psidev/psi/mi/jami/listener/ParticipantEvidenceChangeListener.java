@@ -16,7 +16,6 @@ public interface ParticipantEvidenceChangeListener<F extends ParticipantEvidence
      *
      * @param participant : updated participant
      * @param oldType : old role
-     * @param <F> a F object.
      */
     public void onExperimentalRoleUpdate(F participant, CvTerm oldType);
 

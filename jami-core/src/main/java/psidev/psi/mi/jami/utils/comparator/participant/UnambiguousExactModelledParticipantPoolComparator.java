@@ -55,23 +55,21 @@ public class UnambiguousExactModelledParticipantPoolComparator extends ModelledP
         return defaultParticipantComparator.compare(component1, component2) == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactParticipantBaseComparator getParticipantBaseComparator() {
         return (UnambiguousExactParticipantBaseComparator) super.getParticipantBaseComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactModelledEntityComparator getModelledEntityComparator() {
         return (UnambiguousExactModelledEntityComparator) super.getModelledEntityComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will compare the basic properties of a component using UnambiguousExactParticipantBaseComparator.
      * <p>
      * This comparator will ignore all the other properties of a component.

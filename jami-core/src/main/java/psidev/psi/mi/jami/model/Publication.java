@@ -58,7 +58,6 @@ public interface Publication {
      * Ex: pubmed:14681455
      *
      * @return the publication identifier
-     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getIdentifiers();
 
@@ -140,7 +139,6 @@ public interface Publication {
      * Ex: other primary references such as DOI : 10.1023/A:1005823620291
      *
      * @return the xrefs
-     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -150,7 +148,6 @@ public interface Publication {
      * Ex: topic = dataset value = Cyanobacteria - Interaction dataset based on Cyanobacteria proteins and related species
      *
      * @return the annotations
-     * @param <A> a A object.
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -159,7 +156,6 @@ public interface Publication {
      * It cannot be null. If no experiments have been curated in this publication, the method should return an empty collection.
      *
      * @return the collection of experiments
-     * @param <E> a E object.
      */
     public <E extends Experiment> Collection<E> getExperiments();
 

@@ -46,7 +46,6 @@ public class UnambiguousParticipantComparator extends ParticipantComparator {
         return (UnambiguousModelledParticipantComparator) super.getBiologicalParticipantComparator();
     }
 
-
     @Override
     public UnambiguousParticipantPoolComparator getPoolComparator() {
         return (UnambiguousParticipantPoolComparator) super.getPoolComparator();

@@ -53,7 +53,6 @@ public interface Interaction<T extends Participant> {
      * Ex: original interaction database accession, ...
      *
      * @return the xrefs
-     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getIdentifiers();
 
@@ -63,7 +62,6 @@ public interface Interaction<T extends Participant> {
      * Ex: GO process xrefs, GO component xrefs, database accession that can identify the interaction, ...
      *
      * @return the xrefs
-     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -73,7 +71,6 @@ public interface Interaction<T extends Participant> {
      * Ex: rigid:u1FCes02jPb3CGRj1aDkzpbSiuI9606, ...
      *
      * @return the set of checksums
-     * @param <C> a C object.
      */
     public <C extends Checksum> Collection<C> getChecksums();
 
@@ -83,7 +80,6 @@ public interface Interaction<T extends Participant> {
      * Ex: figure-legend annotations, comments, cautions, ...
      *
      * @return the annotations
-     * @param <A> a A object.
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -138,7 +134,6 @@ public interface Interaction<T extends Participant> {
      * The collection cannot be null. If the interaction does not involve any participants, the method should return an empty set.
      *
      * @return the particiants
-     * @param <T2> a T2 object.
      */
     public <T2 extends T> Collection<T2> getParticipants();
 

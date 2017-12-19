@@ -23,8 +23,6 @@ public class MIFileParserCompositeListener<T extends MIFileParserListener> imple
 
     /**
      * <p>Constructor for MIFileParserCompositeListener.</p>
-     *
-     * @param <T> a T object.
      */
     public MIFileParserCompositeListener(){
         this.delegates = new ArrayList<T>();

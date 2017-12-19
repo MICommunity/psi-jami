@@ -32,7 +32,6 @@ public interface OntologyTerm extends CvTerm {
      * The Collection cannot be null. If the term does not have any parents, the method should return an empty Collection.
      *
      * @return the parents
-     * @param <O> a O object.
      */
     public <O extends OntologyTerm> Collection<O> getParents();
 
@@ -41,7 +40,6 @@ public interface OntologyTerm extends CvTerm {
      * The Collection cannot be null. If the term does not have any children, the method should return an empty Collection.
      *
      * @return the children
-     * @param <O> a O object.
      */
     public <O extends OntologyTerm> Collection<O> getChildren();
 }

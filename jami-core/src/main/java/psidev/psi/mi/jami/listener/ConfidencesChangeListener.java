@@ -19,7 +19,6 @@ public interface ConfidencesChangeListener<T extends Object> extends EventListen
      *
      * @param o        The object which has changed.
      * @param added             The added confidence.
-     * @param <T> a T object.
      */
     public void onAddedConfidence(T o, Confidence added);
 

@@ -33,6 +33,8 @@ public class UnambiguousExactModelledParticipantComparator extends ModelledParti
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Use UnambiguousExactModelledParticipantComparator to know if two biological participant are equals.
      *
      * @param component1 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
@@ -51,7 +53,6 @@ public class UnambiguousExactModelledParticipantComparator extends ModelledParti
     public UnambiguousExactModelledParticipantPoolComparator getParticipantPoolComparator() {
         return (UnambiguousExactModelledParticipantPoolComparator) super.getParticipantPoolComparator();
     }
-
     @Override
     /**
      * It will compare the basic properties of a component using UnambiguousExactParticipantBaseComparator.

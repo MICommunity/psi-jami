@@ -41,8 +41,6 @@ public interface ComplexExpansionMethod<T extends Interaction, B extends BinaryI
      * It is a controlled vocabulary term and cannot be null.
      *
      * @return the complex expansion method
-     * @param <T> a T object.
-     * @param <B> a B object.
      */
     public CvTerm getMethod();
 

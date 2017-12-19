@@ -53,6 +53,8 @@ public class UnambiguousEntityBaseComparator extends EntityBaseComparator {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * <p>hashCode</p>
      *
      * @param participant a {@link psidev.psi.mi.jami.model.Entity} object.
@@ -78,7 +80,6 @@ public class UnambiguousEntityBaseComparator extends EntityBaseComparator {
     public UnambiguousInteractorComparator getInteractorComparator() {
         return (UnambiguousInteractorComparator) super.getInteractorComparator();
     }
-
     @Override
     /**
      * It will first compare the interactors using UnambiguousInteractorComparator. If both interactors are the same,

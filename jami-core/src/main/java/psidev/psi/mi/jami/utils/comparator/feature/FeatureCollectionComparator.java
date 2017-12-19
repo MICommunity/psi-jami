@@ -17,7 +17,6 @@ public class FeatureCollectionComparator<T extends Feature> extends CollectionCo
      * Creates a new feature CollectionComparator. It requires a Comparator for the ranges in the Collection
      *
      * @param featureComparator a {@link java.util.Comparator} object.
-     * @param <T> a T object.
      */
     public FeatureCollectionComparator(Comparator<T> featureComparator) {
         super(featureComparator);

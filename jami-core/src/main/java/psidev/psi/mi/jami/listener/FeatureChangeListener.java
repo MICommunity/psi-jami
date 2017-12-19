@@ -19,7 +19,6 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
      *
      * @param feature : updated feature
      * @param oldShortName : old shortName
-     * @param <F> a F object.
      */
     public void onShortNameUpdate(F feature, String oldShortName);
 

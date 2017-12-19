@@ -31,8 +31,6 @@ public class BindingSiteCliqueFinder<I extends Interaction, F extends Feature> {
      *
      * @param graph the graph in which cliques are to be found; graph must be
      *              simple
-     * @param <I> a I object.
-     * @param <F> a F object.
      */
     public BindingSiteCliqueFinder(BindingFeatureGraph<F> graph) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>();

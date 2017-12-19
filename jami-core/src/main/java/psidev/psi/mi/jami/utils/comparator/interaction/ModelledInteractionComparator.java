@@ -13,7 +13,7 @@ import java.util.Comparator;
 /**
  * Basic ModelledInteraction comparator.
  *
- * It will use a Comparator<Interaction> to compare basic interaction properties.
+ * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
  * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
@@ -80,7 +80,7 @@ public class ModelledInteractionComparator implements Comparator<ModelledInterac
     }
 
     /**
-     * It will use a Comparator<Interaction> to compare basic interaction properties.
+     * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
      * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
      *
      * @param modelledInteraction1 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.

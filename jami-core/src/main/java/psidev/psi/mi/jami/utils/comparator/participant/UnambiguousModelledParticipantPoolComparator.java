@@ -55,20 +55,21 @@ public class UnambiguousModelledParticipantPoolComparator extends ModelledPartic
         return defaultParticipantComparator.compare(component1, component2) == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousParticipantBaseComparator getParticipantBaseComparator() {
         return (UnambiguousParticipantBaseComparator) super.getParticipantBaseComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousModelledEntityComparator getModelledEntityComparator() {
         return (UnambiguousModelledEntityComparator) super.getModelledEntityComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will compare the basic properties of a component using UnambiguousParticipantBaseComparator.
      * <p>
      * This comparator will ignore all the other properties of a component.

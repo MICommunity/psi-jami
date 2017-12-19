@@ -11,7 +11,7 @@ import java.util.Comparator;
 /**
  * Basic CuratedModelledInteraction comparator.
  *
- * It will use a Comparator<Interaction> to compare basic interaction properties.
+ * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
  * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
  * Finally, it will compare the source of the modelledInteraction using AbstractCvTermComparator
  *
@@ -46,7 +46,7 @@ public class CuratedModelledInteractionComparator extends ModelledInteractionCom
     }
 
     /**
-     * It will use a Comparator<Interaction> to compare basic interaction properties.
+     * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
      * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
      * Finally, it will compare the source of the modelledInteraction using AbstractCvTermComparator
      *

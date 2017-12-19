@@ -95,6 +95,8 @@ public class UnambiguousInteractorComparator extends InteractorComparator{
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Bioactive entities come first, then proteins, then genes, then nucleic acids, then complexes and finally InteractorPool.
      * If two interactors are from the same Interactor interface, it will use a more specific Comparator :
      * - Uses UnambiguousBioactiveEntityComparator for comparing BioactiveEntity objects.

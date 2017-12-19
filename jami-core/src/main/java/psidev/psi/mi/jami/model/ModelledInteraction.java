@@ -21,7 +21,6 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * The collection cannot be null. If the modelled interaction does not have experimental interactions attached to it, the method should return an empty set
      *
      * @return the collection of experimental evidences
-     * @param <I> a I object.
      */
     public <I extends InteractionEvidence> Collection<I> getInteractionEvidences();
 
@@ -48,7 +47,6 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * Ex: author based scores, statistical confidences, ...
      *
      * @return the confidences
-     * @param <C> a C object.
      */
     public <C extends ModelledConfidence> Collection<C> getModelledConfidences();
 
@@ -58,7 +56,6 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * Ex: IC50, ...
      *
      * @return the parameters
-     * @param <P> a P object.
      */
     public <P extends ModelledParameter> Collection<P> getModelledParameters();
 
@@ -68,7 +65,6 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * should return an empty collection.
      *
      * @return the collection of cooperative effects for this modelled interaction
-     * @param <C> a C object.
      */
     public <C extends CooperativeEffect> Collection<C> getCooperativeEffects();
 

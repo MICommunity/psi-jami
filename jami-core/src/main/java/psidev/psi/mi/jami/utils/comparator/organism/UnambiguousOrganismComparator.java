@@ -29,12 +29,15 @@ public class UnambiguousOrganismComparator extends OrganismComparator {
         super(new UnambiguousCvTermComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will first look at the taxids. If taxIds are the same , it will look at the cell types using UnambiguousOrganismComparator.
      * If the cell types are the same, it will look at the tissues using UnambiguousOrganismComparator. If the tissues are the same,
      * it will look at the compartments using UnambiguousOrganismComparator.

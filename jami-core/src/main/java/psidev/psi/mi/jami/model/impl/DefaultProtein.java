@@ -223,11 +223,7 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         initialiseAliasesWith(new ProteinAliasList());
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return The first uniprokb if provided, then the first refseq identifier if provided, otherwise the first identifier in the list
-     */
+    /** {@inheritDoc} */
     @Override
     public Xref getPreferredIdentifier() {
         return uniprotkb != null ? uniprotkb : (refseq != null ? refseq : super.getPreferredIdentifier());
@@ -489,6 +485,8 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the interactor type of this protein.
      * If the given interactorType is null, it will set the interactor type to 'protein' (MI:0326)
      */

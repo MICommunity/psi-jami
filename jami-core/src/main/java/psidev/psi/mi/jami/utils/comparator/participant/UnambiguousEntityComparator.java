@@ -54,12 +54,13 @@ public class UnambiguousEntityComparator extends EntityComparator {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Modelled participants come first and then experimental participants.
      * - It uses UnambiguousParticipantPoolComparator to compare participant sets
      * - It uses UnambiguousModelledParticipantComparator to compare components
      * - It uses UnambiguousParticipantEvidenceComparator to compare experimental participants
      * - It uses UnambiguousParticipantBaseComparator to compare basic participant properties
-     *
      */
     @Override
     public int compare(Entity participant1, Entity participant2) {

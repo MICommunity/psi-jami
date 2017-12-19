@@ -17,7 +17,6 @@ public interface CustomizableModelledParticipantComparator<E extends ModelledEnt
     /**
      * <p>isCheckComplexesAsInteractors</p>
      *
-     * @param <E> a E object.
      * @return a boolean.
      */
     public boolean isCheckComplexesAsInteractors();

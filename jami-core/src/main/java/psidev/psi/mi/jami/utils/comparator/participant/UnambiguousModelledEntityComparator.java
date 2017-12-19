@@ -37,11 +37,14 @@ public class UnambiguousModelledEntityComparator extends ModelledEntityComparato
                 new UnambiguousEntityBaseComparator(), new UnambiguousModelledFeaturecomparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousEntityBaseComparator getEntityBaseComparator() {
         return (UnambiguousEntityBaseComparator) super.getEntityBaseComparator();
     }
     /**
+     * {@inheritDoc}
+     *
      * It will compare the basic properties of a component using UnambiguousParticipantBaseComparator.
      *
      * This comparator will ignore all the other properties of a component.

@@ -25,9 +25,6 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
      * <p>Constructor for AbstractParticipantPool.</p>
      *
      * @param poolName a {@link java.lang.String} object.
-     * @param <I> a I object.
-     * @param <F> a F object.
-     * @param <P> a P object.
      */
     public AbstractParticipantPool(String poolName){
         super(new DefaultInteractorPool(poolName));

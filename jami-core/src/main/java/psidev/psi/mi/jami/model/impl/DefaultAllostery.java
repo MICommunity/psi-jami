@@ -28,7 +28,6 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
      * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param allostericMolecule a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @param allostericEffector a T object.
-     * @param <T> a T object.
      */
     public DefaultAllostery(CvTerm outcome, ModelledParticipant allostericMolecule, T allostericEffector) {
         super(outcome);

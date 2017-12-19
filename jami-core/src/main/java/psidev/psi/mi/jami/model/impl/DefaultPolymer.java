@@ -212,15 +212,17 @@ public class DefaultPolymer extends DefaultMolecule implements Polymer{
 
 
     /**
-     * <p>Setter for the field <code>sequence</code>.</p>
+     * {@inheritDoc}
      *
-     * @param sequence a {@link java.lang.String} object.
+     * <p>Setter for the field <code>sequence</code>.</p>
      */
     public void setSequence(String sequence) {
         this.sequence = sequence;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the interactor type of this polymer.
      * If the given interactorType is null, it sets the interactorType to 'biopolymer'(MI:0383)
      */

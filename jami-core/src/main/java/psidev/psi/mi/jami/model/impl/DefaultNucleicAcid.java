@@ -204,11 +204,7 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         super(name, fullName, CvTermUtils.createNucleicAcidInteractorType(), organism, uniqueId);
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return The first ddbjEmblGenbank if provided, then the first refseq identifier if provided, otherwise the first identifier in the list
-     */
+    /** {@inheritDoc} */
     @Override
     public Xref getPreferredIdentifier() {
         return ddbjEmblGenbank != null ? ddbjEmblGenbank : (refseq != null ? refseq : super.getPreferredIdentifier());
@@ -223,9 +219,7 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         return this.ddbjEmblGenbank != null ? this.ddbjEmblGenbank.getId() : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setDdbjEmblGenbank(String id) {
         NucleicAcidIdentifierList nucleicAcidIdentifiers = (NucleicAcidIdentifierList) getIdentifiers();
 
@@ -247,9 +241,7 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     protected void initialiseIdentifiers() {
         initialiseIdentifiersWith(new NucleicAcidIdentifierList());
@@ -264,9 +256,7 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         return this.refseq != null ? this.refseq.getId() : null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public void setRefseq(String id) {
         NucleicAcidIdentifierList nucleicAcidIdentifiers = (NucleicAcidIdentifierList) getIdentifiers();
 
@@ -343,12 +333,10 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         }
     }
 
-
     protected void clearPropertiesLinkedToIdentifiers() {
         ddbjEmblGenbank = null;
         refseq = null;
     }
-
     @Override
     /**
      * Sets the interactor type of this NucleicAcid.
@@ -362,9 +350,7 @@ public class DefaultNucleicAcid extends DefaultPolymer implements NucleicAcid {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Nucleic acid: "

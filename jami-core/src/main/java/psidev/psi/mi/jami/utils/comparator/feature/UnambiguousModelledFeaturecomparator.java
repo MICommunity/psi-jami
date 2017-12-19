@@ -40,12 +40,15 @@ public class UnambiguousModelledFeaturecomparator extends ModelledFeatureCompara
         return unambiguousBiologicalFeatureComparator.compare(feature1, feature2) == 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousFeatureBaseComparator getFeatureComparator() {
         return (UnambiguousFeatureBaseComparator) super.getFeatureComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will use a UnambiguousFeatureBaseComparator to compare basic properties of a feature.
      * <p>
      * This comparator will ignore all the other properties of a biological feature.

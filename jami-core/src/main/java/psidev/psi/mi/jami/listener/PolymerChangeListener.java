@@ -17,7 +17,6 @@ public interface PolymerChangeListener<P extends Polymer> extends InteractorChan
      *
      * @param protein : updated polymer
      * @param oldSequence : old sequence
-     * @param <P> a P object.
      */
     public void onSequenceUpdate(P protein, String oldSequence);
 }

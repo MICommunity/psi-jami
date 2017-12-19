@@ -49,7 +49,6 @@ public interface VariableParameter {
      * should return an empty collection.
      *
      * @return the collection of values for this variableParameter in a specific experiment
-     * @param <V> a V object.
      */
     public <V extends VariableParameterValue> Collection<V> getVariableValues();
 

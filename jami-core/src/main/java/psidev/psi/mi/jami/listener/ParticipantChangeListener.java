@@ -16,7 +16,6 @@ public interface ParticipantChangeListener<F extends Participant> extends Annota
      *
      * @param participant : updated participant
      * @param oldType : old role
-     * @param <F> a F object.
      */
     public void onBiologicalRoleUpdate(F participant, CvTerm oldType);
 }

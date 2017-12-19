@@ -62,20 +62,21 @@ public class UnambiguousCuratedPublicationComparator extends CuratedPublicationC
         return hashcode;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousPublicationComparator getPublicationComparator() {
         return (UnambiguousPublicationComparator) super.getPublicationComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getSourceComparator() {
         return (UnambiguousCvTermComparator) super.getSourceComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It uses a UnambiguousPublicationComparator to compares the bibliographic details and then will compare first the curation depth, then the source using UnambiguousCvTermComparator and then the released date.
      */
     @Override

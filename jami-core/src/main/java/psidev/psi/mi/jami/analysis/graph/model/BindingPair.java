@@ -18,7 +18,6 @@ public class BindingPair<F extends Feature> extends AbstractMIEdge<F>{
      *
      * @param nodeA a F object.
      * @param nodeB a F object.
-     * @param <F> a F object.
      */
     public BindingPair(F nodeA, F nodeB) {
         super(nodeA, nodeB, new IdentityHashComparator<F>());

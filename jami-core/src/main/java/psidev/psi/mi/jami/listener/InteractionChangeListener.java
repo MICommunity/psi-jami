@@ -21,7 +21,6 @@ public interface InteractionChangeListener<I extends Interaction> extends Annota
      *
      * @param interaction : the updated interaction
      * @param oldName : old name
-     * @param <I> a I object.
      */
     public void onShortNameUpdate(I interaction, String oldName);
 

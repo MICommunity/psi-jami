@@ -89,7 +89,7 @@ public interface Position {
     /**
      * The start position in the molecule sequence.
      * If the position is an exact sequence position, then start == end. It is possible that a Position represents
-     * an interval and in this case, start <= end.
+     * an interval and in this case, start &lteq; end.
      *
      * @return start position. 0 if the position is undetermined, n-terminal range or c-terminal range
      */
@@ -98,7 +98,7 @@ public interface Position {
     /**
      * The end position in the molecule sequence.
      * If the position is an exact sequence position, then start == end. It is possible that a Position represents
-     * an interval and in this case, start <= end.
+     * an interval and in this case, start &lteq; end.
      *
      * @return end position. 0 if the position is undetermined, n-terminal range or c-terminal range
      */

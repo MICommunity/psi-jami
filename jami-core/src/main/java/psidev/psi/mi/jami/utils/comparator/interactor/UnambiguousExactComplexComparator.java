@@ -49,11 +49,9 @@ public class UnambiguousExactComplexComparator extends ComplexComparator {
     }
 
     /**
-     * Use UnambiguousExactComplexComparator to know if two complexes are equals.
+     * {@inheritDoc}
      *
-     * @param complex1 a {@link psidev.psi.mi.jami.model.Complex} object.
-     * @param complex2 a {@link psidev.psi.mi.jami.model.Complex} object.
-     * @return true if the two complexes are equal
+     * Use UnambiguousExactComplexComparator to know if two complexes are equals.
      */
     public static boolean areEquals(Complex complex1, Complex complex2) {
         if (unambiguousExactComplexComparator == null) {
@@ -62,7 +60,6 @@ public class UnambiguousExactComplexComparator extends ComplexComparator {
 
         return unambiguousExactComplexComparator.compare(complex1, complex2) == 0;
     }
-
     @Override
     /**
      *
@@ -74,17 +71,13 @@ public class UnambiguousExactComplexComparator extends ComplexComparator {
         return super.compare(complex1, complex2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorBaseComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();

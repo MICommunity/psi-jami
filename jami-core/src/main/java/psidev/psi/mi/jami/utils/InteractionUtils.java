@@ -160,7 +160,7 @@ public class InteractionUtils {
     }
 
     /**
-     * Creates a new BinaryInteraction from the given interaction which should only contain one participant with a stoichiometry >= 2
+     * Creates a new BinaryInteraction from the given interaction which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction will have a participantB which is a copy of participantA with stoichiometry 0
      *
@@ -175,7 +175,7 @@ public class InteractionUtils {
     }
 
     /**
-     * Creates a new BinaryInteractionEvidence from the given interactionEvidence which should only contain one participant with a stoichiometry >= 2
+     * Creates a new BinaryInteractionEvidence from the given interactionEvidence which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction evidence will have a participantB which is a copy of participantA with stoichiometry 0
      *
@@ -191,7 +191,7 @@ public class InteractionUtils {
     }
 
     /**
-     * Creates a new ModelledBinaryInteraction from the given interaction which should only contain one participant with a stoichiometry >= 2
+     * Creates a new ModelledBinaryInteraction from the given interaction which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction evidence will have a participantB which is a copy of participantA with stoichiometry 0
      *

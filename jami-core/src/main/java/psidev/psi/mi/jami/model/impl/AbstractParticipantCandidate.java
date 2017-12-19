@@ -17,8 +17,6 @@ public abstract class AbstractParticipantCandidate<P extends ParticipantPool, F 
      * <p>Constructor for AbstractParticipantCandidate.</p>
      *
      * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
-     * @param <P> a P object.
-     * @param <F> a F object.
      */
     public AbstractParticipantCandidate(Interactor interactor) {
         super(interactor);

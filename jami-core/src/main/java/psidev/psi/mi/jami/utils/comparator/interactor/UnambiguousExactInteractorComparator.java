@@ -69,62 +69,47 @@ public class UnambiguousExactInteractorComparator extends InteractorComparator {
         return unambiguousExactInteractorComparator.compare(interactor1, interactor2) == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorBaseComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactComplexComparator getComplexComparator() {
         return (UnambiguousExactComplexComparator) super.getComplexComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactPolymerComparator getPolymerComparator() {
         return (UnambiguousExactPolymerComparator) super.getPolymerComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactBioactiveEntityComparator getBioactiveEntityComparator() {
         return (UnambiguousExactBioactiveEntityComparator) super.getBioactiveEntityComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactGeneComparator getGeneComparator() {
         return (UnambiguousExactGeneComparator) super.getGeneComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactNucleicAcidComparator getNucleicAcidComparator() {
         return (UnambiguousExactNucleicAcidComparator) super.getNucleicAcidComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactProteinComparator getProteinComparator() {
         return (UnambiguousExactProteinComparator) super.getProteinComparator();
     }
-
     @Override
     /**
      * Bioactive entities come first, then proteins, then genes, then nucleic acids, then complexes and finally InteractorPool.

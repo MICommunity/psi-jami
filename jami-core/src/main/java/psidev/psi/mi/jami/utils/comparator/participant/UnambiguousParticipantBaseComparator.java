@@ -85,7 +85,6 @@ public class UnambiguousParticipantBaseComparator extends ParticipantBaseCompara
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
-
     @Override
     /**
      * It will first compare the interactors and stoichiometry using UnambiguousEntityComparator. If both interactors are the same,

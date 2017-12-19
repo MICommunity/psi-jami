@@ -30,9 +30,6 @@ public class FeatureGraphBuilder<I extends Interaction, F extends Feature> {
 
     /**
      * <p>Constructor for FeatureGraphBuilder.</p>
-     *
-     * @param <I> a I object.
-     * @param <F> a F object.
      */
     public FeatureGraphBuilder(){
         this.customFeatureComparator = new IdentityHashComparator<F>();

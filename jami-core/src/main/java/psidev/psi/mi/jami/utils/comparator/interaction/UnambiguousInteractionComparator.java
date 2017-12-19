@@ -43,6 +43,8 @@ public class UnambiguousInteractionComparator extends InteractionComparator {
         return (UnambiguousModelledInteractionComparator) super.getModelledInteractionComparator();
     }
     /**
+     * {@inheritDoc}
+     *
      * Modelled interactions come first and then experimental interactions
      * - It uses UnambiguousInteractionEvidenceComparator to compare experimental interactions
      * - It uses UnambiguousModelledInteractionComparator to compare modelled interactions

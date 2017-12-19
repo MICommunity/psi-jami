@@ -22,8 +22,6 @@ public class BindingFeatureGraph<T extends Feature> extends Pseudograph<T,Bindin
 
     /**
      * <p>Constructor for BindingFeatureGraph.</p>
-     *
-     * @param <T> a T object.
      */
     public BindingFeatureGraph() {
         super(new BindingPairFactory<T>());

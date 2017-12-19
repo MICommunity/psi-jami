@@ -19,9 +19,9 @@ public interface Range {
     public static final String UNDETERMINED_POSITION_SYMBOL = "?";
     /** Constant <code>FUZZY_POSITION_SYMBOL=".."</code> */
     public static final String FUZZY_POSITION_SYMBOL = "..";
-    /** Constant <code>GREATER_THAN_POSITION_SYMBOL=">"</code> */
+    /** Constant <code>GREATER_THAN_POSITION_SYMBOL="&gt;"</code> */
     public static final String GREATER_THAN_POSITION_SYMBOL = ">";
-    /** Constant <code>LESS_THAN_POSITION_SYMBOL="<"</code> */
+    /** Constant <code>LESS_THAN_POSITION_SYMBOL="&lt;"</code> */
     public static final String LESS_THAN_POSITION_SYMBOL = "<";
 
     /**
@@ -47,7 +47,7 @@ public interface Range {
      * @param end : end position
      * @throws java.lang.IllegalArgumentException if
      * - start or end is null
-     * - start > end
+     * - start is greater than end
      */
     public void setPositions(Position start, Position end);
 

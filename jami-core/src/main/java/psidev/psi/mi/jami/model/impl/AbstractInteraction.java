@@ -32,8 +32,6 @@ public abstract class AbstractInteraction<T extends Participant> implements Inte
 
     /**
      * <p>Constructor for AbstractInteraction.</p>
-     *
-     * @param <T> a T object.
      */
     public AbstractInteraction(){
     }

@@ -19,7 +19,6 @@ public interface AnnotationsChangeListener<T extends Object> extends EventListen
      *
      * @param o : the parent of this annotation
      * @param added : the added annotation
-     * @param <T> a T object.
      */
     public void onAddedAnnotation(T o, Annotation added);
 

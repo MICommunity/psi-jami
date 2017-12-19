@@ -17,9 +17,6 @@ public interface ParticipantPool<I extends Interaction, F extends Feature, P ext
      * Ex: molecule set, candidate set, defined set, ...
      *
      * @return pool type
-     * @param <I> a I object.
-     * @param <F> a F object.
-     * @param <P> a P object.
      */
     public CvTerm getType();
 

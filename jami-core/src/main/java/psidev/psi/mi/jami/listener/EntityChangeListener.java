@@ -16,7 +16,6 @@ public interface EntityChangeListener<F extends Entity> extends EntityInteractor
      *
      * @param participant : the updated participant
      * @param oldStoichiometry : old stoichiometry
-     * @param <F> a F object.
      */
     public void onStoichiometryUpdate(F participant, Stoichiometry oldStoichiometry);
 

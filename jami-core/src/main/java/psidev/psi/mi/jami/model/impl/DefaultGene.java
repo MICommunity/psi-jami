@@ -310,18 +310,17 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
     }
 
-
     @Override
     protected void initialiseIdentifiers() {
         initialiseIdentifiersWith(new GeneIdentifierList());
     }
 
-    @Override
     /**
      * Return the first ensembl identifier if provided, otherwise the first ensemblGenomes if provided, otherwise
      * the first entrez/gene id if provided, otherwise the first refseq id if provided
      * otherwise the first identifier in the list of identifiers
      */
+    @Override
     public Xref getPreferredIdentifier() {
         return ensembl != null ? ensembl : (ensemblGenome != null ? ensemblGenome : (entrezGeneId != null ? entrezGeneId : (refseq != null ? refseq : super.getPreferredIdentifier())));
     }
@@ -551,6 +550,8 @@ public class DefaultGene extends DefaultMolecule implements Gene {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * <p>clearPropertiesLinkedToIdentifiers</p>
      */
     protected void clearPropertiesLinkedToIdentifiers() {
@@ -559,7 +560,6 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         entrezGeneId = null;
         refseq = null;
     }
-
     @Override
      /**
       * {@inheritDoc}

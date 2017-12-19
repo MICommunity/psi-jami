@@ -19,7 +19,6 @@ public interface ParametersChangeListener<T extends Object> extends EventListene
      *
      * @param o        The object which has changed.
      * @param added             The added parameter.
-     * @param <T> a T object.
      */
     public void onAddedParameter(T o, Parameter added);
 

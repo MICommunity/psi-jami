@@ -21,7 +21,6 @@ public interface InteractorChangeListener<T extends Interactor>
      *
      * @param interactor        The interactor which has changed.
      * @param oldShortName      The old shortName.
-     * @param <T> a T object.
      */
     public void onShortNameUpdate(T interactor , String oldShortName);
 

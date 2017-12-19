@@ -29,8 +29,6 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
     /**
      * <p>Constructor for AbstractBipartiteExpansion.</p>
      *
-     * @param <T> a T object.
-     * @param <B> a B object.
      */
     public AbstractBipartiteExpansion(){
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.BIPARTITE_EXPANSION, ComplexExpansionMethod.BIPARTITE_EXPANSION_MI));
@@ -81,6 +79,7 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
      * @param c1 : the participant with the created complex
      * @param c2 : the original participant
      * @return the binary interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> B createBinaryInteraction(T interaction, P c1, P c2);
 
@@ -89,6 +88,7 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
      *
      * @param complexEntity : the generated complex
      * @return the participant generated for the generated complex
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> P createParticipantForComplexEntity(Complex complexEntity);
 

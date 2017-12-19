@@ -30,8 +30,6 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
      * <p>Constructor for AbstractComplexExpansionMethod.</p>
      *
      * @param method : the CvTerm that describe the method used to expand
-     * @param <T> a T object.
-     * @param <B> a B object.
      */
     public AbstractComplexExpansionMethod(CvTerm method){
         if (method == null){

@@ -30,7 +30,6 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
      * <p>Constructor for AbstractBinaryInteractionWrapper.</p>
      *
      * @param interaction : the interaction to wrap
-     * @param <I> a I object.
      * @param <T> a T object.
      */
     public AbstractBinaryInteractionWrapper(I interaction){

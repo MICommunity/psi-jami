@@ -37,7 +37,6 @@ public class UnambiguousCuratedInteractionComparator extends InteractionComparat
         return (UnambiguousCuratedInteractionEvidenceComparator) super.getExperimentalInteractionComparator();
     }
 
-
     @Override
     public UnambiguousCuratedModelledInteractionComparator getModelledInteractionComparator() {
         return (UnambiguousCuratedModelledInteractionComparator) super.getModelledInteractionComparator();

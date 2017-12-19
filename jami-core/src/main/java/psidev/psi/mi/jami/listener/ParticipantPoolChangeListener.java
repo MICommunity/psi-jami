@@ -16,7 +16,6 @@ public interface ParticipantPoolChangeListener<F extends ParticipantPool> extend
      *
      * @param participant : updated participant
      * @param oldType : old type
-     * @param <F> a F object.
      */
     public void onTypeUpdate(F participant, CvTerm oldType);
 

@@ -65,7 +65,7 @@ public class UnambiguousCuratedInteractionBaseComparator extends CuratedInteract
 
     /**
      * {@inheritDoc}
-     * <p>
+     *
      * <p>Getter for the field <code>interactionBaseComparator</code>.</p>
      */
     @Override
@@ -74,6 +74,8 @@ public class UnambiguousCuratedInteractionBaseComparator extends CuratedInteract
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will first compare the basic properties of an interaction using UnambiguousInteractionBaseComparator.
      * Then it will compare the created dates (null created dates always come after)
      * Finally it will compare the updated date (null updated date always come after)

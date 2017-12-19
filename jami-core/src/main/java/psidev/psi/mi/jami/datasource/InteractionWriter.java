@@ -20,14 +20,13 @@ public interface InteractionWriter<T extends Interaction> {
      * Initialise the context of the InteractionWriter given a map of options
      *
      * @param options : the options given by the user
-     * @param <T> a T object.
      */
     public void initialiseContext(Map<String, Object> options);
 
     /**
      * Method to call before starting to write  but after initialising the context
      *
-     * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot start writing
+     * @throws psidev.psi.mi.jami.exception.MIIOException if cannot start writing
      */
     public void start() throws MIIOException;
 
@@ -81,7 +80,8 @@ public interface InteractionWriter<T extends Interaction> {
      * This method will reset the writer from all loaded options.
      * The interaction writer will be back to what is was before the initialiseContext was called.
      * To re-use the interaction writer after calling the reset() method, the data source needs to be re-initialised with
-     * initialiseContext(Map<String, Object> options).
+     * initialiseContext.
+     *
      * Any provided ouputStream or writer will not be closed and will have to be closed separately.
      *
      * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot reset

@@ -73,6 +73,7 @@ public class MIDataSourceFactory {
      * @param requiredOptions : options needed and to initialise dataSource
      * @return a new InteractionStream instance if the factory could find a registered InteractionStream matching the options.
      * Null if the factory cannot provide any InteractionStream implementation matching the requested options
+     * @param <I> a I object.
      */
     public <I extends Interaction> InteractionStream<I> getInteractionSourceWith(Map<String,Object> requiredOptions) {
 

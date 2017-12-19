@@ -27,8 +27,6 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
 
     /**
      * <p>Constructor for AbstractBinaryInteraction.</p>
-     *
-     * @param <T> a T object.
      */
     public AbstractBinaryInteraction(){
         super();

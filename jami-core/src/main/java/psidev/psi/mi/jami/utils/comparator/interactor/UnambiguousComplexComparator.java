@@ -64,6 +64,8 @@ public class UnambiguousComplexComparator extends ComplexComparator {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It will first look at the default properties of an interactor using UnambiguousInteractorBaseComparator.
      * It will then compare interaction types using UnambiguousCvTermComparator.
      * If the basic interactor properties are the same, It will first compare the collection of components using UnambiguousModelledParticipantComparator.
@@ -73,17 +75,13 @@ public class UnambiguousComplexComparator extends ComplexComparator {
         return super.compare(complex1, complex2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousInteractorBaseComparator) super.getInteractorBaseComparator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();

@@ -50,7 +50,6 @@ public interface Experiment {
      * Ex: PRIDE experiment/project xrefs
      *
      * @return the xrefs
-     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -60,7 +59,6 @@ public interface Experiment {
      * Ex: data-processing, comments, cautions, confidence-mapping annotations
      *
      * @return the annotations
-     * @param <A> a A object.
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
@@ -69,7 +67,6 @@ public interface Experiment {
      * It cannot be null. If the experiment does not have any confidences, the method should return an empty Collection.
      *
      * @return the confidences for this experiment
-     * @param <C> a C object.
      */
     public <C extends Confidence> Collection<C> getConfidences();
 
@@ -110,7 +107,6 @@ public interface Experiment {
      * The collection cannot be null. If the experiment did not show any interactions, the method should return an empty collection
      *
      * @return the interactions
-     * @param <I> a I object.
      */
     public <I extends InteractionEvidence> Collection<I> getInteractionEvidences();
 
@@ -152,7 +148,6 @@ public interface Experiment {
      * this method should return an empty collection.
      *
      * @return the collection of variableParameters and their values used in this experiment
-     * @param <V> a V object.
      */
     public <V extends VariableParameter> Collection<V> getVariableParameters();
 

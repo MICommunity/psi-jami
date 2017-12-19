@@ -616,15 +616,15 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         }
     }
 
-
     protected void clearPropertiesLinkedToAnnotations() {
         physicalProperties = null;
     }
-    @Override
+
     /**
      * Sets the interactor type for this complex.
      * If the given interactorType is null, it will set the interactor type to 'complex' (MI:0314)
      */
+    @Override
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null){
            super.setInteractorType(CvTermUtils.createComplexInteractorType());

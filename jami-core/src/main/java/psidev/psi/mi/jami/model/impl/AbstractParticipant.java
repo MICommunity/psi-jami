@@ -25,8 +25,6 @@ public abstract class AbstractParticipant<I extends Interaction, F extends Featu
      * <p>Constructor for AbstractParticipant.</p>
      *
      * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
-     * @param <I> a I object.
-     * @param <F> a F object.
      */
     public AbstractParticipant(Interactor interactor){
         super(interactor);
