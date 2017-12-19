@@ -31,7 +31,7 @@ public interface ResultingSequence {
      * It cannot be null so if the ResultingSequence does not have any Xrefs, the method should return an empty collection
      * @return The collection of xrefs for this resultingSequence object
      */
-    public Collection<Xref> getXrefs();
+    public <X extends Xref> Collection<X> getXrefs();
 
     /**
      * Sets the new sequence of this object

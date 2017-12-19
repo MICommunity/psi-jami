@@ -102,10 +102,10 @@ public class AliasUtils {
      * @param typeId : the method id to look for
      * @param typeName : the method name to look for
      */
-    public static void removeAllAliasesWithType(Collection<Alias> aliases, String typeId, String typeName){
+    public static void removeAllAliasesWithType(Collection<? extends Alias> aliases, String typeId, String typeName){
 
         if (aliases != null){
-            Iterator<Alias> aliasIterator = aliases.iterator();
+            Iterator<? extends Alias> aliasIterator = aliases.iterator();
 
             while (aliasIterator.hasNext()){
                 if (doesAliasHaveType(aliasIterator.next(), typeId, typeName)){

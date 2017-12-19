@@ -34,7 +34,7 @@ public interface Entity<F extends Feature> {
      * Ex: increasing, decreasing, disrupting, etc.
      * @return the collection of causal relationships attached to this entity
      */
-    public Collection<CausalRelationship> getCausalRelationships();
+    public <C extends CausalRelationship> Collection<C> getCausalRelationships();
 
     /**
      * Properties for this entity.
