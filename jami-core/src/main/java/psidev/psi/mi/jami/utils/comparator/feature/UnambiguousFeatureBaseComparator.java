@@ -18,11 +18,11 @@ import java.util.List;
  * it will compare interactionEffect and then interactionDependency using UnambiguousCvTermComparator. Then it will compare interpro identifier and if the features do not have an interpro identifier,
  * it will look for at the identifiers in the feature identifiers using UnambiguousIdentifierComparator.
  * Finally, it will look at the ranges using UnambiguousRangeComparator.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class UnambiguousFeatureBaseComparator extends FeatureBaseComparator {
 
     private static UnambiguousFeatureBaseComparator unambiguousFeatureComparator;
@@ -35,10 +35,20 @@ public class UnambiguousFeatureBaseComparator extends FeatureBaseComparator {
         super(new UnambiguousCvTermComparator(), new UnambiguousExternalIdentifierComparator(), new UnambiguousRangeAndResultingSequenceComparator());
     }
 
+    /**
+     * <p>getCvTermComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator} object.
+     */
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator)super.getCvTermComparator();
     }
 
+    /**
+     * <p>getIdentifierComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.xref.UnambiguousExternalIdentifierComparator} object.
+     */
     public UnambiguousExternalIdentifierComparator getIdentifierComparator() {
         return (UnambiguousExternalIdentifierComparator)super.getIdentifierComparator();
     }
@@ -46,8 +56,9 @@ public class UnambiguousFeatureBaseComparator extends FeatureBaseComparator {
 
     /**
      * Use UnambiguousFeatureBaseComparator to know if two features are equals.
-     * @param feature1
-     * @param feature2
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.Feature} object.
      * @return true if the two features are equal
      */
     public static boolean areEquals(Feature feature1, Feature feature2){
@@ -59,8 +70,9 @@ public class UnambiguousFeatureBaseComparator extends FeatureBaseComparator {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param feature
+     * @param feature a {@link psidev.psi.mi.jami.model.Feature} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Feature feature){

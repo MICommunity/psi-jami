@@ -22,7 +22,6 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class DefaultCvTerm implements CvTerm {
 
     private String shortName;
@@ -36,6 +35,11 @@ public class DefaultCvTerm implements CvTerm {
     private Xref modIdentifier;
     private Xref parIdentifier;
 
+    /**
+     * <p>Constructor for DefaultCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public DefaultCvTerm(String shortName){
         if (shortName == null){
             throw new IllegalArgumentException("The short name is required and cannot be null");
@@ -43,16 +47,35 @@ public class DefaultCvTerm implements CvTerm {
         this.shortName = shortName;
     }
 
+    /**
+     * <p>Constructor for DefaultCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public DefaultCvTerm(String shortName, String miIdentifier){
         this(shortName);
         setMIIdentifier(miIdentifier);
     }
 
+    /**
+     * <p>Constructor for DefaultCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public DefaultCvTerm(String shortName, String fullName, String miIdentifier){
         this(shortName, miIdentifier);
         this.fullName = fullName;
     }
 
+    /**
+     * <p>Constructor for DefaultCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultCvTerm(String shortName, Xref ontologyId){
         this(shortName);
         if (ontologyId != null){
@@ -60,6 +83,13 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultCvTerm(String shortName, String fullName, Xref ontologyId){
         this(shortName, ontologyId);
         this.fullName = fullName;
@@ -67,10 +97,16 @@ public class DefaultCvTerm implements CvTerm {
 
 
 
+    /**
+     * <p>Getter for the field <code>shortName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         return shortName;
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (name == null){
            throw new IllegalArgumentException("The short name cannot be null");
@@ -78,30 +114,53 @@ public class DefaultCvTerm implements CvTerm {
         this.shortName = name;
     }
 
+    /**
+     * <p>Getter for the field <code>fullName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFullName() {
         return this.fullName;
     }
 
+    /** {@inheritDoc} */
     public void setFullName(String name) {
         this.fullName = name;
     }
 
+    /**
+     * <p>initialiseXrefs</p>
+     */
     protected void initialiseXrefs(){
         this.xrefs = new ArrayList<Xref>();
     }
 
+    /**
+     * <p>initialiseAnnotations</p>
+     */
     protected void initialiseAnnotations(){
         this.annotations = new ArrayList<Annotation>();
     }
 
+    /**
+     * <p>initialiseSynonyms</p>
+     */
     protected void initialiseSynonyms(){
         this.synonyms = new ArrayList<Alias>();
     }
 
+    /**
+     * <p>initialiseIdentifiers</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new CvTermIdentifierList();
     }
 
+    /**
+     * <p>initialiseXrefsWith</p>
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     */
     protected void initialiseXrefsWith(Collection<Xref> xrefs){
         if (xrefs == null){
             this.xrefs = Collections.EMPTY_LIST;
@@ -111,6 +170,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>initialiseAnnotationsWith</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     */
     protected void initialiseAnnotationsWith(Collection<Annotation> annotations){
         if (annotations == null){
             this.annotations = Collections.EMPTY_LIST;
@@ -120,6 +184,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>initialiseSynonymsWith</p>
+     *
+     * @param aliases a {@link java.util.Collection} object.
+     */
     protected void initialiseSynonymsWith(Collection<Alias> aliases){
         if (aliases == null){
             this.synonyms = Collections.EMPTY_LIST;
@@ -129,6 +198,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>initialiseIdentifiersWith</p>
+     *
+     * @param identifiers a {@link java.util.Collection} object.
+     */
     protected void initialiseIdentifiersWith(Collection<Xref> identifiers){
         if (identifiers == null){
             this.identifiers = Collections.EMPTY_LIST;
@@ -138,6 +212,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
             initialiseIdentifiers();
@@ -145,18 +224,34 @@ public class DefaultCvTerm implements CvTerm {
         return identifiers;
     }
 
+    /**
+     * <p>getMIIdentifier</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getMIIdentifier() {
         return this.miIdentifier != null ? this.miIdentifier.getId() : null;
     }
 
+    /**
+     * <p>getMODIdentifier</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getMODIdentifier() {
         return this.modIdentifier != null ? this.modIdentifier.getId() : null;
     }
 
+    /**
+     * <p>getPARIdentifier</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPARIdentifier() {
         return this.parIdentifier != null ? this.parIdentifier.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setMIIdentifier(String mi) {
         Collection<Xref> cvTermIdentifiers = getIdentifiers();
 
@@ -178,6 +273,7 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /** {@inheritDoc} */
     public void setMODIdentifier(String mod) {
         Collection<Xref> cvTermIdentifiers = getIdentifiers();
 
@@ -200,6 +296,7 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /** {@inheritDoc} */
     public void setPARIdentifier(String par) {
         Collection<Xref> cvTermIdentifiers = getIdentifiers();
 
@@ -222,6 +319,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>xrefs</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefs == null){
             initialiseXrefs();
@@ -229,6 +331,11 @@ public class DefaultCvTerm implements CvTerm {
         return this.xrefs;
     }
 
+    /**
+     * <p>Getter for the field <code>annotations</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (annotations == null){
             initialiseAnnotations();
@@ -236,6 +343,11 @@ public class DefaultCvTerm implements CvTerm {
         return this.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>synonyms</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getSynonyms() {
         if (synonyms == null){
             initialiseSynonyms();
@@ -243,6 +355,11 @@ public class DefaultCvTerm implements CvTerm {
         return this.synonyms;
     }
 
+    /**
+     * <p>processAddedIdentifierEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
 
         // the added identifier is psi-mi and it is not the current mi identifier
@@ -301,6 +418,11 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is psi-mi
         if (miIdentifier != null && miIdentifier.equals(removed)){
@@ -316,17 +438,22 @@ public class DefaultCvTerm implements CvTerm {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         miIdentifier = null;
         modIdentifier = null;
         parIdentifier = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousCvTermComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -340,6 +467,7 @@ public class DefaultCvTerm implements CvTerm {
         return UnambiguousCvTermComparator.areEquals(this, (CvTerm) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getMIIdentifier() != null ? getMIIdentifier() :

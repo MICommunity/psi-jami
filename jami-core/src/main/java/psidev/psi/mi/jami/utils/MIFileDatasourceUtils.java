@@ -12,9 +12,14 @@ import java.util.regex.Matcher;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class MIFileDatasourceUtils {
 
+    /**
+     * <p>findSourceCategoryFromString</p>
+     *
+     * @param source a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.SourceCategory} object.
+     */
     public static SourceCategory findSourceCategoryFromString(String source){
         if (source == null){
             return null;

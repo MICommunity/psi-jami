@@ -17,21 +17,44 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultModelledParticipant extends AbstractParticipant<ModelledInteraction, ModelledFeature> implements ModelledParticipant {
 
+    /**
+     * <p>Constructor for DefaultModelledParticipant.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public DefaultModelledParticipant(Interactor interactor) {
         super(interactor);
     }
 
+    /**
+     * <p>Constructor for DefaultModelledParticipant.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultModelledParticipant(Interactor interactor, CvTerm bioRole) {
         super(interactor, bioRole);
     }
 
+    /**
+     * <p>Constructor for DefaultModelledParticipant.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public DefaultModelledParticipant(Interactor interactor, Stoichiometry stoichiometry) {
         super(interactor, stoichiometry);
     }
 
+    /**
+     * <p>Constructor for DefaultModelledParticipant.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public DefaultModelledParticipant(Interactor interactor, CvTerm bioRole, Stoichiometry stoichiometry) {
         super(interactor, bioRole, stoichiometry);
     }

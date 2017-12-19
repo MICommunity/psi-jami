@@ -15,13 +15,13 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class DefaultParticipantComparator {
 
     /**
      * Use DefaultParticipantComparator to know if two participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Participant} object.
      * @return true if the two participants are equal
      */
     public static boolean areEquals(Participant participant1, Participant participant2){

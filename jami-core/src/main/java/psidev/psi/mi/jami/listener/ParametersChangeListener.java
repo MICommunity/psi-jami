@@ -10,18 +10,22 @@ import java.util.EventListener;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/08/13
+ * @version $Id: $
  */
 public interface ParametersChangeListener<T extends Object> extends EventListener {
 
     /**
      * Listen to the event where a parameter has been added to the object parameters.
+     *
      * @param o        The object which has changed.
      * @param added             The added parameter.
+     * @param <T> a T object.
      */
     public void onAddedParameter(T o, Parameter added);
 
     /**
      * Listen to the event where a parameter has been removed from the object parameters.
+     *
      * @param o        The object which has changed.
      * @param removed           The removed parameter.
      */

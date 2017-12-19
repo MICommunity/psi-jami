@@ -17,13 +17,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ParticipantEvidenceComparator implements Comparator<ParticipantEvidence> {
 
     private ExperimentalParticipantPoolComparator poolComparator;
 
     /**
      * Creates a new ParticipantEvidenceComparator
+     *
      * @param poolComparator : the participant pool comparator required to compare basic properties of a participant and participant candidates in case of a pool
      */
     public ParticipantEvidenceComparator(ExperimentalParticipantPoolComparator poolComparator){
@@ -33,6 +33,11 @@ public class ParticipantEvidenceComparator implements Comparator<ParticipantEvid
         this.poolComparator = poolComparator;
     }
 
+    /**
+     * <p>getParticipantPoolComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ExperimentalParticipantPoolComparator} object.
+     */
     public ExperimentalParticipantPoolComparator getParticipantPoolComparator() {
         return poolComparator;
     }
@@ -43,9 +48,9 @@ public class ParticipantEvidenceComparator implements Comparator<ParticipantEvid
      * look at the experimental preparations using AbstractCvTermComparator. If both experimental preparations are equals, it will
      * look at the expressed in organisms using OrganismComparator.  If both organisms are the same, it will compare parameters using ParameterComparator
      *
-     * @param experimentalParticipant1
-     * @param experimentalParticipant2
-     * @return
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @return a int.
      */
     public int compare(ParticipantEvidence experimentalParticipant1, ParticipantEvidence experimentalParticipant2) {
         int EQUAL = 0;

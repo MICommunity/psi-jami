@@ -17,18 +17,22 @@ import java.util.Comparator;
  * Then it will compare the identifiers using UnambiguousExternalIdentifierComparator.
  * If the interactions do not have any identifiers, it will compare the shortnames (case sensitive, shortname null comes always after)
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class InteractionBaseComparator implements Comparator<Interaction> {
 
     private CollectionComparator<Xref> identifierCollectionComparator;
     private Comparator<CvTerm> cvTermComparator;
     private Comparator<Xref> identifierComparator;
 
+    /**
+     * <p>Constructor for InteractionBaseComparator.</p>
+     *
+     * @param identifierComparator a {@link java.util.Comparator} object.
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     */
     public InteractionBaseComparator(Comparator<Xref> identifierComparator, Comparator<CvTerm> cvTermComparator) {
         if (identifierComparator == null){
            throw new IllegalArgumentException("The identifier comparator cannot be null");
@@ -41,6 +45,12 @@ public class InteractionBaseComparator implements Comparator<Interaction> {
         this.identifierCollectionComparator = new XrefsCollectionComparator(getIdentifierComparator());
     }
 
+    /**
+     * <p>Constructor for InteractionBaseComparator.</p>
+     *
+     * @param identifierComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     */
     public InteractionBaseComparator(CollectionComparator<Xref> identifierComparator,  Comparator<CvTerm> cvTermComparator) {
         if (identifierComparator == null){
             throw new IllegalArgumentException("The identifier comparator cannot be null");
@@ -53,14 +63,29 @@ public class InteractionBaseComparator implements Comparator<Interaction> {
         this.identifierCollectionComparator = identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Xref> getIdentifierCollectionComparator() {
         return identifierCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Xref> getIdentifierComparator() {
         return this.identifierComparator;
     }
@@ -71,7 +96,9 @@ public class InteractionBaseComparator implements Comparator<Interaction> {
      * Then it will compare the identifiers using UnambiguousExternalIdentifierComparator.
      * If the interactions do not have any identifiers, it will compare the shortnames (case sensitive, shortname null comes always after)
      *
-     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @return a int.
      */
     public int compare(Interaction interaction1, Interaction interaction2) {
         int EQUAL = 0;

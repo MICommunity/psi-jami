@@ -8,17 +8,20 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public interface NamedParticipant<I extends Interaction, F extends Feature> extends Participant<I,F>{
     /**
      * The short name of the entity.
      * It can be null or empty.
+     *
      * @return the short name
+     * @param <I> a I object.
+     * @param <F> a F object.
      */
     public String getShortName();
 
     /**
      * Sets the short name of an entity
+     *
      * @param name : short name
      */
     public void setShortName(String name);
@@ -26,12 +29,14 @@ public interface NamedParticipant<I extends Interaction, F extends Feature> exte
     /**
      * The full name of the entity.
      * It can be null
+     *
      * @return the full name
      */
     public String getFullName();
 
     /**
      * Sets the full name of the entity
+     *
      * @param name : full name
      */
     public void setFullName(String name);

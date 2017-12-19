@@ -14,7 +14,6 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-
 public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
     private Interactor interactor;
     private Stoichiometry stoichiometry;
@@ -22,6 +21,12 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
     private Collection<F> features;
     private EntityInteractorChangeListener changeListener;
 
+    /**
+     * <p>Constructor for AbstractEntity.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param <F> a F object.
+     */
     public AbstractEntity(Interactor interactor){
         if (interactor == null){
             throw new IllegalArgumentException("The interactor cannot be null.");
@@ -29,19 +34,36 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         this.interactor = interactor;
     }
 
+    /**
+     * <p>Constructor for AbstractEntity.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public AbstractEntity(Interactor interactor, Stoichiometry stoichiometry){
         this(interactor);
         this.stoichiometry = stoichiometry;
     }
 
+    /**
+     * <p>initialiseFeatures</p>
+     */
     protected void initialiseFeatures(){
         this.features = new ArrayList<F>();
     }
 
+    /**
+     * <p>initialiseCausalRelationships</p>
+     */
     protected void initialiseCausalRelationships(){
         this.causalRelationships = new ArrayList<CausalRelationship>();
     }
 
+    /**
+     * <p>initialiseCausalRelationshipsWith</p>
+     *
+     * @param relationships a {@link java.util.Collection} object.
+     */
     protected void initialiseCausalRelationshipsWith(Collection<CausalRelationship> relationships) {
         if (relationships == null){
             this.causalRelationships = Collections.EMPTY_LIST;
@@ -51,6 +73,11 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         }
     }
 
+    /**
+     * <p>initialiseFeaturesWith</p>
+     *
+     * @param features a {@link java.util.Collection} object.
+     */
     protected void initialiseFeaturesWith(Collection<F> features) {
         if (features == null){
             this.features = Collections.EMPTY_LIST;
@@ -60,10 +87,16 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>interactor</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public Interactor getInteractor() {
         return this.interactor;
     }
 
+    /** {@inheritDoc} */
     public void setInteractor(Interactor interactor) {
         if (interactor == null){
             throw new IllegalArgumentException("The interactor cannot be null.");
@@ -75,6 +108,11 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>causalRelationships</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CausalRelationship> getCausalRelationships() {
         if (this.causalRelationships == null){
             initialiseCausalRelationships();
@@ -82,10 +120,16 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return this.causalRelationships;
     }
 
+    /**
+     * <p>Getter for the field <code>stoichiometry</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public Stoichiometry getStoichiometry() {
         return this.stoichiometry;
     }
 
+    /** {@inheritDoc} */
     public void setStoichiometry(Integer stoichiometry) {
         if (stoichiometry == null){
             this.stoichiometry = null;
@@ -95,10 +139,20 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         }
     }
 
+    /**
+     * <p>Setter for the field <code>stoichiometry</code>.</p>
+     *
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public void setStoichiometry(Stoichiometry stoichiometry) {
         this.stoichiometry = stoichiometry;
     }
 
+    /**
+     * <p>Getter for the field <code>features</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<F> getFeatures() {
         if (features == null){
             initialiseFeatures();
@@ -106,14 +160,26 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return this.features;
     }
 
+    /**
+     * <p>Getter for the field <code>changeListener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.listener.EntityInteractorChangeListener} object.
+     */
     public EntityInteractorChangeListener getChangeListener() {
         return this.changeListener;
     }
 
+    /** {@inheritDoc} */
     public void setChangeListener(EntityInteractorChangeListener listener) {
         this.changeListener = listener;
     }
 
+    /**
+     * <p>addFeature</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean addFeature(F feature) {
 
         if (feature == null){
@@ -127,6 +193,12 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return false;
     }
 
+    /**
+     * <p>removeFeature</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean removeFeature(F feature) {
 
         if (feature == null){
@@ -140,6 +212,7 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -154,6 +227,7 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -168,6 +242,7 @@ public abstract class AbstractEntity<F extends Feature> implements Entity<F> {
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Entity: "+getInteractor().toString() + (getStoichiometry() != null ? ", stoichiometry: " + getStoichiometry().toString() : "");

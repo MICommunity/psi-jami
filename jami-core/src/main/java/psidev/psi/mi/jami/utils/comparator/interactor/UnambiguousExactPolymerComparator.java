@@ -12,18 +12,18 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class UnambiguousExactPolymerComparator extends PolymerComparator {
     private static UnambiguousExactPolymerComparator unambiguousExactPolymerComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactPolymerComparator. It will uses a UnambiguousExactInteractorBaseComparator to compare interactor properties and a
      * OrganismTaxIdComparator to compares organism.
      */
     public UnambiguousExactPolymerComparator(){
         super(new UnambiguousExactInteractorBaseComparator(), new OrganismTaxIdComparator());
     }
-
     @Override
     /**
      * It will first use DefaultExactInteractorBaseComparator to compare the basic interactor properties
@@ -33,6 +33,7 @@ public class UnambiguousExactPolymerComparator extends PolymerComparator {
         return super.compare(polymer1, polymer2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorBaseComparator getInteractorComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorComparator();
@@ -40,8 +41,9 @@ public class UnambiguousExactPolymerComparator extends PolymerComparator {
 
     /**
      * Use UnambiguousPolymerComparator to know if two polymers are equals.
-     * @param polymer1
-     * @param polymer2
+     *
+     * @param polymer1 a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @param polymer2 a {@link psidev.psi.mi.jami.model.Polymer} object.
      * @return true if the two polymers are equal
      */
     public static boolean areEquals(Polymer polymer1, Polymer polymer2){

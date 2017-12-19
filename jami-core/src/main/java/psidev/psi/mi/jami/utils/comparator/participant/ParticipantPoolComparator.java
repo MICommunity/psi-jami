@@ -11,11 +11,11 @@ import java.util.Comparator;
  *
  * It will first compares basic participant properties using ParticipantBaseComparator, then it will compare participant pool type using cv term comparator and then it will compare
  * each participant candidate using EntityBaseComparator
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ParticipantPoolComparator implements Comparator<ParticipantPool> {
 
     private ParticipantBaseComparator participantBaseComparator;
@@ -23,6 +23,7 @@ public class ParticipantPoolComparator implements Comparator<ParticipantPool> {
 
     /**
      * Creates a new ParticipantPoolComparator
+     *
      * @param participantBaseComparator : the participant comparator required to compare basic properties of a participant
      */
     public ParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator){
@@ -33,6 +34,12 @@ public class ParticipantPoolComparator implements Comparator<ParticipantPool> {
         this.entityCollectionComparator = new ParticipantCollectionComparator(participantBaseComparator.getEntityBaseComparator());
     }
 
+    /**
+     * <p>Constructor for ParticipantPoolComparator.</p>
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     * @param entityCollectionComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public ParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator, CollectionComparator<Entity> entityCollectionComparator){
         if (participantBaseComparator == null){
             throw new IllegalArgumentException("The participant comparator is required to compare basic participant properties. It cannot be null");
@@ -41,10 +48,20 @@ public class ParticipantPoolComparator implements Comparator<ParticipantPool> {
         this.entityCollectionComparator = entityCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     */
     public ParticipantBaseComparator getParticipantBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>getParticipantCollectionComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Entity> getParticipantCollectionComparator() {
         return entityCollectionComparator;
     }
@@ -53,9 +70,9 @@ public class ParticipantPoolComparator implements Comparator<ParticipantPool> {
      * It will first compares basic participant properties using ParticipantBaseComparator, then it will compare participant pool type using cv term comparator and then it will compare
      * each participant candidate using EntityBaseComparator
      *
-     * @param participant1
-     * @param participant2
-     * @return
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @return a int.
      */
     public int compare(ParticipantPool participant1, ParticipantPool participant2) {
         int EQUAL = 0;

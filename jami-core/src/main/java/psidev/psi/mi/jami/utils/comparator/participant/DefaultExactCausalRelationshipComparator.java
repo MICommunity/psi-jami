@@ -8,17 +8,18 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  *
  * It will first compare the relationType using DefaultCvTermComparator. If both relationTypes are identical, it will compare the
  * target using DefaultExactEntityComparator
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultExactCausalRelationshipComparator {
 
     /**
      * Use DefaultExactCausalRelationshipComparator to know if two causalRelationShip are equals.
-     * @param rel1
-     * @param rel2
+     *
+     * @param rel1 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
+     * @param rel2 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
      * @return true if the two causalRelationShip are equal
      */
     public static boolean areEquals(CausalRelationship rel1, CausalRelationship rel2){

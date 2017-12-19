@@ -18,13 +18,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class ChecksumComparator implements Comparator<Checksum>{
 
     private Comparator<CvTerm> methodComparator;
 
     /**
      * Creates a new ChecksumComparator.
+     *
      * @param termComparator : comparator for the method which is required
      */
     public ChecksumComparator(Comparator<CvTerm> termComparator){
@@ -34,6 +34,11 @@ public class ChecksumComparator implements Comparator<Checksum>{
         this.methodComparator = termComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>methodComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getMethodComparator() {
         return methodComparator;
     }
@@ -45,6 +50,7 @@ public class ChecksumComparator implements Comparator<Checksum>{
      * - The annotation which is not null is before null.
      * - use CvTermComparator to compare the topics. If they are equals, compares the values (case insensitive)
      * - If both annotations have same topic, the one with a null value is always after the one with a non null value.
+     *
      * @param checksum1 : the first checksum
      * @param checksum2 : the second checksum
      * @return the comparison value

@@ -10,11 +10,11 @@ import psidev.psi.mi.jami.model.Organism;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public interface OrganismChangeListener extends AliasesChangeListener<Organism> {
 
     /**
      * Listen to the event where the commonName of an organism has been changed.
+     *
      * @param organism : updated organism
      * @param oldCommonName : old common name
      */
@@ -24,6 +24,7 @@ public interface OrganismChangeListener extends AliasesChangeListener<Organism> 
      * Listen to the event where the scientificName of an organism has been changed.
      * If oldScientificName is null, it means that the scientificName of the organism has been initialised.
      * If the current scientificName of the organism is null, it means that the scientificName has been reset
+     *
      * @param organism : updated organism
      * @param oldScientificName : old scientific name
      */
@@ -31,6 +32,7 @@ public interface OrganismChangeListener extends AliasesChangeListener<Organism> 
 
     /**
      * Listen to the event where the taxid of an organism has been changed.
+     *
      * @param organism : updated organism
      * @param oldTaxid : old taxid
      */
@@ -39,21 +41,27 @@ public interface OrganismChangeListener extends AliasesChangeListener<Organism> 
     /**
      * Listen to the event where the cell type has been initialised.
      * This event happens when an organism has a new cell type
+     *
      * @param organism        The organism which has changed.
+     * @param oldType a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public void onCellTypeUpdate(Organism organism, CvTerm oldType);
 
     /**
      * Listen to the event where the organism tissue has been initialised.
      * This event happens when a organism has a new tissue
+     *
      * @param organism        The organism which has changed.
+     * @param oldType a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public void onTissueUpdate(Organism organism, CvTerm oldType);
 
     /**
      * Listen to the event where the organism compartment has been initialised.
      * This event happens when a organism has a new compartment
+     *
      * @param organism        The organism which has changed.
+     * @param oldType a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public void onCompartmentUpdate(Organism organism, CvTerm oldType);
 }

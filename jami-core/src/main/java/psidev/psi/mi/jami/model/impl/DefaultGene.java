@@ -23,7 +23,6 @@ import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
  * @version $Id$
  * @since <pre>24/01/13</pre>
  */
-
 public class DefaultGene extends DefaultMolecule implements Gene {
 
     private Xref ensembl;
@@ -31,38 +30,97 @@ public class DefaultGene extends DefaultMolecule implements Gene {
     private Xref entrezGeneId;
     private Xref refseq;
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public DefaultGene(String name) {
         super(name, CvTermUtils.createGeneInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public DefaultGene(String name, String fullName) {
         super(name, fullName, CvTermUtils.createGeneInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultGene(String name, Organism organism) {
         super(name, CvTermUtils.createGeneInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultGene(String name, String fullName, Organism organism) {
         super(name, fullName, CvTermUtils.createGeneInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, Xref uniqueId) {
         super(name, CvTermUtils.createGeneInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createGeneInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, Organism organism, Xref uniqueId) {
         super(name, CvTermUtils.createGeneInteractorType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createGeneInteractorType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ensembl a {@link java.lang.String} object.
+     */
     public DefaultGene(String name, String fullName, String ensembl) {
         super(name, fullName, CvTermUtils.createGeneInteractorType());
 
@@ -71,46 +129,121 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, CvTerm type, Xref ensembl) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType());
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type, Xref ensembl) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType());
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, CvTerm type, Organism organism, Xref ensembl) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type, Organism organism, Xref ensembl) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, CvTerm type, Xref uniqueId, Xref ensembl) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType(), uniqueId);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type, Xref uniqueId, Xref ensembl) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), uniqueId);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, CvTerm type, Organism organism, Xref uniqueId, Xref ensembl) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType(), organism, uniqueId);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId, Xref ensembl) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), organism, uniqueId);
         this.ensembl = ensembl;
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link java.lang.String} object.
+     */
     public DefaultGene(String name, Organism organism, String ensembl) {
         super(name, CvTermUtils.createGeneInteractorType(), organism);
         if (ensembl != null){
@@ -118,6 +251,14 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link java.lang.String} object.
+     */
     public DefaultGene(String name, String fullName, Organism organism, String ensembl) {
         super(name, fullName, CvTermUtils.createGeneInteractorType(), organism);
         if (ensembl != null){
@@ -125,21 +266,50 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultGene(String name, CvTerm type) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultGene(String name, CvTerm type, Organism organism) {
         super(name, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultGene.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultGene(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type != null ? type : CvTermUtils.createGeneInteractorType(), organism);
     }
+
 
     @Override
     protected void initialiseIdentifiers() {
@@ -156,10 +326,16 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         return ensembl != null ? ensembl : (ensemblGenome != null ? ensemblGenome : (entrezGeneId != null ? entrezGeneId : (refseq != null ? refseq : super.getPreferredIdentifier())));
     }
 
+    /**
+     * <p>Getter for the field <code>ensembl</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getEnsembl() {
         return this.ensembl != null ? this.ensembl.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setEnsembl(String ac) {
         GeneIdentifierList geneIdentifiers = (GeneIdentifierList)getIdentifiers();
 
@@ -181,10 +357,16 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>ensemblGenome</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getEnsemblGenome() {
         return this.ensemblGenome != null ? this.ensemblGenome.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setEnsemblGenome(String ac) {
         GeneIdentifierList geneIdentifiers = (GeneIdentifierList)getIdentifiers();
 
@@ -206,10 +388,16 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>entrezGeneId</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getEntrezGeneId() {
         return this.entrezGeneId != null ? this.entrezGeneId.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setEntrezGeneId(String id) {
         GeneIdentifierList geneIdentifiers = (GeneIdentifierList)getIdentifiers();
 
@@ -231,10 +419,16 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>refseq</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRefseq() {
         return this.refseq != null ? this.refseq.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setRefseq(String ac) {
         GeneIdentifierList geneIdentifiers = (GeneIdentifierList)getIdentifiers();
 
@@ -256,6 +450,11 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>processAddedIdentifierEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
         // the added identifier is ensembl and it is not the current ensembl identifier
         if (ensembl != added && XrefUtils.isXrefFromDatabase(added, Xref.ENSEMBL_MI, Xref.ENSEMBL)){
@@ -331,6 +530,11 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         if (ensembl != null && ensembl.equals(removed)){
             ensembl = XrefUtils.collectFirstIdentifierWithDatabase(getIdentifiers(), Xref.ENSEMBL_MI, Xref.ENSEMBL);
@@ -346,6 +550,9 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         ensembl = null;
         ensemblGenome = null;
@@ -354,10 +561,11 @@ public class DefaultGene extends DefaultMolecule implements Gene {
     }
 
     @Override
-    /**
-     * Sets the interactor type.
-     * @throw IllegalArgumentException: If the give type is not gene (MI:0301)
-     */
+     /**
+      * {@inheritDoc}
+      *
+      * Sets the interactor type.
+      */
     public void setInteractorType(CvTerm type) {
         if (type == null){
             super.setInteractorType(CvTermUtils.createGeneInteractorType());
@@ -367,6 +575,7 @@ public class DefaultGene extends DefaultMolecule implements Gene {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Gene: "

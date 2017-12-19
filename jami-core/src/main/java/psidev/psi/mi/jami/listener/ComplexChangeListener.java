@@ -9,7 +9,6 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface ComplexChangeListener extends ModelledInteractionChangeListener<Complex>, InteractorChangeListener<Complex> {
 
 }

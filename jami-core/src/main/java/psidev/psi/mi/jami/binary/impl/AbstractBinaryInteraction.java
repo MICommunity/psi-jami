@@ -20,52 +20,107 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-
 public abstract class AbstractBinaryInteraction<T extends Participant> extends AbstractInteraction<T> implements BinaryInteraction<T> {
     private T participantA;
     private T participantB;
     private CvTerm complexExpansion;
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param <T> a T object.
+     */
     public AbstractBinaryInteraction(){
         super();
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public AbstractBinaryInteraction(String shortName){
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(String shortName, CvTerm type){
         super(shortName, type);
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param participantA a T object.
+     * @param participantB a T object.
+     */
     public AbstractBinaryInteraction(T participantA, T participantB){
         super();
         this.participantA = participantA;
         this.participantB = participantB;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a T object.
+     * @param participantB a T object.
+     */
     public AbstractBinaryInteraction(String shortName, T participantA, T participantB){
         super(shortName);
         this.participantA = participantA;
         this.participantB = participantB;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a T object.
+     * @param participantB a T object.
+     */
     public AbstractBinaryInteraction(String shortName, CvTerm type, T participantA, T participantB){
         super(shortName, type);
         this.participantA = participantA;
         this.participantB = participantB;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(CvTerm complexExpansion){
         super();
         this.complexExpansion = complexExpansion;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(String shortName, CvTerm type, CvTerm complexExpansion){
         super(shortName, type);
         this.complexExpansion = complexExpansion;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param participantA a T object.
+     * @param participantB a T object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(T participantA, T participantB, CvTerm complexExpansion){
         super();
         this.participantA = participantA;
@@ -73,6 +128,14 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         this.complexExpansion = complexExpansion;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a T object.
+     * @param participantB a T object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(String shortName, T participantA, T participantB, CvTerm complexExpansion){
         super(shortName);
         this.complexExpansion = complexExpansion;
@@ -80,6 +143,15 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         this.participantB = participantB;
     }
 
+    /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a T object.
+     * @param participantB a T object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractBinaryInteraction(String shortName, CvTerm type, T participantA, T participantB, CvTerm complexExpansion){
         super(shortName, type);
         this.participantA = participantA;
@@ -87,34 +159,61 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         this.complexExpansion = complexExpansion;
     }
 
+    /**
+     * <p>Getter for the field <code>participantA</code>.</p>
+     *
+     * @return a T object.
+     */
     public T getParticipantA() {
         return participantA;
     }
 
+    /**
+     * <p>Getter for the field <code>participantB</code>.</p>
+     *
+     * @return a T object.
+     */
     public T getParticipantB() {
         return participantB;
     }
 
+    /**
+     * <p>Setter for the field <code>participantA</code>.</p>
+     *
+     * @param participantA a T object.
+     */
     public void setParticipantA(T participantA) {
         this.participantA = participantA;
     }
 
+    /**
+     * <p>Setter for the field <code>participantB</code>.</p>
+     *
+     * @param participantB a T object.
+     */
     public void setParticipantB(T participantB) {
         this.participantB = participantB;
     }
 
+    /**
+     * <p>Getter for the field <code>complexExpansion</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getComplexExpansion() {
         return this.complexExpansion;
     }
 
+    /** {@inheritDoc} */
     public void setComplexExpansion(CvTerm expansion) {
         this.complexExpansion = expansion;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * The collection of participants for this binary interaction.
      * It cannot be changed.
-     * @return collection of participants for this binary interaction
      */
     @Override
     public Collection<T> getParticipants() {
@@ -133,11 +232,10 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Adds a new Participant and set the Interaction of this participant if added.
      * If the participant B and A are null, it will first set the participantA. If the participantA is set, it will set the ParticipantB
-     * @param part : participant to add
-     * @return true if the participant has been added, false otherwise
-     * @throws IllegalArgumentException if this Binary interaction already contains two participants
      */
     @Override
     public boolean addParticipant(T part) {
@@ -160,9 +258,9 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Removes the Participant from this binary interaction
-     * @param part : participant to remove
-     * @return true if the participant has been removed, false otherwise
      */
     @Override
     public boolean removeParticipant(T part) {
@@ -184,11 +282,10 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Adds the participants and set the Interaction of this participant if added.
      * If the participant B and A are null, it will first set the participantA. If the participantA is set, it will set the ParticipantB
-     * @param participants : participants to add
-     * @return true if at least one participant has been added, false otherwise
-     * @throws IllegalArgumentException if this Binary interaction already contains two participants or the given participants contain more than two participants
      */
     @Override
     public boolean addAllParticipants(Collection<? extends T> participants) {
@@ -208,6 +305,7 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeAllParticipants(Collection<? extends T> participants) {
         if (participants == null){
@@ -223,6 +321,7 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         return removed;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Binary interaction: " +

@@ -18,13 +18,13 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class DefaultFeatureEvidenceComparator {
 
     /**
      * Use DefaultFeatureEvidenceComparator to know if two experimental features are equals.
-     * @param experimentalFeature1
-     * @param experimentalFeature2
+     *
+     * @param experimentalFeature1 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @param experimentalFeature2 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
      * @return true if the two experimental features are equal
      */
     public static boolean areEquals(FeatureEvidence experimentalFeature1, FeatureEvidence experimentalFeature2){

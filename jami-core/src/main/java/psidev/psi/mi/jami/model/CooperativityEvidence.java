@@ -9,27 +9,30 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public interface CooperativityEvidence {
 
     /**
      * The publication where the cooperativityEvidence has been described.
      * It cannot be null.
+     *
      * @return the publication
      */
     public Publication getPublication();
 
     /**
      * Set the publication where the cooperativityEvidence has been described.
+     *
      * @param publication : the publication
-     * @throws IllegalArgumentException when publication is null
+     * @throws java.lang.IllegalArgumentException when publication is null
      */
     public void setPublication(Publication publication);
 
     /**
      * The collection of methods used to infer the cooperative effect.
      * This collection cannot be null. If the CooperativityEvidence does not have any methods, the method should return an empty collection
+     *
      * @return The collection of methods
+     * @param <T> a T object.
      */
     public <T extends CvTerm> Collection<T> getEvidenceMethods();
 }

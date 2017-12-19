@@ -9,15 +9,17 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousExactInteractor
  * It will compare the basic properties of an interactor using UnambiguousExactInteractorComparator.
  *
  * This comparator will ignore all the other properties of an experimental participant.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class UnambiguousExactParticipantEvidenceInteractorComparator extends ParticipantInteractorComparator<ExperimentalEntity> {
     private static UnambiguousExactParticipantEvidenceInteractorComparator unambiguousExactExperimentalParticipantInteractorComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactParticipantEvidenceInteractorComparator. It will use a UnambiguousExactInteractorComparator to compare
      * the basic properties of a interactor.
      */
@@ -29,7 +31,6 @@ public class UnambiguousExactParticipantEvidenceInteractorComparator extends Par
     public UnambiguousExactInteractorComparator getInteractorComparator() {
         return (UnambiguousExactInteractorComparator) super.getInteractorComparator();
     }
-
     @Override
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
@@ -44,8 +45,9 @@ public class UnambiguousExactParticipantEvidenceInteractorComparator extends Par
      * It will compare the basic properties of an interactor using UnambiguousExactInteractorComparator.
      *
      * This comparator will ignore all the other properties of an experimental participant.
-     * @param experimentalParticipant1
-     * @param component2
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental participants are equal
      */
     public static boolean areEquals(ExperimentalEntity experimentalParticipant1, ExperimentalEntity component2){

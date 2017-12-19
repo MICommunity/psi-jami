@@ -7,12 +7,12 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public interface CausalRelationship {
 
     /**
      * The relation type with the participant target.
      * It is a controlled vocabulary term and cannot be null
+     *
      * @return the relationType
      */
     public CvTerm getRelationType();
@@ -20,6 +20,7 @@ public interface CausalRelationship {
     /**
      * The participant/entity target of this causalRelationship.
      * It cannot be null.
+     *
      * @return the participant/entity target
      */
     public Entity getTarget();

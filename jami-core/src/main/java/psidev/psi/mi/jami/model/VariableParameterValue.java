@@ -7,12 +7,12 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public interface VariableParameterValue {
 
     /**
      * The value for the variableParameterValue (drug concentration, etc.)
      * It cannot be null.
+     *
      * @return the value of the variableParameterValue
      */
     public String getValue();
@@ -20,6 +20,7 @@ public interface VariableParameterValue {
     /**
      * The decimal order for this variableParameterValue.
      * It can be null if the VariableParameterValueComparator does not have any order.
+     *
      * @return the decimal order
      */
     public Integer getOrder();
@@ -27,6 +28,7 @@ public interface VariableParameterValue {
     /**
      * The variableParameter reporting this VariableParameterValueComparator.
      * It can be null if the variableParameterValue is not attached to any variableParameter
+     *
      * @return the variableParameter reporting the variableParameterValue
      */
     public VariableParameter getVariableParameter();

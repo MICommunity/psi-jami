@@ -17,13 +17,14 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class BioactiveEntityComparator implements Comparator<BioactiveEntity> {
 
     private Comparator<Interactor> interactorBaseComparator;
 
     /**
      * Creates a new UnambiguousBioactiveEntityComparator. It will use an UnambiguousInteractorBaseComparator
+     *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
      */
     public BioactiveEntityComparator(Comparator<Interactor> interactorBaseComparator){
         if (interactorBaseComparator == null){
@@ -32,6 +33,11 @@ public class BioactiveEntityComparator implements Comparator<BioactiveEntity> {
         this.interactorBaseComparator = interactorBaseComparator;
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorComparator() {
         return interactorBaseComparator;
     }
@@ -42,6 +48,10 @@ public class BioactiveEntityComparator implements Comparator<BioactiveEntity> {
      * standard inchi key (the interactor with a non null standard inchi key will always come first). If the standard inchi keys are identical, it will look at the smile (the interactor with a non null smile will always come first). If the smiles are identical, it
      * will look at the standard Inchi (the interactor with a non null standard inchi will always come first).
      * This comparator will ignore all the other properties of an interactor.
+     *
+     * @param bioactiveEntity1 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @param bioactiveEntity2 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @return a int.
      */
     public int compare(BioactiveEntity bioactiveEntity1, BioactiveEntity bioactiveEntity2) {
         int EQUAL = 0;

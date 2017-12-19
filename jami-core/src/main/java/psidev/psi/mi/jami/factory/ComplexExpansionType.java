@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.factory;
  * @version $Id$
  * @since <pre>22/08/14</pre>
  */
-
 public enum ComplexExpansionType {
 
     spoke, matrix, bipartite

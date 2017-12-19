@@ -21,7 +21,6 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultCooperativeEffect implements CooperativeEffect {
 
     private Collection<CooperativityEvidence> cooperativityEvidences;
@@ -30,6 +29,11 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
     private CvTerm outcome;
     private CvTerm response;
 
+    /**
+     * <p>Constructor for DefaultCooperativeEffect.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultCooperativeEffect(CvTerm outcome){
         if (outcome == null){
             throw new IllegalArgumentException("The outcome of a CooperativeEffect cannot be null");
@@ -37,15 +41,29 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         this.outcome = outcome;
     }
 
+    /**
+     * <p>Constructor for DefaultCooperativeEffect.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultCooperativeEffect(CvTerm outcome, CvTerm response){
         this(outcome);
         this.response = response;
     }
 
+    /**
+     * <p>initialiseCooperativityEvidences</p>
+     */
     protected void initialiseCooperativityEvidences(){
         this.cooperativityEvidences = new ArrayList<CooperativityEvidence>();
     }
 
+    /**
+     * <p>initialiseCooperativityEvidencesWith</p>
+     *
+     * @param evidences a {@link java.util.Collection} object.
+     */
     protected void initialiseCooperativityEvidencesWith(Collection<CooperativityEvidence> evidences){
         if (evidences == null){
             this.cooperativityEvidences = Collections.EMPTY_LIST;
@@ -55,10 +73,18 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         }
     }
 
+    /**
+     * <p>initialiseAffectedInteractions</p>
+     */
     protected void initialiseAffectedInteractions(){
         this.affectedInteractions = new ArrayList<ModelledInteraction>();
     }
 
+    /**
+     * <p>initialiseAffectedInteractionsWith</p>
+     *
+     * @param affected a {@link java.util.Collection} object.
+     */
     protected void initialiseAffectedInteractionsWith(Collection<ModelledInteraction> affected){
         if (affected == null){
             this.affectedInteractions = Collections.EMPTY_LIST;
@@ -68,10 +94,18 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         }
     }
 
+    /**
+     * <p>initialiseAnnotations</p>
+     */
     protected void initialiseAnnotations(){
         this.annotations = new ArrayList<Annotation>();
     }
 
+    /**
+     * <p>initialiseAnnotationsWith</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     */
     protected void initialiseAnnotationsWith(Collection<Annotation> annotations){
         if (annotations == null){
             this.annotations = Collections.EMPTY_LIST;
@@ -81,6 +115,11 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativityEvidences</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CooperativityEvidence> getCooperativityEvidences() {
         if (cooperativityEvidences == null){
             initialiseCooperativityEvidences();
@@ -88,6 +127,11 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         return cooperativityEvidences;
     }
 
+    /**
+     * <p>Getter for the field <code>affectedInteractions</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledInteraction> getAffectedInteractions() {
         if (affectedInteractions == null){
             initialiseAffectedInteractions();
@@ -95,6 +139,11 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         return affectedInteractions;
     }
 
+    /**
+     * <p>Getter for the field <code>annotations</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (annotations == null){
             initialiseAnnotations();
@@ -102,10 +151,16 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         return annotations;
     }
 
+    /**
+     * <p>getOutCome</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getOutCome() {
         return outcome;
     }
 
+    /** {@inheritDoc} */
     public void setOutCome(CvTerm effect) {
         if (effect == null){
            throw new IllegalArgumentException("The outcome of a CooperativeEffect cannot be null");
@@ -113,14 +168,21 @@ public class DefaultCooperativeEffect implements CooperativeEffect {
         this.outcome = effect;
     }
 
+    /**
+     * <p>Getter for the field <code>response</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getResponse() {
         return this.response;
     }
 
+    /** {@inheritDoc} */
     public void setResponse(CvTerm response) {
         this.response = response;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Outcome: "+(getOutCome() != null ? getOutCome().toString() : "") + (getResponse() != null ? ", response: " + getResponse().toString() : "");

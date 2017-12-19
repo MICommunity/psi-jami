@@ -16,7 +16,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class ParticipantComparator implements Comparator<Participant> {
 
     private ParticipantBaseComparator participantBaseComparator;
@@ -24,6 +23,14 @@ public class ParticipantComparator implements Comparator<Participant> {
     private ModelledParticipantComparator biologicalParticipantComparator;
     private ParticipantPoolComparator poolComparator;
 
+    /**
+     * <p>Constructor for ParticipantComparator.</p>
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     * @param experimentalParticipantComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantEvidenceComparator} object.
+     * @param modelledParticipantComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantComparator} object.
+     * @param poolComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantPoolComparator} object.
+     */
     public ParticipantComparator(ParticipantBaseComparator participantBaseComparator,
                                  ParticipantEvidenceComparator experimentalParticipantComparator,
                                  ModelledParticipantComparator modelledParticipantComparator,
@@ -51,9 +58,10 @@ public class ParticipantComparator implements Comparator<Participant> {
      * - It uses ParticipantEvidenceComparator to compare experimental participants
      * - It uses ModelledParticipantComparator to compare biological participants
      * - It uses ParticipantBaseComparator to compare basic participant properties
-     * @param participant1
-     * @param participant2
-     * @return
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @return a int.
      */
     public int compare(Participant participant1, Participant participant2) {
         int EQUAL = 0;
@@ -121,18 +129,38 @@ public class ParticipantComparator implements Comparator<Participant> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>participantBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     */
     public ParticipantBaseComparator getParticipantBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalParticipantComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantEvidenceComparator} object.
+     */
     public ParticipantEvidenceComparator getExperimentalParticipantComparator() {
         return experimentalParticipantComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>biologicalParticipantComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantComparator} object.
+     */
     public ModelledParticipantComparator getBiologicalParticipantComparator() {
         return biologicalParticipantComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>poolComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantPoolComparator} object.
+     */
     public ParticipantPoolComparator getPoolComparator() {
         return poolComparator;
     }

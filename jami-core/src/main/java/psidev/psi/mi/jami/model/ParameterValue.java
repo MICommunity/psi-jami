@@ -11,13 +11,19 @@ import java.math.BigDecimal;
  * @version $Id$
  * @since <pre>26/11/12</pre>
  */
-
 public class ParameterValue extends Number{
 
     private short base=10;
     private BigDecimal factor;
     private short exponent=0;
 
+    /**
+     * <p>Constructor for ParameterValue.</p>
+     *
+     * @param factor a {@link java.math.BigDecimal} object.
+     * @param base a short.
+     * @param exponent a short.
+     */
     public ParameterValue(BigDecimal factor, short base, short exponent){
         if (factor == null){
             throw new IllegalArgumentException("The factor is required and cannot be null");
@@ -27,6 +33,11 @@ public class ParameterValue extends Number{
         this.exponent = exponent;
     }
 
+    /**
+     * <p>Constructor for ParameterValue.</p>
+     *
+     * @param value a {@link java.math.BigDecimal} object.
+     */
     public ParameterValue(BigDecimal value){
         if (value == null){
             throw new IllegalArgumentException("The value is required and cannot be null");
@@ -36,21 +47,25 @@ public class ParameterValue extends Number{
         this.exponent = 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int intValue() {
         return factor.multiply(BigDecimal.valueOf(Math.pow(base, exponent))).intValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public long longValue() {
         return factor.multiply(BigDecimal.valueOf(Math.pow(base, exponent))).longValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public float floatValue() {
         return factor.multiply(BigDecimal.valueOf(Math.pow(base, exponent))).floatValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public double doubleValue() {
         return factor.multiply(BigDecimal.valueOf(Math.pow(base, exponent))).doubleValue();
@@ -58,6 +73,7 @@ public class ParameterValue extends Number{
 
     /**
      * Base of the parameter expression. Defaults to 10.
+     *
      * @return the base
      */
     public short getBase() {
@@ -66,6 +82,7 @@ public class ParameterValue extends Number{
 
     /**
      * The "main" value of the parameter.
+     *
      * @return the factor
      */
     public BigDecimal getFactor() {
@@ -74,16 +91,23 @@ public class ParameterValue extends Number{
 
     /**
      * Exponent of the base. By default is 0.
+     *
      * @return the exponent
      */
     public short getExponent() {
         return exponent;
     }
 
+    /**
+     * <p>toString</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString(){
         return (base != 0 && factor.doubleValue() != 0 ? factor.toString()+(exponent != 0 ? "x"+base+"^("+exponent+")" : "") : "0");
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -97,6 +121,7 @@ public class ParameterValue extends Number{
         return ParameterValueComparator.areEquals(this, (ParameterValue) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return ParameterValueComparator.hashCode(this);

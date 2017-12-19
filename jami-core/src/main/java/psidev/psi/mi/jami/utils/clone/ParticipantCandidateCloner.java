@@ -12,14 +12,15 @@ import psidev.psi.mi.jami.model.impl.DefaultModelledFeature;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ParticipantCandidateCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of participant candidate source to participant candidate target and will override all the other properties of Target participant candidate.
      * This method will ignore interaction
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ExperimentalParticipantCandidate} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ExperimentalParticipantCandidate} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      *                         It will then set the experimental entity of the cloned features to target
      */
@@ -50,11 +51,13 @@ public class ParticipantCandidateCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of modelled participant candidate source in modelled participant candidate target and will override all the other properties of Target modelled participant.
      * This method will ignore interaction
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledParticipantCandidate} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ModelledParticipantCandidate} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      *                         It will then set the modelledParticipant of the cloned features to target
      */
@@ -88,8 +91,9 @@ public class ParticipantCandidateCloner {
     /**
      * This method will copy properties of participant candidate source in participant candidate
      * target and will override all the other properties of Target participant.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      */
     public static void copyAndOverrideBasicCandidateProperties(ParticipantCandidate source,

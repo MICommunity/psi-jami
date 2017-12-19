@@ -22,7 +22,6 @@ import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
  * @version $Id$
  * @since <pre>01/02/13</pre>
  */
-
 public class DefaultProtein extends DefaultPolymer implements Protein {
 
     private Xref uniprotkb;
@@ -30,86 +29,203 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
     private Alias geneName;
     private Checksum rogid;
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultProtein(String name, CvTerm type) {
         super(name, type != null ? type : CvTermUtils.createProteinInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultProtein(String name, String fullName, CvTerm type) {
         super(name, fullName, type != null ? type : CvTermUtils.createProteinInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultProtein(String name, CvTerm type, Organism organism) {
         super(name, type != null ? type : CvTermUtils.createProteinInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultProtein(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type != null ? type : CvTermUtils.createProteinInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, CvTerm type, Xref uniqueId) {
         super(name, type != null ? type : CvTermUtils.createProteinInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type != null ? type : CvTermUtils.createProteinInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type != null ? type : CvTermUtils.createProteinInteractorType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type != null ? type : CvTermUtils.createProteinInteractorType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public DefaultProtein(String name) {
         super(name, CvTermUtils.createProteinInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public DefaultProtein(String name, String fullName) {
         super(name, fullName, CvTermUtils.createProteinInteractorType());
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultProtein(String name, Organism organism) {
         super(name, CvTermUtils.createProteinInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultProtein(String name, String fullName, Organism organism) {
         super(name, fullName, CvTermUtils.createProteinInteractorType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, Xref uniqueId) {
         super(name, CvTermUtils.createProteinInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, String fullName, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createProteinInteractorType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, Organism organism, Xref uniqueId) {
         super(name, CvTermUtils.createProteinInteractorType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultProtein.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultProtein(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createProteinInteractorType(), organism, uniqueId);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseIdentifiers() {
         initialiseIdentifiersWith(new ProteinIdentifierList());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseChecksums() {
         initialiseChecksumsWith(new ProteinChecksumList());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAliases() {
         initialiseAliasesWith(new ProteinAliasList());
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @return The first uniprokb if provided, then the first refseq identifier if provided, otherwise the first identifier in the list
      */
     @Override
@@ -117,10 +233,16 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         return uniprotkb != null ? uniprotkb : (refseq != null ? refseq : super.getPreferredIdentifier());
     }
 
+    /**
+     * <p>Getter for the field <code>uniprotkb</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getUniprotkb() {
         return this.uniprotkb != null ? this.uniprotkb.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setUniprotkb(String ac) {
         ProteinIdentifierList proteinIdentifiers = (ProteinIdentifierList)getIdentifiers();
 
@@ -142,10 +264,16 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>refseq</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRefseq() {
         return this.refseq != null ? this.refseq.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setRefseq(String ac) {
         ProteinIdentifierList proteinIdentifiers = (ProteinIdentifierList)getIdentifiers();
 
@@ -167,10 +295,16 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>geneName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getGeneName() {
         return this.geneName != null ? this.geneName.getName() : null;
     }
 
+    /** {@inheritDoc} */
     public void setGeneName(String name) {
         ProteinAliasList proteinAliases = (ProteinAliasList)getAliases();
 
@@ -191,10 +325,16 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>rogid</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRogid() {
         return this.rogid != null ? this.rogid.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setRogid(String rogid) {
         ProteinChecksumList proteinChecksums = (ProteinChecksumList)getChecksums();
 
@@ -214,6 +354,11 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>processAddedAliasEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Alias} object.
+     */
     protected void processAddedAliasEvent(Alias added) {
         // the added alias is gene name and it is not the current gene name
         if (geneName == null && AliasUtils.doesAliasHaveType(added, Alias.GENE_NAME_MI, Alias.GENE_NAME)){
@@ -221,16 +366,29 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>processRemovedAliasEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Alias} object.
+     */
     protected void processRemovedAliasEvent(Alias removed) {
         if (geneName != null && geneName.equals(removed)){
             geneName = AliasUtils.collectFirstAliasWithType(getAliases(), Alias.GENE_NAME_MI, Alias.GENE_NAME);
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToAliases</p>
+     */
     protected void clearPropertiesLinkedToAliases() {
         geneName = null;
     }
 
+    /**
+     * <p>processAddedChecksumEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     protected void processAddedChecksumEvent(Checksum added) {
         if (rogid == null && ChecksumUtils.doesChecksumHaveMethod(added, Checksum.ROGID_MI, Checksum.ROGID)){
             // the rogid is not set, we can set the rogid
@@ -238,16 +396,29 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>processRemovedChecksumEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     protected void processRemovedChecksumEvent(Checksum removed) {
         if (rogid != null && rogid.equals(removed)){
             rogid = ChecksumUtils.collectFirstChecksumWithMethod(getChecksums(), Checksum.ROGID_MI, Checksum.ROGID);
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToChecksums</p>
+     */
     protected void clearPropertiesLinkedToChecksums() {
         rogid = null;
     }
 
+    /**
+     * <p>processAddedIdentifierEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
         // the added identifier is uniprotkb and it is not the current uniprotkb identifier
         if (uniprotkb != added && (XrefUtils.isXrefFromDatabase(added, Xref.UNIPROTKB_MI, Xref.UNIPROTKB)
@@ -289,6 +460,11 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         if (uniprotkb != null && uniprotkb.equals(removed)){
             uniprotkb = XrefUtils.collectFirstIdentifierWithDatabase(getIdentifiers(), Xref.UNIPROTKB_MI, Xref.UNIPROTKB);
@@ -304,16 +480,19 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         uniprotkb = null;
         refseq = null;
     }
 
-    @Override
     /**
      * Sets the interactor type of this protein.
      * If the given interactorType is null, it will set the interactor type to 'protein' (MI:0326)
      */
+    @Override
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null){
             super.setInteractorType(CvTermUtils.createProteinInteractorType());
@@ -323,6 +502,7 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Protein"

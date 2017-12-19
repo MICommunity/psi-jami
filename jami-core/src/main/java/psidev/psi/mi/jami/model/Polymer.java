@@ -7,20 +7,23 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>21/03/13</pre>
  */
-
 public interface Polymer extends Molecule{
 
+    /** Constant <code>POLYMER="biopolymer"</code> */
     public static final String POLYMER = "biopolymer";
+    /** Constant <code>POLYMER_MI="MI:0383"</code> */
     public static final String POLYMER_MI="MI:0383";
 
     /**
      * The sequence of the polymer. Null if it is not known
+     *
      * @return the sequence
      */
     public String getSequence();
 
     /**
      * Sets the sequence of the polymer.
+     *
      * @param sequence : sequence to set
      */
     public void setSequence(String sequence);

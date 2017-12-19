@@ -21,15 +21,17 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>05/06/13</pre>
  */
-
 public abstract class AbstractComplexExpansionMethod<T extends Interaction, B extends BinaryInteraction> implements ComplexExpansionMethod<T,B> {
 
     private CvTerm method;
     private BinaryInteractionFactory factory;
 
     /**
+     * <p>Constructor for AbstractComplexExpansionMethod.</p>
      *
      * @param method : the CvTerm that describe the method used to expand
+     * @param <T> a T object.
+     * @param <B> a B object.
      */
     public AbstractComplexExpansionMethod(CvTerm method){
         if (method == null){
@@ -41,6 +43,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     /**
      * The CvTerm that describe the method used to expand.
      * It cannot be null
+     *
      * @return CvTerm that describe the method used to expand
      */
     public CvTerm getMethod() {
@@ -50,6 +53,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     /**
      * By default, a complex expansion can only expand interactions having at least one participant and where the provided interaction is
      * not null.
+     *
      * @param interaction : the interaction we want to expand
      * @return true if this complex expansion method can expand such an interaction, false otherwise.
      */
@@ -61,6 +65,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     }
 
     /**
+     * <p>expand</p>
      *
      * @param interaction : the interaction to expand
      * @return  the collection of binary interactions generated from the given interaction.
@@ -89,6 +94,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     }
 
     /**
+     * <p>getBinaryInteractionFactory</p>
      *
      * @return the factory used by the complex epxansion to create new binaryInteraction instances
      */
@@ -99,15 +105,13 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
         return this.factory;
     }
 
-    /**
-     *
-     * @param factory : the factory used by the complex epxansion to create new binaryInteraction instances
-     */
+    /** {@inheritDoc} */
     public void setBinaryInteractionFactory(BinaryInteractionFactory factory) {
         this.factory = factory;
     }
 
     /**
+     * <p>createNewSelfBinaryInteractionsFrom</p>
      *
      * @param interaction : the self interaction to expand
      * @return the collection of binary interaction generated from this self interaction
@@ -117,6 +121,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     }
 
     /**
+     * <p>createBinaryInteractionWrappersFrom</p>
      *
      * @param interaction : the interaction with only two participants
      * @return the collection of binary interaction wrappers generated from this interaction with two partcipants
@@ -126,6 +131,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     }
 
     /**
+     * <p>findInteractionCategory</p>
      *
      * @param interaction : the interaction to expand
      * @return the complexType that match this interaction and which will be used to expand
@@ -135,6 +141,7 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
     }
 
     /**
+     * <p>collectBinaryInteractionsFromNary</p>
      *
      * @param interaction : the interaction to expand
      * @return the collection of binary interaction generated from this n-ary interaction

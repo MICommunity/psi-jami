@@ -13,29 +13,30 @@ import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class UnambiguousCausalRelationshipComparator extends CausalRelationshipComparator {
 
     private static UnambiguousCausalRelationshipComparator unambiguousCausalRelationshipComparator;
 
     /**
-     * Creates a new UnambiguousCausalRelationshipComparator with DefaultCvTermComparator and DefaultExactParticipantBaseComparator
+     * {@inheritDoc}
      *
+     * Creates a new UnambiguousCausalRelationshipComparator with DefaultCvTermComparator and DefaultExactParticipantBaseComparator
      */
     public UnambiguousCausalRelationshipComparator() {
         super(new UnambiguousCvTermComparator(), new UnambiguousEntityComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
 
+
     @Override
     public UnambiguousEntityComparator getParticipantComparator() {
         return (UnambiguousEntityComparator) super.getParticipantComparator();
     }
-
     @Override
     /**
      * It will first compare the relationType using UnambiguousCvTermComparator. If both relationTypes are identical, it will compare the
@@ -47,8 +48,9 @@ public class UnambiguousCausalRelationshipComparator extends CausalRelationshipC
 
     /**
      * Use UnambiguousCausalRelationshipComparator to know if two causalRelationShip are equals.
-     * @param rel1
-     * @param rel2
+     *
+     * @param rel1 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
+     * @param rel2 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
      * @return true if the two causalRelationShip are equal
      */
     public static boolean areEquals(CausalRelationship rel1, CausalRelationship rel2){
@@ -60,8 +62,9 @@ public class UnambiguousCausalRelationshipComparator extends CausalRelationshipC
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param rel
+     * @param rel a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(CausalRelationship rel){

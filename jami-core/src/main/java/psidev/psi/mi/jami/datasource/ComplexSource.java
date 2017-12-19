@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.Complex;
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  */
-
 public interface ComplexSource extends InteractionSource<Complex> {
 }

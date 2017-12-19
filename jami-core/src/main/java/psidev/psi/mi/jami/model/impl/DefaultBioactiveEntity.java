@@ -21,7 +21,6 @@ import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
  * @version $Id$
  * @since <pre>24/01/13</pre>
  */
-
 public class DefaultBioactiveEntity extends DefaultMolecule implements BioactiveEntity {
 
     private Xref chebi;
@@ -29,39 +28,107 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
     private Checksum standardInchi;
     private Checksum standardInchiKey;
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultBioactiveEntity(String name, CvTerm type) {
         super(name, type != null ? type : CvTermUtils.createBioactiveEntityType());
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType());
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultBioactiveEntity(String name, CvTerm type, Organism organism) {
         super(name, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, CvTerm type, Xref uniqueId) {
         super(name, type != null ? type : CvTermUtils.createBioactiveEntityType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism, uniqueId);
 
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type, String uniqueChebi) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType());
         if (uniqueChebi != null){
@@ -69,6 +136,14 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, CvTerm type, Organism organism, String uniqueChebi) {
         super(name, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism);
         if (uniqueChebi != null){
@@ -76,6 +151,15 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, CvTerm type, Organism organism, String uniqueChebi) {
         super(name, fullName, type != null ? type : CvTermUtils.createBioactiveEntityType(), organism);
         if (uniqueChebi != null){
@@ -83,39 +167,98 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name) {
         super(name, CvTermUtils.createBioactiveEntityType());
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType());
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultBioactiveEntity(String name, Organism organism) {
         super(name, CvTermUtils.createBioactiveEntityType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, Organism organism) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType(), organism);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, Xref uniqueId) {
         super(name, CvTermUtils.createBioactiveEntityType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType(), uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, Organism organism, Xref uniqueId) {
         super(name, CvTermUtils.createBioactiveEntityType(), organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType(), organism, uniqueId);
 
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, String uniqueChebi) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType());
         if (uniqueChebi != null){
@@ -123,6 +266,13 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, Organism organism, String uniqueChebi) {
         super(name, CvTermUtils.createBioactiveEntityType(), organism);
         if (uniqueChebi != null){
@@ -130,6 +280,14 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Constructor for DefaultBioactiveEntity.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueChebi a {@link java.lang.String} object.
+     */
     public DefaultBioactiveEntity(String name, String fullName, Organism organism, String uniqueChebi) {
         super(name, fullName, CvTermUtils.createBioactiveEntityType(), organism);
         if (uniqueChebi != null){
@@ -137,28 +295,38 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseIdentifiers() {
         super.initialiseIdentifiersWith(new BioctiveEntityIdentifierList());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseChecksums() {
         super.initialiseChecksumsWith(new BioctiveEntityChecksumList());
     }
 
-    @Override
     /**
+     * {@inheritDoc}
+     *
      * Return the first chebi identifier if provided, otherwise the first identifier in the list of identifiers
      */
+    @Override
     public Xref getPreferredIdentifier() {
         return chebi != null ? chebi : super.getPreferredIdentifier();
     }
 
+    /**
+     * <p>Getter for the field <code>chebi</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getChebi() {
         return chebi != null ? chebi.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setChebi(String id) {
         BioctiveEntityIdentifierList bioactiveEntityIdentifiers = (BioctiveEntityIdentifierList)getIdentifiers();
 
@@ -180,10 +348,16 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Getter for the field <code>smile</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getSmile() {
         return smile != null ? smile.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setSmile(String smile) {
         BioctiveEntityChecksumList bioactiveEntityChecksums = (BioctiveEntityChecksumList)getChecksums();
 
@@ -203,10 +377,16 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Getter for the field <code>standardInchiKey</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getStandardInchiKey() {
         return standardInchiKey != null ? standardInchiKey.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setStandardInchiKey(String key) {
         BioctiveEntityChecksumList bioactiveEntityChecksums = (BioctiveEntityChecksumList)getChecksums();
 
@@ -226,10 +406,16 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>Getter for the field <code>standardInchi</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getStandardInchi() {
         return standardInchi != null ? standardInchi.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setStandardInchi(String inchi) {
         BioctiveEntityChecksumList bioactiveEntityChecksums = (BioctiveEntityChecksumList)getChecksums();
 
@@ -249,6 +435,11 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>processAddedChecksumEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     protected void processAddedChecksumEvent(Checksum added) {
         // the added checksum is standard inchi key and it is not the current standard inchi key
         if (standardInchiKey == null && ChecksumUtils.doesChecksumHaveMethod(added, Checksum.STANDARD_INCHI_KEY_MI, Checksum.STANDARD_INCHI_KEY)){
@@ -265,6 +456,11 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>processRemovedChecksumEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     protected void processRemovedChecksumEvent(Checksum removed) {
         // the removed identifier is standard inchi key
         if (standardInchiKey != null && standardInchiKey.equals(removed)){
@@ -278,12 +474,20 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToChecksums</p>
+     */
     protected void clearPropertiesLinkedToChecksums() {
         standardInchiKey = null;
         standardInchi = null;
         smile = null;
     }
 
+    /**
+     * <p>processAddedIdentifierEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
         // the added identifier is chebi and it is not the current chebi identifier
         if (chebi != added && XrefUtils.isXrefFromDatabase(added, Xref.CHEBI_MI, Xref.CHEBI)){
@@ -305,6 +509,11 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is chebi
         if (chebi != null && chebi.equals(removed)){
@@ -315,7 +524,6 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
     protected void clearPropertiesLinkedToIdentifiers() {
         chebi = null;
     }
-
     @Override
     /**
      * Sets the interactor type of this bioactive entity.
@@ -330,6 +538,7 @@ public class DefaultBioactiveEntity extends DefaultMolecule implements Bioactive
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Bioactive Entity: "+

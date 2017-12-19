@@ -17,13 +17,13 @@ import java.util.List;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class PositionUtils {
 
     /**
      * Check if a position is undetermined (MI:0339)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isUndetermined(Position position){
         if (position == null){
@@ -37,8 +37,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is N-terminal range (MI:1040)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isNTerminalRange(Position position){
         if (position == null){
@@ -52,8 +53,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is C-terminal range (MI:1039)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isCTerminalRange(Position position){
         if (position == null){
@@ -67,8 +69,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is N-terminal position (MI:0340)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isNTerminal(Position position){
         if (position == null){
@@ -82,8 +85,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is C-terminal position (MI:0334)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isCTerminal(Position position){
         if (position == null){
@@ -97,8 +101,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is ragged N-terminal position (MI:0341)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isRaggedNTerminal(Position position){
         if (position == null){
@@ -112,8 +117,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is fuzzy range (MI:0338)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isFuzzyRange(Position position){
         if (position == null){
@@ -127,8 +133,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is greater-than (MI:0336)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isGreaterThan(Position position){
         if (position == null){
@@ -142,8 +149,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is less-than (MI:0337)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isLessThan(Position position){
         if (position == null){
@@ -157,8 +165,9 @@ public class PositionUtils {
 
     /**
      * Check if a position is certain (MI:0335)
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a boolean.
      */
     public static boolean isCertain(Position position){
         if (position == null){
@@ -172,8 +181,9 @@ public class PositionUtils {
 
     /**
      * Converts a given position in a String using specific mnemonic for encoding the position status
-     * @param position
-     * @return
+     *
+     * @param position a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String convertPositionToString(Position position){
         if (position == null){
@@ -203,54 +213,132 @@ public class PositionUtils {
         }
     }
 
+    /**
+     * <p>createUndeterminedPosition</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createUndeterminedPosition(){
         return new DefaultPosition(0);
     }
 
+    /**
+     * <p>createNTerminalRangePosition</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createNTerminalRangePosition(){
         return new DefaultPosition(CvTermUtils.createNTerminalRangeStatus(), 0);
     }
 
+    /**
+     * <p>createCTerminalRangePosition</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createCTerminalRangePosition(){
         return new DefaultPosition(CvTermUtils.createCTerminalRangeStatus(), 0);
     }
 
+    /**
+     * <p>createNTerminalPosition</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createNTerminalPosition(){
         return new DefaultPosition(CvTermUtils.createNTerminalStatus(), 1);
     }
 
+    /**
+     * <p>createCTerminalPosition</p>
+     *
+     * @param lastPosition a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createCTerminalPosition(int lastPosition){
         return new DefaultPosition(CvTermUtils.createCTerminalStatus(), lastPosition);
     }
 
+    /**
+     * <p>createCertainPosition</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createCertainPosition(int position){
         return new DefaultPosition(position);
     }
 
+    /**
+     * <p>createGreaterThanPosition</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createGreaterThanPosition(int position){
         return new DefaultPosition(CvTermUtils.createGreaterThanRangeStatus(), position);
     }
 
+    /**
+     * <p>createLessThanPosition</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createLessThanPosition(int position){
         return new DefaultPosition(CvTermUtils.createLessThanRangeStatus(), position);
     }
 
+    /**
+     * <p>createRaggedNTerminusPosition</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createRaggedNTerminusPosition(int position){
         return new DefaultPosition(CvTermUtils.createRaggedNTerminalStatus(), position);
     }
 
+    /**
+     * <p>createFuzzyPosition</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createFuzzyPosition(int position){
         return new DefaultPosition(CvTermUtils.createRangeStatus(), position);
     }
 
+    /**
+     * <p>createFuzzyPosition</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createFuzzyPosition(int start, int end){
         return new DefaultPosition(start, end);
     }
 
+    /**
+     * <p>createPosition</p>
+     *
+     * @param statusName a {@link java.lang.String} object.
+     * @param statusMi a {@link java.lang.String} object.
+     * @param start a int.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     */
     public static Position createPosition(String statusName, String statusMi, int start){
         return new DefaultPosition(CvTermUtils.createMICvTerm(statusName, statusMi), start);
     }
 
+    /**
+     * <p>createPositionFromString</p>
+     *
+     * @param pos a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Position} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
+     */
     public static Position createPositionFromString(String pos) throws IllegalRangeException {
         if (pos == null){
             return createUndeterminedPosition();
@@ -294,6 +382,13 @@ public class PositionUtils {
         }
     }
 
+    /**
+     * <p>convertStringToPositionValue</p>
+     *
+     * @param rangeString a {@link java.lang.String} object.
+     * @return a int.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
+     */
     public static int convertStringToPositionValue(String rangeString) throws IllegalRangeException {
         try{
             int pos = Integer.parseInt(rangeString);
@@ -306,6 +401,7 @@ public class PositionUtils {
 
     /**
      * Check if the positions and the position status are consistent.
+     *
      * @param position : the position to check
      * @param sequence : the sequence of the protein
      * @return empty list if the range positions and the position status are consistent. If there are some inconsistencies, it will return a list of error messages
@@ -398,10 +494,11 @@ public class PositionUtils {
 
     /**
      * Checks if the interval positions are overlapping
-     * @param fromStart
-     * @param fromEnd
-     * @param toStart
-     * @param toEnd
+     *
+     * @param fromStart a long.
+     * @param fromEnd a long.
+     * @param toStart a long.
+     * @param toEnd a long.
      * @return true if the range intervals are overlapping
      */
     public static boolean arePositionsOverlapping(long fromStart, long fromEnd, long toStart, long toEnd){
@@ -414,6 +511,7 @@ public class PositionUtils {
 
     /**
      * A position is out of bound if superior to the sequence length. Inferior to 0 is accepted for describing promotor regions
+     *
      * @param start : the start position of the interval
      * @param end  : the end position of the interval
      * @param sequenceLength : the length of the sequence, 0 if the sequence is null
@@ -425,6 +523,7 @@ public class PositionUtils {
 
     /**
      * A range interval is invalid if the start is after the end
+     *
      * @param start : the start position of the interval
      * @param end : the end position of the interval
      * @return true if the positions are valid, false otherwise

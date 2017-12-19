@@ -13,13 +13,13 @@ import psidev.psi.mi.jami.utils.comparator.participant.DefaultModelledEntityComp
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class DefaultMoleculeEffectorComparator {
 
     /**
      * Use DefaultMoleculeEffectorComparator to know if two moleculeEffectors are equals.
-     * @param moleculeEffector1
-     * @param moleculeEffector2
+     *
+     * @param moleculeEffector1 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @param moleculeEffector2 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
      * @return true if the two moleculeEffectors are equal
      */
     public static boolean areEquals(MoleculeEffector moleculeEffector1, MoleculeEffector moleculeEffector2){

@@ -18,31 +18,38 @@ import psidev.psi.mi.jami.model.Allostery;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class UnambiguousAllosteryComparator extends AllosteryComparator{
 
     private static UnambiguousAllosteryComparator unambiguousAllosteryComparator;
 
+    /**
+     * <p>Constructor for UnambiguousAllosteryComparator.</p>
+     */
     public UnambiguousAllosteryComparator() {
         super(new UnambiguousCooperativeEffectBaseComparator(), new UnambiguousMoleculeEffectorComparator(), new UnambiguousFeatureModificationEffectorComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCooperativeEffectBaseComparator getCooperativeEffectComparator() {
         return (UnambiguousCooperativeEffectBaseComparator) super.getCooperativeEffectComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousMoleculeEffectorComparator getMoleculeEffectorComparator() {
         return (UnambiguousMoleculeEffectorComparator) super.getMoleculeEffectorComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousFeatureModificationEffectorComparator getFeatureModificationEffectorComparator() {
         return (UnambiguousFeatureModificationEffectorComparator) super.getFeatureModificationEffectorComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      *
      * It will first compare basic cooperative effect properties using UnambiguousCooperativeEffectBaseComparator.
      * Then, it will compare the allosteric effector types :
@@ -59,8 +66,9 @@ public class UnambiguousAllosteryComparator extends AllosteryComparator{
 
     /**
      * Use UnambiguousAllosteryComparator to know if two allostery are equals.
-     * @param effect1
-     * @param effect2
+     *
+     * @param effect1 a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @param effect2 a {@link psidev.psi.mi.jami.model.Allostery} object.
      * @return true if the two Allostery are equal
      */
     public static boolean areEquals(Allostery effect1, Allostery effect2){

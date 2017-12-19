@@ -18,7 +18,6 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>01/02/13</pre>
  */
-
 public class ComparatorUtils {
 
     /**
@@ -31,7 +30,7 @@ public class ComparatorUtils {
      * @param identifier1 : first identifier to compare
      * @param identifier2 : second identifier to compare
      * @param firstIdentifier : the default identifier that we want to have first
-     * @return
+     * @return a int.
      */
     public static int compareIdentifiersWithDefaultIdentifier(String identifier1, String identifier2, String firstIdentifier) {
         int comp;
@@ -55,9 +54,10 @@ public class ComparatorUtils {
     /**
      * True if there is at least one identifier in identifiers1 that is identical to at least one identifier in identfiers2 (
      * equality based on DefaultExternalIdentifierComparator.areEquals)
-     * @param identifiers1
-     * @param identifiers2
-     * @return
+     *
+     * @param identifiers1 a {@link java.util.Collection} object.
+     * @param identifiers2 a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public static boolean findAtLeastOneMatchingIdentifier(Collection<? extends Xref> identifiers1, Collection<? extends Xref> identifiers2){
         // get an iterator
@@ -78,6 +78,13 @@ public class ComparatorUtils {
         return false;
     }
 
+    /**
+     * <p>findAtLeastOneMatchingAlias</p>
+     *
+     * @param aliases1 a {@link java.util.Collection} object.
+     * @param aliases2 a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public static boolean findAtLeastOneMatchingAlias(Collection<? extends Alias> aliases1, Collection<? extends Alias> aliases2){
         // get an iterator
         Iterator<? extends Alias> iterator1 = aliases1.iterator();
@@ -97,6 +104,13 @@ public class ComparatorUtils {
         return false;
     }
 
+    /**
+     * <p>areCvTermsEqual</p>
+     *
+     * @param method1 a {@link java.util.Collection} object.
+     * @param method2 a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public static boolean areCvTermsEqual(Collection<? extends CvTerm> method1, Collection<? extends CvTerm> method2) {
         if (method1.size() != method2.size()){
             return false;
@@ -132,6 +146,13 @@ public class ComparatorUtils {
         }
     }
 
+    /**
+     * <p>areParametersEqual</p>
+     *
+     * @param method1 a {@link java.util.Collection} object.
+     * @param method2 a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public static boolean areParametersEqual(Collection<? extends Parameter> method1, Collection<? extends Parameter> method2) {
         if (method1.size() != method2.size()){
             return false;
@@ -167,6 +188,13 @@ public class ComparatorUtils {
         }
     }
 
+    /**
+     * <p>areRangesEqual</p>
+     *
+     * @param method1 a {@link java.util.Collection} object.
+     * @param method2 a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public static boolean areRangesEqual(Collection<? extends Range> method1, Collection<? extends Range> method2) {
         if (method1.size() != method2.size()){
             return false;

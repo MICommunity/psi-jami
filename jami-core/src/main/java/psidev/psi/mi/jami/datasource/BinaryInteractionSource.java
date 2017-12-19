@@ -15,6 +15,5 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public interface BinaryInteractionSource<T extends BinaryInteraction> extends BinaryInteractionStream<T>, InteractionSource<T> {
 }

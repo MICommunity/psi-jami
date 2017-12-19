@@ -24,7 +24,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class InteractionEvidenceComparator implements Comparator<InteractionEvidence> {
 
     private Comparator<Interaction> interactionComparator;
@@ -35,9 +34,11 @@ public class InteractionEvidenceComparator implements Comparator<InteractionEvid
 
     /**
      * Creates a new InteractionEvidenceComparator.
+     *
      * @param interactionComparator : required to compare basic interaction properties
      * @param experimentComparator : required to compare experiments
      * @param parameterComparator : required to compare parameters
+     * @param participantComparator a {@link java.util.Comparator} object.
      */
     public InteractionEvidenceComparator(Comparator<ParticipantEvidence> participantComparator, Comparator<Interaction> interactionComparator, ExperimentComparator experimentComparator,
                                          ParameterComparator parameterComparator){
@@ -62,6 +63,15 @@ public class InteractionEvidenceComparator implements Comparator<InteractionEvid
         this.variableParameterValueSetCollectionComparator = new VariableParameterValueSetCollectionComparator();
     }
 
+    /**
+     * <p>Constructor for InteractionEvidenceComparator.</p>
+     *
+     * @param participantComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param interactionComparator a {@link java.util.Comparator} object.
+     * @param experimentComparator a {@link psidev.psi.mi.jami.utils.comparator.experiment.ExperimentComparator} object.
+     * @param parameterComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param variableParameterValuesSetComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public InteractionEvidenceComparator(CollectionComparator<ParticipantEvidence> participantComparator, Comparator<Interaction> interactionComparator,
                                          ExperimentComparator experimentComparator,
                                          CollectionComparator<Parameter> parameterComparator,
@@ -90,22 +100,47 @@ public class InteractionEvidenceComparator implements Comparator<InteractionEvid
         this.variableParameterValueSetCollectionComparator = variableParameterValuesSetComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>parameterCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Parameter> getParameterCollectionComparator() {
         return parameterCollectionComparator;
     }
 
+    /**
+     * <p>getInteractionBaseComparator</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interaction> getInteractionBaseComparator() {
         return interactionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.experiment.ExperimentComparator} object.
+     */
     public ExperimentComparator getExperimentComparator() {
         return experimentComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<ParticipantEvidence> getParticipantCollectionComparator() {
         return participantCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterValueSetCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<VariableParameterValueSet> getVariableParameterValueSetCollectionComparator() {
         return variableParameterValueSetCollectionComparator;
     }
@@ -116,9 +151,10 @@ public class InteractionEvidenceComparator implements Comparator<InteractionEvid
      * A negative interaction will come after a positive interaction. it will compare
      * the experiment using ExperimentComparator. If the experiments are the same, it will compare the participants using ParticipantEvidenceComparator. Then, it will compare the parameters using ParameterComparator.
      * If the parameters are the same, it will first compare the experimental variableParameters using VariableParameterValueSetComparator and then it will compare the inferred boolean value (Inferred interactions will always come after).
-     * @param experimentalInteraction1
-     * @param experimentalInteraction2
-     * @return
+     *
+     * @param experimentalInteraction1 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param experimentalInteraction2 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @return a int.
      */
     public int compare(InteractionEvidence experimentalInteraction1, InteractionEvidence experimentalInteraction2) {
         int EQUAL = 0;

@@ -20,7 +20,6 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ModelledEntityComparator implements CustomizableModelledParticipantComparator<ModelledEntity> {
 
     private EntityBaseComparator participantBaseComparator;
@@ -32,6 +31,9 @@ public class ModelledEntityComparator implements CustomizableModelledParticipant
 
     /**
      * Creates a new ComponentComparator
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.feature.ModelledFeatureComparator} object.
      */
     public ModelledEntityComparator(EntityBaseComparator participantBaseComparator, ModelledFeatureComparator featureComparator){
         if (participantBaseComparator == null){
@@ -47,6 +49,9 @@ public class ModelledEntityComparator implements CustomizableModelledParticipant
 
     /**
      * Creates a new ComponentComparator
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
      */
     public ModelledEntityComparator(EntityBaseComparator participantBaseComparator, CollectionComparator<ModelledFeature>  featureComparator){
         if (participantBaseComparator == null){
@@ -60,22 +65,41 @@ public class ModelledEntityComparator implements CustomizableModelledParticipant
         this.processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();
     }
 
+    /**
+     * <p>getEntityBaseComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     */
     public EntityBaseComparator getEntityBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<ModelledFeature> getFeatureCollectionComparator() {
         return featureCollectionComparator;
     }
 
+    /**
+     * <p>isCheckComplexesAsInteractors</p>
+     *
+     * @return a boolean.
+     */
     public boolean isCheckComplexesAsInteractors() {
         return checkComplexesAsInteractors;
     }
 
+    /** {@inheritDoc} */
     public void setCheckComplexesAsInteractors(boolean checkComplexesAsInteractors) {
         this.checkComplexesAsInteractors = checkComplexesAsInteractors;
     }
 
+    /**
+     * <p>clearProcessedComplexes</p>
+     */
     public void clearProcessedComplexes() {
         this.processedComplexes.clear();
     }
@@ -84,9 +108,10 @@ public class ModelledEntityComparator implements CustomizableModelledParticipant
      * It will compare the basic properties of a biological participant using ParticipantInteractorComparator.
      *
      * This comparator will ignore all the other properties of a biological participant.
-     * @param bioParticipant1
-     * @param bioParticipant2
-     * @return
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @return a int.
      */
     public int compare(ModelledEntity bioParticipant1, ModelledEntity bioParticipant2) {
         if (participantBaseComparator == null){

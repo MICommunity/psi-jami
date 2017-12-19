@@ -11,13 +11,23 @@ import psidev.psi.mi.jami.model.Participant;
  * @version $Id$
  * @since <pre>05/06/13</pre>
  */
-
 public class BinaryInteractionWrapper extends AbstractBinaryInteractionWrapper<Interaction<Participant>, Participant>{
 
+    /**
+     * <p>Constructor for BinaryInteractionWrapper.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     */
     public BinaryInteractionWrapper(Interaction interaction){
         super(interaction);
     }
 
+    /**
+     * <p>Constructor for BinaryInteractionWrapper.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public BinaryInteractionWrapper(Interaction interaction, CvTerm complexExpansion){
         super(interaction, complexExpansion);
     }

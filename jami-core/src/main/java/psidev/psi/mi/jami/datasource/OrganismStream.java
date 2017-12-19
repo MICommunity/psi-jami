@@ -12,12 +12,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public interface OrganismStream extends MIDataSource {
 
     /**
      * The organisms iterator for this datasource.
+     *
      * @return iterator of organisms for a given datasource
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public Iterator<Organism> getOrganismsIterator() throws MIIOException;
 }

@@ -19,13 +19,15 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class UnambiguousFeatureEvidenceComparator extends FeatureEvidenceComparator {
 
     private static UnambiguousFeatureEvidenceComparator unambiguousExperimentalFeatureComparator;
 
     protected ParameterCollectionComparator parameterCollectionComparator;
+
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousFeatureEvidenceComparator. It will use a UnambiguousCvTermComparator to
      * compare feature detection methods and a UnambiguousFeatureBaseComparator to compare basic feature properties
      */
@@ -34,6 +36,7 @@ public class UnambiguousFeatureEvidenceComparator extends FeatureEvidenceCompara
         this.parameterCollectionComparator = new ParameterCollectionComparator(new UnambiguousParameterComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousFeatureBaseComparator getFeatureComparator() {
         return (UnambiguousFeatureBaseComparator) super.getFeatureComparator();
@@ -42,7 +45,6 @@ public class UnambiguousFeatureEvidenceComparator extends FeatureEvidenceCompara
     public ParameterCollectionComparator getParameterCollectionComparator() {
         return parameterCollectionComparator;
     }
-
     @Override
     /**
      * It will first compare feature detection methods using UnambiguousCvTermComparator. If both feature detection methods are the same,
@@ -64,8 +66,9 @@ public class UnambiguousFeatureEvidenceComparator extends FeatureEvidenceCompara
 
     /**
      * Use UnambiguousFeatureEvidenceComparator to know if two experimental features are equals.
-     * @param feature1
-     * @param feature2
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
      * @return true if the two experimental features are equal
      */
     public static boolean areEquals(FeatureEvidence feature1, FeatureEvidence feature2){

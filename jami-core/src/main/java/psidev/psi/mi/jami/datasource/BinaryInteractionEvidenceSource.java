@@ -12,6 +12,5 @@ import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public interface BinaryInteractionEvidenceSource extends BinaryInteractionEvidenceStream, InteractionEvidenceSource<BinaryInteractionEvidence> {
 }

@@ -10,32 +10,35 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public interface VariableParameter {
 
     /**
      * A short description of this variableParameter such as PMA treatment, cell cycle, ...
      * It cannot be null.
+     *
      * @return the short description for this variableParameter
      */
     public String getDescription();
 
     /**
      * Sets the short description of this parameter.
+     *
      * @param description : description
-     * @throws IllegalArgumentException when description is null
+     * @throws java.lang.IllegalArgumentException when description is null
      */
     public void setDescription(String description);
 
     /**
      * The unit of the variableParameter if relevant.
      * It is a controlled vocabulary term and can be null if not relevant
+     *
      * @return the unit
      */
     public CvTerm getUnit();
 
     /**
      * Sets the unit of this variableParameter.
+     *
      * @param unit : unit
      */
     public void setUnit(CvTerm unit);
@@ -44,19 +47,23 @@ public interface VariableParameter {
      * The collection of values for this variableParameter in a specific experiment.
      * The collection cannot be null. If the VariableParameter does not have any values, this method
      * should return an empty collection.
+     *
      * @return the collection of values for this variableParameter in a specific experiment
+     * @param <V> a V object.
      */
     public <V extends VariableParameterValue> Collection<V> getVariableValues();
 
     /**
      * The experiment where this variableParameter has been used.
      * It can be null if the variableParameter is not attached to any experiments
+     *
      * @return the experiment where this variableParameter has been used
      */
     public Experiment getExperiment();
 
     /**
      * Sets the experiment for this variableParameter
+     *
      * @param experiment  : experiment to set
      */
     public void setExperiment(Experiment experiment);
@@ -65,6 +72,7 @@ public interface VariableParameter {
      * Sets the experiment for this variableParameter and add this variableParameter to the list of variableParameters
      * of this experiment.
      * If experiment is null, remove the variableParameter from the previous experiment attached to this variableParameter
+     *
      * @param experiment : experiment to set
      */
     public void setExperimentAndAddVariableParameter(Experiment experiment);

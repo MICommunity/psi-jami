@@ -17,17 +17,23 @@ import java.util.Comparator;
  * fullnames(case sensitive) and if the shortNames and fullnames are the same, it will compare the aliases using UnambiguousAliasComparator.
  *
  * This comparator will ignore all the other properties of an interactor.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class InteractorBaseComparator implements Comparator<Interactor> {
     private CollectionComparator<Xref> identifierCollectionComparator;
     private CollectionComparator<Alias> aliasCollectionComparator;
     private Comparator<Xref> identifierComparator;
     private Comparator<Alias> aliasComparator;
 
+    /**
+     * <p>Constructor for InteractorBaseComparator.</p>
+     *
+     * @param identifierComparator a {@link java.util.Comparator} object.
+     * @param aliasComparator a {@link psidev.psi.mi.jami.utils.comparator.alias.AliasComparator} object.
+     */
     public InteractorBaseComparator(Comparator<Xref> identifierComparator, AliasComparator aliasComparator) {
         if (identifierComparator == null){
             throw new IllegalArgumentException("the identifier comparator cannot be null");
@@ -41,6 +47,12 @@ public class InteractorBaseComparator implements Comparator<Interactor> {
         this.aliasCollectionComparator = new AliasesCollectionComparator(aliasComparator);
     }
 
+    /**
+     * <p>Constructor for InteractorBaseComparator.</p>
+     *
+     * @param identifierComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param aliasComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public InteractorBaseComparator(CollectionComparator<Xref> identifierComparator, CollectionComparator<Alias> aliasComparator) {
         if (identifierComparator == null){
             throw new IllegalArgumentException("the identifier comparator cannot be null");
@@ -54,18 +66,38 @@ public class InteractorBaseComparator implements Comparator<Interactor> {
         this.aliasCollectionComparator = aliasComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Xref> getIdentifierComparator() {
         return this.identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Alias> getAliasComparator() {
         return this.aliasComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Xref> getIdentifierCollectionComparator() {
         return identifierCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Alias> getAliasCollectionComparator() {
         return aliasCollectionComparator;
     }
@@ -76,6 +108,10 @@ public class InteractorBaseComparator implements Comparator<Interactor> {
      *
      *
      * This comparator will ignore all the other properties of an interactor.
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @return a int.
      */
     public int compare(Interactor interactor1, Interactor interactor2) {
         int EQUAL = 0;

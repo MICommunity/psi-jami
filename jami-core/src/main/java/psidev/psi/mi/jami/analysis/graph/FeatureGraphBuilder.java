@@ -24,19 +24,35 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class FeatureGraphBuilder<I extends Interaction, F extends Feature> {
 
     private MIComparator<F> customFeatureComparator;
 
+    /**
+     * <p>Constructor for FeatureGraphBuilder.</p>
+     *
+     * @param <I> a I object.
+     * @param <F> a F object.
+     */
     public FeatureGraphBuilder(){
         this.customFeatureComparator = new IdentityHashComparator<F>();
     }
 
+    /**
+     * <p>Constructor for FeatureGraphBuilder.</p>
+     *
+     * @param customFeatureComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public FeatureGraphBuilder(MIComparator<F> customFeatureComparator){
         this.customFeatureComparator = customFeatureComparator != null ? customFeatureComparator : new IdentityHashComparator<F>();
     }
 
+    /**
+     * <p>buildGraphFrom</p>
+     *
+     * @param interaction a I object.
+     * @return a {@link org.jgrapht.Graph} object.
+     */
     public Graph<F,BindingPair<F>> buildGraphFrom(I interaction){
         if (interaction == null){
             return null;
@@ -47,6 +63,12 @@ public class FeatureGraphBuilder<I extends Interaction, F extends Feature> {
         return graph;
     }
 
+    /**
+     * <p>buildGraphFrom</p>
+     *
+     * @param interaction a {@link java.util.Collection} object.
+     * @return a {@link org.jgrapht.Graph} object.
+     */
     public Graph<F,BindingPair<F>> buildGraphFrom(Collection<I> interaction){
         if (interaction == null){
             return null;
@@ -54,6 +76,12 @@ public class FeatureGraphBuilder<I extends Interaction, F extends Feature> {
         return buildGraphFrom(interaction.iterator());
     }
 
+    /**
+     * <p>buildGraphFrom</p>
+     *
+     * @param interaction a {@link java.util.Iterator} object.
+     * @return a {@link org.jgrapht.Graph} object.
+     */
     public Graph<F,BindingPair<F>> buildGraphFrom(Iterator<I> interaction){
         if (interaction == null){
             return null;

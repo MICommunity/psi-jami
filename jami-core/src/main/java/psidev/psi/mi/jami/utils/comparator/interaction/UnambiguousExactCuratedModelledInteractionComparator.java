@@ -15,12 +15,13 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousExactModelledP
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class UnambiguousExactCuratedModelledInteractionComparator extends CuratedModelledInteractionComparator{
 
     private static UnambiguousExactCuratedModelledInteractionComparator unambiguousExactCuratedModelledInteractionComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactCuratedModelledInteractionComparator. It will use a UnambiguousExactCuratedInteractionBaseComparator to
      * compare basic interaction properties
      */
@@ -28,15 +29,15 @@ public class UnambiguousExactCuratedModelledInteractionComparator extends Curate
         super(new UnambiguousExactModelledParticipantComparator(), new UnambiguousCuratedInteractionBaseComparator(), new UnambiguousCvTermComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCuratedInteractionBaseComparator getInteractionBaseComparator() {
         return (UnambiguousCuratedInteractionBaseComparator) super.getInteractionBaseComparator();
     }
+
     public UnambiguousCvTermComparator getSourceComparator() {
         return (UnambiguousCvTermComparator) super.getSourceComparator();
     }
-
-
     @Override
     /**
      * It will use a UnambiguousCuratedInteractionBase to compare basic interaction properties.
@@ -49,8 +50,9 @@ public class UnambiguousExactCuratedModelledInteractionComparator extends Curate
 
     /**
      * Use UnambiguousExactCuratedModelledInteractionComparator to know if two modelled interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @return true if the two modelled interactions are equal
      */
     public static boolean areEquals(ModelledInteraction interaction1, ModelledInteraction interaction2){

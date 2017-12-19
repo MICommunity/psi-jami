@@ -23,13 +23,13 @@ import java.math.BigDecimal;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class DefaultParameterComparator {
 
     /**
      * Use DefaultComparator to know if two parameters are equals.
-     * @param parameter1
-     * @param parameter2
+     *
+     * @param parameter1 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @param parameter2 a {@link psidev.psi.mi.jami.model.Parameter} object.
      * @return true if the two parameters are equal
      */
     public static boolean areEquals(Parameter parameter1, Parameter parameter2){

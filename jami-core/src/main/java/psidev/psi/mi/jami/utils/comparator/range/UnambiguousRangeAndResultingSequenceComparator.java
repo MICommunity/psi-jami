@@ -16,12 +16,13 @@ import psidev.psi.mi.jami.model.ResultingSequence;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResultingSequenceComparator {
 
     private static UnambiguousRangeAndResultingSequenceComparator unambiguousRangeAndResultingSequenceComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousRangeAndResultingSequenceComparator with UnambiguousPositionComparator
      */
     public UnambiguousRangeAndResultingSequenceComparator() {
@@ -32,7 +33,6 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
     public UnambiguousPositionComparator getPositionComparator() {
         return (UnambiguousPositionComparator) super.getPositionComparator();
     }
-
     @Override
     /**
      * It compares first the start Position, then the end Position using a UnambiguousPositionComparator,
@@ -47,8 +47,9 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
 
     /**
      * Use DefaultRangeComparator to know if two ranges are equals.
-     * @param range1
-     * @param range2
+     *
+     * @param range1 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param range2 a {@link psidev.psi.mi.jami.model.Range} object.
      * @return true if the two ranges are equal
      */
     public static boolean areEquals(Range range1, Range range2){
@@ -61,8 +62,9 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
 
 
     /**
+     * <p>hashCode</p>
      *
-     * @param range
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Range range){

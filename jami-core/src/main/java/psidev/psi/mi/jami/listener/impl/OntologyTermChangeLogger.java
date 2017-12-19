@@ -13,27 +13,31 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class OntologyTermChangeLogger extends CvTermChangeLogger implements OntologyTermChangeListener {
 
     private static final Logger ontologyTermChangeLogger = Logger.getLogger("OntologyTermChangeLogger");
 
+    /** {@inheritDoc} */
     public void onAddedParent(OntologyTerm cv, OntologyTerm added) {
         ontologyTermChangeLogger.log(Level.INFO, "The parent " + added.toString() + " has been added to the ontology term " + cv.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParent(OntologyTerm cv, OntologyTerm removed) {
         ontologyTermChangeLogger.log(Level.INFO, "The parent " + removed.toString() + " has been removed from the ontology term " + cv.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedChild(OntologyTerm cv, OntologyTerm added) {
         ontologyTermChangeLogger.log(Level.INFO, "The child " + added.toString() + " has been added to the ontology term " + cv.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedChild(OntologyTerm cv, OntologyTerm removed) {
         ontologyTermChangeLogger.log(Level.INFO, "The child " + removed.toString() + " has been removed from the ontology term " + cv.toString());
     }
 
+    /** {@inheritDoc} */
     public void onDefinitionUpdate(OntologyTerm cv, String oldDef) {
         if (oldDef == null){
             ontologyTermChangeLogger.log(Level.INFO, "The definition " + cv.getDefinition() + " has been added to the ontology term " + cv.toString());

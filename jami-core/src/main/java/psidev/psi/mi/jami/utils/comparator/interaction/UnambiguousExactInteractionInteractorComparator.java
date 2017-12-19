@@ -14,19 +14,19 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousExactInteractor
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class UnambiguousExactInteractionInteractorComparator extends InteractionInteractorComparator{
 
     private static UnambiguousExactInteractionInteractorComparator unambiguousInteractionInteractorComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactInteractionInteractorComparator. It will use a UnambiguousInteractorComparator to
      * compare interactors involved in the interaction
      */
     public UnambiguousExactInteractionInteractorComparator() {
         super(new UnambiguousExactInteractorComparator());
     }
-
     @Override
     /**
      * It will use a UnambiguousInteractorComparator to compare the interactors involved in the interaction.
@@ -39,8 +39,9 @@ public class UnambiguousExactInteractionInteractorComparator extends Interaction
 
     /**
      * Use UnambiguousExactInteractionInteractorComparator to know if two interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return true if the two interactions are equal
      */
     public static boolean areEquals(Interaction interaction1, Interaction interaction2){

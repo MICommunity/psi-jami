@@ -9,13 +9,14 @@ import psidev.psi.mi.jami.model.VariableParameter;
  * @version $Id$
  * @since <pre>19/02/13</pre>
  */
-
 public class VariableParameterCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of parameter source in parameter target (excepted experiment) and will override all the other properties of Target parameter.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param target a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      */
     public static void copyAndOverrideVariableParameterProperties(VariableParameter source, VariableParameter target){
         if (source != null && target != null){

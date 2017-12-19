@@ -14,12 +14,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class UnambiguousFeatureComparator extends FeatureComparator {
 
     private static UnambiguousFeatureComparator unambiguousFeatureComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a UnambiguousFeatureComparator. It will use a UnambiguousFeatureBaseComparator to compare basic feature properties
      */
     public UnambiguousFeatureComparator() {
@@ -30,7 +31,6 @@ public class UnambiguousFeatureComparator extends FeatureComparator {
     public UnambiguousFeatureBaseComparator getFeatureBaseComparator() {
         return (UnambiguousFeatureBaseComparator) super.getFeatureBaseComparator();
     }
-
     @Override
     /**
      * Biological features come first and then experimental features.
@@ -45,8 +45,9 @@ public class UnambiguousFeatureComparator extends FeatureComparator {
 
     /**
      * Use UnambiguousFeatureComparator to know if two features are equals.
-     * @param feature1
-     * @param feature2
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.Feature} object.
      * @return true if the two features are equal
      */
     public static boolean areEquals(Feature feature1, Feature feature2){

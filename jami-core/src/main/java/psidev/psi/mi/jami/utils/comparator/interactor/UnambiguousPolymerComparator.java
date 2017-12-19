@@ -8,11 +8,11 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
  * It will first use UnambiguousInteractorBaseComparator to compare the basic interactor properties
  * If the basic interactor properties are the same, it will look at sequence/organism.
  * *
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class UnambiguousPolymerComparator extends PolymerComparator{
 
     private static UnambiguousPolymerComparator unambiguousPolymerComparator;
@@ -25,14 +25,20 @@ public class UnambiguousPolymerComparator extends PolymerComparator{
         super(new UnambiguousInteractorBaseComparator(), new OrganismTaxIdComparator());
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorBaseComparator} object.
+     */
     public UnambiguousInteractorBaseComparator getInteractorComparator() {
         return (UnambiguousInteractorBaseComparator)super.getInteractorComparator();
     }
 
     /**
      * Use UnambiguousPolymerComparator to know if two polymers are equals.
-     * @param polymer1
-     * @param polymer2
+     *
+     * @param polymer1 a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @param polymer2 a {@link psidev.psi.mi.jami.model.Polymer} object.
      * @return true if the two polymers are equal
      */
     public static boolean areEquals(Polymer polymer1, Polymer polymer2){

@@ -15,14 +15,15 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class DefaultParticipantBaseComparator {
 
     /**
      * Use DefaultParticipantBaseComparator to know if two participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Participant} object.
      * @return true if the two participants are equal
+     * @param ignoreInteractors a boolean.
      */
     public static boolean areEquals(Participant participant1, Participant participant2, boolean ignoreInteractors){
 

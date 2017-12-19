@@ -21,17 +21,23 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>19/06/13</pre>
  */
-
 public abstract class AbstractBipartiteExpansion<T extends Interaction, B extends BinaryInteraction>
         extends AbstractComplexExpansionMethod<T,B> {
 
     private InteractorFactory interactorFactory;
 
+    /**
+     * <p>Constructor for AbstractBipartiteExpansion.</p>
+     *
+     * @param <T> a T object.
+     * @param <B> a B object.
+     */
     public AbstractBipartiteExpansion(){
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.BIPARTITE_EXPANSION, ComplexExpansionMethod.BIPARTITE_EXPANSION_MI));
     }
 
     /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
      *
      * @return  the interactor factory we want to use to create the complex for bipartite expansion
      */
@@ -43,6 +49,7 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
     }
 
     /**
+     * <p>Setter for the field <code>interactorFactory</code>.</p>
      *
      * @param interactorFactory : the interactor factory we want to use to create the complex for bipartite expansion
      */
@@ -50,6 +57,7 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
         this.interactorFactory = interactorFactory;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Collection<B> collectBinaryInteractionsFromNary(T interaction){
         Participant externalEntity =  createParticipantForComplexEntity(createComplexEntity(interaction));
@@ -67,24 +75,25 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
     }
 
     /**
+     * <p>createBinaryInteraction</p>
      *
      * @param interaction : the interaction to expand
      * @param c1 : the participant with the created complex
      * @param c2 : the original participant
-     * @param <P> : type of participant
      * @return the binary interaction
      */
     protected abstract <P extends Participant> B createBinaryInteraction(T interaction, P c1, P c2);
 
     /**
+     * <p>createParticipantForComplexEntity</p>
      *
      * @param complexEntity : the generated complex
-     * @param <P> : type of participant
      * @return the participant generated for the generated complex
      */
     protected abstract <P extends Participant> P createParticipantForComplexEntity(Complex complexEntity);
 
     /**
+     * <p>createComplexEntity</p>
      *
      * @param interaction : the interaction to expand
      * @return  the complex generated from this interaction instance
@@ -97,6 +106,7 @@ public abstract class AbstractBipartiteExpansion<T extends Interaction, B extend
     }
 
     /**
+     * <p>generateComplexName</p>
      *
      * @param interaction : the interaction to expand
      * @return the generated name for this interaction

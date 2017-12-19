@@ -9,14 +9,15 @@ import psidev.psi.mi.jami.model.Publication;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class PublicationCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of publication source in publication target and will override all the other properties of Target publication.
      * This method will ignore experiments
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public static void copyAndOverridePublicationProperties(Publication source, Publication target){
         if (source != null && target != null){
@@ -39,6 +40,12 @@ public class PublicationCloner {
         }
     }
 
+    /**
+     * <p>copyAndOverridePublicationPropertiesAndExperiments</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public static void copyAndOverridePublicationPropertiesAndExperiments(Publication source, Publication target){
         copyAndOverridePublicationProperties(source, target);
         if (source != null && target != null){

@@ -21,7 +21,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ComplexComparator implements Comparator<Complex> {
 
     private Comparator<Interactor> interactorBaseComparator;
@@ -31,6 +30,9 @@ public class ComplexComparator implements Comparator<Complex> {
     /**
      * Creates a bew ComplexComparator. It needs a AbstractInteractorBaseComparator to compares interactor properties
      *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
+     * @param componentComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.CustomizableModelledParticipantComparator} object.
+     * @param cvTermComparator a {@link java.util.Comparator} object.
      */
     public ComplexComparator(Comparator<Interactor> interactorBaseComparator, CustomizableModelledParticipantComparator componentComparator, Comparator<CvTerm> cvTermComparator){
 
@@ -53,6 +55,9 @@ public class ComplexComparator implements Comparator<Complex> {
     /**
      * Creates a bew ComplexComparator. It needs a AbstractInteractorBaseComparator to compares interactor properties
      *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
+     * @param componentComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantCollectionComparator} object.
+     * @param cvTermComparator a {@link java.util.Comparator} object.
      */
     public ComplexComparator(Comparator<Interactor> interactorBaseComparator, ModelledParticipantCollectionComparator componentComparator,
                              Comparator<CvTerm> cvTermComparator){
@@ -78,9 +83,9 @@ public class ComplexComparator implements Comparator<Complex> {
      * It will then compare the interaction types using AbstractCvtermComparator
      * If the basic interactor properties are the same, It will first compare the collection of components using ComponentComparator.
      *
-     * @param complex1
-     * @param complex2
-     * @return
+     * @param complex1 a {@link psidev.psi.mi.jami.model.Complex} object.
+     * @param complex2 a {@link psidev.psi.mi.jami.model.Complex} object.
+     * @return a int.
      */
     public int compare(Complex complex1, Complex complex2) {
         int EQUAL = 0;
@@ -123,14 +128,29 @@ public class ComplexComparator implements Comparator<Complex> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>interactorBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorBaseComparator() {
         return interactorBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>componentCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantCollectionComparator} object.
+     */
     public ModelledParticipantCollectionComparator getComponentCollectionComparator() {
         return componentCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }

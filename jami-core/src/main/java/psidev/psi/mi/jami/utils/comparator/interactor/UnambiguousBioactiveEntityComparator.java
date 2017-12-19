@@ -14,7 +14,6 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class UnambiguousBioactiveEntityComparator extends BioactiveEntityComparator{
 
     private static UnambiguousBioactiveEntityComparator unambiguousBioactiveEntityComparator;
@@ -26,14 +25,20 @@ public class UnambiguousBioactiveEntityComparator extends BioactiveEntityCompara
         super(new UnambiguousInteractorBaseComparator());
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorBaseComparator} object.
+     */
     public UnambiguousInteractorBaseComparator getInteractorComparator() {
         return (UnambiguousInteractorBaseComparator)super.getInteractorComparator();
     }
 
     /**
      * Use UnambiguousBioactiveEntityComparator to know if two bioactive entities are equals.
-     * @param entity1
-     * @param entity2
+     *
+     * @param entity1 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @param entity2 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
      * @return true if the two bioactive entities are equal
      */
     public static boolean areEquals(BioactiveEntity entity1, BioactiveEntity entity2){

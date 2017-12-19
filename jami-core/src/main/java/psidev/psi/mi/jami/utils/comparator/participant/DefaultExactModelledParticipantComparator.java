@@ -17,7 +17,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultExactModelledParticipantComparator {
 
     /**
@@ -26,9 +25,11 @@ public class DefaultExactModelledParticipantComparator {
      * If the participant is a modelledParticipantPool, it will use DefaultExactModelledParticipantPoolComparator.
      *
      * This comparator will ignore all the other properties of a biological participant.
-     * @param bioParticipant1
-     * @param bioParticipant2
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return true if the two biological participants are equal
+     * @param checkComplexesAsInteractors a boolean.
      */
     public static boolean areEquals(ModelledParticipant bioParticipant1, ModelledParticipant bioParticipant2, boolean checkComplexesAsInteractors){
         Map<Complex, Set<Interactor>> processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();

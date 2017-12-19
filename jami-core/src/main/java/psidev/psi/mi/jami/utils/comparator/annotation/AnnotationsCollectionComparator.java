@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class AnnotationsCollectionComparator extends CollectionComparator<Annotation> {
     /**
      * Creates a new annotation CollectionComparator. It requires a Comparator for the annotations in the Collection
@@ -21,6 +20,7 @@ public class AnnotationsCollectionComparator extends CollectionComparator<Annota
         super(annotationComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public AnnotationComparator getObjectComparator() {
         return (AnnotationComparator) super.getObjectComparator();

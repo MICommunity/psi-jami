@@ -10,18 +10,17 @@ import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class VariableParameterValueSetCollectionComparator extends CollectionComparator<VariableParameterValueSet> {
 
     /**
      * Creates a new CollectionComparator.
-     *
      */
     public VariableParameterValueSetCollectionComparator() {
         super(new VariableParameterValueSetComparator());
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public VariableParameterValueSetComparator getObjectComparator() {
         return (VariableParameterValueSetComparator) super.getObjectComparator();

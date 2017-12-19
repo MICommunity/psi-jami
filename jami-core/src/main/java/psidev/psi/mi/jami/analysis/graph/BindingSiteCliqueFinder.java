@@ -22,7 +22,6 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class BindingSiteCliqueFinder<I extends Interaction, F extends Feature> {
 
     private FeatureGraphBuilder<I,F> graphBuilder;
@@ -32,46 +31,91 @@ public class BindingSiteCliqueFinder<I extends Interaction, F extends Feature> {
      *
      * @param graph the graph in which cliques are to be found; graph must be
      *              simple
+     * @param <I> a I object.
+     * @param <F> a F object.
      */
     public BindingSiteCliqueFinder(BindingFeatureGraph<F> graph) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>();
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graph);
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a I object.
+     */
     public BindingSiteCliqueFinder(I interaction) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>();
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a {@link java.util.Collection} object.
+     */
     public BindingSiteCliqueFinder(Collection<I> interaction) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>();
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a {@link java.util.Iterator} object.
+     */
     public BindingSiteCliqueFinder(Iterator<I> interaction) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>();
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a I object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public BindingSiteCliqueFinder(I interaction, MIComparator<F> featureComparator) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>(featureComparator);
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a {@link java.util.Collection} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public BindingSiteCliqueFinder(Collection<I> interaction, MIComparator<F> featureComparator) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>(featureComparator);
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>Constructor for BindingSiteCliqueFinder.</p>
+     *
+     * @param interaction a {@link java.util.Iterator} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public BindingSiteCliqueFinder(Iterator<I> interaction, MIComparator<F> featureComparator) {
         this.graphBuilder = new FeatureGraphBuilder<I, F>(featureComparator);
         this.cliqueFinder = new BronKerboschCliqueFinder<F, BindingPair<F>>(graphBuilder.buildGraphFrom(interaction));
     }
 
+    /**
+     * <p>getAllMaximalCliques</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Set<F>> getAllMaximalCliques(){
         return this.cliqueFinder.getAllMaximalCliques();
     }
 
+    /**
+     * <p>getBiggestMaximalCliques</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Set<F>> getBiggestMaximalCliques(){
         return this.cliqueFinder.getBiggestMaximalCliques();
     }

@@ -11,18 +11,17 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  *
  * This comparator will ignore all the other properties of an interactor.
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultExactBioactiveEntityComparator {
 
     /**
      * Use DefaultBioactiveEntityComparator to know if two bioactive entities are equals.
-     * @param bioactiveEntity1
-     * @param bioactiveEntity2
+     *
+     * @param bioactiveEntity1 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @param bioactiveEntity2 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
      * @return true if the two bioactive entities are equal
      */
     public static boolean areEquals(BioactiveEntity bioactiveEntity1, BioactiveEntity bioactiveEntity2){

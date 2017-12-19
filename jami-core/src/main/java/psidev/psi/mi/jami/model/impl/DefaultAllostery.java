@@ -15,7 +15,6 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class DefaultAllostery<T extends AllostericEffector> extends DefaultCooperativeEffect implements Allostery<T> {
 
     private CvTerm allostericMechanism;
@@ -23,6 +22,14 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
     private ModelledEntity allostericMolecule;
     private T allostericEffector;
 
+    /**
+     * <p>Constructor for DefaultAllostery.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param allostericMolecule a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param allostericEffector a T object.
+     * @param <T> a T object.
+     */
     public DefaultAllostery(CvTerm outcome, ModelledParticipant allostericMolecule, T allostericEffector) {
         super(outcome);
         if (allostericMolecule == null){
@@ -35,6 +42,14 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
         this.allostericEffector = allostericEffector;
     }
 
+    /**
+     * <p>Constructor for DefaultAllostery.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param allostericMolecule a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param allostericEffector a T object.
+     */
     public DefaultAllostery(CvTerm outcome, CvTerm response, ModelledParticipant allostericMolecule, T allostericEffector) {
         super(outcome, response);
         if (allostericMolecule == null){
@@ -47,26 +62,44 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
         this.allostericEffector = allostericEffector;
     }
 
+    /**
+     * <p>Getter for the field <code>allostericMechanism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getAllostericMechanism() {
         return this.allostericMechanism;
     }
 
+    /** {@inheritDoc} */
     public void setAllostericMechanism(CvTerm mechanism) {
         this.allostericMechanism = mechanism;
     }
 
+    /**
+     * <p>Getter for the field <code>allosteryType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getAllosteryType() {
         return this.allosteryType;
     }
 
+    /** {@inheritDoc} */
     public void setAllosteryType(CvTerm type) {
         this.allosteryType = type;
     }
 
+    /**
+     * <p>Getter for the field <code>allostericMolecule</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public ModelledEntity getAllostericMolecule() {
         return this.allostericMolecule;
     }
 
+    /** {@inheritDoc} */
     public void setAllostericMolecule(ModelledEntity participant) {
         if (participant == null){
             throw new IllegalArgumentException("The allosteric molecule cannot be null");
@@ -74,10 +107,20 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
         this.allostericMolecule = participant;
     }
 
+    /**
+     * <p>Getter for the field <code>allostericEffector</code>.</p>
+     *
+     * @return a T object.
+     */
     public T getAllostericEffector() {
         return this.allostericEffector;
     }
 
+    /**
+     * <p>Setter for the field <code>allostericEffector</code>.</p>
+     *
+     * @param effector a T object.
+     */
     public void setAllostericEffector(T effector) {
         if (effector == null){
             throw new IllegalArgumentException("The allosteric effector cannot be null");
@@ -85,6 +128,7 @@ public class DefaultAllostery<T extends AllostericEffector> extends DefaultCoope
         this.allostericEffector = effector;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Allostery: outcome: "+(getOutCome() != null ? getOutCome().toString() : "")

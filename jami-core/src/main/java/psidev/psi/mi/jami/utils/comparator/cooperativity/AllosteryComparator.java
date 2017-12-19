@@ -20,13 +20,19 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class AllosteryComparator implements Comparator<Allostery>{
 
     private CooperativeEffectBaseComparator cooperativeEffectComparator;
     private MoleculeEffectorComparator moleculeEffectorComparator;
     private FeatureModificationEffectorComparator featureModificationEffectorComparator;
 
+    /**
+     * <p>Constructor for AllosteryComparator.</p>
+     *
+     * @param cooperativeEffectComparator a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.CooperativeEffectBaseComparator} object.
+     * @param moleculeEffectorComparator a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.MoleculeEffectorComparator} object.
+     * @param featureModificationEffectorComparator a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.FeatureModificationEffectorComparator} object.
+     */
     public AllosteryComparator(CooperativeEffectBaseComparator cooperativeEffectComparator, MoleculeEffectorComparator moleculeEffectorComparator,
                                FeatureModificationEffectorComparator featureModificationEffectorComparator){
 
@@ -46,14 +52,29 @@ public class AllosteryComparator implements Comparator<Allostery>{
         this.featureModificationEffectorComparator = featureModificationEffectorComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativeEffectComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.CooperativeEffectBaseComparator} object.
+     */
     public CooperativeEffectBaseComparator getCooperativeEffectComparator() {
         return cooperativeEffectComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>moleculeEffectorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.MoleculeEffectorComparator} object.
+     */
     public MoleculeEffectorComparator getMoleculeEffectorComparator() {
         return moleculeEffectorComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureModificationEffectorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.FeatureModificationEffectorComparator} object.
+     */
     public FeatureModificationEffectorComparator getFeatureModificationEffectorComparator() {
         return featureModificationEffectorComparator;
     }
@@ -67,6 +88,7 @@ public class AllosteryComparator implements Comparator<Allostery>{
      * Then, it will compare the allosteric mechanisms using AbstractCvTermComparator
      * Then, it will compare the allostery type using AbstractCvTermComparator
      * Finally, it will compare the allosteric molecule using ModelledParticipantComparator
+     *
      * @param allostery1 : first allostery
      * @param allostery2 : second allostery
      * @return the comparison value

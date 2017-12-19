@@ -8,18 +8,21 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>24/07/14</pre>
  */
-
 public interface ParticipantCandidate<P extends ParticipantPool, F extends Feature> extends Entity<F>{
 
     /**
      * The participant pool parent with which the candidate is involved.
      * It can be null if the participant candidate is not part of any participant pool. It can happen if the participant candidate has been removed from a participant pool and is now invalid.
+     *
      * @return the participant pool parent
+     * @param <P> a P object.
+     * @param <F> a F object.
      */
     public P getParentPool();
 
     /**
      * Sets the participant pool parent.
+     *
      * @param pool : participant pool
      */
     public void setParentPool(P pool);

@@ -15,7 +15,6 @@ import psidev.psi.mi.jami.model.ResultingSequence;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class RangeAndResultingSequenceComparator extends RangeComparator {
 
     private ResultingSequenceComparator resultingSequenceComparator;
@@ -30,19 +29,23 @@ public class RangeAndResultingSequenceComparator extends RangeComparator {
         this.resultingSequenceComparator = new ResultingSequenceComparator();
     }
 
+    /**
+     * <p>Getter for the field <code>resultingSequenceComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.range.ResultingSequenceComparator} object.
+     */
     public ResultingSequenceComparator getResultingSequenceComparator() {
         return resultingSequenceComparator;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * It compares first the start Position, then the end Position using a PositionComparator,
      * If start/end positions are equals, the linked ranges will always come before the ranges that are not linked.
      * If both ranges have the same positions and linked property, it will compare the resultingSequences using ResultingSequenceComparator
      * - Two ranges which are null are equals
      * - The range which is not null is before null.
-     * @param range1
-     * @param range2
-     * @return
      */
     @Override
     public int compare(Range range1, Range range2) {

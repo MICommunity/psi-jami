@@ -19,7 +19,6 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ModelledParticipantComparator implements CustomizableModelledParticipantComparator<ModelledParticipant> {
 
     private ModelledParticipantPoolComparator poolComparator;
@@ -30,6 +29,8 @@ public class ModelledParticipantComparator implements CustomizableModelledPartic
 
     /**
      * Creates a new ComponentComparator
+     *
+     * @param poolComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantPoolComparator} object.
      */
     public ModelledParticipantComparator(ModelledParticipantPoolComparator poolComparator){
         if (poolComparator == null){
@@ -39,26 +40,48 @@ public class ModelledParticipantComparator implements CustomizableModelledPartic
         this.processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();
     }
 
+    /**
+     * <p>Constructor for ModelledParticipantComparator.</p>
+     */
     public ModelledParticipantComparator(){
         this.processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();
     }
 
+    /**
+     * <p>getParticipantPoolComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantPoolComparator} object.
+     */
     public ModelledParticipantPoolComparator getParticipantPoolComparator() {
         return poolComparator;
     }
 
+    /**
+     * <p>Setter for the field <code>poolComparator</code>.</p>
+     *
+     * @param poolComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantPoolComparator} object.
+     */
     public void setPoolComparator(ModelledParticipantPoolComparator poolComparator) {
         this.poolComparator = poolComparator;
     }
 
+    /**
+     * <p>isCheckComplexesAsInteractors</p>
+     *
+     * @return a boolean.
+     */
     public boolean isCheckComplexesAsInteractors() {
         return checkComplexesAsInteractors;
     }
 
+    /** {@inheritDoc} */
     public void setCheckComplexesAsInteractors(boolean checkComplexesAsInteractors) {
         this.checkComplexesAsInteractors = checkComplexesAsInteractors;
     }
 
+    /**
+     * <p>clearProcessedComplexes</p>
+     */
     public void clearProcessedComplexes() {
         this.processedComplexes.clear();
     }
@@ -69,9 +92,10 @@ public class ModelledParticipantComparator implements CustomizableModelledPartic
      * If the participants are both ModelledParticipantPool, it will use ModelledParticipantPoolComparator to compare them
      *
      * This comparator will ignore all the other properties of a biological participant.
-     * @param bioParticipant1
-     * @param bioParticipant2
-     * @return
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @return a int.
      */
     public int compare(ModelledParticipant bioParticipant1, ModelledParticipant bioParticipant2) {
         int EQUAL = 0;

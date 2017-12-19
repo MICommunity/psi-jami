@@ -17,13 +17,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class AnnotationComparator implements Comparator<Annotation> {
 
     private Comparator<CvTerm> topicComparator;
 
     /**
      * Creates a new AnnotationComparator.
+     *
      * @param topicComparator : the CvTerm comparator to compare the topics. It is required
      */
     public AnnotationComparator(Comparator<CvTerm> topicComparator){
@@ -33,6 +33,11 @@ public class AnnotationComparator implements Comparator<Annotation> {
         this.topicComparator = topicComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>topicComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getTopicComparator() {
         return topicComparator;
     }
@@ -43,6 +48,7 @@ public class AnnotationComparator implements Comparator<Annotation> {
      * - The annotation which is not null is before null.
      * - use AbstractCvTermComparator to compare the topics. If they are equals, compares the values (case insensitive)
      * - If both annotations have same topic, the one with a null value is always after the one with a non null value.
+     *
      * @param annotation1 : first annotation
      * @param annotation2 : second annotation
      * @return the comparison value

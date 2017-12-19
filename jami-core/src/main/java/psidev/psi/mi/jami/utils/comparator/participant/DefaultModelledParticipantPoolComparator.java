@@ -22,14 +22,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultModelledParticipantPoolComparator {
 
     /**
      * Use DefaultModelledParticipantPoolComparator to know if two biological participant pools are equals.
-     * @param bioParticipant1
-     * @param bioParticipant2
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
      * @return true if the two biological participant pools are equal
+     * @param checkComplexesAsInteractors a boolean.
      */
     public static boolean areEquals(ModelledParticipantPool bioParticipant1, ModelledParticipantPool bioParticipant2, boolean checkComplexesAsInteractors){
         if (bioParticipant1 == bioParticipant2){

@@ -7,26 +7,43 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorCompa
 /**
  * Unambiguous biological participant comparator based on the interactor only.
  * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
- *
+ * <p>
  * This comparator will ignore all the other properties of a biological participant.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
-public class UnambiguousModelledParticipantInteractorComparator extends ParticipantInteractorComparator<ModelledEntity> implements CustomizableModelledParticipantComparator<ModelledEntity>{
+public class UnambiguousModelledParticipantInteractorComparator extends ParticipantInteractorComparator<ModelledEntity> implements CustomizableModelledParticipantComparator<ModelledEntity> {
 
     private static UnambiguousModelledParticipantInteractorComparator unambiguousParticipantInteractorComparator;
 
     private boolean checkComplexesAsInteractor = true;
+
     /**
+     * {@inheritDoc}
+     * <p>
      * Creates a new UnambiguousModelledParticipantInteractorComparator. It will use a UnambiguousInteractorComparator to compare
      * the basic properties of an interactor.
      */
     public UnambiguousModelledParticipantInteractorComparator() {
         super(null);
         setInteractorComparator(new UnambiguousInteractorComparator(new UnambiguousComplexComparator(this)));
+    }
+
+    /**
+     * Use UnambiguousModelledParticipantInteractorComparator to know if two biological participants are equals.
+     *
+     * @param component1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @return true if the two biological participants are equal
+     */
+    public static boolean areEquals(ModelledEntity component1, ModelledEntity component2) {
+        if (unambiguousParticipantInteractorComparator == null) {
+            unambiguousParticipantInteractorComparator = new UnambiguousModelledParticipantInteractorComparator();
+        }
+
+        return unambiguousParticipantInteractorComparator.compare(component1, component2) == 0;
     }
 
     @Override
@@ -45,27 +62,24 @@ public class UnambiguousModelledParticipantInteractorComparator extends Particip
     }
 
     /**
-     * Use UnambiguousModelledParticipantInteractorComparator to know if two biological participants are equals.
-     * @param component1
-     * @param component2
-     * @return true if the two biological participants are equal
+     * <p>isCheckComplexesAsInteractors</p>
+     *
+     * @return a boolean.
      */
-    public static boolean areEquals(ModelledEntity component1, ModelledEntity component2){
-        if (unambiguousParticipantInteractorComparator == null){
-            unambiguousParticipantInteractorComparator = new UnambiguousModelledParticipantInteractorComparator();
-        }
-
-        return unambiguousParticipantInteractorComparator.compare(component1, component2) == 0;
-    }
-
     public boolean isCheckComplexesAsInteractors() {
         return checkComplexesAsInteractor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setCheckComplexesAsInteractors(boolean checkComplexesAsInteractors) {
         this.checkComplexesAsInteractor = checkComplexesAsInteractors;
     }
 
+    /**
+     * <p>clearProcessedComplexes</p>
+     */
     public void clearProcessedComplexes() {
         // do nothing
     }

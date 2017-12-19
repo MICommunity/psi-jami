@@ -26,7 +26,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ExperimentalParticipantPoolComparator implements Comparator<ExperimentalParticipantPool> {
 
     private ParticipantBaseComparator participantBaseComparator;
@@ -39,10 +38,12 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
 
     /**
      * Creates a new ExperimentalParticipantPoolComparator
+     *
      * @param participantBaseComparator : the participant comparator required to compare basic properties of a participant
      * @param organismComparator : the organism comparator required to compare expressed in organisms
      * @param parameterComparator: ParameterComparator required for comparing participant features
      * @param entityComparator: comparator for participant candidates
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.feature.FeatureEvidenceComparator} object.
      */
     public ExperimentalParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator,
                                                  OrganismComparator organismComparator,
@@ -75,11 +76,13 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
 
     /**
      * Creates a new ExperimentalParticipantPoolComparator
+     *
      * @param participantBaseComparator : the participant comparator required to compare basic properties of a participant
      * @param organismComparator : the organism comparator required to compare expressed in organisms
      * @param parameterComparator: ParameterComparator required for comparing participant features
      * @param entityComparator: comparator for participant candidates
      * @param cvTermComparator: comparator for collection of cvs
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
      */
     public ExperimentalParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator,
                                                  OrganismComparator organismComparator,
@@ -111,26 +114,56 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
         this.experimentalEntityComparator = this.experimentalEntityCollectionComparator.getObjectComparator();
     }
 
+    /**
+     * <p>Getter for the field <code>parameterCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Parameter> getParameterCollectionComparator() {
         return parameterCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     */
     public ParticipantBaseComparator getParticipantBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<CvTerm> getCvTermCollectionComparator() {
         return cvTermCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>organismComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismComparator} object.
+     */
     public OrganismComparator getOrganismComparator() {
         return organismComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<FeatureEvidence> getFeatureCollectionComparator() {
         return featureCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalEntityComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<ExperimentalEntity> getExperimentalEntityComparator() {
         return experimentalEntityComparator;
     }
@@ -142,9 +175,10 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
      * look at the expressed in organisms using OrganismComparator.  If both organisms are the same, it will compare parameters using ParameterComparator
      *
      * All participant candidates will be compared with ExperimentalEntityComparator
-     * @param experimentalParticipant1
-     * @param experimentalParticipant2
-     * @return
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalParticipantPool} object.
+     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.ExperimentalParticipantPool} object.
+     * @return a int.
      */
     public int compare(ExperimentalParticipantPool experimentalParticipant1, ExperimentalParticipantPool experimentalParticipant2) {
         int EQUAL = 0;

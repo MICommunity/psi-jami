@@ -11,17 +11,18 @@ import java.util.Iterator;
  * Default exact InteractorPoolComparator.
  * It will first compare the basic interactor properties using DefaultExactInteractorBaseComparator
  * Then it will compare the collection of Interactors using DefaultExactInteractorBaseComparator
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultExactInteractorPoolComparator {
 
     /**
      * Use DefaultExactInteractorPoolComparator to know if two interactorCandidates are equals.
-     * @param interactorCandidates1
-     * @param interactorCandidates2
+     *
+     * @param interactorCandidates1 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param interactorCandidates2 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
      * @return true if the two interactorCandidates are equal
      */
     public static boolean areEquals(InteractorPool interactorCandidates1, InteractorPool interactorCandidates2){

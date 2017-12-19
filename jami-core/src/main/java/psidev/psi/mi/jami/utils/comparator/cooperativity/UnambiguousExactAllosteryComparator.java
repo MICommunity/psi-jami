@@ -18,31 +18,38 @@ import psidev.psi.mi.jami.model.Allostery;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class UnambiguousExactAllosteryComparator extends AllosteryComparator {
 
     private static UnambiguousExactAllosteryComparator unambiguousExactAllosteryComparator;
 
+    /**
+     * <p>Constructor for UnambiguousExactAllosteryComparator.</p>
+     */
     public UnambiguousExactAllosteryComparator() {
         super(new UnambiguousExactCooperativeEffectBaseComparator(), new UnambiguousExactMoleculeEffectorComparator(), new UnambiguousFeatureModificationEffectorComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactCooperativeEffectBaseComparator getCooperativeEffectComparator() {
         return (UnambiguousExactCooperativeEffectBaseComparator) super.getCooperativeEffectComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactMoleculeEffectorComparator getMoleculeEffectorComparator() {
         return (UnambiguousExactMoleculeEffectorComparator) super.getMoleculeEffectorComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousFeatureModificationEffectorComparator getFeatureModificationEffectorComparator() {
         return (UnambiguousFeatureModificationEffectorComparator) super.getFeatureModificationEffectorComparator();
     }
 
     /**
+     * {@inheritDoc}
+     *
      *
      * It will first compare basic cooperative effect properties using UnambiguousExactCooperativeEffectBaseComparator.
      * Then, it will compare the allosteric effector types :
@@ -59,8 +66,9 @@ public class UnambiguousExactAllosteryComparator extends AllosteryComparator {
 
     /**
      * Use UnambiguousExactAllosteryComparator to know if two allostery are equals.
-     * @param effect1
-     * @param effect2
+     *
+     * @param effect1 a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @param effect2 a {@link psidev.psi.mi.jami.model.Allostery} object.
      * @return true if the two Allostery are equal
      */
     public static boolean areEquals(Allostery effect1, Allostery effect2){

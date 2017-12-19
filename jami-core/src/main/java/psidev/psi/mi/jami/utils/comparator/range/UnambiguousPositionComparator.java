@@ -18,13 +18,14 @@ import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class UnambiguousPositionComparator extends PositionComparator {
 
     private static UnambiguousPositionComparator unambiguousPositionComparator;
+
     /**
-     * Creates a new positionComparator with UnambiguousCvTermComparator
+     * {@inheritDoc}
      *
+     * Creates a new positionComparator with UnambiguousCvTermComparator
      */
     public UnambiguousPositionComparator() {
         super(new UnambiguousCvTermComparator());
@@ -34,7 +35,6 @@ public class UnambiguousPositionComparator extends PositionComparator {
     public UnambiguousCvTermComparator getStatusComparator() {
         return (UnambiguousCvTermComparator) super.getStatusComparator();
     }
-
     @Override
     /**
      * It will first compare the status (using UnambiguousCvTermComparator) and then will check if the position is undetermined. It will then check the start and the end.
@@ -51,8 +51,9 @@ public class UnambiguousPositionComparator extends PositionComparator {
 
     /**
      * Use UnabmbiguousPositionComparator to know if two positions are equals.
-     * @param pos1
-     * @param pos2
+     *
+     * @param pos1 a {@link psidev.psi.mi.jami.model.Position} object.
+     * @param pos2 a {@link psidev.psi.mi.jami.model.Position} object.
      * @return true if the two positions are equal
      */
     public static boolean areEquals(Position pos1, Position pos2){
@@ -64,8 +65,9 @@ public class UnambiguousPositionComparator extends PositionComparator {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param pos
+     * @param pos a {@link psidev.psi.mi.jami.model.Position} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Position pos){

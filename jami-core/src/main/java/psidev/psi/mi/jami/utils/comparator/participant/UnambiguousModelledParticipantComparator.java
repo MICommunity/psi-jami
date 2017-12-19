@@ -14,12 +14,13 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorCompa
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class UnambiguousModelledParticipantComparator extends ModelledParticipantComparator {
 
     private static UnambiguousModelledParticipantComparator unambiguousParticipantComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousModelledParticipantComparator. It will use a UnambiguousParticipantBaseComparator to compare
      * the basic properties of a participant.
      */
@@ -34,7 +35,6 @@ public class UnambiguousModelledParticipantComparator extends ModelledParticipan
     public UnambiguousModelledParticipantPoolComparator getParticipantPoolComparator() {
         return (UnambiguousModelledParticipantPoolComparator) super.getParticipantPoolComparator();
     }
-
     @Override
     /**
      * It will compare the basic properties of a biological participant using UnambiguousParticipantBaseComparator.
@@ -47,8 +47,9 @@ public class UnambiguousModelledParticipantComparator extends ModelledParticipan
 
     /**
      * Use UnambiguousModelledParticipantComparator to know if two biological participants are equals.
-     * @param component1
-     * @param component2
+     *
+     * @param component1 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return true if the two biological participants are equal
      */
     public static boolean areEquals(ModelledParticipant component1, ModelledParticipant component2){

@@ -14,18 +14,21 @@ import java.util.List;
  * If one publication identifier is not set, it will look at first publication title (case insensitive),
  * then the authors (order is taken into account), then the journal (case insensitive) and finally the publication date.
  * - Two publications which are null are equals
+ *
+ * @author Marine Dumousseau (marine@ebi.ac.uk)
+ * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class DefaultPublicationComparator {
 
     /**
      * Use DefaultPublicationComparator to know if two publications are equals.
-     * @param publication1
-     * @param publication2
+     *
+     * @param publication1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param publication2 a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return true if the two publications are equal
      */
     public static boolean areEquals(Publication publication1, Publication publication2){

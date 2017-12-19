@@ -11,11 +11,12 @@ import psidev.psi.mi.jami.model.ParticipantPool;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class UnambiguousExactParticipantPoolComparator extends ParticipantPoolComparator {
     private static UnambiguousExactParticipantPoolComparator unambiguousParticipantComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousParticipantBaseComparator. It will use a UnambiguousInteractorComparator to compare
      * interactors, a UnambiguousCvTermComparator to compare biological roles
      */
@@ -27,7 +28,6 @@ public class UnambiguousExactParticipantPoolComparator extends ParticipantPoolCo
     public UnambiguousExactParticipantBaseComparator getParticipantBaseComparator() {
         return (UnambiguousExactParticipantBaseComparator) super.getParticipantBaseComparator();
     }
-
     @Override
     /**
      * It will first compares basic participant properties using UnambiguousExactParticipantBaseComparator, then it will compare participant pool type using cv term comparator and then it will compare
@@ -39,8 +39,9 @@ public class UnambiguousExactParticipantPoolComparator extends ParticipantPoolCo
 
     /**
      * Use UnambiguousExactParticipantPoolComparator to know if two participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
      * @return true if the two participants are equal
      */
     public static boolean areEquals(ParticipantPool participant1, ParticipantPool participant2){

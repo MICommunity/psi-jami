@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.ParticipantEvidence;
  * @version $Id$
  * @since <pre>04/06/13</pre>
  */
-
 public interface BinaryInteractionEvidence extends BinaryInteraction<ParticipantEvidence>,InteractionEvidence{
 }

@@ -10,11 +10,11 @@ import psidev.psi.mi.jami.model.Protein;
  * Refseq identifiers (The interactor with non null refseq id will always come first). If the Refseq and uniport identifiers are not set,
  * it will look at the rogids (The interactor with non null rogid will always come first). If the rogids are identical,
  * it will look at the gene names (The interactor with non null gene name will always come first).
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class UnambiguousProteinComparator extends ProteinComparator {
 
     private static UnambiguousProteinComparator unambiguousProteinComparator;
@@ -27,14 +27,20 @@ public class UnambiguousProteinComparator extends ProteinComparator {
         super(new UnambiguousPolymerComparator());
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousPolymerComparator} object.
+     */
     public UnambiguousPolymerComparator getInteractorComparator() {
         return (UnambiguousPolymerComparator)super.getInteractorComparator();
     }
 
     /**
      * Use UnambiguousProteinComparator to know if two proteins are equals.
-     * @param protein1
-     * @param protein2
+     *
+     * @param protein1 a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param protein2 a {@link psidev.psi.mi.jami.model.Protein} object.
      * @return true if the two proteins are equal
      */
     public static boolean areEquals(Protein protein1, Protein protein2){

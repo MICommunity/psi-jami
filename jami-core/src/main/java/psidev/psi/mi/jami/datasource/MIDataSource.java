@@ -16,18 +16,19 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>01/03/13</pre>
  */
-
 public interface MIDataSource {
 
     /**
      * Initialise the context of the MIDataSource given a map of options
+     *
      * @param options : the options provided by the user
      */
     public void initialiseContext(Map<String, Object> options);
 
     /**
      * This method close the file data source and all opened streams and readers
-     * @throws MIIOException: if the dataSource cannot be closed
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException: if the dataSource cannot be closed
      */
     public void close() throws MIIOException;
 
@@ -37,7 +38,8 @@ public interface MIDataSource {
      * To re-use the data source after calling the reset() method, the data source needs to be re-initialised with
      * initialiseContext(Map<String, Object> options).
      * Any provided inputStream or reader will not be closed and will have to be closed separately.
-     * @throws MIIOException : if the dataSource cannot be reset
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException : if the dataSource cannot be reset
      */
     public void reset() throws MIIOException;
 }

@@ -8,18 +8,22 @@ import java.util.Comparator;
 
 /**
  * Basic Comparator for MoleculeEffector.
- * 
+ *
  * It is using a ModelledEntityComparator to compare the molecule
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class MoleculeEffectorComparator implements Comparator<MoleculeEffector>{
 
     private ModelledEntityComparator participantComparator;
 
+    /**
+     * <p>Constructor for MoleculeEffectorComparator.</p>
+     *
+     * @param participantComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledEntityComparator} object.
+     */
     public MoleculeEffectorComparator(ModelledEntityComparator participantComparator){
 
         if (participantComparator == null){
@@ -28,15 +32,21 @@ public class MoleculeEffectorComparator implements Comparator<MoleculeEffector>{
         this.participantComparator = participantComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledEntityComparator} object.
+     */
     public ModelledEntityComparator getParticipantComparator() {
         return participantComparator;
     }
 
     /**
      * It is using a ModelledEntityComparator to compare the molecule
-     * @param moleculeEffector1
-     * @param moleculeEffector2
-     * @return
+     *
+     * @param moleculeEffector1 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @param moleculeEffector2 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @return a int.
      */
     public int compare(MoleculeEffector moleculeEffector1, MoleculeEffector moleculeEffector2) {
         int EQUAL = 0;

@@ -12,13 +12,13 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class DefaultExactPolymerComparator {
 
     /**
      * Use DefaultExactPolymerComparator to know if two polymers are equals.
-     * @param polymer1
-     * @param polymer2
+     *
+     * @param polymer1 a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @param polymer2 a {@link psidev.psi.mi.jami.model.Polymer} object.
      * @return true if the two polymers are equal
      */
     public static boolean areEquals(Polymer polymer1, Polymer polymer2){

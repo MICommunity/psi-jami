@@ -17,14 +17,14 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class DefaultPositionComparator {
 
 
     /**
      * Use DefaultPositionComparator to know if two positions are equals.
-     * @param position1
-     * @param position2
+     *
+     * @param position1 a {@link psidev.psi.mi.jami.model.Position} object.
+     * @param position2 a {@link psidev.psi.mi.jami.model.Position} object.
      * @return true if the two positions are equal
      */
     public static boolean areEquals(Position position1, Position position2){

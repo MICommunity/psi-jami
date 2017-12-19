@@ -22,7 +22,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class InteractorComparator implements Comparator<Interactor> {
 
     private Comparator<BioactiveEntity> bioactiveEntityComparator;
@@ -36,8 +35,14 @@ public class InteractorComparator implements Comparator<Interactor> {
 
     /**
      * Creates a new InteractorComparator.
+     *
      * @param interactorBaseComparator : required to create more specific comparators and to compare basic interactor objects
      * @param complexComparator : required to compare complex objects
+     * @param polymerComparator a {@link java.util.Comparator} object.
+     * @param bioactiveEntityComparator a {@link java.util.Comparator} object.
+     * @param geneComparator a {@link java.util.Comparator} object.
+     * @param nucleicAcidComparator a {@link java.util.Comparator} object.
+     * @param proteinComparator a {@link java.util.Comparator} object.
      */
     public InteractorComparator(Comparator<Interactor> interactorBaseComparator, Comparator<Complex> complexComparator, Comparator<Polymer> polymerComparator,
                                 Comparator<BioactiveEntity> bioactiveEntityComparator, Comparator<Gene> geneComparator,
@@ -74,6 +79,18 @@ public class InteractorComparator implements Comparator<Interactor> {
         this.interactorCandidatesComparator = new InteractorPoolComparator(this);
     }
 
+    /**
+     * <p>Constructor for InteractorComparator.</p>
+     *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
+     * @param complexComparator a {@link java.util.Comparator} object.
+     * @param polymerComparator a {@link java.util.Comparator} object.
+     * @param bioactiveEntityComparator a {@link java.util.Comparator} object.
+     * @param geneComparator a {@link java.util.Comparator} object.
+     * @param nucleicAcidComparator a {@link java.util.Comparator} object.
+     * @param proteinComparator a {@link java.util.Comparator} object.
+     * @param poolComparator a {@link java.util.Comparator} object.
+     */
     public InteractorComparator(Comparator<Interactor> interactorBaseComparator, Comparator<Complex> complexComparator, Comparator<Polymer> polymerComparator,
                                 Comparator<BioactiveEntity> bioactiveEntityComparator, Comparator<Gene> geneComparator,
                                 Comparator<NucleicAcid> nucleicAcidComparator, Comparator<Protein> proteinComparator,
@@ -110,34 +127,74 @@ public class InteractorComparator implements Comparator<Interactor> {
         this.interactorCandidatesComparator = poolComparator != null ? poolComparator : new InteractorPoolComparator(this);
     }
 
+    /**
+     * <p>Getter for the field <code>bioactiveEntityComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<BioactiveEntity> getBioactiveEntityComparator() {
         return bioactiveEntityComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>geneComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Gene> getGeneComparator() {
         return geneComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>proteinComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Protein> getProteinComparator() {
         return proteinComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>nucleicAcidComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<NucleicAcid> getNucleicAcidComparator() {
         return nucleicAcidComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorBaseComparator() {
         return interactorBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>complexComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Complex> getComplexComparator() {
         return complexComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>polymerComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Polymer> getPolymerComparator() {
         return polymerComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorCandidatesComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<InteractorPool> getInteractorCandidatesComparator() {
         return interactorCandidatesComparator;
     }
@@ -153,10 +210,10 @@ public class InteractorComparator implements Comparator<Interactor> {
      * - Uses InteractorPoolComparator for comparing interactor candidates
      * - Uses polymerComparator for comparing Polymer objects.
      * - use AbstractInteractorBaseComparator for comparing basic interactors that are not one of the above.
-
-     * @param interactor1
-     * @param interactor2
-     * @return
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @return a int.
      */
     public int compare(Interactor interactor1, Interactor interactor2) {
         int EQUAL = 0;

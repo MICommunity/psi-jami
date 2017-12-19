@@ -16,13 +16,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class DefaultOrganismComparator {
 
     /**
      * Use DefaultOrganismComparator to know if two organism are equals.
-     * @param organism1
-     * @param organism2
+     *
+     * @param organism1 a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organism2 a {@link psidev.psi.mi.jami.model.Organism} object.
      * @return true if the two organisms are equal
      */
     public static boolean areEquals(Organism organism1, Organism organism2){

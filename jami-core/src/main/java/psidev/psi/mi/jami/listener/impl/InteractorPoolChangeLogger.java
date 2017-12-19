@@ -14,15 +14,16 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class InteractorPoolChangeLogger extends InteractorChangeLogger<InteractorPool> implements InteractorPoolChangeListener {
 
     private static final Logger interactorPoolChangeLogger = Logger.getLogger("InteractorPoolChangeLogger");
 
+    /** {@inheritDoc} */
     public void onAddedInteractor(InteractorPool protein, Interactor added) {
         interactorPoolChangeLogger.log(Level.INFO, "The interactor " + added.toString() + " has been added to the interactor pool" + protein.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedInteractor(InteractorPool protein, Interactor removed) {
         interactorPoolChangeLogger.log(Level.INFO, "The interactor " + removed.toString() + " has been removed from the interactor pool" + protein.toString());
     }

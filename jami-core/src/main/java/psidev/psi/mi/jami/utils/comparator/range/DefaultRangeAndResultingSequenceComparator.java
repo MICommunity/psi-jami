@@ -14,13 +14,13 @@ import psidev.psi.mi.jami.model.ResultingSequence;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class DefaultRangeAndResultingSequenceComparator {
 
     /**
      * Use DefaultRangeComparator to know if two ranges are equals.
-     * @param range1
-     * @param range2
+     *
+     * @param range1 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param range2 a {@link psidev.psi.mi.jami.model.Range} object.
      * @return true if the two ranges are equal
      */
     public static boolean areEquals(Range range1, Range range2){

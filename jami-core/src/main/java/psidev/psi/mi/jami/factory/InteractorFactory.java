@@ -11,12 +11,12 @@ import java.util.*;
  * @version $Id$
  * @since <pre>18/06/13</pre>
  */
-
 public interface InteractorFactory {
 
 
     /**
      * Return the proper instance of the interactor if the type is recognized and not null. It returns null otherwise.
+     *
      * @param type : interactor type
      * @param name : short name
      * @return the proper instance of the interactor if the type is recognized. It returns null otherwise.
@@ -25,6 +25,7 @@ public interface InteractorFactory {
 
     /**
      * Return the proper instance of the interactor if the database is recognized. It returns null otherwise.
+     *
      * @param database : database
      * @param name :name
      * @return the proper instance of the interactor if the database is recognized. It returns null otherwise.
@@ -33,6 +34,7 @@ public interface InteractorFactory {
 
     /**
      * Return the proper instance of the interactor if the database is recognized (the interactor will be returned on the first database which is recognized). It returns null otherwise.
+     *
      * @param xrefs : identifiers
      * @param name : name
      * @return the proper instance of the interactor if the database is recognized (the interactor will be returned on the first database which is recognized). It returns null otherwise.
@@ -41,6 +43,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new Protein with the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created protein
@@ -49,6 +52,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new NucleicAcid with the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created nucleic acid
@@ -57,6 +61,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new Gene with the name
+     *
      * @param name : name
      * @return created gene
      */
@@ -64,6 +69,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new Complex with the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return  created complex
@@ -72,6 +78,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new BioactiveEntity with the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created bioactive entity
@@ -80,6 +87,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a new Polymer with the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created polymer
@@ -88,6 +96,7 @@ public interface InteractorFactory {
 
     /**
      * Creates a default interactor from the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created default interactor
@@ -96,6 +105,7 @@ public interface InteractorFactory {
 
     /**
      * Creates an interactor pool from the name and interactor type
+     *
      * @param name : short name
      * @param type : interactor type
      * @return created interactor pool

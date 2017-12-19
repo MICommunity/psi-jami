@@ -24,15 +24,18 @@ import java.util.List;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class UnambiguousExactCooperativeEffectBaseComparator extends CooperativeEffectBaseComparator {
 
     private static UnambiguousExactCooperativeEffectBaseComparator unambiguousExactCooperativeEffectComparator;
 
+    /**
+     * <p>Constructor for UnambiguousExactCooperativeEffectBaseComparator.</p>
+     */
     public UnambiguousExactCooperativeEffectBaseComparator() {
         super(new UnambiguousCvTermComparator(), new UnambiguousCooperativityEvidenceComparator(), new UnambiguousExactModelledInteractionComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
@@ -43,6 +46,10 @@ public class UnambiguousExactCooperativeEffectBaseComparator extends Cooperative
      * Then it will compare the CooperativityEvidences using UnambiguousCooperativityEvidenceComparator.
      *
      * Finally it will compare the affected interactions using UnambiguousExactModelledInteractionComparator
+     *
+     * @param effect1 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @param effect2 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @return a int.
      */
     public int compare(CooperativeEffect effect1, CooperativeEffect effect2) {
         return super.compare(effect1, effect2);
@@ -50,8 +57,9 @@ public class UnambiguousExactCooperativeEffectBaseComparator extends Cooperative
 
     /**
      * Use UnambiguousExactCooperativeEffectBaseComparator to know if two CooperativeEffects are equals.
-     * @param effect1
-     * @param effect2
+     *
+     * @param effect1 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @param effect2 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
      * @return true if the two CooperativeEffects are equal
      */
     public static boolean areEquals(CooperativeEffect effect1, CooperativeEffect effect2){
@@ -63,8 +71,9 @@ public class UnambiguousExactCooperativeEffectBaseComparator extends Cooperative
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param effect
+     * @param effect a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(CooperativeEffect effect){

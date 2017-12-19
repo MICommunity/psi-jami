@@ -19,14 +19,17 @@ import java.util.Comparator;
  * - The xref which is not null is before null.
  * - Use UnambiguousExternalIdentifierComparator to compare first the database and id.
  * - If both xref databases and ids are the same, compare the qualifiers.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class UnambiguousXrefComparator implements Comparator<Xref> {
     private static UnambiguousXrefComparator unambiguousXrefComparator;
 
+    /**
+     * <p>Constructor for UnambiguousXrefComparator.</p>
+     */
     public UnambiguousXrefComparator() {
         super();
     }
@@ -43,8 +46,10 @@ public class UnambiguousXrefComparator implements Comparator<Xref> {
      * - The xref which is not null is before null.
      * - Use UnambiguousExternalIdentifierComparator to compare first the database and id.
      * - If both xref databases and ids are the same, compare the qualifiers.
-     * @param xref1
-     * @param xref2
+     *
+     * @param xref1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param xref2 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a int.
      */
     public int compare(Xref xref1, Xref xref2) {
         int EQUAL = 0;
@@ -128,8 +133,9 @@ public class UnambiguousXrefComparator implements Comparator<Xref> {
 
     /**
      * Use UnambiguousXrefComparator to know if two xrefs are equals.
-     * @param xref1
-     * @param xref2
+     *
+     * @param xref1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param xref2 a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return true if the two xrefs are equal
      */
     public static boolean areEquals(Xref xref1, Xref xref2){
@@ -141,8 +147,9 @@ public class UnambiguousXrefComparator implements Comparator<Xref> {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param xref
+     * @param xref a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Xref xref){

@@ -15,17 +15,18 @@ import psidev.psi.mi.jami.utils.comparator.participant.DefaultExactModelledEntit
  * Then, it will compare the allosteric mechanisms using DefaultCvTermComparator
  * Then, it will compare the allostery type using DefaultCvTermComparator
  * Finally, it will compare the allosteric molecule using DefaultExactModelledParticipantComparator
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class DefaultExactAllosteryComparator {
 
     /**
      * Use DefaultExactAllosteryComparator to know if two allostery are equals.
-     * @param allostery1
-     * @param allostery2
+     *
+     * @param allostery1 a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @param allostery2 a {@link psidev.psi.mi.jami.model.Allostery} object.
      * @return true if the two Allostery are equal
      */
     public static boolean areEquals(Allostery allostery1, Allostery allostery2){

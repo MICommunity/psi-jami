@@ -16,23 +16,34 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class ParticipantInteractorComparator<T extends Entity> implements Comparator<T> {
 
     private InteractorComparator interactorComparator;
 
     /**
      * Creates a new ParticipantInteractorComparator.
+     *
      * @param interactorComparator : the interactor comparator required to compare the interactor
+     * @param <T> a T object.
      */
     public ParticipantInteractorComparator(InteractorComparator interactorComparator){
         this.interactorComparator = interactorComparator;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorComparator</code>.</p>
+     *
+     * @param interactorComparator a {@link psidev.psi.mi.jami.utils.comparator.interactor.InteractorComparator} object.
+     */
     public void setInteractorComparator(InteractorComparator interactorComparator) {
         this.interactorComparator = interactorComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.InteractorComparator} object.
+     */
     public InteractorComparator getInteractorComparator() {
         return interactorComparator;
     }
@@ -41,9 +52,10 @@ public class ParticipantInteractorComparator<T extends Entity> implements Compar
      * It will compare the interactors using InteractorComparator.
      *
      * This comparator will ignore all the other properties of a participant.
-     * @param participant1
-     * @param participant2
-     * @return
+     *
+     * @param participant1 a T object.
+     * @param participant2 a T object.
+     * @return a int.
      */
     public int compare(T participant1, T participant2) {
         if (interactorComparator == null){

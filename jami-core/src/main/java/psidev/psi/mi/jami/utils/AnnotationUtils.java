@@ -16,11 +16,11 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>05/02/13</pre>
  */
-
 public class AnnotationUtils {
 
     /**
      * To know if the annotation does have a specific topic
+     *
      * @param annotation : the annotation
      * @param topicId : the topic MI identifier
      * @param topicName  : the topic name
@@ -48,6 +48,7 @@ public class AnnotationUtils {
 
     /**
      * Collect all annotations having a specific topic
+     *
      * @param annots : the annotations
      * @param topicId :  the topic MI identifier
      * @param topicName :  the topic name
@@ -72,6 +73,7 @@ public class AnnotationUtils {
     /**
      * This method will return the first Annotation having this topicId/topic name
      * It will return null if there are no Annotations with this topic id/name
+     *
      * @param annotations : the collection of Annotation
      * @param topicId : the topic id to look for
      * @param topicName : the topic name to look for
@@ -94,6 +96,7 @@ public class AnnotationUtils {
 
     /**
      * Remove all annotations having this topic name/database id from the collection of annotations
+     *
      * @param annotations : the collection of annotations
      * @param topicId : the topic id to look for
      * @param topicName : the topic name to look for
@@ -113,6 +116,7 @@ public class AnnotationUtils {
 
     /**
      * To know if the annotation does have a specific topic
+     *
      * @param annotation : the annotation
      * @param topicId :  the topic MI identifier
      * @param topicName :  the topic name
@@ -167,6 +171,7 @@ public class AnnotationUtils {
 
     /**
      * Collect all annotations having a specific topic and value
+     *
      * @param annots : the annotations
      * @param topicId :  the topic MI identifier
      * @param topicName  : the topic name
@@ -192,10 +197,11 @@ public class AnnotationUtils {
     /**
      * This method will return the first Annotation having this topicId/topic name
      * It will return null if there are no Annotations with this topic id/name
+     *
      * @param annotations : the collection of Annotation
      * @param topicId : the topic id to look for
      * @param topicName : the topic name to look for
-     * @param value
+     * @param value a {@link java.lang.String} object.
      * @return the first annotation having this topic name/id, null if no Annotation with this topic name/id
      */
     public static Annotation collectFirstAnnotationWithTopicAndValue(Collection<? extends Annotation> annotations, String topicId, String topicName, String value){
@@ -215,10 +221,11 @@ public class AnnotationUtils {
 
     /**
      * Remove all annotations having this topic name/database id from the collection of annotations
+     *
      * @param annotations : the collection of annotations
      * @param topicId : the topic id to look for
      * @param topicName : the topic name to look for
-     * @param value
+     * @param value a {@link java.lang.String} object.
      */
     public static void removeAllAnnotationsWithTopicAndValue(Collection<? extends Annotation> annotations, String topicId, String topicName, String value){
 
@@ -233,18 +240,45 @@ public class AnnotationUtils {
         }
     }
 
+    /**
+     * <p>createAnnotation</p>
+     *
+     * @param topicName a {@link java.lang.String} object.
+     * @param topicMi a {@link java.lang.String} object.
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     public static Annotation createAnnotation(String topicName, String topicMi, String name){
         return new DefaultAnnotation(CvTermUtils.createMICvTerm(topicName, topicMi), name);
     }
 
+    /**
+     * <p>createAnnotation</p>
+     *
+     * @param topicName a {@link java.lang.String} object.
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     public static Annotation createAnnotation(String topicName, String name){
         return new DefaultAnnotation(CvTermUtils.createMICvTerm(topicName, null), name);
     }
 
+    /**
+     * <p>createComment</p>
+     *
+     * @param comment a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     public static Annotation createComment(String comment){
         return new DefaultAnnotation(CvTermUtils.createMICvTerm(Annotation.COMMENT, Annotation.COMMENT_MI), comment);
     }
 
+    /**
+     * <p>createCaution</p>
+     *
+     * @param caution a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     public static Annotation createCaution(String caution){
         return new DefaultAnnotation(CvTermUtils.createMICvTerm(Annotation.CAUTION, Annotation.CAUTION_MI), caution);
     }

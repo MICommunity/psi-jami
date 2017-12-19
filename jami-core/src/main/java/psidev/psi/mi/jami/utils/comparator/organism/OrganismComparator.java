@@ -11,17 +11,20 @@ import java.util.Comparator;
  * If the cell types are the same, it will look at the tissues. If the tissues are the same, it will look at the compartments.
  * - Two organisms which are null are equals
  * - The organism which is not null is before null.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class OrganismComparator extends OrganismTaxIdComparator {
 
     private Comparator<CvTerm> cvTermComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new OrganismComparator. It needs a cvtermComparator for comparing the cell types, tissues and compartments
+     *
      * @param cvTermComparator : cv term comparator is required for comparing cell types, tissues and compartments
      */
     public OrganismComparator(Comparator<CvTerm> cvTermComparator){
@@ -34,7 +37,6 @@ public class OrganismComparator extends OrganismTaxIdComparator {
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
-
     @Override
     /**
      * It will first look at the taxids. If taxIds are the same , it will look at the cell types.

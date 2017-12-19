@@ -6,17 +6,17 @@ import psidev.psi.mi.jami.utils.comparator.feature.UnambiguousFeatureEvidenceCom
 /**
  * Unambiguous exact Experimental entity comparator.
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class UnambiguousExactExperimentalEntityComparator extends ExperimentalEntityComparator {
 
     private static UnambiguousExactExperimentalEntityComparator unambiguousExactExperimentalParticipantComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactExperimentalEntityComparator. It will use a UnambiguousExactParticipantBaseComparator to compare
      * the basic properties of a participant, a UnambiguousCvTermComparator to compare experimental roles, preparations and identification methods
      * and a UnambiguousOrganismComparator to compare expressed in organisms
@@ -30,7 +30,6 @@ public class UnambiguousExactExperimentalEntityComparator extends ExperimentalEn
     public UnambiguousExactEntityBaseComparator getParticipantBaseComparator() {
         return (UnambiguousExactEntityBaseComparator) super.getParticipantBaseComparator();
     }
-
     @Override
     /**
      */
@@ -40,8 +39,9 @@ public class UnambiguousExactExperimentalEntityComparator extends ExperimentalEn
 
     /**
      * Use UnambiguousExperimentalEntityComparator to know if two experimental participants are equals.
-     * @param experimentalParticipant1
-     * @param component2
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental participants are equal
      */
     public static boolean areEquals(ExperimentalEntity experimentalParticipant1, ExperimentalEntity component2){

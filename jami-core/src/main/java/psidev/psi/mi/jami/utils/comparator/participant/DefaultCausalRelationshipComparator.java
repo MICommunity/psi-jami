@@ -13,13 +13,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultCausalRelationshipComparator {
 
     /**
      * Use DefaultCausalRelationshipComparator to know if two causalRelationShip are equals.
-     * @param causalRelationship1
-     * @param causalRelationship2
+     *
+     * @param causalRelationship1 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
+     * @param causalRelationship2 a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
      * @return true if the two causalRelationShip are equal
      */
     public static boolean areEquals(CausalRelationship causalRelationship1, CausalRelationship causalRelationship2){

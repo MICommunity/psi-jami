@@ -10,22 +10,21 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  * will look at the standard Inchi (the interactor with a non null standard inchi will always come first).
  * This comparator will ignore all the other properties of an interactor.
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousExactBioactiveEntityComparator extends BioactiveEntityComparator {
     private static UnambiguousExactBioactiveEntityComparator unambiguousExactBioactiveEntityComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactBioactiveEntityComparator. It will use a UnambiguousExactInteractorBaseComparator.
      */
     public UnambiguousExactBioactiveEntityComparator() {
         super(new UnambiguousExactInteractorBaseComparator());
     }
-
     @Override
     /**
      * It will first use UnambiguousExactInteractorBaseComparator to compare the basic interactor properties.
@@ -38,6 +37,7 @@ public class UnambiguousExactBioactiveEntityComparator extends BioactiveEntityCo
         return super.compare(bioactiveEntity1, bioactiveEntity2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorBaseComparator getInteractorComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorComparator();
@@ -45,8 +45,9 @@ public class UnambiguousExactBioactiveEntityComparator extends BioactiveEntityCo
 
     /**
      * Use UnambiguousExactBioactiveEntityComparator to know if two bioactive entities are equals.
-     * @param entity1
-     * @param entity2
+     *
+     * @param entity1 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @param entity2 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
      * @return true if the two bioactive entities are equal
      */
     public static boolean areEquals(BioactiveEntity entity1, BioactiveEntity entity2){

@@ -11,14 +11,15 @@ import psidev.psi.mi.jami.model.ModelledFeature;
  * @version $Id$
  * @since <pre>12/02/13</pre>
  */
-
 public class FeatureCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of Feature source in Feature target and will override all the other properties of Target feature.
      * Only the participant is not copied
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @param target a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
      */
     public static void copyAndOverrideFeatureEvidenceProperties(FeatureEvidence source, FeatureEvidence target){
         if (source != null && target != null){
@@ -47,11 +48,13 @@ public class FeatureCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of modelled Feature source in modelled Feature target and will override all the other properties of modelled Target feature.
      * Only the participant is not copied
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
      */
     public static void copyAndOverrideModelledFeaturesProperties(ModelledFeature source, ModelledFeature target){
         if (source != null && target != null){
@@ -76,11 +79,13 @@ public class FeatureCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of Feature source in Feature target and will override all the other properties of Target feature.
      * Only the participant is not copied
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Feature} object.
      */
     public static void copyAndOverrideBasicFeaturesProperties(Feature source, Feature target){
         if (source != null && target != null){

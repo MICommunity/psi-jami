@@ -17,13 +17,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultInteractorPoolComparator {
 
     /**
      * Use DefaultInteractorPoolComparator to know if two interactorCandidates are equals.
-     * @param interactorCandidates1
-     * @param interactorCandidates2
+     *
+     * @param interactorCandidates1 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param interactorCandidates2 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
      * @return true if the two interactorCandidates are equal
      */
     public static boolean areEquals(InteractorPool interactorCandidates1, InteractorPool interactorCandidates2){

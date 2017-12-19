@@ -13,18 +13,20 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface InteractionChangeListener<I extends Interaction> extends AnnotationsChangeListener<I>, IdentifiersChangeListener<I>,
                        XrefsChangeListener<I>, ChecksumsChangeListener<I>{
 
     /**
+     * <p>onShortNameUpdate</p>
      *
      * @param interaction : the updated interaction
      * @param oldName : old name
+     * @param <I> a I object.
      */
     public void onShortNameUpdate(I interaction, String oldName);
 
     /**
+     * <p>onUpdatedDateUpdate</p>
      *
      * @param interaction : the updated interaction
      * @param oldUpdate : old updated date
@@ -32,6 +34,7 @@ public interface InteractionChangeListener<I extends Interaction> extends Annota
     public void onUpdatedDateUpdate(I interaction, Date oldUpdate);
 
     /**
+     * <p>onCreatedDateUpdate</p>
      *
      * @param interaction  : the updated interaction
      * @param oldCreated : old created date
@@ -39,6 +42,7 @@ public interface InteractionChangeListener<I extends Interaction> extends Annota
     public void onCreatedDateUpdate(I interaction, Date oldCreated);
 
     /**
+     * <p>onInteractionTypeUpdate</p>
      *
      * @param interaction  : the updated interaction
      * @param oldType : old type
@@ -46,6 +50,7 @@ public interface InteractionChangeListener<I extends Interaction> extends Annota
     public void onInteractionTypeUpdate(I interaction, CvTerm oldType);
 
     /**
+     * <p>onAddedParticipant</p>
      *
      * @param interaction  : the updated interaction
      * @param addedParticipant : added participant
@@ -53,6 +58,7 @@ public interface InteractionChangeListener<I extends Interaction> extends Annota
     public void onAddedParticipant(I interaction, Participant addedParticipant);
 
     /**
+     * <p>onRemovedParticipant</p>
      *
      * @param interaction : the updated interaction
      * @param removedParticipant : removed participant

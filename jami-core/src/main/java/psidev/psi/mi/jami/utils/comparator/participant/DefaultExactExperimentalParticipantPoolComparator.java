@@ -21,14 +21,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultExactExperimentalParticipantPoolComparator {
 
     /**
      * Use DefaultExactExperimentalParticipantPoolComparator to know if two experimental participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ExperimentalParticipantPool} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ExperimentalParticipantPool} object.
      * @return true if the two experimental participants are equal
+     * @param checkComplexesAsInteractors a boolean.
      */
     public static boolean areEquals(ExperimentalParticipantPool participant1, ExperimentalParticipantPool participant2, boolean checkComplexesAsInteractors){
         if (participant1 == participant2){

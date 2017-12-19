@@ -10,18 +10,22 @@ import java.util.EventListener;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/08/13
+ * @version $Id: $
  */
 public interface AnnotationsChangeListener<T extends Object> extends EventListener {
 
     /**
      * Listen to the event where an annotation has been added to the object annotations.
+     *
      * @param o : the parent of this annotation
      * @param added : the added annotation
+     * @param <T> a T object.
      */
     public void onAddedAnnotation(T o, Annotation added);
 
     /**
      * Listen to the event where an annotation has been removed from the object annotations.
+     *
      * @param o : the parent of this annotation
      * @param removed : the removed annotation
      */

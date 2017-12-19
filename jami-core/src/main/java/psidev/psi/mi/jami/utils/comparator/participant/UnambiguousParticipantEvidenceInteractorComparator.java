@@ -14,12 +14,13 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorCompa
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousParticipantEvidenceInteractorComparator extends
         ParticipantInteractorComparator<ExperimentalEntity> {
     private static UnambiguousParticipantEvidenceInteractorComparator unambiguousExperimentalParticipantInteractorComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousParticipantEvidenceInteractorComparator. It will use a UnambiguousInteractorComparator to compare
      * the basic properties of a interactor.
      */
@@ -31,7 +32,6 @@ public class UnambiguousParticipantEvidenceInteractorComparator extends
     public UnambiguousInteractorComparator getInteractorComparator() {
         return (UnambiguousInteractorComparator) super.getInteractorComparator();
     }
-
     @Override
     /**
      * It will compare the basic properties of an interactor using UnambiguousInteractorComparator.
@@ -44,8 +44,9 @@ public class UnambiguousParticipantEvidenceInteractorComparator extends
 
     /**
      * Use UnambiguousParticipantEvidenceInteractorComparator to know if two experimental participants are equals.
-     * @param experimentalParticipant1
-     * @param component2
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental participants are equal
      */
     public static boolean areEquals(ExperimentalEntity experimentalParticipant1, ExperimentalEntity component2){

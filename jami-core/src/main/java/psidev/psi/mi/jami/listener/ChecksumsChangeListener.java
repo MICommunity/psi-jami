@@ -11,18 +11,20 @@ import java.util.EventListener;
  * @version $Id$
  * @since <pre>12/09/13</pre>
  */
-
 public interface ChecksumsChangeListener<T extends Object> extends EventListener {
 
     /**
      * Listen to the event where a checksum has been added to the interactor checksums.
+     *
      * @param interactor        The interactor which has changed.
      * @param added             The added checksum.
+     * @param <T> a T object.
      */
     public void onAddedChecksum(T interactor , Checksum added);
 
     /**
      * Listen to the event where a checksum has been removed from the interactor checksums.
+     *
      * @param interactor        The interactor which has changed.
      * @param removed           The removed checksum.
      */

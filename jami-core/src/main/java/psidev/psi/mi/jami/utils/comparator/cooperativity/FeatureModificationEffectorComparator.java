@@ -15,11 +15,15 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class FeatureModificationEffectorComparator implements Comparator<FeatureModificationEffector> {
 
     private ModelledFeatureComparator featureComparator;
 
+    /**
+     * <p>Constructor for FeatureModificationEffectorComparator.</p>
+     *
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.feature.ModelledFeatureComparator} object.
+     */
     public FeatureModificationEffectorComparator(ModelledFeatureComparator featureComparator){
 
         if (featureComparator == null){
@@ -28,10 +32,22 @@ public class FeatureModificationEffectorComparator implements Comparator<Feature
         this.featureComparator = featureComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.feature.ModelledFeatureComparator} object.
+     */
     public ModelledFeatureComparator getFeatureComparator() {
         return featureComparator;
     }
 
+    /**
+     * <p>compare</p>
+     *
+     * @param featureModificationEffector1 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @param featureModificationEffector2 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @return a int.
+     */
     public int compare(FeatureModificationEffector featureModificationEffector1, FeatureModificationEffector featureModificationEffector2) {
 
         int EQUAL = 0;

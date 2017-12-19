@@ -16,12 +16,13 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class CuratedInteractionBaseComparator implements Comparator<Interaction>{
 
     private Comparator<Interaction> interactionBaseComparator;
 
     /**
+     * <p>Constructor for CuratedInteractionBaseComparator.</p>
+     *
      * @param interactionBaseComparator : required to compare basic properties of an interaction
      */
     public CuratedInteractionBaseComparator(Comparator<Interaction> interactionBaseComparator){
@@ -31,6 +32,11 @@ public class CuratedInteractionBaseComparator implements Comparator<Interaction>
         this.interactionBaseComparator = interactionBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interaction> getInteractionBaseComparator() {
         return interactionBaseComparator;
     }
@@ -40,9 +46,9 @@ public class CuratedInteractionBaseComparator implements Comparator<Interaction>
      * Then it will compare the created dates (null created dates always come after)
      * Finally it will compare the updated date (null updated date always come after)
      *
-     * @param interaction1
-     * @param interaction2
-     * @return
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @return a int.
      */
     public int compare(Interaction interaction1, Interaction interaction2){
         int EQUAL = 0;

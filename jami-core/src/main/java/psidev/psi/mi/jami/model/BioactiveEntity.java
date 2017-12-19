@@ -9,11 +9,17 @@ package psidev.psi.mi.jami.model;
  */
 public interface BioactiveEntity extends Molecule {
 
+    /** Constant <code>BIOACTIVE_ENTITY="bioactive entity"</code> */
     public static final String BIOACTIVE_ENTITY="bioactive entity";
+    /** Constant <code>BIOACTIVE_ENTITY_MI="MI:1100"</code> */
     public static final String BIOACTIVE_ENTITY_MI="MI:1100";
+    /** Constant <code>SMALL_MOLECULE="small molecule"</code> */
     public static final String SMALL_MOLECULE="small molecule";
+    /** Constant <code>SMALL_MOLECULE_MI="MI:0328"</code> */
     public static final String SMALL_MOLECULE_MI="MI:0328";
+    /** Constant <code>POLYSACCHARIDE="polysaccharide"</code> */
     public static final String POLYSACCHARIDE="polysaccharide";
+    /** Constant <code>POLYSACCHARIDE_MI="MI:0904"</code> */
     public static final String POLYSACCHARIDE_MI="MI:0904";
 
     /**
@@ -21,6 +27,7 @@ public interface BioactiveEntity extends Molecule {
      * It is a shortcut which should point to the first chebi identifier in the collection of identifiers.
      * It can be null
      * Ex: CHEBI:4991
+     *
      * @return The CHEBI accession
      */
     public String getChebi();
@@ -29,6 +36,7 @@ public interface BioactiveEntity extends Molecule {
      * Sets the CHEBI identifier. It will remove the old chebi identifier from the collection of identifiers and replace it
      * with the new chebi identifier. If the new chebi identifier is null, all the existing chebi identifiers will be removed from the
      * collection of identifiers
+     *
      * @param id : CHEBI identifier
      */
     public void setChebi(String id);
@@ -38,6 +46,7 @@ public interface BioactiveEntity extends Molecule {
      * It is a shortcut which should point to the first smile in the collection of checksums.
      * It can be null
      * Ex: OC1C[C@]2(O)CC(O)O[Fe]34(O1)(OC(O)C[C@](O)(CC(O)O3)C(O)O4)OC2O
+     *
      * @return the smile
      */
     public String getSmile();
@@ -46,6 +55,7 @@ public interface BioactiveEntity extends Molecule {
      * Sets the smile of this small molecule. It will remove the old smile from the collection of checksums and replace it
      * with the new smile. If the new smile is null, all the existing smiles will be removed from the
      * collection of checksums
+     *
      * @param smile : the smile
      */
     public void setSmile(String smile);
@@ -55,6 +65,7 @@ public interface BioactiveEntity extends Molecule {
      * It is a shortcut which should point to the first standard Inchi key in the collection of checksums.
      * It can be null.
      * Ex: ISOHCBXAFHMIHK-UHFFFAOYSA-N
+     *
      * @return the standard InChI key
      */
     public String getStandardInchiKey();
@@ -63,6 +74,7 @@ public interface BioactiveEntity extends Molecule {
      * Sets the standard InChI key . It will remove the old standard inchi key from the collection of checksums and replace it
      * with the new standard inchi key. If the new standard inchi key is null, all the existing standard inchi keys will be removed from the
      * collection of checksums
+     *
      * @param key : the standard inchi key
      */
     public void setStandardInchiKey(String key);
@@ -72,6 +84,7 @@ public interface BioactiveEntity extends Molecule {
      * It is a shortcut which should point to the first standard Inchi in the collection of checksums.
      * It can be null.
      * Ex: InChI=1S/2C6H11O7.Fe/c2*7-3(8)1-6(13,5(11)12)2-4(9)10;/h2*3-5,7,9,11,13H,1-2H2;/q2*-3;+6
+     *
      * @return the standard InChI
      */
     public String getStandardInchi();
@@ -80,6 +93,7 @@ public interface BioactiveEntity extends Molecule {
      * Sets the standard InChI. It will remove the old standard inchi from the collection of checksums and replace it
      * with the new standard inchi. If the new standard is null, all the existing standard inchi will be removed from the
      * collection of checksums
+     *
      * @param inchi : the standard InChI
      */
     public void setStandardInchi(String inchi);

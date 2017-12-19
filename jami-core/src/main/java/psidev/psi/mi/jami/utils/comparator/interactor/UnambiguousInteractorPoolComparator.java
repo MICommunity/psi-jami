@@ -12,18 +12,18 @@ import psidev.psi.mi.jami.model.InteractorPool;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousInteractorPoolComparator extends InteractorPoolComparator {
 
     private static UnambiguousInteractorPoolComparator unambiguousInteractorCandidatesComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousInteractorPoolComparator. It will use a UnambiguousInteractorComparator.
      */
     public UnambiguousInteractorPoolComparator() {
         super(new UnambiguousInteractorComparator());
     }
-
     @Override
     /**
      * It will first compare the basic interactor properties using UnambiguousInteractorBaseComparator
@@ -33,6 +33,7 @@ public class UnambiguousInteractorPoolComparator extends InteractorPoolComparato
         return super.compare(candidat1, candidat2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousInteractorBaseComparator) super.getInteractorBaseComparator();
@@ -40,8 +41,9 @@ public class UnambiguousInteractorPoolComparator extends InteractorPoolComparato
 
     /**
      * Use UnambiguousInteractorPoolComparator to know if two interactorCandidates are equals.
-     * @param candidat1
-     * @param candidat2
+     *
+     * @param candidat1 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param candidat2 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
      * @return true if the two interactorCandidates are equal
      */
     public static boolean areEquals(InteractorPool candidat1, InteractorPool candidat2){

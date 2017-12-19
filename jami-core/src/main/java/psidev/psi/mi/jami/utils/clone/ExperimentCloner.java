@@ -9,16 +9,17 @@ import psidev.psi.mi.jami.model.Experiment;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ExperimentCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of experiment source in experiment target and will override all the other properties of Target experiment.
      * This method will ignore interaction evidences
      * It will set the publication but will not add this experiment to the list of experiments of the publication reported in the source experiment
      * It will fully clone all the VariableParameters and set their experiment to the current experiment target
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public static void copyAndOverrideExperimentProperties(Experiment source, Experiment target){
         if (source != null && target != null){
@@ -38,13 +39,15 @@ public class ExperimentCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of experiment source in experiment target and will override all the other properties of Target experiment.
      * This method will also move interaction evidences from source to target
      * It will set the publication but will not add this experiment to the list of experiments of the publication reported in the source experiment
      * It will fully clone all the VariableParameters and set their experiment to the current experiment target
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public static void copyAndOverrideExperimentPropertiesAndInteractionEvidences(Experiment source, Experiment target){
         if (source != null && target != null){

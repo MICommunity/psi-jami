@@ -62,6 +62,8 @@ package psidev.psi.mi.jami.utils.checksum;
  * periodically to check for updates or to contribute improvements.
  * </p>
  *
+ * @author ntoro
+ * @version $Id: $
  */
 public class Base64 {
 
@@ -381,6 +383,8 @@ public class Base64 {
      * Encodes or decodes two files from the command line;
      * <strong>feel free to delete this method (in fact you probably should)
      * if you're embedding this code into a larger program.</strong>
+     *
+     * @param args an array of {@link java.lang.String} objects.
      */
     public final static void main( String[] args ) {
         if ( args.length < 3 ) {
@@ -545,6 +549,8 @@ public class Base64 {
      * @return The Base64-encoded object
      * @see Base64#GZIP
      * @see Base64#DONT_BREAK_LINES
+     * @see Base64#GZIP
+     * @see Base64#DONT_BREAK_LINES
      * @since 2.0
      */
     public static String encodeObject( java.io.Serializable serializableObject, int options ) {
@@ -613,6 +619,7 @@ public class Base64 {
      *
      * @param source The data to convert
      * @since 1.4
+     * @return a {@link java.lang.String} object.
      */
     public static String encodeBytes( byte[] source ) {
         return encodeBytes( source, 0, source.length, NO_OPTIONS );
@@ -636,7 +643,10 @@ public class Base64 {
      * @param options Specified options
      * @see Base64#GZIP
      * @see Base64#DONT_BREAK_LINES
+     * @see Base64#GZIP
+     * @see Base64#DONT_BREAK_LINES
      * @since 2.0
+     * @return a {@link java.lang.String} object.
      */
     public static String encodeBytes( byte[] source, int options ) {
         return encodeBytes( source, 0, source.length, options );
@@ -651,6 +661,7 @@ public class Base64 {
      * @param off    Offset in array where conversion should begin
      * @param len    Length of data to convert
      * @since 1.4
+     * @return a {@link java.lang.String} object.
      */
     public static String encodeBytes( byte[] source, int off, int len ) {
         return encodeBytes( source, off, len, NO_OPTIONS );
@@ -676,7 +687,10 @@ public class Base64 {
      * @param options Specified options
      * @see Base64#GZIP
      * @see Base64#DONT_BREAK_LINES
+     * @see Base64#GZIP
+     * @see Base64#DONT_BREAK_LINES
      * @since 2.0
+     * @return a {@link java.lang.String} object.
      */
     public static String encodeBytes( byte[] source, int off, int len, int options ) {
         // Isolate options
@@ -867,6 +881,7 @@ public class Base64 {
      * @param len    The length of characters to decode
      * @return decoded data
      * @since 1.3
+     * @param options a int.
      */
     public static byte[] decode( byte[] source, int off, int len, int options ) {
         byte[] DECODABET = getDecodabet( options );

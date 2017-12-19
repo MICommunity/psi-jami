@@ -17,12 +17,10 @@ import java.util.List;
  * Then it will compare the identifiers using UnambiguousExternalIdentifierComparator.
  * If the interactions do not have any identifiers, it will compare the shortnames (case sensitive, shortname null comes always after)
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class UnambiguousInteractionBaseComparator extends InteractionBaseComparator {
 
     private static UnambiguousInteractionBaseComparator unambiguousInteractionComparator;
@@ -35,18 +33,29 @@ public class UnambiguousInteractionBaseComparator extends InteractionBaseCompara
         super( new UnambiguousExternalIdentifierComparator(),new UnambiguousCvTermComparator());
     }
 
+    /**
+     * <p>getCvTermComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator} object.
+     */
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
 
+    /**
+     * <p>getIdentifierComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.xref.UnambiguousExternalIdentifierComparator} object.
+     */
     public UnambiguousExternalIdentifierComparator getIdentifierComparator() {
         return (UnambiguousExternalIdentifierComparator)super.getIdentifierComparator();
     }
 
     /**
      * Use UnambiguousInteractionBaseComparator to know if two interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return true if the two interactions are equal
      */
     public static boolean areEquals(Interaction interaction1, Interaction interaction2){
@@ -58,8 +67,9 @@ public class UnambiguousInteractionBaseComparator extends InteractionBaseCompara
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Interaction interaction){

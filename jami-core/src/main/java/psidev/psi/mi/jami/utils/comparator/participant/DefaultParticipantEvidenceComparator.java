@@ -23,14 +23,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultParticipantEvidenceComparator {
 
     /**
      * Use DefaultParticipantEvidenceComparator to know if two experimental participants are equals.
-     * @param experimentalParticipant1
-     * @param experimentalParticipant2
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @return true if the two experimental participants are equal
+     * @param ignoreInteractors a boolean.
      */
     public static boolean areEquals(ParticipantEvidence experimentalParticipant1, ParticipantEvidence experimentalParticipant2, boolean ignoreInteractors){
         if (experimentalParticipant1 == experimentalParticipant2){

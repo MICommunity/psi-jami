@@ -12,12 +12,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public interface CvTermStream extends MIDataSource {
 
     /**
      * The CV terms iterator for this datasource.
+     *
      * @return iterator of CV terms for a given datasource
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public Iterator<CvTerm> getCvTermsIterator() throws MIIOException;
 }
