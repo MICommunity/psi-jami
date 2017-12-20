@@ -26,39 +26,71 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
     private MoleculeEffector moleculeEffector;
     private FeatureModificationEffector featureEffector;
 
+    /**
+     * <p>Constructor for XmlAllostery.</p>
+     */
     public XmlAllostery() {
         super();
     }
 
+    /**
+     * <p>Constructor for XmlAllostery.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlAllostery(CvTerm outcome) {
         super(outcome);
     }
 
+    /**
+     * <p>Constructor for XmlAllostery.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlAllostery(CvTerm outcome, CvTerm response) {
         super(outcome, response);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Allostery: "+sourceLocator != null ? sourceLocator.toString():super.toString();
     }
 
+    /**
+     * <p>Getter for the field <code>allostericMechanism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getAllostericMechanism() {
         return this.allostericMechanism;
     }
 
+    /** {@inheritDoc} */
     public void setAllostericMechanism(CvTerm mechanism) {
         this.allostericMechanism = mechanism;
     }
 
+    /**
+     * <p>Getter for the field <code>allosteryType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getAllosteryType() {
         return this.allosteryType;
     }
 
+    /** {@inheritDoc} */
     public void setAllosteryType(CvTerm type) {
         this.allosteryType = type;
     }
 
+    /**
+     * <p>Getter for the field <code>allostericMolecule</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public ModelledEntity getAllostericMolecule() {
         if (this.allostericMolecule == null){
             this.allostericMolecule = new XmlModelledParticipant();
@@ -66,6 +98,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
         return this.allostericMolecule;
     }
 
+    /** {@inheritDoc} */
     public void setAllostericMolecule(ModelledEntity participant) {
         if (participant == null){
             throw new IllegalArgumentException("The allosteric molecule cannot be null");
@@ -73,6 +106,11 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
         this.allostericMolecule = participant;
     }
 
+    /**
+     * <p>getAllostericEffector.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffector} object.
+     */
     public AllostericEffector getAllostericEffector() {
         if (this.moleculeEffector == null && this.featureEffector == null){
             initialiseDefaultAllostericEffector();
@@ -85,10 +123,14 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
         }
     }
 
+    /**
+     * <p>initialiseDefaultAllostericEffector.</p>
+     */
     protected void initialiseDefaultAllostericEffector(){
         setJAXBMoleculeEffectorRef(0);
     }
 
+    /** {@inheritDoc} */
     public void setAllostericEffector(AllostericEffector effector) {
         if (effector == null){
             throw new IllegalArgumentException("The allosteric effector cannot be null");
@@ -106,26 +148,51 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
         }
     }
 
+    /**
+     * <p>setJAXBAllostericMoleculeRef.</p>
+     *
+     * @param ref a int.
+     */
     @XmlElement(name = "allostericMoleculeRef", required = true)
     public void setJAXBAllostericMoleculeRef(int ref) {
         this.allostericMolecule = new AllostericMoleculeRef(ref);
     }
 
+    /**
+     * <p>setJAXBMoleculeEffectorRef.</p>
+     *
+     * @param effector a int.
+     */
     @XmlElement(name = "allostericEffectorRef", required = true)
     public void setJAXBMoleculeEffectorRef(int effector) {
         this.moleculeEffector = new XmlMoleculeEffector(effector, (PsiXmlLocator)sourceLocation());
     }
 
+    /**
+     * <p>setJAXBFeatureEffectorRef.</p>
+     *
+     * @param effector a int.
+     */
     @XmlElement(name = "allostericModificationRef", required = true)
     public void setJAXBFeatureEffectorRef(int effector) {
         this.featureEffector = new XmlFeatureModificationEffector(effector, (PsiXmlLocator)sourceLocation());
     }
 
+    /**
+     * <p>setJAXBAllostericMechanism.</p>
+     *
+     * @param mechanism a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "allostericMechanism")
     public void setJAXBAllostericMechanism(XmlCvTerm mechanism) {
         this.allostericMechanism = mechanism;
     }
 
+    /**
+     * <p>setJAXBAllosteryType.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "allosteryType")
     public void setJAXBAllosteryType(XmlCvTerm type) {
         this.allosteryType = type;

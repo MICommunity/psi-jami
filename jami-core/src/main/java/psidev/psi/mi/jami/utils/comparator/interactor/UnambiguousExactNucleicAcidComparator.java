@@ -7,23 +7,24 @@ import psidev.psi.mi.jami.model.NucleicAcid;
  * It will first use UnambiguousExactPolymerBaseComparator to compare the basic interactor properties.
  * If the basic polymer properties are the same, It will look for DDBJ/EMBL/Genbank identifier. If the DDBJ/EMBL/Genbank identifiers are identical, it will look at the
  * Refseq identifiers.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousExactNucleicAcidComparator extends NucleicAcidComparator {
 
     private static UnambiguousExactNucleicAcidComparator unambiguousExactNucleicAcidComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new DefaultExactNucleicAcidComparator. It will uses a UnambiguousExactInteractorBaseComparator to compare interactor properties and a
      * OrganismTaxIdComparator to compares organism.
      */
     public UnambiguousExactNucleicAcidComparator() {
         super(new UnambiguousExactPolymerComparator());
     }
-
     @Override
     /**
      * It will first use UnambiguousExactPolymerBaseComparator to compare the basic interactor properties.
@@ -34,6 +35,7 @@ public class UnambiguousExactNucleicAcidComparator extends NucleicAcidComparator
         return super.compare(nucleicAcid1, nucleicAcid2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactPolymerComparator getInteractorComparator() {
         return (UnambiguousExactPolymerComparator) super.getInteractorComparator();
@@ -41,8 +43,9 @@ public class UnambiguousExactNucleicAcidComparator extends NucleicAcidComparator
 
     /**
      * Use UnambiguousExactNucleicAcidComparator to know if two nucleic acids are equals.
-     * @param nucleicAcid1
-     * @param nucleicAcid2
+     *
+     * @param nucleicAcid1 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
+     * @param nucleicAcid2 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
      * @return true if the two nucleic acids are equal
      */
     public static boolean areEquals(NucleicAcid nucleicAcid1, NucleicAcid nucleicAcid2){

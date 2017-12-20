@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class InteractionChangeLogger<T extends Interaction> implements InteractionChangeListener<T> {
 
     private static final Logger interactionChangeLogger = Logger.getLogger("InteractionChangeLogger");
 
+    /** {@inheritDoc} */
     public void onShortNameUpdate(T interaction, String oldShortName) {
         if (oldShortName == null){
             interactionChangeLogger.log(Level.INFO, "The short name has been initialised for the interaction " + interaction.toString());
@@ -31,6 +31,7 @@ public class InteractionChangeLogger<T extends Interaction> implements Interacti
         }
     }
 
+    /** {@inheritDoc} */
     public void onUpdatedDateUpdate(T interaction, Date oldUpdate) {
         if (oldUpdate == null){
             interactionChangeLogger.log(Level.INFO, "The updated date has been initialised for the interaction " + interaction.toString());
@@ -43,6 +44,7 @@ public class InteractionChangeLogger<T extends Interaction> implements Interacti
         }
     }
 
+    /** {@inheritDoc} */
     public void onCreatedDateUpdate(T interaction, Date oldCreated) {
         if (oldCreated == null){
             interactionChangeLogger.log(Level.INFO, "The creation date has been initialised for the interaction " + interaction.toString());
@@ -55,6 +57,7 @@ public class InteractionChangeLogger<T extends Interaction> implements Interacti
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractionTypeUpdate(T interaction, CvTerm old) {
         if (old == null){
             interactionChangeLogger.log(Level.INFO, "The interaction type has been initialised for the interaction " + interaction.toString());
@@ -66,42 +69,52 @@ public class InteractionChangeLogger<T extends Interaction> implements Interacti
             interactionChangeLogger.log(Level.INFO, "The interaction type " + old + " has been updated with " + interaction.getInteractionType() + " in the interaction " + interaction.toString());
         }    }
 
+    /** {@inheritDoc} */
     public void onAddedParticipant(T interaction, Participant addedParticipant) {
         interactionChangeLogger.log(Level.INFO, "The participant " + addedParticipant.toString() + " has been added to the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParticipant(T interaction, Participant removedParticipant) {
         interactionChangeLogger.log(Level.INFO, "The participant " + removedParticipant.toString() + " has been removed from the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentifier(T interaction, Xref added) {
         interactionChangeLogger.log(Level.INFO, "The identifier " + added.toString() + " has been added to the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentifier(T interaction, Xref removed) {
         interactionChangeLogger.log(Level.INFO, "The identifier " + removed.toString() + " has been removed from the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(T interaction, Xref added) {
         interactionChangeLogger.log(Level.INFO, "The xref " + added.toString() + " has been added to the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(T interaction, Xref removed) {
         interactionChangeLogger.log(Level.INFO, "The xref " + removed.toString() + " has been removed from the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedChecksum(T interaction, Checksum added) {
         interactionChangeLogger.log(Level.INFO, "The checksum " + added.toString() + " has been added to the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedChecksum(T interaction, Checksum removed) {
         interactionChangeLogger.log(Level.INFO, "The checksum " + removed.toString() + " has been removed from the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(T interaction, Annotation added) {
         interactionChangeLogger.log(Level.INFO, "The annotation " + added.toString() + " has been added to the interaction " + interaction.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(T interaction, Annotation removed) {
         interactionChangeLogger.log(Level.INFO, "The annotation " + removed.toString() + " has been removed from the interaction " + interaction.toString());
     }

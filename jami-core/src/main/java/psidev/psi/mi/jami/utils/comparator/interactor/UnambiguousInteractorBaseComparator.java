@@ -16,30 +16,44 @@ import java.util.List;
  * fullnames(case sensitive) and if the shortNames and fullnames are the same, it will compare the aliases using UnambiguousAliasComparator.
  *
  * This comparator will ignore all the other properties of an interactor.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class UnambiguousInteractorBaseComparator extends InteractorBaseComparator {
     private static UnambiguousInteractorBaseComparator unambiguousInteractorComparator;
 
+    /**
+     * <p>Constructor for UnambiguousInteractorBaseComparator.</p>
+     */
     public UnambiguousInteractorBaseComparator() {
         super(new UnambiguousExternalIdentifierComparator(), new UnambiguousAliasComparator());
     }
 
+    /**
+     * <p>getIdentifierComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.xref.UnambiguousExternalIdentifierComparator} object.
+     */
     public UnambiguousExternalIdentifierComparator getIdentifierComparator() {
         return (UnambiguousExternalIdentifierComparator)super.getIdentifierComparator();
     }
 
+    /**
+     * <p>getAliasComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.alias.UnambiguousAliasComparator} object.
+     */
     public UnambiguousAliasComparator getAliasComparator() {
         return (UnambiguousAliasComparator)super.getAliasComparator();
     }
 
     /**
      * Use DefaultConfidenceComparator to know if two confidences are equals.
-     * @param interactor1
-     * @param interactor2
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return true if the two confidences are equal
      */
     public static boolean areEquals(Interactor interactor1, Interactor interactor2){
@@ -51,8 +65,9 @@ public class UnambiguousInteractorBaseComparator extends InteractorBaseComparato
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param interactor
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Interactor interactor){

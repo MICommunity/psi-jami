@@ -14,13 +14,13 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultInteractorComparato
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultModelledParticipantInteractorComparator {
 
     /**
      * Use DefaultModelledParticipantInteractorComparator to know if two biological participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      * @return true if the two biological participants are equal
      */
     public static boolean areEquals(ModelledEntity participant1, ModelledEntity participant2){

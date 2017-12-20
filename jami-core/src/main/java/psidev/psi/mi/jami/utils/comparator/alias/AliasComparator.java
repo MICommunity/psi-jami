@@ -18,13 +18,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class AliasComparator implements Comparator<Alias>{
 
     private Comparator<CvTerm> typeComparator;
 
     /**
      * Creates a new AliasComparator.
+     *
      * @param typeComparator : CvTerm comparator for alias types. It is required
      */
     public AliasComparator(Comparator<CvTerm> typeComparator){
@@ -34,6 +34,11 @@ public class AliasComparator implements Comparator<Alias>{
         this.typeComparator = typeComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>typeComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getTypeComparator() {
         return typeComparator;
     }

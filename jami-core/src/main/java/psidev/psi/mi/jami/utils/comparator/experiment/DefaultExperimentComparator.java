@@ -22,13 +22,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class DefaultExperimentComparator {
 
     /**
      * Use DefaultExperimentComparator to know if two experiment are equals.
-     * @param experiment1
-     * @param experiment2
+     *
+     * @param experiment1 a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param experiment2 a {@link psidev.psi.mi.jami.model.Experiment} object.
      * @return true if the two experiment are equal
      */
     public static boolean areEquals(Experiment experiment1, Experiment experiment2){

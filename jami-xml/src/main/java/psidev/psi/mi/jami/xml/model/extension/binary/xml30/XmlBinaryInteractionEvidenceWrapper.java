@@ -19,15 +19,27 @@ import java.util.List;
 public class XmlBinaryInteractionEvidenceWrapper extends psidev.psi.mi.jami.xml.model.extension.binary.xml25.XmlBinaryInteractionEvidenceWrapper
         implements psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence {
 
+    /**
+     * <p>Constructor for XmlBinaryInteractionEvidenceWrapper.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence} object.
+     */
     public XmlBinaryInteractionEvidenceWrapper(ExtendedPsiXmlInteractionEvidence interaction){
         super(interaction);
     }
 
 
+    /**
+     * <p>Constructor for XmlBinaryInteractionEvidenceWrapper.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlBinaryInteractionEvidenceWrapper(ExtendedPsiXmlInteractionEvidence interaction, CvTerm complexExpansion){
         super(interaction, complexExpansion);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<ExtendedPsiXmlCausalRelationship> getCausalRelationships() {
         return ((XmlInteractionEvidence)getWrappedInteraction()).getCausalRelationships();

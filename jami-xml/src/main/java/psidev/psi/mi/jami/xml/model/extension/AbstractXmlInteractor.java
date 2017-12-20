@@ -41,9 +41,18 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     */
     public AbstractXmlInteractor(){
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlInteractor(String name, CvTerm type){
         if (name == null || (name != null && name.length() == 0)){
             throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -57,41 +66,100 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         }
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, CvTerm type){
         this(name, type);
         setFullName(fullName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlInteractor(String name, CvTerm type, Organism organism){
         this(name, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, CvTerm type, Organism organism){
         this(name, fullName, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, CvTerm type, Xref uniqueId){
         this(name, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, CvTerm type, Xref uniqueId){
         this(name, fullName, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, CvTerm type, Organism organism, Xref uniqueId){
         this(name, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId){
         this(name, fullName, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public AbstractXmlInteractor(String name){
         if (name == null || (name != null && name.length() == 0)){
             throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -100,40 +168,87 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         createDefaultInteractorType();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public AbstractXmlInteractor(String name, String fullName){
         this(name);
         setFullName(fullName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlInteractor(String name, Organism organism){
         this(name);
         this.organism = organism;
         createDefaultInteractorType();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, Organism organism){
         this(name, fullName);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, Xref uniqueId){
         this(name);
         getIdentifiers().add(uniqueId);
         createDefaultInteractorType();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, Xref uniqueId){
         this(name, fullName);
         getIdentifiers().add(uniqueId);
         createDefaultInteractorType();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, Organism organism, Xref uniqueId){
         this(name, organism);
         getIdentifiers().add(uniqueId);
         createDefaultInteractorType();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlInteractor(String name, String fullName, Organism organism, Xref uniqueId){
         this(name, fullName, organism);
         getIdentifiers().add(uniqueId);
@@ -143,10 +258,7 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
     /**
      * Gets the value of the interactorType property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractorType() {
         if (this.interactorType == null){
@@ -156,22 +268,35 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return this.interactorType;
     }
 
+    /** {@inheritDoc} */
     public void setInteractorType(CvTerm interactorType) {
         this.interactorType = interactorType;
     }
 
+    /**
+     * <p>Getter for the field <code>organism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getOrganism() {
         return this.organism;
     }
 
+    /** {@inheritDoc} */
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
 
+    /**
+     * <p>getShortName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         return getNamesContainer().getShortLabel();
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (name == null || (name != null && name.length() == 0)){
             throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -179,14 +304,25 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         getNamesContainer().setShortLabel(name);
     }
 
+    /**
+     * <p>getFullName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFullName() {
         return getNamesContainer().getFullName();
     }
 
+    /** {@inheritDoc} */
     public void setFullName(String name) {
         getNamesContainer().setFullName(name);
     }
 
+    /**
+     * <p>getIdentifiers.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (xrefContainer == null){
             initialiseXrefContainer();
@@ -194,15 +330,22 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return xrefContainer.getIdentifiers();
     }
 
+    /**
+     * <p>initialiseXrefContainer.</p>
+     */
     protected void initialiseXrefContainer() {
         xrefContainer = new InteractorXrefContainer();
     }
 
+    /**
+     * <p>initialiseNamesContainer.</p>
+     */
     protected void initialiseNamesContainer() {
         namesContainer = new NamesContainer();
     }
 
     /**
+     * <p>getPreferredIdentifier.</p>
      *
      * @return the first identifier in the list of identifiers or null if the list is empty
      */
@@ -210,6 +353,11 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next() : null;
     }
 
+    /**
+     * <p>getChecksums.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Checksum> getChecksums() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -217,6 +365,11 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return this.jaxbAttributeWrapper.checksums;
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
             initialiseXrefContainer();
@@ -224,6 +377,11 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return xrefContainer.getXrefs();
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -231,6 +389,11 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>getAliases.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getAliases() {
         return getNamesContainer().getAliases();
     }
@@ -240,8 +403,7 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     @XmlElement(name = "names", required = true)
     public void setJAXBNames(NamesContainer value) {
@@ -271,19 +433,28 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractorXrefContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractorXrefContainer}
      */
     @XmlElement(name = "xref")
     public void setJAXBXref(InteractorXrefContainer value) {
         this.xrefContainer = value;
     }
 
+    /**
+     * <p>setJAXBInteractorType.</p>
+     *
+     * @param interactorType a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "interactorType", required = true)
     public void setJAXBInteractorType(XmlCvTerm interactorType) {
         this.interactorType = interactorType;
     }
 
+    /**
+     * <p>setJAXBOrganism.</p>
+     *
+     * @param organism a {@link psidev.psi.mi.jami.xml.model.extension.XmlOrganism} object.
+     */
     @XmlElement(name = "organism")
     public void setJAXBOrganism(XmlOrganism organism) {
         this.organism = organism;
@@ -294,8 +465,7 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlElement(name = "sequence")
     public void setSequence(String value) {
@@ -305,14 +475,16 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Sets the value of the id property.
+     * {@inheritDoc}
      *
+     * Sets the value of the id property.
      */
     public void setId(int value) {
         this.id = value;
@@ -322,6 +494,11 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         }
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param value a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         setId(value);
@@ -330,34 +507,46 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
     /**
      * Gets the value of the attributeList property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlAnnotation }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractor.JAXBAttributeWrapper} object.
      */
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;
     }
 
+    /**
+     * <p>createDefaultInteractorType.</p>
+     */
     protected void createDefaultInteractorType() {
         this.interactorType = new XmlCvTerm(Interactor.UNKNOWN_INTERACTOR, new XmlXref(CvTermUtils.createPsiMiDatabase(),Interactor.UNKNOWN_INTERACTOR_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>getSequence.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getSequence() {
         return xmlSequence;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Interactor: "+getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), getId());
@@ -365,6 +554,7 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -378,14 +568,27 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /**
+     * <p>initialiseAnnotationWrapper.</p>
+     */
     protected void initialiseAnnotationWrapper(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>Getter for the field <code>namesContainer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
+     */
     protected NamesContainer getNamesContainer() {
         if (namesContainer == null){
             namesContainer = new NamesContainer();

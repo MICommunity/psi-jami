@@ -15,15 +15,15 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>25/03/13</pre>
  */
-
 public class ConfidenceUtils {
 
     /**
      * Check the type of a confidence
-     * @param conf
-     * @param typeId
-     * @param typeName
-     * @return
+     *
+     * @param conf a {@link psidev.psi.mi.jami.model.Confidence} object.
+     * @param typeId a {@link java.lang.String} object.
+     * @param typeName a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public static boolean doesConfidenceHaveType(Confidence conf, String typeId, String typeName){
 
@@ -47,10 +47,11 @@ public class ConfidenceUtils {
 
     /**
      * Collect all confidences having a specific type
-     * @param confs
-     * @param typeId
-     * @param typeName
-     * @return
+     *
+     * @param confs a {@link java.util.Collection} object.
+     * @param typeId a {@link java.lang.String} object.
+     * @param typeName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Confidence> collectAllConfidencesHavingType(Collection<? extends Confidence> confs, String typeId, String typeName){
 
@@ -68,14 +69,35 @@ public class ConfidenceUtils {
         return confidences;
     }
 
+    /**
+     * <p>createConfidence</p>
+     *
+     * @param typeName a {@link java.lang.String} object.
+     * @param typeMi a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Confidence} object.
+     */
     public static Confidence createConfidence(String typeName, String typeMi, String value){
         return new DefaultConfidence(CvTermUtils.createMICvTerm(typeName, typeMi), value);
     }
 
+    /**
+     * <p>createConfidence</p>
+     *
+     * @param typeName a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Confidence} object.
+     */
     public static Confidence createConfidence(String typeName, String value){
         return new DefaultConfidence(CvTermUtils.createMICvTerm(typeName, null), value);
     }
 
+    /**
+     * <p>createAuthorBasedConfidence</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Confidence} object.
+     */
     public static Confidence createAuthorBasedConfidence(String value){
         return new DefaultConfidence(CvTermUtils.createMICvTerm(Confidence.AUTHOR_BASED_CONFIDENCE, Confidence.AUTHOR_BASED_CONFIDENCE_MI), value);
     }

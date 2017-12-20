@@ -38,10 +38,18 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     */
     public XmlOrganism(){
 
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     */
     public XmlOrganism(int taxId){
         if (taxId == -1 || taxId == -2 || taxId == -3 || taxId == -4 || taxId > 0){
             this.taxId = taxId;
@@ -51,17 +59,38 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         }
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     */
     public XmlOrganism(int taxId, String commonName){
         this(taxId);
         this.namesContainer = new NamesContainer();
         this.namesContainer.setShortLabel(commonName);
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     */
     public XmlOrganism(int taxId, String commonName, String scientificName){
         this(taxId, commonName);
         this.namesContainer.setFullName(scientificName);
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlOrganism(int taxId, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId);
         this.cellType = cellType;
@@ -69,6 +98,15 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         this.compartment = compartment;
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlOrganism(int taxId, String commonName, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId, commonName);
         this.cellType = cellType;
@@ -76,6 +114,16 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         this.compartment = compartment;
     }
 
+    /**
+     * <p>Constructor for XmlOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlOrganism(int taxId, String commonName, String scientificName, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId, commonName, scientificName);
         this.cellType = cellType;
@@ -83,34 +131,58 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         this.compartment = compartment;
     }
 
+    /**
+     * <p>Getter for the field <code>cellType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getCellType() {
         return this.cellType;
     }
 
+    /** {@inheritDoc} */
     public void setCellType(CvTerm cellType) {
         this.cellType = cellType;
     }
 
+    /**
+     * <p>Getter for the field <code>compartment</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getCompartment() {
         return this.compartment;
     }
 
+    /** {@inheritDoc} */
     public void setCompartment(CvTerm compartment) {
         this.compartment = compartment;
     }
 
+    /**
+     * <p>Getter for the field <code>tissue</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getTissue() {
         return this.tissue;
     }
 
+    /** {@inheritDoc} */
     public void setTissue(CvTerm tissue) {
         this.tissue = tissue;
     }
 
+    /**
+     * <p>Getter for the field <code>taxId</code>.</p>
+     *
+     * @return a int.
+     */
     public int getTaxId() {
         return this.taxId;
     }
 
+    /** {@inheritDoc} */
     public void setTaxId(int id) {
         if (id == -1 || id == -2 || id == -3 || id == -4 || id > 0){
             this.taxId = id;
@@ -120,10 +192,16 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         }
     }
 
+    /**
+     * <p>getCommonName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getCommonName() {
         return this.namesContainer != null ? this.namesContainer.getShortLabel() : null;
     }
 
+    /** {@inheritDoc} */
     public void setCommonName(String name) {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -131,10 +209,16 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         this.namesContainer.setShortLabel(name);
     }
 
+    /**
+     * <p>getScientificName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getScientificName() {
         return this.namesContainer != null ? this.namesContainer.getFullName() : null;
     }
 
+    /** {@inheritDoc} */
     public void setScientificName(String name) {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -142,6 +226,11 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         this.namesContainer.setFullName(name);
     }
 
+    /**
+     * <p>getAliases.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getAliases() {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -154,29 +243,48 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     @XmlElement(name = "names")
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
     }
 
+    /**
+     * <p>setJAXBCellType.</p>
+     *
+     * @param cellType a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     */
     @XmlElement(name = "cellType")
     public void setJAXBCellType(XmlOpenCvTerm cellType) {
         this.cellType = cellType;
     }
 
+    /**
+     * <p>setJAXBCompartment.</p>
+     *
+     * @param compartment a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     */
     @XmlElement(name = "compartment")
     public void setJAXBCompartment(XmlOpenCvTerm compartment) {
         this.compartment = compartment;
     }
 
+    /**
+     * <p>setJAXBTissue.</p>
+     *
+     * @param tissue a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     */
     @XmlElement(name = "tissue")
     public void setJAXBTissue(XmlOpenCvTerm tissue) {
         this.tissue = tissue;
     }
 
+    /**
+     * <p>setJAXBTaxId.</p>
+     *
+     * @param id a int.
+     */
     @XmlAttribute(name = "ncbiTaxId", required = true)
     public void setJAXBTaxId(int id) {
         if (id == -1 || id == -2 || id == -3 || id == -4 || id > 0){
@@ -191,11 +299,17 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -203,6 +317,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -215,6 +330,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -228,11 +344,13 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
         return UnambiguousOrganismComparator.areEquals(this, (Organism) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousOrganismComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Organism: "+getSourceLocator().toString():super.toString());

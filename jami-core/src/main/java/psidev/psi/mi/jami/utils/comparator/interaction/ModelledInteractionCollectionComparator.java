@@ -10,17 +10,17 @@ import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class ModelledInteractionCollectionComparator extends CollectionComparator<ModelledInteraction> {
     /**
      * Creates a new modelled interaction CollectionComparator. It requires a Comparator for the parameters in the Collection
      *
-     * @param modelledInteractionComparator
+     * @param modelledInteractionComparator a {@link psidev.psi.mi.jami.utils.comparator.interaction.ModelledInteractionComparator} object.
      */
     public ModelledInteractionCollectionComparator(ModelledInteractionComparator modelledInteractionComparator) {
         super(modelledInteractionComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledInteractionComparator getObjectComparator() {
         return (ModelledInteractionComparator) super.getObjectComparator();

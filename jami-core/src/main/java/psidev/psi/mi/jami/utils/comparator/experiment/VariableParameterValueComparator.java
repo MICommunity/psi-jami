@@ -14,7 +14,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class VariableParameterValueComparator implements Comparator<VariableParameterValue>{
 
     private static VariableParameterValueComparator variableParameterValueComparator;
@@ -22,9 +21,10 @@ public class VariableParameterValueComparator implements Comparator<VariablePara
     /**
      * It will first compare the value (case insensitive) and then the order.
      * It ignores the variableParameter
-     * @param variableParameterValue1
-     * @param variableParameterValue2
-     * @return
+     *
+     * @param variableParameterValue1 a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
+     * @param variableParameterValue2 a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
+     * @return a int.
      */
     public int compare(VariableParameterValue variableParameterValue1, VariableParameterValue variableParameterValue2) {
         int EQUAL = 0;
@@ -95,8 +95,9 @@ public class VariableParameterValueComparator implements Comparator<VariablePara
 
     /**
      * Use VariableParameterValueComparator to know if two variableParameterValues are equals.
-     * @param parameterValue1
-     * @param parameterValue2
+     *
+     * @param parameterValue1 a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
+     * @param parameterValue2 a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
      * @return true if the two variableParameterValues are equal
      */
     public static boolean areEquals(VariableParameterValue parameterValue1, VariableParameterValue parameterValue2){
@@ -108,8 +109,9 @@ public class VariableParameterValueComparator implements Comparator<VariablePara
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param value
+     * @param value a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(VariableParameterValue value){

@@ -13,23 +13,26 @@ import psidev.psi.mi.jami.model.Interaction;
  * @version $Id$
  * @since <pre>05/02/13</pre>
  */
-
 public class UnambiguousExactInteractionComparator extends InteractionComparator {
 
     private static UnambiguousExactInteractionComparator unambiguousExactInteractionComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactInteractionComparator.
      */
     public UnambiguousExactInteractionComparator() {
         super(new UnambiguousInteractionBaseComparator(), new UnambiguousExactModelledInteractionComparator(), new UnambiguousExactInteractionEvidenceComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousInteractionBaseComparator getInteractionBaseComparator() {
         return (UnambiguousInteractionBaseComparator) super.getInteractionBaseComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractionEvidenceComparator getExperimentalInteractionComparator() {
         return (UnambiguousExactInteractionEvidenceComparator) super.getExperimentalInteractionComparator();
@@ -40,21 +43,22 @@ public class UnambiguousExactInteractionComparator extends InteractionComparator
         return (UnambiguousExactModelledInteractionComparator) super.getModelledInteractionComparator();
     }
 
-    @Override
     /**
      * Modelled interactions come first and then experimental interactions
      * - It uses UnambiguousExactInteractionEvidenceComparator to compare experimental interactions
      * - It uses UnambiguousExactModelledInteractionComparator to compare modelled interactions
      * - It uses UnambiguousInteractionBaseComparator to compare basic interaction properties
      */
+    @Override
     public int compare(Interaction interaction1, Interaction interaction2) {
         return super.compare(interaction1, interaction2);
     }
 
     /**
      * Use UnambiguousExactInteractionComparator to know if two interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return true if the two interactions are equal
      */
     public static boolean areEquals(Interaction interaction1, Interaction interaction2){

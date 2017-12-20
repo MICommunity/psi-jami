@@ -33,33 +33,80 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     private JAXBExperimentRefWrapper jaxbExperimentRefWrapper;
     private JAXBParameterWrapper jaxbParameterWrapper;
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     */
     public XmlFeatureEvidence() {
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public XmlFeatureEvidence(String shortName, String fullName) {
         super(shortName, fullName);
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlFeatureEvidence(CvTerm type) {
         super(type);
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlFeatureEvidence(String shortName, String fullName, CvTerm type) {
         super(shortName, fullName, type);
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlFeatureEvidence(String shortName, String fullName, String interpro) {
         super(shortName, fullName, interpro);
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlFeatureEvidence(CvTerm type, String interpro) {
         super(type, interpro);
     }
 
+    /**
+     * <p>Constructor for XmlFeatureEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlFeatureEvidence(String shortName, String fullName, CvTerm type, String interpro) {
         super(shortName, fullName, type, interpro);
     }
 
+    /**
+     * <p>getDetectionMethods.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CvTerm> getDetectionMethods() {
         if (!initialisedMethods){
             initialiseDetectionMethods();
@@ -67,6 +114,11 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
         return featureDetectionMethods;
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Experiment> getExperiments() {
         if (jaxbExperimentRefWrapper == null){
             jaxbExperimentRefWrapper = new JAXBExperimentRefWrapper();
@@ -74,62 +126,89 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
         return jaxbExperimentRefWrapper.experiments;
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
     public void setJAXBNames(NamesContainer value) {
         super.setJAXBNames(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
     public void setJAXBXref(FeatureXrefContainer value) {
         super.setJAXBXref(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "featureType")
     public void setJAXBType(XmlCvTerm type) {
         super.setJAXBType(type);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "featureRole")
     public void setJAXBFeatureRole(XmlCvTerm role) {
         super.setJAXBFeatureRole(role);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="featureRangeList", required = true)
     public void setJAXBRangeWrapper(JAXBRangeWrapper jaxbRangeWrapper) {
         super.setJAXBRangeWrapper(jaxbRangeWrapper);
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param id a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int id) {
         super.setId(id);
     }
 
+    /**
+     * <p>getJAXBFeatureDetectionMethods.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     @XmlElement(name="featureDetectionMethod", type = XmlCvTerm.class)
     public List<CvTerm> getJAXBFeatureDetectionMethods() {
         return (List<CvTerm>) getDetectionMethods();
     }
 
+    /**
+     * <p>setJAXBExperimentRefWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlFeatureEvidence.JAXBExperimentRefWrapper} object.
+     */
     @XmlElement(name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {
         this.jaxbExperimentRefWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBParameterWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlFeatureEvidence.JAXBParameterWrapper} object.
+     */
     @XmlElement(name="parameterList", namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
         this.jaxbParameterWrapper = wrapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -138,6 +217,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Parameter> getParameters() {
         if (this.jaxbParameterWrapper == null){
@@ -146,6 +226,9 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
         return this.jaxbParameterWrapper.parameters;
     }
 
+    /**
+     * <p>initialiseDetectionMethods.</p>
+     */
     protected void initialiseDetectionMethods(){
 
         if (this.featureDetectionMethods == null){
@@ -174,6 +257,11 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
         initialisedMethods = true;
     }
 
+    /**
+     * <p>Setter for the field <code>originalParticipant</code>.</p>
+     *
+     * @param p a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence} object.
+     */
     protected void setOriginalParticipant(XmlParticipantEvidence p){
         this.originalParticipant = p;
         setParticipant(p);

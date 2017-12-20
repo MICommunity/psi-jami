@@ -20,14 +20,14 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class DefaultExactModelledInteractionComparator {
 
     /**
      * It will use a DefaultInteractionBaseComparator to compare basic interaction properties.
      * Then it will compare the modelledParticipants using DefaultExactModelledParticipantComparator.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @return true if the two modelled interactions are equal
      */
     public static boolean areEquals(ModelledInteraction interaction1, ModelledInteraction interaction2){

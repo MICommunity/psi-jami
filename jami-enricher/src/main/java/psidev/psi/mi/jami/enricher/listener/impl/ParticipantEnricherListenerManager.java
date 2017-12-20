@@ -14,6 +14,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class ParticipantEnricherListenerManager<P extends Participant>
         extends EntityEnricherListenerManager<P>
@@ -26,12 +27,14 @@ public class ParticipantEnricherListenerManager<P extends Participant>
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public ParticipantEnricherListenerManager(ParticipantEnricherListener<P>... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onBiologicalRoleUpdate(P participant, CvTerm oldType) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -40,6 +43,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(P o, Alias added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -48,6 +52,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(P o, Alias removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -56,6 +61,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(P o, Annotation added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -64,6 +70,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(P o, Annotation removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -72,6 +79,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(P o, Xref added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){
@@ -80,6 +88,7 @@ public class ParticipantEnricherListenerManager<P extends Participant>
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(P o, Xref removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEnricherListener){

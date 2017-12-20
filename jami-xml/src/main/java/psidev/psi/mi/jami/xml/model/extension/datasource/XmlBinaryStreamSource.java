@@ -19,28 +19,51 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlBinaryStreamSource extends AbstractPsiXmlBinaryStream<Interaction, BinaryInteraction> {
 
+    /**
+     * <p>Constructor for XmlBinaryStreamSource.</p>
+     */
     public XmlBinaryStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlBinaryStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlBinaryStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlBinaryStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlBinaryStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlBinaryStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -56,6 +79,7 @@ public class XmlBinaryStreamSource extends AbstractPsiXmlBinaryStream<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -73,6 +97,7 @@ public class XmlBinaryStreamSource extends AbstractPsiXmlBinaryStream<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -88,6 +113,7 @@ public class XmlBinaryStreamSource extends AbstractPsiXmlBinaryStream<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -105,6 +131,7 @@ public class XmlBinaryStreamSource extends AbstractPsiXmlBinaryStream<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<BinaryInteraction> createXmlIterator() {
         return new XmlBinaryInteractionIterator(getParser());

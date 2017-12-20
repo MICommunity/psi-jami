@@ -16,24 +16,43 @@ import java.util.Arrays;
  * @version $Id$
  * @since <pre>06/12/13</pre>
  */
-
 public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature>{
+    /**
+     * <p>Constructor for MIModelledHtmlWriter.</p>
+     */
     public MIModelledHtmlWriter() {
         super(null);
     }
 
+    /**
+     * <p>Constructor for MIModelledHtmlWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MIModelledHtmlWriter(File file) throws IOException {
         super(file, null);
     }
 
+    /**
+     * <p>Constructor for MIModelledHtmlWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public MIModelledHtmlWriter(OutputStream output) {
         super(output, null);
     }
 
+    /**
+     * <p>Constructor for MIModelledHtmlWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public MIModelledHtmlWriter(Writer writer) {
         super(writer, null);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeCooperativeEffects(ModelledInteraction interaction) throws IOException {
         if (!interaction.getCooperativeEffects().isEmpty()){
@@ -92,6 +111,12 @@ public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteracti
         }
     }
 
+    /**
+     * <p>writePublication</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writePublication(Publication publication) throws IOException {
         if (publication != null){
             getWriter().write("        <tr>");
@@ -177,6 +202,7 @@ public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteracti
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(ModelledInteraction interaction) throws IOException {
         if (!interaction.getModelledConfidences().isEmpty()){
@@ -188,6 +214,7 @@ public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteracti
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(ModelledInteraction interaction) throws IOException {
         if (!interaction.getModelledParameters().isEmpty()){
@@ -203,52 +230,62 @@ public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteracti
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeDetectionMethods(ModelledFeature feature) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeGeneralProperties(ModelledInteraction interaction) throws IOException {
         // write source
         writeCvTerm("Source", interaction.getSource());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperiment(ModelledInteraction interaction) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalPreparations(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExpressedInOrganism(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalRole(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParticipantIdentificationMethods(ModelledParticipant participant) throws IOException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeModelledInteraction(ModelledInteraction c) {
         write(c);

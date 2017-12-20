@@ -16,14 +16,15 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComp
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class DefaultExactEntityBaseComparator {
 
     /**
      * Use DefaultExactParticipantBaseComparator to know if two participants are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Entity} object.
      * @return true if the two entities are equal
+     * @param ignoreInteractors a boolean.
      */
     public static boolean areEquals(Entity participant1, Entity participant2, boolean ignoreInteractors){
 

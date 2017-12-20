@@ -42,10 +42,19 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
 
     private Entity source;
 
+    /**
+     * <p>Constructor for XmlCausalRelationship.</p>
+     */
     public XmlCausalRelationship(){
 
     }
 
+    /**
+     * <p>Constructor for XmlCausalRelationship.</p>
+     *
+     * @param relationType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Participant} object.
+     */
     public XmlCausalRelationship(CvTerm relationType, Participant target){
         if (relationType == null){
             throw new IllegalArgumentException("The relationType in a CausalRelationship cannot be null");
@@ -58,6 +67,11 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         this.target = target;
     }
 
+    /**
+     * <p>Getter for the field <code>relationType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getRelationType() {
         if (this.relationType == null){
             this.relationType = new XmlCvTerm(PsiXmlUtils.UNSPECIFIED);
@@ -65,6 +79,11 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         return relationType;
     }
 
+    /**
+     * <p>Getter for the field <code>target</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     public Entity getTarget() {
         if (this.target == null){
             this.target = new XmlParticipant();
@@ -72,6 +91,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         return target;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Entity getSource() {
         if (this.source == null){
@@ -81,16 +101,23 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         return source;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return relationType.toString() + ": " + target.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -98,6 +125,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -110,20 +138,40 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /**
+     * <p>setJAXBSourceParticipant.</p>
+     *
+     * @param ref a int.
+     */
     @XmlElement(name = "sourceParticipantRef", required = true)
     public void setJAXBSourceParticipant(int ref){
         this.source = new SourceParticipantRef(ref);
     }
 
+    /**
+     * <p>setJAXBRelationType.</p>
+     *
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     */
     @XmlElement(name = "causalityStatement", required = true)
     public void setJAXBRelationType(XmlOpenCvTerm value){
         this.relationType = value;
     }
 
+    /**
+     * <p>setJAXBTargetParticipant.</p>
+     *
+     * @param ref a int.
+     */
     @XmlElement(name = "targetParticipantRef", required = true)
     public void setJAXBTargetParticipant(int ref){
         this.target = new TargetParticipantRef(ref);

@@ -29,38 +29,67 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>17/07/13</pre>
  */
-
 public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2AbstractLoader {
 
+    /** Constant <code>SHORTLABEL_IDENTIFIER="Unique short label curated by PSI-MI"</code> */
     public static final String SHORTLABEL_IDENTIFIER = "Unique short label curated by PSI-MI";
+    /** Constant <code>ALIAS_IDENTIFIER="Alternate label curated by PSI-MI"</code> */
     public static final String ALIAS_IDENTIFIER = "Alternate label curated by PSI-MI";
+    /** Constant <code>MOD_SHORTLABEL_IDENTIFIER="Short label curated by PSI-MOD"</code> */
     public static final String MOD_SHORTLABEL_IDENTIFIER = "Short label curated by PSI-MOD";
+    /** Constant <code>EXACT_KEY="exact"</code> */
     public static final String EXACT_KEY = "exact";
+    /** Constant <code>MOD_ALIAS_IDENTIFIER="Alternate name curated by PSI-MOD"</code> */
     public static final String MOD_ALIAS_IDENTIFIER = "Alternate name curated by PSI-MOD"; //
+    /** Constant <code>RESID_IDENTIFIER="Alternate name from RESID"</code> */
     public static final String RESID_IDENTIFIER = "Alternate name from RESID"; //
+    /** Constant <code>RESID_MISNOMER_IDENTIFIER="Misnomer tagged alternate name from RES"{trunked}</code> */
     public static final String RESID_MISNOMER_IDENTIFIER = "Misnomer tagged alternate name from RESID";
+    /** Constant <code>RESID_NAME_IDENTIFIER="Name from RESID"</code> */
     public static final String RESID_NAME_IDENTIFIER = "Name from RESID"; //
+    /** Constant <code>RESID_SYSTEMATIC_IDENTIFIER="Systematic name from RESID"</code> */
     public static final String RESID_SYSTEMATIC_IDENTIFIER = "Systematic name from RESID";   //
+    /** Constant <code>UNIPROT_FEATURE_IDENTIFIER="Protein feature description from UniPro"{trunked}</code> */
     public static final String UNIPROT_FEATURE_IDENTIFIER = "Protein feature description from UniProtKB";
+    /** Constant <code>XREF_TYPE=3</code> */
     public static final int XREF_TYPE = 3;
+    /** Constant <code>PMID_APPLICATION="PMID for application instance"</code> */
     public static final String PMID_APPLICATION = "PMID for application instance";
+    /** Constant <code>SO="so"</code> */
     public static final String SO = "so";
+    /** Constant <code>SO_MI_REF="MI:0601"</code> */
     public static final String SO_MI_REF = "MI:0601";
+    /** Constant <code>HTTP_DEF="http"</code> */
     public static final String HTTP_DEF = "http";
+    /** Constant <code>XREF_VALIDATION_REGEXP="id-validation-regexp"</code> */
     public static final String XREF_VALIDATION_REGEXP = "id-validation-regexp";
+    /** Constant <code>XREF_VALIDATION_REGEXP_MI_REF="MI:0628"</code> */
     public static final String XREF_VALIDATION_REGEXP_MI_REF = "MI:0628";
+    /** Constant <code>SEARCH_URL="search-url"</code> */
     public static final String SEARCH_URL = "search-url";
+    /** Constant <code>SEARCH_URL_MI_REF="MI:0615"</code> */
     public static final String SEARCH_URL_MI_REF = "MI:0615";
+    /** Constant <code>QUOTE="&quot;"</code> */
     public static final String QUOTE = "&quot;";
+    /** Constant <code>META_XREF_SEPARATOR=":"</code> */
     public static final String META_XREF_SEPARATOR = ":";
+    /** Constant <code>LINE_BREAK="\n"</code> */
     public static final String LINE_BREAK = "\n";
+    /** Constant <code>COMMENT_KEY="comment"</code> */
     public static final String COMMENT_KEY = "comment";
+    /** Constant <code>PMID="PMID"</code> */
     public static final String PMID = "PMID";
+    /** Constant <code>METHOD_REFERENCE="method reference"</code> */
     public static final String METHOD_REFERENCE = "method reference";
+    /** Constant <code>METHOD_REFERENCE_MI_REF="MI:0357"</code> */
     public static final String METHOD_REFERENCE_MI_REF = "MI:0357";
+    /** Constant <code>GO="go"</code> */
     public static final String GO = "go";
+    /** Constant <code>GO_MI_REF="MI:0448"</code> */
     public static final String GO_MI_REF = "MI:0448";
+    /** Constant <code>RESID="resid"</code> */
     public static final String RESID = "resid";
+    /** Constant <code>RESID_MI_REF="MI:0248"</code> */
     public static final String RESID_MI_REF = "MI:0248";
 
     /**
@@ -70,11 +99,21 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
 
     private CvTerm ontologyDatabase;
 
+    /**
+     * <p>Constructor for AbstractOboLoader.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractOboLoader(CvTerm database){
         super();
         this.ontologyDatabase = database != null ? database : new DefaultCvTerm("unknown");
     }
 
+    /**
+     * <p>Constructor for AbstractOboLoader.</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     */
     public AbstractOboLoader(String databaseName){
         super();
         this.ontologyDatabase = databaseName != null ? new DefaultCvTerm(databaseName) : new DefaultCvTerm("unknown");
@@ -84,10 +123,20 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
     // AbstractLoader's methods
 
 
+    /**
+     * <p>Getter for the field <code>ontologyDatabase</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     protected CvTerm getOntologyDatabase() {
         return ontologyDatabase;
     }
 
+    /**
+     * <p>configure.</p>
+     *
+     * @param filePath a {@link java.lang.String} object.
+     */
     protected void configure(String filePath) {
         /**
          * ensure we get the right logger
@@ -105,6 +154,12 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         SHORT_NAME = ontologyDatabase.getShortName();
     }
 
+    /**
+     * <p>buildOntology.</p>
+     *
+     * @param id2Terms a {@link java.util.Map} object.
+     * @param name2Terms a {@link java.util.Map} object.
+     */
     public void buildOntology(Map<String, T> id2Terms, Map<String, T> name2Terms) {
 
         // 1. convert and index all terms (note: at this stage we don't handle the hierarchy)
@@ -125,6 +180,12 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         }
     }
 
+    /**
+     * <p>createNewTerm.</p>
+     *
+     * @param t a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @return a T object.
+     */
     protected T createNewTerm(Term t) {
         T ontologyTerm = instantiateNewTerm(t.getName(), XrefUtils.createIdentityXref(getOntologyDatabase().getShortName(), getOntologyDatabase().getMIIdentifier(), t.getIdentifier()));
 
@@ -148,7 +209,9 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
 
     /**
      * Process the annotations of a term
-     * @param term
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a T object.
      */
     protected void processAnnotations(Term term, T ontologyTerm) {
         Collection<uk.ac.ebi.ols.model.interfaces.Annotation> annotations = term.getAnnotations();
@@ -163,6 +226,12 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         }
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a T object.
+     */
     protected void processXrefs(Term term, T ontologyTerm) {
         Collection<DbXref> dbXrefs = term.getXrefs();
 
@@ -185,6 +254,16 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         }
     }
 
+    /**
+     * <p>processXrefDefinition.</p>
+     *
+     * @param xref a {@link java.lang.String} object.
+     * @param database a {@link java.lang.String} object.
+     * @param accession a {@link java.lang.String} object.
+     * @param pubmedPrimary a {@link java.lang.String} object.
+     * @param ontologyTerm a T object.
+     * @return a {@link java.lang.String} object.
+     */
     protected String processXrefDefinition(String xref, String database, String accession, String pubmedPrimary, T ontologyTerm) {
 
         if ( PMID.equalsIgnoreCase(database) ) {
@@ -236,6 +315,13 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         return pubmedPrimary;
     }
 
+    /**
+     * <p>processXref.</p>
+     *
+     * @param db a {@link java.lang.String} object.
+     * @param accession a {@link java.lang.String} object.
+     * @param ontologyTerm a T object.
+     */
     protected void processXref(String db, String accession, T ontologyTerm) {
         // xref validation regexp
         if (XREF_VALIDATION_REGEXP.equalsIgnoreCase(db)){
@@ -290,7 +376,9 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
 
     /**
      * Process the definition of a term
-     * @param term
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a T object.
      */
     protected void processDefinition(Term term, T ontologyTerm) {
 
@@ -300,8 +388,9 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
 
     /**
      * Process the definition String
-     * @param definition
-     * @return
+     *
+     * @param definition a {@link java.lang.String} object.
+     * @param ontologyTerm a T object.
      */
     protected void processDefinition(String definition, T ontologyTerm) {
         if ( definition.contains( LINE_BREAK ) ) {
@@ -329,9 +418,10 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
 
     /**
      * Process the other information in the description
-     * @param definition
-     * @param otherInfoString
-     * @return true if an obsolete annotation has been added
+     *
+     * @param definition a {@link java.lang.String} object.
+     * @param otherInfoString a {@link java.lang.String} object.
+     * @param ontologyTerm a T object.
      */
     protected void processInfoInDescription(String definition, String otherInfoString, T ontologyTerm) {
 
@@ -360,6 +450,12 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         }
     }
 
+    /**
+     * <p>processSynonyms.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a T object.
+     */
     protected void processSynonyms(Term term, T ontologyTerm) {
         Collection<TermSynonym> synonyms = term.getSynonyms();
 
@@ -387,14 +483,33 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
         }
     }
 
+    /**
+     * <p>processShortLabel.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a T object.
+     */
     protected void processShortLabel(Term term, T ontologyTerm) {
         if (ontologyTerm.getShortName().length() == 0){
             ontologyTerm.setShortName(term.getName());
         }
     }
 
+    /**
+     * <p>instantiateNewTerm.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param identity a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a T object.
+     */
     protected abstract T instantiateNewTerm(String name, Xref identity);
 
+    /**
+     * <p>createDefinitionFor.</p>
+     *
+     * @param def a {@link java.lang.String} object.
+     * @param term a T object.
+     */
     protected abstract void createDefinitionFor(String def, T term);
 
     /**
@@ -403,7 +518,6 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
      * @param file the input file. It has to exist and to be readable, otherwise it will break.
      * @param id2Terms : the map id2Term to populate
      * @param name2Terms : the map name2Term to populate
-     * @return a non null IntactOntology.
      */
     public void parseOboFile( File file, Map<String, T> id2Terms, Map<String, T> name2Terms) {
 

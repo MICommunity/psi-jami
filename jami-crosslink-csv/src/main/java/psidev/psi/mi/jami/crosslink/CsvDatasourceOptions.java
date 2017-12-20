@@ -9,7 +9,6 @@ import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
  * @version $Id$
  * @since <pre>18/11/14</pre>
  */
-
 public class CsvDatasourceOptions extends MIFileDataSourceOptions{
 
     /**

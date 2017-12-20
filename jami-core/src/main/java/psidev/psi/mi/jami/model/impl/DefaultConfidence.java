@@ -13,12 +13,17 @@ import psidev.psi.mi.jami.utils.comparator.confidence.UnambiguousConfidenceCompa
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultConfidence implements Confidence {
 
     private CvTerm type;
     private String value;
 
+    /**
+     * <p>Constructor for DefaultConfidence.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public DefaultConfidence(CvTerm type, String value){
         if (type == null){
             throw new IllegalArgumentException("The confidence type is required and cannot be null");
@@ -30,14 +35,25 @@ public class DefaultConfidence implements Confidence {
         this.value = value;
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         return this.type;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getValue() {
         return this.value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -51,11 +67,13 @@ public class DefaultConfidence implements Confidence {
         return UnambiguousConfidenceComparator.areEquals(this, (Confidence) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getType().toString() + ": " + getValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousConfidenceComparator.hashCode(this);

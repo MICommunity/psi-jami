@@ -17,11 +17,15 @@ import psidev.psi.mi.jami.model.MoleculeEffector;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class DefaultMoleculeEffector implements MoleculeEffector {
 
     private ModelledEntity participant;
 
+    /**
+     * <p>Constructor for DefaultMoleculeEffector.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     public DefaultMoleculeEffector(ModelledParticipant participant){
         if (participant == null){
             throw new IllegalArgumentException("The participant of a MoleculeEffector cannot be null.");
@@ -29,14 +33,25 @@ public class DefaultMoleculeEffector implements MoleculeEffector {
         this.participant = participant;
     }
 
+    /**
+     * <p>getMolecule</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public ModelledEntity getMolecule() {
         return participant;
     }
 
+    /**
+     * <p>getEffectorType</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffectorType} object.
+     */
     public AllostericEffectorType getEffectorType() {
         return AllostericEffectorType.molecule;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "molecule effector: " + getMolecule().toString();

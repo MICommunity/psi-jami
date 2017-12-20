@@ -18,28 +18,51 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class XmlSource extends AbstractPsiXmlSource<Interaction> {
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     */
     public XmlSource() {
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -52,6 +75,7 @@ public class XmlSource extends AbstractPsiXmlSource<Interaction> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -66,6 +90,7 @@ public class XmlSource extends AbstractPsiXmlSource<Interaction> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -78,6 +103,7 @@ public class XmlSource extends AbstractPsiXmlSource<Interaction> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -93,6 +119,7 @@ public class XmlSource extends AbstractPsiXmlSource<Interaction> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         //do nothing

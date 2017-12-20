@@ -19,7 +19,6 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
@@ -30,6 +29,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
     private PsiXmlElementWriter<Annotation> attributeWriter;
     private PsiXmlElementWriter<Checksum> checksumWriter;
 
+    /**
+     * <p>Constructor for XmlInteractorWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlInteractorWriter");
@@ -41,6 +46,11 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(streamWriter);
@@ -49,10 +59,20 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -61,14 +81,27 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         this.xrefWriter = new XmlDbXrefWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorTypeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getInteractorTypeWriter() {
         if (this.interactorTypeWriter == null){
             initialiseInteractorTypeWriter();
@@ -77,14 +110,27 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return interactorTypeWriter;
     }
 
+    /**
+     * <p>initialiseInteractorTypeWriter.</p>
+     */
     protected void initialiseInteractorTypeWriter() {
         this.interactorTypeWriter = new XmlCvTermWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>interactorTypeWriter</code>.</p>
+     *
+     * @param interactorTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setInteractorTypeWriter(PsiXmlVariableNameWriter<CvTerm> interactorTypeWriter) {
         this.interactorTypeWriter = interactorTypeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>organismWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Organism> getOrganismWriter() {
         if (this.organismWriter == null){
             initialiseOrganismWriter();
@@ -93,14 +139,27 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return organismWriter;
     }
 
+    /**
+     * <p>initialiseOrganismWriter.</p>
+     */
     protected void initialiseOrganismWriter() {
         this.organismWriter = new XmlOrganismWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>organismWriter</code>.</p>
+     *
+     * @param organismWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setOrganismWriter(PsiXmlElementWriter<Organism> organismWriter) {
         this.organismWriter = organismWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -109,10 +168,20 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return attributeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>checksumWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Checksum> getChecksumWriter() {
         if (this.checksumWriter == null){
             this.checksumWriter = new XmlChecksumWriter(streamWriter);
@@ -120,10 +189,16 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         return checksumWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>checksumWriter</code>.</p>
+     *
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setChecksumWriter(PsiXmlElementWriter<Checksum> checksumWriter) {
         this.checksumWriter = checksumWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Interactor object) throws MIIOException {
         try {
@@ -159,6 +234,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>writeAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttributes(Interactor object) throws XMLStreamException {
         if (!object.getAnnotations().isEmpty()){
             // write start attribute list
@@ -184,16 +265,32 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>writeOrganism.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected void writeOrganism(Interactor object) {
         if (object.getOrganism() != null){
             getOrganismWriter().write(object.getOrganism());
         }
     }
 
+    /**
+     * <p>writeInteractorType.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected void writeInteractorType(Interactor object) {
         getInteractorTypeWriter().write(object.getInteractorType(), "interactorType");
     }
 
+    /**
+     * <p>writeXref.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXref(Interactor object) throws XMLStreamException {
         if (!object.getIdentifiers().isEmpty()){
             writeXrefFromInteractorIdentifiers(object);
@@ -207,6 +304,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>writeNames.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeNames(Interactor object) throws XMLStreamException {
         this.streamWriter.writeStartElement("names");
         // write shortname
@@ -229,6 +332,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>processSequence.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void processSequence(Interactor object) throws XMLStreamException {
         if (object instanceof Polymer){
             writePolymerSequence((Polymer) object);
@@ -263,6 +372,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>writePolymerSequence.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writePolymerSequence(Polymer object) throws XMLStreamException {
         Polymer pol = object;
         if (pol.getSequence() != null){
@@ -272,6 +387,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>writeXrefFromInteractorXrefs.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromInteractorXrefs(Interactor object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -302,6 +423,12 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromInteractorIdentifiers.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromInteractorIdentifiers(Interactor object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -351,6 +478,14 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeOtherSetMembers.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param needToWriteXref a boolean.
+     * @param needToWritePrimaryRef a boolean.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeOtherSetMembers(Interactor object, boolean needToWriteXref, boolean needToWritePrimaryRef) throws XMLStreamException {
         // write components of set
         if (object instanceof InteractorPool){
@@ -388,10 +523,20 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

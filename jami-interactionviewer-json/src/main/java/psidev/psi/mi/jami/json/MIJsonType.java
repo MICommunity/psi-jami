@@ -10,7 +10,6 @@ package psidev.psi.mi.jami.json;
  * @version $Id$
  * @since <pre>19/11/14</pre>
  */
-
 public enum MIJsonType {
     binary_only, n_ary_only
 }

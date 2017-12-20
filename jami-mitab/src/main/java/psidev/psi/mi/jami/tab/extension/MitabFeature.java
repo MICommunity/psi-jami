@@ -11,10 +11,19 @@ import psidev.psi.mi.jami.model.Feature;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-
 public interface MitabFeature<P extends Entity, F extends Feature> extends Feature<P,F>, FileSourceContext {
 
+    /**
+     * <p>getText.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getText();
 
+    /**
+     * <p>setText.</p>
+     *
+     * @param text a {@link java.lang.String} object.
+     */
     public void setText(String text);
 }

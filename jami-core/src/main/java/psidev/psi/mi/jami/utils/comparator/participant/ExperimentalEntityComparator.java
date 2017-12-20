@@ -13,11 +13,11 @@ import java.util.Comparator;
  * Basic Experimental entity comparator.
  *
  * It will compare the basic properties of an experimental entity using EntityBaseComparator and FeatureEvidenceComparator.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ExperimentalEntityComparator implements Comparator<ExperimentalEntity> {
 
     private EntityBaseComparator participantBaseComparator;
@@ -25,6 +25,7 @@ public class ExperimentalEntityComparator implements Comparator<ExperimentalEnti
 
     /**
      * Creates a new ParticipantEvidenceComparator
+     *
      * @param participantBaseComparator : the participant comparator required to compare basic properties of a participant
      *@param featureComparator : the comparator for features
      */
@@ -42,6 +43,7 @@ public class ExperimentalEntityComparator implements Comparator<ExperimentalEnti
 
     /**
      * Creates a new ParticipantEvidenceComparator
+     *
      * @param participantBaseComparator : the participant comparator required to compare basic properties of a participant
      *@param featuresComparator : the comparator for features
      */
@@ -57,19 +59,30 @@ public class ExperimentalEntityComparator implements Comparator<ExperimentalEnti
         this.featureCollectionComparator = featuresComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     */
     public EntityBaseComparator getParticipantBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<FeatureEvidence> getFeatureCollectionComparator() {
         return featureCollectionComparator;
     }
 
     /**
      * It will compare the basic properties of an experimental entity using EntityBaseComparator and FeatureEvidenceComparator.
-     * @param experimentalParticipant1
-     * @param experimentalParticipant2
-     * @return
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @return a int.
      */
     public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         int EQUAL = 0;

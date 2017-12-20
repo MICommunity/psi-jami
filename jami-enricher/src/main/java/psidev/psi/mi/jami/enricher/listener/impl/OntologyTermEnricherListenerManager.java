@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public class OntologyTermEnricherListenerManager
     extends CvTermEnricherListenerManager<OntologyTerm>
@@ -25,6 +26,7 @@ public class OntologyTermEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public OntologyTermEnricherListenerManager(OntologyTermEnricherListener... listeners){
@@ -33,6 +35,7 @@ public class OntologyTermEnricherListenerManager
 
     //=============================================================================================================
 
+    /** {@inheritDoc} */
     public void onAddedParent(OntologyTerm o, OntologyTerm added) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof OntologyTermEnricherListener){
@@ -41,6 +44,7 @@ public class OntologyTermEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParent(OntologyTerm o, OntologyTerm removed) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof OntologyTermEnricherListener){
@@ -49,6 +53,7 @@ public class OntologyTermEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedChild(OntologyTerm o, OntologyTerm added) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof OntologyTermEnricherListener){
@@ -57,6 +62,7 @@ public class OntologyTermEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedChild(OntologyTerm o, OntologyTerm removed) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof OntologyTermEnricherListener){
@@ -65,6 +71,7 @@ public class OntologyTermEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onDefinitionUpdate(OntologyTerm cv, String oldDef) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof OntologyTermEnricherListener){

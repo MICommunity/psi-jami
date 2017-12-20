@@ -18,12 +18,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public abstract class AbstractXmlParameterWriter implements PsiXmlParameterWriter {
     private XMLStreamWriter streamWriter;
     private Experiment defaultExperiment;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for AbstractXmlParameterWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlParameterWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlParameterWriter");
@@ -35,6 +40,7 @@ public abstract class AbstractXmlParameterWriter implements PsiXmlParameterWrite
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Parameter object) throws MIIOException {
         if (object != null){
@@ -80,22 +86,40 @@ public abstract class AbstractXmlParameterWriter implements PsiXmlParameterWrite
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherProperties(Parameter object) throws XMLStreamException;
 
+    /** {@inheritDoc} */
     @Override
     public Experiment getDefaultExperiment() {
         return this.defaultExperiment;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultExperiment(Experiment exp) {
         this.defaultExperiment = exp;
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

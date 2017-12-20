@@ -13,13 +13,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public interface InteractionStream<T extends Interaction> extends MIDataSource {
 
     /**
      * The iterator of Interactions for this datasource
+     *
      * @return iterator of Interactions for this datasource
-     * @throws MIIOException
+     * @throws psidev.psi.mi.jami.exception.MIIOException exception thrown when it cannot iterate MI data
      */
     public Iterator<T> getInteractionsIterator() throws MIIOException;
 }

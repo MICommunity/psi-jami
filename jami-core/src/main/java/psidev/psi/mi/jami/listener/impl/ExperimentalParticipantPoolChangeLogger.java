@@ -15,20 +15,22 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class ExperimentalParticipantPoolChangeLogger extends ParticipantEvidenceChangeLogger<ExperimentalParticipantPool>
         implements ParticipantPoolChangeListener<ExperimentalParticipantPool> {
 
     private static final Logger entityChangeLogger = Logger.getLogger("ParticipantPoolChangeLogger");
 
+    /** {@inheritDoc} */
     public void onTypeUpdate(ExperimentalParticipantPool entity, CvTerm oldTerm) {
         entityChangeLogger.log(Level.INFO, "The pool type " + oldTerm + " has been updated with " + entity.getBiologicalRole() + " in the participant pool " + entity.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedCandidate(ExperimentalParticipantPool protein, ParticipantCandidate added) {
         entityChangeLogger.log(Level.INFO, "The candidate " + added.toString() + " has been added to the participant pool " + protein.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedCandidate(ExperimentalParticipantPool protein, ParticipantCandidate removed) {
         entityChangeLogger.log(Level.INFO, "The candidate " + removed.toString() + " has been removed from the participant pool " + protein.toString());
     }

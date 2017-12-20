@@ -31,11 +31,17 @@ public abstract class AbstractEntrySet<T extends AbstractEntry> implements Locat
     @XmlTransient
     private Locator locator;
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -43,6 +49,7 @@ public abstract class AbstractEntrySet<T extends AbstractEntry> implements Locat
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -55,6 +62,11 @@ public abstract class AbstractEntrySet<T extends AbstractEntry> implements Locat
         }
     }
 
+    /**
+     * <p>Getter for the field <code>entries</code>.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<T> getEntries() {
         if (entries == null){
             entries = new EntryList();
@@ -62,6 +74,7 @@ public abstract class AbstractEntrySet<T extends AbstractEntry> implements Locat
         return entries;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "EntrySet: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

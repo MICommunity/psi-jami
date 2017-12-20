@@ -29,7 +29,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class MIWriterOptionFactory {
 
     private static final MIWriterOptionFactory instance = new MIWriterOptionFactory();
@@ -37,6 +36,11 @@ public class MIWriterOptionFactory {
     private MIWriterOptionFactory() {
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.commons.MIWriterOptionFactory} object.
+     */
     public static MIWriterOptionFactory getInstance() {
         return instance;
     }
@@ -162,6 +166,7 @@ public class MIWriterOptionFactory {
      * @param version        : the MITAB version
      * @param extended       : true if all the aliases, features and confidences are pure mitab objects
      * @return the options for the MITAB InteractionWriter
+     * @param output a {@link java.lang.Object} object.
      */
     public Map<String, Object> getMitabOptions(Object output, InteractionCategory objectCategory, ComplexType complexType, ComplexExpansionMethod expansion, boolean writeHeader, MitabVersion version, boolean extended) {
         Map<String, Object> options = new HashMap<String, Object>(10);
@@ -179,35 +184,44 @@ public class MIWriterOptionFactory {
     }
 
     /**
+     * <p>getDefaultXmlOptions.</p>
+     *
      * @param file : the output file
-     * @return
+     * @return a {@link java.util.Map} object.
      */
     public Map<String, Object> getDefaultXmlOptions(File file) {
         return getDefaultXmlOptions(file, InteractionCategory.mixed, ComplexType.n_ary, PsiXmlType.expanded, PsiXmlVersion.v2_5_4);
     }
 
     /**
+     * <p>getDefaultXmlOptions.</p>
+     *
      * @param output : the output stream
-     * @return
+     * @return a {@link java.util.Map} object.
      */
     public Map<String, Object> getDefaultXmlOptions(OutputStream output) {
         return getDefaultXmlOptions(output, InteractionCategory.mixed, ComplexType.n_ary, PsiXmlType.expanded, PsiXmlVersion.v2_5_4);
     }
 
     /**
+     * <p>getDefaultXmlOptions.</p>
+     *
      * @param writer : the output writer
-     * @return
+     * @return a {@link java.util.Map} object.
      */
     public Map<String, Object> getDefaultXmlOptions(Writer writer) {
         return getDefaultXmlOptions(writer, InteractionCategory.mixed, ComplexType.n_ary, PsiXmlType.expanded, PsiXmlVersion.v2_5_4);
     }
 
     /**
+     * <p>getDefaultXmlOptions.</p>
+     *
      * @param output          the output (file, outputfile, writer)
      * @param objectCategory: type of objects to write. It is mixed by default
      * @param complexType:    the kind of complex to write : n-ary or binary
      * @param type:           compact or expanded. It is expanded by default
-     * @return
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @return a {@link java.util.Map} object.
      */
     public Map<String, Object> getDefaultXmlOptions(Object output, InteractionCategory objectCategory, ComplexType complexType, PsiXmlType type,
                                                     PsiXmlVersion version) {
@@ -233,6 +247,7 @@ public class MIWriterOptionFactory {
      * @param objectCategory : the interaction object type to write
      * @param complexType:   the kind of complex to write : n-ary or binary
      * @return the options for the PSI-XML  InteractionWriter
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
     public Map<String, Object> getDefaultExpandedXmlOptions(Object output, InteractionCategory objectCategory,
                                                             ComplexType complexType, PsiXmlVersion version) {
@@ -315,6 +330,8 @@ public class MIWriterOptionFactory {
      * @param interactionSet : the instance of set for the interactions that we want to use in compact and expanded mode
      * @param version:       Psi xml version
      * @return the options for the PSI-XML  InteractionWriter
+     * @param writeComplexAsInteractors a boolean.
+     * @param extended a boolean.
      */
     public Map<String, Object> getExpandedXmlOptions(Object output, InteractionCategory objectCategory, ComplexType complexType, PsiXmlObjectCache elementCache,
                                                      Set<Interaction> interactionSet, boolean writeComplexAsInteractors, boolean extended,

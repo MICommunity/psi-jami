@@ -20,19 +20,30 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public class XmlNamedBinaryInteractionWriter extends XmlBasicBinaryInteractionWriter{
     private PsiXmlElementWriter<Alias> aliasWriter;
 
+    /**
+     * <p>Constructor for XmlNamedBinaryInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedBinaryInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlParticipantWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(getStreamWriter());
@@ -40,15 +51,22 @@ public class XmlNamedBinaryInteractionWriter extends XmlBasicBinaryInteractionWr
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(BinaryInteraction object) throws XMLStreamException {
         if (object instanceof NamedInteraction){

@@ -15,12 +15,18 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public abstract class AbstractXmlNamedParticipantWriter extends AbstractXmlParticipantWriter {
+    /**
+     * <p>Constructor for AbstractXmlNamedParticipantWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlNamedParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(Participant object) throws XMLStreamException {
         if (object instanceof NamedParticipant){

@@ -16,63 +16,78 @@ import java.util.Collection;
 /**
  * A logging listener. It will display a message when each event if fired.
  *
+
  */
 public class PublicationImexEnricherLogger extends PublicationEnricherLogger implements PublicationImexEnricherListener {
 
     private static final Logger log = LoggerFactory.getLogger(PublicationImexEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(Publication publication, EnrichmentStatus status, String message) {
         log.info(publication.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(Publication object, String message, Exception e) {
         log.error(object.toString() + " enrichment error, message: " + message, e);    }
 
 
+    /** {@inheritDoc} */
     public void onImexIdConflicts(Publication originalPublication, Collection<Xref> conflictingXrefs) {
         log.error("The publication "+originalPublication+" has "+conflictingXrefs.size()+" IMEx primary references and only one is allowed.");
     }
 
+    /** {@inheritDoc} */
     public void onMissingImexId(Publication publication) {
         log.error("The publication "+publication+" does not have a IMEx primary reference and it was expected to process with the enrichment.");
     }
 
+    /** {@inheritDoc} */
     public void onCurationDepthUpdated(Publication publication, CurationDepth oldDepth) {
         log.info("The curation deppth of the publication has been updated from "+oldDepth+" to "+publication.getCurationDepth());
     }
 
+    /** {@inheritDoc} */
     public void onImexAdminGroupUpdated(Publication publication, Source oldSource) {
         log.info("The admin group of the publication "+publication+" has been updated in IMEx central");
     }
 
+    /** {@inheritDoc} */
     public void onImexStatusUpdated(Publication publication, PublicationStatus oldStatus) {
         log.info("The status of the publication "+publication+" has been updated in IMEx central");
     }
 
+    /** {@inheritDoc} */
     public void onImexPublicationIdentifierSynchronized(Publication publication) {
         log.info("The identifiers of the publication "+publication+" have been synchronized in IMEx central");
     }
 
+    /** {@inheritDoc} */
     public void onPublicationAlreadyRegisteredInImexCentral(Publication publication, String imex) {
         log.error("The publication "+publication+" is already registered in IMEx central with id "+imex);
     }
 
+    /** {@inheritDoc} */
     public void onPublicationRegisteredInImexCentral(Publication publication) {
         log.info("The publication "+publication+" has been registered in IMEx central.");
     }
 
+    /** {@inheritDoc} */
     public void onPublicationWhichCannotBeRegistered(Publication publication) {
         log.error("The publication "+publication+" cannot be registered in IMEx central.");
     }
 
+    /** {@inheritDoc} */
     public void onPublicationNotEligibleForImex(Publication publication) {
         log.error("The publication "+publication+" cannot be registered in IMEx central.");
     }
 
+    /** {@inheritDoc} */
     public void onImexIdAssigned(Publication publication, String imex) {
         log.info("The IMEx identifier "+imex+" has been assigned to the publication "+publication);
     }
 
+    /** {@inheritDoc} */
     public void onImexIdNotRecognized(Publication publication, String imex) {
         log.error("The publication "+publication+" does have an IMEx identifier which is not recognized in IMEx central "+imex);
     }

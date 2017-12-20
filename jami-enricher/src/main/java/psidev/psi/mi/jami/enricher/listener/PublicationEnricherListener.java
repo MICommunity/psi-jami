@@ -11,6 +11,7 @@ import psidev.psi.mi.jami.model.Publication;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 31/07/13
+
  */
 public interface PublicationEnricherListener
         extends EnricherListener<Publication>, PublicationChangeListener{

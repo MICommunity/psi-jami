@@ -10,8 +10,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>22/08/14</pre>
  */
-
 public interface MIComparator<T> extends Comparator<T>{
 
+    /**
+     * <p>computeHashCode</p>
+     *
+     * @param object a T object.
+     * @return a int.
+     */
     public int computeHashCode(T object);
 }

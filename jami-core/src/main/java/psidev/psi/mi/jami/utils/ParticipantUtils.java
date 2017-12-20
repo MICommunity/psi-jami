@@ -18,25 +18,40 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public class ParticipantUtils {
 
+    /**
+     * <p>createUnknownBasicParticipantEvidence</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     */
     public static ParticipantEvidence createUnknownBasicParticipantEvidence(){
         return new DefaultParticipantEvidence(InteractionUtils.createEmptyBasicExperimentalInteraction(), InteractorUtils.createUnknownBasicInteractor(), null);
     }
 
+    /**
+     * <p>createUnknownBasicParticipant</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Participant} object.
+     */
     public static Participant createUnknownBasicParticipant(){
         return new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
     }
 
+    /**
+     * <p>createBasicModelledParticipant</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     public static ModelledParticipant createBasicModelledParticipant(){
         return new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
     }
 
     /**
      * Method to know if a participant evidence has a putative self experimental or biological role
-     * @param p
-     * @return
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @return a boolean.
      */
     public static boolean isPutativeSelfParticipantEvidence(ParticipantEvidence p){
         if (p == null){
@@ -52,8 +67,9 @@ public class ParticipantUtils {
 
     /**
      * Method to know if a participant evidence has a self experimental or biological role
-     * @param p
-     * @return
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @return a boolean.
      */
     public static boolean isSelfParticipantEvidence(ParticipantEvidence p){
         if (p == null){
@@ -70,9 +86,10 @@ public class ParticipantUtils {
     /**
      * Method to know if a participant has a putative self biological role.
      * If checkParticipantEvidence is set to true, it will check if the given p is a ParticipantEvidence and look at the experimental role
-     * @param p
-     * @param checkParticipantEvidence
-     * @return
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param checkParticipantEvidence a boolean.
+     * @return a boolean.
      */
     public static boolean isPutativeSelfParticipant(Participant p, boolean checkParticipantEvidence){
         if (p == null){
@@ -98,9 +115,10 @@ public class ParticipantUtils {
     /**
      * Method to know if a participant has a self biological role
      * If checkParticipantEvidence is set to true, it will check if the given p is a ParticipantEvidence and look at the experimental role
-     * @param p
-     * @param checkParticipantEvidence
-     * @return
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param checkParticipantEvidence a boolean.
+     * @return a boolean.
      */
     public static boolean isSelfParticipant(Participant p, boolean checkParticipantEvidence){
         if (p == null){
@@ -125,9 +143,10 @@ public class ParticipantUtils {
 
     /**
      * To know if the participant does have a specific biological role
-     * @param participant
-     * @param roleId
-     * @param roleName
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param roleId a {@link java.lang.String} object.
+     * @param roleName a {@link java.lang.String} object.
      * @return true if the participant has the biological role with given name/identifier
      */
     public static boolean doesParticipantHaveBiologicalRole(Participant participant, String roleId, String roleName){
@@ -152,9 +171,10 @@ public class ParticipantUtils {
 
     /**
      * To know if the participant evidence does have a specific experimental role
-     * @param participant
-     * @param roleId
-     * @param roleName
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param roleId a {@link java.lang.String} object.
+     * @param roleName a {@link java.lang.String} object.
      * @return true if the participant has the experimental role with given name/identifier
      */
     public static boolean doesParticipantHaveExperimentalRole(ParticipantEvidence participant, String roleId, String roleName){
@@ -180,7 +200,8 @@ public class ParticipantUtils {
     /**
      * Check if the experimental role of this participant is an alternative bait for spoke expansion in case there are no baits:
      * fluorescence donor or suppressor gene.
-     * @param participant
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @return true if the participant can be used as an alternative bait for spoke expansion
      */
     public static boolean isParticipantEvidenceAnAlternativeBaitForSpokeExpansion(ParticipantEvidence participant){
@@ -196,7 +217,8 @@ public class ParticipantUtils {
     /**
      * Check if the biological role of this participant is an alternative bait for spoke expansion in case there are no baits:
      * donor or enzyme.
-     * @param participant
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Participant} object.
      * @return true if the participant can be used as an alternative bait for spoke expansion
      */
     public static boolean isParticipantAnAlternativeBaitForSpokeExpansion(Participant participant){
@@ -218,7 +240,8 @@ public class ParticipantUtils {
      * - The second choice is the first participant having fluorescence donor or suppressor gene as experimental role
      * - The third choice is the first participant having enzyme or donor as biological role
      * - the last choice is the participant coming first in the alphabetical order (compare interactor shortname case insensitive)
-     * @param participantEvidences
+     *
+     * @param participantEvidences a {@link java.util.Collection} object.
      * @return the best participantEvidence to use a s a bait in spoke expansion
      */
     public static ParticipantEvidence collectBestParticipantEvidenceAsBaitForSpokeExpansion(Collection<? extends ParticipantEvidence> participantEvidences){
@@ -279,7 +302,8 @@ public class ParticipantUtils {
      * Collect the 'best bait' candidate to be used among this participants.
      * - The first choice is the first participant having enzyme or donor as biological role
      * - the last choice is the participant coming first in the alphabetical order (compare interactor shortname case insensitive)
-     * @param participants
+     *
+     * @param participants a {@link java.util.Collection} object.
      * @return the best participant to use a s a bait in spoke expansion
      */
     public static Participant collectBestBaitParticipantForSpokeExpansion(Collection<? extends Participant> participants){

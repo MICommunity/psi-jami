@@ -20,15 +20,25 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
 
     private PsiXmlElementWriter<VariableParameter> variableParameterWriter;
 
+    /**
+     * <p>Constructor for XmlExperimentWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlExperimentWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer, objectIndex);
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<VariableParameter> getVariableParameterWriter() {
         if (this.variableParameterWriter == null){
             initialiseVariableParameterWriter();
@@ -36,19 +46,29 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         return variableParameterWriter;
     }
 
+    /**
+     * <p>initialiseVariableParameterWriter.</p>
+     */
     protected void initialiseVariableParameterWriter() {
         this.variableParameterWriter = new XmlVariableParameterWriter(getStreamWriter(), getObjectIndex());
     }
 
+    /**
+     * <p>Setter for the field <code>variableParameterWriter</code>.</p>
+     *
+     * @param variableParameterWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setVariableParameterWriter(PsiXmlElementWriter<VariableParameter> variableParameterWriter) {
         this.variableParameterWriter = variableParameterWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherAttributes(Experiment object, boolean needToWriteAttributeList) throws XMLStreamException {
         // does not write publication attributes as everything should be in bibref attribute
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeVariableParameters(Experiment object) throws XMLStreamException {
         if (!object.getVariableParameters().isEmpty()){
@@ -62,6 +82,7 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentXrefs(Experiment object, String imexId) throws XMLStreamException {
         // write xrefs
@@ -78,25 +99,32 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         }
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         super.setPublicationWriter(new XmlPublicationWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseHostOrganismWriter() {
         super.setHostOrganismWriter(new XmlHostOrganismWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDetectionMethodWriter() {
         super.setDetectionMethodWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter() {
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter()));

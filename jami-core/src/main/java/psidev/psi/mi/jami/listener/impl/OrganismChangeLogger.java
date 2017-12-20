@@ -15,11 +15,11 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class OrganismChangeLogger implements OrganismChangeListener {
 
     private static final Logger organismChangeListener = Logger.getLogger("OrganismChangeLogger");
 
+    /** {@inheritDoc} */
     public void onCommonNameUpdate(Organism organism, String oldCommonName) {
         if (oldCommonName == null){
             organismChangeListener.log(Level.INFO, "The common name has been initialised for the organism " + organism.toString());
@@ -32,6 +32,7 @@ public class OrganismChangeLogger implements OrganismChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onScientificNameUpdate(Organism organism, String oldScientificName) {
         if (oldScientificName == null){
             organismChangeListener.log(Level.INFO, "The scientific name has been initialised for the organism " + organism.toString());
@@ -44,10 +45,12 @@ public class OrganismChangeLogger implements OrganismChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onTaxidUpdate(Organism organism, String oldTaxid) {
         organismChangeListener.log(Level.INFO, "The taxid "+oldTaxid+" has been updated with " + organism.getTaxId() + " in the organism " + organism.toString());
     }
 
+    /** {@inheritDoc} */
     public void onCellTypeUpdate(Organism organism, CvTerm oldType) {
         if (oldType == null){
             organismChangeListener.log(Level.INFO, "The cell type has been initialised for the organism " + organism.toString());
@@ -60,6 +63,7 @@ public class OrganismChangeLogger implements OrganismChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onTissueUpdate(Organism organism, CvTerm oldType) {
         if (oldType == null){
             organismChangeListener.log(Level.INFO, "The tissue has been initialised for the organism " + organism.toString());
@@ -72,6 +76,7 @@ public class OrganismChangeLogger implements OrganismChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onCompartmentUpdate(Organism organism, CvTerm oldType) {
         if (oldType == null){
             organismChangeListener.log(Level.INFO, "The compartment has been initialised for the organism " + organism.toString());
@@ -84,10 +89,12 @@ public class OrganismChangeLogger implements OrganismChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(Organism organism, Alias added) {
         organismChangeListener.log(Level.INFO, "The alias "+added.toString()+" has been added to the organism " + organism.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(Organism organism, Alias removed) {
         organismChangeListener.log(Level.INFO, "The alias "+removed.toString()+" has been removed from the organism " + organism.toString());
     }

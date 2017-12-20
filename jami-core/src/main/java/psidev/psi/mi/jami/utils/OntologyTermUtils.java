@@ -9,14 +9,14 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  * @version $Id$
  * @since <pre>05/07/13</pre>
  */
-
 public class OntologyTermUtils {
 
     /**
      * Method to check if a Cv term is a child of a term having the given mi and/or name
-     * @param term
-     * @param mi
-     * @param name
+     *
+     * @param term a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @param mi a {@link java.lang.String} object.
+     * @param name a {@link java.lang.String} object.
      * @return true if the ontologTerm is a child of the specific term
      */
     public static boolean isCvTermChildOf(OntologyTerm term, String mi, String name){

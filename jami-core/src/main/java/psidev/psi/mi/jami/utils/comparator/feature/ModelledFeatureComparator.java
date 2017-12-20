@@ -15,13 +15,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class ModelledFeatureComparator implements Comparator<ModelledFeature> {
 
     private Comparator<Feature> featureComparator;
 
     /**
      * Creates a new ModelledFeatureComparator.
+     *
      * @param featureComparator : feature comparator required for comparing basic feature properties
      */
     public ModelledFeatureComparator(Comparator<Feature> featureComparator){
@@ -31,6 +31,11 @@ public class ModelledFeatureComparator implements Comparator<ModelledFeature> {
         this.featureComparator = featureComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Feature> getFeatureComparator() {
         return featureComparator;
     }
@@ -40,9 +45,9 @@ public class ModelledFeatureComparator implements Comparator<ModelledFeature> {
      *
      * This comparator will ignore all the other properties of a biological feature.
      *
-     * @param biologicalFeature1
-     * @param biologicalFeature2
-     * @return
+     * @param biologicalFeature1 a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     * @param biologicalFeature2 a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     * @return a int.
      */
     public int compare(ModelledFeature biologicalFeature1, ModelledFeature biologicalFeature2) {
         return featureComparator.compare(biologicalFeature1, biologicalFeature2);

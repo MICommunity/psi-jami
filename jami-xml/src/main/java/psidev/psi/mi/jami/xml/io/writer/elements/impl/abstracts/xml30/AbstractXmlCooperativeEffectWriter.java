@@ -19,7 +19,6 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEffect> implements PsiXmlElementWriter<C> {
     private XMLStreamWriter streamWriter;
     private PsiXmlElementWriter<CooperativityEvidence> cooperativityEvidenceWriter;
@@ -27,6 +26,12 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
     private PsiXmlObjectCache objectIndex;
     private PsiXmlElementWriter<Annotation> attributeWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlCooperativeEffectWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlCooperativeEffectWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlCooperativeEffectWriter");
@@ -38,6 +43,11 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativityEvidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<CooperativityEvidence> getCooperativityEvidenceWriter() {
         if (this.cooperativityEvidenceWriter == null){
             initialiseCooperativityEvidenceWriter();
@@ -45,14 +55,27 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         return cooperativityEvidenceWriter;
     }
 
+    /**
+     * <p>initialiseCooperativityEvidenceWriter.</p>
+     */
     protected void initialiseCooperativityEvidenceWriter() {
         this.cooperativityEvidenceWriter = new XmlCooperativityEvidenceWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>cooperativityEvidenceWriter</code>.</p>
+     *
+     * @param cooperativityEvidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setCooperativityEvidenceWriter(PsiXmlElementWriter<CooperativityEvidence> cooperativityEvidenceWriter) {
         this.cooperativityEvidenceWriter = cooperativityEvidenceWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -60,10 +83,20 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         return attributeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             initialiseCvWriter();
@@ -71,14 +104,23 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         return cvWriter;
     }
 
+    /**
+     * <p>initialiseCvWriter.</p>
+     */
     protected void initialiseCvWriter() {
         this.cvWriter = new XmlCvTermWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setCvWriter(PsiXmlVariableNameWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(C object) throws MIIOException {
         try {
@@ -104,18 +146,34 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         }
     }
 
+    /**
+     * <p>writeOutcome.</p>
+     *
+     * @param object a C object.
+     */
     protected void writeOutcome(C object) {
         if (object.getOutCome() != null){
             getCvWriter().write(object.getOutCome(), "cooperativeEffectOutcome");
         }
     }
 
+    /**
+     * <p>writeResponse.</p>
+     *
+     * @param object a C object.
+     */
     protected void writeResponse(C object) {
         if (object.getResponse() != null){
             getCvWriter().write(object.getResponse(), "cooperativeEffectResponse");
         }
     }
 
+    /**
+     * <p>writeAttributes.</p>
+     *
+     * @param object a C object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttributes(C object) throws XMLStreamException {
         // write attributes
         if (!object.getAnnotations().isEmpty()){
@@ -129,8 +187,20 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a C object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherProperties(C object) throws XMLStreamException;
 
+    /**
+     * <p>writeAffectedInteractionList.</p>
+     *
+     * @param object a C object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAffectedInteractionList(C object) throws XMLStreamException {
         if (!object.getAffectedInteractions().isEmpty()){
             // write start
@@ -147,8 +217,19 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         }
     }
 
+    /**
+     * <p>writeStartCooperativeEffect.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeStartCooperativeEffect()throws XMLStreamException ;
 
+    /**
+     * <p>writeCooperativityEvidenceList.</p>
+     *
+     * @param object a C object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeCooperativityEvidenceList(C object) throws XMLStreamException {
         if (!object.getCooperativityEvidences().isEmpty()){
             // write start
@@ -161,10 +242,20 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         }
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

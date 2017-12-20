@@ -20,9 +20,13 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public class InteractionUtils {
 
+    /**
+     * <p>createEmptyBasicExperimentalInteraction</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     */
     public static InteractionEvidence createEmptyBasicExperimentalInteraction() {
 
         return new DefaultInteractionEvidence(ExperimentUtils.createUnknownBasicExperiment());
@@ -31,8 +35,9 @@ public class InteractionUtils {
     /**
      * The method will find the interactionCategory (binary, self, etc.)
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return the ComplexType, null if the given interaction is null
+     * @param checkExperimentalRoleIfInteractionEvidence a boolean.
      */
     public static ComplexType findInteractionCategoryOf(Interaction interaction, boolean checkExperimentalRoleIfInteractionEvidence) {
         if (interaction == null) {
@@ -72,7 +77,7 @@ public class InteractionUtils {
     /**
      * The method will find the interactionCategory (binary, self, etc.)
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return the ComplexType, null if the given interaction is null
      */
     public static ComplexType findInteractionEvidenceCategoryOf(InteractionEvidence interaction) {
@@ -113,7 +118,7 @@ public class InteractionUtils {
     /**
      * The method will find the interactionCategory (binary, self, etc.)
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @return the ComplexType, null if the given interaction is null
      */
     public static ComplexType findModelledInteractionCategoryOf(ModelledInteraction interaction) {
@@ -124,9 +129,9 @@ public class InteractionUtils {
     /**
      * Create a BinaryInteractionWrapper from the given interaction which should contain not more than two participants.
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return the new BinaryInteractionWrapper for this interaction
-     * @throws IllegalArgumentException if the interaction contains more than two participants or interaction is null
+     * @throws java.lang.IllegalArgumentException if the interaction contains more than two participants or interaction is null
      */
     public static BinaryInteraction createBinaryInteractionFrom(Interaction interaction) {
         return new BinaryInteractionWrapper(interaction);
@@ -135,9 +140,9 @@ public class InteractionUtils {
     /**
      * Create a BinaryInteractionEvidenceWrapper from the given interaction evidence which should contain not more than two participants
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return the new BinaryInteractionWrapper for this interaction
-     * @throws IllegalArgumentException if the interaction contains more than two participants or interaction is null
+     * @throws java.lang.IllegalArgumentException if the interaction contains more than two participants or interaction is null
      */
     public static BinaryInteractionEvidence createBinaryInteractionEvidenceFrom(InteractionEvidence interaction) {
         return new BinaryInteractionEvidenceWrapper(interaction);
@@ -146,20 +151,21 @@ public class InteractionUtils {
     /**
      * Create a ModelledBinaryInteractionWrapper from the given modelled interaction which should contain not more than two participants
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @return the new BinaryInteractionWrapper for this interaction
-     * @throws IllegalArgumentException if the interaction contains more than two participants
+     * @throws java.lang.IllegalArgumentException if the interaction contains more than two participants
      */
     public static ModelledBinaryInteraction createModelledBinaryInteractionFrom(ModelledInteraction interaction) {
         return new ModelledBinaryInteractionWrapper(interaction);
     }
 
     /**
-     * Creates a new BinaryInteraction from the given interaction which should only contain one participant with a stoichiometry >= 2
+     * Creates a new BinaryInteraction from the given interaction which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction will have a participantB which is a copy of participantA with stoichiometry 0
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @return a {@link psidev.psi.mi.jami.binary.BinaryInteraction} object.
      */
     public static BinaryInteraction createNewSelfBinaryInteractionFrom(Interaction interaction) {
         BinaryInteraction<Participant> binary = new DefaultBinaryInteraction();
@@ -169,11 +175,12 @@ public class InteractionUtils {
     }
 
     /**
-     * Creates a new BinaryInteractionEvidence from the given interactionEvidence which should only contain one participant with a stoichiometry >= 2
+     * Creates a new BinaryInteractionEvidence from the given interactionEvidence which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction evidence will have a participantB which is a copy of participantA with stoichiometry 0
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @return a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
      */
     public static BinaryInteractionEvidence createAndAddNewSelfBinaryInteractionEvidence(InteractionEvidence interaction) {
         BinaryInteractionEvidence binary = new DefaultBinaryInteractionEvidence();
@@ -184,11 +191,12 @@ public class InteractionUtils {
     }
 
     /**
-     * Creates a new ModelledBinaryInteraction from the given interaction which should only contain one participant with a stoichiometry >= 2
+     * Creates a new ModelledBinaryInteraction from the given interaction which should only contain one participant with a stoichiometry &gt;= 2
      * or participant stoichiometry null and participant is not self/putative self.
      * The new Binary interaction evidence will have a participantB which is a copy of participantA with stoichiometry 0
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @return a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
      */
     public static ModelledBinaryInteraction createAndAddNewSelfModelledBinaryInteraction(ModelledInteraction interaction) {
         ModelledBinaryInteraction binary = new DefaultModelledBinaryInteraction();
@@ -198,6 +206,12 @@ public class InteractionUtils {
         return binary;
     }
 
+    /**
+     * <p>collectComplexExpansionMethodFromAnnotations</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     public static Annotation collectComplexExpansionMethodFromAnnotations(Collection<? extends Annotation> annotations) {
         if (annotations == null || annotations.isEmpty()) {
             return null;
@@ -219,7 +233,7 @@ public class InteractionUtils {
     /**
      * This method can return all participants having causal relationships in an interaction
      *
-     * @param interaction
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return the collection of participants having causal relationships, empty collection if no participants with causal relationships
      */
     public static Collection<Participant> extractParticipantWithCausalRelationships(Interaction interaction) {

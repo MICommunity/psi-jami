@@ -7,14 +7,14 @@ package psidev.psi.mi.jami.utils.comparator;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class IdentityHashComparator<T> implements MIComparator<T>{
 
     /**
      * Compares two objects based on their hashcode methods
-     * @param t
-     * @param t2
-     * @return
+     *
+     * @param t a T object.
+     * @param t2 a T object.
+     * @return a int.
      */
     public int compare(T t, T t2) {
         if (t == t2){
@@ -41,6 +41,12 @@ public class IdentityHashComparator<T> implements MIComparator<T>{
         }
     }
 
+    /**
+     * <p>computeHashCode</p>
+     *
+     * @param object a T object.
+     * @return a int.
+     */
     public int computeHashCode(T object) {
         return object != null ? object.hashCode():0;
     }

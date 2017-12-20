@@ -9,19 +9,23 @@ import psidev.psi.mi.jami.utils.comparator.feature.UnambiguousModelledFeaturecom
  * Unambiguous comparator for FeatureModificationEffector.
  *
  * It will use a UnambiguousModelledFeatureComparator to compare the feature.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class UnambiguousFeatureModificationEffectorComparator extends FeatureModificationEffectorComparator {
 
     private static UnambiguousFeatureModificationEffectorComparator unambiguousFeatureModificationEffectorComparator;
 
+    /**
+     * <p>Constructor for UnambiguousFeatureModificationEffectorComparator.</p>
+     */
     public UnambiguousFeatureModificationEffectorComparator() {
         super(new UnambiguousModelledFeaturecomparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousModelledFeaturecomparator getFeatureComparator() {
         return (UnambiguousModelledFeaturecomparator) super.getFeatureComparator();
@@ -29,9 +33,10 @@ public class UnambiguousFeatureModificationEffectorComparator extends FeatureMod
 
     /**
      * It will use a UnambiguousModelledFeaturecomparator to compare the feature.
-     * @param effector1
-     * @param effector2
-     * @return
+     *
+     * @param effector1 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @param effector2 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @return a int.
      */
     public int compare(FeatureModificationEffector effector1, FeatureModificationEffector effector2) {
         return super.compare(effector1, effector2);
@@ -39,8 +44,9 @@ public class UnambiguousFeatureModificationEffectorComparator extends FeatureMod
 
     /**
      * Use UnambiguousFeatureModificationEffectorComparator to know if two FeatureModificationEffector are equals.
-     * @param effector1
-     * @param effector2
+     *
+     * @param effector1 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @param effector2 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
      * @return true if the two FeatureModificationEffector are equal
      */
     public static boolean areEquals(FeatureModificationEffector effector1, FeatureModificationEffector effector2){
@@ -52,8 +58,9 @@ public class UnambiguousFeatureModificationEffectorComparator extends FeatureMod
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param effector
+     * @param effector a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(FeatureModificationEffector effector){

@@ -25,7 +25,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>29/05/12</pre>
  */
-
 public class BatchDataSourceInitializer implements org.springframework.beans.factory.InitializingBean, org.springframework.beans.factory.DisposableBean{
 
     private static final Log logger = LogFactory.getLog(BatchDataSourceInitializer.class);
@@ -43,7 +42,9 @@ public class BatchDataSourceInitializer implements org.springframework.beans.fac
 
 
     /**
-     * @throws Throwable
+     * <p>finalize.</p>
+     *
+     * @throws java.lang.Throwable if any.
      * @see Object#finalize()
      */
     protected void finalize() throws Throwable {
@@ -52,6 +53,9 @@ public class BatchDataSourceInitializer implements org.springframework.beans.fac
         logger.debug("finalize called");
     }
 
+    /**
+     * <p>destroy.</p>
+     */
     public void destroy() {
         if (destroyScripts == null) return;
         for (int i = 0; i < destroyScripts.length; i++) {
@@ -69,6 +73,11 @@ public class BatchDataSourceInitializer implements org.springframework.beans.fac
         }
     }
 
+    /**
+     * <p>afterPropertiesSet.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(dataSource);
         initialize();
@@ -147,18 +156,38 @@ public class BatchDataSourceInitializer implements org.springframework.beans.fac
         return buffer.toString();
     }
 
+    /**
+     * <p>Setter for the field <code>initScripts</code>.</p>
+     *
+     * @param initScripts an array of {@link org.springframework.core.io.Resource} objects.
+     */
     public void setInitScripts(Resource[] initScripts) {
         this.initScripts = initScripts;
     }
 
+    /**
+     * <p>Setter for the field <code>destroyScripts</code>.</p>
+     *
+     * @param destroyScripts an array of {@link org.springframework.core.io.Resource} objects.
+     */
     public void setDestroyScripts(Resource[] destroyScripts) {
         this.destroyScripts = destroyScripts;
     }
 
+    /**
+     * <p>Setter for the field <code>dataSource</code>.</p>
+     *
+     * @param dataSource a {@link javax.sql.DataSource} object.
+     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    /**
+     * <p>Setter for the field <code>ignoreFailedDrop</code>.</p>
+     *
+     * @param ignoreFailedDrop a boolean.
+     */
     public void setIgnoreFailedDrop(boolean ignoreFailedDrop) {
         this.ignoreFailedDrop = ignoreFailedDrop;
     }

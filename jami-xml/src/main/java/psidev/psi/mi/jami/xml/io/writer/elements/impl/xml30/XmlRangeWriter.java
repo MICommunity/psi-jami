@@ -18,12 +18,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlRangeWriter extends AbstractXmlRangeWriter {
 
     private PsiXmlElementWriter<ResultingSequence> resultingSequenceWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlRangeWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlRangeWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer);
         if (objectIndex == null){
@@ -32,6 +37,11 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>resultingSequenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<ResultingSequence> getResultingSequenceWriter() {
         if (this.resultingSequenceWriter == null){
             initialiseResultingSequenceWriter();
@@ -39,14 +49,23 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
         return resultingSequenceWriter;
     }
 
+    /**
+     * <p>initialiseResultingSequenceWriter.</p>
+     */
     protected void initialiseResultingSequenceWriter() {
         this.resultingSequenceWriter = new XmlResultingSequenceWriter(getStreamWriter());
     }
 
+    /**
+     * <p>Setter for the field <code>resultingSequenceWriter</code>.</p>
+     *
+     * @param resultingSequenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setResultingSequenceWriter(PsiXmlElementWriter<ResultingSequence> resultingSequenceWriter) {
         this.resultingSequenceWriter = resultingSequenceWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Range object) throws XMLStreamException {
         // resulting sequence to write only when we have resulting sequence or xrefs
@@ -65,11 +84,13 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseStartPositionWriter() {
         super.setStartPositionWriter(new XmlBeginPositionWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseEndPositionWriter() {
         super.setEndPositionWriter(new XmlEndPositionWriter(getStreamWriter()));

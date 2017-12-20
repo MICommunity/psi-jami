@@ -17,12 +17,16 @@ import psidev.psi.mi.jami.imex.actions.PublicationStatusSynchronizer;
  * @version $Id$
  * @since <pre>28/03/12</pre>
  */
-
 public class PublicationStatusSynchronizerImpl implements PublicationStatusSynchronizer{
 
     private static final Log log = LogFactory.getLog(PublicationStatusSynchronizerImpl.class);
     private ImexCentralClient imexCentral;
 
+    /**
+     * <p>Constructor for PublicationStatusSynchronizerImpl.</p>
+     *
+     * @param client a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public PublicationStatusSynchronizerImpl(ImexCentralClient client){
         if (client == null){
             throw new IllegalArgumentException("The IMEx central client cannot be null");
@@ -30,6 +34,7 @@ public class PublicationStatusSynchronizerImpl implements PublicationStatusSynch
         this.imexCentral = client;
     }
 
+    /** {@inheritDoc} */
     public void synchronizePublicationStatusWithImexCentral(Publication publication, ImexPublication imexPublication) throws BridgeFailedException {
         PublicationStatus imexStatus = imexPublication.getStatus();
 
@@ -58,6 +63,7 @@ public class PublicationStatusSynchronizerImpl implements PublicationStatusSynch
         }
     }
 
+    /** {@inheritDoc} */
     public PublicationStatus getPublicationStatus( Publication publication ) {
         // IMEx central has currently the following publication states available:
         // NEW / RESERVED / INPROGRESS / RELEASED / DISCARDED / INCOMPLETE / PROCESSED
@@ -68,6 +74,7 @@ public class PublicationStatusSynchronizerImpl implements PublicationStatusSynch
         return null;
     }
 
+    /** {@inheritDoc} */
     public void discardPublicationInImexCentral(Publication publication, ImexPublication imexPublication) throws BridgeFailedException {
         PublicationStatus imexStatus = imexPublication.getStatus();
 
@@ -92,6 +99,11 @@ public class PublicationStatusSynchronizerImpl implements PublicationStatusSynch
         }
     }
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient() {
         return imexCentral;
     }

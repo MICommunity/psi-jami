@@ -24,57 +24,104 @@ public class XmlModelledFeature extends AbstractXmlFeature<ModelledEntity, Model
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     */
     public XmlModelledFeature() {
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public XmlModelledFeature(String shortName, String fullName) {
         super(shortName, fullName);
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledFeature(CvTerm type) {
         super(type);
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledFeature(String shortName, String fullName, CvTerm type) {
         super(shortName, fullName, type);
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlModelledFeature(String shortName, String fullName, String interpro) {
         super(shortName, fullName, interpro);
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlModelledFeature(CvTerm type, String interpro) {
         super(type, interpro);
     }
 
+    /**
+     * <p>Constructor for XmlModelledFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public XmlModelledFeature(String shortName, String fullName, CvTerm type, String interpro) {
         super(shortName, fullName, type, interpro);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
     public void setJAXBNames(NamesContainer value) {
         super.setJAXBNames(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
     public void setJAXBXref(FeatureXrefContainer value) {
         super.setJAXBXref(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "featureType")
     public void setJAXBType(XmlCvTerm type) {
         super.setJAXBType(type);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="featureRangeList", required = true)
     public void setJAXBRangeWrapper(JAXBRangeWrapper jaxbRangeWrapper) {
@@ -84,6 +131,7 @@ public class XmlModelledFeature extends AbstractXmlFeature<ModelledEntity, Model
     /**
      * Gets the value of the id property.
      *
+     * @param id a int.
      */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int id) {
@@ -93,12 +141,14 @@ public class XmlModelledFeature extends AbstractXmlFeature<ModelledEntity, Model
 
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "featureRole")
     public void setJAXBFeatureRole(XmlCvTerm role) {
         super.setJAXBFeatureRole(role);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){

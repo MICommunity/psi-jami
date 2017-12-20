@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>08/11/11</pre>
  */
-
 public class MILocalOntology extends AbstractMIOntologyAccess {
+    /** Constant <code>log</code> */
     public static final Log log = LogFactory.getLog(MILocalOntology.class);
 
     private String md5Signature;
@@ -37,23 +37,54 @@ public class MILocalOntology extends AbstractMIOntologyAccess {
 
     private URL fileUrl;
 
+    /**
+     * <p>Constructor for MILocalOntology.</p>
+     *
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MILocalOntology() throws OntologyLoaderException {
         super();
     }
 
+    /**
+     * <p>Constructor for MILocalOntology.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MILocalOntology(OntologyTermFetcher termBuilder) throws OntologyLoaderException {
         super(termBuilder);
     }
 
 
+    /**
+     * <p>Constructor for MILocalOntology.</p>
+     *
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MILocalOntology(String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super(dbName, dbIdentifier, dbRegexp, parent);
     }
 
+    /**
+     * <p>Constructor for MILocalOntology.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MILocalOntology(OntologyTermFetcher termBuilder, String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super(termBuilder, dbName, dbIdentifier, dbRegexp, parent);
     }
 
+    /** {@inheritDoc} */
     public void loadOntology( String ontologyID, String name, String version, String format, URI uri ) throws OntologyLoaderException {
         setOntologyID(ontologyID);
 
@@ -114,6 +145,12 @@ public class MILocalOntology extends AbstractMIOntologyAccess {
         }
     }
 
+    /**
+     * <p>isOntologyUpToDate.</p>
+     *
+     * @return a boolean.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public boolean isOntologyUpToDate() throws OntologyLoaderException {
         if (this.fileUrl != null){
             if (md5Signature != null){
@@ -135,10 +172,16 @@ public class MILocalOntology extends AbstractMIOntologyAccess {
         return false;
     }
 
+    /**
+     * <p>isUseTermSynonyms.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isUseTermSynonyms() {
         return true;
     }
 
+    /** {@inheritDoc} */
     public void setUseTermSynonyms(boolean useTermSynonyms) {
         throw new UnsupportedOperationException("The MI OBO fetcher always load term synonyms");
     }

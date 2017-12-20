@@ -18,13 +18,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public abstract class AbstractXmlOrganismWriter implements PsiXmlElementWriter<Organism> {
 
     private XMLStreamWriter streamWriter;
     private PsiXmlElementWriter<Alias> aliasWriter;
     private PsiXmlVariableNameWriter<CvTerm> cvWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlOrganismWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public AbstractXmlOrganismWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlOrganismWriter");
@@ -32,6 +36,11 @@ public abstract class AbstractXmlOrganismWriter implements PsiXmlElementWriter<O
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(streamWriter);
@@ -39,10 +48,20 @@ public abstract class AbstractXmlOrganismWriter implements PsiXmlElementWriter<O
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
            initialiseCvWriter();
@@ -50,12 +69,21 @@ public abstract class AbstractXmlOrganismWriter implements PsiXmlElementWriter<O
         return cvWriter;
     }
 
+    /**
+     * <p>initialiseCvWriter.</p>
+     */
     protected abstract void initialiseCvWriter();
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setCvWriter(PsiXmlVariableNameWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Organism object) throws MIIOException {
         try {
@@ -115,10 +143,26 @@ public abstract class AbstractXmlOrganismWriter implements PsiXmlElementWriter<O
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherProperties(Organism object) throws XMLStreamException;
 
+    /**
+     * <p>writeStartOrganism.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeStartOrganism() throws XMLStreamException;
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

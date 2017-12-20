@@ -12,18 +12,18 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class ParticipantCollectionComparator<T extends Entity>  extends CollectionComparator<T> {
 
     /**
      * Creates a new participant CollectionComparator. It requires a Comparator for the participants in the Collection
      *
-     * @param participantComparator
+     * @param participantComparator a {@link java.util.Comparator} object.
      */
     public ParticipantCollectionComparator(Comparator<T> participantComparator) {
         super(participantComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Comparator<T> getObjectComparator() {
         return super.getObjectComparator();

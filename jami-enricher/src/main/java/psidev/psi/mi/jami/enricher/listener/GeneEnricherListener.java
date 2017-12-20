@@ -7,6 +7,7 @@ import psidev.psi.mi.jami.model.Gene;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 03/09/13
+
  */
 public interface GeneEnricherListener extends InteractorEnricherListener<Gene> {
 }

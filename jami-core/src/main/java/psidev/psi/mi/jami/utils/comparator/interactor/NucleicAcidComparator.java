@@ -9,11 +9,11 @@ import java.util.Comparator;
  * It will first use UnambiguousPolymerComparator to compare the basic interactor properties.
  * If the basic polymer properties are the same, It will look for DDBJ/EMBL/Genbank identifier. If the DDBJ/EMBL/Genbank identifiers are identical, it will look at the
  * Refseq identifiers.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class NucleicAcidComparator implements Comparator<NucleicAcid> {
 
     private PolymerComparator interactorComparator;
@@ -21,6 +21,8 @@ public class NucleicAcidComparator implements Comparator<NucleicAcid> {
     /**
      * Creates a new UnambiguousNucleicAcidComparator. It will uses a UnambiguousInteractorBaseComparator to compare interactor properties and a
      * OrganismTaxIdComparator to compares organism.
+     *
+     * @param polymerComparator a {@link psidev.psi.mi.jami.utils.comparator.interactor.PolymerComparator} object.
      */
     public NucleicAcidComparator(PolymerComparator polymerComparator) {
         if (polymerComparator == null){
@@ -33,6 +35,10 @@ public class NucleicAcidComparator implements Comparator<NucleicAcid> {
      * It will first use UnambiguousPolymerComparator to compare the basic interactor properties.
      * If the basic polymer properties are the same, It will look for DDBJ/EMBL/Genbank identifier. If the DDBJ/EMBL/Genbank identifiers are identical, it will look at the
      * Refseq identifiers.
+     *
+     * @param nucleicAcid1 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
+     * @param nucleicAcid2 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
+     * @return a int.
      */
     public int compare(NucleicAcid nucleicAcid1, NucleicAcid nucleicAcid2) {
         int EQUAL = 0;
@@ -91,6 +97,11 @@ public class NucleicAcidComparator implements Comparator<NucleicAcid> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.PolymerComparator} object.
+     */
     public PolymerComparator getInteractorComparator() {
         return this.interactorComparator;
     }

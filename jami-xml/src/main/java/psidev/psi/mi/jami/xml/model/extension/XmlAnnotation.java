@@ -19,13 +19,27 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlAnnotation extends AbstractXmlAnnotation {
 
+    /**
+     * <p>Constructor for XmlAnnotation.</p>
+     */
     public XmlAnnotation() {
     }
 
+    /**
+     * <p>Constructor for XmlAnnotation.</p>
+     *
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public XmlAnnotation(CvTerm topic, String value) {
         super(topic, value);
     }
 
+    /**
+     * <p>Constructor for XmlAnnotation.</p>
+     *
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlAnnotation(CvTerm topic) {
         super(topic);
     }

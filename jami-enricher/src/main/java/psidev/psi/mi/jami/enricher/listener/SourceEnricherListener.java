@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.Source;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface SourceEnricherListener
         extends CvTermEnricherListener<Source>, SourceChangeListener{

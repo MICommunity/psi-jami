@@ -14,23 +14,32 @@ import psidev.psi.mi.jami.utils.comparator.experiment.DefaultCuratedExperimentCo
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class FullInteractionEvidenceUpdater extends FullInteractionEvidenceEnricher{
 
+    /**
+     * <p>Constructor for FullInteractionEvidenceUpdater.</p>
+     */
     public FullInteractionEvidenceUpdater() {
         super(new FullInteractionUpdater<InteractionEvidence>());
     }
 
+    /**
+     * <p>Constructor for FullInteractionEvidenceUpdater.</p>
+     *
+     * @param interactionEnricher a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractionUpdater} object.
+     */
     protected FullInteractionEvidenceUpdater(FullInteractionUpdater<InteractionEvidence> interactionEnricher) {
         super(interactionEnricher != null ? interactionEnricher : new FullInteractionUpdater<InteractionEvidence>());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processConfidences(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException{
         EnricherUtils.mergeConfidences(objectToEnrich, objectToEnrich.getConfidences(), objectSource.getConfidences(), true,
                 (getInteractionEnricherListener() instanceof InteractionEvidenceEnricherListener ? (InteractionEvidenceEnricherListener) getInteractionEnricherListener() : null));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processParameters(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException{
 
@@ -38,11 +47,13 @@ public class FullInteractionEvidenceUpdater extends FullInteractionEvidenceEnric
                 (getInteractionEnricherListener() instanceof InteractionEvidenceEnricherListener ? (InteractionEvidenceEnricherListener) getInteractionEnricherListener() : null));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processVariableParameters(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException{
         mergerVariableParameters(objectToEnrich, objectSource, true);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException {
         super.processOtherProperties(objectToEnrich, objectSource);
@@ -60,6 +71,7 @@ public class FullInteractionEvidenceUpdater extends FullInteractionEvidenceEnric
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processExperiment(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException {
         if (!DefaultCuratedExperimentComparator.areEquals(objectSource.getExperiment(), objectToEnrich.getExperiment())){

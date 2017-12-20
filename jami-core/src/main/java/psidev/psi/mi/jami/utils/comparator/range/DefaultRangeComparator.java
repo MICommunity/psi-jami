@@ -13,13 +13,13 @@ import psidev.psi.mi.jami.model.Range;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class DefaultRangeComparator {
 
     /**
      * Use DefaultRangeComparator to know if two ranges are equals.
-     * @param range1
-     * @param range2
+     *
+     * @param range1 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param range2 a {@link psidev.psi.mi.jami.model.Range} object.
      * @return true if the two ranges are equal
      */
     public static boolean areEquals(Range range1, Range range2){

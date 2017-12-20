@@ -12,6 +12,5 @@ import psidev.psi.mi.jami.tab.listener.MitabParserListener;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public interface MitabStreamSource<I extends Interaction> extends MIFileDataSource, InteractionStream<I>, MitabParserListener {
 }

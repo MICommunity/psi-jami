@@ -14,16 +14,21 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlStoichiometryWriter implements PsiXmlElementWriter<Stoichiometry> {
     private XMLStreamWriter streamWriter;
 
+    /**
+     * <p>Constructor for XmlStoichiometryWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlStoichiometryWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlAnnotationWriter");
         }
         this.streamWriter = writer;
     }
+    /** {@inheritDoc} */
     @Override
     public void write(Stoichiometry object) throws MIIOException {
         if (object != null && (object.getMinValue() > 0 || object.getMaxValue() > 0)){

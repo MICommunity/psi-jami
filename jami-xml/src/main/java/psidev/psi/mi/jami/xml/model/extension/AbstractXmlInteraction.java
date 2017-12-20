@@ -44,26 +44,46 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     private JAXBAttributeWrapper jaxbAttributeWrapper;
     private JAXBParticipantWrapper<T> jaxbParticipantWrapper;
 
+    /**
+     * <p>Constructor for AbstractXmlInteraction.</p>
+     */
     public AbstractXmlInteraction(){
         XmlEntryContext context = XmlEntryContext.getInstance();
         this.entry = context.getCurrentEntry();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public AbstractXmlInteraction(String shortName){
         XmlEntryContext context = XmlEntryContext.getInstance();
         this.entry = context.getCurrentEntry();
         setShortName(shortName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlInteraction(String shortName, CvTerm type){
         this(shortName);
         setInteractionType(type);
     }
 
+    /**
+     * <p>getShortName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         return this.namesContainer != null ? this.namesContainer.getShortLabel() : null;
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -71,6 +91,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         this.namesContainer.setShortLabel(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
         if (this.namesContainer == null){
@@ -79,6 +100,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.namesContainer.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         if (this.namesContainer == null){
@@ -87,16 +109,23 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         this.namesContainer.setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return this.namesContainer != null ? this.namesContainer.getFullName() : null;
     }
 
+    /**
+     * <p>getRigid.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRigid() {
         Checksum rigid = this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.rigid : null;
         return rigid != null ? rigid.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setRigid(String rigid) {
         JAXBAttributeWrapper.InteractionChecksumList checksums = (JAXBAttributeWrapper.InteractionChecksumList)getChecksums();
         Checksum rigidAnnot = jaxbAttributeWrapper.rigid;
@@ -118,6 +147,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         }
     }
 
+    /**
+     * <p>getIdentifiers.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (xrefContainer == null){
             xrefContainer = new InteractionXrefContainer();
@@ -125,6 +159,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.xrefContainer.getIdentifiers();
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
             xrefContainer = new InteractionXrefContainer();
@@ -132,6 +171,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.xrefContainer.getXrefs();
     }
 
+    /**
+     * <p>getChecksums.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Checksum> getChecksums() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -139,6 +183,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.jaxbAttributeWrapper.checksums;
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -146,26 +195,49 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>updatedDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getUpdatedDate() {
         return this.updatedDate;
     }
 
+    /** {@inheritDoc} */
     public void setUpdatedDate(Date updated) {
         this.updatedDate = updated;
     }
 
+    /**
+     * <p>Getter for the field <code>createdDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getCreatedDate() {
         return createdDate;
     }
 
+    /** {@inheritDoc} */
     public void setCreatedDate(Date created) {
         this.createdDate = created;
     }
 
+    /**
+     * <p>getInteractionType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public abstract CvTerm getInteractionType();
 
+    /** {@inheritDoc} */
     public abstract void setInteractionType(CvTerm term);
 
+    /**
+     * <p>getParticipants.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<T> getParticipants() {
         if (jaxbParticipantWrapper == null){
             initialiseParticipantWrapper();
@@ -173,6 +245,12 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return this.jaxbParticipantWrapper.participants;
     }
 
+    /**
+     * <p>addParticipant.</p>
+     *
+     * @param part a T object.
+     * @return a boolean.
+     */
     public boolean addParticipant(T part) {
         if (part == null){
             return false;
@@ -184,6 +262,12 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return false;
     }
 
+    /**
+     * <p>removeParticipant.</p>
+     *
+     * @param part a T object.
+     * @return a boolean.
+     */
     public boolean removeParticipant(T part) {
         if (part == null){
             return false;
@@ -195,6 +279,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllParticipants(Collection<? extends T> participants) {
         if (participants == null){
             return false;
@@ -209,6 +294,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllParticipants(Collection<? extends T> participants) {
         if (participants == null){
             return false;
@@ -228,8 +314,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
@@ -240,8 +325,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractorXrefContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractorXrefContainer}
      */
     public void setJAXBXref(InteractionXrefContainer value) {
         this.xrefContainer = value;
@@ -250,6 +334,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         }
     }
 
+    /**
+     * <p>isIntraMolecular.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isIntraMolecular(){
         return intraMolecular != null ? intraMolecular : false;
     }
@@ -259,8 +348,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      *
      * @param value
      *     allowed object is
-     *     {@link Boolean }
-     *
+     *     {@link java.lang.Boolean}
      */
     public void setIntraMolecular(boolean value) {
         this.intraMolecular = value;
@@ -269,6 +357,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
@@ -277,6 +366,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Sets the value of the id property.
      *
+     * @param value a int.
      */
     public void setId(int value) {
         this.id = value;
@@ -289,6 +379,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Gets the value of the imexId property.
      *
+     * @return a {@link java.lang.String} object.
      */
     public String getImexId() {
         return imexId;
@@ -297,6 +388,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Sets the value of the imexId property
      *
+     * @param value a {@link java.lang.String} object.
      */
     public void assignImexId(String value) {
         this.imexId = value;
@@ -309,15 +401,22 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -331,23 +430,44 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         }
     }
 
+    /**
+     * <p>Getter for the field <code>entry</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     */
     public Entry getEntry() {
         return entry;
     }
 
+    /**
+     * <p>Setter for the field <code>entry</code>.</p>
+     *
+     * @param entry a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     */
     public void setEntry(Entry entry) {
         this.entry = entry;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Interaction: "+getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteraction.JAXBAttributeWrapper} object.
+     */
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;
     }
 
+    /**
+     * <p>setParticipantWrapper.</p>
+     *
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteraction.JAXBParticipantWrapper} object.
+     */
     public void setParticipantWrapper(JAXBParticipantWrapper<T> jaxbParticipantWrapper) {
         this.jaxbParticipantWrapper = jaxbParticipantWrapper;
         // initialise all participants because of back references
@@ -371,22 +491,43 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         }
     }
 
+    /**
+     * <p>getJAXBXref.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.InteractionXrefContainer} object.
+     */
     public InteractionXrefContainer getJAXBXref() {
         return xrefContainer;
     }
 
+    /**
+     * <p>processAddedParticipant.</p>
+     *
+     * @param participant a T object.
+     */
     protected void processAddedParticipant(T participant) {
         participant.setInteraction(this);
     }
 
+    /**
+     * <p>initialiseAnnotationWrapper.</p>
+     */
     protected void initialiseAnnotationWrapper(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>initialiseParticipantWrapper.</p>
+     */
     protected void initialiseParticipantWrapper(){
         this.jaxbParticipantWrapper = new JAXBParticipantWrapper();
     }
 
+    /**
+     * <p>Getter for the field <code>namesContainer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
+     */
     protected NamesContainer getNamesContainer() {
         if (this.namesContainer == null){
             initialiseNamesContainer();
@@ -394,6 +535,11 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return namesContainer;
     }
 
+    /**
+     * <p>getAttributeWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteraction.JAXBAttributeWrapper} object.
+     */
     protected JAXBAttributeWrapper getAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -401,6 +547,9 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return jaxbAttributeWrapper;
     }
 
+    /**
+     * <p>initialiseNamesContainer.</p>
+     */
     protected void initialiseNamesContainer(){
         this.namesContainer = new NamesContainer();
     }

@@ -16,7 +16,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class MIHtmlOptionFactory {
 
     private static final MIHtmlOptionFactory instance = new MIHtmlOptionFactory();
@@ -25,12 +24,18 @@ public class MIHtmlOptionFactory {
 
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.html.MIHtmlOptionFactory} object.
+     */
     public static MIHtmlOptionFactory getInstance() {
         return instance;
     }
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param outputFile : the file where to write the interactions
      * @return the options for the HTML InteractionWriter
      */
@@ -41,6 +46,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param outputFile : the file where to write the interactions
      * @return the options for the HTML InteractionWriter
@@ -52,6 +58,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param writeHeader : true if we want to write the header
      * @param outputFile : the file where to write the interactions
      * @return the options for a HTML interaction writer.
@@ -63,6 +70,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param output : the output
      * @return the options for the HTML InteractionWriter
      */
@@ -73,6 +81,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param output : the output
      * @return the options for the HTML InteractionWriter
@@ -84,6 +93,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param writeHeader : true if we want to write the header
      * @param output : the outputstream
      * @return the options for a HTML interaction writer.
@@ -95,6 +105,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a Html interaction writer.
+     *
      * @param writer : the writer
      * @return the options for the Html InteractionWriter
      */
@@ -105,6 +116,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param writer : the writer
      * @return the options for the HTML InteractionWriter
@@ -116,6 +128,7 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for a HTML interaction writer.
+     *
      * @param writeHeader : true if we want to write the header
      * @param writer : the writer
      * @return the options for a HTML interaction writer.
@@ -127,7 +140,8 @@ public class MIHtmlOptionFactory {
 
     /**
      * Create the options for the HTML InteractionWriter.
-     * @param output
+     *
+     * @param output a {@link java.lang.Object} object.
      * @param objectCategory : the interaction object type to write
      * @param writeHeader : true if we want to write the header/body
      * @return the options for the HTML InteractionWriter

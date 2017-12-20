@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.13</version>
+        <version>3.0.14</version>
     </parent>
 
     <artifactId>jami-ontology-manager</artifactId>
-    <name>PSI :: JAMI - Ontology manager</name>
+    <name>PSI :: JAMI - Bridges - Ontology manager</name>
     <description>Jami ontology manager extension</description>
 
     <dependencies>

@@ -7,17 +7,18 @@ package psidev.psi.mi.jami.analysis.graph.model;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public interface MIEdge<T> {
 
     /**
      * The first node. It cannot be null.
+     *
      * @return the first node
      */
     public T getNodeA();
 
     /**
      * The second node. It cannot be null.
+     *
      * @return the second node
      */
     public T getNodeB();

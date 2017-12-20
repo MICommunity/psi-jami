@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.ParticipantEvidence;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface ParticipantEvidenceEnricherListener<P extends ParticipantEvidence> extends ParticipantEnricherListener<P>, ParticipantEvidenceChangeListener<P> {
 

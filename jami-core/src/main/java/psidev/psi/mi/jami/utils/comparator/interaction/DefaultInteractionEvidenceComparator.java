@@ -23,13 +23,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class DefaultInteractionEvidenceComparator {
 
     /**
      * Use DefaultInteractionEvidenceComparator to know if two experimental interactions are equals.
-     * @param experimentalInteraction1
-     * @param experimentalInteraction2
+     *
+     * @param experimentalInteraction1 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param experimentalInteraction2 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return true if the two experimental interactions are equal
      */
     public static boolean areEquals(InteractionEvidence experimentalInteraction1, InteractionEvidence experimentalInteraction2){

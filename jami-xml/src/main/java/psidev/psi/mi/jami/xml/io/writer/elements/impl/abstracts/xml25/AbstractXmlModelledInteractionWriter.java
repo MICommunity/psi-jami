@@ -22,56 +22,70 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInteraction>
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlModelledInteractionWriter<I> {
 
+    /**
+     * <p>Constructor for AbstractXmlModelledInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter(){
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter(){
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter(){
         super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInferredInteractionWriter() {
         super.setInferredInteractionWriter(new XmlInferredInteractionWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractionTypeWriter() {
         super.setInteractionTypeWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultExperiment() {
         super.initialiseDefaultExperiment();
         getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultExperiment(Experiment defaultExperiment) {
         super.setDefaultExperiment(defaultExperiment);
         getParameterWriter().setDefaultExperiment(defaultExperiment);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(I interaction) {
         Experiment exp = null;
@@ -89,6 +103,12 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return exp != null ? exp : getDefaultExperiment() ;
     }
 
+    /**
+     * <p>writeInferredInteractions.</p>
+     *
+     * @param object a I object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInferredInteractions(I object) throws XMLStreamException {
         Collection<Set<Feature>> inferredInteractions = collectInferredInteractionsFrom(object);
         if (inferredInteractions != null && !inferredInteractions.isEmpty()){
@@ -100,6 +120,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /** {@inheritDoc} */
     protected void writeCooperativeEffect(I object, boolean startAttributeList) throws XMLStreamException {
         if (startAttributeList){
             // write start attribute list
@@ -163,6 +184,14 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /**
+     * <p>writeCooperativeEffectAttribute.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param nameAc a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeCooperativeEffectAttribute(String name, String nameAc, String value) throws XMLStreamException {
         // write start
         getStreamWriter().writeStartElement("attribute");
@@ -180,11 +209,13 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         getStreamWriter().writeEndElement();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(I object) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartInteraction() throws XMLStreamException {
         getStreamWriter().writeStartElement("interaction");

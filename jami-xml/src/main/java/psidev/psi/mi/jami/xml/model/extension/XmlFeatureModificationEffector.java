@@ -20,22 +20,44 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
     private ModelledFeature feature;
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for XmlFeatureModificationEffector.</p>
+     *
+     * @param feature a int.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public XmlFeatureModificationEffector(int feature, PsiXmlLocator locator){
         this.feature = new FeatureEffectorRef(feature, locator);
     }
 
+    /**
+     * <p>getFeatureModification.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     */
     public ModelledFeature getFeatureModification() {
         return feature;
     }
 
+    /**
+     * <p>getEffectorType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffectorType} object.
+     */
     public AllostericEffectorType getEffectorType() {
         return AllostericEffectorType.feature_modification;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator locator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -48,10 +70,16 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Allosteric PTM effector: "+getSourceLocator().toString():super.toString());

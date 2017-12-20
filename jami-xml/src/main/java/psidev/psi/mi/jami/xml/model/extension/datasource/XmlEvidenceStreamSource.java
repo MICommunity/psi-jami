@@ -21,27 +21,50 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlEvidenceStreamSource extends AbstractPsiXmlStream<InteractionEvidence> implements InteractionEvidenceStream<InteractionEvidence>{
+    /**
+     * <p>Constructor for XmlEvidenceStreamSource.</p>
+     */
     public XmlEvidenceStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlEvidenceStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlEvidenceStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlEvidenceStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlEvidenceStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         XmlEvidenceParser parser = new XmlEvidenceParser(reader);
@@ -50,6 +73,7 @@ public class XmlEvidenceStreamSource extends AbstractPsiXmlStream<InteractionEvi
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         XmlEvidenceParser parser = new XmlEvidenceParser(file);
@@ -58,6 +82,7 @@ public class XmlEvidenceStreamSource extends AbstractPsiXmlStream<InteractionEvi
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         XmlEvidenceParser parser = new XmlEvidenceParser(input);
@@ -66,6 +91,7 @@ public class XmlEvidenceStreamSource extends AbstractPsiXmlStream<InteractionEvi
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         XmlEvidenceParser parser = new XmlEvidenceParser(url);
@@ -74,11 +100,13 @@ public class XmlEvidenceStreamSource extends AbstractPsiXmlStream<InteractionEvi
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         // nothing to do as we don't expand
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<InteractionEvidence> createXmlIterator() {
         return new XmlInteractionEvidenceIterator(getParser());

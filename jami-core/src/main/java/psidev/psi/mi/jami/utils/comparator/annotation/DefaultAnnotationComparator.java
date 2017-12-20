@@ -16,13 +16,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultAnnotationComparator {
 
     /**
      * Use DefaultAnnotationComparator to know if two annotations are equals.
-     * @param annotation1
-     * @param annotation2
+     *
+     * @param annotation1 a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @param annotation2 a {@link psidev.psi.mi.jami.model.Annotation} object.
      * @return true if the two annotations are equal
      */
     public static boolean areEquals(Annotation annotation1, Annotation annotation2){

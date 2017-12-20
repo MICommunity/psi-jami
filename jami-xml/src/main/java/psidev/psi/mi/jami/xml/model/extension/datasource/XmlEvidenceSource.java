@@ -19,28 +19,51 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class XmlEvidenceSource extends AbstractPsiXmlSource<InteractionEvidence> {
 
+    /**
+     * <p>Constructor for XmlEvidenceSource.</p>
+     */
     public XmlEvidenceSource() {
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlEvidenceSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlEvidenceSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlEvidenceSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlEvidenceSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -53,6 +76,7 @@ public class XmlEvidenceSource extends AbstractPsiXmlSource<InteractionEvidence>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -67,6 +91,7 @@ public class XmlEvidenceSource extends AbstractPsiXmlSource<InteractionEvidence>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -79,6 +104,7 @@ public class XmlEvidenceSource extends AbstractPsiXmlSource<InteractionEvidence>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -94,6 +120,7 @@ public class XmlEvidenceSource extends AbstractPsiXmlSource<InteractionEvidence>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         //do nothing

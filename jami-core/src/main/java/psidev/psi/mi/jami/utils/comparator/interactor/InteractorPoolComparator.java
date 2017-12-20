@@ -15,7 +15,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class InteractorPoolComparator implements Comparator<InteractorPool> {
 
     private CollectionComparator<Interactor> interactorCollectionComparator;
@@ -23,6 +22,7 @@ public class InteractorPoolComparator implements Comparator<InteractorPool> {
 
     /**
      * Creates a new InteractorPoolComparator
+     *
      * @param interactorComparator : the interactor comparator required to compare interactors
      */
     public InteractorPoolComparator(InteractorComparator interactorComparator){
@@ -35,7 +35,9 @@ public class InteractorPoolComparator implements Comparator<InteractorPool> {
 
     /**
      * Creates a new InteractorPoolComparator
+     *
      * @param interactorComparator : the interactor comparator required to compare interactors
+     * @param interactorCollectionComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
      */
     public InteractorPoolComparator(InteractorComparator interactorComparator, CollectionComparator<Interactor> interactorCollectionComparator){
         if (interactorComparator == null){
@@ -45,19 +47,30 @@ public class InteractorPoolComparator implements Comparator<InteractorPool> {
         this.interactorCollectionComparator = interactorCollectionComparator != null ? interactorCollectionComparator : new CollectionComparator<Interactor>(interactorComparator);
     }
 
+    /**
+     * <p>Getter for the field <code>interactorCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Interactor> getInteractorCollectionComparator() {
         return interactorCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorBaseComparator(){
         return interactorBaseComparator;
     }
 
     /**
      * It will first compare the collection of Interactors using InteractorComparator
-     * @param interactorCandidates1
-     * @param interactorCandidates2
-     * @return
+     *
+     * @param interactorCandidates1 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param interactorCandidates2 a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @return a int.
      */
     public int compare(InteractorPool interactorCandidates1, InteractorPool interactorCandidates2) {
         int EQUAL = 0;

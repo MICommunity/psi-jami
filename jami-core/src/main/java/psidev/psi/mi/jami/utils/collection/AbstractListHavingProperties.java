@@ -9,13 +9,16 @@ import java.util.*;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
 
+    /**
+     * <p>Constructor for AbstractListHavingProperties.</p>
+     */
     public AbstractListHavingProperties(){
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean add(T object) {
         boolean added = super.add(object);
@@ -28,8 +31,14 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return false;
     }
 
+    /**
+     * <p>processAddedObjectEvent</p>
+     *
+     * @param added a T object.
+     */
     protected abstract void processAddedObjectEvent(T added);
 
+    /** {@inheritDoc} */
     @Override
     public boolean remove(Object o) {
         if (super.remove(o)){
@@ -46,16 +55,26 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return false;
     }
 
+    /**
+     * <p>processRemovedObjectEvent</p>
+     *
+     * @param removed a T object.
+     */
     protected abstract void processRemovedObjectEvent(T removed);
 
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         super.clear();
         clearProperties();
     }
 
+    /**
+     * <p>clearProperties</p>
+     */
     protected abstract void clearProperties();
 
+    /** {@inheritDoc} */
     @Override
     public void add(int i, T t) {
         super.add(i, t);
@@ -64,6 +83,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public T remove(int i) {
         T removed = super.remove(i);
@@ -73,6 +93,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return removed;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean retainAll(Collection<?> objects) {
         List<T> existingObject = new ArrayList<T>(this);
@@ -89,6 +110,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return removed;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeAll(Collection<?> objects) {
         boolean removed = super.removeAll(objects);
@@ -102,6 +124,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return removed;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void removeRange(int i, int i2) {
         if (i != i2){
@@ -111,6 +134,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addAll(int i, Collection<? extends T> ts) {
 
@@ -127,6 +151,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addAll(Collection<? extends T> ts) {
         boolean added = super.addAll(ts);
@@ -142,6 +167,7 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public T set(int i, T t) {
         T removed = super.set(i, t);
@@ -155,61 +181,129 @@ public abstract class AbstractListHavingProperties<T> extends ArrayList<T> {
         return removed;
     }
 
+    /**
+     * <p>addOnly</p>
+     *
+     * @param i a int.
+     * @param object a T object.
+     */
     public void addOnly(int i, T object) {
         super.add(i, object);
     }
 
+    /**
+     * <p>addOnly</p>
+     *
+     * @param object a T object.
+     * @return a boolean.
+     */
     public boolean addOnly(T object) {
         return super.add(object);
     }
 
+    /**
+     * <p>removeOnly</p>
+     *
+     * @param o a {@link java.lang.Object} object.
+     * @return a boolean.
+     */
     public boolean removeOnly(Object o) {
         return super.remove(o);
     }
 
+    /**
+     * <p>clearOnly</p>
+     */
     public void clearOnly() {
         super.clear();
     }
 
+    /**
+     * <p>retainAllOnly</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public boolean retainAllOnly(Collection<?> objects) {
         return super.retainAll(objects);
     }
 
+    /**
+     * <p>removeOnly</p>
+     *
+     * @param i a int.
+     * @return a T object.
+     */
     public T removeOnly(int i) {
         return super.remove(i);
     }
 
+    /**
+     * <p>removeAllOnly</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public boolean removeAllOnly(Collection<?> objects) {
         return super.removeAll(objects);
     }
 
+    /**
+     * <p>removeRangeOnly</p>
+     *
+     * @param i a int.
+     * @param i2 a int.
+     */
     protected void removeRangeOnly(int i, int i2) {
         super.removeRange(i, i2);
     }
 
+    /**
+     * <p>addAllOnly</p>
+     *
+     * @param i a int.
+     * @param ts a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public boolean addAllOnly(int i, Collection<? extends T> ts) {
 
         return super.addAll(i, ts);
     }
 
+    /**
+     * <p>addAllOnly</p>
+     *
+     * @param ts a {@link java.util.Collection} object.
+     * @return a boolean.
+     */
     public boolean addAllOnly(Collection<? extends T> ts) {
         return super.addAll(ts);
     }
 
+    /**
+     * <p>setOnly</p>
+     *
+     * @param i a int.
+     * @param t a T object.
+     * @return a T object.
+     */
     public T setOnly(int i, T t) {
         return super.set(i, t);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> iterator() {
         return new IteratorHavingProperties<T>(this, super.iterator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public ListIterator<T> listIterator(int index) {
         return new ListIteratorHavingProperties<T>(this, super.listIterator(index));
     }
 
+    /** {@inheritDoc} */
     @Override
     public ListIterator<T> listIterator() {
         return new ListIteratorHavingProperties<T>(this, super.listIterator());

@@ -31,16 +31,30 @@ public class XmlStoichiometry implements FileSourceContext, Stoichiometry, Locat
     private int minValue=0;
     private int maxValue=0;
     
+    /**
+     * <p>Constructor for XmlStoichiometry.</p>
+     */
     public XmlStoichiometry(){
         
     }
 
+    /**
+     * <p>Constructor for XmlStoichiometry.</p>
+     *
+     * @param value a int.
+     */
     public XmlStoichiometry(int value){
 
         this.minValue = value;
         this.maxValue = value;
     }
 
+    /**
+     * <p>Constructor for XmlStoichiometry.</p>
+     *
+     * @param minValue a int.
+     * @param maxValue a int.
+     */
     public XmlStoichiometry(int minValue, int maxValue){
         if (minValue > maxValue){
             throw new IllegalArgumentException("The minValue " + minValue + " cannot be bigger than the maxValue " + maxValue);
@@ -50,20 +64,36 @@ public class XmlStoichiometry implements FileSourceContext, Stoichiometry, Locat
         this.maxValue = maxValue;
     }
 
+    /**
+     * <p>Getter for the field <code>minValue</code>.</p>
+     *
+     * @return a int.
+     */
     public int getMinValue() {
         return this.minValue;
     }
 
+    /**
+     * <p>Getter for the field <code>maxValue</code>.</p>
+     *
+     * @return a int.
+     */
     public int getMaxValue() {
         return this.maxValue;
     }
 
+    /**
+     * <p>setJAXBValue.</p>
+     *
+     * @param value a int.
+     */
     @XmlAttribute(name = "value", required = true)
     public void setJAXBValue(int value){
         this.maxValue = value;
         this.minValue = value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
 
@@ -78,21 +108,29 @@ public class XmlStoichiometry implements FileSourceContext, Stoichiometry, Locat
         return StoichiometryComparator.areEquals(this, (Stoichiometry) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return StoichiometryComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Participant Stoichiometry: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -100,6 +138,7 @@ public class XmlStoichiometry implements FileSourceContext, Stoichiometry, Locat
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -112,6 +151,11 @@ public class XmlStoichiometry implements FileSourceContext, Stoichiometry, Locat
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }

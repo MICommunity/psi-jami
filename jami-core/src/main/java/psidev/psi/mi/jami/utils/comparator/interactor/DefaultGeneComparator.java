@@ -12,13 +12,13 @@ import psidev.psi.mi.jami.model.Gene;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class DefaultGeneComparator {
 
     /**
      * Use DefaultGeneComparator to know if two genes are equals.
-     * @param gene1
-     * @param gene2
+     *
+     * @param gene1 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @param gene2 a {@link psidev.psi.mi.jami.model.Gene} object.
      * @return true if the two genes are equal
      */
     public static boolean areEquals(Gene gene1, Gene gene2){

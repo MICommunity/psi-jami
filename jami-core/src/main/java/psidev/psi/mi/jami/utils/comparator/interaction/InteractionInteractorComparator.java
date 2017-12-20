@@ -21,13 +21,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/01/13</pre>
  */
-
 public class InteractionInteractorComparator implements Comparator<Interaction> {
 
     private CollectionComparator<Participant> participantCollectionComparator;
 
     /**
      * Creates a new InteractionInteractorComparator
+     *
      * @param interactorComparator : interactor comparator required for comparing interactors involved in the interaction
      */
     public InteractionInteractorComparator(InteractorComparator interactorComparator){
@@ -37,6 +37,11 @@ public class InteractionInteractorComparator implements Comparator<Interaction> 
         this.participantCollectionComparator = new ParticipantCollectionComparator(new ParticipantInteractorComparator<Participant>(interactorComparator));
     }
 
+    /**
+     * <p>Constructor for InteractionInteractorComparator.</p>
+     *
+     * @param interactorComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public InteractionInteractorComparator(CollectionComparator<Participant> interactorComparator){
         if (interactorComparator == null){
             throw new IllegalArgumentException("The Interactor comparator is required to compare interactors of an interaction. It cannot be null");
@@ -44,6 +49,11 @@ public class InteractionInteractorComparator implements Comparator<Interaction> 
         this.participantCollectionComparator = interactorComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Participant> getParticipantCollectionComparator() {
         return participantCollectionComparator;
     }
@@ -53,9 +63,9 @@ public class InteractionInteractorComparator implements Comparator<Interaction> 
      *
      * It will ignore all other properties of an Interaction
      *
-     * @param interaction1
-     * @param interaction2
-     * @return
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @return a int.
      */
     public int compare(Interaction interaction1, Interaction interaction2) {
         int EQUAL = 0;

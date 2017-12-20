@@ -25,7 +25,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>26/07/13</pre>
  */
-
 public class XmlEntryContext {
 
     private PsiXmlIdCache elementCache;
@@ -39,6 +38,11 @@ public class XmlEntryContext {
     private XmlEntryContext(){
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     */
     public static XmlEntryContext getInstance() {
         return instance.get();
     }
@@ -51,10 +55,16 @@ public class XmlEntryContext {
         }
     };
 
+    /**
+     * <p>remove.</p>
+     */
     public static void remove(){
         instance.remove();
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear(){
         if (this.elementCache != null){
             this.elementCache.clear();
@@ -72,6 +82,11 @@ public class XmlEntryContext {
         this.interactorFactory = null;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public XmlInteractorFactory getInteractorFactory() {
         if (this.interactorFactory == null){
             this.interactorFactory = new XmlInteractorFactory();
@@ -79,125 +94,249 @@ public class XmlEntryContext {
         return interactorFactory;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorFactory</code>.</p>
+     *
+     * @param interactorFactory a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public void setInteractorFactory(XmlInteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
     }
 
+    /**
+     * <p>Getter for the field <code>currentEntry</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     */
     public Entry getCurrentEntry() {
         return currentEntry;
     }
 
+    /**
+     * <p>setCurrentSource.</p>
+     *
+     * @param entry a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     */
     public void setCurrentSource(Entry entry){
         this.currentEntry = entry;
     }
 
+    /**
+     * <p>Getter for the field <code>listener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
+     */
     public PsiXmlParserListener getListener() {
         return listener;
     }
 
+    /**
+     * <p>Setter for the field <code>listener</code>.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
+     */
     public void setListener(PsiXmlParserListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * <p>Setter for the field <code>elementCache</code>.</p>
+     *
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlIdCache} object.
+     */
     public void setElementCache(PsiXmlIdCache elementCache) {
         this.elementCache = elementCache;
     }
 
+    /**
+     * <p>registerAvailability.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
+     */
     public void registerAvailability(int id, AbstractAvailability o){
         if (this.elementCache != null){
             this.elementCache.registerAvailability(id, o);
         }
     }
 
+    /**
+     * <p>registerExperiment.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public void registerExperiment(int id, Experiment o){
         if (this.elementCache != null){
             this.elementCache.registerExperiment(id, o);
         }
     }
 
+    /**
+     * <p>registerInteractor.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public void registerInteractor(int id, Interactor o){
         if (this.elementCache != null){
             this.elementCache.registerInteractor(id, o);
         }
     }
 
+    /**
+     * <p>registerInteraction.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Interaction} object.
+     */
     public void registerInteraction(int id, Interaction o){
         if (this.elementCache != null){
             this.elementCache.registerInteraction(id, o);
         }
     }
 
+    /**
+     * <p>registerParticipant.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     public void registerParticipant(int id, Entity o){
         if (this.elementCache != null){
             this.elementCache.registerParticipant(id, o);
         }
     }
 
+    /**
+     * <p>registerFeature.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Feature} object.
+     */
     public void registerFeature(int id, Feature o){
         if (this.elementCache != null){
             this.elementCache.registerFeature(id, o);
         }
     }
 
+    /**
+     * <p>registerComplexParticipant.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public void registerComplexParticipant(int id, ModelledEntity o){
         if (this.elementCache != null){
             this.elementCache.registerComplexParticipant(id, o);
         }
     }
 
+    /**
+     * <p>registerComplexFeature.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     */
     public void registerComplexFeature(int id, ModelledFeature o){
         if (this.elementCache != null){
             this.elementCache.registerComplexFeature(id, o);
         }
     }
 
+    /**
+     * <p>registerVariableParameterValue.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
+     */
     public void registerVariableParameterValue(int id, VariableParameterValue o){
         if (this.elementCache != null){
             this.elementCache.registerVariableParameterValue(id, o);
         }
     }
 
+    /**
+     * <p>registerComplex.</p>
+     *
+     * @param id a int.
+     * @param o a {@link psidev.psi.mi.jami.model.Complex} object.
+     */
     public void registerComplex(int id, Complex o){
         if (this.elementCache != null){
             this.elementCache.registerComplex(id, o);
         }
     }
 
+    /**
+     * <p>registerInferredInteraction.</p>
+     *
+     * @param infer a {@link psidev.psi.mi.jami.xml.model.extension.InferredInteraction} object.
+     */
     public void registerInferredInteraction(InferredInteraction infer){
         if (this.inferredInteractions != null){
             this.inferredInteractions.add(infer);
         }
     }
 
+    /**
+     * <p>registerBindingFeature.</p>
+     *
+     * @param infer a {@link psidev.psi.mi.jami.xml.model.extension.xml300.BindingFeatures} object.
+     */
     public void registerBindingFeature(BindingFeatures infer){
         if (this.bindingFeatures != null){
             this.bindingFeatures.add(infer);
         }
     }
 
+    /**
+     * <p>registerReference.</p>
+     *
+     * @param ref a {@link psidev.psi.mi.jami.xml.model.reference.XmlIdReference} object.
+     */
     public void registerReference(XmlIdReference ref){
         if (this.references != null){
             this.references.add(ref);
         }
     }
 
+    /**
+     * <p>hasInferredInteractions.</p>
+     *
+     * @return a boolean.
+     */
     public boolean hasInferredInteractions(){
         return !inferredInteractions.isEmpty() || !bindingFeatures.isEmpty();
     }
 
+    /**
+     * <p>hasUnresolvedReferences.</p>
+     *
+     * @return a boolean.
+     */
     public boolean hasUnresolvedReferences(){
         return !references.isEmpty();
     }
 
+    /**
+     * <p>initialiseInferredInteractionList.</p>
+     */
     public void initialiseInferredInteractionList(){
         this.inferredInteractions = new ArrayList<InferredInteraction>();
         this.bindingFeatures = new ArrayList<BindingFeatures>();
     }
 
+    /**
+     * <p>initialiseReferencesList.</p>
+     */
     public void initialiseReferencesList(){
         this.references = new ArrayList<XmlIdReference>();
     }
 
+    /**
+     * <p>resolveInteractorAndExperimentRefs.</p>
+     */
     public void resolveInteractorAndExperimentRefs(){
         if (references != null){
             Iterator<XmlIdReference> refIterator = references.iterator();
@@ -216,6 +355,9 @@ public class XmlEntryContext {
         }
     }
 
+    /**
+     * <p>resolveInferredInteractionRefs.</p>
+     */
     public void resolveInferredInteractionRefs(){
         if (inferredInteractions != null){
             Iterator<InferredInteraction> inferredIterator = inferredInteractions.iterator();

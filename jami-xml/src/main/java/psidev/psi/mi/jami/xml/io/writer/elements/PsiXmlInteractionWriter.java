@@ -11,31 +11,34 @@ import psidev.psi.mi.jami.model.Interaction;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public interface PsiXmlInteractionWriter<T extends Interaction> extends PsiXmlElementWriter<T> {
 
     /**
      * The default experiment that will be used to write a valid XML 2.5 file but is not a real experiment attached
      * to the interaction.
      * It can be null in some specific cases.
+     *
      * @return the default experiment used by this writer
      */
     public Experiment getDefaultExperiment();
 
     /**
      * Sets the default experiment that will be used to write a valid XML 2.5 file even if the interaction does not have any valid experiment
+     *
      * @param exp : default experiment
      */
     public void setDefaultExperiment(Experiment exp);
 
     /**
+     * <p>extractDefaultExperimentFrom.</p>
      *
-     * @param interaction
+     * @param interaction a T object.
      * @return the default experiment for this interaction
      */
     public Experiment extractDefaultExperimentFrom(T interaction);
 
     /**
+     * <p>writeComplexAsInteractor.</p>
      *
      * @return true if the participant writer will write a complex as an interactor
      */
@@ -43,7 +46,8 @@ public interface PsiXmlInteractionWriter<T extends Interaction> extends PsiXmlEl
 
     /**
      * Sets the property of the writer to write a complex as an interactor or as an interaction
-     * @param complexAsInteractor
+     *
+     * @param complexAsInteractor a boolean.
      */
     public void setComplexAsInteractor(boolean complexAsInteractor);
 }

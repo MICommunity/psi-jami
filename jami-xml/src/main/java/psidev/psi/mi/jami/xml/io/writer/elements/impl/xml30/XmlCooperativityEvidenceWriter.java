@@ -18,12 +18,16 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlCooperativityEvidenceWriter implements PsiXmlElementWriter<CooperativityEvidence> {
     private XMLStreamWriter streamWriter;
     private PsiXmlElementWriter<Publication> publicationWriter;
     private PsiXmlVariableNameWriter<CvTerm> cvWriter;
 
+    /**
+     * <p>Constructor for XmlCooperativityEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlCooperativityEvidenceWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlCooperativityEvidenceWriter");
@@ -31,6 +35,11 @@ public class XmlCooperativityEvidenceWriter implements PsiXmlElementWriter<Coope
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Publication> getPublicationWriter() {
         if (this.publicationWriter == null){
             initialisePublicationWriter();
@@ -38,14 +47,27 @@ public class XmlCooperativityEvidenceWriter implements PsiXmlElementWriter<Coope
         return publicationWriter;
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         this.publicationWriter = new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>publicationWriter</code>.</p>
+     *
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setPublicationWriter(PsiXmlElementWriter<Publication> publicationWriter) {
         this.publicationWriter = publicationWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             initialiseCvWriter();
@@ -53,14 +75,23 @@ public class XmlCooperativityEvidenceWriter implements PsiXmlElementWriter<Coope
         return cvWriter;
     }
 
+    /**
+     * <p>initialiseCvWriter.</p>
+     */
     protected void initialiseCvWriter() {
         this.cvWriter = new XmlCvTermWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setCvWriter(PsiXmlVariableNameWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(CooperativityEvidence object) throws MIIOException {
         try {
@@ -90,10 +121,21 @@ public class XmlCooperativityEvidenceWriter implements PsiXmlElementWriter<Coope
         }
     }
 
+    /**
+     * <p>writePublication.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writePublication(CooperativityEvidence object) throws XMLStreamException {
         getPublicationWriter().write(object.getPublication());
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

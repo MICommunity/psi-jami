@@ -16,6 +16,7 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 09/07/13
+
  */
 public class ComplexEnricherListenerManager
         extends ModelledInteractionEnricherListenerManager<Complex>
@@ -28,12 +29,14 @@ public class ComplexEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public ComplexEnricherListenerManager(ComplexEnricherListener... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onFullNameUpdate(Complex interactor, String oldFullName) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof ComplexEnricherListener){
@@ -42,6 +45,7 @@ public class ComplexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onOrganismUpdate(Complex interactor, Organism oldOrganism) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof ComplexEnricherListener){
@@ -50,6 +54,7 @@ public class ComplexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractorTypeUpdate(Complex interactor, CvTerm oldType) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof ComplexEnricherListener){
@@ -58,6 +63,7 @@ public class ComplexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(Complex o, Alias added) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof ComplexEnricherListener){
@@ -66,6 +72,7 @@ public class ComplexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(Complex o, Alias removed) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof ComplexEnricherListener){

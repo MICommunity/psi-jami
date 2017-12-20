@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
 /**
  * Default alias comparator.
  * It will first compare alias types using DefaultCvTermComparator and then alias names (case sensitive)
-
+ *
  * - Two aliases which are null are equals
  * - The alias which is not null is before null.
  * - If the alias types are not set, compares the names (case sensitive)
@@ -17,13 +17,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultAliasComparator {
 
     /**
      * Use DefaultAliasComparator to know if two aliases are equals.
-     * @param alias1
-     * @param alias2
+     *
+     * @param alias1 a {@link psidev.psi.mi.jami.model.Alias} object.
+     * @param alias2 a {@link psidev.psi.mi.jami.model.Alias} object.
      * @return true if the two aliases are equal
      */
     public static boolean areEquals(Alias alias1, Alias alias2){

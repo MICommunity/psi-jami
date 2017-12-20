@@ -17,18 +17,17 @@ import java.util.Iterator;
  * It will then compare interaction types using DefaultCvTermComparator.
  * If the basic interactor properties are the same, It will first compare the collection of components using DefaultExactModelledParticipantComparator.
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultExactComplexComparator {
 
     /**
      * Use DefaultExactComplexComparator to know if two complexes are equals.
-     * @param complex1
-     * @param complex2
+     *
+     * @param complex1 a {@link psidev.psi.mi.jami.model.Complex} object.
+     * @param complex2 a {@link psidev.psi.mi.jami.model.Complex} object.
      * @return true if the two complexes are equal
      */
     public static boolean areEquals(Complex complex1, Complex complex2){

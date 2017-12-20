@@ -12,16 +12,19 @@ import psidev.psi.mi.jami.model.Participant;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/07/13
+
  */
 public class ParticipantEnricherLogger<P extends Participant>
         extends ParticipantChangeLogger<P> implements ParticipantEnricherListener<P> {
 
     private static final Logger log = LoggerFactory.getLogger(ParticipantEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(P participant, EnrichmentStatus status, String message) {
         log.info(participant.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(P object, String message, Exception e) {
         log.info(object.toString()+" enrichment error, message: "+message, e);
     }

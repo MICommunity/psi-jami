@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
 /**
  * Default confidence comparator.
  * It will compares the confidence types first, then the units and finally the value.
-
+ *
  * - Two confidences which are null are equals
  * - The confidence which is not null is before null.
  * - Use DefaultCvTermComparator to compare first the confidence types.
@@ -20,13 +20,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultConfidenceComparator {
 
     /**
      * Use DefaultConfidenceComparator to know if two confidences are equals.
-     * @param confidence1
-     * @param confidence2
+     *
+     * @param confidence1 a {@link psidev.psi.mi.jami.model.Confidence} object.
+     * @param confidence2 a {@link psidev.psi.mi.jami.model.Confidence} object.
      * @return true if the two confidences are equal
      */
     public static boolean areEquals(Confidence confidence1, Confidence confidence2){

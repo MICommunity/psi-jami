@@ -11,10 +11,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @version $Id$
  * @since <pre>22/11/13</pre>
  */
-
 public interface PsiXmlSourceWriter extends PsiXmlElementWriter<Source> {
 
     /**
+     * <p>getDefaultReleaseDate.</p>
      *
      * @return the default release date. Can be null
      */
@@ -22,7 +22,8 @@ public interface PsiXmlSourceWriter extends PsiXmlElementWriter<Source> {
 
     /**
      * Sets the default release date
-     * @param date
+     *
+     * @param date a {@link javax.xml.datatype.XMLGregorianCalendar} object.
      */
     public void setDefaultReleaseDate(XMLGregorianCalendar date);
 }

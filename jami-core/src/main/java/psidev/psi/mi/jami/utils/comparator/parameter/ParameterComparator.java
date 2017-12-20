@@ -14,11 +14,11 @@ import java.util.Comparator;
  * It will also compare the uncertainty.
  * - Two parameters which are null are equals
  * - The parameter which is not null is before null.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public abstract class ParameterComparator implements Comparator<Parameter> {
 
     private Comparator<CvTerm> cvTermComparator;
@@ -26,6 +26,7 @@ public abstract class ParameterComparator implements Comparator<Parameter> {
 
     /**
      * Creates a new ParameterComparator
+     *
      * @param cvTermComparator : cv term comparator to compare parameter types and units. It is required
      */
     public ParameterComparator(Comparator<CvTerm> cvTermComparator){
@@ -38,6 +39,7 @@ public abstract class ParameterComparator implements Comparator<Parameter> {
 
     /**
      * Creates a new ParameterComparator
+     *
      * @param cvTermComparator : cv term comparator to compare parameter types and units. It is required
      * @param valueComparator : parameter value comparator. If null, it will create a new ParameterValueComparator
      */
@@ -49,10 +51,20 @@ public abstract class ParameterComparator implements Comparator<Parameter> {
         this.valueComparator = valueComparator != null ? valueComparator : new ParameterValueComparator();
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>valueComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.parameter.ParameterValueComparator} object.
+     */
     public ParameterValueComparator getValueComparator() {
         return valueComparator;
     }
@@ -62,9 +74,10 @@ public abstract class ParameterComparator implements Comparator<Parameter> {
      * It will also compare the uncertainty.
      * - Two parameters which are null are equals
      * - The parameter which is not null is before null.
-     * @param parameter1
-     * @param parameter2
-     * @return
+     *
+     * @param parameter1 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @param parameter2 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @return a int.
      */
     public int compare(Parameter parameter1, Parameter parameter2) {
         int EQUAL = 0;

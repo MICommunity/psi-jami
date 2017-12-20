@@ -40,9 +40,17 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     private Locator locator;
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for AbstractXmlCooperativeEffect.</p>
+     */
     public AbstractXmlCooperativeEffect(){
     }
 
+    /**
+     * <p>Constructor for AbstractXmlCooperativeEffect.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlCooperativeEffect(CvTerm outcome){
         if (outcome == null){
             throw new IllegalArgumentException("The outcome of a CooperativeEffect cannot be null");
@@ -50,23 +58,43 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         this.outcome = outcome;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlCooperativeEffect.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlCooperativeEffect(CvTerm outcome, CvTerm response){
         this(outcome);
         this.response = response;
     }
 
+    /**
+     * <p>initialiseCooperativityEvidences.</p>
+     */
     protected void initialiseCooperativityEvidences(){
         this.jaxbCooperativityEvidenceWrapper = new JAXBCooperativityEvidenceWrapper();
     }
 
+    /**
+     * <p>initialiseAffectedInteractions.</p>
+     */
     protected void initialiseAffectedInteractions(){
         this.jaxbAffectedInteractionWrapper = new JAXBAffectedInteractionRefWrapper();
     }
 
+    /**
+     * <p>initialiseAnnotations.</p>
+     */
     protected void initialiseAnnotations(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>getCooperativityEvidences.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CooperativityEvidence> getCooperativityEvidences() {
         if (this.jaxbCooperativityEvidenceWrapper == null){
             initialiseCooperativityEvidences();
@@ -74,6 +102,11 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         return this.jaxbCooperativityEvidenceWrapper.cooperativityEvidences;
     }
 
+    /**
+     * <p>getAffectedInteractions.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledInteraction> getAffectedInteractions() {
         if (this.jaxbAffectedInteractionWrapper == null){
             initialiseAffectedInteractions();
@@ -81,6 +114,11 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         return this.jaxbAffectedInteractionWrapper.affectedInteractions;
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotations();
@@ -88,6 +126,11 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>getOutCome.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getOutCome() {
         if (this.outcome == null){
             this.outcome = new XmlCvTerm(CooperativeEffect.EFFECT_OUTCOME,
@@ -96,6 +139,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         return outcome;
     }
 
+    /** {@inheritDoc} */
     public void setOutCome(CvTerm effect) {
         if (effect == null){
             throw new IllegalArgumentException("The outcome of a CooperativeEffect cannot be null");
@@ -103,24 +147,37 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         this.outcome = effect;
     }
 
+    /**
+     * <p>Getter for the field <code>response</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getResponse() {
         return this.response;
     }
 
+    /** {@inheritDoc} */
     public void setResponse(CvTerm response) {
         this.response = response;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Outcome: "+(outcome != null ? outcome.toString() : "") + (response != null ? ", response: " + response.toString() : "");
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -128,6 +185,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -140,30 +198,60 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /**
+     * <p>setJAXBCooperativityEvidenceWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBCooperativityEvidenceWrapper} object.
+     */
     @XmlElement(name = "cooperativityEvidenceList", required = true)
     public void setJAXBCooperativityEvidenceWrapper(JAXBCooperativityEvidenceWrapper wrapper) {
         this.jaxbCooperativityEvidenceWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBAffectedInteractionWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBAffectedInteractionRefWrapper} object.
+     */
     @XmlElement(name = "affectedInteractionList", required = true)
     public void setJAXBAffectedInteractionWrapper(JAXBAffectedInteractionRefWrapper wrapper) {
         this.jaxbAffectedInteractionWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBOutCome.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "cooperativeEffectOutcome", required = true)
     public void setJAXBOutCome(XmlCvTerm outcome) {
         this.outcome = outcome;
     }
 
+    /**
+     * <p>setJAXBResponse.</p>
+     *
+     * @param response a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "cooperativeEffectResponse")
     public void setJAXBResponse(XmlCvTerm response) {
         this.response = response;
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBAttributeWrapper} object.
+     */
     @XmlElement(name = "attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;

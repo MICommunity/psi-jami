@@ -22,12 +22,16 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>29/03/12</pre>
  */
-
 public class PublicationIdentifierSynchronizerImpl implements PublicationIdentifierSynchronizer {
     private static final Log log = LogFactory.getLog(PublicationIdentifierSynchronizerImpl.class);
 
     private ImexCentralClient imexCentral;
 
+    /**
+     * <p>Constructor for PublicationIdentifierSynchronizerImpl.</p>
+     *
+     * @param client a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public PublicationIdentifierSynchronizerImpl(ImexCentralClient client){
         if (client == null){
             throw new IllegalArgumentException("The IMEx central client cannot be null");
@@ -35,6 +39,7 @@ public class PublicationIdentifierSynchronizerImpl implements PublicationIdentif
         this.imexCentral = client;
     }
 
+    /** {@inheritDoc} */
     public boolean isPublicationIdentifierInSyncWithImexCentral(String pubId, String source, ImexPublication imexPublication) throws BridgeFailedException {
 
         Collection<Xref> imexIdentifiers = imexPublication.getIdentifiers();
@@ -64,6 +69,7 @@ public class PublicationIdentifierSynchronizerImpl implements PublicationIdentif
         return areIdenticalPublications(imexPublication, existingPub);
     }
 
+    /** {@inheritDoc} */
     public void synchronizePublicationIdentifier(Publication publication, Publication imexPublication) throws EnricherException, BridgeFailedException {
 
         String pubId = publication.getPubmedId() != null ? publication.getPubmedId() : publication.getDoi();
@@ -140,6 +146,13 @@ public class PublicationIdentifierSynchronizerImpl implements PublicationIdentif
         }
     }
 
+    /**
+     * <p>areIdenticalPublications.</p>
+     *
+     * @param p1 a {@link psidev.psi.mi.jami.bridges.imex.extension.ImexPublication} object.
+     * @param p2 a {@link psidev.psi.mi.jami.bridges.imex.extension.ImexPublication} object.
+     * @return a boolean.
+     */
     public boolean areIdenticalPublications(ImexPublication p1, ImexPublication p2){
 
         if ((p1 == null && p2 != null) || (p1 != null && p2 == null)){
@@ -194,6 +207,11 @@ public class PublicationIdentifierSynchronizerImpl implements PublicationIdentif
         return true;
     }
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient() {
         return imexCentral;
     }

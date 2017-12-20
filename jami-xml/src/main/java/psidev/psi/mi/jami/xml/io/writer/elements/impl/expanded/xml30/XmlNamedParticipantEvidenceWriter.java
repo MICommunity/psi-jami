@@ -15,22 +15,28 @@ import javax.xml.stream.XMLStreamWriter;
  * Expanded Xml 2.5 writer for a named participant evidence with a shortname and a fullname.
  * It writes full experimental details
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlNamedParticipantEvidenceWriter extends AbstractXmlParticipantEvidenceWriter implements ExpandedPsiXmlElementWriter<ParticipantEvidence> {
+    /**
+     * <p>Constructor for XmlNamedParticipantEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedParticipantEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeMolecule(Interactor interactor) throws XMLStreamException {
         super.writeMoleculeDescription(interactor);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(ParticipantEvidence object) throws XMLStreamException {
         NamedParticipant xmlParticipant = (NamedParticipant) object;
@@ -40,6 +46,7 @@ public class XmlNamedParticipantEvidenceWriter extends AbstractXmlParticipantEvi
                 getAliasWriter());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantCandidateWriter() {
         super.setParticipantCandidateWriter(new XmlExperimentalParticipantCandidateWriter(getStreamWriter(), getObjectIndex()));

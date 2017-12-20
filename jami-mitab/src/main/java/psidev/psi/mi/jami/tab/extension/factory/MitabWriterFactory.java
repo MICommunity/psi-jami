@@ -13,7 +13,6 @@ import psidev.psi.mi.jami.tab.io.writer.*;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class MitabWriterFactory {
 
     private static final MitabWriterFactory instance = new MitabWriterFactory();
@@ -21,10 +20,24 @@ public class MitabWriterFactory {
     private MitabWriterFactory(){
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.tab.extension.factory.MitabWriterFactory} object.
+     */
     public static MitabWriterFactory getInstance() {
         return instance;
     }
 
+    /**
+     * <p>createMitabWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param version a {@link psidev.psi.mi.jami.tab.MitabVersion} object.
+     * @param extended a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createMitabWriter(InteractionCategory interactionCategory, ComplexType complexType,
                                                   MitabVersion version, boolean extended){
         switch (complexType){
@@ -35,6 +48,14 @@ public class MitabWriterFactory {
         }
     }
 
+    /**
+     * <p>createMitabBinaryWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param version a {@link psidev.psi.mi.jami.tab.MitabVersion} object.
+     * @param extended a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createMitabBinaryWriter(InteractionCategory interactionCategory, MitabVersion version, boolean extended){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;
@@ -128,6 +149,14 @@ public class MitabWriterFactory {
         }
     }
 
+    /**
+     * <p>createMitabWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param version a {@link psidev.psi.mi.jami.tab.MitabVersion} object.
+     * @param extended a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createMitabWriter(InteractionCategory interactionCategory, MitabVersion version, boolean extended){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;

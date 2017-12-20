@@ -11,7 +11,7 @@ import java.util.Comparator;
 /**
  * Basic CuratedModelledInteraction comparator.
  *
- * It will use a Comparator<Interaction> to compare basic interaction properties.
+ * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
  * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
  * Finally, it will compare the source of the modelledInteraction using AbstractCvTermComparator
  *
@@ -19,14 +19,16 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class CuratedModelledInteractionComparator extends ModelledInteractionComparator {
 
     private Comparator<CvTerm> sourceComparator;
 
     /**
+     * <p>Constructor for CuratedModelledInteractionComparator.</p>
+     *
      * @param participantComparator : required to compare participants
-     * @param interactionComparator
+     * @param interactionComparator a {@link java.util.Comparator} object.
+     * @param sourceComparator a {@link java.util.Comparator} object.
      */
     public CuratedModelledInteractionComparator(CustomizableModelledParticipantComparator participantComparator, Comparator<Interaction> interactionComparator, Comparator<CvTerm> sourceComparator) {
         super(participantComparator, interactionComparator);
@@ -34,17 +36,23 @@ public class CuratedModelledInteractionComparator extends ModelledInteractionCom
 
     }
 
+    /**
+     * <p>Getter for the field <code>sourceComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getSourceComparator() {
         return sourceComparator;
     }
 
     /**
-     * It will use a Comparator<Interaction> to compare basic interaction properties.
+     * It will use a {@link java.util.Comparator} of type {@link Interaction} to compare basic interaction properties.
      * Then it will compare the modelledParticipants using CustomizableModelledParticipantComparator.
      * Finally, it will compare the source of the modelledInteraction using AbstractCvTermComparator
-     * @param modelledInteraction1
-     * @param modelledInteraction2
-     * @return
+     *
+     * @param modelledInteraction1 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param modelledInteraction2 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @return a int.
      */
     public int compare(ModelledInteraction modelledInteraction1, ModelledInteraction modelledInteraction2) {
         int EQUAL = 0;

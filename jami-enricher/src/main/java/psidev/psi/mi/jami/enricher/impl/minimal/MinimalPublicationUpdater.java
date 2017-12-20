@@ -27,13 +27,20 @@ import java.util.Iterator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+
  */
 public class MinimalPublicationUpdater extends MinimalPublicationEnricher {
 
+    /**
+     * <p>Constructor for MinimalPublicationUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher} object.
+     */
     public MinimalPublicationUpdater(PublicationFetcher fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationDate(Publication publicationToEnrich, Publication fetched) throws EnricherException {
         // == PUBLICATION DATE =================================================================================
@@ -46,12 +53,14 @@ public class MinimalPublicationUpdater extends MinimalPublicationEnricher {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         EnricherUtils.mergeXrefs(publicationToEnrich, publicationToEnrich.getIdentifiers(), fetched.getIdentifiers(), true, true,
                 getPublicationEnricherListener(), getPublicationEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAuthors(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         // == AUTHORS ===========================================================================================

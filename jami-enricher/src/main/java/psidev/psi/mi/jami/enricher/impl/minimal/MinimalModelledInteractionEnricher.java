@@ -11,6 +11,7 @@ import psidev.psi.mi.jami.model.ModelledInteraction;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalModelledInteractionEnricher<I extends ModelledInteraction> extends MinimalInteractionEnricher<I>
         implements ModelledInteractionEnricher<I> {
@@ -20,7 +21,9 @@ public class MinimalModelledInteractionEnricher<I extends ModelledInteraction> e
     /**
      * Strategy for the Interaction enrichment.
      * This method can be overwritten to change how the interaction is enriched.
+     *
      * @param interactionToEnrich   The interaction to be enriched.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected void processOtherProperties(I interactionToEnrich) throws EnricherException {
 
@@ -30,6 +33,7 @@ public class MinimalModelledInteractionEnricher<I extends ModelledInteraction> e
 
     /**
      * The sourceEnricher which is currently being used for the enriching or updating of sources.
+     *
      * @return The source enricher. Can be null.
      */
     public SourceEnricher getSourceEnricher() {
@@ -37,25 +41,40 @@ public class MinimalModelledInteractionEnricher<I extends ModelledInteraction> e
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the sourceEnricher to be used.
-     * @param sourceEnricher The source enricher to be used. Can be null.
      */
     public void setSourceEnricher(SourceEnricher sourceEnricher) {
         this.sourceEnricher = sourceEnricher;
     }
 
+    /**
+     * <p>processSource.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processSource(I interactionToEnrich) throws EnricherException {
         if( getSourceEnricher() != null
                 && interactionToEnrich.getSource() != null )
             getSourceEnricher().enrich(interactionToEnrich.getSource());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(I objectToEnrich, I objectSource) throws EnricherException {
         // source
         processSource(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>processSource.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processSource(I objectToEnrich, I objectSource) throws EnricherException {
         if (objectSource.getSource() != null && objectToEnrich.getSource() == null){
             objectToEnrich.setSource(objectSource.getSource());

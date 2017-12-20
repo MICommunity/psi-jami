@@ -11,16 +11,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public interface ExtendedPsiXmlSource extends Source{
 
     /**
      * Gets the value of the release property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return a {@link java.lang.String} object.
      */
     public String getRelease();
 
@@ -29,18 +25,14 @@ public interface ExtendedPsiXmlSource extends Source{
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     public void setRelease(String value);
 
     /**
      * Gets the value of the releaseDate property.
      *
-     * @return
-     *     possible object is
-     *     {@link javax.xml.datatype.XMLGregorianCalendar }
-     *
+     * @return a {@link javax.xml.datatype.XMLGregorianCalendar} object.
      */
     public XMLGregorianCalendar getReleaseDate();
 
@@ -49,8 +41,7 @@ public interface ExtendedPsiXmlSource extends Source{
      *
      * @param value
      *     allowed object is
-     *     {@link javax.xml.datatype.XMLGregorianCalendar }
-     *
+     *     {@link javax.xml.datatype.XMLGregorianCalendar}
      */
     public void setReleaseDate(XMLGregorianCalendar value);
 }

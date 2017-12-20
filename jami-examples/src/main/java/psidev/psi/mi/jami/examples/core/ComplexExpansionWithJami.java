@@ -21,11 +21,11 @@ import java.util.Collection;
  * In this code example, we wil do spoke, matrix and bipartite expansion to explode n-ary interactions in binary interactions.
  *
  * - Spoke expansion: This assumes that all molecules in the complex interact with a single designated molecule, usually the bait.
- * -> interaction evidences: A bait is determined based on experimental role of each participant. Order of select :
- * bait > alternative bait (fluorescent donor, suppressor gene, ..) > alternative bait (enzyme, donor, phosphate donor, electron donor, photon donor) > alphabetical order
+ * -&gt; interaction evidences: A bait is determined based on experimental role of each participant. Order of select :
+ * bait &gt; alternative bait (fluorescent donor, suppressor gene, ..) &gt; alternative bait (enzyme, donor, phosphate donor, electron donor, photon donor) &gt; alphabetical order
  * In case of several baits, the first one in alphabetical order is chosen. There will be as many binary interactions as we have 'preys'
- * -> modelled interactions: A bait is determined only bases on biological role :
- * alternative bait (enzyme, donor, phosphate donor, electron donor, photon donor) > alphabetical order
+ * -&gt; modelled interactions: A bait is determined only bases on biological role :
+ * alternative bait (enzyme, donor, phosphate donor, electron donor, photon donor) &gt; alphabetical order
  *
  * - Matrix expansion: This assumes that all molecules in the complex interact with each other
  *
@@ -35,9 +35,14 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>09/02/15</pre>
  */
-
 public class ComplexExpansionWithJami {
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects.
+     * @throws java.lang.Exception if any.
+     */
     public static void main(String[] args) throws Exception{
         // Create test environment
         Interaction i1 = createInteractionWithBait();
@@ -73,6 +78,11 @@ public class ComplexExpansionWithJami {
 
     }
 
+    /**
+     * <p>createInteractionWithBait.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interaction} object.
+     */
     protected static Interaction createInteractionWithBait() {
         // first create an interaction
 

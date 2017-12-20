@@ -7,6 +7,7 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public interface BioactiveEntityEnricherListener extends InteractorEnricherListener<BioactiveEntity> {
 

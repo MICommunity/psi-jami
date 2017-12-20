@@ -19,13 +19,17 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public class XmlCooperativityEvidence implements CooperativityEvidence, FileSourceContext {
     private PsiXmlLocator sourceLocator;
     private Experiment exp;
     private Publication publication;
     private Collection<CvTerm> evidenceMethods;
 
+    /**
+     * <p>Constructor for XmlCooperativityEvidence.</p>
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public XmlCooperativityEvidence(Experiment exp) {
         if (exp == null){
             throw new IllegalArgumentException("The experiment is mandatory");
@@ -33,6 +37,11 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         this.exp = exp;
     }
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         if (this.publication == null){
             if (exp.getPublication() == null){
@@ -46,10 +55,16 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return this.publication;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator locator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -62,19 +77,33 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Cooperativity evidence: "+getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>initialiseEvidenceMethods.</p>
+     */
     protected void initialiseEvidenceMethods(){
         this.evidenceMethods = new ArrayList<CvTerm>();
     }
 
+    /**
+     * <p>initialiseEvidenceMethodsWith.</p>
+     *
+     * @param methods a {@link java.util.Collection} object.
+     */
     protected void initialiseEvidenceMethodsWith(Collection<CvTerm> methods){
         if (methods == null){
             this.evidenceMethods = Collections.EMPTY_LIST;
@@ -84,6 +113,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         }
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         if (publication == null){
             throw new IllegalArgumentException("The publication cannot be null in a CooperativityEvidence");
@@ -91,6 +121,11 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         this.publication = publication;
     }
 
+    /**
+     * <p>Getter for the field <code>evidenceMethods</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CvTerm> getEvidenceMethods() {
 
         if (evidenceMethods == null){
@@ -99,6 +134,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return evidenceMethods;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -112,6 +148,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return UnambiguousCooperativityEvidenceComparator.areEquals(this, (CooperativityEvidence) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousCooperativityEvidenceComparator.hashCode(this);

@@ -9,7 +9,6 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>07/12/12</pre>
  */
-
 public interface ParticipantEvidence extends Participant<InteractionEvidence, FeatureEvidence>,ExperimentalEntity {
     /**
      * The experimental role of the participant.
@@ -17,6 +16,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * It the experimental role role of a participant is not known or not relevant, the method should return
      * unspecified role (MI:0499)
      * Ex: bait, prey, ...
+     *
      * @return the experimental role
      */
     public CvTerm getExperimentalRole();
@@ -24,6 +24,7 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
     /**
      * Sets the experimental role.
      * If expRole is null, it should create a unspecified role (MI:0499)
+     *
      * @param expRole : experimental role
      */
     public void setExperimentalRole(CvTerm expRole);
@@ -33,7 +34,9 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * Each identification method is a controlled vocabulary term.
      * The collection cannot be null. If the participant does not have any identification methods, this method should return an empty collection
      * Ex: western blot, immunostaining, ...
+     *
      * @return the participant identification method
+     * @param <C> a C object
      */
     public <C extends CvTerm> Collection<C> getIdentificationMethods();
 
@@ -42,7 +45,9 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * Each experimental preparation is a controlled vocabulary term.
      * The Collection cannot be null. If the participant does not have any experimental preparations, the method should return an empty Collection.
      * Ex: engineered, cDNA library, ...
+     *
      * @return the experimental preparations.
+     * @param <C> a C object
      */
     public <C extends CvTerm> Collection<C> getExperimentalPreparations();
 
@@ -50,12 +55,14 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * The organisms in which the participant has been expressed.
      * It can be null if not relevant or same as the original source organism of the interactor
      * Ex: human-hela cells, ...
+     *
      * @return the expressed in organism
      */
     public Organism getExpressedInOrganism();
 
     /**
      * Sets the expressed in organism
+     *
      * @param organism : expressed in organism
      */
     public void setExpressedInOrganism(Organism organism);
@@ -64,14 +71,18 @@ public interface ParticipantEvidence extends Participant<InteractionEvidence, Fe
      * The confidences for this participant.
      * The Collection cannot be null. If the participant does not have any confidences, the method should return an empty Collection.
      * Ex: author based scores, statistical confidences, ...
+     *
      * @return the confidences
+     * @param <C> a C object
      */
     public <C extends Confidence> Collection<C> getConfidences();
 
     /**
      * Numerical parameters associated with this participant.
      * The Collection cannot be null. If the participant does not have any parameters, the method should return an empty Collection.
+     *
      * @return the parameters
+     * @param <P> a P object
      */
     public <P extends Parameter> Collection<P> getParameters();
 }

@@ -9,12 +9,12 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>20/05/13</pre>
  */
-
 public interface ResultingSequence {
 
     /**
      * The resulting sequence portion.
      * It can be null if we provide a valid Xref to a variant database such as dbSNP.
+     *
      * @return The resulting sequence portion as a String
      */
     public String getNewSequence();
@@ -22,6 +22,7 @@ public interface ResultingSequence {
     /**
      * The original sequence portion.
      * It can be null if we provide a valid Xref to a variant database such as dbSNP.
+     *
      * @return The original sequence portion.
      */
     public String getOriginalSequence();
@@ -29,18 +30,22 @@ public interface ResultingSequence {
     /**
      * The collection of external database cross-references for this resulting sequence portion.
      * It cannot be null so if the ResultingSequence does not have any Xrefs, the method should return an empty collection
+     *
      * @return The collection of xrefs for this resultingSequence object
+     * @param <X> a X object
      */
-    public Collection<Xref> getXrefs();
+    public <X extends Xref> Collection<X> getXrefs();
 
     /**
      * Sets the new sequence of this object
+     *
      * @param sequence : new sequence
      */
     public void setNewSequence(String sequence);
 
     /**
      * Sets the original sequence of this object
+     *
      * @param sequence : original sequence
      */
     public void setOriginalSequence(String sequence);

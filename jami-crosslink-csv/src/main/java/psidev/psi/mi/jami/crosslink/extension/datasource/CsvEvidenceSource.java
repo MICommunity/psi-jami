@@ -17,29 +17,53 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>26/08/14</pre>
  */
-
 public class CsvEvidenceSource extends AbstractCsvSource<InteractionEvidence>{
 
+    /**
+     * <p>Constructor for CsvEvidenceSource.</p>
+     */
     public CsvEvidenceSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for CsvEvidenceSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public CsvEvidenceSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for CsvEvidenceSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public CsvEvidenceSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for CsvEvidenceSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public CsvEvidenceSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for CsvEvidenceSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public CsvEvidenceSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected AbstractCsvInteractionEvidenceParser<InteractionEvidence> instantiateLineParser() {
         return new CsvInteractionEvidenceParser();

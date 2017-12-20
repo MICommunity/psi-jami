@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.commons;
  * @version $Id$
  * @since <pre>01/03/13</pre>
  */
-
 public enum MIFileType {
 
     psimi_xml, mitab, other

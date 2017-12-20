@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.xml;
  * @version $Id$
  * @since <pre>04/12/13</pre>
  */
-
 public enum PsiXmlVersion {
     v2_5_4, v2_5_3, v3_0_0
 }

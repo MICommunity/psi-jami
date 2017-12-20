@@ -7,10 +7,12 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/07/13
+ * @version $Id: $
  */
 public interface ParticipantPoolChangeListener<F extends ParticipantPool> extends ParticipantChangeListener<F> {
 
     /**
+     * <p>onTypeUpdate</p>
      *
      * @param participant : updated participant
      * @param oldType : old type
@@ -18,6 +20,7 @@ public interface ParticipantPoolChangeListener<F extends ParticipantPool> extend
     public void onTypeUpdate(F participant, CvTerm oldType);
 
     /**
+     * <p>onAddedCandidate</p>
      *
      * @param participant : updated participant
      * @param added : added candidate
@@ -25,6 +28,7 @@ public interface ParticipantPoolChangeListener<F extends ParticipantPool> extend
     public void onAddedCandidate(F participant, ParticipantCandidate added);
 
     /**
+     * <p>onRemovedCandidate</p>
      *
      * @param participant : updated participant
      * @param removed : removed candidate

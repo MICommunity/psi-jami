@@ -16,7 +16,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class ParticipantBaseComparator implements Comparator<Participant> {
 
     private Comparator<CvTerm> cvTermComparator;
@@ -24,6 +23,7 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
 
     /**
      * Creates a new ParticipantBaseComparator
+     *
      * @param interactorComparator : interactor comparator required for comparing the molecules
      * @param cvTermComparator : CvTerm comparator required for comparing biological roles
      */
@@ -40,18 +40,38 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
         this.cvTermComparator = cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>getEntityBaseComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     */
     public EntityBaseComparator getEntityBaseComparator() {
         return entityComparator;
     }
 
+    /**
+     * <p>isIgnoreInteractors</p>
+     *
+     * @return a boolean.
+     */
     public boolean isIgnoreInteractors() {
         return entityComparator.isIgnoreInteractors();
     }
 
+    /**
+     * <p>setIgnoreInteractors</p>
+     *
+     * @param ignoreInteractors a boolean.
+     */
     public void setIgnoreInteractors(boolean ignoreInteractors) {
         this.entityComparator.setIgnoreInteractors(ignoreInteractors);
     }
@@ -60,12 +80,13 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will compare the biological roles using AbstractCvTermComparator. If both biological roles are the same, it
      * will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
-     * it will compare the features using a Comparator<Feature>.
+     * it will compare the features using a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Feature}.
      *
      * This comparator will ignore all the other properties of a participant.
-     * @param participant1
-     * @param participant2
-     * @return
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @return a int.
      */
     public int compare(Participant participant1, Participant participant2) {
         int EQUAL = 0;

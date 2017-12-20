@@ -39,9 +39,20 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlParameter.</p>
+     */
     public AbstractXmlParameter() {
     }
 
+    /**
+     * <p>Constructor for AbstractXmlParameter.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param uncertainty a {@link java.math.BigDecimal} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlParameter(CvTerm type, ParameterValue value, BigDecimal uncertainty, CvTerm unit) {
         this.type = type;
         this.value = value;
@@ -49,6 +60,11 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
         this.unit = unit;
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         if (this.type == null){
             this.type = new DefaultCvTerm(PsiXmlUtils.UNSPECIFIED);
@@ -56,14 +72,29 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
         return this.type;
     }
 
+    /**
+     * <p>Getter for the field <code>uncertainty</code>.</p>
+     *
+     * @return a {@link java.math.BigDecimal} object.
+     */
     public BigDecimal getUncertainty() {
         return this.uncertainty;
     }
 
+    /**
+     * <p>Getter for the field <code>unit</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getUnit() {
         return this.unit;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     */
     public ParameterValue getValue() {
         if (this.value == null){
             this.value = new ParameterValue(new BigDecimal(0));
@@ -76,8 +107,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "term", required = true)
     public void setJAXBTerm(String value) {
@@ -100,8 +130,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "termAc")
     public void setJAXBTermAc(String value) {
@@ -118,8 +147,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "unit")
     public void setJAXBUnit(String value) {
@@ -141,8 +169,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "unitAc")
     public void setUnitAc(String value) {
@@ -164,8 +191,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Short }
-     *
+     *     {@link java.lang.Short}
      */
     @XmlAttribute(name = "base")
     public void setJAXBBase(Short value) {
@@ -177,8 +203,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Short }
-     *
+     *     {@link java.lang.Short}
      */
     @XmlAttribute(name = "exponent")
     public void setJAXBExponent(Short value) {
@@ -190,8 +215,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link java.math.BigDecimal }
-     *
+     *     {@link java.math.BigDecimal}
      */
     @XmlAttribute(name = "factor", required = true)
     public void setJAXBFactor(BigDecimal value) {
@@ -204,11 +228,17 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
         this.value = new ParameterValue(value != null ? value : new BigDecimal(0), getValue().getBase(), getValue().getExponent());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -216,6 +246,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -233,14 +264,14 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Double }
-     *
+     *     {@link java.lang.Double}
      */
     @XmlAttribute(name = "uncertainty")
     public void setJAXBUncertainty(BigDecimal value) {
         this.uncertainty = value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -254,11 +285,13 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
         return UnambiguousParameterComparator.areEquals(this, (Parameter) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Xml Parameter: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousParameterComparator.hashCode(this);

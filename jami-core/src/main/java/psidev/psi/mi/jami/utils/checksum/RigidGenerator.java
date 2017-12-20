@@ -11,12 +11,14 @@ import java.util.List;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class RigidGenerator {
 
     private List<String> rogidCollection = new ArrayList<String>();
     private RogidGenerator rogidGenerator;
 
+    /**
+     * <p>Constructor for RigidGenerator.</p>
+     */
     public RigidGenerator() {
         rogidCollection = new ArrayList<String>();
         this.rogidGenerator = new RogidGenerator();
@@ -30,7 +32,7 @@ public class RigidGenerator {
      * Generate a Seguid for the resulting String
      *
      * @return  Rogid
-     * @throws SeguidException  handled by SeguidException class
+     * @throws psidev.psi.mi.jami.utils.checksum.SeguidException  handled by psidev.psi.mi.jami.utils.checksum.SeguidException class
      */
     public String calculateRigid() throws SeguidException {
 
@@ -49,6 +51,11 @@ public class RigidGenerator {
 
     }
 
+    /**
+     * <p>getRogids</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<String> getRogids() {
         return rogidCollection;
     }

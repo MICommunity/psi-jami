@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.ModelledInteraction;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-
 public interface ModelledInteractionStream<T extends ModelledInteraction> extends InteractionStream<T> {
 }

@@ -21,7 +21,6 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public abstract class AbstractXmlFeatureWriter<F extends Feature> implements PsiXmlElementWriter<F> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
@@ -31,6 +30,12 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
     private PsiXmlElementWriter<Range> rangeWriter;
     private PsiXmlElementWriter<Alias> aliasWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlFeatureWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlFeatureWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlFeatureWriter");
@@ -43,6 +48,11 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
 
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -50,12 +60,25 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected abstract void initialiseXrefWriter();
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>featureTypeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getFeatureTypeWriter() {
         if (this.featureTypeWriter == null){
            initialiseFeatureTypeWriter();
@@ -63,12 +86,25 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         return featureTypeWriter;
     }
 
+    /**
+     * <p>initialiseFeatureTypeWriter.</p>
+     */
     protected abstract void initialiseFeatureTypeWriter();
 
+    /**
+     * <p>Setter for the field <code>featureTypeWriter</code>.</p>
+     *
+     * @param featureTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setFeatureTypeWriter(PsiXmlVariableNameWriter<CvTerm> featureTypeWriter) {
         this.featureTypeWriter = featureTypeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -76,10 +112,20 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         return attributeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>rangeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Range> getRangeWriter() {
         if (this.rangeWriter == null){
             initialiseRangeWriter();
@@ -87,12 +133,25 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         return rangeWriter;
     }
 
+    /**
+     * <p>initialiseRangeWriter.</p>
+     */
     protected abstract void initialiseRangeWriter();
 
+    /**
+     * <p>Setter for the field <code>rangeWriter</code>.</p>
+     *
+     * @param rangeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setRangeWriter(PsiXmlElementWriter<Range> rangeWriter) {
         this.rangeWriter = rangeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(streamWriter);
@@ -100,10 +159,16 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(F object) throws MIIOException {
         if (object != null){
@@ -138,12 +203,37 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
     }
 
+    /**
+     * <p>writeParameters.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeParameters(F object) throws XMLStreamException;
 
+    /**
+     * <p>writeFeatureRole.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeFeatureRole(F object) throws XMLStreamException;
 
+    /**
+     * <p>writeOtherAttributes.</p>
+     *
+     * @param object a F object.
+     * @param writeAttributeList a boolean.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherAttributes(F object, boolean writeAttributeList) throws XMLStreamException;
 
+    /**
+     * <p>writeAttributes.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttributes(F object) throws XMLStreamException {
         // write attributes
         if (!object.getAnnotations().isEmpty()){
@@ -165,6 +255,14 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
     }
 
+    /**
+     * <p>writeAttribute.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param nameAc a {@link java.lang.String} object.
+     * @param description a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttribute(String name, String nameAc, String description) throws XMLStreamException {
         // write start
         this.streamWriter.writeStartElement("attribute");
@@ -181,6 +279,12 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeRanges.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeRanges(F object) throws XMLStreamException {
         if (!object .getRanges().isEmpty()){
             // write start range list
@@ -193,14 +297,32 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherProperties(F object) throws XMLStreamException;
 
+    /**
+     * <p>writeFeatureType.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeFeatureType(F object) throws XMLStreamException {
         if (object.getType() != null){
             getFeatureTypeWriter().write(object.getType(), "featureType");
         }
     }
 
+    /**
+     * <p>writeXrefs.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefs(F object) throws XMLStreamException {
         if (!object.getIdentifiers().isEmpty()){
             writeXrefFromFeatureIdentifiers(object);
@@ -210,6 +332,12 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
     }
 
+    /**
+     * <p>writeXrefFromFeatureXrefs.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromFeatureXrefs(F object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -237,6 +365,12 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromFeatureIdentifiers.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromFeatureIdentifiers(F object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -297,6 +431,12 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeNames.</p>
+     *
+     * @param object a F object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeNames(F object) throws XMLStreamException {
         boolean hasShortLabel = object.getShortName() != null;
         boolean hasFullLabel = object.getFullName() != null;
@@ -324,10 +464,20 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

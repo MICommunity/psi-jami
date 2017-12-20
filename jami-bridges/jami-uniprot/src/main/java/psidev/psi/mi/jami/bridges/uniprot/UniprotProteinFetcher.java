@@ -40,6 +40,7 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  14/05/13
+
  */
 public class UniprotProteinFetcher
         implements ProteinFetcher {
@@ -51,6 +52,9 @@ public class UniprotProteinFetcher
     private Map<DatabaseType,CvTerm> selectedDatabases = null;
     private RogidGenerator rogidGenerator;
 
+    /**
+     * <p>Constructor for UniprotProteinFetcher.</p>
+     */
     public UniprotProteinFetcher() {
         uniProtQueryService = Client.getServiceFactoryInstance().getUniProtQueryService();
         rogidGenerator = new RogidGenerator();
@@ -69,19 +73,28 @@ public class UniprotProteinFetcher
         selectedDatabases.put(DatabaseType.IPI, new DefaultCvTerm("ipi", "MI:0675"));
     }
 
+    /**
+     * <p>Getter for the field <code>selectedDatabases</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     public Map<DatabaseType, CvTerm> getSelectedDatabases() {
         return selectedDatabases;
     }
 
+    /**
+     * <p>Setter for the field <code>selectedDatabases</code>.</p>
+     *
+     * @param selectedDatabases a {@link java.util.Map} object.
+     */
     public void setSelectedDatabases(Map<DatabaseType, CvTerm> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Takes the various type of uniprot protein identifier and uses the uniprotJAPI to retrieve the matching proteins.
-     * @param identifier    A Uniprot protein identifier, a Uniprot protein isoform identifier or a PRO identifier.
-     * @return              The proteins which match the given identifier.
-     * @throws BridgeFailedException
      */
     public Collection<Protein> fetchByIdentifier(String identifier)
             throws BridgeFailedException {
@@ -100,11 +113,10 @@ public class UniprotProteinFetcher
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Takes the various type of uniprot protein identifier
      * and uses the uniprotJAPI to retrieve the matching proteins.
-     * @param identifiers   The identifiers to search for.
-     * @return              The proteins which match an identifier in the query.
-     * @throws BridgeFailedException
      */
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         if(identifiers == null) throw new IllegalArgumentException("Could not perform search on null collection of identifiers.");

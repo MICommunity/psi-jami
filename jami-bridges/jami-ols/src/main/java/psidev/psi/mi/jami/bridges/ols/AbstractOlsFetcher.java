@@ -19,17 +19,24 @@ import java.util.*;
  * @version $Id$
  * @since <pre>21/08/13</pre>
  */
-
 public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetcher<T> {
 
     protected OLSClient olsClient;
     protected Map<String,String> dbMap = new HashMap<String, String>();
 
+    /**
+     * <p>Constructor for AbstractOlsFetcher.</p>
+     *
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public AbstractOlsFetcher() throws BridgeFailedException {
         this.olsClient = new OLSClient(new OLSWsConfigProd());
         initialiseDbMap();
     }
 
+    /**
+     * <p>initialiseDbMap.</p>
+     */
     protected void initialiseDbMap(){
         dbMap.put("psi-mi", "MI");
         dbMap.put("psi-mod", "MOD");
@@ -38,6 +45,13 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         dbMap.put("evidence ontology", "ECO");
     }
 
+    /**
+     * <p>createXref.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param miOntologyName a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected Xref createXref(String identifier, String  miOntologyName){
         if (CvTerm.PSI_MI.equalsIgnoreCase(miOntologyName)){
             return XrefUtils.createPsiMiIdentity(identifier);
@@ -48,6 +62,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         }
     }
 
+    /** {@inheritDoc} */
     public T fetchByIdentifier(String termIdentifier, String miOntologyName) throws BridgeFailedException {
 
         if(termIdentifier == null || termIdentifier.isEmpty())
@@ -72,6 +87,14 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return instantiateCvTerm(fullName , createXref(termIdentifier , miOntologyName), olsOntologyName);
     }
 
+    /**
+     * <p>fetchByIdentifier.</p>
+     *
+     * @param termIdentifier a {@link java.lang.String} object.
+     * @param ontologyCvTerm a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public T fetchByIdentifier(String termIdentifier, CvTerm ontologyCvTerm) throws BridgeFailedException {
 
         if(termIdentifier == null || termIdentifier.isEmpty())
@@ -96,6 +119,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return instantiateCvTerm(fullName , XrefUtils.createIdentityXref(ontologyCvTerm.getShortName(), ontologyCvTerm.getMIIdentifier() , termIdentifier), olsOntologyName);
     }
 
+    /** {@inheritDoc} */
     public T fetchByName(String searchName, String miOntologyName) throws BridgeFailedException {
 
         if(searchName == null || searchName.isEmpty())
@@ -121,6 +145,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return instantiateCvTerm(fullName , createXref(entry.getKey() , miOntologyName), olsOntologyName);
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByName(String searchName) throws BridgeFailedException {
         if(searchName == null || searchName.isEmpty())
             throw new IllegalArgumentException("Can not search for an identifier without a value.");
@@ -146,6 +171,14 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return results;
     }
 
+    /**
+     * <p>fetchByIdentifiers.</p>
+     *
+     * @param termIdentifiers a {@link java.util.Collection} object.
+     * @param miOntologyName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, String miOntologyName)
             throws BridgeFailedException {
         if (termIdentifiers == null){
@@ -162,6 +195,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return results;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, CvTerm ontologyDatabase)
             throws BridgeFailedException {
         if (termIdentifiers == null){
@@ -178,6 +212,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return results;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames, String miOntologyName)
             throws BridgeFailedException {
         if (searchNames == null){
@@ -194,6 +229,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return results;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames)
             throws BridgeFailedException {
         if (searchNames == null){
@@ -208,5 +244,13 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         return results;
     }
 
+    /**
+     * <p>instantiateCvTerm.</p>
+     *
+     * @param termName a {@link java.lang.String} object.
+     * @param identity a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param olsOntologyName a {@link java.lang.String} object.
+     * @return a T object.
+     */
     protected abstract T instantiateCvTerm(String termName, Xref identity, String olsOntologyName);
 }

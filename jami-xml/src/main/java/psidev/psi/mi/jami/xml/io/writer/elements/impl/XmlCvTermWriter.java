@@ -25,6 +25,11 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
     private PsiXmlElementWriter<Alias> aliasWriter;
     private PsiXmlXrefWriter xrefWriter;
 
+    /**
+     * <p>Constructor for XmlCvTermWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlCvTermWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlCvTermWriter");
@@ -32,6 +37,11 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (aliasWriter == null){
             aliasWriter = new XmlAliasWriter(streamWriter);
@@ -39,10 +49,20 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -50,14 +70,23 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         this.xrefWriter = new XmlDbXrefWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(CvTerm object, String name) throws MIIOException {
         try {
@@ -109,13 +138,31 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         }
     }
 
+    /**
+     * <p>writeStartCvTerm.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeStartCvTerm(String name) throws XMLStreamException{
         getStreamWriter().writeStartElement(name);
     }
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeOtherProperties(CvTerm term) throws XMLStreamException{
         // nothing to do here
     }
 
+    /**
+     * <p>writeXrefFromCvXrefs.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromCvXrefs(CvTerm object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -143,6 +190,12 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromCvIdentifiers.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromCvIdentifiers(CvTerm object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -236,6 +289,11 @@ public class XmlCvTermWriter implements PsiXmlVariableNameWriter<CvTerm> {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

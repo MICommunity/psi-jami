@@ -14,9 +14,14 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>20/02/15</pre>
  */
-
 public class FetchDataFromChebi {
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects.
+     * @throws java.lang.Exception if any.
+     */
     public static void main(String[] args) throws Exception{
         // create fetcher from chebi
         // simple chebi fetcher

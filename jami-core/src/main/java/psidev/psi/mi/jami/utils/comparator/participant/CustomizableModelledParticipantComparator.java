@@ -12,12 +12,24 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public interface CustomizableModelledParticipantComparator<E extends ModelledEntity> extends Comparator<E> {
 
+    /**
+     * <p>isCheckComplexesAsInteractors</p>
+     *
+     * @return a boolean.
+     */
     public boolean isCheckComplexesAsInteractors();
 
+    /**
+     * <p>setCheckComplexesAsInteractors</p>
+     *
+     * @param checkComplexesAsInteractors a boolean.
+     */
     public void setCheckComplexesAsInteractors(boolean checkComplexesAsInteractors);
 
+    /**
+     * <p>clearProcessedComplexes</p>
+     */
     public void clearProcessedComplexes();
 }

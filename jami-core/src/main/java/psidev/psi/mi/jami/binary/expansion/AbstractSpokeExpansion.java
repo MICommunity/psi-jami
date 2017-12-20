@@ -15,14 +15,17 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>19/06/13</pre>
  */
-
 public abstract class AbstractSpokeExpansion<T extends Interaction, B extends BinaryInteraction>
         extends AbstractComplexExpansionMethod<T,B> {
 
+    /**
+     * <p>Constructor for AbstractSpokeExpansion.</p>
+     */
     public AbstractSpokeExpansion() {
         super(CvTermUtils.createMICvTerm(ComplexExpansionMethod.SPOKE_EXPANSION, ComplexExpansionMethod.SPOKE_EXPANSION_MI));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Collection<B> collectBinaryInteractionsFromNary(T interaction) {
         Collection<B> binaryInteractions = new ArrayList<B>(interaction.getParticipants().size()-1);
@@ -42,20 +45,22 @@ public abstract class AbstractSpokeExpansion<T extends Interaction, B extends Bi
     }
 
     /**
+     * <p>createBinaryInteraction</p>
      *
      * @param interaction : the interaction to expand
      * @param c1 : the bait
      * @param c2 : the prey
-     * @param <P> : participant type
      * @return the binary interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> B createBinaryInteraction(T interaction, P c1, P c2);
 
     /**
+     * <p>collectBestBaitForSpokeExpansion</p>
      *
      * @param interaction : the interaction to expand
-     * @param <P> : participant type
      * @return the best bait to use for complex expansion among all participants of this interaction
+     * @param <P> a P object.
      */
     protected abstract <P extends Participant> P collectBestBaitForSpokeExpansion(T interaction);
 }

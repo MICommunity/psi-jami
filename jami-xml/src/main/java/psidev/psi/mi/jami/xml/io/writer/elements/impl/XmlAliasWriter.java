@@ -15,10 +15,14 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlAliasWriter implements PsiXmlElementWriter<Alias> {
     private XMLStreamWriter streamWriter;
 
+    /**
+     * <p>Constructor for XmlAliasWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlAliasWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XML25AliasWriter");
@@ -26,6 +30,7 @@ public class XmlAliasWriter implements PsiXmlElementWriter<Alias> {
         this.streamWriter = writer;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Alias object) throws MIIOException {
         if (object != null){

@@ -10,11 +10,13 @@ import java.util.EventListener;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/08/13
+ * @version $Id: $
  */
 public interface IdentifiersChangeListener<T> extends EventListener {
 
     /**
      * Listen to the event where an identifier has been added to the protein identifiers.
+     *
      * @param o        The object which has changed.
      * @param added             The added identifier
      */
@@ -22,6 +24,7 @@ public interface IdentifiersChangeListener<T> extends EventListener {
 
     /**
      * Listen to the event where an identifier has been removed from the protein identifiers.
+     *
      * @param o        The object which has changed.
      * @param removed           The removed identifier.
      */

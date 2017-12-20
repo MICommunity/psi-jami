@@ -37,7 +37,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public abstract class AbstractMitabStreamSource<T extends Interaction, P extends Participant, F extends Feature> implements MitabStreamSource<T>{
 
     private static final Logger logger = Logger.getLogger("AbstractMitabStreamSource");
@@ -62,34 +61,61 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
     public AbstractMitabStreamSource(){
     }
 
+    /**
+     * <p>Constructor for AbstractMitabStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMitabStreamSource(File file) throws IOException {
 
         initialiseFile(file);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractMitabStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public AbstractMitabStreamSource(InputStream input) {
 
         initialiseInputStream(input);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractMitabStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public AbstractMitabStreamSource(Reader reader) {
 
         initialiseReader(reader);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractMitabStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public AbstractMitabStreamSource(URL url) {
 
         initialiseURL(url);
         isInitialised = true;
     }
 
+    /**
+     * <p>getFileParserListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
+     */
     public MIFileParserListener getFileParserListener() {
         return this.defaultParserListener;
     }
 
+    /** {@inheritDoc} */
     public void setFileParserListener(MIFileParserListener listener) {
         this.defaultParserListener = listener;
         if (listener instanceof MitabParserListener){
@@ -97,6 +123,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
         if (options == null && !isInitialised){
             throw new IllegalArgumentException("The options for the Mitab interaction datasource should contain at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
@@ -165,6 +192,11 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         isInitialised = true;
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (isInitialised){
 
@@ -224,6 +256,11 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException{
         if (isInitialised){
             this.originalFile = null;
@@ -240,11 +277,17 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public boolean validateSyntax(MIFileParserListener listener) {
         setMIFileParserListener(listener);
         return validateSyntax();
     }
 
+    /**
+     * <p>validateSyntax.</p>
+     *
+     * @return a boolean.
+     */
     public boolean validateSyntax() {
         if (!isInitialised){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource should contain at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
@@ -270,6 +313,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         return isValid;
     }
 
+    /** {@inheritDoc} */
     public void onInvalidSyntax(FileSourceContext context, Exception e) {
         isValid = false;
         if (defaultParserListener != null){
@@ -277,24 +321,28 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSyntaxWarning(FileSourceContext context, String message) {
         if (defaultParserListener != null){
             defaultParserListener.onSyntaxWarning(context, message);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingCvTermName(CvTerm term, FileSourceContext context, String message) {
         if (defaultParserListener != null){
             defaultParserListener.onMissingCvTermName(term, context, message);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingInteractorName(Interactor interactor, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onMissingInteractorName(interactor, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralCvTermsFound(Collection<MitabCvTerm> terms, FileSourceContext context, String message) {
         if (parserListener != null){
             parserListener.onSeveralCvTermsFound(terms, context, message);
@@ -304,6 +352,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralHostOrganismFound(Collection<MitabOrganism> organisms, FileSourceContext context) {
         if (parserListener != null){
             parserListener.onSeveralHostOrganismFound(organisms, context);
@@ -313,6 +362,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onParticipantWithoutInteractor(Participant participant, FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -320,6 +370,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractionWithoutParticipants(Interaction interaction, FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -328,6 +379,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
     }
 
 
+    /** {@inheritDoc} */
     public void onMissingInteractorIdentifierColumns(int line, int column, int mitabColumn) {
         isValid = false;
         if (parserListener != null){
@@ -338,6 +390,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralOrganismFound(Collection<MitabOrganism> organisms) {
         if (parserListener != null){
             parserListener.onSeveralOrganismFound(organisms);
@@ -347,6 +400,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralStoichiometryFound(Collection<MitabStoichiometry> stoichiometry) {
         if (parserListener != null){
             parserListener.onSeveralStoichiometryFound(stoichiometry);
@@ -356,6 +410,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralFirstAuthorFound(Collection<MitabAuthor> authors) {
         if (parserListener != null){
             parserListener.onSeveralFirstAuthorFound(authors);
@@ -365,6 +420,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralSourceFound(Collection<MitabSource> sources) {
         if (parserListener != null){
             parserListener.onSeveralSourceFound(sources);
@@ -374,6 +430,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralCreatedDateFound(Collection<MitabDate> dates) {
         if (parserListener != null){
             parserListener.onSeveralCreatedDateFound(dates);
@@ -383,6 +440,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralUpdatedDateFound(Collection<MitabDate> dates) {
         if (parserListener != null){
             parserListener.onSeveralUpdatedDateFound(dates);
@@ -392,6 +450,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onTextFoundInIdentifier(MitabXref xref) {
         if (parserListener != null){
             parserListener.onTextFoundInIdentifier(xref);
@@ -401,6 +460,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onTextFoundInConfidence(MitabConfidence conf) {
         if (parserListener != null){
             parserListener.onTextFoundInConfidence(conf);
@@ -410,6 +470,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingExpansionId(MitabCvTerm expansion) {
         if (parserListener != null){
             parserListener.onMissingExpansionId(expansion);
@@ -419,6 +480,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onSeveralUniqueIdentifiers(Collection<MitabXref> ids) {
         if (parserListener != null){
             parserListener.onSeveralUniqueIdentifiers(ids);
@@ -428,6 +490,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onEmptyUniqueIdentifiers(int line, int column, int mitabColumn) {
         isValid = false;
         if (parserListener != null){
@@ -438,6 +501,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onAliasWithoutDbSource(MitabAlias alias) {
         isValid = false;
         if (parserListener != null){
@@ -448,12 +512,14 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidOrganismTaxid(String taxid, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidOrganismTaxid(taxid, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingParameterValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -461,6 +527,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingParameterType(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -468,6 +535,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingConfidenceValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -475,6 +543,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingConfidenceType(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -482,6 +551,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingChecksumValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -489,6 +559,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingChecksumMethod(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -496,24 +567,28 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidPosition(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidPosition(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidRange(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidRange(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidStoichiometry(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidStoichiometry(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onXrefWithoutDatabase(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -521,6 +596,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onXrefWithoutId(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -528,6 +604,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onAnnotationWithoutTopic(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -535,6 +612,7 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /** {@inheritDoc} */
     public void onAliasWithoutName(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -542,6 +620,11 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /**
+     * <p>getInteractionsIterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     public Iterator<T> getInteractionsIterator() {
         if (!isInitialised){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource should contain at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
@@ -553,10 +636,20 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         return createMitabIterator();
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.factory.InteractorFactory} object.
+     */
     public InteractorFactory getInteractorFactory() {
         return interactorFactory;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorFactory</code>.</p>
+     *
+     * @param interactorFactory a {@link psidev.psi.mi.jami.factory.InteractorFactory} object.
+     */
     public void setInteractorFactory(InteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
         if (this.lineParser != null){
@@ -564,26 +657,66 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         }
     }
 
+    /**
+     * <p>Getter for the field <code>lineParser</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParser} object.
+     */
     protected MitabLineParser<T,P,F> getLineParser() {
         return lineParser;
     }
 
+    /**
+     * <p>Setter for the field <code>lineParser</code>.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.tab.io.parser.AbstractInteractionLineParser} object.
+     */
     protected void setLineParser(AbstractInteractionLineParser<T,P,F> lineParser) {
         this.lineParser = lineParser;
         this.lineParser.setParserListener(this);
         this.lineParser.setInteractorFactory(this.interactorFactory);
     }
 
+    /**
+     * <p>initialiseMitabLineParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     protected abstract void initialiseMitabLineParser(Reader reader);
 
+    /**
+     * <p>initialiseMitabLineParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     protected abstract void initialiseMitabLineParser(File file);
 
+    /**
+     * <p>initialiseMitabLineParser.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     protected abstract void initialiseMitabLineParser(InputStream input);
 
+    /**
+     * <p>initialiseMitabLineParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     protected abstract void initialiseMitabLineParser(URL url);
 
+    /**
+     * <p>createMitabIterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     protected abstract Iterator<T> createMitabIterator();
 
+    /**
+     * <p>reInit.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     protected void reInit() throws MIIOException{
         if (isInitialised){
             if (this.originalFile != null){
@@ -705,27 +838,57 @@ public abstract class AbstractMitabStreamSource<T extends Interaction, P extends
         initialiseMitabLineParser(url);
     }
 
+    /**
+     * <p>Setter for the field <code>originalFile</code>.</p>
+     *
+     * @param originalFile a {@link java.io.File} object.
+     */
     protected void setOriginalFile(File originalFile) {
         this.originalFile = originalFile;
     }
 
+    /**
+     * <p>Setter for the field <code>originalStream</code>.</p>
+     *
+     * @param originalStream a {@link java.io.InputStream} object.
+     */
     protected void setOriginalStream(InputStream originalStream) {
         this.originalStream = originalStream;
     }
 
+    /**
+     * <p>Setter for the field <code>originalReader</code>.</p>
+     *
+     * @param originalReader a {@link java.io.Reader} object.
+     */
     protected void setOriginalReader(Reader originalReader) {
         this.originalReader = originalReader;
     }
 
+    /**
+     * <p>Setter for the field <code>originalURL</code>.</p>
+     *
+     * @param originalURL a {@link java.net.URL} object.
+     */
     protected void setOriginalURL(URL originalURL) {
         this.originalURL = originalURL;
     }
 
+    /**
+     * <p>setMitabFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
+     */
     protected void setMitabFileParserListener(MitabParserListener listener) {
         this.parserListener = listener;
         this.defaultParserListener = listener;
     }
 
+    /**
+     * <p>setMIFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
+     */
     protected void setMIFileParserListener(MIFileParserListener listener) {
         if (listener instanceof MitabParserListener){
             setMitabFileParserListener((MitabParserListener) listener);

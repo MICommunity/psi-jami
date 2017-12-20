@@ -18,10 +18,15 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public class ParameterUtils {
     private static Pattern PARAMETER_PATTERN = Pattern.compile("([-+]?[0-9]+\\.?[0-9]*)+x?([-+]?[0-9]*\\.?[0-9]*)?\\^?(\\(?[-+]?[0-9]*\\.?[0-9]*\\)?)?~?([-+]?[0-9]*\\.?[0-9]*)?");
 
+    /**
+     * <p>getParameterValueAsString</p>
+     *
+     * @param param a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String getParameterValueAsString(Parameter param){
         if (param == null){
             return null;
@@ -29,21 +34,55 @@ public class ParameterUtils {
         return param.getValue().toString() + (param.getUncertainty() != null ? " ~" + param.getUncertainty().toString() : "");
     }
 
+    /**
+     * <p>createParameterFromString</p>
+     *
+     * @param type a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalParameterException if any.
+     */
     public static Parameter createParameterFromString(String type, String value) throws IllegalParameterException {
 
         return createParameterFromString(new DefaultCvTerm(type), value, null);
     }
 
+    /**
+     * <p>createParameterFromString</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalParameterException if any.
+     */
     public static Parameter createParameterFromString(CvTerm type, String value) throws IllegalParameterException {
 
         return createParameterFromString(type, value, null);
     }
 
+    /**
+     * <p>createParameterFromString</p>
+     *
+     * @param type a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @param unit a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalParameterException if any.
+     */
     public static Parameter createParameterFromString(String type, String value, String unit) throws IllegalParameterException {
 
         return createParameterFromString(new DefaultCvTerm(type), value, new DefaultCvTerm(unit));
     }
 
+    /**
+     * <p>createParameterFromString</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalParameterException if any.
+     */
     public static Parameter createParameterFromString(CvTerm type, String value, CvTerm unit) throws IllegalParameterException {
 
         if (value == null){

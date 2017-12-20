@@ -16,7 +16,6 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class CuratedPublicationComparator implements Comparator<Publication> {
 
     private Comparator<Publication> publicationComparator;
@@ -24,6 +23,7 @@ public class CuratedPublicationComparator implements Comparator<Publication> {
 
     /**
      * Creates a new CuratedPublicationComparator.
+     *
      * @param pubComparator : the comparator for the publication (not curation information). It is required
      * @param sourceComparator : the source comparator
      */
@@ -38,19 +38,30 @@ public class CuratedPublicationComparator implements Comparator<Publication> {
         this.sourceComparator = sourceComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Publication> getPublicationComparator() {
         return publicationComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getSourceComparator() {
         return sourceComparator;
     }
 
     /**
      * It uses a AbstractPublicationComparator to compares the bibliographic details and then will compare first the curation depth, then the source and then the released date.
-     * @param publication1
-     * @param publication2
-     * @return
+     *
+     * @param publication1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param publication2 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @return a int.
      */
     public int compare(Publication publication1, Publication publication2) {
 

@@ -19,6 +19,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class MinimalInteractionEnricher<I extends Interaction>
         implements InteractionEnricher<I> {
@@ -29,8 +30,9 @@ public class MinimalInteractionEnricher<I extends Interaction>
 
     /**
      * Enrichment of a single interaction.
+     *
      * @param interactionToEnrich   The interaction which is to be enriched
-     * @throws EnricherException    Thrown if a fetcher encounters problems.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException    Thrown if a fetcher encounters problems.
      */
     public void enrich(I interactionToEnrich) throws EnricherException {
         if ( interactionToEnrich == null )
@@ -49,6 +51,12 @@ public class MinimalInteractionEnricher<I extends Interaction>
             listener.onEnrichmentComplete(interactionToEnrich , EnrichmentStatus.SUCCESS , "Interaction successfully enriched.");
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<I> objects) throws EnricherException {
         if( objects == null )
             throw new IllegalArgumentException("Cannot enrich a null collection of interactions.");
@@ -57,6 +65,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(I objectToEnrich, I objectSource) throws EnricherException {
         if (objectSource == null){
             enrich(objectToEnrich);
@@ -72,6 +87,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processMinimalUpdates.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processMinimalUpdates(I objectToEnrich, I objectSource) throws EnricherException {
         // check shortname
         processShortName(objectToEnrich, objectSource);
@@ -92,6 +114,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         processParticipants(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>processCreatedDate.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCreatedDate(I objectToEnrich, I objectSource) throws EnricherException{
         if (objectToEnrich.getCreatedDate() == null && objectSource.getCreatedDate() != null){
              objectToEnrich.setCreatedDate(objectSource.getCreatedDate());
@@ -101,6 +130,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processUpdateDate.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processUpdateDate(I objectToEnrich, I objectSource) throws EnricherException{
         if (objectToEnrich.getUpdatedDate() == null && objectSource.getUpdatedDate() != null){
             objectToEnrich.setUpdatedDate(objectSource.getUpdatedDate());
@@ -110,6 +146,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processShortName.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processShortName(I objectToEnrich, I objectSource) throws EnricherException{
         if (objectToEnrich.getShortName() == null && objectSource.getShortName() != null){
             objectToEnrich.setShortName(objectSource.getShortName());
@@ -119,15 +162,36 @@ public class MinimalInteractionEnricher<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(I objectToEnrich, I objectSource) throws EnricherException{
         // do nothing
     }
 
+    /**
+     * <p>processIdentifiers.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentifiers(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getIdentifiers(), objectSource.getIdentifiers(),false, true,
                 getInteractionEnricherListener(), getInteractionEnricherListener());
     }
 
+    /**
+     * <p>processParticipants.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processParticipants(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeParticipants(objectToEnrich, objectToEnrich.getParticipants(), objectSource.getParticipants(),
                 false, getInteractionEnricherListener(), getParticipantEnricher());
@@ -135,6 +199,13 @@ public class MinimalInteractionEnricher<I extends Interaction>
         processParticipants(objectToEnrich);
     }
 
+    /**
+     * <p>processInteractionType.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractionType(I objectToEnrich, I objectSource) throws EnricherException {
 
         if (objectToEnrich.getInteractionType() == null && objectSource.getInteractionType() != null){
@@ -148,8 +219,9 @@ public class MinimalInteractionEnricher<I extends Interaction>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * The current sub enricher for CvTerms.
-     * @param cvTermEnricher The enricher for cvTerms. Can be null.
      */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvTermEnricher){
         this.cvTermEnricher = cvTermEnricher;
@@ -157,6 +229,7 @@ public class MinimalInteractionEnricher<I extends Interaction>
 
     /**
      * Sets the sub enricher for CvTerms.
+     *
      * @return  The enricher for CvTerms. Can be null.
      */
     public CvTermEnricher<CvTerm> getCvTermEnricher(){
@@ -164,14 +237,16 @@ public class MinimalInteractionEnricher<I extends Interaction>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the sub enricher for participants.
-     * @param participantEnricher   The enricher for participants. Can be null.
      */
     public void setParticipantEnricher(ParticipantEnricher participantEnricher){
         this.participantEnricher = participantEnricher;
     }
     /**
      * The current sub enricher for participants.
+     *
      * @return  The enricher for participants. Can be null.
      */
     public ParticipantEnricher getParticipantEnricher(){
@@ -180,6 +255,7 @@ public class MinimalInteractionEnricher<I extends Interaction>
 
     /**
      * The listener for changes made to interactions.
+     *
      * @return  The listener for interaction changes. Can be null.
      */
     public InteractionEnricherListener<I> getInteractionEnricherListener() {
@@ -187,19 +263,32 @@ public class MinimalInteractionEnricher<I extends Interaction>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the listener to be used when interactions are changed.
-     * @param listener  The listener for interaction changes. Can be null.
      */
     public void setInteractionEnricherListener(InteractionEnricherListener<I> listener) {
         this.listener = listener;
     }
 
+    /**
+     * <p>processInteractionType.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractionType(I interactionToEnrich) throws EnricherException {
         if( getCvTermEnricher() != null &&
                 interactionToEnrich.getInteractionType() != null)
             getCvTermEnricher().enrich(interactionToEnrich.getInteractionType());
     }
 
+    /**
+     * <p>processParticipants.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processParticipants(I interactionToEnrich) throws EnricherException {
         if( getParticipantEnricher() != null )
             getParticipantEnricher().enrich(interactionToEnrich.getParticipants());
@@ -208,8 +297,9 @@ public class MinimalInteractionEnricher<I extends Interaction>
     /**
      * The strategy used for enriching the interaction.
      * Can be overwritten to change the behaviour.
+     *
      * @param interactionToEnrich   The interaction being enriched.
-     * @throws EnricherException    Thrown if a fetcher encounters a problem.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException    Thrown if a fetcher encounters a problem.
      */
     protected void processOtherProperties(I interactionToEnrich) throws EnricherException {
         // do nothing by default

@@ -16,7 +16,6 @@ import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class UnambiguousAnnotationComparator extends AnnotationComparator {
 
     private static UnambiguousAnnotationComparator unambiguousAnnotationComparator;
@@ -24,12 +23,12 @@ public class UnambiguousAnnotationComparator extends AnnotationComparator {
 
     /**
      * Creates a new AnnotationComparator with UnambiguousCvTermComparator
-     *
      */
     public UnambiguousAnnotationComparator() {
         super(new UnambiguousCvTermComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getTopicComparator() {
         return (UnambiguousCvTermComparator) super.getTopicComparator();
@@ -41,9 +40,10 @@ public class UnambiguousAnnotationComparator extends AnnotationComparator {
      * - The annotation which is not null is before null.
      * - use UnambiguousCvTermComparator to compare the topics. If they are equals, compares the values (case insensitive)
      * - If both annotations have same topic, the one with a null value is always after the one with a non null value.
-     * @param annotation1
-     * @param annotation2
-     * @return
+     *
+     * @param annotation1 a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @param annotation2 a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @return a int.
      */
     public int compare(Annotation annotation1, Annotation annotation2) {
         return super.compare(annotation1, annotation2);
@@ -51,8 +51,9 @@ public class UnambiguousAnnotationComparator extends AnnotationComparator {
 
     /**
      * Use UnambiguousAnnotationComparator to know if two annotations are equals.
-     * @param annotation1
-     * @param annotation2
+     *
+     * @param annotation1 a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @param annotation2 a {@link psidev.psi.mi.jami.model.Annotation} object.
      * @return true if the two annotations are equal
      */
     public static boolean areEquals(Annotation annotation1, Annotation annotation2){
@@ -64,8 +65,9 @@ public class UnambiguousAnnotationComparator extends AnnotationComparator {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param annot
+     * @param annot a {@link psidev.psi.mi.jami.model.Annotation} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Annotation annot){

@@ -18,11 +18,11 @@ import java.util.Comparator;
  * it will compare interactionEffect and then interactionDependency using UnambiguousCvTermComparator. Then it will compare interpro identifier and if the features do not have an interpro identifier,
  * it will look for at the identifiers in the feature identifiers using UnambiguousIdentifierComparator.
  * Finally, it will look at the ranges using UnambiguousRangeComparator.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class FeatureBaseComparator implements Comparator<Feature> {
 
     private CollectionComparator<Xref> externalIdentifierCollectionComparator;
@@ -33,6 +33,10 @@ public class FeatureBaseComparator implements Comparator<Feature> {
     /**
      * Creates a new UnambiguousFeatureBaseComparator. It will use a UnambiguousCvTermComparator to compare feature types and range status,
      * a UnambiguousExternalIdentifierComparator to compare identifiers and a UnambiguousRangeComparator to compare ranges
+     *
+     * @param cvComparator a {@link java.util.Comparator} object.
+     * @param identifierComparator a {@link java.util.Comparator} object.
+     * @param rangeComparator a {@link psidev.psi.mi.jami.utils.comparator.range.RangeComparator} object.
      */
     public FeatureBaseComparator(Comparator<CvTerm> cvComparator, Comparator<Xref> identifierComparator,
                                  RangeComparator rangeComparator) {
@@ -51,6 +55,13 @@ public class FeatureBaseComparator implements Comparator<Feature> {
         this.rangeCollectionComparator = new RangeCollectionComparator(rangeComparator);
     }
 
+    /**
+     * <p>Constructor for FeatureBaseComparator.</p>
+     *
+     * @param cvComparator a {@link java.util.Comparator} object.
+     * @param identifierComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param rangeComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public FeatureBaseComparator(Comparator<CvTerm> cvComparator, CollectionComparator<Xref> identifierComparator,
                                  CollectionComparator<Range> rangeComparator) {
         if (cvComparator == null){
@@ -68,6 +79,11 @@ public class FeatureBaseComparator implements Comparator<Feature> {
         this.rangeCollectionComparator = rangeComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>externalIdentifierCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Xref> getExternalIdentifierCollectionComparator() {
         return externalIdentifierCollectionComparator;
     }
@@ -77,6 +93,10 @@ public class FeatureBaseComparator implements Comparator<Feature> {
      * it will compare interactionEffect and then interactionDependency using UnambiguousCvTermComparator. Then it will compare interpro identifier and if the features do not have an interpro identifier,
      * it will look for at the identifiers in the feature identifiers using UnambiguousIdentifierComparator.
      * Finally, it will look at the ranges using UnambiguousRangeComparator.
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @return a int.
      */
     public int compare(Feature feature1, Feature feature2) {
         int EQUAL = 0;
@@ -161,14 +181,29 @@ public class FeatureBaseComparator implements Comparator<Feature> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return this.cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Xref> getIdentifierComparator() {
         return this.identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>rangeCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Range> getRangeCollectionComparator() {
         return rangeCollectionComparator;
     }

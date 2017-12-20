@@ -15,13 +15,13 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class DefaultCuratedPublicationComparator {
 
     /**
      * Use DefaultCuratedPublicationComparator to know if two publications are equals.
-     * @param publication1
-     * @param publication2
+     *
+     * @param publication1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param publication2 a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return true if the two publications are equal
      */
     public static boolean areEquals(Publication publication1, Publication publication2){

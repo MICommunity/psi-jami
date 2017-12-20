@@ -11,13 +11,20 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlPublicationWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlPublicationWriter {
 
+    /**
+     * <p>Constructor for XmlPublicationWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlPublicationWriter(XMLStreamWriter writer){
         super(writer);
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }

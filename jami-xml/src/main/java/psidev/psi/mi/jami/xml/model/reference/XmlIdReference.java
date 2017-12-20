@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
  * @version $Id$
  * @since <pre>11/10/13</pre>
  */
-
 public interface XmlIdReference extends FileSourceContext{
 
     /**
@@ -20,7 +19,8 @@ public interface XmlIdReference extends FileSourceContext{
 
     /**
      * Resolve the references given a map of parsed objects
-     * @param parsedObjects
+     *
+     * @param parsedObjects a {@link psidev.psi.mi.jami.xml.cache.PsiXmlIdCache} object.
      * @return true if the reference was solved. false otherwise
      */
     public boolean resolve(PsiXmlIdCache parsedObjects);

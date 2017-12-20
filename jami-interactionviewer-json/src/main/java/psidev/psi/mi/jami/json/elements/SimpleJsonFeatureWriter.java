@@ -23,7 +23,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWriter<F>{
 
     private Writer writer;
@@ -37,6 +36,14 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
     private OntologyTermFetcher fetcher;
     private static final Logger logger = Logger.getLogger("SimpleJsonFeatureWriter");
 
+    /**
+     * <p>Constructor for SimpleJsonFeatureWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonFeatureWriter(Writer writer, Map<Feature, Integer> processedFeatures,
             Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants){
         if (writer == null){
@@ -57,6 +64,16 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         this.processedParticipants = processedParticipants;
     }
 
+    /**
+     * <p>Constructor for SimpleJsonFeatureWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public SimpleJsonFeatureWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                    Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants,
                                    IncrementalIdGenerator idGenerator,
@@ -69,6 +86,12 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a F object.
+     * @throws java.io.IOException if any.
+     */
     public void write(F object) throws IOException {
         MIJsonUtils.writeStartObject(writer);
 
@@ -170,10 +193,21 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         MIJsonUtils.writeEndObject(writer);
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a F object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherProperties(F object) throws IOException {
         // nothing to write here but can be overridden
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             this.cvWriter = new SimpleJsonCvTermWriter(writer);
@@ -181,10 +215,20 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         return cvWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setCvWriter(JsonElementWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Xref> getIdentifierWriter() {
         if (this.identifierWriter == null){
             this.identifierWriter = new SimpleJsonIdentifierWriter(writer);
@@ -192,10 +236,20 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         return identifierWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>identifierWriter</code>.</p>
+     *
+     * @param identifierWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setIdentifierWriter(JsonElementWriter<Xref> identifierWriter) {
         this.identifierWriter = identifierWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>rangeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonRangeWriter} object.
+     */
     public JsonRangeWriter getRangeWriter() {
         if (this.rangeWriter == null){
            this.rangeWriter = new SimpleJsonRangeWriter(writer, processedInteractors, processedParticipants, getIdGenerator());
@@ -203,10 +257,20 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         return rangeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>rangeWriter</code>.</p>
+     *
+     * @param rangeWriter a {@link psidev.psi.mi.jami.json.elements.JsonRangeWriter} object.
+     */
     public void setRangeWriter(JsonRangeWriter rangeWriter) {
         this.rangeWriter = rangeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>idGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public IncrementalIdGenerator getIdGenerator() {
         if (this.idGenerator == null){
             this.idGenerator = new IncrementalIdGenerator();
@@ -214,14 +278,30 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
         return idGenerator;
     }
 
+    /**
+     * <p>Setter for the field <code>idGenerator</code>.</p>
+     *
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public void setIdGenerator(IncrementalIdGenerator idGenerator) {
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }
 
+    /**
+     * <p>recognizeFeatureCategory.</p>
+     *
+     * @param feature a F object.
+     * @return a {@link java.lang.String} object.
+     */
     protected String recognizeFeatureCategory(F feature) {
 
         // feature type is not null, we can recognize the feature

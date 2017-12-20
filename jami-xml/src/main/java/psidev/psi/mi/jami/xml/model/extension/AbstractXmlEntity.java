@@ -46,10 +46,18 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
 
     private Stoichiometry stoichiometry;
 
+    /**
+     * <p>Constructor for AbstractXmlEntity.</p>
+     */
     public AbstractXmlEntity(){
         this.interactorFactory = XmlEntryContext.getInstance().getInteractorFactory();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlEntity.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public AbstractXmlEntity(Interactor interactor){
         if (interactor == null){
             throw new IllegalArgumentException("The interactor cannot be null.");
@@ -58,12 +66,23 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         this.interactorFactory = XmlEntryContext.getInstance().getInteractorFactory();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlEntity.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public AbstractXmlEntity(Interactor interactor, Stoichiometry stoichiometry){
         this(interactor);
         setStoichiometry(stoichiometry);
         this.interactorFactory =  XmlEntryContext.getInstance().getInteractorFactory();
     }
 
+    /**
+     * <p>Getter for the field <code>interactor</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public Interactor getInteractor() {
         if (this.interactor == null){
             initialiseUnspecifiedInteractor();
@@ -71,6 +90,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return this.interactor;
     }
 
+    /** {@inheritDoc} */
     public void setInteractor(Interactor interactor) {
         if (interactor == null){
             throw new IllegalArgumentException("The interactor cannot be null.");
@@ -83,6 +103,11 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /**
+     * <p>Getter for the field <code>causalRelationships</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CausalRelationship> getCausalRelationships() {
         if (this.causalRelationships == null){
             this.causalRelationships = new ArrayList<CausalRelationship>();
@@ -90,10 +115,16 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return this.causalRelationships;
     }
 
+    /**
+     * <p>Getter for the field <code>stoichiometry</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public Stoichiometry getStoichiometry() {
         return this.stoichiometry;
     }
 
+    /** {@inheritDoc} */
     public void setStoichiometry(Integer stoichiometry) {
         if (stoichiometry == null){
             this.stoichiometry = null;
@@ -103,6 +134,11 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /**
+     * <p>Setter for the field <code>stoichiometry</code>.</p>
+     *
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public void setStoichiometry(Stoichiometry stoichiometry) {
         if (stoichiometry == null){
             this.stoichiometry = null;
@@ -112,14 +148,25 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /**
+     * <p>Getter for the field <code>changeListener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.listener.EntityInteractorChangeListener} object.
+     */
     public EntityInteractorChangeListener getChangeListener() {
         return this.changeListener;
     }
 
+    /** {@inheritDoc} */
     public void setChangeListener(EntityInteractorChangeListener listener) {
         this.changeListener = listener;
     }
 
+    /**
+     * <p>getFeatures.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<F> getFeatures() {
         if (jaxbFeatureWrapper == null){
             initialiseFeatureWrapper();
@@ -127,6 +174,12 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return this.jaxbFeatureWrapper.features;
     }
 
+    /**
+     * <p>addFeature.</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean addFeature(F feature) {
 
         if (feature == null){
@@ -140,6 +193,12 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return false;
     }
 
+    /**
+     * <p>removeFeature.</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean removeFeature(F feature) {
 
         if (feature == null){
@@ -153,6 +212,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -167,6 +227,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -181,6 +242,11 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         return added;
     }
 
+    /**
+     * <p>setJAXBInteractor.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.xml.model.extension.XmlInteractor} object.
+     */
     public void setJAXBInteractor(XmlInteractor interactor) {
         if (interactor == null){
             this.interactor = null;
@@ -199,8 +265,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
      *
      * @param value
      *     allowed object is
-     *     {@link Integer }
-     *
+     *     {@link java.lang.Integer}
      */
     public void setJAXBInteractorRef(Integer value) {
         if (value != null){
@@ -211,14 +276,16 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Sets the value of the id property.
+     * {@inheritDoc}
      *
+     * Sets the value of the id property.
      */
     public void setId(int value) {
         this.id = value;
@@ -228,15 +295,22 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -250,11 +324,17 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Participant: "+getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>setFeatureWrapper.</p>
+     *
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlEntity.JAXBFeatureWrapper} object.
+     */
     protected void setFeatureWrapper(JAXBFeatureWrapper<F> jaxbFeatureWrapper) {
         this.jaxbFeatureWrapper = jaxbFeatureWrapper;
         // initialise all features because of back references
@@ -265,18 +345,34 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
         }
     }
 
+    /**
+     * <p>processAddedFeature.</p>
+     *
+     * @param feature a F object.
+     */
     protected void processAddedFeature(F feature){
         feature.setParticipant(this);
     }
 
+    /**
+     * <p>initialiseUnspecifiedInteractor.</p>
+     */
     protected void initialiseUnspecifiedInteractor() {
         this.interactor = new XmlInteractor(PsiXmlUtils.UNSPECIFIED);
     }
 
+    /**
+     * <p>initialiseFeatureWrapper.</p>
+     */
     protected void initialiseFeatureWrapper(){
         this.jaxbFeatureWrapper = new JAXBFeatureWrapper();
     }
 
+    /**
+     * <p>getParticipantLocator.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     protected FileSourceLocator getParticipantLocator(){
         return getSourceLocator();
     }

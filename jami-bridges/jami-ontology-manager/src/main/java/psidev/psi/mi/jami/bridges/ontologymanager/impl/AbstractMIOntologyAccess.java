@@ -25,9 +25,9 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>01/11/11</pre>
  */
-
 public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
 
+    /** Constant <code>log</code> */
     public static final Log log = LogFactory.getLog(AbstractMIOntologyAccess.class);
 
     private OntologyTermFetcher termFetcher;
@@ -38,6 +38,11 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
     private String parentIdentifier;
     private String ontologyID;
 
+    /**
+     * <p>Constructor for AbstractMIOntologyAccess.</p>
+     *
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public AbstractMIOntologyAccess() throws OntologyLoaderException {
         super();
         try {
@@ -51,6 +56,12 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         this.parentIdentifier=null;
     }
 
+    /**
+     * <p>Constructor for AbstractMIOntologyAccess.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public AbstractMIOntologyAccess(OntologyTermFetcher termBuilder) throws OntologyLoaderException {
         super();
         if (termBuilder == null){
@@ -64,6 +75,15 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
     }
 
 
+    /**
+     * <p>Constructor for AbstractMIOntologyAccess.</p>
+     *
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public AbstractMIOntologyAccess(String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super();
         try {
@@ -77,6 +97,16 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         this.parentIdentifier=parent;
     }
 
+    /**
+     * <p>Constructor for AbstractMIOntologyAccess.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public AbstractMIOntologyAccess(OntologyTermFetcher termBuilder, String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super();
         if (termBuilder == null){
@@ -89,6 +119,14 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         this.parentIdentifier=parent;
     }
 
+    /**
+     * <p>createNewOntologyTerm.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     protected MIOntologyTermI createNewOntologyTerm(String identifier, String name) throws BridgeFailedException {
         if (identifier != null){
             OntologyTerm fetched = this.termFetcher.fetchByIdentifier(identifier, this.databaseName != null ? this.databaseName : name);
@@ -97,18 +135,38 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return null;
     }
 
+    /**
+     * <p>Getter for the field <code>ontologyID</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getOntologyID() {
         return this.ontologyID;
     }
 
+    /**
+     * <p>Getter for the field <code>databaseIdentifier</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDatabaseIdentifier() {
         return this.databaseIdentifier;
     }
 
+    /**
+     * <p>getParentFromOtherOntology.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getParentFromOtherOntology() {
         return this.parentIdentifier;
     }
 
+    /**
+     * <p>getRootTerms.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<MIOntologyTermI> getRootTerms() {
         Collection<MIOntologyTermI> roots = new ArrayList<MIOntologyTermI>();
 
@@ -126,29 +184,38 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return roots;
     }
 
+    /**
+     * <p>Getter for the field <code>databaseRegexp</code>.</p>
+     *
+     * @return a {@link java.util.regex.Pattern} object.
+     */
     public Pattern getDatabaseRegexp() {
         return this.databaseRegexp;
     }
 
+    /**
+     * <p>getOntologyTermFetcher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public OntologyTermFetcher getOntologyTermFetcher() {
         return termFetcher;
     }
 
+    /** {@inheritDoc} */
     public abstract void loadOntology(String ontologyID, String name, String version, String format, URI uri) throws OntologyLoaderException;
 
+    /** {@inheritDoc} */
     public void setOntologyDirectory(File directory) {
          // nothing to do
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Method that is used by the validator to determine a Set of Ontology terms that are valid terms
      * for a particular rule. E.g. according to the flags, this can be the term corresponding to the
      * provided accession or its children or both.
-     *
-     * @param accession     the accession (ID) of a ontology term.
-     * @param allowChildren flag weather or not to allow child terms of the specified accession.
-     * @param useTerm       flag weather or not to use the given accession as one of the valid terms.
-     * @return a Set of OntologyTerms that are valid (in terms of the validator).
      */
     public Set<MIOntologyTermI> getValidTerms( String accession, boolean allowChildren, boolean useTerm ) {
         Set<MIOntologyTermI> validTerms = new HashSet<MIOntologyTermI>();
@@ -172,6 +239,7 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         }
     }
 
+    /** {@inheritDoc} */
     public MIOntologyTermI getTermForAccession(String accession) {
         // if we don't even have a valid input, there is no point in trying to query OLS
         if (accession == null) { return null; }
@@ -186,10 +254,22 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return null;
     }
 
+    /**
+     * <p>isObsolete.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @return a boolean.
+     */
     public boolean isObsolete(MIOntologyTermI term) {
         return term.getObsoleteMessage() != null;
     }
 
+    /**
+     * <p>getDirectParents.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @return a {@link java.util.Set} object.
+     */
     public Set<MIOntologyTermI> getDirectParents(MIOntologyTermI term) {
         Collection<OntologyTerm> parents = term.getDelegate().getParents();
         Set<MIOntologyTermI> directParents = new HashSet<MIOntologyTermI>(parents.size());
@@ -199,6 +279,12 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return directParents;
     }
 
+    /**
+     * <p>getDirectChildren.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @return a {@link java.util.Set} object.
+     */
     public Set<MIOntologyTermI> getDirectChildren(MIOntologyTermI term) {
         Collection<OntologyTerm> children = term.getDelegate().getChildren();
         Set<MIOntologyTermI> directChildren = new HashSet<MIOntologyTermI>(children.size());
@@ -208,6 +294,12 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return directChildren;
     }
 
+    /**
+     * <p>getAllParents.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @return a {@link java.util.Set} object.
+     */
     public Set<MIOntologyTermI> getAllParents(MIOntologyTermI term) {
         Set<MIOntologyTermI> allParents = getDirectParents(term);
         Set<MIOntologyTermI> allParentsClone = new HashSet<MIOntologyTermI>(allParents);
@@ -217,6 +309,12 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return allParents;
     }
 
+    /**
+     * <p>getAllChildren.</p>
+     *
+     * @param term a {@link psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI} object.
+     * @return a {@link java.util.Set} object.
+     */
     public Set<MIOntologyTermI> getAllChildren(MIOntologyTermI term) {
         Set<MIOntologyTermI> allChildren = getDirectChildren(term);
         Set<MIOntologyTermI> allChildrenClone = new HashSet<MIOntologyTermI>(allChildren);
@@ -226,24 +324,51 @@ public abstract class AbstractMIOntologyAccess implements MIOntologyAccess {
         return allChildren;
     }
 
+    /**
+     * <p>isOntologyUpToDate.</p>
+     *
+     * @return a boolean.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public abstract boolean isOntologyUpToDate() throws OntologyLoaderException;
 
+    /**
+     * <p>isUseTermSynonyms.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isUseTermSynonyms() {
         return true;
     }
 
+    /** {@inheritDoc} */
     public void setUseTermSynonyms(boolean useTermSynonyms) {
          throw new UnsupportedOperationException("The MI ontology fetcher always load term synonyms");
     }
 
+    /**
+     * <p>Getter for the field <code>databaseName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDatabaseName() {
         return databaseName;
     }
 
+    /**
+     * <p>Setter for the field <code>ontologyID</code>.</p>
+     *
+     * @param ontologyID a {@link java.lang.String} object.
+     */
     protected void setOntologyID(String ontologyID) {
         this.ontologyID = ontologyID;
     }
 
+    /**
+     * <p>setOntologyTermFetcher.</p>
+     *
+     * @param termFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     protected void setOntologyTermFetcher(OntologyTermFetcher termFetcher) {
         this.termFetcher = termFetcher;
     }

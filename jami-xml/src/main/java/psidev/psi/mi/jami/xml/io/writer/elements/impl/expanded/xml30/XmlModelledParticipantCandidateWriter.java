@@ -19,23 +19,31 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlModelledParticipantCandidateWriter extends AbstractXmlParticipantCandidateWriter<ModelledParticipantCandidate, ModelledFeature>
         implements CompactPsiXmlElementWriter<ModelledParticipantCandidate> {
+    /**
+     * <p>Constructor for XmlModelledParticipantCandidateWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlModelledParticipantCandidateWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
         super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFeatureWriter() {
        super.setFeatureWriter(new XmlModelledFeatureWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeMolecule(Interactor interactor) throws XMLStreamException {
         super.writeMoleculeDescription(interactor);

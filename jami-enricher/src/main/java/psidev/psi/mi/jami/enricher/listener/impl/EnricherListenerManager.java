@@ -16,6 +16,7 @@ import java.util.Collection;
  * @param <T>   The type of the listeners which are to be used.
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public abstract class EnricherListenerManager<O extends Object, T extends EnricherListener<O>> implements EnricherListener<O>{
 
@@ -31,6 +32,7 @@ public abstract class EnricherListenerManager<O extends Object, T extends Enrich
 
     /**
      * A constructor to allow setting of an unlimited number of listeners.
+     *
      * @param listeners     The listeners to be added to the listener list.
      */
     protected EnricherListenerManager(T... listeners){
@@ -39,20 +41,32 @@ public abstract class EnricherListenerManager<O extends Object, T extends Enrich
         }
     }
 
+    /**
+     * <p>Getter for the field <code>listenersList</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     protected Collection<T> getListenersList() {
         return listenersList;
     }
 
+    /**
+     * <p>addListener.</p>
+     *
+     * @param listener a T object.
+     */
     public void addListener(T listener){
         listenersList.add(listener);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(O object, EnrichmentStatus status, String message) {
         for(T listener : this.listenersList){
             listener.onEnrichmentComplete(object, status, message);
         }
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(O object, String message, Exception e) {
         for(T listener : this.listenersList){
             listener.onEnrichmentError(object, message, e);

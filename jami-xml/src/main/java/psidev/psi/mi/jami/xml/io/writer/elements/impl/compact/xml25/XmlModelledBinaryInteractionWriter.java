@@ -19,25 +19,33 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public class XmlModelledBinaryInteractionWriter extends AbstractXmlModelledInteractionWriter<ModelledBinaryInteraction>
         implements CompactPsiXmlElementWriter<ModelledBinaryInteraction> {
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlModelledBinaryInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(ModelledBinaryInteraction object) throws XMLStreamException {
         super.writeExperiments(object);
         return writeExperimentRef();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAttributes(ModelledBinaryInteraction object) throws XMLStreamException {
         // write attributes

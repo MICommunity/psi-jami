@@ -19,16 +19,26 @@ import psidev.psi.mi.jami.utils.comparator.publication.DefaultPublicationCompara
  * @version $Id$
  * @since <pre>29/01/14</pre>
  */
-
 public class MinimalSourceUpdater extends MinimalSourceEnricher{
+    /**
+     * <p>Constructor for MinimalSourceUpdater.</p>
+     *
+     * @param cvTermFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.SourceFetcher} object.
+     */
     public MinimalSourceUpdater(SourceFetcher cvTermFetcher) {
         super(new MinimalCvTermUpdater<Source>(cvTermFetcher));
     }
 
+    /**
+     * <p>Constructor for MinimalSourceUpdater.</p>
+     *
+     * @param cvEnricher a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCvTermEnricher} object.
+     */
     protected MinimalSourceUpdater(MinimalCvTermEnricher<Source> cvEnricher) {
         super(cvEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublication(Source cvTermToEnrich, Source cvTermFetched) throws EnricherException {
         if (!DefaultPublicationComparator.areEquals(cvTermFetched.getPublication(), cvTermToEnrich.getPublication())){

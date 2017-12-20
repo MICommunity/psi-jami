@@ -20,14 +20,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class DefaultParticipantPoolComparator {
 
     /**
      * Use DefaultParticipantBaseComparator to know if two participant pools are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
      * @return true if the two participant pools are equal
+     * @param ignoreInteractors a boolean.
      */
     public static boolean areEquals(ParticipantPool participant1, ParticipantPool participant2, boolean ignoreInteractors){
 

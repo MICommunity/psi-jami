@@ -23,21 +23,33 @@ import java.util.Date;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+
  */
 public class FullCuratedPublicationUpdater extends FullCuratedPublicationEnricher{
 
     private MinimalCuratedPublicationUpdater minimalPublicationUpdater;
 
+    /**
+     * <p>Constructor for FullCuratedPublicationUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher} object.
+     */
     public FullCuratedPublicationUpdater(PublicationFetcher fetcher) {
         super(new FullPublicationUpdater(fetcher));
         this.minimalPublicationUpdater = new MinimalCuratedPublicationUpdater(fetcher);
     }
 
+    /**
+     * <p>Constructor for FullCuratedPublicationUpdater.</p>
+     *
+     * @param minimalPublicationUpdater a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCuratedPublicationUpdater} object.
+     */
     protected FullCuratedPublicationUpdater(MinimalCuratedPublicationUpdater minimalPublicationUpdater) {
         super(minimalPublicationUpdater != null ? minimalPublicationUpdater.getPublicationFetcher() : null);
         this.minimalPublicationUpdater = minimalPublicationUpdater;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processPublication(Publication publicationToEnrich, Publication fetchedPublication) throws EnricherException {
         this.minimalPublicationUpdater.processPublication(publicationToEnrich, fetchedPublication);
@@ -45,6 +57,7 @@ public class FullCuratedPublicationUpdater extends FullCuratedPublicationEnriche
         processOtherProperties(publicationToEnrich, fetchedPublication);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processCurationDepth(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if ((publicationToEnrich.getCurationDepth() != null &&
@@ -58,6 +71,7 @@ public class FullCuratedPublicationUpdater extends FullCuratedPublicationEnriche
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processReleasedDate(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if ((publicationToEnrich.getReleasedDate() != null &&
@@ -71,36 +85,47 @@ public class FullCuratedPublicationUpdater extends FullCuratedPublicationEnriche
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceEnricher(SourceEnricher cvTermEnricher) {
         this.minimalPublicationUpdater.setSourceEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPublicationEnricherListener(PublicationEnricherListener listener) {
         this.minimalPublicationUpdater.setPublicationEnricherListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public PublicationFetcher getPublicationFetcher() {
         return this.minimalPublicationUpdater.getPublicationFetcher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public SourceEnricher getSourceEnricher() {
         return this.minimalPublicationUpdater.getSourceEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public PublicationEnricherListener getPublicationEnricherListener() {
         return this.minimalPublicationUpdater.getPublicationEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Publication find(Publication publicationToEnrich) throws EnricherException {
         return this.minimalPublicationUpdater.find(publicationToEnrich);
     }
 
+    /**
+     * <p>Getter for the field <code>minimalPublicationUpdater</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCuratedPublicationUpdater} object.
+     */
     protected MinimalCuratedPublicationUpdater getMinimalPublicationUpdater() {
         return minimalPublicationUpdater;
     }

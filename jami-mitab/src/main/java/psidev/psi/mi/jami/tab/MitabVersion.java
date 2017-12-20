@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.tab;
  * @version $Id$
  * @since <pre>10/06/13</pre>
  */
-
 public enum MitabVersion {
 
     v2_5(15),
@@ -24,6 +23,11 @@ public enum MitabVersion {
         this.numberOfColumns = numberOfColumns;
     }
 
+    /**
+     * <p>Getter for the field <code>numberOfColumns</code>.</p>
+     *
+     * @return a int.
+     */
     public int getNumberOfColumns() {
         return numberOfColumns;
     }

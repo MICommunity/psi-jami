@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>01/11/11</pre>
  */
-
 public class MIOntologyManager extends OntologyManagerTemplate<MIOntologyTermI, MIOntologyAccess> {
 
     private static final String FILE_SOURCE = "file";
@@ -30,10 +29,17 @@ public class MIOntologyManager extends OntologyManagerTemplate<MIOntologyTermI, 
     private Map<String,Pattern> dbRegexp;
     private Map<String,String> dbParents;
 
+    /**
+     * <p>Constructor for MIOntologyManager.</p>
+     *
+     * @param configFile a {@link java.io.InputStream} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MIOntologyManager(InputStream configFile) throws OntologyLoaderException {
         super(configFile);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected MIOntologyAccess findOntologyAccess(String sourceURI, String ontologyId, String ontologyName, String ontologyVersion, String format, String loaderClass) throws ClassNotFoundException {
         initialiseDbMap();

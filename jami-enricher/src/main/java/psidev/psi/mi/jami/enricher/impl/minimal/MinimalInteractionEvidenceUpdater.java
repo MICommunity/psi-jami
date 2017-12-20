@@ -16,6 +16,7 @@ import psidev.psi.mi.jami.utils.comparator.experiment.DefaultCuratedExperimentCo
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalInteractionEvidenceUpdater
         extends MinimalInteractionEvidenceEnricher
@@ -23,21 +24,31 @@ public class MinimalInteractionEvidenceUpdater
 
     private MinimalInteractionUpdater<InteractionEvidence> delegate;
 
+    /**
+     * <p>Constructor for MinimalInteractionEvidenceUpdater.</p>
+     */
     public MinimalInteractionEvidenceUpdater(){
         super();
         this.delegate = new MinimalInteractionUpdater<InteractionEvidence>();
     }
 
+    /**
+     * <p>Constructor for MinimalInteractionEvidenceUpdater.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalInteractionUpdater} object.
+     */
     protected MinimalInteractionEvidenceUpdater( MinimalInteractionUpdater<InteractionEvidence> delegate){
         super();
         this.delegate = delegate != null ? delegate : new MinimalInteractionUpdater<InteractionEvidence>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processMinimalUpdates(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException {
         this.delegate.processMinimalUpdates(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processExperiment(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException {
          if (!DefaultCuratedExperimentComparator.areEquals(objectSource.getExperiment(), objectToEnrich.getExperiment())){
@@ -53,6 +64,7 @@ public class MinimalInteractionEvidenceUpdater
          }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(InteractionEvidence objectToEnrich, InteractionEvidence objectSource) throws EnricherException{
         super.processOtherProperties(objectToEnrich, objectSource);
@@ -66,36 +78,47 @@ public class MinimalInteractionEvidenceUpdater
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvTermEnricher) {
         this.delegate.setCvTermEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return this.delegate.getCvTermEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipantEnricher(ParticipantEnricher participantEnricher) {
         this.delegate.setParticipantEnricher(participantEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ParticipantEnricher getParticipantEnricher() {
         return this.delegate.getParticipantEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractionEnricherListener<InteractionEvidence> getInteractionEnricherListener() {
         return this.delegate.getInteractionEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionEnricherListener(InteractionEnricherListener<InteractionEvidence> listener) {
         this.delegate.setInteractionEnricherListener(listener);
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalInteractionUpdater} object.
+     */
     public MinimalInteractionUpdater<InteractionEvidence> getDelegate() {
         return delegate;
     }

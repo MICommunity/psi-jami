@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class PublicationChangeLogger implements PublicationChangeListener {
 
     private static final Logger publicationChangeLogger = Logger.getLogger("PublicationChangeLogger");
 
+    /** {@inheritDoc} */
     public void onPubmedIdUpdate(Publication publication, String oldId) {
         if (oldId == null){
             publicationChangeLogger.log(Level.INFO, "The pubmed id has been initialised for the publication " + publication.toString());
@@ -31,6 +31,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onDoiUpdate(Publication publication, String oldId) {
         if (oldId == null){
             publicationChangeLogger.log(Level.INFO, "The DOI has been initialised for the publication " + publication.toString());
@@ -43,6 +44,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexIdentifierUpdate(Publication publication, Xref oldId) {
         if (oldId == null){
             publicationChangeLogger.log(Level.INFO, "The IMEx identifier has been initialised for the publication " + publication.toString());
@@ -55,6 +57,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onTitleUpdated(Publication publication, String oldTitle) {
         if (oldTitle == null){
             publicationChangeLogger.log(Level.INFO, "The title has been initialised for the publication " + publication.toString());
@@ -67,6 +70,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onJournalUpdated(Publication publication, String oldJournal) {
         if (oldJournal == null){
             publicationChangeLogger.log(Level.INFO, "The journal has been initialised for the publication " + publication.toString());
@@ -79,6 +83,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onCurationDepthUpdate(Publication publication, CurationDepth oldDepth) {
         if (oldDepth == null){
             publicationChangeLogger.log(Level.INFO, "The Curation depth has been initialised for the publication " + publication.toString());
@@ -91,6 +96,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationDateUpdated(Publication publication, Date oldDate) {
         if (oldDate == null){
             publicationChangeLogger.log(Level.INFO, "The publication date has been initialised for the publication " + publication.toString());
@@ -103,16 +109,19 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onAuthorAdded(Publication publication, String addedAuthor) {
         publicationChangeLogger.log(Level.INFO, "The author " + addedAuthor + " has been added to the publication " + publication.toString());
 
     }
 
+    /** {@inheritDoc} */
     public void onAuthorRemoved(Publication publication, String removedAuthor) {
         publicationChangeLogger.log(Level.INFO, "The author " + removedAuthor + " has been removed from the publication " + publication.toString());
 
     }
 
+    /** {@inheritDoc} */
     public void onReleaseDateUpdated(Publication publication, Date oldDate) {
         if (oldDate == null){
             publicationChangeLogger.log(Level.INFO, "The released date has been initialised for the publication " + publication.toString());
@@ -125,6 +134,7 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onSourceUpdated(Publication publication, Source oldSource) {
         if (oldSource == null){
             publicationChangeLogger.log(Level.INFO, "The source has been initialised for the publication " + publication.toString());
@@ -137,26 +147,32 @@ public class PublicationChangeLogger implements PublicationChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentifier(Publication publication, Xref added) {
         publicationChangeLogger.log(Level.INFO, "The identifier " + added.toString() + " has been added to the publication " + publication.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentifier(Publication publication, Xref removed) {
         publicationChangeLogger.log(Level.INFO, "The identifier " + removed.toString() + " has been removed from the publication " + publication.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(Publication publication, Xref added) {
         publicationChangeLogger.log(Level.INFO, "The xref " + added.toString() + " has been added to the publication " + publication.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(Publication publication, Xref removed) {
         publicationChangeLogger.log(Level.INFO, "The xref " + removed.toString() + " has been removed from the publication " + publication.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(Publication publication, Annotation added) {
         publicationChangeLogger.log(Level.INFO, "The annotation " + added.toString() + " has been added to the publication " + publication.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(Publication publication, Annotation removed) {
         publicationChangeLogger.log(Level.INFO, "The annotation " + removed.toString() + " has been removed from the publication " + publication.toString());
     }

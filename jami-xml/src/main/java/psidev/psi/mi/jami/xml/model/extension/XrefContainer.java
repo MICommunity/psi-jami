@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * Xref container in XML implementation
  * The JAXB binding is designed to be read-only and is not designed for writing
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/07/13</pre>
@@ -39,8 +40,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link XmlXref }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlXref}
      */
     @XmlElement(name = "primaryRef",required = true, type = XmlXref.class)
     public void setJAXBPrimaryRef(Xref value) {
@@ -67,9 +67,9 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlXref }
+     * {@link psidev.psi.mi.jami.xml.model.extension.XmlXref}
      *
-     *
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(name = "secondaryRef", type = XmlXref.class)
     public List<Xref> getJAXBSecondaryRefs() {
@@ -79,6 +79,11 @@ public class XrefContainer implements FileSourceContext, Locatable{
         return this.jaxbSecondaryRefs;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefs</code>.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Xref> getXrefs() {
         if (xrefs == null) {
             initialiseXrefs();
@@ -86,6 +91,11 @@ public class XrefContainer implements FileSourceContext, Locatable{
         return xrefs;
     }
 
+    /**
+     * <p>isEmpty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isEmpty(){
         if (getXrefs().isEmpty()){
             return true;
@@ -93,11 +103,17 @@ public class XrefContainer implements FileSourceContext, Locatable{
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -105,6 +121,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -117,15 +134,24 @@ public class XrefContainer implements FileSourceContext, Locatable{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Xref: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>initialiseXrefs.</p>
+     */
     protected void initialiseXrefs(){
         this.xrefs = new ArrayList<Xref>();
     }
 
+    /**
+     * <p>initialiseXrefsWith.</p>
+     *
+     * @param list a {@link java.util.List} object.
+     */
     protected void initialiseXrefsWith(List<Xref> list){
         if (list == null){
              this.xrefs = Collections.EMPTY_LIST;
@@ -135,10 +161,18 @@ public class XrefContainer implements FileSourceContext, Locatable{
         }
     }
 
+    /**
+     * <p>initialiseSecondaryRefs.</p>
+     */
     protected void initialiseSecondaryRefs(){
         this.jaxbSecondaryRefs = new JAXBSecondaryXrefList();
     }
 
+    /**
+     * <p>initialiseSecondaryResWith.</p>
+     *
+     * @param list a {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer.JAXBSecondaryXrefList} object.
+     */
     protected void initialiseSecondaryResWith(JAXBSecondaryXrefList list){
         if (list == null){
             this.jaxbSecondaryRefs = new JAXBSecondaryXrefList();
@@ -148,6 +182,11 @@ public class XrefContainer implements FileSourceContext, Locatable{
         }
     }
 
+    /**
+     * <p>processAddedPrimaryRef.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedPrimaryRef(Xref added) {
         if (xrefs == null){
             initialiseXrefs();

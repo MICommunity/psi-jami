@@ -10,6 +10,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  22/05/13
+
  */
 public interface OrganismFetcher{
 
@@ -18,7 +19,7 @@ public interface OrganismFetcher{
      *
      * @param taxID     The taxID to search for
      * @return          A matching organism, or null if one could not be found.
-     * @throws BridgeFailedException
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public Organism fetchByTaxID(int taxID)
             throws BridgeFailedException;
@@ -28,8 +29,8 @@ public interface OrganismFetcher{
      *
      * @param taxIDs    A collection of taxIDs to search for.
      * @return          A collection of the matching organisms.
-     * @throws BridgeFailedException
-     * @throws IllegalArgumentException if taxIds is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     * @throws java.lang.IllegalArgumentException if taxIds is null
      */
     public Collection<Organism> fetchByTaxIDs(Collection<Integer> taxIDs)
             throws BridgeFailedException;

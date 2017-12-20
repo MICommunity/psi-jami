@@ -15,13 +15,18 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class CsvInteractionEvidenceIterator<T extends InteractionEvidence> implements Iterator<T> {
 
     private CSVReader<T> lineParser;
     private T nextInteraction;
     private CsvParserListener parserListener;
 
+    /**
+     * <p>Constructor for CsvInteractionEvidenceIterator.</p>
+     *
+     * @param lineParser a {@link com.googlecode.jcsv.reader.CSVReader} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public CsvInteractionEvidenceIterator(CSVReader<T> lineParser) throws MIIOException {
         if (lineParser == null){
             throw new IllegalArgumentException("The Crosslink CSV iterator needs a non null lineParser.");
@@ -31,6 +36,13 @@ public class CsvInteractionEvidenceIterator<T extends InteractionEvidence> imple
         this.parserListener = null;
     }
 
+    /**
+     * <p>Constructor for CsvInteractionEvidenceIterator.</p>
+     *
+     * @param lineParser a {@link com.googlecode.jcsv.reader.CSVReader} object.
+     * @param listener a {@link psidev.psi.mi.jami.crosslink.listener.CsvParserListener} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public CsvInteractionEvidenceIterator(CSVReader<T> lineParser, CsvParserListener listener) throws MIIOException {
         if (lineParser == null){
             throw new IllegalArgumentException("The Crosslink CSV iterator needs a non null lineParser.");
@@ -56,16 +68,30 @@ public class CsvInteractionEvidenceIterator<T extends InteractionEvidence> imple
         }
     }
 
+    /**
+     * <p>hasNext.</p>
+     *
+     * @return a boolean.
+     */
     public boolean hasNext() {
         return this.nextInteraction != null;
     }
 
+    /**
+     * <p>next.</p>
+     *
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public T next() throws MIIOException{
         T currentBinary = this.nextInteraction;
         processNextInteraction();
         return currentBinary;
     }
 
+    /**
+     * <p>remove.</p>
+     */
     public void remove() {
         throw new UnsupportedOperationException("A Crosslink CSV iterator does not support the remove method");
     }

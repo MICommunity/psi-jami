@@ -18,7 +18,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>01/03/13</pre>
  */
-
 public class MIDataSourceFactory {
 
     private static final MIDataSourceFactory instance = new MIDataSourceFactory();
@@ -33,6 +32,7 @@ public class MIDataSourceFactory {
     }
 
     /**
+     * <p>Getter for the field <code>instance</code>.</p>
      *
      * @return the MIFactory instance
      */
@@ -41,6 +41,7 @@ public class MIDataSourceFactory {
     }
 
     /**
+     * <p>getMIDataSourceWith</p>
      *
      * @param requiredOptions : options needed and to initialise dataSource
      * @return a new MIDatasource instance if the factory could find a registered MIDataSource matching the options.
@@ -67,11 +68,12 @@ public class MIDataSourceFactory {
     }
 
     /**
+     * <p>getInteractionSourceWith</p>
      *
      * @param requiredOptions : options needed and to initialise dataSource
-     * @param <I> : type of interaction
      * @return a new InteractionStream instance if the factory could find a registered InteractionStream matching the options.
      * Null if the factory cannot provide any InteractionStream implementation matching the requested options
+     * @param <I> a I object.
      */
     public <I extends Interaction> InteractionStream<I> getInteractionSourceWith(Map<String,Object> requiredOptions) {
 
@@ -95,6 +97,7 @@ public class MIDataSourceFactory {
 
     /**
      * Register a datasource with options in this factory
+     *
      * @param dataSourceClass : the class of the dataSource to register. It must provide a empty constructor
      * @param supportedOptions : the map of options supported by this dataSource
      */
@@ -108,6 +111,7 @@ public class MIDataSourceFactory {
 
     /**
      * Remove the dataSource from this factory
+     *
      * @param dataSourceClass : registered dataSource class
      */
     public void removeDataSource(Class<? extends MIDataSource> dataSourceClass){

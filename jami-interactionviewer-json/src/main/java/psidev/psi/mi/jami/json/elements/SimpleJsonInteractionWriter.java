@@ -19,7 +19,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonElementWriter<I>{
 
     private Writer writer;
@@ -32,6 +31,14 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
     private IncrementalIdGenerator idGenerator;
     private OntologyTermFetcher fetcher;
 
+    /**
+     * <p>Constructor for SimpleJsonInteractionWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonInteractionWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                        Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants){
         if (writer == null){
@@ -52,6 +59,15 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         this.processedParticipants = processedParticipants;
     }
 
+    /**
+     * <p>Constructor for SimpleJsonInteractionWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public SimpleJsonInteractionWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                        Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants,
                                        IncrementalIdGenerator idGenerator){
@@ -59,6 +75,12 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a I object.
+     * @throws java.io.IOException if any.
+     */
     public void write(I object) throws IOException {
         Xref preferredIdentifier = !object.getIdentifiers().isEmpty() ? (Xref)object.getIdentifiers().iterator().next() : null;
         String[] keyValues = generateInteractionIdentifier(object, preferredIdentifier);
@@ -124,10 +146,23 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         }
     }
 
+    /**
+     * <p>generateInteractionIdentifier.</p>
+     *
+     * @param object a I object.
+     * @param preferredIdentifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return an array of {@link java.lang.String} objects.
+     */
     protected String[] generateInteractionIdentifier(I object, Xref preferredIdentifier) {
         return MIJsonUtils.extractInteractionId(preferredIdentifier, object);
     }
 
+    /**
+     * <p>writeExpansionMethod.</p>
+     *
+     * @param expansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeExpansionMethod(CvTerm expansion) throws IOException {
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("name", JSONValue.escape(expansion.getShortName()), writer);
@@ -135,10 +170,21 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         MIJsonUtils.writeEndObject(writer);
     }
 
+    /**
+     * <p>writeOtherExpansionMethodProperties.</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherExpansionMethodProperties() throws IOException {
         // nothing to do here
     }
 
+    /**
+     * <p>writeAllIdentifiers.</p>
+     *
+     * @param object a I object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeAllIdentifiers(I object) throws IOException {
         if (!object.getIdentifiers().isEmpty()){
             MIJsonUtils.writeOpenArray(writer);
@@ -157,18 +203,41 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         }
     }
 
+    /**
+     * <p>writeOtherIdentifiers.</p>
+     *
+     * @param object a I object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherIdentifiers(I object) throws IOException {
         // to be overridden
     }
 
+    /**
+     * <p>hasIdentifiers.</p>
+     *
+     * @param object a I object.
+     * @return a boolean.
+     */
     protected boolean hasIdentifiers(I object) {
         return !object.getIdentifiers().isEmpty();
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a I object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherProperties(I object) throws IOException {
         // nothing to write here but can be overridden
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             this.cvWriter = new SimpleJsonCvTermWriter(writer);
@@ -176,10 +245,20 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         return cvWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setCvWriter(JsonElementWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Xref> getIdentifierWriter() {
         if (this.identifierWriter == null){
             this.identifierWriter = new SimpleJsonIdentifierWriter(writer);
@@ -187,10 +266,20 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         return identifierWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>identifierWriter</code>.</p>
+     *
+     * @param identifierWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setIdentifierWriter(JsonElementWriter<Xref> identifierWriter) {
         this.identifierWriter = identifierWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>idGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public IncrementalIdGenerator getIdGenerator() {
         if (this.idGenerator == null){
             this.idGenerator = new IncrementalIdGenerator();
@@ -198,10 +287,20 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         return idGenerator;
     }
 
+    /**
+     * <p>Setter for the field <code>idGenerator</code>.</p>
+     *
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public void setIdGenerator(IncrementalIdGenerator idGenerator) {
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter getParticipantWriter() {
         if (this.participantWriter == null){
             initialiseDefaultParticipantWriter();
@@ -209,36 +308,74 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         return participantWriter;
     }
 
+    /**
+     * <p>initialiseDefaultParticipantWriter.</p>
+     */
     protected void initialiseDefaultParticipantWriter() {
         this.participantWriter = new SimpleJsonParticipantWriter(this.writer, this.processedFeatures, this.processedInteractors,
                 this.processedParticipants, getIdGenerator(), this.fetcher);
         ((SimpleJsonParticipantWriter)this.participantWriter).setCvWriter(getCvWriter());
     }
 
+    /**
+     * <p>Setter for the field <code>participantWriter</code>.</p>
+     *
+     * @param participantWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setParticipantWriter(JsonElementWriter participantWriter) {
         this.participantWriter = participantWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>fetcher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public OntologyTermFetcher getFetcher() {
         return fetcher;
     }
 
+    /**
+     * <p>Setter for the field <code>fetcher</code>.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public void setFetcher(OntologyTermFetcher fetcher) {
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }
 
+    /**
+     * <p>Getter for the field <code>processedInteractors</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<String, String> getProcessedInteractors() {
         return processedInteractors;
     }
 
+    /**
+     * <p>Getter for the field <code>processedFeatures</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<Feature, Integer> getProcessedFeatures() {
         return processedFeatures;
     }
 
+    /**
+     * <p>Getter for the field <code>processedParticipants</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<Entity, Integer> getProcessedParticipants() {
         return processedParticipants;
     }

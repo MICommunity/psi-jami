@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.impl.DefaultOrganism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 29/07/13
+ * @version $Id: $
  */
 public class OrganismUtils {
 
@@ -58,22 +59,47 @@ public class OrganismUtils {
         }
     }
 
+    /**
+     * <p>createUnknownOrganism</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static Organism createUnknownOrganism(){
         return createSpecialistOrganism(-3);
     }
 
+    /**
+     * <p>createInVitroOrganism</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static Organism createInVitroOrganism() {
         return createSpecialistOrganism(-1);
     }
 
+    /**
+     * <p>createChemicalSynthesisOrganism</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static Organism createChemicalSynthesisOrganism() {
         return createSpecialistOrganism(-2);
     }
 
+    /**
+     * <p>createInVivoOrganism</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static Organism createInVivoOrganism() {
         return createSpecialistOrganism(-4);
     }
 
+    /**
+     * <p>createInSilicoOrganism</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static Organism createInSilicoOrganism() {
         return createSpecialistOrganism(-5);
     }

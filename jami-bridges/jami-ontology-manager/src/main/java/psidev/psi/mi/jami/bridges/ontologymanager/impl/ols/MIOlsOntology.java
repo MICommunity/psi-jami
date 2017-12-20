@@ -22,21 +22,32 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>01/11/11</pre>
  */
-
 public class MIOlsOntology extends AbstractMIOntologyAccess {
 
+    /** Constant <code>log</code> */
     public static final Log log = LogFactory.getLog(MIOlsOntology.class);
 
     private Date lastOntologyUpload;
 
     private OlsClient olsClient;
 
+    /**
+     * <p>Constructor for MIOlsOntology.</p>
+     *
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MIOlsOntology() throws OntologyLoaderException {
         super();
         // preparing cache
         lastOntologyUpload = new Date(System.currentTimeMillis());
     }
 
+    /**
+     * <p>Constructor for MIOlsOntology.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MIOlsOntology(OntologyTermFetcher termBuilder) throws OntologyLoaderException {
         super(termBuilder);
         // preparing cache
@@ -44,24 +55,50 @@ public class MIOlsOntology extends AbstractMIOntologyAccess {
     }
 
 
+    /**
+     * <p>Constructor for MIOlsOntology.</p>
+     *
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MIOlsOntology(String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super(dbName, dbIdentifier, dbRegexp, parent);
         // preparing cache
         lastOntologyUpload = new Date(System.currentTimeMillis());
     }
 
+    /**
+     * <p>Constructor for MIOlsOntology.</p>
+     *
+     * @param termBuilder a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param dbIdentifier a {@link java.lang.String} object.
+     * @param dbRegexp a {@link java.util.regex.Pattern} object.
+     * @param parent a {@link java.lang.String} object.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public MIOlsOntology(OntologyTermFetcher termBuilder, String dbName, String dbIdentifier, Pattern dbRegexp, String parent) throws OntologyLoaderException {
         super(termBuilder, dbName, dbIdentifier, dbRegexp, parent);
         // preparing cache
         lastOntologyUpload = new Date(System.currentTimeMillis());
     }
 
+    /** {@inheritDoc} */
     public void loadOntology(String ontologyID, String name, String version, String format, URI uri) throws OntologyLoaderException {
         setOntologyID(ontologyID);
         log.info( "Successfully created OlsOntology from values: ontology=" + ontologyID + " name=" + name
                 + " version=" + version + " format=" + format + " location=" + uri );
     }
 
+    /**
+     * <p>isOntologyUpToDate.</p>
+     *
+     * @return a boolean.
+     * @throws psidev.psi.tools.ontology_manager.impl.local.OntologyLoaderException if any.
+     */
     public boolean isOntologyUpToDate() throws OntologyLoaderException {
         if (this.olsClient == null){
             // preparing OLS access

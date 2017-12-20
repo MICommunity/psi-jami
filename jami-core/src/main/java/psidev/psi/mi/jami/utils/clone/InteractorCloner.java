@@ -10,13 +10,14 @@ import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class InteractorCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of interactor source in interactor target and will override all the other properties of Target interactor.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public static void copyAndOverrideBasicInteractorProperties(Interactor source, Interactor target){
         if (source != null && target != null){
@@ -39,6 +40,12 @@ public class InteractorCloner {
         }
     }
 
+    /**
+     * <p>copyAndOverrideBasicPolymerProperties</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Polymer} object.
+     */
     public static void copyAndOverrideBasicPolymerProperties(Polymer source, Polymer target){
         if (source != null && target != null){
             copyAndOverrideBasicInteractorProperties(source, target);
@@ -46,6 +53,12 @@ public class InteractorCloner {
         }
     }
 
+    /**
+     * <p>copyAndOverrideBasicInteractorPoolProperties</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param target a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     */
     public static void copyAndOverrideBasicInteractorPoolProperties(InteractorPool source, InteractorPool target){
         if (source != null && target != null){
             copyAndOverrideBasicInteractorProperties(source, target);
@@ -54,11 +67,13 @@ public class InteractorCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of complex source in complex target and will override all the other properties of Target complex.
      * This method does not copy the
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Complex} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Complex} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      *                         It will then set the interactionEvidence of the cloned participants to target
      * @param ignoreParticipants If true, this method will clone the interaction properties and ignore the participants of the source
@@ -104,8 +119,9 @@ public class InteractorCloner {
      * This method will copy basic properties from the Interaction source in the complex target.
      * It will erase existing annotations, xrefs, checksums and identifiers
      * This method does not copy the participants of the source
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Complex} object.
      */
     public static void copyAndOverrideBasicComplexPropertiesWithInteractionProperties(Interaction source, Complex target){
         if (source != null && target != null){
@@ -131,8 +147,9 @@ public class InteractorCloner {
     /**
      * This method will copy basic properties from the Interaction source in the complex target.
      * This method does not copy the participants of the source
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Complex} object.
      */
     public static void copyAndOverrideBasicComplexPropertiesWithModelledInteractionProperties(ModelledInteraction source, Complex target){
         if (source != null && target != null){

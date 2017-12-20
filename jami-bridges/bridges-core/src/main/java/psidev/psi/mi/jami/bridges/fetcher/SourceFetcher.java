@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.Source;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 03/07/13
+
  */
 public interface SourceFetcher extends CvTermFetcher<Source>{
 }

@@ -12,11 +12,11 @@ import java.util.Comparator;
  * Refseq identifiers (The interactor with non null refseq id will always come first). If the Refseq and uniport identifiers are not set,
  * it will look at the rogids (The interactor with non null rogid will always come first). If the rogids are identical,
  * it will look at the gene names (The interactor with non null gene name will always come first).
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class ProteinComparator implements Comparator<Protein> {
 
     private PolymerComparator interactorComparator;
@@ -24,6 +24,8 @@ public class ProteinComparator implements Comparator<Protein> {
     /**
      * Creates a new UnambiguousProteinComparator. It will uses a UnambiguousPolymerComparator to compare interactor properties and a
      * OrganismTaxIdComparator to compares organism.
+     *
+     * @param polymerComparator a {@link psidev.psi.mi.jami.utils.comparator.interactor.PolymerComparator} object.
      */
     public ProteinComparator(PolymerComparator polymerComparator){
         if (polymerComparator == null){
@@ -39,6 +41,10 @@ public class ProteinComparator implements Comparator<Protein> {
      * Refseq identifiers (The interactor with non null refseq id will always come first). If the Refseq and uniport identifiers are not set,
      * it will look at the rogids (The interactor with non null rogid will always come first). If the rogids are identical,
      * it will look at the gene names (The interactor with non null gene name will always come first).
+     *
+     * @param protein1 a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param protein2 a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @return a int.
      */
     public int compare(Protein protein1, Protein protein2) {
         int EQUAL = 0;
@@ -131,6 +137,11 @@ public class ProteinComparator implements Comparator<Protein> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.PolymerComparator} object.
+     */
     public PolymerComparator getInteractorComparator() {
         return this.interactorComparator;
     }

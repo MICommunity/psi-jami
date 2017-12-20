@@ -18,17 +18,27 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractXmlInteractionEvidenceWriter<I extends InteractionEvidence>
         extends AbstractXmlInteractionWriter<I,ParticipantEvidence> {
     private PsiXmlElementWriter<String> availabilityWriter;
     private PsiXmlElementWriter<Confidence> confidenceWriter;
     private PsiXmlParameterWriter parameterWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /**
+     * <p>Getter for the field <code>availabilityWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<String> getAvailabilityWriter() {
         if (this.availabilityWriter == null){
             initialiseAvaliabilityWriter();
@@ -36,14 +46,27 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return availabilityWriter;
     }
 
+    /**
+     * <p>initialiseAvaliabilityWriter.</p>
+     */
     protected void initialiseAvaliabilityWriter() {
         this.availabilityWriter =  new XmlAvailabilityWriter(getStreamWriter(), getObjectIndex());
     }
 
+    /**
+     * <p>Setter for the field <code>availabilityWriter</code>.</p>
+     *
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAvailabilityWriter(PsiXmlElementWriter<String> availabilityWriter) {
         this.availabilityWriter = availabilityWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Confidence> getConfidenceWriter() {
         if (this.confidenceWriter == null){
             initialiseConfidenceWriter();
@@ -51,12 +74,25 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return confidenceWriter;
     }
 
+    /**
+     * <p>initialiseConfidenceWriter.</p>
+     */
     protected abstract void initialiseConfidenceWriter();
 
+    /**
+     * <p>Setter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setConfidenceWriter(PsiXmlElementWriter<Confidence> confidenceWriter) {
         this.confidenceWriter = confidenceWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>parameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     */
     public PsiXmlParameterWriter getParameterWriter() {
         if (this.parameterWriter == null){
             initialiseParameterWriter();
@@ -64,30 +100,42 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return parameterWriter;
     }
 
+    /**
+     * <p>initialiseParameterWriter.</p>
+     */
     protected abstract void initialiseParameterWriter();
 
+    /**
+     * <p>Setter for the field <code>parameterWriter</code>.</p>
+     *
+     * @param parameterWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     */
     public void setParameterWriter(PsiXmlParameterWriter parameterWriter) {
         this.parameterWriter = parameterWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultExperiment() {
         super.initialiseDefaultExperiment();
         getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultExperiment(Experiment defaultExperiment) {
         super.setDefaultExperiment(defaultExperiment);
         getParameterWriter().setDefaultExperiment(defaultExperiment);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(I interaction) {
         Experiment exp = interaction.getExperiment();
         return exp != null ? exp : getDefaultExperiment() ;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(I object) throws XMLStreamException {
         if (object.getExperiment() != null){
@@ -96,6 +144,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherAttributes(I object) throws XMLStreamException {
         // write IMEx id
@@ -104,6 +153,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeModelled(I object) throws XMLStreamException {
         // we say we have a modelled = true if the interaction is inferred
@@ -115,6 +165,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(I object) throws XMLStreamException {
         // write parameters
@@ -129,6 +180,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(I object) throws XMLStreamException {
         // write confidences
@@ -143,6 +195,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNegative(I object) throws XMLStreamException {
         if (object.isNegative()){
@@ -153,16 +206,34 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /**
+     * <p>writeAvailabilityRef.</p>
+     *
+     * @param availability a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAvailabilityRef(String availability) throws XMLStreamException {
         getStreamWriter().writeStartElement("availabilityRef");
         getStreamWriter().writeCharacters(Integer.toString(getObjectIndex().extractIdForAvailability(availability)));
         getStreamWriter().writeEndElement();
     }
 
+    /**
+     * <p>writeAvailabilityDescription.</p>
+     *
+     * @param availability a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAvailabilityDescription(String availability) throws XMLStreamException {
         getAvailabilityWriter().write(availability);
     }
 
+    /**
+     * <p>writeInferredInteractions.</p>
+     *
+     * @param object a I object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInferredInteractions(I object) throws XMLStreamException {
         Collection<Set<Feature>> inferredInteractions = collectInferredInteractionsFrom(object);
         if (inferredInteractions != null && !inferredInteractions.isEmpty()){
@@ -174,6 +245,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartInteraction() throws XMLStreamException {
         getStreamWriter().writeStartElement("interaction");

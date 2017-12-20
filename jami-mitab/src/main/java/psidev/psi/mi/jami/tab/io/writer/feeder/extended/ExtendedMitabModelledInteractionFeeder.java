@@ -22,12 +22,17 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class ExtendedMitabModelledInteractionFeeder extends MitabModelledInteractionFeeder {
+    /**
+     * <p>Constructor for ExtendedMitabModelledInteractionFeeder.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public ExtendedMitabModelledInteractionFeeder(Writer writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeConfidence(Confidence conf) throws IOException {
         if (conf != null){
@@ -55,6 +60,7 @@ public class ExtendedMitabModelledInteractionFeeder extends MitabModelledInterac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeAlias(Alias alias) throws IOException {
         if (alias instanceof MitabAlias){
@@ -78,11 +84,13 @@ public class ExtendedMitabModelledInteractionFeeder extends MitabModelledInterac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeAlias(ModelledParticipant participant, Alias alias) throws IOException {
         this.writeAlias(alias);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeFeature(Feature feature) throws IOException {
         if (feature != null){

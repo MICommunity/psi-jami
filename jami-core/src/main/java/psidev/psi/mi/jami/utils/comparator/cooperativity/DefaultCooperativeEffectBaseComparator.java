@@ -23,13 +23,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class DefaultCooperativeEffectBaseComparator {
 
     /**
      * Use DefaultCooperativeEffectBaseComparator to know if two CooperativeEffects are equals.
-     * @param cooperativeEffect1
-     * @param cooperativeEffect2
+     *
+     * @param cooperativeEffect1 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @param cooperativeEffect2 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
      * @return true if the two CooperativeEffects are equal
      */
     public static boolean areEquals(CooperativeEffect cooperativeEffect1, CooperativeEffect cooperativeEffect2){

@@ -13,13 +13,13 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  * @version $Id$
  * @since <pre>14/01/13</pre>
  */
-
 public class DefaultBioactiveEntityComparator {
 
     /**
      * Use DefaultBioactiveEntityComparator to know if two bioactive entities are equals.
-     * @param bioactiveEntity1
-     * @param bioactiveEntity2
+     *
+     * @param bioactiveEntity1 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
+     * @param bioactiveEntity2 a {@link psidev.psi.mi.jami.model.BioactiveEntity} object.
      * @return true if the two bioactive entities are equal
      */
     public static boolean areEquals(BioactiveEntity bioactiveEntity1, BioactiveEntity bioactiveEntity2){

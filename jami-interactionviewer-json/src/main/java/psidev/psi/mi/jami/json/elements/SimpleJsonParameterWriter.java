@@ -15,11 +15,15 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonParameterWriter implements JsonElementWriter<Parameter>{
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for SimpleJsonParameterWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonParameterWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json parameter writer needs a non null Writer");
@@ -27,6 +31,12 @@ public class SimpleJsonParameterWriter implements JsonElementWriter<Parameter>{
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Parameter object) throws IOException {
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("type", JSONValue.escape(object.getType().getShortName()), writer);

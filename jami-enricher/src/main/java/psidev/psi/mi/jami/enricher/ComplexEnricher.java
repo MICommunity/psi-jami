@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.Complex;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public interface ComplexEnricher extends ModelledInteractionEnricher<Complex>, InteractorEnricher<Complex>{
 

@@ -10,14 +10,15 @@ import psidev.psi.mi.jami.model.impl.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ParticipantCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of participant source in participant target and will override all the other properties of Target participant.
      * This method will ignore interaction
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      *                         It will then set the participantEvidence of the cloned features to target
      */
@@ -78,11 +79,13 @@ public class ParticipantCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of modelled participant source in modelled participant target and will override all the other properties of Target modelled participant.
      * This method will ignore interaction
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      *                         It will then set the modelledParticipant of the cloned features to target
      */
@@ -135,8 +138,9 @@ public class ParticipantCloner {
 
     /**
      * This method will copy properties of participant source in participant target and will override all the other properties of Target participant.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Participant} object.
      * @param createNewFeature If true, this method will clone each feature from source instead of reusing the feature instances from source.
      */
     public static void copyAndOverrideBasicParticipantProperties(Participant source, Participant target, boolean createNewFeature){
@@ -186,6 +190,13 @@ public class ParticipantCloner {
         }
     }
 
+    /**
+     * <p>copyAndOverrideBasicEntityProperties</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param createNewFeature a boolean.
+     */
     public static void copyAndOverrideBasicEntityProperties(Entity source, Entity target, boolean createNewFeature){
         if (source != null && target != null){
             target.setStoichiometry(source.getStoichiometry());

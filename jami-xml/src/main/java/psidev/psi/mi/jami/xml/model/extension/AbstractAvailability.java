@@ -17,16 +17,16 @@ import javax.xml.bind.annotation.*;
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
- * &lt;complexType name="availability">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="availability"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;string"&gt;
+ *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  *
- *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public abstract class AbstractAvailability implements FileSourceContext, Locatable
@@ -39,16 +39,16 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractAvailability.</p>
+     */
     public AbstractAvailability() {
     }
 
     /**
      * Gets the value of the value property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return a {@link java.lang.String} object.
      */
     public String getValue() {
         return value;
@@ -59,8 +59,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlValue
     public void setValue(String value) {
@@ -70,6 +69,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
@@ -78,6 +78,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
     /**
      * Sets the value of the id property.
      *
+     * @param value a int.
      */
     @XmlAttribute(name = "id", required = true)
     public void setId(int value) {
@@ -88,11 +89,17 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), getId());
@@ -100,6 +107,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -113,6 +121,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Availability: "+(getSourceLocator() != null ? getSourceLocator().toString():"-");

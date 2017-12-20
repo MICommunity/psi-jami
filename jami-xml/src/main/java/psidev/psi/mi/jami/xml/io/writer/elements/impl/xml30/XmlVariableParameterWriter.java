@@ -19,7 +19,6 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableParameter> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
@@ -27,6 +26,12 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
     private PsiXmlElementWriter<VariableParameterValue> variableParameterValueWriter;
     private PsiXmlVariableNameWriter<CvTerm> unitWriter;
 
+    /**
+     * <p>Constructor for XmlVariableParameterWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlVariableParameterWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlVariableParameterWriter");
@@ -39,6 +44,11 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterValueWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<VariableParameterValue> getVariableParameterValueWriter() {
         if (this.variableParameterValueWriter == null){
             this.variableParameterValueWriter = new XmlVariableParameterValueWriter(this.streamWriter, this.objectIndex);
@@ -46,10 +56,20 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
         return variableParameterValueWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>variableParameterValueWriter</code>.</p>
+     *
+     * @param variableParameterValueWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setVariableParameterValueWriter(PsiXmlElementWriter<VariableParameterValue> variableParameterValueWriter) {
         this.variableParameterValueWriter = variableParameterValueWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>unitWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getUnitWriter() {
         if (this.unitWriter == null){
             initialiseUnitWriter();
@@ -57,14 +77,23 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
         return unitWriter;
     }
 
+    /**
+     * <p>initialiseUnitWriter.</p>
+     */
     protected void initialiseUnitWriter() {
         this.unitWriter = new XmlCvTermWriter(this.streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>unitWriter</code>.</p>
+     *
+     * @param unitWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setUnitWriter(PsiXmlVariableNameWriter<CvTerm> unitWriter) {
         this.unitWriter = unitWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(VariableParameter object) throws MIIOException {
         if (object != null){
@@ -86,6 +115,12 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
         }
     }
 
+    /**
+     * <p>writeVariableParameterValues.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeVariableParameterValues(VariableParameter object) throws XMLStreamException {
          if (!object.getVariableValues().isEmpty()){
              this.streamWriter.writeStartElement("variableValueList");
@@ -98,22 +133,43 @@ public class XmlVariableParameterWriter implements PsiXmlElementWriter<VariableP
          }
     }
 
+    /**
+     * <p>writeUnit.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     */
     protected void writeUnit(VariableParameter object) {
         if (object.getUnit() != null){
             getUnitWriter().write(object.getUnit(), "unit");
         }
     }
 
+    /**
+     * <p>writeDescription.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeDescription(VariableParameter object) throws XMLStreamException {
         this.streamWriter.writeStartElement("description");
         this.streamWriter.writeCharacters(object.getDescription());
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

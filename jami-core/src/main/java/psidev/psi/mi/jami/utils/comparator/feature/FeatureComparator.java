@@ -15,13 +15,18 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class FeatureComparator implements Comparator<Feature> {
 
     private ModelledFeatureComparator biologicalFeatureComparator;
     private FeatureEvidenceComparator experimentalFeatureComparator;
     private Comparator<Feature> featureBaseComparator;
 
+    /**
+     * <p>Constructor for FeatureComparator.</p>
+     *
+     * @param featureBaseComparator a {@link java.util.Comparator} object.
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     */
     public FeatureComparator(Comparator<Feature> featureBaseComparator, Comparator<CvTerm> cvTermComparator){
         if (featureBaseComparator == null){
             throw new IllegalArgumentException("The featureBaseComparator is required to create more specific feature comparators and compares basic feature properties. It cannot be null");
@@ -32,14 +37,29 @@ public class FeatureComparator implements Comparator<Feature> {
 
     }
 
+    /**
+     * <p>Getter for the field <code>biologicalFeatureComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.feature.ModelledFeatureComparator} object.
+     */
     public ModelledFeatureComparator getBiologicalFeatureComparator() {
         return biologicalFeatureComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalFeatureComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.feature.FeatureEvidenceComparator} object.
+     */
     public FeatureEvidenceComparator getExperimentalFeatureComparator() {
         return experimentalFeatureComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Feature> getFeatureBaseComparator() {
         return featureBaseComparator;
     }
@@ -49,9 +69,10 @@ public class FeatureComparator implements Comparator<Feature> {
      * - It uses ModelledFeatureComparator to compare biological features
      * - It uses FeatureEvidenceComparator to compare experimental features
      * - It uses AbstractFeatureBaseComparator to compare basic feature properties
-     * @param feature1
-     * @param feature2
-     * @return
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @return a int.
      */
     public int compare(Feature feature1, Feature feature2) {
         int EQUAL = 0;

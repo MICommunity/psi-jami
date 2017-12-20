@@ -14,7 +14,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class ResultingSequenceComparator implements Comparator<ResultingSequence>{
 
     private static ResultingSequenceComparator resultingSequenceComparator;
@@ -22,9 +21,10 @@ public class ResultingSequenceComparator implements Comparator<ResultingSequence
     /**
      * It will first compare the original sequence and then if the original sequences are the same, it will compare the
      * new sequences.
-     * @param resultingSequence1
-     * @param resultingSequence2
-     * @return
+     *
+     * @param resultingSequence1 a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
+     * @param resultingSequence2 a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
+     * @return a int.
      */
     public int compare(ResultingSequence resultingSequence1, ResultingSequence resultingSequence2) {
         int EQUAL = 0;
@@ -83,8 +83,9 @@ public class ResultingSequenceComparator implements Comparator<ResultingSequence
 
     /**
      * Use ResultingSequenceComparator to know if two resulting sequences are equals.
-     * @param resultingSequence1
-     * @param resultingSequence2
+     *
+     * @param resultingSequence1 a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
+     * @param resultingSequence2 a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
      * @return true if the two resulting sequences are equal
      */
     public static boolean areEquals(ResultingSequence resultingSequence1, ResultingSequence resultingSequence2){
@@ -96,8 +97,9 @@ public class ResultingSequenceComparator implements Comparator<ResultingSequence
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param resultingSequence
+     * @param resultingSequence a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(ResultingSequence resultingSequence){

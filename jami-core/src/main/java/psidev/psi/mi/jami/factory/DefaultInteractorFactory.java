@@ -14,22 +14,23 @@ import java.util.*;
  * @version $Id$
  * @since <pre>18/06/13</pre>
  */
-
 public class DefaultInteractorFactory implements InteractorFactory {
 
     private Map<String, InteractorCategory> deterministicInteractorNameMap;
     private Map<String, InteractorCategory> deterministicInteractorIdMap;
 
+    /**
+     * <p>Constructor for DefaultInteractorFactory.</p>
+     */
     public DefaultInteractorFactory(){
 
         initialiseDeterministicInteractorMaps();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Return the proper instance of the interactor if the type is recognized and not null. It returns null otherwise.
-     * @param type : the interactor type
-     * @param name : shortName
-     * @return the proper instance of the interactor if the type is recognized. It returns null otherwise.
      */
     public Interactor createInteractorFromInteractorType(CvTerm type, String name){
         if (type == null){
@@ -56,10 +57,9 @@ public class DefaultInteractorFactory implements InteractorFactory {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Return the proper instance of the interactor if the database is recognized. It returns null otherwise.
-     * @param database : the database
-     * @param name : the name
-     * @return the proper instance of the interactor if the database is recognized. It returns null otherwise.
      */
     public Interactor createInteractorFromDatabase(CvTerm database, String name){
         if (database == null){
@@ -83,10 +83,9 @@ public class DefaultInteractorFactory implements InteractorFactory {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Return the proper instance of the interactor if the database is recognized (the interactor will be returned on the first database which is recognized). It returns null otherwise.
-     * @param xrefs : identifiers
-     * @param name : name
-     * @return the proper instance of the interactor if the database is recognized (the interactor will be returned on the first database which is recognized). It returns null otherwise.
      */
     public Interactor createInteractorFromIdentityXrefs(Collection<? extends Xref> xrefs, String name){
 
@@ -101,79 +100,72 @@ public class DefaultInteractorFactory implements InteractorFactory {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new Protein with the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created protein
      */
     public Protein createProtein(String name, CvTerm type){
         return new DefaultProtein(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new NucleicAcid with the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created nucleic acid
      */
     public NucleicAcid createNucleicAcid(String name, CvTerm type){
         return new DefaultNucleicAcid(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new Gene with the name
-     * @param name : the short name
-     * @return created gene
      */
     public Gene createGene(String name){
         return new DefaultGene(name);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new Complex with the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created complex
      */
     public Complex createComplex(String name, CvTerm type){
         return new DefaultComplex(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new BioactiveEntity with the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created bioactive entity
      */
     public BioactiveEntity createBioactiveEntity(String name, CvTerm type){
         return new DefaultBioactiveEntity(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new Polymer with the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created polymer
      */
     public Polymer createPolymer(String name, CvTerm type){
         return new DefaultPolymer(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a default interactor from the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created default interactor
      */
     public Interactor createInteractor(String name, CvTerm type){
         return new DefaultInteractor(name, type);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Creates an interactor pool from the name and interactor type
-     * @param name : short name
-     * @param type : interactor type
-     * @return created interactor pool
      */
     public InteractorPool createInteractorSet(String name, CvTerm type) {
         return new DefaultInteractorPool(name, type);
@@ -204,6 +196,7 @@ public class DefaultInteractorFactory implements InteractorFactory {
 
     /**
      * Loads the properties in the deterministicInteractorMap
+     *
      * @param prop : properties
      */
     protected void loadProperties(Properties prop) {
@@ -221,6 +214,7 @@ public class DefaultInteractorFactory implements InteractorFactory {
 
     /**
      * Reads the cv term from the properties file
+     *
      * @param key : the property ky
      * @return cv term values extracted from the key (name - MI identifier)
      */
@@ -236,6 +230,7 @@ public class DefaultInteractorFactory implements InteractorFactory {
 
     /**
      * Creates an interactor from a given category (should be the canonical name of an Interactor interface)
+     *
      * @param category : the category of interactor
      * @param name : name
      * @param type : interactor type

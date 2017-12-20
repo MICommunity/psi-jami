@@ -24,7 +24,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlSourceWriter implements PsiXmlSourceWriter {
 
     private XMLStreamWriter streamWriter;
@@ -35,6 +34,11 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
     private PsiXmlElementWriter<Publication> publicationWriter;
     private PsiXmlElementWriter<Annotation> attributeWriter;
 
+    /**
+     * <p>Constructor for XmlSourceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlSourceWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XML25SourceWriter");
@@ -43,6 +47,11 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         this.calendar = null;
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(streamWriter);
@@ -50,10 +59,20 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -61,14 +80,27 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         this.xrefWriter = new XmlDbXrefWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Publication> getPublicationWriter() {
         if (this.publicationWriter == null){
             initialisePublicationWriter();
@@ -76,14 +108,27 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         return publicationWriter;
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         this.publicationWriter = new XmlPublicationWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>publicationWriter</code>.</p>
+     *
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setPublicationWriter(PsiXmlElementWriter<Publication> publicationWriter) {
         this.publicationWriter = publicationWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -92,10 +137,16 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         return attributeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Source object) throws MIIOException{
         try {
@@ -118,6 +169,12 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         }
     }
 
+    /**
+     * <p>writeAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttributes(Source object) throws XMLStreamException {
         if (!object.getAnnotations().isEmpty()){
             // write start attribute list
@@ -130,6 +187,12 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         }
     }
 
+    /**
+     * <p>writeXref.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXref(Source object) throws XMLStreamException {
         if (!object.getIdentifiers().isEmpty()){
             writeXrefFromSourceIdentifiers(object);
@@ -139,12 +202,23 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         }
     }
 
+    /**
+     * <p>writeBibRef.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     protected void writeBibRef(Source object) {
         if (object.getPublication() != null){
             getPublicationWriter().write(object.getPublication());
         }
     }
 
+    /**
+     * <p>writeNames.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeNames(Source object) throws XMLStreamException {
         boolean hasShortName = object.getShortName() != null;
         boolean hasFullName = object.getFullName() != null;
@@ -172,12 +246,24 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         }
     }
 
+    /**
+     * <p>writeReleaseAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeReleaseAttributes(Source object) throws XMLStreamException {
         if (this.calendar != null) {
             this.streamWriter.writeAttribute("releaseDate", this.calendar.toXMLFormat());
         }
     }
 
+    /**
+     * <p>writeXrefFromSourceXrefs.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromSourceXrefs(Source object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -205,6 +291,12 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromSourceIdentifiers.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromSourceIdentifiers(Source object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -278,15 +370,22 @@ public class XmlSourceWriter implements PsiXmlSourceWriter {
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public XMLGregorianCalendar getDefaultReleaseDate() {
         return this.calendar;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultReleaseDate(XMLGregorianCalendar date) {
         this.calendar = date;

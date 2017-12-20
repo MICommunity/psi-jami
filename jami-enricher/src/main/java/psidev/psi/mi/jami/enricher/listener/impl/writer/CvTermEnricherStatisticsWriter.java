@@ -17,6 +17,7 @@ import java.io.IOException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class CvTermEnricherStatisticsWriter<C extends CvTerm>
         extends EnricherStatisticsWriter<C>
@@ -26,7 +27,8 @@ public class CvTermEnricherStatisticsWriter<C extends CvTerm>
 
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     *
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public CvTermEnricherStatisticsWriter() throws IOException {
         super(FILE_NAME);
@@ -34,8 +36,9 @@ public class CvTermEnricherStatisticsWriter<C extends CvTerm>
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public CvTermEnricherStatisticsWriter(String fileName) throws IOException {
         super(fileName);
@@ -43,9 +46,10 @@ public class CvTermEnricherStatisticsWriter<C extends CvTerm>
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public CvTermEnricherStatisticsWriter(String successFileName, String failureFileName) throws IOException {
         super(successFileName, failureFileName);
@@ -53,9 +57,10 @@ public class CvTermEnricherStatisticsWriter<C extends CvTerm>
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public CvTermEnricherStatisticsWriter(File successFile, File failureFile) throws IOException {
         super(successFile, failureFile);
@@ -65,66 +70,79 @@ public class CvTermEnricherStatisticsWriter<C extends CvTerm>
     // ================================================================
 
 
+    /** {@inheritDoc} */
     public void onShortNameUpdate(CvTerm cv, String oldShortName) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onFullNameUpdate(CvTerm cv, String oldFullName) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onMIIdentifierUpdate(CvTerm cv, String oldMI) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onMODIdentifierUpdate(CvTerm cv, String oldMOD) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onPARIdentifierUpdate(CvTerm cv, String oldPAR) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentifier(CvTerm cv, Xref added) {
         checkObject(cv);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentifier(CvTerm cv, Xref removed) {
         checkObject(cv);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(CvTerm cv, Xref added) {
         checkObject(cv);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(CvTerm cv, Xref removed) {
         checkObject(cv);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(CvTerm cv, Alias added) {
         checkObject(cv);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(CvTerm cv, Alias removed) {
         checkObject(cv);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(CvTerm o, Annotation added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(CvTerm o, Annotation removed) {
         checkObject(o);
         incrementRemovedCount();

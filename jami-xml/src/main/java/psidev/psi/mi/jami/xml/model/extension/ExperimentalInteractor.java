@@ -24,22 +24,22 @@ import java.util.List;
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
- * &lt;complexType name="experimentalInteractor">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;choice>
- *           &lt;elements name="interactorRef" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *           &lt;elements name="interactor" type="{http://psi.hupo.org/mi/mif}interactor"/>
- *         &lt;/choice>
- *         &lt;elements name="experimentRefList" type="{http://psi.hupo.org/mi/mif}experimentRefList" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="experimentalInteractor"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;choice&gt;
+ *           &lt;elements name="interactorRef" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *           &lt;elements name="interactor" type="{http://psi.hupo.org/mi/mif}interactor"/&gt;
+ *         &lt;/choice&gt;
+ *         &lt;elements name="experimentRefList" type="{http://psi.hupo.org/mi/mif}experimentRefList" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  *
- *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public class ExperimentalInteractor implements FileSourceContext, Locatable
@@ -53,18 +53,36 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
 
     private JAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
+    /**
+     * <p>Constructor for ExperimentalInteractor.</p>
+     */
     public ExperimentalInteractor() {
         this.interactorFactory =  XmlEntryContext.getInstance().getInteractorFactory();
     }
 
+    /**
+     * <p>Getter for the field <code>interactor</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public Interactor getInteractor() {
         return this.interactor;
     }
 
+    /**
+     * <p>Setter for the field <code>interactor</code>.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public void setInteractor(Interactor interactor) {
         this.interactor = interactor;
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (jaxbExperimentRefWrapper == null){
             jaxbExperimentRefWrapper = new JAXBExperimentRefWrapper();
@@ -72,11 +90,17 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
         return jaxbExperimentRefWrapper.experiments;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -84,6 +108,7 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -101,8 +126,7 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
      *
      * @param value
      *     allowed object is
-     *     {@link Interactor }
-     *
+     *     {@link psidev.psi.mi.jami.model.Interactor}
      */
     @XmlElement(name = "interactor")
     public void setJAXBInteractor(XmlInteractor value) {
@@ -119,8 +143,7 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
      *
      * @param value
      *     allowed object is
-     *     {@link Integer }
-     *
+     *     {@link java.lang.Integer}
      */
     @XmlElement(name = "interactorRef")
     public void setJAXBInteractorRef(Integer value) {
@@ -132,10 +155,7 @@ public class ExperimentalInteractor implements FileSourceContext, Locatable
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @return
-     *     possible object is
-     *     {@link ArrayList<Integer> }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

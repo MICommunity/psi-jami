@@ -31,39 +31,75 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Experiment> getExperiments(){
         return this.experimentsWrapper != null ? this.experimentsWrapper.experiments : Collections.EMPTY_LIST;
     }
+    /**
+     * <p>setJAXBSource.</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
+     */
     @XmlElement(name = "source", type = XmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
         super.setSource(source);
     }
 
+    /**
+     * <p>setJAXBAvailabilityWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml25.ExperimentalEntry.JAXBAvailabilitiesWrapper} object.
+     */
     @XmlElement(name = "availabilityList")
     public void setJAXBAvailabilityWrapper(JAXBAvailabilitiesWrapper wrapper) {
         this.availabilitiesWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBExperimentWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml25.ExperimentalEntry.JAXBExperimentsWrapper} object.
+     */
     @XmlElement(name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
         this.experimentsWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBInteractorsWrapper.</p>
+     *
+     * @param wrapper a JAXBInteractorsWrapper object.
+     */
     @XmlElement(name = "interactorList")
     public void setJAXBInteractorsWrapper(JAXBInteractorsWrapper wrapper){
         super.setInteractorsWrapper(wrapper);
     }
 
+    /**
+     * <p>setJAXBInteractionsWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml25.ExperimentalEntry.JAXBInteractionsWrapper} object.
+     */
     @XmlElement(name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){
         super.setInteractionsWrapper(wrapper);
     }
 
+    /**
+     * <p>setJAXBAnnotationWrapper.</p>
+     *
+     * @param wrapper a JAXBAnnotationsWrapper object.
+     */
     @XmlElement(name = "annotationList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -72,6 +108,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
@@ -82,6 +119,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAvailabilities() {
         super.initialiseAvailabilitiesWith(this.availabilitiesWrapper != null ? this.availabilitiesWrapper.availabilities : null);

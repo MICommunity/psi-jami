@@ -39,9 +39,18 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
 
     private CvTerm role;
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     */
     public AbstractXmlFeature(){
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public AbstractXmlFeature(String shortName, String fullName){
         this();
         this.namesContainer = new NamesContainer();
@@ -49,39 +58,81 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         this.namesContainer.setFullName(fullName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlFeature(CvTerm type){
         this();
         this.type = type;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlFeature(String shortName, String fullName, CvTerm type){
         this(shortName, fullName);
         this.type =type;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public AbstractXmlFeature(String shortName, String fullName, String interpro){
         this(shortName, fullName);
         setInterpro(interpro);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public AbstractXmlFeature(CvTerm type, String interpro){
         this(type);
         setInterpro(interpro);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlFeature.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
+     */
     public AbstractXmlFeature(String shortName, String fullName, CvTerm type, String interpro){
         this(shortName, fullName, type);
         setInterpro(interpro);
     }
 
+    /**
+     * <p>initialiseAnnotationWrapper.</p>
+     */
     protected void initialiseAnnotationWrapper(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>initialiseRangeWrapper.</p>
+     */
     protected void initialiseRangeWrapper(){
         this.jaxbRangeWrapper = new JAXBRangeWrapper();
     }
 
+    /**
+     * <p>initialiseLinkedFeatures.</p>
+     */
     protected void initialiseLinkedFeatures(){
         this.linkedFeatures = new ArrayList<F>();
     }
@@ -91,17 +142,22 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
     }
 
+    /**
+     * <p>getShortName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         return this.namesContainer != null ? this.namesContainer.getShortLabel() : null;
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -109,11 +165,17 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         this.namesContainer.setShortLabel(name);
     }
 
+    /**
+     * <p>getFullName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFullName() {
         return this.namesContainer != null ? this.namesContainer.getFullName() : null;
 
     }
 
+    /** {@inheritDoc} */
     public void setFullName(String name) {
         if (this.namesContainer == null){
             this.namesContainer = new NamesContainer();
@@ -121,6 +183,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         this.namesContainer.setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
         if (this.namesContainer == null){
@@ -134,17 +197,22 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
      *
      * @param value
      *     allowed object is
-     *     {@link FeatureXrefContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.FeatureXrefContainer}
      */
     public void setJAXBXref(FeatureXrefContainer value) {
         this.xrefContainer = value;
     }
 
+    /**
+     * <p>getInterpro.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getInterpro() {
         return this.xrefContainer != null ? this.xrefContainer.getInterpro() : null;
     }
 
+    /** {@inheritDoc} */
     public void setInterpro(String interpro) {
         if (this.xrefContainer == null){
             this.xrefContainer = new FeatureXrefContainer();
@@ -152,6 +220,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         this.xrefContainer.setInterpro(interpro);
     }
 
+    /**
+     * <p>getIdentifiers.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (this.xrefContainer == null){
             this.xrefContainer = new FeatureXrefContainer();
@@ -159,6 +232,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return xrefContainer.getIdentifiers();
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (this.xrefContainer == null){
             this.xrefContainer = new FeatureXrefContainer();
@@ -166,6 +244,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return xrefContainer.getXrefs();
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -173,18 +256,34 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         return this.type;
     }
 
+    /** {@inheritDoc} */
     public void setType(CvTerm type) {
         this.type = type;
     }
 
+    /**
+     * <p>setJAXBType.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     public void setJAXBType(XmlCvTerm type) {
         this.type = type;
     }
 
+    /**
+     * <p>getRanges.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Range> getRanges() {
         if (this.jaxbRangeWrapper == null){
             initialiseRangeWrapper();
@@ -192,6 +291,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.jaxbRangeWrapper.ranges;
     }
 
+    /**
+     * <p>Getter for the field <code>role</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getRole() {
         if (this.role == null){
             initialiseRole();
@@ -199,6 +303,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.role;
     }
 
+    /** {@inheritDoc} */
     public void setRole(CvTerm effect) {
         if (effect == null){
             this.role = null;
@@ -211,14 +316,29 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         }
     }
 
+    /**
+     * <p>Getter for the field <code>participant</code>.</p>
+     *
+     * @return a P object.
+     */
     public P getParticipant() {
         return this.participant;
     }
 
+    /**
+     * <p>Setter for the field <code>participant</code>.</p>
+     *
+     * @param participant a P object.
+     */
     public void setParticipant(P participant) {
         this.participant = participant;
     }
 
+    /**
+     * <p>setParticipantAndAddFeature.</p>
+     *
+     * @param participant a P object.
+     */
     public void setParticipantAndAddFeature(P participant) {
         if (this.participant != null){
             this.participant.removeFeature(this);
@@ -229,6 +349,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         }
     }
 
+    /**
+     * <p>Getter for the field <code>linkedFeatures</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<F> getLinkedFeatures() {
         if(linkedFeatures == null){
             initialiseLinkedFeatures();
@@ -236,20 +361,28 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.linkedFeatures;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Feature: "+getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -266,15 +399,17 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the id property.
      * Adds this object in the mapOfReferencedObjects of this entry
-     *
      */
     public void setId(int value) {
         this.id = value;
@@ -284,6 +419,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         }
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlFeature.JAXBAttributeWrapper} object.
+     */
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;
         // initialise participant ref of the ranges
@@ -294,14 +434,29 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         }
     }
 
+    /**
+     * <p>setJAXBRangeWrapper.</p>
+     *
+     * @param jaxbRangeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlFeature.JAXBRangeWrapper} object.
+     */
     public void setJAXBRangeWrapper(JAXBRangeWrapper jaxbRangeWrapper) {
         this.jaxbRangeWrapper = jaxbRangeWrapper;
     }
 
+    /**
+     * <p>setJAXBFeatureRole.</p>
+     *
+     * @param role a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     public void setJAXBFeatureRole(XmlCvTerm role){
         this.role = role;
     }
 
+    /**
+     * <p>getJAXBRangeWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlFeature.JAXBRangeWrapper} object.
+     */
     protected JAXBRangeWrapper getJAXBRangeWrapper() {
         if (this.jaxbRangeWrapper == null){
             initialiseRangeWrapper();
@@ -309,6 +464,11 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.jaxbRangeWrapper;
     }
 
+    /**
+     * <p>getJAXBAttributeWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlFeature.JAXBAttributeWrapper} object.
+     */
     protected JAXBAttributeWrapper getJAXBAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -316,6 +476,9 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
         return this.jaxbAttributeWrapper;
     }
 
+    /**
+     * <p>initialiseRole.</p>
+     */
     protected void initialiseRole() {
         if (this.jaxbAttributeWrapper != null && this.jaxbAttributeWrapper.role != null){
             this.role = this.jaxbAttributeWrapper.role;

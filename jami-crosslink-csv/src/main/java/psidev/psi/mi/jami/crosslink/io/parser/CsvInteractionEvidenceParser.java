@@ -11,8 +11,8 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
  * @version $Id$
  * @since <pre>26/08/14</pre>
  */
-
 public class CsvInteractionEvidenceParser extends AbstractCsvInteractionEvidenceParser<InteractionEvidence> {
+    /** {@inheritDoc} */
     @Override
     protected InteractionEvidence instantiateInteractionEvidence(int linePosition, String bait) {
         CsvInteractionEvidence interaction = new CsvInteractionEvidence();

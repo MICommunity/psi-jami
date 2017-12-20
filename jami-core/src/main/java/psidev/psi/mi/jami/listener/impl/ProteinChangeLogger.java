@@ -12,7 +12,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class ProteinChangeLogger extends PolymerChangeLogger<Protein> implements ProteinChangeListener {
 
     private static final Logger proteinChangeLogger = Logger.getLogger("ProteinChangeLogger");

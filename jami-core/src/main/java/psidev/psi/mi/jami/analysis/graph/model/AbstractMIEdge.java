@@ -9,17 +9,24 @@ import psidev.psi.mi.jami.utils.comparator.MIComparator;
  * The MIComparator will be used to sort node A and B, to test if two objects are identical in the equals method and to
  * generate hashCode for node A and B.
  * (A-B is the same as B-A)
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public abstract class AbstractMIEdge<T> implements MIEdge<T> {
 
     private T nodeA;
     private T nodeB;
     private MIComparator<T> nodeComparator;
 
+    /**
+     * <p>Constructor for AbstractMIEdge.</p>
+     *
+     * @param nodeA a T object.
+     * @param nodeB a T object.
+     * @param nodeComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public AbstractMIEdge(T nodeA, T nodeB, MIComparator<T> nodeComparator){
          if (nodeA == null){
              throw new IllegalArgumentException("The nodeA cannot be null");
@@ -43,14 +50,25 @@ public abstract class AbstractMIEdge<T> implements MIEdge<T> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>nodeA</code>.</p>
+     *
+     * @return a T object.
+     */
     public T getNodeA() {
         return nodeA;
     }
 
+    /**
+     * <p>Getter for the field <code>nodeB</code>.</p>
+     *
+     * @return a T object.
+     */
     public T getNodeB() {
         return nodeB;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -68,6 +86,7 @@ public abstract class AbstractMIEdge<T> implements MIEdge<T> {
                 && this.nodeComparator.compare(nodeB, (T)edge.getNodeB()) == 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         int hashcode = 31;

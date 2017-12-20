@@ -15,7 +15,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public class RangeUtils {
 
     /**
@@ -24,8 +23,9 @@ public class RangeUtils {
      * N-terminal range is represented with n
      * C-terminal range is represented with c
      * fuzzy ranges are represented with x1..x2
-     * @param range
-     * @return
+     *
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String convertRangeToString(Range range){
         if (range == null){
@@ -40,9 +40,10 @@ public class RangeUtils {
 
     /**
      * Create a Range from a String
-     * @param rangeString
-     * @return
-     * @throws IllegalRangeException
+     *
+     * @param rangeString a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
      */
     public static Range createRangeFromString(String rangeString) throws IllegalRangeException {
 
@@ -51,10 +52,11 @@ public class RangeUtils {
 
     /**
      * Create a range with a given linked property from a String
-     * @param rangeString
-     * @param linked
-     * @return
-     * @throws IllegalRangeException
+     *
+     * @param rangeString a {@link java.lang.String} object.
+     * @param linked a boolean.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
      */
     public static Range createRangeFromString(String rangeString, boolean linked) throws IllegalRangeException {
 
@@ -133,6 +135,7 @@ public class RangeUtils {
 
     /**
      * Method to check if the range is valid or not. If the range is valid, the method returns null otherwise it returns a message.
+     *
      * @param range : the range to check
      * @param sequence : the sequence of the polymer
      * @return empty list if the range is within the sequence, coherent with its fuzzy type and not overlapping. If the range is not valid, it will return a list of error messages describing why the range is invalid
@@ -164,7 +167,8 @@ public class RangeUtils {
 
     /**
      * Checks if the interval positions of the range are overlapping
-     * @param range
+     *
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
      * @return true if the range intervals are overlapping
      */
     public static boolean areRangePositionsOverlapping(Range range){
@@ -199,6 +203,7 @@ public class RangeUtils {
     }
 
     /**
+     * <p>areRangeStatusInconsistent</p>
      *
      * @param range : the range to check
      * @return  true if the range status are inconsistent (n-terminal is the end, c-terminal is the beginning)
@@ -225,118 +230,301 @@ public class RangeUtils {
         return false;
     }
 
+    /**
+     * <p>createUndeterminedRange</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createUndeterminedRange(){
         return new DefaultRange(PositionUtils.createUndeterminedPosition(), PositionUtils.createUndeterminedPosition());
     }
 
+    /**
+     * <p>createNTerminalRange</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createNTerminalRange(){
         return new DefaultRange(PositionUtils.createNTerminalRangePosition(), PositionUtils.createNTerminalRangePosition());
     }
 
+    /**
+     * <p>createCTerminalRange</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createCTerminalRange(){
         return new DefaultRange(PositionUtils.createCTerminalRangePosition(), PositionUtils.createCTerminalRangePosition());
     }
 
+    /**
+     * <p>createNTerminusRange</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createNTerminusRange(){
         return new DefaultRange(PositionUtils.createNTerminalPosition(), PositionUtils.createNTerminalPosition());
     }
 
+    /**
+     * <p>createCTerminusRange</p>
+     *
+     * @param lastPosition a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createCTerminusRange(int lastPosition){
         return new DefaultRange(PositionUtils.createCTerminalPosition(lastPosition), PositionUtils.createCTerminalPosition(lastPosition));
     }
 
+    /**
+     * <p>createCertainRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createCertainRange(int position){
         return new DefaultRange(PositionUtils.createCertainPosition(position), PositionUtils.createCertainPosition(position));
     }
 
+    /**
+     * <p>createLinkedCertainRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedCertainRange(int position){
         return new DefaultRange(PositionUtils.createCertainPosition(position), PositionUtils.createCertainPosition(position), true);
     }
 
+    /**
+     * <p>createGreaterThanRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createGreaterThanRange(int position){
         return new DefaultRange(PositionUtils.createGreaterThanPosition(position), PositionUtils.createGreaterThanPosition(position));
     }
 
+    /**
+     * <p>createLessThanRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLessThanRange(int position){
         return new DefaultRange(PositionUtils.createLessThanPosition(position), PositionUtils.createLessThanPosition(position));
     }
 
+    /**
+     * <p>createRaggedNTerminusRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createRaggedNTerminusRange(int position){
         return new DefaultRange(PositionUtils.createRaggedNTerminusPosition(position), PositionUtils.createRaggedNTerminusPosition(position));
     }
 
+    /**
+     * <p>createLinkedRaggedNTerminusRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedRaggedNTerminusRange(int position){
         return new DefaultRange(PositionUtils.createRaggedNTerminusPosition(position), PositionUtils.createRaggedNTerminusPosition(position), true);
     }
 
+    /**
+     * <p>createFuzzyRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createFuzzyRange(int position){
         return new DefaultRange(PositionUtils.createFuzzyPosition(position), PositionUtils.createFuzzyPosition(position));
     }
 
+    /**
+     * <p>createCertainRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createCertainRange(int start, int end){
         return new DefaultRange(PositionUtils.createCertainPosition(start), PositionUtils.createCertainPosition(end));
     }
 
+    /**
+     * <p>createLinkedFuzzyRange</p>
+     *
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedFuzzyRange(int position){
         return new DefaultRange(PositionUtils.createFuzzyPosition(position), PositionUtils.createFuzzyPosition(position), true);
     }
 
+    /**
+     * <p>createLinkedCertainRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedCertainRange(int start, int end){
         return new DefaultRange(PositionUtils.createCertainPosition(start), PositionUtils.createCertainPosition(end), true);
     }
 
+    /**
+     * <p>createGreaterThanRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createGreaterThanRange(int start, int end){
         return new DefaultRange(PositionUtils.createGreaterThanPosition(start), PositionUtils.createGreaterThanPosition(end));
     }
 
+    /**
+     * <p>createLessThanRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLessThanRange(int start, int end){
         return new DefaultRange(PositionUtils.createLessThanPosition(start), PositionUtils.createLessThanPosition(end));
     }
 
+    /**
+     * <p>createRaggedNTerminusRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createRaggedNTerminusRange(int start, int end){
         return new DefaultRange(PositionUtils.createRaggedNTerminusPosition(start), PositionUtils.createRaggedNTerminusPosition(end));
     }
 
+    /**
+     * <p>createFuzzyRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createFuzzyRange(int start, int end){
         return new DefaultRange(PositionUtils.createFuzzyPosition(start), PositionUtils.createFuzzyPosition(end));
     }
 
+    /**
+     * <p>createFuzzyRange</p>
+     *
+     * @param fromStart a int.
+     * @param fromEnd a int.
+     * @param toStart a int.
+     * @param toEnd a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createFuzzyRange(int fromStart, int fromEnd, int toStart, int toEnd){
         return new DefaultRange(PositionUtils.createFuzzyPosition(fromStart, fromEnd), PositionUtils.createFuzzyPosition(toStart, toEnd));
     }
 
+    /**
+     * <p>createLinkedRaggedNTerminusRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedRaggedNTerminusRange(int start, int end){
         return new DefaultRange(PositionUtils.createRaggedNTerminusPosition(start), PositionUtils.createRaggedNTerminusPosition(end), true);
     }
 
+    /**
+     * <p>createLinkedFuzzyRange</p>
+     *
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedFuzzyRange(int start, int end){
         return new DefaultRange(PositionUtils.createFuzzyPosition(start), PositionUtils.createFuzzyPosition(end), true);
     }
 
+    /**
+     * <p>createLinkedFuzzyRange</p>
+     *
+     * @param fromStart a int.
+     * @param fromEnd a int.
+     * @param toStart a int.
+     * @param toEnd a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedFuzzyRange(int fromStart, int fromEnd, int toStart, int toEnd){
         return new DefaultRange(PositionUtils.createFuzzyPosition(fromStart, fromEnd), PositionUtils.createFuzzyPosition(toStart, toEnd), true);
     }
 
+    /**
+     * <p>createRange</p>
+     *
+     * @param statusName a {@link java.lang.String} object.
+     * @param statusMi a {@link java.lang.String} object.
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createRange(String statusName, String statusMi, int position){
         return new DefaultRange(PositionUtils.createPosition(statusName, statusMi, position), PositionUtils.createPosition(statusName, statusMi, position));
     }
 
+    /**
+     * <p>createLinkedRange</p>
+     *
+     * @param statusName a {@link java.lang.String} object.
+     * @param statusMi a {@link java.lang.String} object.
+     * @param position a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedRange(String statusName, String statusMi, int position){
         return new DefaultRange(PositionUtils.createPosition(statusName, statusMi, position), PositionUtils.createPosition(statusName, statusMi, position), true);
     }
 
+    /**
+     * <p>createRange</p>
+     *
+     * @param statusName a {@link java.lang.String} object.
+     * @param statusMi a {@link java.lang.String} object.
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createRange(String statusName, String statusMi, int start, int end){
         return new DefaultRange(PositionUtils.createPosition(statusName, statusMi, start), PositionUtils.createPosition(statusName, statusMi, end));
     }
 
+    /**
+     * <p>createLinkedRange</p>
+     *
+     * @param statusName a {@link java.lang.String} object.
+     * @param statusMi a {@link java.lang.String} object.
+     * @param start a int.
+     * @param end a int.
+     * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     */
     public static Range createLinkedRange(String statusName, String statusMi, int start, int end){
         return new DefaultRange(PositionUtils.createPosition(statusName, statusMi, start), PositionUtils.createPosition(statusName, statusMi, end), true);
     }
 
     /**
      * Extract a sub-sequence from the sequence given a Range object
-     * @param range
-     * @param sequence
+     *
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param sequence a {@link java.lang.String} object.
      * @return the sub-sequence, null if the range or sequence is null
      */
     public static String extractRangeSequence(Range range, String sequence){

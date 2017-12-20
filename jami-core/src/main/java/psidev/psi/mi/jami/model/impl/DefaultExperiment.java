@@ -22,7 +22,6 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultExperiment implements Experiment {
 
     private Publication publication;
@@ -35,6 +34,11 @@ public class DefaultExperiment implements Experiment {
     private Collection<Confidence> confidences;
     private Collection<VariableParameter> variableParameters;
 
+    /**
+     * <p>Constructor for DefaultExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultExperiment(Publication publication){
 
         this.publication = publication;
@@ -42,6 +46,12 @@ public class DefaultExperiment implements Experiment {
 
     }
 
+    /**
+     * <p>Constructor for DefaultExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultExperiment(Publication publication, CvTerm interactionDetectionMethod){
 
         this.publication = publication;
@@ -53,23 +63,44 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultExperiment(Publication publication, CvTerm interactionDetectionMethod, Organism organism){
         this(publication, interactionDetectionMethod);
         this.hostOrganism = organism;
     }
 
+    /**
+     * <p>initialiseXrefs</p>
+     */
     protected void initialiseXrefs(){
         this.xrefs = new ArrayList<Xref>();
     }
 
+    /**
+     * <p>initialiseAnnotations</p>
+     */
     protected void initialiseAnnotations(){
         this.annotations = new ArrayList<Annotation>();
     }
 
+    /**
+     * <p>initialiseInteractions</p>
+     */
     protected void initialiseInteractions(){
         this.interactions = new ArrayList<InteractionEvidence>();
     }
 
+    /**
+     * <p>initialiseXrefsWith</p>
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     */
     protected void initialiseXrefsWith(Collection<Xref> xrefs){
         if (xrefs == null){
             this.xrefs = Collections.EMPTY_LIST;
@@ -79,6 +110,11 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>initialiseAnnotationsWith</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     */
     protected void initialiseAnnotationsWith(Collection<Annotation> annotations){
         if (annotations == null){
             this.annotations = Collections.EMPTY_LIST;
@@ -88,6 +124,11 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>initialiseInteractionsWith</p>
+     *
+     * @param interactionEvidences a {@link java.util.Collection} object.
+     */
     protected void initialiseInteractionsWith(Collection<InteractionEvidence> interactionEvidences){
         if (interactionEvidences == null){
             this.interactions = Collections.EMPTY_LIST;
@@ -97,14 +138,25 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>initialiseConfidences</p>
+     */
     protected void initialiseConfidences(){
         this.confidences = new ArrayList<Confidence>();
     }
 
+    /**
+     * <p>initialiseVariableParameters</p>
+     */
     protected void initialiseVariableParameters(){
         this.variableParameters = new ArrayList<VariableParameter>();
     }
 
+    /**
+     * <p>initialiseConfidencesWith</p>
+     *
+     * @param confs a {@link java.util.Collection} object.
+     */
     protected void initialiseConfidencesWith(Collection<Confidence> confs){
         if (confs == null){
             this.confidences = Collections.EMPTY_LIST;
@@ -114,6 +166,11 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>initialiseVariableParametersWith</p>
+     *
+     * @param variableParameters a {@link java.util.Collection} object.
+     */
     protected void initialiseVariableParametersWith(Collection<VariableParameter> variableParameters){
         if (variableParameters == null){
             this.variableParameters = Collections.EMPTY_LIST;
@@ -123,14 +180,21 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.publication;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         this.publication = publication;
     }
 
+    /** {@inheritDoc} */
     public void setPublicationAndAddExperiment(Publication publication) {
         if (this.publication != null){
            this.publication.removeExperiment(this);
@@ -141,6 +205,11 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>xrefs</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefs == null){
             initialiseXrefs();
@@ -148,6 +217,11 @@ public class DefaultExperiment implements Experiment {
         return this.xrefs;
     }
 
+    /**
+     * <p>Getter for the field <code>annotations</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (annotations == null){
            initialiseAnnotations();
@@ -155,6 +229,11 @@ public class DefaultExperiment implements Experiment {
         return this.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>confidences</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Confidence> getConfidences() {
         if (confidences == null){
             initialiseConfidences();
@@ -162,10 +241,16 @@ public class DefaultExperiment implements Experiment {
         return confidences;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionDetectionMethod</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getInteractionDetectionMethod() {
         return this.interactionDetectionMethod;
     }
 
+    /** {@inheritDoc} */
     public void setInteractionDetectionMethod(CvTerm term) {
         if (term == null){
             this.interactionDetectionMethod = CvTermUtils.createUnspecifiedMethod();
@@ -175,14 +260,25 @@ public class DefaultExperiment implements Experiment {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>hostOrganism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getHostOrganism() {
         return this.hostOrganism;
     }
 
+    /** {@inheritDoc} */
     public void setHostOrganism(Organism organism) {
         this.hostOrganism = organism;
     }
 
+    /**
+     * <p>getInteractionEvidences</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (interactions == null){
             initialiseInteractions();
@@ -190,6 +286,7 @@ public class DefaultExperiment implements Experiment {
         return this.interactions;
     }
 
+    /** {@inheritDoc} */
     public boolean addInteractionEvidence(InteractionEvidence evidence) {
         if (evidence == null){
             return false;
@@ -202,6 +299,7 @@ public class DefaultExperiment implements Experiment {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean removeInteractionEvidence(InteractionEvidence evidence) {
         if (evidence == null){
             return false;
@@ -214,6 +312,7 @@ public class DefaultExperiment implements Experiment {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllInteractionEvidences(Collection<? extends InteractionEvidence> evidences) {
         if (evidences == null){
             return false;
@@ -228,6 +327,7 @@ public class DefaultExperiment implements Experiment {
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllInteractionEvidences(Collection<? extends InteractionEvidence> evidences) {
         if (evidences == null){
             return false;
@@ -242,6 +342,11 @@ public class DefaultExperiment implements Experiment {
         return removed;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameters</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<VariableParameter> getVariableParameters() {
         if (variableParameters == null){
             initialiseVariableParameters();
@@ -249,6 +354,7 @@ public class DefaultExperiment implements Experiment {
         return variableParameters;
     }
 
+    /** {@inheritDoc} */
     public boolean addVariableParameter(VariableParameter variableParameter) {
         if (variableParameter == null){
             return false;
@@ -261,6 +367,7 @@ public class DefaultExperiment implements Experiment {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean removeVariableParameter(VariableParameter variableParameter) {
         if (variableParameter == null){
             return false;
@@ -273,6 +380,7 @@ public class DefaultExperiment implements Experiment {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllVariableParameters(Collection<? extends VariableParameter> variableParameters) {
         if (variableParameters == null){
             return false;
@@ -287,6 +395,7 @@ public class DefaultExperiment implements Experiment {
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllVariableParameters(Collection<? extends VariableParameter> variableParameters) {
         if (variableParameters == null){
             return false;
@@ -301,6 +410,7 @@ public class DefaultExperiment implements Experiment {
         return removed;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Experiment: "

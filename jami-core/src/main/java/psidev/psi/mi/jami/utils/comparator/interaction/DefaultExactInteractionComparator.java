@@ -15,13 +15,13 @@ import psidev.psi.mi.jami.model.ModelledInteraction;
  * @version $Id$
  * @since <pre>05/02/13</pre>
  */
-
 public class DefaultExactInteractionComparator {
 
     /**
      * Use DefaultExactInteractionComparator to know if two interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @return true if the two interactions are equal
      */
     public static boolean areEquals(Interaction interaction1, Interaction interaction2){

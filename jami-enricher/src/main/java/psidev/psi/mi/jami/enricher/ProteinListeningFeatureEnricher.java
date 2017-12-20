@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.Feature;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  19/07/13
+
  */
 public interface ProteinListeningFeatureEnricher<F extends Feature>
     extends FeatureEnricher<F>, ProteinEnricherListener{

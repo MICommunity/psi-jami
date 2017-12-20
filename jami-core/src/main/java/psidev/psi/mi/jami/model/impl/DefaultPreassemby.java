@@ -18,13 +18,23 @@ import psidev.psi.mi.jami.model.Preassembly;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class DefaultPreassemby extends DefaultCooperativeEffect implements Preassembly{
 
+    /**
+     * <p>Constructor for DefaultPreassemby.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultPreassemby(CvTerm outcome) {
         super(outcome);
     }
 
+    /**
+     * <p>Constructor for DefaultPreassemby.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultPreassemby(CvTerm outcome, CvTerm response) {
         super(outcome, response);
     }

@@ -23,14 +23,17 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnricher<F> {
 
+    /** {@inheritDoc} */
     @Override
     protected boolean updateRangePositions() {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInvalidRange(F feature, Range range, Collection<String> errorMessages) {
         if (getFeatureEnricherListener() != null){
@@ -42,6 +45,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onOutOfDateRange(F feature, Range range, Collection<String> errorMessages, String oldSequence) {
         if (getFeatureEnricherListener() != null){
@@ -53,6 +57,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processRanges(F objectToEnrich, F objectSource) throws EnricherException {
         EnricherUtils.mergeRanges(objectToEnrich, objectToEnrich.getRanges(), objectSource.getRanges(), true,
@@ -61,6 +66,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         processRanges(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processFeatureType(F featureToEnrich, F objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(featureToEnrich.getType(), objectSource.getType())){
@@ -77,6 +83,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         processFeatureType(featureToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processShortLabel(F objectToEnrich, F objectSource) throws EnricherException{
         if(objectSource.getShortName() != null
@@ -89,6 +96,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processFullName(F objectToEnrich, F objectSource) throws EnricherException{
         // == Full Name ======================================================================
@@ -103,6 +111,7 @@ public class MinimalFeatureUpdater<F extends  Feature> extends MinimalFeatureEnr
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(F objectToEnrich, F objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getIdentifiers(), objectSource.getIdentifiers(), true, true,

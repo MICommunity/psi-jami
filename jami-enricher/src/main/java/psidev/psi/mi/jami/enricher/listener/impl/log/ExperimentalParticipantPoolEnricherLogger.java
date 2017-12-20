@@ -12,20 +12,24 @@ import java.util.logging.Level;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/07/13
+
  */
 public class ExperimentalParticipantPoolEnricherLogger
         extends ParticipantEvidenceEnricherLogger<ExperimentalParticipantPool> implements ExperimentalParticipantPoolEnricherListener {
 
     private static final java.util.logging.Logger entityChangeLogger = java.util.logging.Logger.getLogger("ExperimentalParticipantPoolEnricherLogger");
 
+    /** {@inheritDoc} */
     public void onTypeUpdate(ExperimentalParticipantPool entity, CvTerm oldTerm) {
         entityChangeLogger.log(Level.INFO, "The pool type " + oldTerm + " has been updated with " + entity.getBiologicalRole() + " in the participant pool " + entity.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedCandidate(ExperimentalParticipantPool protein, ParticipantCandidate added) {
         entityChangeLogger.log(Level.INFO, "The candidate " + added.toString() + " has been added to the participant pool " + protein.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedCandidate(ExperimentalParticipantPool protein, ParticipantCandidate removed) {
         entityChangeLogger.log(Level.INFO, "The candidate " + removed.toString() + " has been removed from the participant pool " + protein.toString());
     }

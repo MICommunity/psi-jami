@@ -12,10 +12,12 @@ import java.util.Date;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+ * @version $Id: $
  */
 public interface PublicationChangeListener extends IdentifiersChangeListener<Publication>, XrefsChangeListener<Publication>, AnnotationsChangeListener<Publication> {
 
     /**
+     * <p>onPubmedIdUpdate</p>
      *
      * @param publication : updated publication
      * @param oldPubmedId : old pubmed
@@ -23,6 +25,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onPubmedIdUpdate(Publication publication , String oldPubmedId);
 
     /**
+     * <p>onDoiUpdate</p>
      *
      * @param publication : updated publication
      * @param oldDoi : old doi
@@ -30,6 +33,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onDoiUpdate(Publication publication , String oldDoi);
 
     /**
+     * <p>onImexIdentifierUpdate</p>
      *
      * @param publication : updated publication
      * @param addedXref : added xref
@@ -37,6 +41,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onImexIdentifierUpdate(Publication publication, Xref addedXref);
 
     /**
+     * <p>onTitleUpdated</p>
      *
      * @param publication : updated publication
      * @param oldTitle : old title
@@ -44,6 +49,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onTitleUpdated(Publication publication , String oldTitle);
 
     /**
+     * <p>onJournalUpdated</p>
      *
      * @param publication : updated publication
      * @param oldJournal : old journal
@@ -51,6 +57,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onJournalUpdated(Publication publication , String oldJournal);
 
     /**
+     * <p>onCurationDepthUpdate</p>
      *
      * @param publication : updated publication
      * @param oldDepth : old depth
@@ -58,6 +65,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onCurationDepthUpdate(Publication publication , CurationDepth oldDepth);
 
     /**
+     * <p>onPublicationDateUpdated</p>
      *
      * @param publication : updated publication
      * @param oldDate : old date
@@ -65,6 +73,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onPublicationDateUpdated(Publication publication , Date oldDate);
 
     /**
+     * <p>onAuthorAdded</p>
      *
      * @param publication : updated publication
      * @param addedAuthor  : added author
@@ -72,6 +81,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onAuthorAdded(Publication publication , String addedAuthor);
 
     /**
+     * <p>onAuthorRemoved</p>
      *
      * @param publication  : updated publication
      * @param removedAuthor : removed author
@@ -79,6 +89,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onAuthorRemoved(Publication publication , String removedAuthor);
 
     /**
+     * <p>onReleaseDateUpdated</p>
      *
      * @param publication  : updated publication
      * @param oldDate : old release date
@@ -86,6 +97,7 @@ public interface PublicationChangeListener extends IdentifiersChangeListener<Pub
     public void onReleaseDateUpdated(Publication publication , Date oldDate);
 
     /**
+     * <p>onSourceUpdated</p>
      *
      * @param publication : updated publication
      * @param oldSource : old source

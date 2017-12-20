@@ -12,10 +12,24 @@ import java.util.List;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public interface ExtendedPsiXmlXref extends Xref {
 
+    /**
+     * <p>getSecondary.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getSecondary();
+    /**
+     * <p>setSecondary.</p>
+     *
+     * @param secondary a {@link java.lang.String} object.
+     */
     public void setSecondary(String secondary);
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Annotation> getAnnotations();
 }

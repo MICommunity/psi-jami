@@ -13,27 +13,35 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlEndPositionWriter extends AbstractXmlPositionWriter {
+    /**
+     * <p>Constructor for XmlEndPositionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlEndPositionWriter(XMLStreamWriter writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartPositionNode() throws XMLStreamException {
         getStreamWriter().writeStartElement("end");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartIntervalNode() throws XMLStreamException {
         getStreamWriter().writeStartElement("endInterval");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseStatusWriter() {
         super.setStatusWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStatus(Position object) {
         getStatusWriter().write(object.getStatus(),"endStatus");

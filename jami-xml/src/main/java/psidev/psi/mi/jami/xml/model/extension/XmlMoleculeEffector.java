@@ -20,22 +20,44 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     private PsiXmlLocator sourceLocator;
     private ModelledEntity participant;
 
+    /**
+     * <p>Constructor for XmlMoleculeEffector.</p>
+     *
+     * @param participant a int.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public XmlMoleculeEffector(int participant, PsiXmlLocator locator){
         this.participant = new MoleculeEffectorRef(participant, locator);
     }
 
+    /**
+     * <p>getMolecule.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public ModelledEntity getMolecule() {
         return participant;
     }
 
+    /**
+     * <p>getEffectorType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffectorType} object.
+     */
     public AllostericEffectorType getEffectorType() {
         return AllostericEffectorType.molecule;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator locator) {
         if (locator == null){
             this.sourceLocator = null;
@@ -48,10 +70,16 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Allosteric molecule effector: "+getSourceLocator().toString():super.toString());

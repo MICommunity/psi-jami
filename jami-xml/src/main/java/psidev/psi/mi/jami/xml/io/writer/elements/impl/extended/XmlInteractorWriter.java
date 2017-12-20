@@ -11,23 +11,31 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlInteractorWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlInteractorWriter {
 
+    /**
+     * <p>Constructor for XmlInteractorWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorTypeWriter() {
         super.setInteractorTypeWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseOrganismWriter() {
         setOrganismWriter(new XmlOrganismWriter(getStreamWriter()));

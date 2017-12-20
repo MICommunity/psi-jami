@@ -26,12 +26,21 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     private CvTerm interactorType;
     private Organism organism;
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     */
     public AbstractXmlComplex(){
         super();
         setInteractorType(null);
         this.organism = null;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlComplex(String name, CvTerm type){
         super(name);
         if (name == null || (name != null && name.length() == 0)){
@@ -45,41 +54,100 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlComplex(String name, String fullName, CvTerm type){
         this(name, type);
         setFullName(fullName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlComplex(String name, CvTerm type, Organism organism){
         this(name, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Organism organism){
         this(name, fullName, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, CvTerm type, Xref uniqueId){
         this(name, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Xref uniqueId){
         this(name, fullName, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, CvTerm type, Organism organism, Xref uniqueId){
         this(name, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId){
         this(name, fullName, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public AbstractXmlComplex(String name){
         super(name);
         if (name == null || (name != null && name.length() == 0)){
@@ -88,46 +156,94 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public AbstractXmlComplex(String name, String fullName){
         this(name);
         setFullName(fullName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlComplex(String name, Organism organism){
         this(name);
         this.organism = organism;
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlComplex(String name, String fullName, Organism organism){
         this(name, fullName);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, Xref uniqueId){
         this(name);
         getIdentifiers().add(uniqueId);
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, String fullName, Xref uniqueId){
         this(name, fullName);
         getIdentifiers().add(uniqueId);
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, Organism organism, Xref uniqueId){
         this(name, organism);
         getIdentifiers().add(uniqueId);
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlComplex.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlComplex(String name, String fullName, Organism organism, Xref uniqueId){
         this(name, fullName, organism);
         getIdentifiers().add(uniqueId);
         this.interactorType = new XmlCvTerm(Complex.COMPLEX, new XmlXref(CvTermUtils.createPsiMiDatabase(), Complex.COMPLEX_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null){
@@ -138,6 +254,7 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPhysicalProperties(String properties) {
         Collection<Annotation> complexAnnotationList = getAnnotations();
@@ -167,26 +284,30 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     }
 
     /**
-     * Sets the value of the id property.
+     * {@inheritDoc}
      *
+     * Sets the value of the id property.
      */
     public void setId(int value) {
         super.setId(value);
         XmlEntryContext.getInstance().registerComplex(getId(), this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getPhysicalProperties() {
         Annotation physical = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
         return physical != null ? physical.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getRecommendedName() {
         Alias recommended = AliasUtils.collectFirstAliasWithType(getAliases(), Alias.COMPLEX_RECOMMENDED_NAME_MI, Alias.COMPLEX_RECOMMENDED_NAME);
         return recommended != null ? recommended.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setRecommendedName(String name) {
         Collection<Alias> complexAliasesList = getAliases();
@@ -217,12 +338,14 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getSystematicName() {
         Alias systematic = AliasUtils.collectFirstAliasWithType(getAliases(), Alias.COMPLEX_SYSTEMATIC_NAME_MI, Alias.COMPLEX_SYSTEMATIC_NAME);
         return systematic != null ? systematic.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSystematicName(String name) {
         Collection<Alias> complexAliasesList = getAliases();
@@ -253,11 +376,13 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Xref getPreferredIdentifier() {
         return !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next():null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Organism getOrganism() {
         // initialise organism from experiments
@@ -271,16 +396,19 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         return this.organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getInteractorType() {
         return this.interactorType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setJAXBXref(InteractionXrefContainer value) {
         super.setJAXBXref(value);
@@ -295,31 +423,37 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Complex : "+getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
         return super.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getIdentifiers() {
         return super.getIdentifiers();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return super.getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Checksum> getChecksums() {
         return super.getChecksums();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return super.getAnnotations();

@@ -12,13 +12,13 @@ import psidev.psi.mi.jami.model.ModelledFeature;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class DefaultModelledFeatureComparator {
 
     /**
      * Use DefaultModelledFeatureComparator to know if two biological features are equals.
-     * @param feature1
-     * @param feature2
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
      * @return true if the two biological features are equal
      */
     public static boolean areEquals(ModelledFeature feature1, ModelledFeature feature2){

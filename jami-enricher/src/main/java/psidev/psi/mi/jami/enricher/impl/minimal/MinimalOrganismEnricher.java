@@ -22,6 +22,7 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/05/13
+
  */
 public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
         implements OrganismEnricher {
@@ -31,6 +32,11 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
     private OrganismFetcher fetcher = null;
     private OrganismEnricherListener listener = null;
 
+    /**
+     * <p>Constructor for MinimalOrganismEnricher.</p>
+     *
+     * @param organismFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher} object.
+     */
     public MinimalOrganismEnricher(OrganismFetcher organismFetcher) {
         super();
         if (organismFetcher == null){
@@ -39,15 +45,26 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
         this.fetcher = organismFetcher;
     }
 
+    /**
+     * <p>Getter for the field <code>retryCount</code>.</p>
+     *
+     * @return a int.
+     */
     public int getRetryCount() {
         return retryCount;
     }
 
+    /**
+     * <p>Setter for the field <code>retryCount</code>.</p>
+     *
+     * @param retryCount a int.
+     */
     public void setRetryCount(int retryCount) {
         this.retryCount = retryCount;
     }
 
     /**
+     * <p>getOrganismFetcher.</p>
      *
      * @return  The current organism fetcher
      */
@@ -56,14 +73,21 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
     }
 
 
+    /** {@inheritDoc} */
     public void setOrganismEnricherListener(OrganismEnricherListener organismEnricherListener) {
         this.listener = organismEnricherListener;
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher) {
         // nothing to do
     }
 
+    /**
+     * <p>getOrganismEnricherListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.OrganismEnricherListener} object.
+     */
     public OrganismEnricherListener getOrganismEnricherListener() {
         return listener;
     }
@@ -71,10 +95,16 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
     /*
      * Cv enricher is not needed here
       */
+    /**
+     * <p>getCvTermEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Organism find(Organism objectToEnrich) throws EnricherException {
         Organism organismFetched = null;
@@ -96,12 +126,14 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Organism objectToEnrich) throws EnricherException {
         if(getOrganismEnricherListener() != null)
             getOrganismEnricherListener().onEnrichmentComplete(objectToEnrich, EnrichmentStatus.FAILED, "The organism does not exist.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(Organism organismToEnrich, Organism organismFetched) throws EnricherException {
 
@@ -120,14 +152,34 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
             listener.onEnrichmentComplete(organismToEnrich, EnrichmentStatus.SUCCESS, "Organism successfully enriched.");
     }
 
+    /**
+     * <p>processTaxid.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processTaxid(Organism organismToEnrich, Organism organismFetched) throws EnricherException{
         // nothing to do
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(Organism organismToEnrich, Organism organismFetched) throws EnricherException {
         // do nothing
     }
 
+    /**
+     * <p>processCommonName.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     protected void processCommonName(Organism organismToEnrich, Organism organismFetched) {
         if(organismToEnrich.getCommonName() == null
                 && organismFetched.getCommonName() != null){
@@ -137,6 +189,12 @@ public class MinimalOrganismEnricher extends AbstractMIEnricher<Organism>
         }
     }
 
+    /**
+     * <p>processScientificName.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     protected void processScientificName(Organism organismToEnrich, Organism organismFetched) {
         //Scientific name
         if(organismToEnrich.getScientificName() == null

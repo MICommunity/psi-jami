@@ -9,16 +9,17 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
  * @version $Id$
  * @since <pre>27/08/14</pre>
  */
-
 public interface CrosslinkCsvInteraction extends InteractionEvidence{
 
     /**
+     * <p>getNaryGroup.</p>
      *
      * @return the n-ary group name used for this interactions
      */
     public String getNaryGroup();
 
     /**
+     * <p>setNaryGroup.</p>
      *
      * @param bait : n-ary group name used for this interaction
      */

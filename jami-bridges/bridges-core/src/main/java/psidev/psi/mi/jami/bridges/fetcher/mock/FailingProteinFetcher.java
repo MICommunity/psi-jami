@@ -18,15 +18,20 @@ import java.util.*;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class FailingProteinFetcher
         extends AbstractFailingFetcher<Collection<Protein>>
         implements ProteinFetcher {
 
+    /**
+     * <p>Constructor for FailingProteinFetcher.</p>
+     *
+     * @param maxQuery a int.
+     */
     public FailingProteinFetcher(int maxQuery) {
         super(maxQuery);
     }
 
+    /** {@inheritDoc} */
     protected Collection<Protein> getEntry(String identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException(
                 "Attempted to query mock protein fetcher for null identifier.");
@@ -38,6 +43,12 @@ public class FailingProteinFetcher
         }
     }
 
+    /**
+     * <p>addEntry.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param protein a {@link psidev.psi.mi.jami.model.Protein} object.
+     */
     public void addEntry(String identifier, Protein protein){
         if(protein == null) return;
         if(! localMap.containsKey(identifier)){
@@ -48,10 +59,12 @@ public class FailingProteinFetcher
     }
 
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifier(String identifier) throws BridgeFailedException {
         return getEntry(identifier);
     }
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         Collection<Protein> resultsList= new ArrayList<Protein>();
         for(String identifier : identifiers){

@@ -5,11 +5,11 @@ import psidev.psi.mi.jami.factory.options.InteractionWriterOptions;
 /**
  * Class that lists all possible options for PsiXml 2.5 Writer.
  * The options listed in InteractionWriterOptions are also valid for a PsiXml 2.5 Writer
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>05/12/13</pre>
  */
-
 public class PsiXmlWriterOptions extends InteractionWriterOptions{
 
     /**

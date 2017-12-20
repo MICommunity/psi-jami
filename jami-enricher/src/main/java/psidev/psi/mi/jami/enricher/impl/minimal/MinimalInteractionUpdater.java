@@ -15,10 +15,18 @@ import java.util.Date;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class MinimalInteractionUpdater<I extends Interaction>
         extends MinimalInteractionEnricher<I> {
 
+    /**
+     * <p>processCreatedDate.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCreatedDate(I objectToEnrich, I objectSource) throws EnricherException{
         if ((objectSource.getCreatedDate() != null && !objectSource.getCreatedDate().equals(objectToEnrich.getCreatedDate()))
                 || (objectSource.getCreatedDate() == null && objectToEnrich.getCreatedDate() != null)){
@@ -30,6 +38,13 @@ public class MinimalInteractionUpdater<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processUpdateDate.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processUpdateDate(I objectToEnrich, I objectSource) throws EnricherException{
         if ((objectSource.getUpdatedDate() != null && !objectSource.getUpdatedDate().equals(objectToEnrich.getUpdatedDate()))
                 || (objectSource.getUpdatedDate() == null && objectToEnrich.getUpdatedDate() != null)){
@@ -41,6 +56,13 @@ public class MinimalInteractionUpdater<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processShortName.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processShortName(I objectToEnrich, I objectSource) throws EnricherException{
         if ((objectSource.getShortName() != null && !objectSource.getShortName().equals(objectToEnrich.getShortName()))
                 || (objectSource.getShortName() == null && objectToEnrich.getShortName() != null)){
@@ -52,15 +74,36 @@ public class MinimalInteractionUpdater<I extends Interaction>
         }
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(I objectToEnrich, I objectSource) throws EnricherException{
         // do nothing
     }
 
+    /**
+     * <p>processIdentifiers.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentifiers(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getIdentifiers(), objectSource.getIdentifiers(),true, true,
                 getInteractionEnricherListener(), getInteractionEnricherListener());
     }
 
+    /**
+     * <p>processParticipants.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processParticipants(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeParticipants(objectToEnrich, objectToEnrich.getParticipants(), objectSource.getParticipants(),
                 true, getInteractionEnricherListener(), getParticipantEnricher());
@@ -68,6 +111,13 @@ public class MinimalInteractionUpdater<I extends Interaction>
         processParticipants(objectToEnrich);
     }
 
+    /**
+     * <p>processInteractionType.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractionType(I objectToEnrich, I objectSource) throws EnricherException {
 
         if (!DefaultCvTermComparator.areEquals(objectToEnrich.getInteractionType(), objectSource.getInteractionType())){

@@ -13,15 +13,18 @@ import java.util.*;
  * @version $Id$
  * @since <pre>18/07/13</pre>
  */
-
 public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFetcher<T>> implements CvTermFetcher<T>{
 
     private Map<String, F> delegateFetchers;
 
+    /**
+     * <p>Constructor for CvTermCompositeFetcherTemplate.</p>
+     */
     public CvTermCompositeFetcherTemplate(){
         this.delegateFetchers = new HashMap<String, F>();
     }
 
+    /** {@inheritDoc} */
     public T fetchByIdentifier(String termIdentifier, String ontologyDatabaseName) throws BridgeFailedException {
 
         if (ontologyDatabaseName == null || !this.delegateFetchers.containsKey(ontologyDatabaseName)){
@@ -43,6 +46,14 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /**
+     * <p>fetchByIdentifier.</p>
+     *
+     * @param termIdentifier a {@link java.lang.String} object.
+     * @param ontologyDatabase a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public T fetchByIdentifier(String termIdentifier, CvTerm ontologyDatabase) throws BridgeFailedException {
         if (ontologyDatabase == null || !this.delegateFetchers.containsKey(ontologyDatabase.getShortName())){
             T firstTermRetrieved = null;
@@ -63,6 +74,7 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /** {@inheritDoc} */
     public T fetchByName(String searchName, String ontologyDatabaseName) throws BridgeFailedException {
         if (ontologyDatabaseName == null || !this.delegateFetchers.containsKey(ontologyDatabaseName)){
             T firstTermRetrieved = null;
@@ -83,6 +95,7 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByName(String searchName) throws BridgeFailedException {
         Collection<T> firstTermRetrieved = null;
         Iterator<F> fetcherIterator = delegateFetchers.values().iterator();
@@ -93,6 +106,14 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         return firstTermRetrieved;
     }
 
+    /**
+     * <p>fetchByIdentifiers.</p>
+     *
+     * @param termIdentifiers a {@link java.util.Collection} object.
+     * @param ontologyDatabaseName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, String ontologyDatabaseName) throws BridgeFailedException {
         if (ontologyDatabaseName == null || !this.delegateFetchers.containsKey(ontologyDatabaseName)){
             Collection<T> firstTermRetrieved = Collections.EMPTY_LIST;
@@ -113,6 +134,7 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, CvTerm ontologyDatabase) throws BridgeFailedException {
         if (ontologyDatabase == null || !this.delegateFetchers.containsKey(ontologyDatabase.getShortName())){
             Collection<T> firstTermRetrieved = Collections.EMPTY_LIST;
@@ -133,6 +155,7 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames, String ontologyDatabaseName) throws BridgeFailedException {
         if (ontologyDatabaseName == null || !this.delegateFetchers.containsKey(ontologyDatabaseName)){
             Collection<T> firstTermRetrieved = Collections.EMPTY_LIST;
@@ -153,6 +176,7 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         }
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames) throws BridgeFailedException {
         Collection<T> firstTermRetrieved = Collections.EMPTY_LIST;
         Iterator<F> fetcherIterator = delegateFetchers.values().iterator();
@@ -163,14 +187,30 @@ public class CvTermCompositeFetcherTemplate<T extends CvTerm, F extends CvTermFe
         return firstTermRetrieved;
     }
 
+    /**
+     * <p>addCvTermFetcher.</p>
+     *
+     * @param ontologyDatabase a {@link java.lang.String} object.
+     * @param fetcher a F object.
+     */
     public void addCvTermFetcher(String ontologyDatabase, F fetcher){
         this.delegateFetchers.put(ontologyDatabase, fetcher);
     }
 
+    /**
+     * <p>removeCvTermFetcher.</p>
+     *
+     * @param ontologyDatabase a {@link java.lang.String} object.
+     */
     public void removeCvTermFetcher(String ontologyDatabase){
         this.delegateFetchers.remove(ontologyDatabase);
     }
 
+    /**
+     * <p>Getter for the field <code>delegateFetchers</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<String, F> getDelegateFetchers() {
         return delegateFetchers;
     }

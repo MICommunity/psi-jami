@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.CvTerm;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface CvTermEnricherListener<C extends CvTerm>
         extends CvTermChangeListener , EnricherListener<C>{

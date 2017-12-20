@@ -15,7 +15,6 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/02/14</pre>
  */
-
 public class CompositeInteractorEnricher implements InteractorEnricher<Interactor>{
 
     private AbstractInteractorEnricher<Interactor> interactorBaseEnricher;
@@ -26,6 +25,11 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
     private InteractorEnricher<Gene> geneEnricher;
     private ComplexEnricher complexEnricher;
 
+    /**
+     * <p>Constructor for CompositeInteractorEnricher.</p>
+     *
+     * @param interactorBaseEnricher a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
+     */
     public CompositeInteractorEnricher(AbstractInteractorEnricher<Interactor> interactorBaseEnricher){
         super();
         if (interactorBaseEnricher == null){
@@ -34,58 +38,129 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         this.interactorBaseEnricher = interactorBaseEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>polymerBaseEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public InteractorEnricher<Polymer> getPolymerBaseEnricher() {
         return polymerBaseEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>polymerBaseEnricher</code>.</p>
+     *
+     * @param polymerBaseEnricher a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public void setPolymerBaseEnricher(InteractorEnricher<Polymer> polymerBaseEnricher) {
         this.polymerBaseEnricher = polymerBaseEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorPoolEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.InteractorPoolEnricher} object.
+     */
     public InteractorPoolEnricher getInteractorPoolEnricher() {
         return interactorPoolEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorPoolEnricher</code>.</p>
+     *
+     * @param interactorPoolEnricher a {@link psidev.psi.mi.jami.enricher.InteractorPoolEnricher} object.
+     */
     public void setInteractorPoolEnricher(InteractorPoolEnricher interactorPoolEnricher) {
         this.interactorPoolEnricher = interactorPoolEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>proteinEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.ProteinEnricher} object.
+     */
     public ProteinEnricher getProteinEnricher() {
         return proteinEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>proteinEnricher</code>.</p>
+     *
+     * @param proteinEnricher a {@link psidev.psi.mi.jami.enricher.ProteinEnricher} object.
+     */
     public void setProteinEnricher(ProteinEnricher proteinEnricher) {
         this.proteinEnricher = proteinEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>bioactiveEntityEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public InteractorEnricher<BioactiveEntity> getBioactiveEntityEnricher() {
         return bioactiveEntityEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>bioactiveEntityEnricher</code>.</p>
+     *
+     * @param bioactiveEntityEnricher a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public void setBioactiveEntityEnricher(InteractorEnricher<BioactiveEntity> bioactiveEntityEnricher) {
         this.bioactiveEntityEnricher = bioactiveEntityEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>geneEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public InteractorEnricher<Gene> getGeneEnricher() {
         return geneEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>geneEnricher</code>.</p>
+     *
+     * @param geneEnricher a {@link psidev.psi.mi.jami.enricher.InteractorEnricher} object.
+     */
     public void setGeneEnricher(InteractorEnricher<Gene> geneEnricher) {
         this.geneEnricher = geneEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>complexEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.ComplexEnricher} object.
+     */
     public ComplexEnricher getComplexEnricher() {
         return complexEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>complexEnricher</code>.</p>
+     *
+     * @param complexEnricher a {@link psidev.psi.mi.jami.enricher.ComplexEnricher} object.
+     */
     public void setComplexEnricher(ComplexEnricher complexEnricher) {
         this.complexEnricher = complexEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorBaseEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
+     */
     public AbstractInteractorEnricher<Interactor> getInteractorBaseEnricher() {
         return interactorBaseEnricher;
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Interactor object) throws EnricherException {
         if(object == null)
             throw new IllegalArgumentException("Cannot enrich a null interactor.");
@@ -117,6 +192,12 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<Interactor> objects) throws EnricherException {
         if(objects == null)
             throw new IllegalArgumentException("Cannot enrich a null collection of interactors.");
@@ -126,6 +207,13 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param objectSource a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Interactor object, Interactor objectSource) throws EnricherException {
         if (object instanceof Polymer && objectSource instanceof Polymer){
             if (object instanceof Protein && objectSource instanceof Protein && this.proteinEnricher != null){
@@ -155,26 +243,48 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
     }
 
+    /**
+     * <p>getInteractorFetcher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public InteractorFetcher<Interactor> getInteractorFetcher() {
         return this.interactorBaseEnricher.getInteractorFetcher();
     }
 
+    /**
+     * <p>getListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.InteractorEnricherListener} object.
+     */
     public InteractorEnricherListener<Interactor> getListener() {
         return this.interactorBaseEnricher.getListener();
     }
 
+    /**
+     * <p>getCvTermEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return this.interactorBaseEnricher.getCvTermEnricher();
     }
 
+    /**
+     * <p>getOrganismEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.OrganismEnricher} object.
+     */
     public OrganismEnricher getOrganismEnricher() {
         return this.interactorBaseEnricher.getOrganismEnricher();
     }
 
+    /** {@inheritDoc} */
     public void setListener(InteractorEnricherListener<Interactor> listener) {
         this.interactorBaseEnricher.setListener(listener);
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher) {
         this.interactorBaseEnricher.setCvTermEnricher(enricher);
         if (getProteinEnricher() != null){
@@ -197,6 +307,7 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
     }
 
+    /** {@inheritDoc} */
     public void setOrganismEnricher(OrganismEnricher enricher) {
         this.interactorBaseEnricher.setOrganismEnricher(enricher);
         if (getProteinEnricher() != null){

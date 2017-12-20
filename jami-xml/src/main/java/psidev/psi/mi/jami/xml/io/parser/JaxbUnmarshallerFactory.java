@@ -16,7 +16,6 @@ import javax.xml.bind.Unmarshaller;
  * @version $Id$
  * @since <pre>23/04/14</pre>
  */
-
 public class JaxbUnmarshallerFactory {
 
     private static final JaxbUnmarshallerFactory instance = new JaxbUnmarshallerFactory();
@@ -25,17 +24,23 @@ public class JaxbUnmarshallerFactory {
         // nothing to do here
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.parser.JaxbUnmarshallerFactory} object.
+     */
     public static JaxbUnmarshallerFactory getInstance() {
         return instance;
     }
 
     /**
+     * <p>createUnmarshaller.</p>
      *
      * @param version : version of PSI XML format
      * @param category : Interaction object category (modelled, evidence, basic, ...)
      * @return JAXB unmarshaller initialised to parse interaction objects of a certain category in a specific version of the PSI-MI XML format.
      * The unmarhsaller is initialised so it can be used in a streaming way
-     * @throws JAXBException
+     * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createUnmarshaller(PsiXmlVersion version, InteractionCategory category) throws JAXBException {
         if (category.equals(InteractionCategory.mixed) && !version.equals(PsiXmlVersion.v3_0_0)){
@@ -56,12 +61,13 @@ public class JaxbUnmarshallerFactory {
     }
 
     /**
+     * <p>createFullUnmarshaller.</p>
      *
      * @param version : version of PSI XML format
      * @param category : Interaction object category (modelled, evidence, basic, ...)
      * @return JAXB unmarshaller initialised to parse interaction objects of a certain category in a specific version of the PSI-MI XML format.
      * The unmarhsaller is initialised so it can only be used to parse the all entrySet (no streaming)
-     * @throws JAXBException
+     * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createFullUnmarshaller(PsiXmlVersion version, InteractionCategory category) throws JAXBException {
         if (category.equals(InteractionCategory.mixed) && !version.equals(PsiXmlVersion.v3_0_0)){
@@ -81,11 +87,25 @@ public class JaxbUnmarshallerFactory {
         }
     }
 
+    /**
+     * <p>createXml300JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createXml300JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
         // create unmarshaller knowing the interaction category we want to parse
         return createXml300JAXBUnmarshaller();
     }
 
+    /**
+     * <p>createXml253JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createXml253JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
         // create unmarshaller knowing the interaction category we want to parse
         switch (category){
@@ -104,6 +124,13 @@ public class JaxbUnmarshallerFactory {
         }
     }
 
+    /**
+     * <p>createXml254JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createXml254JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
         // create unmarshaller knowing the interaction category we want to parse
         switch (category){
@@ -122,6 +149,13 @@ public class JaxbUnmarshallerFactory {
         }
     }
 
+    /**
+     * <p>createFullXml300JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createFullXml300JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
 
         // create unmarshaller ignoring the interaction category we want to parse because always a mix
@@ -129,6 +163,13 @@ public class JaxbUnmarshallerFactory {
 
     }
 
+    /**
+     * <p>createFullXml253JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createFullXml253JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
 
         // create unmarshaller knowing the interaction category we want to parse
@@ -148,6 +189,13 @@ public class JaxbUnmarshallerFactory {
         }
     }
 
+    /**
+     * <p>createFullXml254JAXBUnmarshaller.</p>
+     *
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public Unmarshaller createFullXml254JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
         // create unmarshaller knowing the interaction category we want to parse
         switch (category){

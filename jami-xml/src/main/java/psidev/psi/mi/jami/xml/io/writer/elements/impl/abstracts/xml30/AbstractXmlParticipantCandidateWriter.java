@@ -17,7 +17,6 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public abstract class AbstractXmlParticipantCandidateWriter<P extends ParticipantCandidate, F extends Feature>
         implements PsiXmlElementWriter<P> {
     private XMLStreamWriter streamWriter;
@@ -25,6 +24,12 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
     private PsiXmlElementWriter<F> featureWriter;
     private PsiXmlElementWriter<Interactor> interactorWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlParticipantCandidateWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlParticipantCandidateWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlParticipantCandidateWriter");
@@ -36,6 +41,11 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Interactor> getInteractorWriter() {
         if (this.interactorWriter == null){
             initialiseInteractorWriter();
@@ -43,12 +53,25 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
         return interactorWriter;
     }
 
+    /**
+     * <p>initialiseInteractorWriter.</p>
+     */
     protected abstract void initialiseInteractorWriter();
 
+    /**
+     * <p>Setter for the field <code>interactorWriter</code>.</p>
+     *
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setInteractorWriter(PsiXmlElementWriter<Interactor> interactorWriter) {
         this.interactorWriter = interactorWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>featureWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<F> getFeatureWriter() {
         if (featureWriter == null){
             initialiseFeatureWriter();
@@ -56,12 +79,21 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
         return featureWriter;
     }
 
+    /**
+     * <p>initialiseFeatureWriter.</p>
+     */
     protected abstract void initialiseFeatureWriter();
 
+    /**
+     * <p>Setter for the field <code>featureWriter</code>.</p>
+     *
+     * @param featureWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setFeatureWriter(PsiXmlElementWriter<F> featureWriter) {
         this.featureWriter = featureWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(P object) throws MIIOException {
         try {
@@ -82,6 +114,12 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
         }
     }
 
+    /**
+     * <p>writeFeatures.</p>
+     *
+     * @param object a P object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeFeatures(P object) throws XMLStreamException {
         if (!object.getFeatures().isEmpty()){
             // write start feature list
@@ -94,28 +132,62 @@ public abstract class AbstractXmlParticipantCandidateWriter<P extends Participan
         }
     }
 
+    /**
+     * <p>writeInteractor.</p>
+     *
+     * @param object a P object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInteractor(P object) throws XMLStreamException {
         Interactor interactor = object.getInteractor();
         // write interactor ref or interactor
         writeMolecule(interactor);
     }
 
+    /**
+     * <p>writeMolecule.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeMolecule(Interactor interactor) throws XMLStreamException ;
 
+    /**
+     * <p>writeMoleculeRef.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeMoleculeRef(Interactor interactor) throws XMLStreamException {
         this.streamWriter.writeStartElement("interactorRef");
         this.streamWriter.writeCharacters(Integer.toString(this.objectIndex.extractIdForInteractor(interactor)));
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeMoleculeDescription.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeMoleculeDescription(Interactor interactor) throws XMLStreamException {
         getInteractorWriter().write(interactor);
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

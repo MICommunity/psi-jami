@@ -44,11 +44,15 @@ import psidev.psi.mi.jami.utils.comparator.organism.DefaultOrganismComparator;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public abstract class AbstractInteractorUpdater<T extends Interactor> extends AbstractInteractorEnricher<T> {
 
     private AbstractInteractorEnricher<T> interactorEnricher;
 
+    /**
+     * <p>Constructor for AbstractInteractorUpdater.</p>
+     *
+     * @param interactorEnricher a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
+     */
     public AbstractInteractorUpdater(AbstractInteractorEnricher<T> interactorEnricher){
         if (interactorEnricher == null){
            throw new IllegalArgumentException("The base interactor enricher is required");
@@ -56,6 +60,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         this.interactorEnricher = interactorEnricher;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processShortLabel(T bioactiveEntityToEnrich, T fetched) throws EnricherException{
         if(!fetched.getShortName().equalsIgnoreCase(bioactiveEntityToEnrich.getShortName())){
@@ -65,18 +70,21 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
                 getListener().onShortNameUpdate(bioactiveEntityToEnrich , oldValue);
         }    }
 
+    /** {@inheritDoc} */
     @Override
     public void processAliases(T bioactiveEntityToEnrich, T fetched) throws EnricherException{
         EnricherUtils.mergeAliases(bioactiveEntityToEnrich, bioactiveEntityToEnrich.getAliases(), fetched.getAliases(), true,
                 getListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(T bioactiveEntityToEnrich, T fetched) throws EnricherException{
         EnricherUtils.mergeXrefs(bioactiveEntityToEnrich, bioactiveEntityToEnrich.getIdentifiers(), fetched.getIdentifiers(), true, true,
                 getListener(), getListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFullName(T bioactiveEntityToEnrich, T fetched) throws EnricherException{
         if((fetched.getFullName() != null && !fetched.getFullName().equalsIgnoreCase(bioactiveEntityToEnrich.getFullName())
@@ -87,6 +95,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
                 getListener().onFullNameUpdate(bioactiveEntityToEnrich , oldValue);
         }    }
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractorType(T entityToEnrich, T fetched) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(entityToEnrich.getInteractorType(), fetched.getInteractorType())){
@@ -104,6 +113,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         processInteractorType(entityToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processOrganism(T entityToEnrich, T fetched) throws EnricherException {
         if (!DefaultOrganismComparator.areEquals(entityToEnrich.getOrganism(), fetched.getOrganism())){
@@ -121,6 +131,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         processOrganism(entityToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processChecksums(T bioactiveEntityToEnrich, T fetched) throws EnricherException {
         if (fetched != null){
@@ -129,6 +140,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(T objectToEnrich, T fetchedObject)throws EnricherException{
         if (fetchedObject != null){
@@ -137,6 +149,7 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(T bioactiveEntityToEnrich, T fetched) throws EnricherException{
         if (fetched != null){
@@ -145,46 +158,59 @@ public abstract class AbstractInteractorUpdater<T extends Interactor> extends Ab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractorEnricherListener<T> getListener() {
         return interactorEnricher.getListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setListener(InteractorEnricherListener<T> listener) {
         this.interactorEnricher.setListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public T find(T objectToEnrich) throws EnricherException {
         return interactorEnricher.find(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(T objectToEnrich) throws EnricherException {
         interactorEnricher.onEnrichedVersionNotFound(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onCompletedEnrichment(T objectToEnrich) {
         interactorEnricher.onCompletedEnrichment(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInteractorCheckFailure(T objectToEnrich, T fetchedObject) throws EnricherException {
         interactorEnricher.onInteractorCheckFailure(objectToEnrich, fetchedObject);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean canEnrichInteractor(T entityToEnrich, T fetchedEntity) throws EnricherException{
         return interactorEnricher.canEnrichInteractor(entityToEnrich, fetchedEntity);
     }
 
+    /**
+     * <p>Getter for the field <code>interactorEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
+     */
     protected AbstractInteractorEnricher<T> getInteractorEnricher() {
         return interactorEnricher;
     }

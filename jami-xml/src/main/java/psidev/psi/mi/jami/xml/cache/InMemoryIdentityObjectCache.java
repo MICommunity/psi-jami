@@ -13,13 +13,15 @@ import java.util.*;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
     private int current;
     private Map<Object, Integer> identityMap;
     private Set<ModelledInteraction> complexes;
     private Map<String, Integer> availabilityMap;
 
+    /**
+     * <p>Constructor for InMemoryIdentityObjectCache.</p>
+     */
     public InMemoryIdentityObjectCache(){
         this.current = 0;
         this.identityMap = new IdentityHashMap<Object, Integer>();
@@ -27,6 +29,7 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         this.availabilityMap = new HashMap<String, Integer>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForAvailability(String av) {
         if (av == null){
@@ -40,41 +43,51 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         return id;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForExperiment(Experiment o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForInteractor(Interactor o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForInteraction(Interaction o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForParticipant(Entity o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForVariableParameterValue(VariableParameterValue o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForFeature(Feature o) {
         return extractIdFor(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int extractIdForComplex(Complex o) {
         return extractIdFor(o);
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear(){
         this.current = 0;
         this.identityMap.clear();
@@ -82,11 +95,13 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         this.availabilityMap.clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() {
         clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean contains(Object o) {
         if (this.identityMap.containsKey(o)){
@@ -95,11 +110,13 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         return this.availabilityMap.containsKey(o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerSubComplex(ModelledInteraction c) {
         this.complexes.add(c);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Set<ModelledInteraction> clearRegisteredSubComplexes() {
         Set<ModelledInteraction> complexes = new HashSet<ModelledInteraction>(this.complexes);
@@ -107,11 +124,13 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         return complexes;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasRegisteredSubComplexes() {
         return !this.complexes.isEmpty();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void removeObject(Object o) {
         if (o != null){
@@ -121,11 +140,13 @@ public class InMemoryIdentityObjectCache implements PsiXmlObjectCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getLastGeneratedId() {
         return this.current;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void resetLastGeneratedIdTo(int id) {
         this.current = id;

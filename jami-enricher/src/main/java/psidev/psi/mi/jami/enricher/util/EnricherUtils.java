@@ -23,12 +23,16 @@ import java.util.Iterator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class EnricherUtils {
 
     /* Characters to be used for new rows, new columns, blank cells */
+    /** Constant <code>NEW_LINE="\n"</code> */
     public static final String NEW_LINE = "\n";
+    /** Constant <code>COLUMN_SEPARATOR="\t"</code> */
     public static final String COLUMN_SEPARATOR = "\t";
+    /** Constant <code>BLANK_SPACE="-"</code> */
     public static final String BLANK_SPACE = "-";
 
     /**
@@ -37,11 +41,14 @@ public class EnricherUtils {
      * It will add in toEnrichXrefs all xref from fetchedXrefs that are not there. It will also remove extra identifiers from toEnrichXrefs
      * if remove boolean is true.
      *
-     *
      * @param termToEnrich     The object to enrich
      * @param fetchedXrefs      The new xrefs to be added.
      * @param remove: if true, we remove xrefs that are not in enriched list
      * @param isIdentifier if true compare identifiers, otherwise xrefs
+     * @param toEnrichXrefs a {@link java.util.Collection} object.
+     * @param xrefListener a {@link psidev.psi.mi.jami.listener.XrefsChangeListener} object.
+     * @param identifierListener a {@link psidev.psi.mi.jami.listener.IdentifiersChangeListener} object.
+     * @param <T> a T object.
      */
     public static <T extends Object> void mergeXrefs(T termToEnrich, Collection<Xref> toEnrichXrefs, Collection<Xref> fetchedXrefs , boolean remove,
                               boolean isIdentifier, XrefsChangeListener<T> xrefListener, IdentifiersChangeListener<T> identifierListener){
@@ -117,6 +124,16 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeRanges.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichRanges a {@link java.util.Collection} object.
+     * @param fetchedRanges a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param featureListener a {@link psidev.psi.mi.jami.listener.FeatureChangeListener} object.
+     * @param <T> a T object.
+     */
     public static <T extends Feature> void mergeRanges(T termToEnrich, Collection<Range> toEnrichRanges, Collection<Range> fetchedRanges , boolean remove,
                                                       FeatureChangeListener<T> featureListener){
 
@@ -165,6 +182,16 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeAliases.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichAliases a {@link java.util.Collection} object.
+     * @param fetchedAliases a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param aliasListener a {@link psidev.psi.mi.jami.listener.AliasesChangeListener} object.
+     * @param <T> a T object.
+     */
     public static <T extends Object> void mergeAliases(T termToEnrich, Collection<Alias> toEnrichAliases, Collection<Alias> fetchedAliases, boolean remove, AliasesChangeListener<T> aliasListener){
         Iterator<Alias> aliasIterator = toEnrichAliases.iterator();
         // remove aliases in toEnrichAliases that are not in fetchedAliases
@@ -211,6 +238,16 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeChecksums.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichChecksums a {@link java.util.Collection} object.
+     * @param fetchedCehcksum a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param aliasListener a {@link psidev.psi.mi.jami.listener.ChecksumsChangeListener} object.
+     * @param <T> a T object.
+     */
     public static <T extends Object> void mergeChecksums(T termToEnrich, Collection<Checksum> toEnrichChecksums, Collection<Checksum> fetchedCehcksum, boolean remove, ChecksumsChangeListener<T> aliasListener){
         Iterator<Checksum> checksumIterator = toEnrichChecksums.iterator();
         // remove aliases in toEnrichAliases that are not in fetchedAliases
@@ -257,6 +294,16 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeAnnotations.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichAnnotations a {@link java.util.Collection} object.
+     * @param fetchedAnnotations a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param annotationListener a {@link psidev.psi.mi.jami.listener.AnnotationsChangeListener} object.
+     * @param <T> a T object.
+     */
     public static <T extends Object> void mergeAnnotations(T termToEnrich, Collection<Annotation> toEnrichAnnotations, Collection<Annotation> fetchedAnnotations, boolean remove, AnnotationsChangeListener<T> annotationListener){
         Iterator<Annotation> annotIterator = toEnrichAnnotations.iterator();
         // remove aliases in toEnrichAliases that are not in fetchedAliases
@@ -304,6 +351,17 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeConfidences.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichConfidences a {@link java.util.Collection} object.
+     * @param fetchedConfidences a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param confListener a {@link psidev.psi.mi.jami.listener.ConfidencesChangeListener} object.
+     * @param <T> a T object.
+     * @param <C> a C object.
+     */
     public static <T extends Object, C extends Confidence> void mergeConfidences(T termToEnrich, Collection<C> toEnrichConfidences, Collection<C> fetchedConfidences, boolean remove, ConfidencesChangeListener<T> confListener){
         Iterator<C> confIterator = toEnrichConfidences.iterator();
         // remove confidences in toEnrichConfidences that are not in fetchedConfidences
@@ -351,6 +409,17 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeParameters.</p>
+     *
+     * @param termToEnrich a T object.
+     * @param toEnrichParameters a {@link java.util.Collection} object.
+     * @param fetchedParameters a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param paramListener a {@link psidev.psi.mi.jami.listener.ParametersChangeListener} object.
+     * @param <T> a T object.
+     * @param <P> a P object.
+     */
     public static <T extends Object, P extends Parameter> void mergeParameters(T termToEnrich, Collection<P> toEnrichParameters, Collection<P> fetchedParameters, boolean remove, ParametersChangeListener<T> paramListener){
         Iterator<P> paramIterator = toEnrichParameters.iterator();
         // remove parameters in toEnrichParameters that are not in fetchedParameters
@@ -398,6 +467,18 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeParticipants.</p>
+     *
+     * @param termToEnrich a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param toEnrichParticipants a {@link java.util.Collection} object.
+     * @param fetchedParticipants a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param interactionListener a {@link psidev.psi.mi.jami.listener.InteractionChangeListener} object.
+     * @param participantEnricher a {@link psidev.psi.mi.jami.enricher.ParticipantEnricher} object.
+     * @param <P> a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public static <P extends Participant> void mergeParticipants(Interaction termToEnrich, Collection<P> toEnrichParticipants, Collection<P> fetchedParticipants, boolean remove, InteractionChangeListener interactionListener,
                                                                  ParticipantEnricher participantEnricher) throws EnricherException {
         Iterator<P> partIterator = toEnrichParticipants.iterator();
@@ -450,6 +531,18 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeParticipantCandidates.</p>
+     *
+     * @param termToEnrich a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @param toEnrichParticipants a {@link java.util.Collection} object.
+     * @param fetchedParticipants a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param poolListener a {@link psidev.psi.mi.jami.listener.ParticipantPoolChangeListener} object.
+     * @param participantEnricher a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     * @param <P> a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public static <P extends ParticipantCandidate> void mergeParticipantCandidates(ParticipantPool termToEnrich, Collection<P> toEnrichParticipants, Collection<P> fetchedParticipants, boolean remove, ParticipantPoolChangeListener poolListener,
                                                                  EntityEnricher participantEnricher) throws EnricherException {
         Iterator<P> partIterator = toEnrichParticipants.iterator();
@@ -501,6 +594,16 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeCausalRelationships.</p>
+     *
+     * @param termToEnrich a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param toEnrichRelationships a {@link java.util.Collection} object.
+     * @param fetchedRelationships a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param entityListener a {@link psidev.psi.mi.jami.listener.EntityChangeListener} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public static void mergeCausalRelationships(Entity termToEnrich, Collection<CausalRelationship> toEnrichRelationships,
                                                 Collection<CausalRelationship> fetchedRelationships,
                                                 boolean remove, EntityChangeListener entityListener) throws EnricherException {
@@ -545,6 +648,18 @@ public class EnricherUtils {
         }
     }
 
+    /**
+     * <p>mergeFeatures.</p>
+     *
+     * @param termToEnrich a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param toEnrichFeatures a {@link java.util.Collection} object.
+     * @param fetchedFeatures a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @param entityListener a {@link psidev.psi.mi.jami.listener.EntityChangeListener} object.
+     * @param featureEnricher a {@link psidev.psi.mi.jami.enricher.FeatureEnricher} object.
+     * @param <F> a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public static <F extends Feature> void mergeFeatures(Entity termToEnrich, Collection<F> toEnrichFeatures, Collection<F> fetchedFeatures, boolean remove, EntityChangeListener entityListener,
                                                                                    FeatureEnricher<F> featureEnricher) throws EnricherException {
         Iterator<F> featureIterator = toEnrichFeatures.iterator();

@@ -17,14 +17,17 @@ import java.util.Collection;
  * See description of minimal enrichment in AbstractInteractorEnricher.
  *
  * The bioactive entities fetcher is required for enriching bioactive entities.
+ *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<BioactiveEntity> {
 
     /**
      * The only constructor, fulfilling the requirement of a bioactiveEntity fetcher.
      * If the bioactiveEntity fetcher is null, an illegal state exception will be thrown at the next enrichment.
+     *
      * @param fetcher   The fetcher used to collect bioactiveEntity records.
      */
     public MinimalBioactiveEntityEnricher(BioactiveEntityFetcher fetcher){
@@ -36,12 +39,14 @@ public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<B
 
     /**
      * Returns the current fetcher which is being used to collect information about entities for enrichment.
+     *
      * @return  The current fetcher.
      */
     public BioactiveEntityFetcher getInteractorFetcher() {
         return (BioactiveEntityFetcher)super.getInteractorFetcher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public BioactiveEntity find(BioactiveEntity objectToEnrich) throws EnricherException {
         BioactiveEntity fetchedBioactiveEntity = null;
@@ -52,6 +57,7 @@ public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<B
         return fetchedBioactiveEntity;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(BioactiveEntity objectToEnrich) throws EnricherException{
         getListener().onEnrichmentComplete(
@@ -59,11 +65,13 @@ public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<B
                 "Could not fetch a bioactive entity with the provided CHEBI identifier.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onCompletedEnrichment(BioactiveEntity objectToEnrich) {
         if(getListener() != null)
@@ -71,6 +79,7 @@ public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<B
                     objectToEnrich , EnrichmentStatus.SUCCESS , "The bioactive entity has been successfully enriched.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInteractorCheckFailure(BioactiveEntity objectToEnrich, BioactiveEntity fetchedObject) throws EnricherException{
         if(getListener() != null)
@@ -78,6 +87,7 @@ public class MinimalBioactiveEntityEnricher extends AbstractInteractorEnricher<B
                     objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the bioactive entity because the interactor type is not a bioactive entity type.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean canEnrichInteractor(BioactiveEntity entityToEnrich, BioactiveEntity fetchedEntity) throws EnricherException{
         if (fetchedEntity == null){

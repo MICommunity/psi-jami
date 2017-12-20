@@ -12,8 +12,8 @@ import psidev.psi.mi.jami.model.InteractionCategory;
  * @version $Id$
  * @since <pre>22/08/14</pre>
  */
-
 public class DefaultComplexExpansionFactory implements ComplexExpansionFactory{
+    /** {@inheritDoc} */
     public ComplexExpansionMethod createComplexExpansionMethod(InteractionCategory category, ComplexExpansionType type) {
         switch (type){
             case bipartite:
@@ -27,10 +27,12 @@ public class DefaultComplexExpansionFactory implements ComplexExpansionFactory{
         }
     }
 
+    /** {@inheritDoc} */
     public ComplexExpansionMethod<Interaction, BinaryInteraction> createDefaultComplexExpansion(ComplexExpansionType type) {
         return null;
     }
 
+    /** {@inheritDoc} */
     public ComplexExpansionMethod createSpokeComplexExpansion(InteractionCategory category) {
         switch (category){
             case evidence:
@@ -44,6 +46,7 @@ public class DefaultComplexExpansionFactory implements ComplexExpansionFactory{
         }
     }
 
+    /** {@inheritDoc} */
     public ComplexExpansionMethod createMatrixComplexExpansion(InteractionCategory category) {
         switch (category){
             case evidence:
@@ -57,6 +60,7 @@ public class DefaultComplexExpansionFactory implements ComplexExpansionFactory{
         }
     }
 
+    /** {@inheritDoc} */
     public ComplexExpansionMethod createBipartiteComplexExpansion(InteractionCategory category) {
         switch (category){
             case evidence:

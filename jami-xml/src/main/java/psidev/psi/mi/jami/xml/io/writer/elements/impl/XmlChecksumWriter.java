@@ -15,16 +15,21 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlChecksumWriter implements PsiXmlElementWriter<Checksum> {
     private XMLStreamWriter streamWriter;
 
+    /**
+     * <p>Constructor for XmlChecksumWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlChecksumWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlChecksumWriter");
         }
         this.streamWriter = writer;
     }
+    /** {@inheritDoc} */
     @Override
     public void write(Checksum object) throws MIIOException {
         if (object != null){

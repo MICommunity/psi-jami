@@ -20,6 +20,11 @@ public class XmlConfidenceWrapper implements ModelledConfidence {
     private Confidence confidence;
     private Publication publication;
 
+    /**
+     * <p>Constructor for XmlConfidenceWrapper.</p>
+     *
+     * @param conf a {@link psidev.psi.mi.jami.model.Confidence} object.
+     */
     public XmlConfidenceWrapper(Confidence conf){
         if (conf == null){
            throw new IllegalArgumentException("A confidence wrapper needs a non null Confidence");
@@ -27,25 +32,30 @@ public class XmlConfidenceWrapper implements ModelledConfidence {
         this.confidence = conf;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getType() {
         return this.confidence.getType();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getValue() {
         return this.confidence.getValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Publication getPublication() {
         return this.publication;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         this.publication = publication;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.confidence.toString();

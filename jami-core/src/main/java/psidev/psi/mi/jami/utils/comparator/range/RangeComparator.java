@@ -16,13 +16,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class RangeComparator implements Comparator<Range> {
     
     private PositionComparator positionComparator;
 
     /**
      * Creates a new RangeComparator
+     *
      * @param positionComparator : the position comparator is required to compare start/end positions
      */
     public RangeComparator(PositionComparator positionComparator){
@@ -32,6 +32,11 @@ public class RangeComparator implements Comparator<Range> {
         this.positionComparator = positionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>positionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.range.PositionComparator} object.
+     */
     public PositionComparator getPositionComparator() {
         return positionComparator;
     }
@@ -41,9 +46,10 @@ public class RangeComparator implements Comparator<Range> {
      * If start/end positions are equals, the linked ranges will always come before the ranges that are not linked.
      * - Two ranges which are null are equals
      * - The range which is not null is before null.
-     * @param range1
-     * @param range2
-     * @return
+     *
+     * @param range1 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param range2 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a int.
      */
     public int compare(Range range1, Range range2) {
         int EQUAL = 0;

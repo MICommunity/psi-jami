@@ -15,11 +15,16 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlVariableParameterValueWriter implements PsiXmlElementWriter<VariableParameterValue> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlVariableParameterValueWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlVariableParameterValueWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlVariableParameterValueWriter");
@@ -31,6 +36,7 @@ public class XmlVariableParameterValueWriter implements PsiXmlElementWriter<Vari
         }
         this.objectIndex = objectIndex;
     }
+    /** {@inheritDoc} */
     @Override
     public void write(VariableParameterValue object) throws MIIOException {
         if (object != null){

@@ -12,16 +12,19 @@ import psidev.psi.mi.jami.model.Complex;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/07/13
+
  */
 public class ComplexEnricherLogger
         extends ComplexChangeLogger implements ComplexEnricherListener{
 
     private static final Logger log = LoggerFactory.getLogger(ComplexChangeLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(Complex interaction, EnrichmentStatus status, String message) {
         log.info(interaction.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(Complex object, String message, Exception e) {
         log.error(object.toString() + " enrichment error, message: " + message, e);
     }

@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class EntityEnricherListenerManager<P extends Entity>
         extends EnricherListenerManager<P, EntityEnricherListener<P>>
@@ -25,42 +26,49 @@ public class EntityEnricherListenerManager<P extends Entity>
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public EntityEnricherListenerManager(EntityEnricherListener<P>... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onStoichiometryUpdate(P participant, Stoichiometry oldStoichiometry) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onStoichiometryUpdate(participant, oldStoichiometry);
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedCausalRelationship(P participant, CausalRelationship added) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onAddedCausalRelationship(participant, added);
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedCausalRelationship(P participant, CausalRelationship removed) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onRemovedCausalRelationship(participant, removed);
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedFeature(P participant, Feature added) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onAddedFeature(participant, added);
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedFeature(P participant, Feature removed) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onRemovedFeature(participant, removed);
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractorUpdate(Entity entity, Interactor oldInteractor) {
         for(EntityEnricherListener listener : getListenersList()){
             listener.onInteractorUpdate(entity, oldInteractor);

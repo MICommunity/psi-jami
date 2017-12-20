@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 /**
  * A container for aliases, shortname and fullname
  * The JAXB binding is designed to be read-only and is not designed for writing
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>19/07/13</pre>
@@ -23,15 +24,26 @@ public class ComplexNamesContainer extends NamesContainer {
     private Alias recommendedName;
     private Alias systematicName;
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Complex Names: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>Getter for the field <code>recommendedName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRecommendedName() {
         return this.recommendedName != null ? this.recommendedName.getName() : null;
     }
 
+    /**
+     * <p>Setter for the field <code>recommendedName</code>.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public void setRecommendedName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList)getAliases();
 
@@ -53,10 +65,20 @@ public class ComplexNamesContainer extends NamesContainer {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>systematicName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getSystematicName() {
         return this.systematicName != null ? this.systematicName.getName() : null;
     }
 
+    /**
+     * <p>Setter for the field <code>systematicName</code>.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public void setSystematicName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList)getAliases();
 
@@ -101,6 +123,7 @@ public class ComplexNamesContainer extends NamesContainer {
         this.systematicName = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAliases(){
         super.initialiseAliasesWith(new ComplexAliasList());

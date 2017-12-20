@@ -20,13 +20,19 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class CooperativeEffectBaseComparator implements Comparator<CooperativeEffect>{
 
     private Comparator<CvTerm> cvTermComparator;
     private CollectionComparator<CooperativityEvidence> cooperativityEvidenceCollectionComparator;
     private CollectionComparator<ModelledInteraction> modelledInteractionCollectionComparator;
 
+    /**
+     * <p>Constructor for CooperativeEffectBaseComparator.</p>
+     *
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param cooperativityEvidenceComparator a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.CooperativityEvidenceComparator} object.
+     * @param modelledInteractionComparator a {@link psidev.psi.mi.jami.utils.comparator.interaction.ModelledInteractionComparator} object.
+     */
     public CooperativeEffectBaseComparator(Comparator<CvTerm> cvTermComparator, CooperativityEvidenceComparator cooperativityEvidenceComparator, ModelledInteractionComparator modelledInteractionComparator){
         if (cvTermComparator == null){
             throw new IllegalArgumentException("The cvTermComparator cannot be null and is required for comparing outcome and response.");
@@ -44,6 +50,13 @@ public class CooperativeEffectBaseComparator implements Comparator<CooperativeEf
         this.modelledInteractionCollectionComparator = new ModelledInteractionCollectionComparator(modelledInteractionComparator);
     }
 
+    /**
+     * <p>Constructor for CooperativeEffectBaseComparator.</p>
+     *
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param cooperativityEvidenceComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param modelledInteractionComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CooperativeEffectBaseComparator(Comparator<CvTerm> cvTermComparator,
                                            CollectionComparator<CooperativityEvidence> cooperativityEvidenceComparator,
                                            CollectionComparator<ModelledInteraction> modelledInteractionComparator){
@@ -63,14 +76,29 @@ public class CooperativeEffectBaseComparator implements Comparator<CooperativeEf
         this.modelledInteractionCollectionComparator = modelledInteractionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativityEvidenceCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<CooperativityEvidence> getCooperativityEvidenceCollectionComparator() {
         return cooperativityEvidenceCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledInteractionCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<ModelledInteraction> getModelledInteractionCollectionComparator() {
         return modelledInteractionCollectionComparator;
     }
@@ -80,9 +108,10 @@ public class CooperativeEffectBaseComparator implements Comparator<CooperativeEf
      * Then it will compare the CooperativityEvidences using CooperativityEvidenceComparator.
      *
      * Finally it will compare the affected interactions using ModelledInteractionComparator
-     * @param cooperativeEffect1
-     * @param cooperativeEffect2
-     * @return
+     *
+     * @param cooperativeEffect1 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @param cooperativeEffect2 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @return a int.
      */
     public int compare(CooperativeEffect cooperativeEffect1, CooperativeEffect cooperativeEffect2) {
         int EQUAL = 0;

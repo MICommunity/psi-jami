@@ -16,7 +16,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class EntityComparator implements Comparator<Entity> {
 
     private EntityBaseComparator entityBaseComparator;
@@ -24,6 +23,14 @@ public class EntityComparator implements Comparator<Entity> {
     private ModelledEntityComparator biologicalEntityComparator;
     private ParticipantComparator participantComparator;
 
+    /**
+     * <p>Constructor for EntityComparator.</p>
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     * @param experimentalParticipantComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ExperimentalEntityComparator} object.
+     * @param modelledParticipantComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledEntityComparator} object.
+     * @param poolComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantComparator} object.
+     */
     public EntityComparator(EntityBaseComparator participantBaseComparator,
                             ExperimentalEntityComparator experimentalParticipantComparator,
                             ModelledEntityComparator modelledParticipantComparator,
@@ -51,9 +58,10 @@ public class EntityComparator implements Comparator<Entity> {
      * - It uses ParticipantEvidenceComparator to compare experimental participants
      * - It uses ModelledParticipantComparator to compare biological participants
      * - It uses ParticipantBaseComparator to compare basic participant properties
-     * @param participant1
-     * @param participant2
-     * @return
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @return a int.
      */
     public int compare(Entity participant1, Entity participant2) {
         int EQUAL = 0;
@@ -120,18 +128,38 @@ public class EntityComparator implements Comparator<Entity> {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>entityBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.EntityBaseComparator} object.
+     */
     public EntityBaseComparator getEntityBaseComparator() {
         return entityBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalEntityComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ExperimentalEntityComparator} object.
+     */
     public ExperimentalEntityComparator getExperimentalEntityComparator() {
         return experimentalEntityComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>biologicalEntityComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledEntityComparator} object.
+     */
     public ModelledEntityComparator getBiologicalEntityComparator() {
         return biologicalEntityComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantComparator} object.
+     */
     public ParticipantComparator getParticipantComparator() {
         return participantComparator;
     }

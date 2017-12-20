@@ -35,9 +35,17 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     private Locator locator;
     private JAXBEvidenceMethodWrapper jaxbEvidenceMethodWrapper;
 
+    /**
+     * <p>Constructor for XmlCooperativityEvidence.</p>
+     */
     public XmlCooperativityEvidence() {
     }
 
+    /**
+     * <p>Constructor for XmlCooperativityEvidence.</p>
+     *
+     * @param pub a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlCooperativityEvidence(Publication pub) {
         if (pub == null){
             throw new IllegalArgumentException("The publication is mandatory");
@@ -45,6 +53,11 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         this.publication = pub;
     }
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         if (this.publication == null){
             this.publication = new BibRef();
@@ -52,11 +65,17 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return this.publication;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -64,6 +83,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -76,19 +96,29 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Cooperativity evidence: "+sourceLocator != null ? sourceLocator.toString():super.toString();
     }
 
+    /**
+     * <p>initialiseEvidenceMethods.</p>
+     */
     protected void initialiseEvidenceMethods(){
         this.jaxbEvidenceMethodWrapper = new JAXBEvidenceMethodWrapper();
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         if (publication == null){
             throw new IllegalArgumentException("The publication cannot be null in a CooperativityEvidence");
@@ -96,6 +126,11 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         this.publication = publication;
     }
 
+    /**
+     * <p>getEvidenceMethods.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CvTerm> getEvidenceMethods() {
 
         if (this.jaxbEvidenceMethodWrapper == null){
@@ -104,6 +139,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return this.jaxbEvidenceMethodWrapper.evidenceMethods;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -117,16 +153,27 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
         return UnambiguousCooperativityEvidenceComparator.areEquals(this, (CooperativityEvidence) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousCooperativityEvidenceComparator.hashCode(this);
     }
 
+    /**
+     * <p>setJAXBPublication.</p>
+     *
+     * @param bibRef a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     */
     @XmlElement(name = "bibref", required = true)
     public void setJAXBPublication(BibRef bibRef) {
         this.publication = bibRef;
     }
 
+    /**
+     * <p>setJAXBEvidenceMethodWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCooperativityEvidence.JAXBEvidenceMethodWrapper} object.
+     */
     @XmlElement(name="evidenceMethodList")
     public void setJAXBEvidenceMethodWrapper(JAXBEvidenceMethodWrapper wrapper) {
         this.jaxbEvidenceMethodWrapper = wrapper;

@@ -18,11 +18,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlResultingSequenceWriter implements PsiXmlElementWriter<ResultingSequence> {
     private XMLStreamWriter streamWriter;
     private PsiXmlXrefWriter xrefWriter;
 
+    /**
+     * <p>Constructor for XmlResultingSequenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlResultingSequenceWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlParticipantWriter");
@@ -30,6 +34,11 @@ public class XmlResultingSequenceWriter implements PsiXmlElementWriter<Resulting
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -37,14 +46,23 @@ public class XmlResultingSequenceWriter implements PsiXmlElementWriter<Resulting
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         this.xrefWriter = new XmlDbXrefWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(ResultingSequence object) throws MIIOException {
         try {
@@ -72,6 +90,12 @@ public class XmlResultingSequenceWriter implements PsiXmlElementWriter<Resulting
         }
     }
 
+    /**
+     * <p>writeXref.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.ResultingSequence} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXref(ResultingSequence object) throws XMLStreamException {
         if (!object.getXrefs().isEmpty()){
             Iterator<Xref> refIterator = object.getXrefs().iterator();
@@ -101,6 +125,11 @@ public class XmlResultingSequenceWriter implements PsiXmlElementWriter<Resulting
         }
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

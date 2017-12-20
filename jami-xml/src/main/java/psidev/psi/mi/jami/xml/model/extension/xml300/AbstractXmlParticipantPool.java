@@ -33,10 +33,18 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
 
     private I interaction;
 
+    /**
+     * <p>Constructor for AbstractXmlParticipantPool.</p>
+     */
     public AbstractXmlParticipantPool(){
         initialiseComponentCandidatesSet();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlParticipantPool.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant} object.
+     */
     public AbstractXmlParticipantPool(AbstractXmlParticipant<I,F> delegate){
         this.delegate = delegate;
         initialiseComponentCandidatesSet();
@@ -45,10 +53,18 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         }
     }
 
+    /**
+     * <p>initialiseComponentCandidatesSet.</p>
+     */
     protected void initialiseComponentCandidatesSet() {
         this.candidates = new ArrayList<P>();
     }
 
+    /**
+     * <p>initialiseComponentCandidatesSetWith.</p>
+     *
+     * @param candidates a {@link java.util.Collection} object.
+     */
     protected void initialiseComponentCandidatesSetWith(Collection<P> candidates) {
         if (candidates == null){
             this.candidates = Collections.EMPTY_LIST;
@@ -58,6 +74,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractorPool getInteractor() {
         if (this.generatedInteractor == null){
@@ -67,11 +84,17 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return this.generatedInteractor;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractor(Interactor interactor) {
         throw new UnsupportedOperationException("Cannot set the interactor of an ParticipantPool as it is an interactorSet that is related to the interactors in the set of entities");
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         if (this.type == null){
             this.type = new XmlCvTerm(InteractorPool.MOLECULE_SET, new XmlXref(CvTermUtils.createPsiMiDatabase(),InteractorPool.MOLECULE_SET_MI, CvTermUtils.createIdentityQualifier()));
@@ -80,6 +103,8 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the component set type.
      * Sets the type to molecule set (MI:1304) if the given type is null
      */
@@ -93,30 +118,64 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         getInteractor().setInteractorType(this.type);
     }
 
+    /**
+     * <p>size.</p>
+     *
+     * @return a int.
+     */
     public int size() {
         return candidates.size();
     }
 
+    /**
+     * <p>isEmpty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isEmpty() {
         return candidates.isEmpty();
     }
 
+    /** {@inheritDoc} */
     public boolean contains(Object o) {
         return candidates.contains(o);
     }
 
+    /**
+     * <p>iterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     public Iterator<P> iterator() {
         return candidates.iterator();
     }
 
+    /**
+     * <p>toArray.</p>
+     *
+     * @return an array of {@link java.lang.Object} objects.
+     */
     public Object[] toArray() {
         return candidates.toArray();
     }
 
+    /**
+     * <p>toArray.</p>
+     *
+     * @param ts an array of T objects.
+     * @param <T> a T object.
+     * @return an array of T objects.
+     */
     public <T> T[] toArray(T[] ts) {
         return candidates.toArray(ts);
     }
 
+    /**
+     * <p>add.</p>
+     *
+     * @param interactor a P object.
+     * @return a boolean.
+     */
     public boolean add(P interactor) {
         if (candidates.add(interactor)){
             interactor.setChangeListener(this);
@@ -127,6 +186,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean remove(Object o) {
         if (candidates.remove(o)){
             ParticipantCandidate entity = (ParticipantCandidate)o;
@@ -138,10 +198,12 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean containsAll(Collection<?> objects) {
         return candidates.containsAll(objects);
     }
 
+    /** {@inheritDoc} */
     public boolean addAll(Collection<? extends P> interactors) {
         boolean added = this.candidates.addAll(interactors);
         if (added){
@@ -154,6 +216,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean retainAll(Collection<?> objects) {
         boolean retain = candidates.retainAll(objects);
         if (retain){
@@ -166,6 +229,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return retain;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAll(Collection<?> objects) {
         boolean remove = candidates.removeAll(objects);
         if (remove){
@@ -186,6 +250,9 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return remove;
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear() {
         for (P entity : this){
             entity.setChangeListener(null);
@@ -195,6 +262,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         getInteractor().clear();
     }
 
+    /** {@inheritDoc} */
     public void onInteractorUpdate(Entity entity, Interactor oldInteractor) {
         // check that the listener still makes sensr
         if (contains(entity)){
@@ -221,21 +289,31 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
      *
      * @param type
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm}
      */
     public void setJAXBType(XmlCvTerm type) {
         setType(type);
     }
 
+    /**
+     * <p>getJAXBInteractorCandidates.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<P> getJAXBInteractorCandidates() {
         return candidates;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -249,37 +327,44 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return getDelegate().getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         getDelegate().setId(id);
         XmlEntryContext.getInstance().registerParticipant(id, this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getShortName() {
         return getDelegate().getShortName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
         getDelegate().setShortName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return getDelegate().getFullName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         getDelegate().setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionAndAddParticipant(I interaction) {
         if (this.interaction != null){
@@ -291,61 +376,78 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public I getInteraction() {
         return this.interaction;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteraction(I interaction) {
         this.interaction = interaction;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getBiologicalRole() {
         return getDelegate().getBiologicalRole();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setBiologicalRole(CvTerm bioRole) {
         getDelegate().setBiologicalRole(bioRole);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return getDelegate().getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return getDelegate().getAnnotations();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases() {
         return getDelegate().getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<CausalRelationship> getCausalRelationships() {
         return getDelegate().getCausalRelationships();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<F> getFeatures() {
         return getDelegate().getFeatures();
     }
 
+    /** {@inheritDoc} */
     @Override
     public EntityInteractorChangeListener getChangeListener() {
         return getDelegate().getChangeListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setChangeListener(EntityInteractorChangeListener listener) {
         getDelegate().setChangeListener(listener);
     }
 
+    /**
+     * <p>addFeature.</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean addFeature(F feature) {
 
         if (feature == null){
@@ -359,6 +461,12 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return false;
     }
 
+    /**
+     * <p>removeFeature.</p>
+     *
+     * @param feature a F object.
+     * @return a boolean.
+     */
     public boolean removeFeature(F feature) {
 
         if (feature == null){
@@ -372,6 +480,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -386,6 +495,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllFeatures(Collection<? extends F> features) {
         if (features == null){
             return false;
@@ -400,21 +510,29 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Stoichiometry getStoichiometry() {
         return getDelegate().getStoichiometry();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Integer stoichiometry) {
         getDelegate().setStoichiometry(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Stoichiometry stoichiometry) {
         getDelegate().setStoichiometry(stoichiometry);
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant} object.
+     */
     protected AbstractXmlParticipant<I, F> getDelegate() {
         if (this.delegate == null){
            initialiseDefaultDelegate();
@@ -422,8 +540,16 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
         return delegate;
     }
 
+    /**
+     * <p>initialiseDefaultDelegate.</p>
+     */
     protected abstract void initialiseDefaultDelegate();
 
+    /**
+     * <p>Setter for the field <code>delegate</code>.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant} object.
+     */
     public void setDelegate(AbstractXmlParticipant<I, F> delegate) {
         this.delegate = delegate;
         XmlEntryContext.getInstance().registerParticipant(this.delegate.getId(), this);

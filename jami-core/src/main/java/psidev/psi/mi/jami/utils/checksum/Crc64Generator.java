@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.utils.checksum;
  * @version $Id$
  * @since <pre>10/09/13</pre>
  */
-
 public class Crc64Generator {
 
     private static long _crc64Array [] = new long [256];

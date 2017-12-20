@@ -15,6 +15,7 @@ import java.util.Collection;
  * which will then fire the corresponding method in each entry of the listener list.
  * No promise can be given to the order in which the listeners are fired.
  *
+
  */
 public class InteractionEvidenceImexEnricherListenerManager
         extends InteractionEvidenceEnricherListenerManager
@@ -27,12 +28,14 @@ public class InteractionEvidenceImexEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public InteractionEvidenceImexEnricherListenerManager(InteractionImexEnricherListener... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onImexIdConflicts(InteractionEvidence originalInteraction, Collection<Xref> conflictingXrefs) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionImexEnricherListener){
@@ -41,6 +44,7 @@ public class InteractionEvidenceImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexIdAssigned(InteractionEvidence interaction, String imex) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionImexEnricherListener){

@@ -17,13 +17,17 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonPublicationWriter implements JsonElementWriter<Publication>{
 
     private Writer writer;
     private JsonElementWriter<CvTerm> cvWriter;
     private JsonElementWriter<Xref> identifierWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonPublicationWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonPublicationWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json publication writer needs a non null Writer");
@@ -31,6 +35,12 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Publication object) throws IOException {
         if (!object.getIdentifiers().isEmpty()){
             MIJsonUtils.writePropertyKey("pubid", writer);
@@ -82,6 +92,11 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
         return null;
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             this.cvWriter = new SimpleJsonCvTermWriter(writer);
@@ -89,10 +104,20 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
         return cvWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setCvWriter(JsonElementWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Xref> getIdentifierWriter() {
         if (this.identifierWriter == null){
             this.identifierWriter = new SimpleJsonIdentifierWriter(writer);
@@ -100,6 +125,11 @@ public class SimpleJsonPublicationWriter implements JsonElementWriter<Publicatio
         return identifierWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>identifierWriter</code>.</p>
+     *
+     * @param identifierWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setIdentifierWriter(JsonElementWriter<Xref> identifierWriter) {
         this.identifierWriter = identifierWriter;
     }

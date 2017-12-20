@@ -9,16 +9,19 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/12/12</pre>
  */
-
 public interface ModelledInteraction extends Interaction<ModelledParticipant>{
 
+    /** Constant <code>ECO="evidence ontology"</code> */
     public static final String ECO="evidence ontology";
+    /** Constant <code>ECO_MI="MI:1331"</code> */
     public static final String ECO_MI="MI:1331";
 
     /**
      * Interaction evidences supporting this modelled interaction.
      * The collection cannot be null. If the modelled interaction does not have experimental interactions attached to it, the method should return an empty set
+     *
      * @return the collection of experimental evidences
+     * @param <I> an I object
      */
     public <I extends InteractionEvidence> Collection<I> getInteractionEvidences();
 
@@ -26,12 +29,14 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * The source which reported this modelled interaction. It can be an organization, institute, ...
      * It can be null if the source is unknown or not relevant.
      * Ex: IntAct, MINT, DIP, ...
+     *
      * @return the source
      */
     public Source getSource();
 
     /**
      * Sets the source reporting the interaction.
+     *
      * @param source : source for this interaction
      */
     public void setSource(Source source);
@@ -41,7 +46,9 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * The confidences in this interaction.
      * The Collection cannot be null. If the interaction does not have any confidences, the method should return an empty Collection.
      * Ex: author based scores, statistical confidences, ...
+     *
      * @return the confidences
+     * @param <C> a C object
      */
     public <C extends ModelledConfidence> Collection<C> getModelledConfidences();
 
@@ -49,7 +56,9 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * Collection of numerical parameters for this interaction.
      * The set cannot be null. If the interaction does not have any parameters, the method should return an empty Collection.
      * Ex: IC50, ...
+     *
      * @return the parameters
+     * @param <P> a P object
      */
     public <P extends ModelledParameter> Collection<P> getModelledParameters();
 
@@ -57,19 +66,23 @@ public interface ModelledInteraction extends Interaction<ModelledParticipant>{
      * The collection of cooperative effects associated with this modelledInteraction.
      * The collection cannot be null. If the ModelledInteraction does not have any cooperative effects, this method
      * should return an empty collection.
+     *
      * @return the collection of cooperative effects for this modelled interaction
+     * @param <C> a C object
      */
     public <C extends CooperativeEffect> Collection<C> getCooperativeEffects();
 
     /**
      * The evidence type for this modelled interactions. Usually this Cv term is ECO (evidence code ontology) code. It can be null.
      * Ex: ECO:0000021, physical interaction evidence
+     *
      * @return the evidence type
      */
     public CvTerm getEvidenceType();
 
     /**
      * Sets the evidence type
+     *
      * @param eco : the evidence type
      */
     public void setEvidenceType(CvTerm eco);

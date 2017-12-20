@@ -19,13 +19,13 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class DefaultFeatureBaseComparator {
 
     /**
      * Use DefaultFeatureBaseComparator to know if two features are equals.
-     * @param feature1
-     * @param feature2
+     *
+     * @param feature1 a {@link psidev.psi.mi.jami.model.Feature} object.
+     * @param feature2 a {@link psidev.psi.mi.jami.model.Feature} object.
      * @return true if the two features are equal
      */
     public static boolean areEquals(Feature feature1, Feature feature2){

@@ -17,7 +17,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class ExactInteractorBaseComparator implements Comparator<Interactor> {
 
     private OrganismTaxIdComparator organismComparator;
@@ -28,6 +27,10 @@ public class ExactInteractorBaseComparator implements Comparator<Interactor> {
      * Creates a new UnambiguousExactInteractorBaseComparator.
      * It will use a UnambiguousInteractorBaseComparator to compare basic interactor properties, a OrganismTaxIdComparator to compare
      * organisms and a UnambiguousCvTermComparator to compare checksum types and interactor types
+     *
+     * @param organismComparator a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator} object.
+     * @param typeComparator a {@link java.util.Comparator} object.
+     * @param interactorBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.interactor.InteractorBaseComparator} object.
      */
     public ExactInteractorBaseComparator(OrganismTaxIdComparator organismComparator, Comparator<CvTerm> typeComparator,
                                          InteractorBaseComparator interactorBaseComparator) {
@@ -45,14 +48,29 @@ public class ExactInteractorBaseComparator implements Comparator<Interactor> {
         this.typeComparator = typeComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.InteractorBaseComparator} object.
+     */
     public InteractorBaseComparator getInteractorBaseComparator() {
         return this.interactorBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>typeComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getTypeComparator() {
         return this.typeComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>organismComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator} object.
+     */
     public OrganismTaxIdComparator getOrganismComparator() {
         return organismComparator;
     }
@@ -61,6 +79,10 @@ public class ExactInteractorBaseComparator implements Comparator<Interactor> {
      * It will first compare the interactor types using UnambiguousCvTermComparator. If both types are equal,
      * it will compare organisms using OrganismTaxIdComparator. If both organisms are equal,
      * it will use a UnambiguousInteractorBaseComparator to compare basic Interactor properties.
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @return a int.
      */
     public int compare(Interactor interactor1, Interactor interactor2) {
         int EQUAL = 0;

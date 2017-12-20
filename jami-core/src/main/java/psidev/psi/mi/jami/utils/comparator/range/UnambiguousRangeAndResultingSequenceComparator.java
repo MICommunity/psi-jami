@@ -16,12 +16,13 @@ import psidev.psi.mi.jami.model.ResultingSequence;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResultingSequenceComparator {
 
     private static UnambiguousRangeAndResultingSequenceComparator unambiguousRangeAndResultingSequenceComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousRangeAndResultingSequenceComparator with UnambiguousPositionComparator
      */
     public UnambiguousRangeAndResultingSequenceComparator() {
@@ -33,7 +34,6 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
         return (UnambiguousPositionComparator) super.getPositionComparator();
     }
 
-    @Override
     /**
      * It compares first the start Position, then the end Position using a UnambiguousPositionComparator,
      * If start/end positions are equals, the linked ranges will always come before the ranges that are not linked.
@@ -41,14 +41,16 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
      * - Two ranges which are null are equals
      * - The range which is not null is before null.
      */
+    @Override
     public int compare(Range range1, Range range2) {
         return super.compare(range1, range2);
     }
 
     /**
      * Use DefaultRangeComparator to know if two ranges are equals.
-     * @param range1
-     * @param range2
+     *
+     * @param range1 a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param range2 a {@link psidev.psi.mi.jami.model.Range} object.
      * @return true if the two ranges are equal
      */
     public static boolean areEquals(Range range1, Range range2){
@@ -61,8 +63,9 @@ public class UnambiguousRangeAndResultingSequenceComparator extends RangeAndResu
 
 
     /**
+     * <p>hashCode</p>
      *
-     * @param range
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Range range){

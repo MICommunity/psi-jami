@@ -40,65 +40,153 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
     private Organism organism;
     private CvTerm interactorType;
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     */
     public XmlModelledBinaryInteraction() {
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, CvTerm type) {
         super(shortName, type);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlModelledBinaryInteraction(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     public XmlModelledBinaryInteraction(ModelledParticipant participantA, ModelledParticipant participantB) {
         super(participantA, participantB);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, ModelledParticipant participantA, ModelledParticipant participantB) {
         super(shortName, participantA, participantB);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, CvTerm type, ModelledParticipant participantA, ModelledParticipant participantB) {
         super(shortName, type, participantA, participantB);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(CvTerm complexExpansion) {
         super(complexExpansion);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, CvTerm type, CvTerm complexExpansion) {
         super(shortName, type, complexExpansion);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(ModelledParticipant participantA, ModelledParticipant participantB, CvTerm complexExpansion) {
         super(participantA, participantB, complexExpansion);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, ModelledParticipant participantA, ModelledParticipant participantB, CvTerm complexExpansion) {
         super(shortName, participantA, participantB, complexExpansion);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledBinaryInteraction(String shortName, CvTerm type, ModelledParticipant participantA, ModelledParticipant participantB, CvTerm complexExpansion) {
         super(shortName, type, participantA, participantB, complexExpansion);
     }
 
+    /**
+     * <p>initialiseInteractionEvidences.</p>
+     */
     protected void initialiseInteractionEvidences(){
         this.interactionEvidences = new ArrayList<InteractionEvidence>();
     }
 
+    /**
+     * <p>initialiseCooperativeEffects.</p>
+     */
     protected void initialiseCooperativeEffects(){
         this.cooperativeEffects = new ArrayList<CooperativeEffect>();
     }
 
+    /**
+     * <p>initialiseModelledConfidences.</p>
+     */
     protected void initialiseModelledConfidences(){
         this.modelledConfidences = new ArrayList<ModelledConfidence>();
     }
 
+    /**
+     * <p>initialiseModelledParameters.</p>
+     */
     protected void initialiseModelledParameters(){
         this.modelledParameters = new ArrayList<ModelledParameter>();
     }
 
+    /**
+     * <p>Getter for the field <code>interactionEvidences</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (interactionEvidences == null){
             initialiseInteractionEvidences();
@@ -106,14 +194,25 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.interactionEvidences;
     }
 
+    /**
+     * <p>Getter for the field <code>source</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public Source getSource() {
         return this.source;
     }
 
+    /** {@inheritDoc} */
     public void setSource(Source source) {
         this.source = source;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledConfidences</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledConfidence> getModelledConfidences() {
         if (modelledConfidences == null){
             initialiseModelledConfidences();
@@ -121,6 +220,11 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.modelledConfidences;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledParameters</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledParameter> getModelledParameters() {
         if (modelledParameters == null){
             initialiseModelledParameters();
@@ -128,6 +232,11 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.modelledParameters;
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativeEffects</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         if (cooperativeEffects == null){
             initialiseCooperativeEffects();
@@ -135,14 +244,21 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.cooperativeEffects;
     }
 
+    /**
+     * <p>Getter for the field <code>evidenceType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getEvidenceType() {
         return evidenceType;
     }
 
+    /** {@inheritDoc} */
     public void setEvidenceType(CvTerm evidenceType) {
         this.evidenceType = evidenceType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<BindingFeatures> getBindingFeatures() {
         if (this.bindingFeatures == null){
@@ -151,6 +267,7 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.bindingFeatures;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<ExtendedPsiXmlCausalRelationship> getCausalRelationships() {
         if (this.causalRelationships == null){
@@ -159,12 +276,14 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         return this.causalRelationships;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getPhysicalProperties() {
         Annotation properties = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
         return properties != null ? properties.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPhysicalProperties(String properties) {
         Annotation propertiesAnnot = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
@@ -176,12 +295,14 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getRecommendedName() {
         Alias recommendedName = AliasUtils.collectFirstAliasWithType(getAliases(), Alias.COMPLEX_RECOMMENDED_NAME_MI, Alias.COMPLEX_RECOMMENDED_NAME);
         return recommendedName != null ? recommendedName.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setRecommendedName(String name) {
         AliasUtils.removeAllAliasesWithType(getAliases(), Alias.COMPLEX_RECOMMENDED_NAME_MI, Alias.COMPLEX_RECOMMENDED_NAME);
@@ -190,12 +311,14 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getSystematicName() {
         Alias systematicName = AliasUtils.collectFirstAliasWithType(getAliases(), Alias.COMPLEX_SYSTEMATIC_NAME_MI, Alias.COMPLEX_SYSTEMATIC_NAME);
         return systematicName != null ? systematicName.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSystematicName(String name) {
         AliasUtils.removeAllAliasesWithType(getAliases(), Alias.COMPLEX_SYSTEMATIC_NAME_MI, Alias.COMPLEX_SYSTEMATIC_NAME);
@@ -204,26 +327,31 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Xref getPreferredIdentifier() {
         return !getIdentifiers().isEmpty()?getIdentifiers().iterator().next():null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Organism getOrganism() {
         return this.organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getInteractorType() {
         return this.interactorType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorType(CvTerm type) {
         if (type == null){
@@ -235,26 +363,31 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases() {
         return super.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return super.getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getIdentifiers() {
         return super.getIdentifiers();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return super.getAnnotations();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Checksum> getChecksums() {
         return super.getChecksums();

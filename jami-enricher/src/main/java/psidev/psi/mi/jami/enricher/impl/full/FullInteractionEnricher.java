@@ -13,17 +13,22 @@ import psidev.psi.mi.jami.utils.checksum.SeguidException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class FullInteractionEnricher<I extends Interaction>
         extends MinimalInteractionEnricher<I> {
 
     private RigidGenerator rigidGenerator;
 
+    /**
+     * <p>Constructor for FullInteractionEnricher.</p>
+     */
     public FullInteractionEnricher() {
         super();
         this.rigidGenerator = new RigidGenerator();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(I interactionToEnrich) throws EnricherException {
 
@@ -31,6 +36,7 @@ public class FullInteractionEnricher<I extends Interaction>
         processRigid(interactionToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(I objectToEnrich, I objectSource) throws EnricherException {
 
@@ -42,6 +48,13 @@ public class FullInteractionEnricher<I extends Interaction>
         processAnnotations(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>processChecksums.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processChecksums(I objectToEnrich, I objectSource) throws EnricherException{
 
         EnricherUtils.mergeChecksums(objectToEnrich, objectToEnrich.getChecksums(), objectSource.getChecksums(), false, getInteractionEnricherListener());
@@ -49,15 +62,35 @@ public class FullInteractionEnricher<I extends Interaction>
         processRigid(objectToEnrich);
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processXrefs(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getXrefs(), objectSource.getXrefs(), false, false, getInteractionEnricherListener(),                getInteractionEnricherListener());
 
     }
 
+    /**
+     * <p>processAnnotations.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAnnotations(I objectToEnrich, I objectSource) throws EnricherException{
         EnricherUtils.mergeAnnotations(objectToEnrich, objectToEnrich.getAnnotations(), objectSource.getAnnotations(), false, getInteractionEnricherListener());
     }
 
+    /**
+     * <p>processRigid.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRigid(I interactionToEnrich) throws EnricherException {
 
         if (interactionToEnrich.getRigid() == null){
@@ -75,10 +108,22 @@ public class FullInteractionEnricher<I extends Interaction>
         this.rigidGenerator.getRogids().clear();
     }
 
+    /**
+     * <p>Getter for the field <code>rigidGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.checksum.RigidGenerator} object.
+     */
     protected RigidGenerator getRigidGenerator() {
         return rigidGenerator;
     }
 
+    /**
+     * <p>generateRigid.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @return a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected String generateRigid(I interactionToEnrich) throws EnricherException {
         boolean canComputeRigid = true;
 

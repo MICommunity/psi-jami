@@ -17,25 +17,39 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * - if cvTermEnricher is not null, will update cellType, tissue and compartment.
  * It will override cellType, tissue and compartment with the ones loaded with the fetched organism if
  * they are different from the ones in the fetched organism. (See DefaultCvTermComparator)
+ *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  24/05/13
+
  */
 public class FullOrganismUpdater extends MinimalOrganismUpdater {
 
     private CvTermEnricher<CvTerm> cvEnricher;
 
+    /**
+     * <p>Constructor for FullOrganismUpdater.</p>
+     *
+     * @param organismFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher} object.
+     */
     public FullOrganismUpdater(OrganismFetcher organismFetcher) {
         super(organismFetcher);
     }
 
+    /**
+     * <p>getCvTermEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return cvEnricher;
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvEnricher) {
         this.cvEnricher = cvEnricher;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Organism organismToEnrich, Organism organismFetched) throws EnricherException {
         processAliases(organismToEnrich, organismFetched);
@@ -45,10 +59,24 @@ public class FullOrganismUpdater extends MinimalOrganismUpdater {
         processCompartment(organismToEnrich, organismFetched);
     }
 
+    /**
+     * <p>processAliases.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAliases(Organism organismToEnrich, Organism organismFetched) throws EnricherException{
         EnricherUtils.mergeAliases(organismToEnrich, organismToEnrich.getAliases(), organismFetched.getAliases(), false, getOrganismEnricherListener());
     }
 
+    /**
+     * <p>processCellType.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCellType(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(entityToEnrich.getCellType(),fetched.getCellType())){
             CvTerm old = entityToEnrich.getCellType();
@@ -66,6 +94,13 @@ public class FullOrganismUpdater extends MinimalOrganismUpdater {
         }
     }
 
+    /**
+     * <p>processTissue.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processTissue(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(entityToEnrich.getTissue(), fetched.getTissue())){
             CvTerm old = entityToEnrich.getTissue();
@@ -83,6 +118,13 @@ public class FullOrganismUpdater extends MinimalOrganismUpdater {
         }
     }
 
+    /**
+     * <p>processCompartment.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCompartment(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(entityToEnrich.getCompartment(),fetched.getCompartment())){
             CvTerm old = entityToEnrich.getCompartment();

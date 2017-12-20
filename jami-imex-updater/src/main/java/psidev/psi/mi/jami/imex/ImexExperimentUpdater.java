@@ -15,35 +15,42 @@ import psidev.psi.mi.jami.imex.listener.ExperimentImexEnricherListener;
  * @version $Id$
  * @since <pre>29/10/14</pre>
  */
-
 public class ImexExperimentUpdater extends FullExperimentEnricher{
 
     private ImexAssigner imexAssigner;
 
+    /**
+     * <p>Constructor for ImexExperimentUpdater.</p>
+     */
     public ImexExperimentUpdater() {
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processInteractionDetectionMethod(Experiment experimentToEnrich) throws EnricherException {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOrganism(Experiment experimentToEnrich) throws EnricherException {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processConfidences(Experiment experimentToEnrich, Experiment objectSource) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(Experiment experimentToEnrich, Experiment objectSource) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(Experiment experimentToEnrich, Experiment objectSource) {
         if (experimentToEnrich.getPublication() != null && experimentToEnrich.getPublication().getImexId() != null
@@ -67,21 +74,25 @@ public class ImexExperimentUpdater extends FullExperimentEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processInteractionDetectionMethod(Experiment experimentToEnrich, Experiment objectSource) throws EnricherException {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOrganism(Experiment experimentToEnrich, Experiment objectSource) throws EnricherException {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processVariableParameters(Experiment experimentToEnrich, Experiment objectSource) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Experiment experimentToEnrich) throws EnricherException {
         super.processOtherProperties(experimentToEnrich);
@@ -89,10 +100,20 @@ public class ImexExperimentUpdater extends FullExperimentEnricher{
         processXrefs(experimentToEnrich, null);
     }
 
+    /**
+     * <p>Getter for the field <code>imexAssigner</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.ImexAssigner} object.
+     */
     public ImexAssigner getImexAssigner() {
         return imexAssigner;
     }
 
+    /**
+     * <p>Setter for the field <code>imexAssigner</code>.</p>
+     *
+     * @param imexAssigner a {@link psidev.psi.mi.jami.imex.actions.ImexAssigner} object.
+     */
     public void setImexAssigner(ImexAssigner imexAssigner) {
         this.imexAssigner = imexAssigner;
     }

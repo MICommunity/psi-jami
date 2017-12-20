@@ -16,6 +16,7 @@ import psidev.psi.mi.jami.model.Parameter;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class FeatureEvidenceEnricherListenerManager
         extends FeatureEnricherListenerManager<FeatureEvidence> implements FeatureEvidenceChangeListener{
@@ -27,12 +28,14 @@ public class FeatureEvidenceEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public FeatureEvidenceEnricherListenerManager(FeatureEvidenceEnricherListener... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onAddedDetectionMethod(FeatureEvidence feature, CvTerm added) {
         for(FeatureEnricherListener listener : getListenersList()){
             if (listener instanceof FeatureEvidenceEnricherListener){
@@ -41,6 +44,7 @@ public class FeatureEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedDetectionMethod(FeatureEvidence feature, CvTerm removed) {
         for(FeatureEnricherListener listener : getListenersList()){
             if (listener instanceof FeatureEvidenceEnricherListener){
@@ -49,6 +53,7 @@ public class FeatureEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedParameter(FeatureEvidence o, Parameter added) {
         for(FeatureEnricherListener listener : getListenersList()){
             if (listener instanceof FeatureEvidenceEnricherListener){
@@ -57,6 +62,7 @@ public class FeatureEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParameter(FeatureEvidence o, Parameter removed) {
         for(FeatureEnricherListener listener : getListenersList()){
             if (listener instanceof FeatureEvidenceEnricherListener){

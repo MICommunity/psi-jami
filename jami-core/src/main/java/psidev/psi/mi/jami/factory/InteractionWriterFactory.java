@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>10/06/13</pre>
  */
-
 public class InteractionWriterFactory {
 
     private static final InteractionWriterFactory instance = new InteractionWriterFactory();
@@ -26,12 +25,18 @@ public class InteractionWriterFactory {
         registeredWriters = new ConcurrentHashMap<Class<? extends InteractionWriter>, Map<String, Object>>();
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.factory.InteractionWriterFactory} object.
+     */
     public static InteractionWriterFactory getInstance() {
         return instance;
     }
 
     /**
      * Register a datasource writer with options in this factory
+     *
      * @param dataSourceClass : dataSource class to register
      * @param supportedOptions : options supported by this dataSource
      */
@@ -45,6 +50,7 @@ public class InteractionWriterFactory {
 
     /**
      * Remove the interactionDataSourceWriter from this factory
+     *
      * @param dataSourceClass : the dataSource class
      */
     public void removeDataSourceWriter(Class<? extends InteractionWriter> dataSourceClass){
@@ -59,6 +65,7 @@ public class InteractionWriterFactory {
     }
 
     /**
+     * <p>getInteractionWriterWith</p>
      *
      * @param requiredOptions : options for initialising writer
      * @return the registered InteractionWriter supporting this options, null if nothing could be found

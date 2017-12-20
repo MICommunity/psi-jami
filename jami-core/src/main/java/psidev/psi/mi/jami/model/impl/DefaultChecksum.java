@@ -13,12 +13,17 @@ import psidev.psi.mi.jami.utils.comparator.checksum.UnambiguousChecksumComparato
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultChecksum implements Checksum {
 
     private CvTerm method;
     private String value;
 
+    /**
+     * <p>Constructor for DefaultChecksum.</p>
+     *
+     * @param method a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public DefaultChecksum(CvTerm method, String value){
         if (method == null){
             throw new IllegalArgumentException("The method is required and cannot be null");
@@ -30,14 +35,25 @@ public class DefaultChecksum implements Checksum {
         this.value = value;
     }
 
+    /**
+     * <p>Getter for the field <code>method</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getMethod() {
         return this.method;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getValue() {
         return this.value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -51,11 +67,13 @@ public class DefaultChecksum implements Checksum {
         return UnambiguousChecksumComparator.areEquals(this, (Checksum) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousChecksumComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getMethod().toString() + ": " + getValue();

@@ -10,17 +10,18 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public interface NamedInteraction<T extends Participant> extends Interaction<T>{
     /**
      * The full name of the interaction.
      * It can be null
+     *
      * @return the full name
      */
     public String getFullName();
 
     /**
      * Sets the full name of the interaction
+     *
      * @param name : full name
      */
     public void setFullName(String name);
@@ -28,7 +29,9 @@ public interface NamedInteraction<T extends Participant> extends Interaction<T>{
     /**
      * Collection of aliases for an interaction.
      * The Collection cannot be null and if the interaction does not have any aliases, the method should return an empty Collection.
+     *
      * @return the aliases
+     * @param <A> an A object
      */
     public <A extends Alias> Collection<A> getAliases();
 }

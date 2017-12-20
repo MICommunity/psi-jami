@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.13</version>
+        <version>3.0.14</version>
     </parent>
 
     <artifactId>jami-unisave</artifactId>
-    <name>PSI :: JAMI - Unisave</name>
+    <name>PSI :: JAMI - Bridges - Unisave</name>
     <description>Bridges module with Unisave webservice</description>
 
     <dependencies>

@@ -18,14 +18,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence {
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     */
     public XmlInteractionEvidence() {
         super();
     }
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlInteractionEvidence(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlInteractionEvidence(String shortName, CvTerm type) {
         super(shortName, type);
     }

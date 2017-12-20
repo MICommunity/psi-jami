@@ -9,7 +9,7 @@ import java.util.Comparator;
  * Basic entity comparator.
  * It will first compare the interactors using InteractorComparator. If both interactors are the same,
  * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
- * it will compare the features using a Comparator<Feature>.
+ * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
  *
  * This comparator will ignore all the other properties of a participant.
  *
@@ -17,7 +17,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class EntityBaseComparator implements Comparator<Entity> {
 
     private StoichiometryComparator stoichiometryComparator;
@@ -27,6 +26,7 @@ public class EntityBaseComparator implements Comparator<Entity> {
 
     /**
      * Creates a new EntityBaseComparator
+     *
      * @param interactorComparator : interactor comparator required for comparing the molecules
      */
     public EntityBaseComparator(InteractorComparator interactorComparator){
@@ -39,18 +39,38 @@ public class EntityBaseComparator implements Comparator<Entity> {
         this.stoichiometryComparator = new StoichiometryComparator();
     }
 
+    /**
+     * <p>Getter for the field <code>stoichiometryComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.StoichiometryComparator} object.
+     */
     public StoichiometryComparator getStoichiometryComparator() {
         return stoichiometryComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.InteractorComparator} object.
+     */
     public InteractorComparator getInteractorComparator() {
         return interactorComparator;
     }
 
+    /**
+     * <p>isIgnoreInteractors</p>
+     *
+     * @return a boolean.
+     */
     public boolean isIgnoreInteractors() {
         return ignoreInteractors;
     }
 
+    /**
+     * <p>Setter for the field <code>ignoreInteractors</code>.</p>
+     *
+     * @param ignoreInteractors a boolean.
+     */
     public void setIgnoreInteractors(boolean ignoreInteractors) {
         this.ignoreInteractors = ignoreInteractors;
     }
@@ -58,12 +78,13 @@ public class EntityBaseComparator implements Comparator<Entity> {
     /**
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
-     * it will compare the features using a Comparator<Feature>.
+     * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
      *
      * This comparator will ignore all the other properties of a participant.
-     * @param participant1
-     * @param participant2
-     * @return
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @return a int.
      */
     public int compare(Entity participant1, Entity participant2) {
         int EQUAL = 0;

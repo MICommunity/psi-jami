@@ -22,19 +22,19 @@ import java.util.List;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class UnambiguousCuratedExperimentComparator extends ExperimentComparator{
 
     private static UnambiguousCuratedExperimentComparator unambiguousCuratedExperimentComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousCuratedExperimentComparator. It will use UnambiguousCuratedPublicationComparator to compare publications, UnambiguousCvTermComparator
      * to compare interaction detection methods and it will use UnambiguousOrganismComparator to compare host organisms.
      */
     public UnambiguousCuratedExperimentComparator() {
         super(new UnambiguousCuratedPublicationComparator(), new UnambiguousOrganismComparator());
     }
-
     @Override
     /**
      * It will look first at the publications using a UnambiguousPublicationComparator. If the publications are the same, it will look at the
@@ -48,16 +48,19 @@ public class UnambiguousCuratedExperimentComparator extends ExperimentComparator
         return super.compare(experiment1, experiment2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCuratedPublicationComparator getPublicationComparator() {
         return (UnambiguousCuratedPublicationComparator) super.getPublicationComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousOrganismComparator getOrganismComparator() {
         return (UnambiguousOrganismComparator) super.getOrganismComparator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
@@ -65,8 +68,9 @@ public class UnambiguousCuratedExperimentComparator extends ExperimentComparator
 
     /**
      * Use UnambiguousExperimentComparator to know if two experiment are equals.
-     * @param experiment1
-     * @param experiment2
+     *
+     * @param experiment1 a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param experiment2 a {@link psidev.psi.mi.jami.model.Experiment} object.
      * @return true if the two experiment are equal
      */
     public static boolean areEquals(Experiment experiment1, Experiment experiment2){
@@ -78,8 +82,9 @@ public class UnambiguousCuratedExperimentComparator extends ExperimentComparator
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param exp
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Experiment exp){

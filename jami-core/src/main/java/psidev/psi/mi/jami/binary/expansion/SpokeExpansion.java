@@ -20,17 +20,20 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>05/06/13</pre>
  */
-
 public class SpokeExpansion extends AbstractSpokeExpansion<Interaction, BinaryInteraction> {
     private InteractionEvidenceSpokeExpansion interactionEvidenceExpansion;
     private ModelledInteractionSpokeExpansion modelledInteractionExpansion;
 
+    /**
+     * <p>Constructor for SpokeExpansion.</p>
+     */
     public SpokeExpansion(){
         super();
         this.interactionEvidenceExpansion = new InteractionEvidenceSpokeExpansion();
         this.modelledInteractionExpansion = new ModelledInteractionSpokeExpansion();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<BinaryInteraction> expand(Interaction interaction) throws ComplexExpansionException {
 
@@ -49,16 +52,19 @@ public class SpokeExpansion extends AbstractSpokeExpansion<Interaction, BinaryIn
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected BinaryInteraction createBinaryInteraction(Interaction interaction, Participant c1, Participant c2) {
         return getBinaryInteractionFactory().createBasicBinaryInteractionFrom(interaction, c1, c2, getMethod());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Participant collectBestBaitForSpokeExpansion(Interaction interaction) {
         return ParticipantUtils.collectBestBaitParticipantForSpokeExpansion(interaction.getParticipants());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setBinaryInteractionFactory(BinaryInteractionFactory factory) {
         super.setBinaryInteractionFactory(factory);

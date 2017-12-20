@@ -31,9 +31,14 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>09/02/15</pre>
  */
-
 public class BuildBindingSitesCliqueGraph {
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects.
+     * @throws java.lang.Exception if any.
+     */
     public static void main(String[] args) throws Exception{
          // Create test environment
         Interaction i1 = createInteractionWithLinkedFeatures();
@@ -52,6 +57,11 @@ public class BuildBindingSitesCliqueGraph {
         }
     }
 
+    /**
+     * <p>createInteractionWithLinkedFeatures.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interaction} object.
+     */
     protected static Interaction createInteractionWithLinkedFeatures() {
         // first create an interaction
         Interaction interaction = new DefaultInteractionEvidence();

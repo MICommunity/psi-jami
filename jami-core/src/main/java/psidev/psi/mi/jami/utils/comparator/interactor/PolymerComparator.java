@@ -11,11 +11,11 @@ import java.util.Comparator;
  * It will first use UnambiguousInteractorBaseComparator to compare the basic interactor properties
  * If the basic interactor properties are the same, it will look at sequence/organism.
  * *
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class PolymerComparator implements Comparator<Polymer> {
 
     private Comparator<Interactor> interactorComparator;
@@ -24,6 +24,9 @@ public class PolymerComparator implements Comparator<Polymer> {
     /**
      * Creates a new UnambiguousPolymerComparator. It will uses a UnambiguousInteractorBaseComparator to compare interactor properties and a
      * OrganismTaxIdComparator to compares organism.
+     *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
+     * @param organismComparator a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator} object.
      */
     public PolymerComparator(Comparator<Interactor> interactorBaseComparator, OrganismTaxIdComparator organismComparator){
         if (organismComparator == null){
@@ -36,10 +39,20 @@ public class PolymerComparator implements Comparator<Polymer> {
         this.organismComparator = organismComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorComparator() {
         return interactorComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>organismComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator} object.
+     */
     public OrganismTaxIdComparator getOrganismComparator() {
         return organismComparator;
     }
@@ -47,6 +60,10 @@ public class PolymerComparator implements Comparator<Polymer> {
     /**
      * It will first use DefaultExactInteractorBaseComparator to compare the basic interactor properties
      * If the basic interactor properties are the same, it will look at sequence/organism.
+     *
+     * @param polymer1 a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @param polymer2 a {@link psidev.psi.mi.jami.model.Polymer} object.
+     * @return a int.
      */
     public int compare(Polymer polymer1, Polymer polymer2) {
         int EQUAL = 0;

@@ -26,7 +26,6 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultInteractor implements Interactor {
 
     private String shortName;
@@ -39,6 +38,12 @@ public class DefaultInteractor implements Interactor {
     private Organism organism;
     private CvTerm interactorType;
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultInteractor(String name, CvTerm type){
         if (name == null || (name != null && name.length() == 0)){
             throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -52,41 +57,100 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public DefaultInteractor(String name, String fullName, CvTerm type){
         this(name, type);
         this.fullName = fullName;
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultInteractor(String name, CvTerm type, Organism organism){
         this(name, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultInteractor(String name, String fullName, CvTerm type, Organism organism){
         this(name, fullName, type);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, CvTerm type, Xref uniqueId){
         this(name, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, String fullName, CvTerm type, Xref uniqueId){
         this(name, fullName, type);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, CvTerm type, Organism organism, Xref uniqueId){
         this(name, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId){
         this(name, fullName, type, organism);
         getIdentifiers().add(uniqueId);
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public DefaultInteractor(String name){
         if (name == null || (name != null && name.length() == 0)){
             throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -95,66 +159,133 @@ public class DefaultInteractor implements Interactor {
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public DefaultInteractor(String name, String fullName){
         this(name);
         this.fullName = fullName;
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultInteractor(String name, Organism organism){
         this(name);
         this.organism = organism;
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public DefaultInteractor(String name, String fullName, Organism organism){
         this(name, fullName);
         this.organism = organism;
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, Xref uniqueId){
         this(name);
         getIdentifiers().add(uniqueId);
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, String fullName, Xref uniqueId){
         this(name, fullName);
         getIdentifiers().add(uniqueId);
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, Organism organism, Xref uniqueId){
         this(name, organism);
         getIdentifiers().add(uniqueId);
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>Constructor for DefaultInteractor.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultInteractor(String name, String fullName, Organism organism, Xref uniqueId){
         this(name, fullName, organism);
         getIdentifiers().add(uniqueId);
         this.interactorType = CvTermUtils.createUnknownInteractorType();
     }
 
+    /**
+     * <p>initialiseAnnotations</p>
+     */
     protected void initialiseAnnotations(){
         this.annotations = new ArrayList<Annotation>();
     }
 
+    /**
+     * <p>initialiseXrefs</p>
+     */
     protected void initialiseXrefs(){
         this.xrefs = new ArrayList<Xref>();
     }
 
+    /**
+     * <p>initialiseAliases</p>
+     */
     protected void initialiseAliases(){
         this.aliases = new ArrayList<Alias>();
     }
 
+    /**
+     * <p>initialiseIdentifiers</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new ArrayList<Xref>();
     }
 
+    /**
+     * <p>initialiseChecksums</p>
+     */
     protected void initialiseChecksums(){
         this.checksums = new ArrayList<Checksum>();
     }
 
+    /**
+     * <p>initialiseAnnotationsWith</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     */
     protected void initialiseAnnotationsWith(Collection<Annotation> annotations){
         if (annotations == null){
            this.annotations = Collections.EMPTY_LIST;
@@ -164,6 +295,11 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>initialiseXrefsWith</p>
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     */
     protected void initialiseXrefsWith(Collection<Xref> xrefs){
         if (xrefs == null){
             this.xrefs = Collections.EMPTY_LIST;
@@ -173,6 +309,11 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>initialiseAliasesWith</p>
+     *
+     * @param aliases a {@link java.util.Collection} object.
+     */
     protected void initialiseAliasesWith(Collection<Alias> aliases){
         if (aliases == null){
             this.aliases = Collections.EMPTY_LIST;
@@ -182,6 +323,11 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>initialiseIdentifiersWith</p>
+     *
+     * @param identifiers a {@link java.util.Collection} object.
+     */
     protected void initialiseIdentifiersWith(Collection<Xref> identifiers){
         if (identifiers == null){
             this.identifiers = Collections.EMPTY_LIST;
@@ -191,6 +337,11 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>initialiseChecksumsWith</p>
+     *
+     * @param checksums a {@link java.util.Collection} object.
+     */
     protected void initialiseChecksumsWith(Collection<Checksum> checksums){
         if (checksums == null){
             this.checksums = Collections.EMPTY_LIST;
@@ -200,10 +351,16 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>shortName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         return this.shortName;
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (name == null || (name != null && name.length() == 0)){
              throw new IllegalArgumentException("The short name cannot be null or empty.");
@@ -211,14 +368,25 @@ public class DefaultInteractor implements Interactor {
         this.shortName = name;
     }
 
+    /**
+     * <p>Getter for the field <code>fullName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFullName() {
         return this.fullName;
     }
 
+    /** {@inheritDoc} */
     public void setFullName(String name) {
         this.fullName = name;
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
            initialiseIdentifiers();
@@ -227,6 +395,7 @@ public class DefaultInteractor implements Interactor {
     }
 
     /**
+     * <p>getPreferredIdentifier</p>
      *
      * @return the first identifier in the list of identifiers or null if the list is empty
      */
@@ -234,6 +403,11 @@ public class DefaultInteractor implements Interactor {
         return !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next() : null;
     }
 
+    /**
+     * <p>Getter for the field <code>checksums</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Checksum> getChecksums() {
         if (checksums == null){
             initialiseChecksums();
@@ -241,6 +415,11 @@ public class DefaultInteractor implements Interactor {
         return this.checksums;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefs</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefs == null){
             initialiseXrefs();
@@ -248,6 +427,11 @@ public class DefaultInteractor implements Interactor {
         return this.xrefs;
     }
 
+    /**
+     * <p>Getter for the field <code>annotations</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (annotations == null){
             initialiseAnnotations();
@@ -255,6 +439,11 @@ public class DefaultInteractor implements Interactor {
         return this.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>aliases</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getAliases() {
         if (aliases == null){
             initialiseAliases();
@@ -262,18 +451,30 @@ public class DefaultInteractor implements Interactor {
         return this.aliases;
     }
 
+    /**
+     * <p>Getter for the field <code>organism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getOrganism() {
         return this.organism;
     }
 
+    /** {@inheritDoc} */
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getInteractorType() {
         return this.interactorType;
     }
 
+    /** {@inheritDoc} */
     public void setInteractorType(CvTerm interactorType) {
         if (interactorType == null){
             this.interactorType = CvTermUtils.createUnknownInteractorType();
@@ -283,6 +484,7 @@ public class DefaultInteractor implements Interactor {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getShortName()

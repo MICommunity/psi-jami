@@ -13,15 +13,22 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 31/07/13
+
  */
 public class CachedEuroPubmedCentralFetcher
         extends AbstractCachedFetcher
         implements PublicationFetcher {
 
+    /** Constant <code>CACHE_NAME="europubmedcentral-service-cache"</code> */
     public static final String CACHE_NAME = "europubmedcentral-service-cache";
 
     private PublicationFetcher publicationFetcher;
 
+    /**
+     * <p>Constructor for CachedEuroPubmedCentralFetcher.</p>
+     *
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public CachedEuroPubmedCentralFetcher() throws BridgeFailedException {
         super(CACHE_NAME);
         initialiseCache();
@@ -29,6 +36,7 @@ public class CachedEuroPubmedCentralFetcher
     }
 
 
+    /** {@inheritDoc} */
     public Publication fetchByIdentifier(String identifier, String source) throws BridgeFailedException {
         if (identifier != null){
             final String key = "GET_PUBLICATION_BY_IDENTIFIER_"+source+"_"+identifier;
@@ -45,6 +53,7 @@ public class CachedEuroPubmedCentralFetcher
         return publicationFetcher.fetchByIdentifier(identifier, source);
     }
 
+    /** {@inheritDoc} */
     public Collection<Publication> fetchByIdentifiers(Map<String, Collection<String>> identifiers) throws BridgeFailedException {
         if (identifiers != null){
             String key = "GET_ENTITIES_BY_IDENTIFIERS_";

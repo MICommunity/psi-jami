@@ -12,16 +12,23 @@ import javax.xml.stream.XMLStreamWriter;
 /**
  * Expanded Xml 2.5 writer for a basic named participant with a shortname and a fullname.
  * It ignores experimental details
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlNamedParticipantWriter extends AbstractXmlNamedParticipantWriter implements ExpandedPsiXmlElementWriter<Participant> {
+    /**
+     * <p>Constructor for XmlNamedParticipantWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeMolecule(Interactor interactor) throws XMLStreamException {
         super.writeMoleculeDescription(interactor);

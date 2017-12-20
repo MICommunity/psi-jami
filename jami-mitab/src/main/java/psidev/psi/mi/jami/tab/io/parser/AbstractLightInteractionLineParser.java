@@ -17,21 +17,41 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public abstract class AbstractLightInteractionLineParser<T extends Interaction> extends AbstractInteractionLineParser<T, Participant, Feature> {
 
+    /**
+     * <p>Constructor for AbstractLightInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public AbstractLightInteractionLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractLightInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public AbstractLightInteractionLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for AbstractLightInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public AbstractLightInteractionLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractLightInteractionLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public AbstractLightInteractionLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
@@ -176,8 +196,15 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
         return interaction;
     }
 
+    /**
+     * <p>addParticipant.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @param interaction a T object.
+     */
     protected abstract void addParticipant(Participant participant, T interaction);
 
+    /** {@inheritDoc} */
     @Override
     protected abstract T createInteraction();
 }

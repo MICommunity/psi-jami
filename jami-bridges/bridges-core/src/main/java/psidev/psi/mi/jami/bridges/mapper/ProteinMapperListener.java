@@ -10,27 +10,31 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 05/06/13
+
  */
 public interface ProteinMapperListener {
 
     /**
      * A stacked report listing the exit case first, followed by any errors, the approaches used and the strategy.
-     * @param p
-     * @param report
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param report a {@link java.util.Collection} object.
      */
     public void onSuccessfulMapping(Protein p, Collection<String> report);
 
     /**
+     * <p>onFailedMapping.</p>
      *
-     * @param p
-     * @param report
+     * @param p a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param report a {@link java.util.Collection} object.
      */
     public void onFailedMapping(Protein p, Collection<String> report);
 
     /**
+     * <p>onToBeReviewedMapping.</p>
      *
-     * @param p
-     * @param report
+     * @param p a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param report a {@link java.util.Collection} object.
      */
     public void onToBeReviewedMapping(Protein p, Collection<String> report);
 

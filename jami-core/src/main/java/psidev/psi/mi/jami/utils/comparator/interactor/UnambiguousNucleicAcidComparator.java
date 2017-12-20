@@ -7,11 +7,11 @@ import psidev.psi.mi.jami.model.NucleicAcid;
  * It will first use UnambiguousPolymerComparator to compare the basic interactor properties.
  * If the basic polymer properties are the same, It will look for DDBJ/EMBL/Genbank identifier. If the DDBJ/EMBL/Genbank identifiers are identical, it will look at the
  * Refseq identifiers.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class UnambiguousNucleicAcidComparator extends NucleicAcidComparator {
 
     private static UnambiguousNucleicAcidComparator unambiguousNucleicAcidComparator;
@@ -24,14 +24,20 @@ public class UnambiguousNucleicAcidComparator extends NucleicAcidComparator {
         super(new UnambiguousPolymerComparator());
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousPolymerComparator} object.
+     */
     public UnambiguousPolymerComparator getInteractorComparator() {
         return (UnambiguousPolymerComparator)super.getInteractorComparator();
     }
 
     /**
      * Use UnambiguousNucleicAcidComparator to know if two nucleic acids are equals.
-     * @param nucleicAcid1
-     * @param nucleicAcid2
+     *
+     * @param nucleicAcid1 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
+     * @param nucleicAcid2 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
      * @return true if the two nucleic acids are equal
      */
     public static boolean areEquals(NucleicAcid nucleicAcid1, NucleicAcid nucleicAcid2){

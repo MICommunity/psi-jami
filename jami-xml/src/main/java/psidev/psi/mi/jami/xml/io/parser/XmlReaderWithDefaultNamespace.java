@@ -12,12 +12,17 @@ import javax.xml.stream.util.StreamReaderDelegate;
  * @version $Id$
  * @since <pre>25/06/14</pre>
  */
-
 public class XmlReaderWithDefaultNamespace extends StreamReaderDelegate{
 
     private String usedNamespaceUri;
     private String rootName;
 
+    /**
+     * <p>Constructor for XmlReaderWithDefaultNamespace.</p>
+     *
+     * @param reader a {@link javax.xml.stream.XMLStreamReader} object.
+     * @param namespaceUri a {@link java.lang.String} object.
+     */
     public XmlReaderWithDefaultNamespace(XMLStreamReader reader, String namespaceUri) {
         super(reader);
 
@@ -36,6 +41,7 @@ public class XmlReaderWithDefaultNamespace extends StreamReaderDelegate{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getNamespaceURI() {
         String URI = super.getNamespaceURI();
@@ -45,6 +51,7 @@ public class XmlReaderWithDefaultNamespace extends StreamReaderDelegate{
         return URI;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasNext() throws XMLStreamException {
         // force to stop at the end of first root
@@ -54,6 +61,7 @@ public class XmlReaderWithDefaultNamespace extends StreamReaderDelegate{
         return super.hasNext();
     }
 
+    /** {@inheritDoc} */
     @Override
     public int next() throws XMLStreamException {
         if (hasNext()){

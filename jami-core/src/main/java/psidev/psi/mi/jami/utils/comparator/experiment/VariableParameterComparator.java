@@ -18,12 +18,16 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class VariableParameterComparator implements Comparator<VariableParameter> {
 
     private Comparator<CvTerm> cvTermComparator;
     private CollectionComparator<VariableParameterValue> variableParameterValueCollectionComparator;
 
+    /**
+     * <p>Constructor for VariableParameterComparator.</p>
+     *
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     */
     public VariableParameterComparator(Comparator<CvTerm> cvTermComparator){
         if (cvTermComparator == null){
             throw new IllegalArgumentException("The cvTermComparator should not be null and is needed to compare units.");
@@ -32,6 +36,12 @@ public class VariableParameterComparator implements Comparator<VariableParameter
         this.variableParameterValueCollectionComparator = new VariableParameterValueCollectionComparator();
     }
 
+    /**
+     * <p>Constructor for VariableParameterComparator.</p>
+     *
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param variablecomparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public VariableParameterComparator(Comparator<CvTerm> cvTermComparator, CollectionComparator<VariableParameterValue> variablecomparator){
         if (cvTermComparator == null){
             throw new IllegalArgumentException("The cvTermComparator should not be null and is needed to compare units.");
@@ -43,10 +53,20 @@ public class VariableParameterComparator implements Comparator<VariableParameter
         this.variableParameterValueCollectionComparator = variablecomparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterValueCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<VariableParameterValue> getVariableParameterValueCollectionComparator() {
         return variableParameterValueCollectionComparator;
     }
@@ -54,9 +74,10 @@ public class VariableParameterComparator implements Comparator<VariableParameter
     /**
      * It will first compare the description (case insensitive). Then it will compare the unit using AbstractCvTermComparator.
      * Then it will compare the collection of VariableParameterValue using the VariableParameterValueComparator.
-     * @param variableParameter1
-     * @param variableParameter2
-     * @return
+     *
+     * @param variableParameter1 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param variableParameter2 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @return a int.
      */
     public int compare(VariableParameter variableParameter1, VariableParameter variableParameter2) {
         int EQUAL = 0;

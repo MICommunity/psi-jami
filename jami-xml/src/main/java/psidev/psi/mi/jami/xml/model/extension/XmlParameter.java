@@ -24,9 +24,20 @@ public class XmlParameter extends AbstractXmlParameter  {
 
     private Experiment experiment;
 
+    /**
+     * <p>Constructor for XmlParameter.</p>
+     */
     public XmlParameter() {
     }
 
+    /**
+     * <p>Constructor for XmlParameter.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param uncertainty a {@link java.math.BigDecimal} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlParameter(CvTerm type, ParameterValue value, BigDecimal uncertainty, CvTerm unit) {
         super(type, value, uncertainty, unit);
     }
@@ -36,8 +47,7 @@ public class XmlParameter extends AbstractXmlParameter  {
      *
      * @param value
      *     allowed object is
-     *     {@link Integer }
-     *
+     *     {@link java.lang.Integer}
      */
     @XmlElement(name="experimentRef")
     public void setJAXBExperimentRef(Integer value) {
@@ -46,10 +56,20 @@ public class XmlParameter extends AbstractXmlParameter  {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>experiment</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public Experiment getExperiment() {
         return experiment;
     }
 
+    /**
+     * <p>Setter for the field <code>experiment</code>.</p>
+     *
+     * @param experiment a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public void setExperiment(Experiment experiment) {
         this.experiment = experiment;
     }

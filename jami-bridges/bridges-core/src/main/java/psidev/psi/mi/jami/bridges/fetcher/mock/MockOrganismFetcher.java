@@ -16,15 +16,18 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  24/05/13
+
  */
 public class MockOrganismFetcher
         extends AbstractMockFetcher<Organism>
         implements OrganismFetcher {
 
+    /** {@inheritDoc} */
     public Organism fetchByTaxID(int taxID) throws BridgeFailedException {
         return getEntry( Integer.toString(taxID) );
     }
 
+    /** {@inheritDoc} */
     public Collection<Organism> fetchByTaxIDs(Collection<Integer> taxIDs) throws BridgeFailedException {
         Collection<Organism> resultsList= new ArrayList<Organism>();
         for(Integer identifier : taxIDs){

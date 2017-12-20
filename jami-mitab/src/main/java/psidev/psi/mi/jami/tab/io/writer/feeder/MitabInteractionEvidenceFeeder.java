@@ -16,13 +16,23 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<BinaryInteractionEvidence, ParticipantEvidence> {
 
+    /**
+     * <p>Constructor for MitabInteractionEvidenceFeeder.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public MitabInteractionEvidenceFeeder(Writer writer) {
         super(writer);
     }
 
+    /**
+     * <p>writeInteractionDetectionMethod.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionDetectionMethod(BinaryInteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
 
@@ -34,6 +44,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeFirstAuthor.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeFirstAuthor(BinaryInteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
         if (experiment != null){
@@ -70,6 +86,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writePublicationIdentifiers.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writePublicationIdentifiers(BinaryInteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
 
@@ -111,6 +133,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeSource.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeSource(BinaryInteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
         if (experiment != null){
@@ -128,6 +156,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionIdentifiers.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionIdentifiers(BinaryInteractionEvidence interaction) throws IOException {
         // other identfiers
         if (!interaction.getIdentifiers().isEmpty()){
@@ -162,6 +196,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionConfidences.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionConfidences(BinaryInteractionEvidence interaction) throws IOException {
         if (!interaction.getConfidences().isEmpty()){
 
@@ -179,6 +219,7 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAlias(ParticipantEvidence participant, Alias alias) throws IOException {
         if (alias != null){
             // write db first
@@ -196,6 +237,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeExperimentalRole.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeExperimentalRole(ParticipantEvidence participant) throws IOException {
         if (participant != null){
             writeCvTerm(participant.getExperimentalRole());
@@ -205,6 +252,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionXrefs.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionXrefs(BinaryInteractionEvidence interaction) throws IOException {
         // write interaction ref
         if (!interaction.getXrefs().isEmpty()){
@@ -239,6 +292,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionAnnotations.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionAnnotations(BinaryInteractionEvidence interaction) throws IOException {
         // writes interaction annotations first
         if (!interaction.getAnnotations().isEmpty()){
@@ -278,6 +337,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeHostOrganism.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeHostOrganism(BinaryInteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
         // writes interaction annotations first
@@ -289,6 +354,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionParameters.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionParameters(BinaryInteractionEvidence interaction) throws IOException {
         if (!interaction.getParameters().isEmpty()){
 
@@ -305,6 +376,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeNegativeProperty.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeNegativeProperty(BinaryInteractionEvidence interaction) throws IOException {
         if (interaction.isNegative()){
             getWriter().write("true");
@@ -314,6 +391,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeParticipantIdentificationMethod.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantIdentificationMethod(ParticipantEvidence participant) throws IOException {
         if (participant != null){
 
@@ -335,6 +418,13 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writePublicationImexId.</p>
+     *
+     * @param pub a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param writeFieldSeparator a boolean.
+     * @throws java.io.IOException if any.
+     */
     protected void writePublicationImexId(Publication pub, boolean writeFieldSeparator) throws IOException {
         // IMEx as well
         if (pub.getImexId() != null) {
@@ -347,6 +437,12 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
         }
     }
 
+    /**
+     * <p>writeInteractionAnnotationTagsFrom.</p>
+     *
+     * @param pub a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeInteractionAnnotationTagsFrom(Publication pub) throws IOException {
         boolean isFirst = true;
         // writes curation depth first

@@ -19,11 +19,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class UnambiguousExternalIdentifierComparator implements Comparator<Xref> {
 
     private static UnambiguousExternalIdentifierComparator unambiguousIdentifierComparator;
 
+    /**
+     * <p>Constructor for UnambiguousExternalIdentifierComparator.</p>
+     */
     public UnambiguousExternalIdentifierComparator() {
     }
 
@@ -35,9 +37,11 @@ public class UnambiguousExternalIdentifierComparator implements Comparator<Xref>
      * - The external identifier which is not null is before null.
      * - If the two external identifiers are set :
      *     - compare the databases. If both databases are equal, compare the ids (is case sensitive)
-     * @param externalIdentifier1
-     * @param externalIdentifier2
-     * */
+     *
+     * @param externalIdentifier1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param externalIdentifier2 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a int.
+     */
     public int compare(Xref externalIdentifier1, Xref externalIdentifier2) {
         int EQUAL = 0;
         int BEFORE = -1;
@@ -114,8 +118,9 @@ public class UnambiguousExternalIdentifierComparator implements Comparator<Xref>
 
     /**
      * Use UnambiguousIdentifierComparator to know if two external identifiers are equals.
-     * @param externalIdentifier1
-     * @param externalIdentifier2
+     *
+     * @param externalIdentifier1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param externalIdentifier2 a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return true if the two external identifiers are equal
      */
     public static boolean areEquals(Xref externalIdentifier1, Xref externalIdentifier2){
@@ -127,8 +132,9 @@ public class UnambiguousExternalIdentifierComparator implements Comparator<Xref>
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param externalIdentifier1
+     * @param externalIdentifier1 a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Xref externalIdentifier1){

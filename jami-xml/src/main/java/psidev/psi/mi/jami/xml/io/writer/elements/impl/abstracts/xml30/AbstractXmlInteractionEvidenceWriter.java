@@ -28,17 +28,27 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractXmlInteractionEvidenceWriter<I extends InteractionEvidence>
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlInteractionEvidenceWriter<I> {
 
     private PsiXmlElementWriter<VariableParameterValueSet> variableParameterValueSetWriter;
     private PsiXmlCausalRelationshipWriter causalRelationshipWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterValueSetWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<VariableParameterValueSet> getVariableParameterValueSetWriter() {
         if (this.variableParameterValueSetWriter == null){
             this.variableParameterValueSetWriter = new XmlVariableParameterValueSetWriter(getStreamWriter(), getObjectIndex());
@@ -46,10 +56,20 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return variableParameterValueSetWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>variableParameterValueSetWriter</code>.</p>
+     *
+     * @param variableParameterValueSetWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setVariableParameterValueSetWriter(PsiXmlElementWriter<VariableParameterValueSet> variableParameterValueSetWriter) {
         this.variableParameterValueSetWriter = variableParameterValueSetWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>causalRelationshipWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter} object.
+     */
     public PsiXmlCausalRelationshipWriter getCausalRelationshipWriter() {
         if (this.causalRelationshipWriter == null){
             initialiseCausalRelationshipWriter();
@@ -57,44 +77,59 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         return causalRelationshipWriter;
     }
 
+    /**
+     * <p>initialiseCausalRelationshipWriter.</p>
+     */
     protected void initialiseCausalRelationshipWriter() {
         this.causalRelationshipWriter = new XmlCausalRelationshipWriter(getStreamWriter(), getObjectIndex());
     }
 
+    /**
+     * <p>Setter for the field <code>causalRelationshipWriter</code>.</p>
+     *
+     * @param causalRelationshipWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter} object.
+     */
     public void setCausalRelationshipWriter(PsiXmlCausalRelationshipWriter causalRelationshipWriter) {
         this.causalRelationshipWriter = causalRelationshipWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter(){
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter(){
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter(){
         super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInferredInteractionWriter() {
         super.setInferredInteractionWriter(new XmlInferredInteractionWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractionTypeWriter() {
         super.setInteractionTypeWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(I object) throws XMLStreamException {
         // experimental variable values
@@ -102,6 +137,12 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         writeCausalRelationships(object);
     }
 
+    /**
+     * <p>writeCausalRelationships.</p>
+     *
+     * @param object a I object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeCausalRelationships(I object) throws XMLStreamException {
 
         Collection<Participant> participants = InteractionUtils.extractParticipantWithCausalRelationships(object);
@@ -119,6 +160,12 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
         }
     }
 
+    /**
+     * <p>writeExperimentalVariableValues.</p>
+     *
+     * @param object a I object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeExperimentalVariableValues(I object) throws XMLStreamException {
         if (!object.getVariableParameterValues().isEmpty()){
             getStreamWriter().writeStartElement("experimentalVariableValueList");

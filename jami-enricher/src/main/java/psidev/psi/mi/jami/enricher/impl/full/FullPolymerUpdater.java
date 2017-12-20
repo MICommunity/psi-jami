@@ -16,16 +16,24 @@ import psidev.psi.mi.jami.model.Polymer;
  * @version $Id$
  * @since <pre>30/01/14</pre>
  */
-
 public class FullPolymerUpdater<T extends Polymer> extends FullInteractorBaseUpdater<T>{
+    /**
+     * <p>Constructor for FullPolymerUpdater.</p>
+     */
     public FullPolymerUpdater() {
         super();
     }
 
+    /**
+     * <p>Constructor for FullPolymerUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public FullPolymerUpdater(InteractorFetcher<T> fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(T polymerToUpdate, T fetched) {
 

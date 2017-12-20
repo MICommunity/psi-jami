@@ -7,22 +7,22 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousExactModelledP
 
 /**
  * Unambiguous exact Complex comparator
- *
+ * <p>
  * It will first look at the default properties of an interactor using UnambiguousExactInteractorBaseComparator.
  * It will then compare interaction types using UnambiguousExactCvTermComparator.
  * If the basic interactor properties are the same, It will first compare the collection of components using UnambiguousExactModelledParticipantComparator.
- *
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousExactComplexComparator extends ComplexComparator {
 
     private static UnambiguousExactComplexComparator unambiguousExactComplexComparator;
 
     /**
+     * {@inheritDoc}
+     * <p>
      * Creates a new UnambiguousExactComplexComparator. It will use a UnambiguousExactInteractorBaseComparator, UnambiguousExactModelledParticipantComparator to
      * compares components.
      */
@@ -30,14 +30,36 @@ public class UnambiguousExactComplexComparator extends ComplexComparator {
         super(new UnambiguousExactInteractorBaseComparator(), new UnambiguousExactModelledParticipantComparator(), new UnambiguousCvTermComparator());
     }
 
+    /**
+     * <p>Constructor for UnambiguousExactComplexComparator.</p>
+     *
+     * @param comparator a {@link psidev.psi.mi.jami.utils.comparator.participant.UnambiguousExactModelledParticipantComparator} object.
+     */
     public UnambiguousExactComplexComparator(UnambiguousExactModelledParticipantComparator comparator) {
         super(new UnambiguousExactInteractorBaseComparator(), comparator != null ? comparator : new UnambiguousExactModelledParticipantComparator(), new UnambiguousCvTermComparator());
     }
 
+    /**
+     * <p>Constructor for UnambiguousExactComplexComparator.</p>
+     *
+     * @param comparator a {@link psidev.psi.mi.jami.utils.comparator.participant.UnambiguousExactModelledParticipantInteractorComparator} object.
+     */
     public UnambiguousExactComplexComparator(UnambiguousExactModelledParticipantInteractorComparator comparator) {
         super(new UnambiguousExactInteractorBaseComparator(), comparator != null ? comparator : new UnambiguousExactModelledParticipantInteractorComparator(), new UnambiguousCvTermComparator());
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Use UnambiguousExactComplexComparator to know if two complexes are equals.
+     */
+    public static boolean areEquals(Complex complex1, Complex complex2) {
+        if (unambiguousExactComplexComparator == null) {
+            unambiguousExactComplexComparator = new UnambiguousExactComplexComparator();
+        }
+
+        return unambiguousExactComplexComparator.compare(complex1, complex2) == 0;
+    }
     @Override
     /**
      *
@@ -49,28 +71,15 @@ public class UnambiguousExactComplexComparator extends ComplexComparator {
         return super.compare(complex1, complex2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExactInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorBaseComparator();
     }
 
-
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
-    }
-
-    /**
-     * Use UnambiguousExactComplexComparator to know if two complexes are equals.
-     * @param complex1
-     * @param complex2
-     * @return true if the two complexes are equal
-     */
-    public static boolean areEquals(Complex complex1, Complex complex2){
-        if (unambiguousExactComplexComparator == null){
-            unambiguousExactComplexComparator = new UnambiguousExactComplexComparator();
-        }
-
-        return unambiguousExactComplexComparator.compare(complex1, complex2) == 0;
     }
 }

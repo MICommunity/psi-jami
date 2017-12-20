@@ -10,15 +10,22 @@ import psidev.psi.mi.jami.model.Participant;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public interface ParticipantEnricher <P extends Participant, F extends Feature> extends EntityEnricher<P,F>{
 
     /**
      * The current CvTerm enricher, If null, CvTerms will not be enriched.
+     *
      * @return  The new enricher for CvTerms. Can be null.
      */
     public CvTermEnricher<CvTerm> getCvTermEnricher();
 
+    /**
+     * <p>setCvTermEnricher.</p>
+     *
+     * @param enricher a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher);
 
 }

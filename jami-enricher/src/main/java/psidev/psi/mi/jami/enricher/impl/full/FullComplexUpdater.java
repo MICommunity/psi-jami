@@ -13,16 +13,25 @@ import psidev.psi.mi.jami.model.Complex;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class FullComplexUpdater extends FullModelledInteractionUpdater<Complex> implements ComplexEnricher {
 
     private FullInteractorBaseUpdater<Complex> interactorEnricher = null;
 
+    /**
+     * <p>Constructor for FullComplexUpdater.</p>
+     */
     public FullComplexUpdater(){
         super();
         this.interactorEnricher = new FullInteractorBaseUpdater<Complex>();
     }
 
+    /**
+     * <p>Constructor for FullComplexUpdater.</p>
+     *
+     * @param interactorEnricher a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractorBaseUpdater} object.
+     */
     protected FullComplexUpdater(FullInteractorBaseUpdater<Complex> interactorEnricher){
         super();
         this.interactorEnricher = interactorEnricher != null ? interactorEnricher : new FullInteractorBaseUpdater<Complex>();
@@ -31,7 +40,9 @@ public class FullComplexUpdater extends FullModelledInteractionUpdater<Complex> 
     /**
      * Strategy for the Interaction enrichment.
      * This method can be overwritten to change how the interaction is enriched.
+     *
      * @param interactionToEnrich   The interaction to be enriched.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected void processOtherProperties(Complex interactionToEnrich) throws EnricherException {
         super.processOtherProperties(interactionToEnrich);
@@ -46,6 +57,7 @@ public class FullComplexUpdater extends FullModelledInteractionUpdater<Complex> 
 
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Complex objectToEnrich, Complex objectSource) throws EnricherException {
         super.processOtherProperties(objectToEnrich, objectSource);
@@ -65,30 +77,53 @@ public class FullComplexUpdater extends FullModelledInteractionUpdater<Complex> 
         this.interactorEnricher.processAliases(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>getInteractorFetcher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public InteractorFetcher<Complex> getInteractorFetcher() {
         return this.interactorEnricher.getInteractorFetcher();
     }
 
+    /** {@inheritDoc} */
     public void setListener(InteractorEnricherListener<Complex> listener) {
         this.interactorEnricher.setListener(listener);
     }
 
+    /**
+     * <p>getListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.InteractorEnricherListener} object.
+     */
     public InteractorEnricherListener<Complex> getListener() {
         return this.interactorEnricher.getListener();
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher cvTermEnricher) {
         this.interactorEnricher.setCvTermEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     public void setOrganismEnricher(OrganismEnricher organismEnricher) {
         this.interactorEnricher.setOrganismEnricher(organismEnricher);
     }
 
+    /**
+     * <p>getOrganismEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.OrganismEnricher} object.
+     */
     public OrganismEnricher getOrganismEnricher() {
         return this.interactorEnricher.getOrganismEnricher();
     }
 
+    /**
+     * <p>Getter for the field <code>interactorEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractorBaseUpdater} object.
+     */
     protected FullInteractorBaseUpdater<Complex> getInteractorEnricher() {
         return interactorEnricher;
     }

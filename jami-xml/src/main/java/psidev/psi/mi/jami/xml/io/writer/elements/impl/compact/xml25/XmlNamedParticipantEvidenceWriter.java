@@ -17,12 +17,18 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlNamedParticipantEvidenceWriter extends XmlParticipantEvidenceWriter implements CompactPsiXmlElementWriter<ParticipantEvidence> {
+    /**
+     * <p>Constructor for XmlNamedParticipantEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedParticipantEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(ParticipantEvidence object) throws XMLStreamException {
         if (object instanceof NamedParticipant){

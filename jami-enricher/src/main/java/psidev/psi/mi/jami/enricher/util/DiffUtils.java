@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Calculate diffs between strings and other methods to manipulate the differences. 
+ * Calculate diffs between strings and other methods to manipulate the differences.
  *
  * @author Bruno Aranda (baranda@ebi.ac.uk)
  * @version $Id: DiffUtils.java 11676 2008-06-27 14:59:26Z baranda $
@@ -34,6 +34,7 @@ public class DiffUtils {
 
     /**
      * Checks the differences between two strings.
+     *
      * @param str1 String 1
      * @param str2 String 2
      * @return A list of Diff objects with the differences
@@ -45,8 +46,9 @@ public class DiffUtils {
 
     /**
      * Filters, creating a copy, a list of Diffs by operation.
+     *
      * @param diffs The list to filter
-     * @param operation The operation to look for 
+     * @param operation The operation to look for
      * @return The filtered list
      */
     public static List<Diff> filterDiffsByOperation(List<Diff> diffs, Operation operation) {
@@ -63,10 +65,12 @@ public class DiffUtils {
 
     /**
      * Taking into account the differences, calculates what the index should be in the
-     * second string by providing an index for the first string. <br/>
+     * second string by providing an index for the first string.
+     *
      * The algorithm used: if the originalIndex is contained by any of the deleted regions
      * in the string 1, then -1 is returned (that bit was deleted). If not, the shifted index will be the difference
-     * between amount of insertions and amount of deletions before and including the original index.<br/>
+     * between amount of insertions and amount of deletions before and including the original index.
+     *
      * @param diffs Differences for string1 and string2
      * @param originalIndex The index in string1
      * @return The index in string2, corresponding to the index in string1 computing the differences

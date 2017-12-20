@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.Participant;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface ParticipantEnricherListener<P extends Participant> extends EntityEnricherListener<P>, ParticipantChangeListener<P> {
 

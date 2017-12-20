@@ -18,28 +18,51 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class XmlBinaryEvidenceSource extends AbstractPsiXmlBinarySource<InteractionEvidence, BinaryInteractionEvidence> implements BinaryInteractionEvidenceSource{
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceSource.</p>
+     */
     public XmlBinaryEvidenceSource() {
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlBinaryEvidenceSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlBinaryEvidenceSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlBinaryEvidenceSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlBinaryEvidenceSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -52,6 +75,7 @@ public class XmlBinaryEvidenceSource extends AbstractPsiXmlBinarySource<Interact
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -66,6 +90,7 @@ public class XmlBinaryEvidenceSource extends AbstractPsiXmlBinarySource<Interact
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -78,6 +103,7 @@ public class XmlBinaryEvidenceSource extends AbstractPsiXmlBinarySource<Interact
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {

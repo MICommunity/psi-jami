@@ -15,19 +15,25 @@ import java.util.List;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/05/13
+
  */
 public class CachedUniprotProteinFetcher
         extends AbstractCachedFetcher
         implements ProteinFetcher {
 
+    /** Constant <code>CACHE_NAME="uniprot-service-cache"</code> */
     public static final String CACHE_NAME = "uniprot-service-cache";
     private ProteinFetcher proteinFetcher;
 
+    /**
+     * <p>Constructor for CachedUniprotProteinFetcher.</p>
+     */
     public CachedUniprotProteinFetcher() {
         super(CACHE_NAME);
         proteinFetcher = new UniprotProteinFetcher();
     }
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifier(String identifier) throws BridgeFailedException {
         final String key = "GET_PROTEINS_BY_ACCESSION_"+identifier;
         Object data = getFromCache( key );
@@ -38,6 +44,7 @@ public class CachedUniprotProteinFetcher
         return (Collection<Protein>)data;
     }
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         if (identifiers != null){
             List<String> ids = new ArrayList<String>(identifiers);

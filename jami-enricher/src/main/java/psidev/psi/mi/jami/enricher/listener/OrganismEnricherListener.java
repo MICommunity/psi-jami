@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface OrganismEnricherListener
         extends OrganismChangeListener  , EnricherListener<Organism> {

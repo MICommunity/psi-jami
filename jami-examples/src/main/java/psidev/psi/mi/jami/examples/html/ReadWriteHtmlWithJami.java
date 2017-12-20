@@ -24,9 +24,14 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>27/06/14</pre>
  */
-
 public class ReadWriteHtmlWithJami {
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects.
+     * @throws java.lang.Exception if any.
+     */
     public static void main(String[] args) throws Exception {
 
         if (args.length < 2){

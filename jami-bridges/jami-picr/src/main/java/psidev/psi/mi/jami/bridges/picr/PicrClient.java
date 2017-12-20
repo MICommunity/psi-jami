@@ -25,7 +25,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>10-Mar-2010</pre>
  */
-
 public class PicrClient {
 
     private AccessionMapperService accessionMapperService;
@@ -40,11 +39,19 @@ public class PicrClient {
      */
     public static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(PicrClient.class.getName());
 
+    /**
+     * <p>Constructor for PicrClient.</p>
+     */
     public PicrClient(){
 
     }
 
 
+    /**
+     * <p>getAccessionMapperPort.</p>
+     *
+     * @return a {@link uk.ac.ebi.picr.accessionmappingservice.AccessionMapperInterface} object.
+     */
     public AccessionMapperInterface getAccessionMapperPort() {
         if (this.accessionMapperService == null){
             try {
@@ -58,10 +65,11 @@ public class PicrClient {
 
     /**
      * Finds the list of swissProtIds for a provided ID and taxonId
+     *
      * @param accession the accession to look for
      * @param taxonId : the organism of the protein
      * @return the swissprotIds if found, empty list otherwise
-     * @throws BridgeFailedException : an exception if the given accession is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given accession is null
      */
     public Collection<String> getSwissprotIdsForAccession(String accession, String taxonId) throws BridgeFailedException{
         Collection<String> swissprotIdList = getIdsForAccession(accession, taxonId, PicrSearchDatabase.SWISSPROT_VARSPLIC, PicrSearchDatabase.SWISSPROT);
@@ -71,10 +79,11 @@ public class PicrClient {
 
     /**
      * Finds the list of termblIds for a provided ID and taxonId
+     *
      * @param accession the accession to look for
      * @param taxonId : the organism of the protein
      * @return the tremblId if found, empty list otherwise
-     * @throws BridgeFailedException : an exception if the given accession is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given accession is null
      */
     public Collection<String> getTremblIdsForAccession(String accession, String taxonId) throws BridgeFailedException{
         Collection<String> tremblIdList = getIdsForAccession(accession, taxonId, PicrSearchDatabase.TREMBL_VARSPLIC, PicrSearchDatabase.TREMBL);
@@ -84,10 +93,11 @@ public class PicrClient {
 
     /**
      * Gets the list of uniparcId matching this accession number
-     * @param accession
-     * @param taxonId
+     *
+     * @param accession a {@link java.lang.String} object.
+     * @param taxonId a {@link java.lang.String} object.
      * @return the list of uniparc Id or empty list if the accession doesn't match any Uniparc sequence
-     * @throws BridgeFailedException : an exception if the given accession is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given accession is null
      */
     public Collection<UPEntry> getUniparcEntries(String accession, String taxonId) throws BridgeFailedException{
         Collection<UPEntry> upEntries = getUPEntriesForAccession(accession, taxonId, PicrSearchDatabase.SWISSPROT_VARSPLIC, PicrSearchDatabase.SWISSPROT, PicrSearchDatabase.TREMBL_VARSPLIC, PicrSearchDatabase.TREMBL);
@@ -137,11 +147,12 @@ public class PicrClient {
 
     /**
      * Finds the list of UPEntries for a provided ID and organism from the provided list of databases
+     *
      * @param accession the accession to look for
      * @param taxonId the organism of the protein
      * @param databases the databases to query
      * @return the uniprot ID if found, null otherwise
-     * @throws BridgeFailedException : an exception if the given accession is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given accession is null
      */
     public List<UPEntry> getUPEntriesForAccession(String accession, String taxonId, PicrSearchDatabase ... databases) throws BridgeFailedException{
         if (accession == null){
@@ -186,10 +197,11 @@ public class PicrClient {
 
     /**
      * Finds the list of swissProtIds for a provided sequence and taxonId
+     *
      * @param sequence the sequence to look for
      * @param taxonId : the organism of the protein
      * @return the swissprotIds if found, empty list otherwise
-     * @throws BridgeFailedException : an exception if the given sequence is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given sequence is null
      */
     public ArrayList<String> getSwissprotIdsForSequence(String sequence, String taxonId) throws BridgeFailedException{
         ArrayList<String> swissprotIdList = getIdsForSequence(sequence, taxonId, PicrSearchDatabase.SWISSPROT_VARSPLIC, PicrSearchDatabase.SWISSPROT);
@@ -199,10 +211,11 @@ public class PicrClient {
 
     /**
      * Finds the list of termblIds for a provided sequence and taxonId
+     *
      * @param sequence the sequence to look for
      * @param taxonId : the organism of the protein
      * @return the tremblId if found, empty list otherwise
-     * @throws BridgeFailedException : an exception if the given sequence is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given sequence is null
      */
     public ArrayList<String> getTremblIdsForSequence(String sequence, String taxonId) throws BridgeFailedException{
         ArrayList<String> tremblIdList = getIdsForSequence(sequence, taxonId, PicrSearchDatabase.TREMBL_VARSPLIC, PicrSearchDatabase.TREMBL);
@@ -212,9 +225,11 @@ public class PicrClient {
 
     /**
      * Gets the uniparcId matching this sequence
-     * @param sequence
-     * @param taxonId
+     *
+     * @param sequence a {@link java.lang.String} object.
+     * @param taxonId a {@link java.lang.String} object.
      * @return the uniparc Id or null if the sequence doesn't match any Uniparc sequence
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public String getUniparcIdFromSequence(String sequence, String taxonId) throws BridgeFailedException{
         UPEntry upEntry = getUPEntriesForSequence(sequence, taxonId, PicrSearchDatabase.SWISSPROT_VARSPLIC, PicrSearchDatabase.SWISSPROT, PicrSearchDatabase.TREMBL_VARSPLIC, PicrSearchDatabase.TREMBL);
@@ -228,11 +243,12 @@ public class PicrClient {
 
     /**
      * Get the UPEntry which matches the sequence and taxonId in the given databases
+     *
      * @param sequence : sequence of the protein to retrieve
      * @param taxonId : organism of the sequence
      * @param databases : the databases to look into
      * @return an UPEntry instance matching the sequence, taxonId in the specific databases
-     * @throws BridgeFailedException : an exception if the given sequence is null
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : an exception if the given sequence is null
      */
     public UPEntry getUPEntriesForSequence(String sequence, String taxonId, PicrSearchDatabase ... databases) throws BridgeFailedException{
         if (databases == null) databases = PicrSearchDatabase.values();
@@ -262,10 +278,11 @@ public class PicrClient {
 
     /**
      * Get an Unique uniprot Id for this accession
+     *
      * @param accession : the accession to look at
      * @param taxonId : the organism
      * @return an Unique uniprot Id
-     * @throws BridgeFailedException
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public String [] getUniprotBestGuessFor(String accession, String taxonId) throws BridgeFailedException{
 

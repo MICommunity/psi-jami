@@ -18,17 +18,20 @@ import psidev.psi.mi.jami.model.Xref;
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class ExactXrefComparator extends UnambiguousXrefComparator {
 
     private static ExactXrefComparator exactXrefComparator;
 
+    /**
+     * <p>Constructor for ExactXrefComparator.</p>
+     */
     public ExactXrefComparator() {
         super();
     }
 
-    @Override
     /**
+     * {@inheritDoc}
+     *
      * It compares first the databases using UnambiguousCvTermComparator, then the ids (case sensitive) and then the version.
      * To compare the databases, it looks first at the identifiers id if they both exist, otherwise it looks at the database shortlabel only.
      * - Two external identifiers which are null are equals
@@ -37,9 +40,10 @@ public class ExactXrefComparator extends UnambiguousXrefComparator {
      *     - compare the databases. If both databases are equal, compare the ids (is case sensitive)
      *     - if both ids are the same, compares the versions.
      * - If both xref databases and ids are the same, use UnambiguousCvTermComparator to compare the qualifiers.
-     * @param xref1
-     * @param xref2
+     * @param xref1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param xref2 a {@link psidev.psi.mi.jami.model.Xref} object.
      */
+    @Override
     public int compare(Xref xref1, Xref xref2) {
         int EQUAL = 0;
         int BEFORE = -1;
@@ -81,10 +85,9 @@ public class ExactXrefComparator extends UnambiguousXrefComparator {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Use ExactXrefComparator to know if two xrefs are equals.
-     * @param xref1
-     * @param xref2
-     * @return true if the two xrefs are equal
      */
     public static boolean areEquals(Xref xref1, Xref xref2){
         if (exactXrefComparator == null){
@@ -94,11 +97,7 @@ public class ExactXrefComparator extends UnambiguousXrefComparator {
         return exactXrefComparator.compare(xref1, xref2) == 0;
     }
 
-    /**
-     *
-     * @param xref
-     * @return the hashcode consistent with the equals method for this comparator
-     */
+    /** {@inheritDoc} */
     public static int hashCode(Xref xref){
         if (exactXrefComparator == null){
             exactXrefComparator = new ExactXrefComparator();

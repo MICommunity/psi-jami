@@ -25,6 +25,7 @@ import java.io.*;
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  09/07/13
  * @param <T>   The type of JAMI object that is being enriched.
+
  */
 public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T> {
 
@@ -42,13 +43,16 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
     private int removedCount = 0;
     private int additionCount = 0;
 
+    /** Constant <code>SUCCESS_SUFFIX="_success.csv"</code> */
     public static final String SUCCESS_SUFFIX="_success.csv";
+    /** Constant <code>FAILURE_SUFFIX="_failed.csv"</code> */
     public static final String FAILURE_SUFFIX="_failed.csv";
 
     /**
      * A constructor which takes the given filename and appends success and failed for the two lists.
+     *
      * @param fileName      The seed for name of the files to record enrichments. Can not be null.
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public EnricherStatisticsWriter(String fileName) throws IOException {
         this(new File(fileName+SUCCESS_SUFFIX), new File(fileName+FAILURE_SUFFIX));
@@ -56,9 +60,10 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
 
     /**
      * A constructor setting the file type
+     *
      * @param successFileName   The name of the file to record successful enrichments. Can not be null.
      * @param failureFileName   The name of file to record failed enrichments. Can not be null.
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public EnricherStatisticsWriter(String successFileName, String failureFileName) throws IOException {
         this(new File(successFileName), new File(failureFileName));
@@ -71,7 +76,7 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
      *
      * @param successFile   The file to record successful enrichments.
      * @param failureFile   The file to record failed enrichments.
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public EnricherStatisticsWriter(File successFile, File failureFile) throws IOException {
         /**
@@ -100,7 +105,8 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
 
     /**
      * Close both files.
-     * @throws IOException
+     *
+     * @throws java.io.IOException if any.
      */
     public void close() throws IOException {
         try{
@@ -118,6 +124,7 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
     /**
      * Compares the object to the last object enriched.
      * If they are different, the new object is taken and all stats reset.
+     *
      * @param obj   The object to compare to the last object changed.
      */
     protected void checkObject(Object obj){
@@ -131,10 +138,9 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Writes to the appropriate file when the enrichment is complete.
-     * @param obj       The object which has finished enriching.
-     * @param status    The exit status of the finished enrichment.
-     * @param message   The message given to accompany the last enrichment.
      */
     public void onEnrichmentComplete(T obj, EnrichmentStatus status, String message) {
         checkObject(obj);
@@ -190,6 +196,7 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
         lastObject = null;
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(T obj, String message, Exception e) {
         checkObject(obj);
 
@@ -228,22 +235,41 @@ public abstract class EnricherStatisticsWriter<T> implements EnricherListener<T>
         lastObject = null;
     }
 
+    /**
+     * <p>Getter for the field <code>successWriter</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getSuccessWriter() {
         return successWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>failureWriter</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getFailureWriter() {
         return failureWriter;
     }
 
+    /**
+     * <p>incrementUpdateCount.</p>
+     */
     protected void incrementUpdateCount() {
         updateCount++;
     }
 
+    /**
+     * <p>incrementRemovedCount.</p>
+     */
     protected void incrementRemovedCount() {
         removedCount++;
     }
 
+    /**
+     * <p>incrementAdditionCount.</p>
+     */
     protected void incrementAdditionCount() {
         additionCount++;
     }

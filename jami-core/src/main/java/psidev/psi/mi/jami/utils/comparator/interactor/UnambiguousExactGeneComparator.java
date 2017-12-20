@@ -8,12 +8,10 @@ import psidev.psi.mi.jami.model.Gene;
  * If the basic interactor properties are the same, It will look at ensembl identifier if both are set. If the ensembl identifiers are not both set, it will look at the
  * ensemblGenome identifiers. If at least one ensemblGemome identifiers is not set, it will look at the entrez/gene id. If at least one entrez/gene id is not set, it will look at the refseq identifiers.
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousExactGeneComparator extends GeneComparator {
 
     private static UnambiguousExactGeneComparator unambiguousExactGeneComparator;
@@ -30,19 +28,28 @@ public class UnambiguousExactGeneComparator extends GeneComparator {
      * If the basic interactor properties are the same, It will look at ensembl identifier if both are set. If the ensembl identifiers are not both set, it will look at the
      * ensemblGenome identifiers. If at least one ensemblGemome identifiers is not set, it will look at the entrez/gene id. If at least one entrez/gene id is not set, it will look at the refseq identifiers.
      *
+     * @param gene1 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @param gene2 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @return a int.
      */
     public int compare(Gene gene1, Gene gene2) {
         return super.compare(gene1, gene2);
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousExactInteractorBaseComparator} object.
+     */
     public UnambiguousExactInteractorBaseComparator getInteractorComparator() {
         return (UnambiguousExactInteractorBaseComparator) super.getInteractorComparator();
     }
 
     /**
      * Use DefaultGeneComparator to know if two genes are equals.
-     * @param gene1
-     * @param gene2
+     *
+     * @param gene1 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @param gene2 a {@link psidev.psi.mi.jami.model.Gene} object.
      * @return true if the two genes are equal
      */
     public static boolean areEquals(Gene gene1, Gene gene2){
