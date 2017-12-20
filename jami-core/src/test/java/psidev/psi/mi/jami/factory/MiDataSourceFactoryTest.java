@@ -26,7 +26,7 @@ public class MiDataSourceFactoryTest {
     }
 
     @Test
-    public void test_missing_file_data_source_options() throws IllegalAccessException, InstantiationException {
+    public void test_missing_file_data_source_options() {
 
         MIDataSourceFactory.getInstance().registerDataSource(MockExperimentDataSource.class, Collections.EMPTY_MAP);
 
@@ -37,7 +37,7 @@ public class MiDataSourceFactoryTest {
     }
 
     @Test
-    public void test_no_supported_options() throws IllegalAccessException, InstantiationException {
+    public void test_no_supported_options() {
         MIDataSourceFactory.getInstance().registerDataSource(MockInteractionDataSource.class, Collections.EMPTY_MAP);
 
         Map<String, Object> requiredOptions = new HashMap<String, Object>();
@@ -47,7 +47,7 @@ public class MiDataSourceFactoryTest {
     }
 
     @Test
-    public void test_supports_options() throws IllegalAccessException, InstantiationException {
+    public void test_supports_options() {
         Map<String, Object> possibleOptions = new HashMap<String, Object>();
         possibleOptions.put("file_source", "xml");
 
@@ -60,7 +60,7 @@ public class MiDataSourceFactoryTest {
     }
 
     @Test
-    public void test_supports_options_more_options_than_required() throws IllegalAccessException, InstantiationException {
+    public void test_supports_options_more_options_than_required()  {
         Map<String, Object> possibleOptions = new HashMap<String, Object>();
         possibleOptions.put("file_source", "xml");
         possibleOptions.put("streaming", "true");
@@ -74,7 +74,7 @@ public class MiDataSourceFactoryTest {
     }
 
     @Test
-    public void test_does_not_support_one_required_option() throws IllegalAccessException, InstantiationException {
+    public void test_does_not_support_one_required_option()  {
         Map<String, Object> possibleOptions = new HashMap<String, Object>();
         possibleOptions.put("file_source", "xml");
         possibleOptions.put("streaming", "false");

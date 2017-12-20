@@ -7,7 +7,7 @@
     </parent>
 
     <artifactId>jami-picr</artifactId>
-    <name>PSI :: JAMI - PICR</name>
+    <name>PSI :: JAMI - Bridges - PICR</name>
     <description>Jami PICR client module</description>
 
     <build>
