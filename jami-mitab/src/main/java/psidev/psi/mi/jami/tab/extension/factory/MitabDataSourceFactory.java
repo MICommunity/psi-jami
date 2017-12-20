@@ -11,7 +11,6 @@ import psidev.psi.mi.jami.tab.extension.datasource.*;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class MitabDataSourceFactory {
 
     private static final MitabDataSourceFactory instance = new MitabDataSourceFactory();
@@ -19,10 +18,23 @@ public class MitabDataSourceFactory {
     private MitabDataSourceFactory(){
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.tab.extension.factory.MitabDataSourceFactory} object.
+     */
     public static MitabDataSourceFactory getInstance() {
         return instance;
     }
 
+    /**
+     * <p>createMitabDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.tab.extension.datasource.MitabStreamSource} object.
+     */
     public MitabStreamSource createMitabDataSource(InteractionCategory interactionCategory, ComplexType complexType,
                                                   boolean streaming){
         switch (complexType){
@@ -33,6 +45,13 @@ public class MitabDataSourceFactory {
         }
     }
 
+    /**
+     * <p>createMitabBinaryDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.tab.extension.datasource.MitabStreamSource} object.
+     */
     public MitabStreamSource createMitabBinaryDataSource(InteractionCategory interactionCategory, boolean streaming){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.evidence;
@@ -68,6 +87,13 @@ public class MitabDataSourceFactory {
         }
     }
 
+    /**
+     * <p>createMitabDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.tab.extension.datasource.MitabStreamSource} object.
+     */
     public MitabStreamSource createMitabDataSource(InteractionCategory interactionCategory, boolean streaming){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.evidence;

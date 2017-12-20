@@ -18,17 +18,29 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+
  */
 public class MinimalCuratedPublicationUpdater extends MinimalCuratedPublicationEnricher {
 
+    /**
+     * <p>Constructor for MinimalCuratedPublicationUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher} object.
+     */
     public MinimalCuratedPublicationUpdater(PublicationFetcher fetcher) {
         super(new MinimalPublicationUpdater(fetcher));
     }
 
+    /**
+     * <p>Constructor for MinimalCuratedPublicationUpdater.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalPublicationEnricher} object.
+     */
     protected MinimalCuratedPublicationUpdater(MinimalPublicationEnricher delegate) {
         super(delegate);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processSource(Publication publicationToEnrich, Publication fetchedPublication) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(fetchedPublication.getSource(), publicationToEnrich.getSource())){

@@ -28,6 +28,7 @@ import static psidev.psi.mi.jami.model.Annotation.VALIDATION_REGEXP;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/08/13
+
  */
 public class LazyCvTerm extends DefaultCvTerm {
 
@@ -43,6 +44,14 @@ public class LazyCvTerm extends DefaultCvTerm {
     private String ontologyName;
     private Xref originalXref;
 
+    /**
+     * <p>Constructor for LazyCvTerm.</p>
+     *
+     * @param olsClient a {@link uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param identityRef a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ontologyName a {@link java.lang.String} object.
+     */
     public LazyCvTerm(OLSClient olsClient, String fullName, Xref identityRef, String ontologyName) {
         super("");
         if (olsClient == null){
@@ -60,9 +69,10 @@ public class LazyCvTerm extends DefaultCvTerm {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * If the shortName is not yet known, a query will be made to OLS.
      * If no shortName is found, the fullName is used instead.
-     * @return  The shortName of the cvTerm.
      */
     @Override
     public String getShortName() {
@@ -72,6 +82,7 @@ public class LazyCvTerm extends DefaultCvTerm {
         return super.getShortName();
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         if (name != null){
             hasShortName = true;
@@ -79,6 +90,11 @@ public class LazyCvTerm extends DefaultCvTerm {
         super.setShortName(name);
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (!hasLoadedXrefs){
             initialiseOlsXrefs(originalXref);
@@ -86,6 +102,11 @@ public class LazyCvTerm extends DefaultCvTerm {
         return super.getXrefs();
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (!hasLoadedXrefs){
             initialiseOlsXrefs(originalXref);
@@ -96,6 +117,11 @@ public class LazyCvTerm extends DefaultCvTerm {
         return super.getAnnotations();
     }
 
+    /**
+     * <p>getSynonyms.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getSynonyms() {
         if (!hasSynonyms) {
             initialiseMetaData(originalXref);
@@ -104,19 +130,35 @@ public class LazyCvTerm extends DefaultCvTerm {
         return super.getSynonyms();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getMIIdentifier() != null ? getMIIdentifier() : (getMODIdentifier() != null ? getMODIdentifier() : (getPARIdentifier() != null ? getPARIdentifier() : "-"))) + " ("+getFullName()+")";
     }
 
+    /**
+     * <p>Getter for the field <code>originalXref</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected Xref getOriginalXref() {
         return originalXref;
     }
 
+    /**
+     * <p>Getter for the field <code>ontologyName</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     protected String getOntologyName() {
         return ontologyName;
     }
 
+    /**
+     * <p>Getter for the field <code>olsClient</code>.</p>
+     *
+     * @return a {@link uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient} object.
+     */
     protected OLSClient getOlsClient() {
         return olsClient;
     }
@@ -170,14 +212,29 @@ public class LazyCvTerm extends DefaultCvTerm {
         }
     }
 
+    /**
+     * <p>initialiseDefinition.</p>
+     *
+     * @param description a {@link java.lang.String} object.
+     */
     protected void initialiseDefinition(String description) {
         super.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("definition"), description));
     }
 
+    /**
+     * <p>hasLoadedMetadata.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean hasLoadedMetadata() {
         return hasLoadedMetadata;
     }
 
+    /**
+     * <p>hasLoadedXrefs.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean hasLoadedXrefs() {
         return hasLoadedXrefs;
     }

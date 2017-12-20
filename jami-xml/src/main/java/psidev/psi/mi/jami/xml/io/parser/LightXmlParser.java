@@ -25,29 +25,50 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class LightXmlParser extends AbstractPsiXmlParser<Interaction> {
+    /**
+     * <p>Constructor for LightXmlParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public LightXmlParser(File file){
         super(file);
     }
 
+    /**
+     * <p>Constructor for LightXmlParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     */
     public LightXmlParser(InputStream inputStream){
         super(inputStream);
     }
 
+    /**
+     * <p>Constructor for LightXmlParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public LightXmlParser(URL url){
         super(url);
     }
 
+    /**
+     * <p>Constructor for LightXmlParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public LightXmlParser(Reader reader){
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Unmarshaller createJAXBUnmarshaller() throws JAXBException {
         return JaxbUnmarshallerFactory.getInstance().createUnmarshaller(getVersion(), InteractionCategory.basic);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void parseExperimentList() throws PsiXmlParserException {
         // read experiment list
@@ -91,6 +112,7 @@ public class LightXmlParser extends AbstractPsiXmlParser<Interaction> {
         setCurrentElement(getNextPsiXmlStartElement());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void parseAvailabilityList(XmlEntryContext entryContext) throws PsiXmlParserException {
         // read availabilityList

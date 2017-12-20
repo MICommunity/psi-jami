@@ -17,12 +17,17 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature<ModelledEntity, ModelledFeature>, FileSourceContext {
     private ExtendedPsiXmlFeature<Participant, Feature> feature;
     private ModelledEntity parent;
     private SynchronizedLinkedFeatureList linkedFeatures;
 
+    /**
+     * <p>Constructor for XmlFeatureWrapper.</p>
+     *
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
+     * @param parent a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     */
     public XmlFeatureWrapper(ExtendedPsiXmlFeature part, ModelledEntity parent){
         if (part == null){
             throw new IllegalArgumentException("A feature wrapper needs a non null feature");
@@ -33,76 +38,91 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
         XmlEntryContext.getInstance().registerComplexFeature(this.feature.getId(), this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getShortName() {
         return this.feature.getShortName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
         this.feature.setShortName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return this.feature.getFullName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         this.feature.setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getInterpro() {
         return this.feature.getInterpro();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInterpro(String interpro) {
         this.feature.setInterpro(interpro);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getIdentifiers() {
         return this.feature.getIdentifiers();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return this.feature.getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return this.feature.getAnnotations();
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getType() {
         return this.feature.getType();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setType(CvTerm type) {
         this.feature.setType(type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Range> getRanges() {
         return this.feature.getRanges();
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getRole() {
         return this.feature.getRole();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setRole(CvTerm effect) {
         this.feature.setRole(effect);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledEntity getParticipant() {
         if (parent == null && this.feature.getParticipant() instanceof ExtendedPsiXmlParticipant){
@@ -111,11 +131,13 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
         return this.parent;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipant(ModelledEntity participant) {
         this.parent = participant;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipantAndAddFeature(ModelledEntity participant) {
         if (this.parent != null){
@@ -127,11 +149,13 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases() {
         return this.feature.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<ModelledFeature> getLinkedFeatures() {
         if (this.linkedFeatures == null){
@@ -140,25 +164,36 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
         return this.linkedFeatures;
     }
 
+    /**
+     * <p>getWrappedFeature.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
+     */
     public ExtendedPsiXmlFeature<Participant,Feature> getWrappedFeature(){
         return this.feature;
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         return ((FileSourceContext)this.feature).getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator locator) {
         ((FileSourceContext)this.feature).setSourceLocator(locator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.feature.toString();
     }
 
+    /**
+     * <p>initialiseLinkedFeatures.</p>
+     */
     protected void initialiseLinkedFeatures(){
         this.linkedFeatures = new SynchronizedLinkedFeatureList();
         for (Feature feature : this.feature.getLinkedFeatures()){
@@ -167,11 +202,13 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return this.feature.getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         this.feature.setId(id);

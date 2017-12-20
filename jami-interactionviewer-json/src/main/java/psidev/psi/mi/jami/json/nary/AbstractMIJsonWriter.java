@@ -26,7 +26,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public abstract class AbstractMIJsonWriter<I extends Interaction> implements InteractionWriter<I> {
 
     private boolean isInitialised = false;
@@ -41,6 +40,9 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
     private JsonElementWriter<Interactor> interactorWriter;
     private JsonElementWriter<I> interactionWriter;
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     */
     public AbstractMIJsonWriter(){
         processedInteractors = new HashMap<String, String>();
         processedFeatures = new HashMap<Feature, Integer>();
@@ -48,6 +50,13 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         idGenerator = new IncrementalIdGenerator();
     }
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMIJsonWriter(File file, OntologyTermFetcher fetcher) throws IOException {
 
         initialiseFile(file);
@@ -61,6 +70,12 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public AbstractMIJsonWriter(OutputStream output, OntologyTermFetcher fetcher) {
 
         initialiseOutputStream(output);
@@ -74,6 +89,12 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public AbstractMIJsonWriter(Writer writer, OntologyTermFetcher fetcher) {
 
         initialiseWriter(writer);
@@ -87,6 +108,16 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     protected AbstractMIJsonWriter(Writer writer, OntologyTermFetcher fetcher,
                                    Map<String, String> processedInteractors, Map<Feature, Integer> processedFeatures,
                                    Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator) {
@@ -102,6 +133,14 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         this.fetcher = fetcher;
     }
 
+    /**
+     * <p>Constructor for AbstractMIJsonWriter.</p>
+     *
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     protected AbstractMIJsonWriter(Map<String, String> processedInteractors, Map<Feature, Integer> processedFeatures,
                                    Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator) {
 
@@ -111,6 +150,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         this.idGenerator = idGenerator;
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
         if (options == null && !isInitialised){
             throw new IllegalArgumentException("The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
@@ -160,6 +200,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         isInitialised = true;
     }
 
+    /**
+     * <p>start.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void start() throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The json writer has not been initialised. The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
@@ -171,6 +216,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>end.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void end() throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The json writer has not been initialised. The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
@@ -182,6 +232,12 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interaction a I object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(I interaction) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The json writer has not been initialised. The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
@@ -207,17 +263,29 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(Collection<? extends I> interactions) throws MIIOException {
         Iterator<? extends I> binaryIterator = interactions.iterator();
         write(binaryIterator);
     }
 
+    /** {@inheritDoc} */
     public void write(Iterator<? extends I> interactions) throws MIIOException {
         while(interactions.hasNext()){
             write(interactions.next());
         }
     }
 
+    /**
+     * <p>flush.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void flush() throws MIIOException{
         if (isInitialised){
             try {
@@ -228,6 +296,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (isInitialised){
 
@@ -252,6 +325,9 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear(){
         if (isInitialised){
             isInitialised = false;
@@ -266,6 +342,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException {
         if (isInitialised){
 
@@ -289,8 +370,19 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>writeComplex.</p>
+     *
+     * @param complex a {@link psidev.psi.mi.jami.model.Complex} object.
+     */
     protected abstract void writeComplex(Complex complex);
 
+    /**
+     * <p>registerAndWriteInteractor.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Participant} object.
+     * @throws java.io.IOException if any.
+     */
     protected void registerAndWriteInteractor(Participant participant) throws IOException {
         if (participant != null){
             Interactor interactor = participant.getInteractor();
@@ -312,17 +404,32 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         }
     }
 
+    /**
+     * <p>writeStart.</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeStart() throws IOException {
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writePropertyKey("data", writer);
         MIJsonUtils.writeOpenArray(writer);
     }
 
+    /**
+     * <p>writeEnd.</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeEnd() throws IOException {
         MIJsonUtils.writeEndArray(writer);
         MIJsonUtils.writeEndObject(writer);
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }
@@ -354,10 +461,20 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         isInitialised = true;
     }
 
+    /**
+     * <p>Getter for the field <code>fetcher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     protected OntologyTermFetcher getFetcher() {
         return fetcher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Interactor> getInteractorWriter() {
         if (this.interactorWriter == null){
             this.interactorWriter = new SimpleJsonInteractorWriter(this.writer, this.processedInteractors, this.idGenerator);
@@ -365,6 +482,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         return interactorWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<I> getInteractionWriter() {
         if (this.interactionWriter == null){
              initialiseInteractionWriter();
@@ -372,28 +494,61 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         return interactionWriter;
     }
 
+    /**
+     * <p>initialiseInteractionWriter.</p>
+     */
     protected abstract void initialiseInteractionWriter();
 
+    /**
+     * <p>Setter for the field <code>interactionWriter</code>.</p>
+     *
+     * @param interactionWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     protected void setInteractionWriter(JsonElementWriter<I> interactionWriter) {
         this.interactionWriter = interactionWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>processedInteractors</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<String, String> getProcessedInteractors() {
         return processedInteractors;
     }
 
+    /**
+     * <p>Getter for the field <code>processedFeatures</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<Feature, Integer> getProcessedFeatures() {
         return processedFeatures;
     }
 
+    /**
+     * <p>Getter for the field <code>processedParticipants</code>.</p>
+     *
+     * @return a {@link java.util.Map} object.
+     */
     protected Map<Entity, Integer> getProcessedParticipants() {
         return processedParticipants;
     }
 
+    /**
+     * <p>Getter for the field <code>idGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     protected IncrementalIdGenerator getIdGenerator() {
         return idGenerator;
     }
 
+    /**
+     * <p>Setter for the field <code>fetcher</code>.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     protected void setFetcher(OntologyTermFetcher fetcher) {
         this.fetcher = fetcher;
     }

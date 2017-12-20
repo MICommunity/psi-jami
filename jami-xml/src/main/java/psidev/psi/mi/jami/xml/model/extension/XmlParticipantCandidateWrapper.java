@@ -16,7 +16,6 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public class XmlParticipantCandidateWrapper implements ModelledParticipantCandidate, ExtendedPsiXmlEntity<ModelledFeature>, FileSourceContext {
 
     private ParticipantCandidate<ParticipantPool,Feature> participant;
@@ -24,6 +23,12 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
 
     private ModelledParticipantPool parent;
 
+    /**
+     * <p>Constructor for XmlParticipantCandidateWrapper.</p>
+     *
+     * @param part a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
+     * @param parent a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
+     */
     public XmlParticipantCandidateWrapper(ParticipantCandidate part, ModelledParticipantPool parent){
         if (part == null){
             throw new IllegalArgumentException("A participant candidate wrapper needs a non null participant candidate");
@@ -34,21 +39,25 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         XmlEntryContext.getInstance().registerComplexParticipant(((ExtendedPsiXmlEntity)this.participant).getId(), this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interactor getInteractor() {
         return this.participant.getInteractor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractor(Interactor interactor) {
         this.participant.setInteractor(interactor);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<CausalRelationship> getCausalRelationships() {
         return this.participant.getCausalRelationships();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Stoichiometry getStoichiometry() {
         if (this.participant.getStoichiometry() == null
@@ -58,16 +67,19 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return this.participant.getStoichiometry();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Integer stoichiometry) {
         this.participant.setStoichiometry(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Stoichiometry stoichiometry) {
         this.participant.setStoichiometry(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<ModelledFeature> getFeatures() {
         if (this.modelledFeatures == null){
@@ -76,11 +88,13 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return this.modelledFeatures;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setChangeListener(EntityInteractorChangeListener listener) {
         this.participant.setChangeListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addFeature(ModelledFeature feature) {
         if (feature == null){
@@ -96,6 +110,7 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeFeature(ModelledFeature feature) {
         if (feature == null){
@@ -111,6 +126,7 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addAllFeatures(Collection<? extends ModelledFeature> features) {
         if (features == null){
@@ -126,6 +142,7 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeAllFeatures(Collection<? extends ModelledFeature> features) {
         if (features == null){
@@ -141,11 +158,15 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public EntityInteractorChangeListener getChangeListener() {
         return this.participant.getChangeListener();
     }
 
+    /**
+     * <p>initialiseFeatures.</p>
+     */
     protected void initialiseFeatures(){
         this.modelledFeatures = new SynchronizedFeatureList();
         if (!this.participant.getFeatures().isEmpty()){
@@ -155,25 +176,34 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         return ((FileSourceContext)participant).getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator locator) {
         ((FileSourceContext)participant).setSourceLocator(locator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.participant.toString();
     }
 
+    /**
+     * <p>getWrappedParticipant.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
+     */
     public ParticipantCandidate<ParticipantPool, Feature> getWrappedParticipant(){
         return this.participant;
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledParticipantPool getParentPool() {
         if (this.parent == null && this.participant.getParentPool() instanceof ParticipantPool){
@@ -182,16 +212,19 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
         return this.parent;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParentPool(ModelledParticipantPool pool) {
         this.parent = pool;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return ((ExtendedPsiXmlEntity)participant).getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         ((ExtendedPsiXmlEntity)participant).setId(id);

@@ -18,14 +18,26 @@ import javax.xml.bind.annotation.XmlTransient;
 public class XmlChecksum extends DefaultChecksum implements FileSourceContext {
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for XmlChecksum.</p>
+     *
+     * @param method a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public XmlChecksum(CvTerm method, String value) {
         super(method, value);
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator locator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -38,10 +50,16 @@ public class XmlChecksum extends DefaultChecksum implements FileSourceContext {
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Checksum: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

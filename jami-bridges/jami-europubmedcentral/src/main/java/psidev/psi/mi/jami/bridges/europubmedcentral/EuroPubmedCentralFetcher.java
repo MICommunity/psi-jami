@@ -19,10 +19,12 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 30/07/13
+
  */
 public class EuroPubmedCentralFetcher
         implements PublicationFetcher {
 
+    /** Constant <code>log</code> */
     protected static final Logger log = LoggerFactory.getLogger(EuroPubmedCentralFetcher.class.getName());
 
     private static final String IDENTIFIER_TYPE = "med";
@@ -38,7 +40,8 @@ public class EuroPubmedCentralFetcher
 
     /**
      * Initiates the EuroPubmedCentral fetcher
-     * @throws BridgeFailedException
+     *
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public EuroPubmedCentralFetcher() throws BridgeFailedException {
         this(WSDL_URL);
@@ -63,11 +66,10 @@ public class EuroPubmedCentralFetcher
 
 
     /**
+     * {@inheritDoc}
+     *
      * Queries the EuroPubmedCentral WSDL service for the meta data.
      * A second query is made to gather Xrefs if the meta data shows they exist.
-     * @param id    the pubmedID of the publication
-     * @return      a completed publication record.
-     * @throws BridgeFailedException
      */
     public Publication fetchByIdentifier(String id, String source) throws BridgeFailedException{
         if(id == null)
@@ -104,10 +106,9 @@ public class EuroPubmedCentralFetcher
 
 
     /**
+     * {@inheritDoc}
+     *
      * Uses the PubMed identifiers to search for publications and return completed records.
-     * @param identifiers   The identifiers of the publications to search for.
-     * @return              Completed records for the publications.
-     * @throws BridgeFailedException
      */
     public Collection<Publication> fetchByIdentifiers(Map<String, Collection<String>> identifiers) throws BridgeFailedException {
         if (identifiers == null){

@@ -8,6 +8,5 @@ package psidev.psi.mi.jami.xml.io.writer.elements;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public interface CompactPsiXmlElementWriter<T extends Object> extends PsiXmlElementWriter<T> {
 }

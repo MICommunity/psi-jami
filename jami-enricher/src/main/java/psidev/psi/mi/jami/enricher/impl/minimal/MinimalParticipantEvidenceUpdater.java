@@ -18,22 +18,32 @@ import psidev.psi.mi.jami.utils.comparator.organism.DefaultOrganismComparator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class MinimalParticipantEvidenceUpdater<P extends ParticipantEvidence> extends MinimalParticipantEvidenceEnricher<P> {
 
     private MinimalParticipantUpdater<P,FeatureEvidence> minimalUpdater;
 
+    /**
+     * <p>Constructor for MinimalParticipantEvidenceUpdater.</p>
+     */
     public MinimalParticipantEvidenceUpdater(){
         super();
         this.minimalUpdater = new MinimalParticipantUpdater<P, FeatureEvidence>();
     }
 
+    /**
+     * <p>Constructor for MinimalParticipantEvidenceUpdater.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalParticipantUpdater} object.
+     */
     protected MinimalParticipantEvidenceUpdater(MinimalParticipantUpdater<P, FeatureEvidence> delegate){
         super();
         this.minimalUpdater =  delegate != null ? delegate : new MinimalParticipantUpdater<P, FeatureEvidence>();
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public void processIdentificationMethods(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         mergeIdentificationMethods(participantEvidenceToEnrich, participantEvidenceToEnrich.getIdentificationMethods(), objectSource.getIdentificationMethods(), true);
@@ -41,6 +51,7 @@ public class MinimalParticipantEvidenceUpdater<P extends ParticipantEvidence> ex
         processIdentificationMethods(participantEvidenceToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processExpressedInOrganism(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         if (!DefaultOrganismComparator.areEquals(participantEvidenceToEnrich.getExpressedInOrganism(), objectSource.getExpressedInOrganism())){
@@ -56,6 +67,7 @@ public class MinimalParticipantEvidenceUpdater<P extends ParticipantEvidence> ex
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processExperimentalRole(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(participantEvidenceToEnrich.getExperimentalRole(), objectSource.getExperimentalRole())){
@@ -73,66 +85,83 @@ public class MinimalParticipantEvidenceUpdater<P extends ParticipantEvidence> ex
         processExperimentalRole(participantEvidenceToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         this.minimalUpdater.processInteractor(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         this.minimalUpdater.processFeatures(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processBiologicalRole(P objectToEnrich, P objectSource) throws EnricherException {
         this.minimalUpdater.processBiologicalRole(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processAliases(P objectToEnrich, P objectSource) throws EnricherException{
         this.minimalUpdater.processAliases(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipantEnricherListener(EntityEnricherListener listener) {
         this.minimalUpdater.setParticipantEnricherListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public EntityEnricherListener getParticipantEnricherListener() {
         return this.minimalUpdater.getParticipantEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvTermEnricher) {
         this.minimalUpdater.setCvTermEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return this.minimalUpdater.getCvTermEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFeatureEnricher(FeatureEnricher<FeatureEvidence> featureEnricher) {
         this.minimalUpdater.setFeatureEnricher(featureEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FeatureEnricher<FeatureEvidence> getFeatureEnricher() {
         return this.minimalUpdater.getFeatureEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher) {
         this.minimalUpdater.setInteractorEnricher(interactorEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CompositeInteractorEnricher getInteractorEnricher() {
         return this.minimalUpdater.getInteractorEnricher();
     }
 
+    /**
+     * <p>Getter for the field <code>minimalUpdater</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalParticipantUpdater} object.
+     */
     protected MinimalParticipantUpdater<P, FeatureEvidence> getMinimalUpdater() {
         return minimalUpdater;
     }

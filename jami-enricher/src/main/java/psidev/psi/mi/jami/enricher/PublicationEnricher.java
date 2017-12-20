@@ -10,20 +10,28 @@ import psidev.psi.mi.jami.model.Publication;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  31/07/13
+
  */
 public interface PublicationEnricher extends MIEnricher<Publication>{
 
     /**
      * Gets the publication fetcher which is currently being used to retrieve entries
+     *
      * @return  the current publication fetcher.
      */
     public PublicationFetcher getPublicationFetcher();
 
     /**
      * Gets the current publication listener
+     *
      * @return  the current publication listener
      */
     public PublicationEnricherListener getPublicationEnricherListener();
 
+    /**
+     * <p>setPublicationEnricherListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.enricher.listener.PublicationEnricherListener} object.
+     */
     public void setPublicationEnricherListener(PublicationEnricherListener listener);
 }

@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public abstract class AbstractInteractionLineParser<T extends Interaction, P extends Participant, F extends Feature> extends MitabLineParser<T,P,F> {
 
     private MitabParserListener listener;
@@ -35,32 +34,60 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
 
     private static final String INTERPRO_PATTERN = "^IPR\\d{6}$";
 
+    /**
+     * <p>Constructor for AbstractInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public AbstractInteractionLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public AbstractInteractionLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public AbstractInteractionLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public AbstractInteractionLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
 
+    /** {@inheritDoc} */
     @Override
     public MitabParserListener getParserListener() {
         return listener;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParserListener(MitabParserListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.factory.InteractorFactory} object.
+     */
     public InteractorFactory getInteractorFactory() {
         if (interactorFactory == null){
             interactorFactory = new MitabInteractorFactory();
@@ -68,6 +95,11 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         return interactorFactory;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorFactory</code>.</p>
+     *
+     * @param interactorFactory a {@link psidev.psi.mi.jami.factory.InteractorFactory} object.
+     */
     public void setInteractorFactory(InteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
     }
@@ -84,30 +116,39 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         this.hasFinished = true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void ReInit(InputStream stream) {
         hasFinished = false;
         super.ReInit(stream);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void ReInit(InputStream stream, String encoding) {
         hasFinished = false;
         super.ReInit(stream, encoding);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void ReInit(Reader stream) {
         hasFinished = false;
         super.ReInit(stream);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void ReInit(MitabLineParserTokenManager tm) {
         hasFinished = false;
         super.ReInit(tm);
     }
 
+    /**
+     * <p>hasFinished.</p>
+     *
+     * @return a boolean.
+     */
     public boolean hasFinished() {
         return hasFinished;
     }
@@ -118,6 +159,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         return builder;
     }
 
+    /**
+     * <p>initialiseInteractionIdentifiers.</p>
+     *
+     * @param interactionIds a {@link java.util.Collection} object.
+     * @param interaction a T object.
+     */
     protected void initialiseInteractionIdentifiers(Collection<MitabXref> interactionIds, T interaction){
 
         Iterator<MitabXref> refsIterator = interactionIds.iterator();
@@ -136,6 +183,21 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createInteractorFrom.</p>
+     *
+     * @param uniqueId a {@link java.util.Collection} object.
+     * @param altid a {@link java.util.Collection} object.
+     * @param aliases a {@link java.util.Collection} object.
+     * @param taxid a {@link java.util.Collection} object.
+     * @param type a {@link java.util.Collection} object.
+     * @param xref a {@link java.util.Collection} object.
+     * @param checksum a {@link java.util.Collection} object.
+     * @param line a int.
+     * @param column a int.
+     * @param mitabColumn a int.
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected Interactor createInteractorFrom(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases, Collection<MitabOrganism> taxid, Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabChecksum> checksum, int line, int column, int mitabColumn){
         boolean hasId = !uniqueId.isEmpty() || !altid.isEmpty();
         boolean hasAlias = !aliases.isEmpty();
@@ -254,6 +316,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         return interactor;
     }
 
+    /**
+     * <p>processInteractorPool.</p>
+     *
+     * @param xref a {@link java.util.Collection} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     */
     protected void processInteractorPool(Collection<MitabXref> xref, InteractorPool interactor) {
         InteractorPool pool = (InteractorPool)interactor;
         for (Xref ref : xref){
@@ -281,6 +349,17 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>findInteractorShortNameAndFullNameFrom.</p>
+     *
+     * @param uniqueId a {@link java.util.Collection} object.
+     * @param altid a {@link java.util.Collection} object.
+     * @param aliases a {@link java.util.Collection} object.
+     * @param line a int.
+     * @param column a int.
+     * @param mitabColumn a int.
+     * @return an array of {@link java.lang.String} objects.
+     */
     protected String[] findInteractorShortNameAndFullNameFrom(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases, int line, int column, int mitabColumn){
 
         MitabAlias[] names = MitabUtils.findBestShortNameAndFullNameFromAliases(aliases);
@@ -329,6 +408,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         return null;
     }
 
+    /**
+     * <p>fillInteractorWithAlternativeIdentifiers.</p>
+     *
+     * @param altid a {@link java.util.Collection} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected void fillInteractorWithAlternativeIdentifiers(Collection<MitabXref> altid, Interactor interactor){
 
         Iterator<MitabXref> refsIterator = altid.iterator();
@@ -371,6 +456,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>fillInteractorWithAliases.</p>
+     *
+     * @param aliases a {@link java.util.Collection} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected void fillInteractorWithAliases(Collection<MitabAlias> aliases, Interactor interactor){
 
         Iterator<MitabAlias> aliasIterator = aliases.iterator();
@@ -408,6 +499,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>initialiseOrganism.</p>
+     *
+     * @param organisms a {@link java.util.Collection} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     protected void initialiseOrganism(Collection<MitabOrganism> organisms, Interactor interactor){
 
         if (organisms.size() > 1){
@@ -475,6 +572,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createChecksumFromId.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param ref a {@link psidev.psi.mi.jami.tab.extension.MitabXref} object.
+     */
     protected void createChecksumFromId(Interaction interaction, MitabXref ref) {
         // create checksum from xref
         MitabChecksum checksum = new MitabChecksum(ref.getDatabase(), ref.getId(), ref.getSourceLocator());
@@ -484,6 +587,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createChecksumFromAltId.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param ref a {@link psidev.psi.mi.jami.tab.extension.MitabXref} object.
+     */
     protected void createChecksumFromAltId(Interactor interactor, MitabXref ref) {
         // create checksum from xref
         MitabChecksum checksum = new MitabChecksum(ref.getDatabase(), ref.getId(), ref.getSourceLocator());
@@ -493,6 +602,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createAliasFromAltId.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param ref a {@link psidev.psi.mi.jami.tab.extension.MitabXref} object.
+     */
     protected void createAliasFromAltId(Interactor interactor, MitabXref ref) {
         // create alias from xref
         MitabAlias alias = new MitabAlias(ref.getDatabase().getShortName(), ref.getQualifier(), ref.getId(), ref.getSourceLocator());
@@ -502,6 +617,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createChecksumFromAlias.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param alias a {@link psidev.psi.mi.jami.tab.extension.MitabAlias} object.
+     */
     protected void createChecksumFromAlias(Interactor interactor, MitabAlias alias) {
         // create checksum from alias
         MitabChecksum checksum = new MitabChecksum(alias.getType(), alias.getName(), alias.getSourceLocator());
@@ -511,6 +632,12 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>initialiseExpansionMethod.</p>
+     *
+     * @param expansion a {@link java.util.Collection} object.
+     * @param interaction a T object.
+     */
     protected void initialiseExpansionMethod(Collection<MitabCvTerm> expansion, T interaction){
         if (expansion.size() > 1){
             if (getParserListener() != null){
@@ -523,8 +650,19 @@ public abstract class AbstractInteractionLineParser<T extends Interaction, P ext
         }
     }
 
+    /**
+     * <p>createInteraction.</p>
+     *
+     * @return a T object.
+     */
     protected abstract T createInteraction();
 
+    /**
+     * <p>processTextFor.</p>
+     *
+     * @param feature a {@link psidev.psi.mi.jami.tab.extension.MitabFeature} object.
+     * @param text a {@link java.lang.String} object.
+     */
     protected void processTextFor(MitabFeature feature, String text){
         if (text != null){
             if (Pattern.matches(INTERPRO_PATTERN, text)){

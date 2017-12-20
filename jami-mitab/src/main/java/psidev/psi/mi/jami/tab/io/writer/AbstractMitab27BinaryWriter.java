@@ -18,37 +18,58 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public abstract class AbstractMitab27BinaryWriter<T extends BinaryInteraction, P extends Participant> extends AbstractMitab26BinaryWriter<T, P> {
 
+    /**
+     * <p>Constructor for AbstractMitab27BinaryWriter.</p>
+     */
     public AbstractMitab27BinaryWriter() {
         super();
         setVersion(MitabVersion.v2_7);
     }
 
+    /**
+     * <p>Constructor for AbstractMitab27BinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMitab27BinaryWriter(File file) throws IOException {
         super(file);
         setVersion(MitabVersion.v2_7);
     }
 
+    /**
+     * <p>Constructor for AbstractMitab27BinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public AbstractMitab27BinaryWriter(OutputStream output) {
         super(output);
         setVersion(MitabVersion.v2_7);
     }
 
+    /**
+     * <p>Constructor for AbstractMitab27BinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public AbstractMitab27BinaryWriter(Writer writer) {
         super(writer);
         setVersion(MitabVersion.v2_7);
     }
 
-    @Override
     /**
+     * {@inheritDoc}
+     *
      * Writes the binary interaction and its participants in MITAB 2.7
-     * @param interaction
-     * @param a
-     * @param b
-     * @throws IOException
+     *
+     * @param interaction a binary interaction
+     * @param a participant a
+     * @param b participant b
+     * @throws java.io.IOException if any.
      */
+    @Override
     protected void writeBinary(T interaction, P a, P b) throws IOException {
         // write 2.6 columns
         super.writeBinary(interaction, a, b);

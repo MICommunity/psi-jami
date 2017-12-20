@@ -5,8 +5,9 @@ package psidev.psi.mi.jami.tab.io.parser;
 /**
  * An implementation of interface CharStream, where the stream is assumed to
  * contain only ASCII characters (with java-like unicode escape processing).
- */
+ *
 
+ */
 public
 class JavaCharStream
 {
@@ -83,9 +84,25 @@ class JavaCharStream
   protected int inBuf = 0;
   protected int tabSize = 8;
 
+  /**
+   * <p>Setter for the field <code>tabSize</code>.</p>
+   *
+   * @param i a int.
+   */
   protected void setTabSize(int i) { tabSize = i; }
+  /**
+   * <p>Getter for the field <code>tabSize</code>.</p>
+   *
+   * @param i a int.
+   * @return a int.
+   */
   protected int getTabSize(int i) { return tabSize; }
 
+  /**
+   * <p>ExpandBuff.</p>
+   *
+   * @param wrapAround a boolean.
+   */
   protected void ExpandBuff(boolean wrapAround)
   {
     char[] newbuffer = new char[bufsize + 2048];
@@ -133,6 +150,11 @@ class JavaCharStream
     tokenBegin = 0;
   }
 
+  /**
+   * <p>FillBuff.</p>
+   *
+   * @throws java.io.IOException if any.
+   */
   protected void FillBuff() throws java.io.IOException
   {
     int i;
@@ -165,6 +187,12 @@ class JavaCharStream
     }
   }
 
+  /**
+   * <p>ReadByte.</p>
+   *
+   * @return a char.
+   * @throws java.io.IOException if any.
+   */
   protected char ReadByte() throws java.io.IOException
   {
     if (++nextCharInd >= maxNextCharInd)
@@ -173,7 +201,12 @@ class JavaCharStream
     return nextCharBuf[nextCharInd];
   }
 
-/** @return starting character for token. */
+  /**
+   * <p>BeginToken.</p>
+   *
+   * @return a char.
+   * @throws java.io.IOException if any.
+   */
   public char BeginToken() throws java.io.IOException
   {
     if (inBuf > 0)
@@ -193,6 +226,9 @@ class JavaCharStream
     return readChar();
   }
 
+  /**
+   * <p>AdjustBuffSize.</p>
+   */
   protected void AdjustBuffSize()
   {
     if (available == bufsize)
@@ -213,6 +249,11 @@ class JavaCharStream
       available = tokenBegin;
   }
 
+  /**
+   * <p>UpdateLineColumn.</p>
+   *
+   * @param c a char.
+   */
   protected void UpdateLineColumn(char c)
   {
     column++;
@@ -253,7 +294,12 @@ class JavaCharStream
     bufcolumn[bufpos] = column;
   }
 
-/** Read a character. */
+  /**
+   * Read a character.
+   *
+   * @return a char.
+   * @throws java.io.IOException if any.
+   */
   public char readChar() throws java.io.IOException
   {
     if (inBuf > 0)
@@ -347,45 +393,71 @@ class JavaCharStream
     }
   }
 
-  @Deprecated
   /**
-   * @deprecated
+   * <p>Getter for the field <code>column</code>.</p>
+   *
+   * @return a int.
    * @see #getEndColumn
+   * @deprecated
    */
+  @Deprecated
   public int getColumn() {
     return bufcolumn[bufpos];
   }
 
-  @Deprecated
   /**
-   * @deprecated
+   * <p>Getter for the field <code>line</code>.</p>
+   *
+   * @return a int.
    * @see #getEndLine
+   * @deprecated
    */
+  @Deprecated
   public int getLine() {
     return bufline[bufpos];
   }
 
-/** Get end column. */
+  /**
+   * Get end column.
+   *
+   * @return a int.
+   */
   public int getEndColumn() {
     return bufcolumn[bufpos];
   }
 
-/** Get end line. */
+  /**
+   * Get end line.
+   *
+   * @return a int.
+   */
   public int getEndLine() {
     return bufline[bufpos];
   }
 
-/** @return column of token start */
+  /**
+   * <p>getBeginColumn.</p>
+   *
+   * @return a int.
+   */
   public int getBeginColumn() {
     return bufcolumn[tokenBegin];
   }
 
-/** @return line number of token start */
+  /**
+   * <p>getBeginLine.</p>
+   *
+   * @return a int.
+   */
   public int getBeginLine() {
     return bufline[tokenBegin];
   }
 
-/** Retreat. */
+  /**
+   * Retreat.
+   *
+   * @param amount a int.
+   */
   public void backup(int amount) {
 
     inBuf += amount;
@@ -393,7 +465,14 @@ class JavaCharStream
       bufpos += bufsize;
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   */
   public JavaCharStream(java.io.Reader dstream,
                  int startline, int startcolumn, int buffersize)
   {
@@ -408,19 +487,36 @@ class JavaCharStream
     nextCharBuf = new char[4096];
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   */
   public JavaCharStream(java.io.Reader dstream,
                                         int startline, int startcolumn)
   {
     this(dstream, startline, startcolumn, 4096);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   */
   public JavaCharStream(java.io.Reader dstream)
   {
     this(dstream, 1, 1, 4096);
   }
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   */
   public void ReInit(java.io.Reader dstream,
                  int startline, int startcolumn, int buffersize)
   {
@@ -441,96 +537,190 @@ class JavaCharStream
     nextCharInd = bufpos = -1;
   }
 
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   */
   public void ReInit(java.io.Reader dstream,
                                         int startline, int startcolumn)
   {
     ReInit(dstream, startline, startcolumn, 4096);
   }
 
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.Reader} object.
+   */
   public void ReInit(java.io.Reader dstream)
   {
     ReInit(dstream, 1, 1, 4096);
   }
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public JavaCharStream(java.io.InputStream dstream, String encoding, int startline,
   int startcolumn, int buffersize) throws java.io.UnsupportedEncodingException
   {
     this(encoding == null ? new java.io.InputStreamReader(dstream) : new java.io.InputStreamReader(dstream, encoding), startline, startcolumn, buffersize);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   */
   public JavaCharStream(java.io.InputStream dstream, int startline,
   int startcolumn, int buffersize)
   {
     this(new java.io.InputStreamReader(dstream), startline, startcolumn, 4096);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public JavaCharStream(java.io.InputStream dstream, String encoding, int startline,
                         int startcolumn) throws java.io.UnsupportedEncodingException
   {
     this(dstream, encoding, startline, startcolumn, 4096);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   */
   public JavaCharStream(java.io.InputStream dstream, int startline,
                         int startcolumn)
   {
     this(dstream, startline, startcolumn, 4096);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public JavaCharStream(java.io.InputStream dstream, String encoding) throws java.io.UnsupportedEncodingException
   {
     this(dstream, encoding, 1, 1, 4096);
   }
 
-/** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   */
   public JavaCharStream(java.io.InputStream dstream)
   {
     this(dstream, 1, 1, 4096);
   }
 
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public void ReInit(java.io.InputStream dstream, String encoding, int startline,
   int startcolumn, int buffersize) throws java.io.UnsupportedEncodingException
   {
     ReInit(encoding == null ? new java.io.InputStreamReader(dstream) : new java.io.InputStreamReader(dstream, encoding), startline, startcolumn, buffersize);
   }
 
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @param buffersize a int.
+   */
   public void ReInit(java.io.InputStream dstream, int startline,
   int startcolumn, int buffersize)
   {
     ReInit(new java.io.InputStreamReader(dstream), startline, startcolumn, buffersize);
   }
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public void ReInit(java.io.InputStream dstream, String encoding, int startline,
                      int startcolumn) throws java.io.UnsupportedEncodingException
   {
     ReInit(dstream, encoding, startline, startcolumn, 4096);
   }
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param startline a int.
+   * @param startcolumn a int.
+   */
   public void ReInit(java.io.InputStream dstream, int startline,
                      int startcolumn)
   {
     ReInit(dstream, startline, startcolumn, 4096);
   }
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   * @throws java.io.UnsupportedEncodingException if any.
+   */
   public void ReInit(java.io.InputStream dstream, String encoding) throws java.io.UnsupportedEncodingException
   {
     ReInit(dstream, encoding, 1, 1, 4096);
   }
 
-/** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param dstream a {@link java.io.InputStream} object.
+   */
   public void ReInit(java.io.InputStream dstream)
   {
     ReInit(dstream, 1, 1, 4096);
   }
 
-  /** @return token image as String */
+  /**
+   * <p>GetImage.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String GetImage()
   {
     if (bufpos >= tokenBegin)
@@ -540,7 +730,12 @@ class JavaCharStream
                               new String(buffer, 0, bufpos + 1);
   }
 
-  /** @return suffix */
+  /**
+   * <p>GetSuffix.</p>
+   *
+   * @param len a int.
+   * @return an array of char.
+   */
   public char[] GetSuffix(int len)
   {
     char[] ret = new char[len];
@@ -557,7 +752,9 @@ class JavaCharStream
     return ret;
   }
 
-  /** Set buffers back to null when finished. */
+  /**
+   * Set buffers back to null when finished.
+   */
   public void Done()
   {
     nextCharBuf = null;
@@ -568,6 +765,9 @@ class JavaCharStream
 
   /**
    * Method to adjust line and column numbers for the start of a token.
+   *
+   * @param newLine a int.
+   * @param newCol a int.
    */
   public void adjustBeginLineColumn(int newLine, int newCol)
   {

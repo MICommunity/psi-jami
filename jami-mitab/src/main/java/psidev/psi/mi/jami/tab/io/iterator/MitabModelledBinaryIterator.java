@@ -13,8 +13,13 @@ import psidev.psi.mi.jami.tab.io.parser.MitabLineParser;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class MitabModelledBinaryIterator extends AbstractMitabIterator<ModelledBinaryInteraction, ModelledParticipant, ModelledFeature>{
+    /**
+     * <p>Constructor for MitabModelledBinaryIterator.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParser} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public MitabModelledBinaryIterator(MitabLineParser<ModelledBinaryInteraction, ModelledParticipant, ModelledFeature> lineParser) throws MIIOException {
         super(lineParser);
     }

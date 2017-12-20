@@ -22,11 +22,11 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class DefaultXmlWriter implements InteractionWriter {
 
     private InteractionWriter delegate;
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map options) {
         PsiXmlWriterFactory factory = PsiXmlWriterFactory.getInstance();
         InteractionCategory category = InteractionCategory.mixed;
@@ -83,6 +83,11 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.initialiseContext(options);
     }
 
+    /**
+     * <p>start.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void start() throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -91,6 +96,11 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.start();
     }
 
+    /**
+     * <p>end.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void end() throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -99,6 +109,12 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.end();
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(Interaction interaction) throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -107,6 +123,12 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.write(interaction);
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(Collection interactions) throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -115,6 +137,7 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.write(interactions);
     }
 
+    /** {@inheritDoc} */
     public void write(Iterator interactions) throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -123,6 +146,11 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.write(interactions);
     }
 
+    /**
+     * <p>flush.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void flush() throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -131,6 +159,11 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.flush();
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -139,6 +172,11 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.close();
     }
 
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException {
         if (this.delegate == null){
             throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
@@ -147,10 +185,20 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.reset();
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     protected InteractionWriter getDelegate() {
         return delegate;
     }
 
+    /**
+     * <p>Setter for the field <code>delegate</code>.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     protected void setDelegate(InteractionWriter delegate) {
         this.delegate = delegate;
     }

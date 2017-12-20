@@ -22,23 +22,43 @@ public class XmlModelledConfidence extends AbstractXmlConfidence implements Mode
 
     private Publication publication;
 
+    /**
+     * <p>Constructor for XmlModelledConfidence.</p>
+     */
     public XmlModelledConfidence() {
         super();
 
     }
 
+    /**
+     * <p>Constructor for XmlModelledConfidence.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public XmlModelledConfidence(XmlOpenCvTerm type, String value) {
         super(type, value);
     }
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.publication;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         this.publication = publication;
     }
 
+    /**
+     * <p>setJAXBPublication.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     */
     @XmlElement(name="bibref")
     public void setJAXBPublication(BibRef publication) {
         setPublication(publication);

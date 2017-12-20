@@ -15,13 +15,23 @@ import java.util.List;
  * @version $Id$
  * @since <pre>29/10/13</pre>
  */
-
 public interface ExtendedPsiXmlModelledInteraction extends PsiXmlInteraction<ModelledParticipant>, Complex {
 
+    /**
+     * <p>getBindingFeatures.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<BindingFeatures> getBindingFeatures();
 
+    /**
+     * <p>getCausalRelationships.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<ExtendedPsiXmlCausalRelationship> getCausalRelationships();
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases();
 }

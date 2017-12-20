@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>01/11/11</pre>
  */
-
 public class OntologyTermWrapper implements MIOntologyTermI {
 
     private OntologyTerm delegate;
@@ -34,10 +33,18 @@ public class OntologyTermWrapper implements MIOntologyTermI {
     private static final String REMAP = "REMAP TO";
     private static final String MAP = "MAP TO";
     private static final String REPLACE = "REPLACE BY";
+    /** Constant <code>MOD_REGEXP</code> */
     public final static Pattern MOD_REGEXP = Pattern.compile("MOD:[0-9]{5}+");
+    /** Constant <code>MI_REGEXP</code> */
     public final static Pattern MI_REGEXP = Pattern.compile("MI:[0-9]{4}+");
+    /** Constant <code>ECO_REGEXP</code> */
     public final static Pattern ECO_REGEXP = Pattern.compile("ECO:[0-9]+");
 
+    /**
+     * <p>Constructor for OntologyTermWrapper.</p>
+     *
+     * @param cv a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     public OntologyTermWrapper(OntologyTerm cv){
         if (cv == null){
             throw new IllegalArgumentException("The cv term cannot be null");
@@ -56,6 +63,11 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         }
     }
 
+    /**
+     * <p>getTermAccession.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getTermAccession() {
         if (this.delegate.getMIIdentifier() != null){
             return this.delegate.getMIIdentifier();
@@ -72,18 +84,30 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         return null;
     }
 
+    /**
+     * <p>getPreferredName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPreferredName() {
         return this.delegate.getShortName();
     }
 
+    /** {@inheritDoc} */
     public void setTermAccession(String accession) {
          throw new UnsupportedOperationException("The OntologyTerm Wrapper is readonly and cannot be modified");
     }
 
+    /** {@inheritDoc} */
     public void setPreferredName(String preferredName) {
         throw new UnsupportedOperationException("The OntologyTerm Wrapper is readonly and cannot be modified");
     }
 
+    /**
+     * <p>getNameSynonyms.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<String> getNameSynonyms() {
         List<String> synonyms = new ArrayList<String>(this.delegate.getSynonyms().size());
         for (Alias alias : this.delegate.getSynonyms()){
@@ -92,30 +116,61 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         return synonyms;
     }
 
+    /** {@inheritDoc} */
     public void setNameSynonyms(Collection<String> nameSynonyms) {
         throw new UnsupportedOperationException("The OntologyTerm Wrapper is readonly and cannot be modified");
     }
 
+    /**
+     * <p>Getter for the field <code>obsoleteMessage</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getObsoleteMessage() {
         return this.obsoleteMessage;
     }
 
+    /**
+     * <p>Getter for the field <code>remappedTerm</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getRemappedTerm() {
         return this.remappedTerm;
     }
 
+    /**
+     * <p>Getter for the field <code>possibleTermsToRemapTo</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     public Set<String> getPossibleTermsToRemapTo() {
         return this.possibleTermsToRemapTo;
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     public OntologyTerm getDelegate() {
         return this.delegate;
     }
 
+    /**
+     * <p>Setter for the field <code>remappedTerm</code>.</p>
+     *
+     * @param remappedTerm a {@link java.lang.String} object.
+     */
     public void setRemappedTerm(String remappedTerm) {
         this.remappedTerm = remappedTerm;
     }
 
+    /**
+     * <p>Setter for the field <code>obsoleteMessage</code>.</p>
+     *
+     * @param obsoleteMessage a {@link java.lang.String} object.
+     */
     public void setObsoleteMessage(String obsoleteMessage) {
         this.obsoleteMessage = obsoleteMessage;
     }
@@ -229,6 +284,7 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof OntologyTermWrapper){
@@ -237,6 +293,7 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return getDelegate().hashCode();

@@ -17,18 +17,22 @@ import java.util.List;
  * @version $Id$
  * @since <pre>09/09/13</pre>
  */
-
 public class CachedChebiFetcher extends AbstractCachedFetcher implements BioactiveEntityFetcher{
 
+    /** Constant <code>CHEBI_CACHE_NAME="chebi-cache"</code> */
     public static final String CHEBI_CACHE_NAME = "chebi-cache";
 
     private ChebiFetcher chebiFetcher;
 
+    /**
+     * <p>Constructor for CachedChebiFetcher.</p>
+     */
     public CachedChebiFetcher() {
         super(CHEBI_CACHE_NAME);
         this.chebiFetcher = new ChebiFetcher();
     }
 
+    /** {@inheritDoc} */
     public Collection<BioactiveEntity> fetchByIdentifier(String identifier) throws BridgeFailedException {
         if (identifier != null){
             final String key = "GET_ENTITY_BY_IDENTIFIER_"+identifier;
@@ -45,6 +49,7 @@ public class CachedChebiFetcher extends AbstractCachedFetcher implements Bioacti
         return chebiFetcher.fetchByIdentifier(identifier);
     }
 
+    /** {@inheritDoc} */
     public Collection<BioactiveEntity> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         if (identifiers != null){
             List<String> ids = new ArrayList<String>(identifiers);

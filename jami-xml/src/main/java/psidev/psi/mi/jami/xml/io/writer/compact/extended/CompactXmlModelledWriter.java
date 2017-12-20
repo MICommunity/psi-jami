@@ -21,34 +21,63 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledInteraction> {
 
+    /**
+     * <p>Constructor for CompactXmlModelledWriter.</p>
+     */
     public CompactXmlModelledWriter() {
         super(ModelledInteraction.class);
     }
 
+    /**
+     * <p>Constructor for CompactXmlModelledWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlModelledWriter(File file) throws IOException, XMLStreamException {
         super(ModelledInteraction.class, file);
     }
 
+    /**
+     * <p>Constructor for CompactXmlModelledWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlModelledWriter(OutputStream output) throws XMLStreamException {
         super(ModelledInteraction.class, output);
     }
 
+    /**
+     * <p>Constructor for CompactXmlModelledWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlModelledWriter(Writer writer) throws XMLStreamException {
         super(ModelledInteraction.class, writer);
     }
 
+    /**
+     * <p>Constructor for CompactXmlModelledWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public CompactXmlModelledWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(ModelledInteraction.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerAvailabilities(ModelledInteraction interaction) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerInteractionProperties() {
         super.registerInteractionProperties();
@@ -59,21 +88,25 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerExperiment(ModelledInteraction interaction) {
         getExperiments().addAll(((PsiXmlExtendedInteractionWriter) getInteractionWriter()).extractDefaultExperimentsFrom(interaction));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         return getCurrentInteraction().getSource() != null ? getCurrentInteraction().getSource() : super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(true, true, PsiXmlType.compact, InteractionCategory.modelled, ComplexType.n_ary);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
         setDefaultSource(new XmlSource("Unknown source"));

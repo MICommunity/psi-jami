@@ -27,33 +27,86 @@ public class HostOrganism extends XmlOrganism{
 
     private JAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     */
     public HostOrganism() {
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     */
     public HostOrganism(int taxId) {
         super(taxId);
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     */
     public HostOrganism(int taxId, String commonName) {
         super(taxId, commonName);
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     */
     public HostOrganism(int taxId, String commonName, String scientificName) {
         super(taxId, commonName, scientificName);
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public HostOrganism(int taxId, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, cellType, tissue, compartment);
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public HostOrganism(int taxId, String commonName, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, commonName, cellType, tissue, compartment);
     }
 
+    /**
+     * <p>Constructor for HostOrganism.</p>
+     *
+     * @param taxId a int.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public HostOrganism(int taxId, String commonName, String scientificName, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, commonName, scientificName, cellType, tissue, compartment);
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (jaxbExperimentRefWrapper == null){
             jaxbExperimentRefWrapper = new JAXBExperimentRefWrapper();
@@ -64,10 +117,7 @@ public class HostOrganism extends XmlOrganism{
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.HostOrganism.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

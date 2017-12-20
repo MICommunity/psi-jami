@@ -12,15 +12,18 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class OntologyTermEnricherLogger extends OntologyTermChangeLogger implements OntologyTermEnricherListener {
 
     private static final Logger log = LoggerFactory.getLogger(OntologyTermEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(OntologyTerm cvTerm, EnrichmentStatus status, String message) {
         log.info(cvTerm.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(OntologyTerm object, String message, Exception e) {
         log.error(object.toString()+" enrichment error, message: "+message, e);
     }

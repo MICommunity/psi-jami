@@ -14,6 +14,7 @@ import java.util.Map;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 23/07/13
+
  */
 public class MockProteinMapper implements ProteinMapper {
 
@@ -24,23 +25,39 @@ public class MockProteinMapper implements ProteinMapper {
 
     private Map<String,String> localRemap;
 
+    /**
+     * <p>Constructor for MockProteinMapper.</p>
+     */
     public MockProteinMapper(){
         localRemap = new HashMap<String, String>();
     }
 
+    /**
+     * <p>addMappingResult.</p>
+     *
+     * @param oldKey a {@link java.lang.String} object.
+     * @param newIdentifier a {@link java.lang.String} object.
+     */
     public void addMappingResult(String oldKey, String newIdentifier){
         if(oldKey == null || newIdentifier == null) return;
         this.localRemap.put(oldKey , newIdentifier);
     }
 
+    /** {@inheritDoc} */
     public void setListener(ProteinMapperListener listener) {
         this.listener = listener;
     }
 
+    /**
+     * <p>Getter for the field <code>listener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.mapper.ProteinMapperListener} object.
+     */
     public ProteinMapperListener getListener() {
         return listener;
     }
 
+    /** {@inheritDoc} */
     public void map(Protein p) throws BridgeFailedException {
         String newID = null;
 
@@ -68,26 +85,56 @@ public class MockProteinMapper implements ProteinMapper {
 
     }
 
+    /**
+     * <p>isCheckingEnabled.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isCheckingEnabled() {
         return checking;
     }
 
+    /**
+     * <p>setCheckingEnabled.</p>
+     *
+     * @param checkingEnabled a boolean.
+     */
     public void setCheckingEnabled(boolean checkingEnabled) {
         this.checking = checkingEnabled;
     }
 
+    /**
+     * <p>isPriorityIdentifiers.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isPriorityIdentifiers() {
         return priorityIdentifiers;
     }
 
+    /**
+     * <p>Setter for the field <code>priorityIdentifiers</code>.</p>
+     *
+     * @param priorityIdentifiers a boolean.
+     */
     public void setPriorityIdentifiers(boolean priorityIdentifiers) {
         this.priorityIdentifiers = priorityIdentifiers;
     }
 
+    /**
+     * <p>isPrioritySequence.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isPrioritySequence() {
         return prioritySequence;
     }
 
+    /**
+     * <p>Setter for the field <code>prioritySequence</code>.</p>
+     *
+     * @param prioritySequence a boolean.
+     */
     public void setPrioritySequence(boolean prioritySequence) {
         this.prioritySequence = prioritySequence;
     }

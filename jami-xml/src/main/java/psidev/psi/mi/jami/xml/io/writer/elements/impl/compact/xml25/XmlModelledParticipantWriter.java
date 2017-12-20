@@ -16,12 +16,18 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlModelledParticipantWriter extends AbstractXmlModelledParticipantWriter implements CompactPsiXmlElementWriter<ModelledParticipant> {
+    /**
+     * <p>Constructor for XmlModelledParticipantWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlModelledParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeMolecule(Interactor interactor) throws XMLStreamException {
         super.writeMoleculeRef(interactor);

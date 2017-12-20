@@ -28,26 +28,47 @@ public class BasicEntry extends AbstractEntry<Interaction> {
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>setJAXBSource.</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
+     */
     @XmlElement(name = "source", type = XmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
         super.setSource(source);
     }
 
+    /**
+     * <p>setJAXBInteractorsWrapper.</p>
+     *
+     * @param wrapper a JAXBInteractorsWrapper object.
+     */
     @XmlElement(name = "interactorList")
     public void setJAXBInteractorsWrapper(JAXBInteractorsWrapper wrapper){
         super.setInteractorsWrapper(wrapper);
     }
 
+    /**
+     * <p>setJAXBInteractionsWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml25.BasicEntry.JAXBInteractionsWrapper} object.
+     */
     @XmlElement(name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){
         super.setInteractionsWrapper(wrapper);
     }
 
+    /**
+     * <p>setJAXBAnnotationWrapper.</p>
+     *
+     * @param wrapper a JAXBAnnotationsWrapper object.
+     */
     @XmlElement(name = "annotationList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -56,6 +77,7 @@ public class BasicEntry extends AbstractEntry<Interaction> {
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){

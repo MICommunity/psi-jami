@@ -20,7 +20,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>22/08/14</pre>
  */
-
 public abstract class AbstractCsvInteractionEvidenceParser<T extends InteractionEvidence> implements CSVEntryParser<T> {
 
     private Map<Integer, CrossLinkCSVColumns> columnsIndex=null;
@@ -28,6 +27,12 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
     private CsvParserListener parserListener;
     private boolean isStarted = false;
 
+    /**
+     * <p>parseEntry.</p>
+     *
+     * @param data a {@link java.lang.String} object.
+     * @return a T object.
+     */
     public T parseEntry(String... data) {
         isStarted = true;
         if (data == null){
@@ -140,18 +145,44 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         }
     }
 
+    /**
+     * <p>Getter for the field <code>parserListener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.crosslink.listener.CsvParserListener} object.
+     */
     public CsvParserListener getParserListener() {
         return parserListener;
     }
 
+    /**
+     * <p>Setter for the field <code>parserListener</code>.</p>
+     *
+     * @param parserListener a {@link psidev.psi.mi.jami.crosslink.listener.CsvParserListener} object.
+     */
     public void setParserListener(CsvParserListener parserListener) {
         this.parserListener = parserListener;
     }
 
+    /**
+     * <p>isStarted.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isStarted() {
         return isStarted;
     }
 
+    /**
+     * <p>createParticipantEvidence.</p>
+     *
+     * @param protein1 a {@link java.lang.String} object.
+     * @param protein1Index a int.
+     * @param pepPos a {@link java.lang.String} object.
+     * @param pepPos1Index a int.
+     * @param linkedPos a {@link java.lang.String} object.
+     * @param linkedPosIndex a int.
+     * @return a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     */
     protected ParticipantEvidence createParticipantEvidence(String protein1, int protein1Index, String pepPos, int pepPos1Index, String linkedPos,
                                                             int linkedPosIndex) {
         // parse proteins
@@ -193,6 +224,16 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return participantEvidence1;
     }
 
+    /**
+     * <p>parseCrossLinkingFeatures.</p>
+     *
+     * @param pepPos a {@link java.lang.String} object.
+     * @param linkedPos a {@link java.lang.String} object.
+     * @param lineNumber a int.
+     * @param pepColumnNumber a int.
+     * @param linkedColumnNumber a int.
+     * @return a {@link java.util.List} object.
+     */
     protected List<CsvRange> parseCrossLinkingFeatures(String pepPos, String linkedPos, int lineNumber, int pepColumnNumber, int linkedColumnNumber) {
         List<CsvRange> positions = Collections.EMPTY_LIST;
 
@@ -237,6 +278,14 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return positions;
     }
 
+    /**
+     * <p>parsePositions.</p>
+     *
+     * @param pos a {@link java.lang.String} object.
+     * @param lineNumber a int.
+     * @param colNumber a int.
+     * @return a {@link java.util.List} object.
+     */
     protected List<CsvRange> parsePositions(String pos, int lineNumber, int colNumber){
         // several ranges are present
         if (pos.contains(CsvUtils.PROTEIN_SEPARATOR)){
@@ -275,6 +324,15 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         }
     }
 
+    /**
+     * <p>createParticipantEvidence.</p>
+     *
+     * @param csvProtein a {@link psidev.psi.mi.jami.crosslink.extension.CsvProtein} object.
+     * @param lineNumber a int.
+     * @param columnNumber a int.
+     * @param range a {@link psidev.psi.mi.jami.crosslink.extension.CsvRange} object.
+     * @return a {@link psidev.psi.mi.jami.crosslink.extension.CsvParticipantEvidence} object.
+     */
     protected CsvParticipantEvidence createParticipantEvidence(CsvProtein csvProtein, int lineNumber, int columnNumber, CsvRange range) {
         CsvParticipantEvidence participant = new CsvParticipantEvidence(csvProtein);
 
@@ -298,6 +356,12 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return participant;
     }
 
+    /**
+     * <p>createCrossLinkFeatureEvidence.</p>
+     *
+     * @param range a {@link psidev.psi.mi.jami.crosslink.extension.CsvRange} object.
+     * @return a {@link psidev.psi.mi.jami.crosslink.extension.CsvFeatureEvidence} object.
+     */
     protected CsvFeatureEvidence createCrossLinkFeatureEvidence(CsvRange range) {
         CsvFeatureEvidence featureEvidence = new CsvFeatureEvidence();
         // set type to crosslinker
@@ -309,6 +373,15 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return featureEvidence;
     }
 
+    /**
+     * <p>createExperimentalParticipantPool.</p>
+     *
+     * @param csvProteins a {@link java.util.List} object.
+     * @param lineNumber a int.
+     * @param columnNumber a int.
+     * @param csvRanges a {@link java.util.List} object.
+     * @return a {@link psidev.psi.mi.jami.crosslink.extension.CsvExperimentalParticipantPool} object.
+     */
     protected CsvExperimentalParticipantPool createExperimentalParticipantPool(List<CsvProtein> csvProteins, int lineNumber, int columnNumber,
                                                                                List<CsvRange> csvRanges) {
         CsvExperimentalParticipantPool participant = new CsvExperimentalParticipantPool("interactor set "+lineNumber+"-"+columnNumber);
@@ -341,6 +414,14 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return participant;
     }
 
+    /**
+     * <p>createProteinsFromString.</p>
+     *
+     * @param protein1 a {@link java.lang.String} object.
+     * @param lineNumber a int.
+     * @param columnNumber a int.
+     * @return a {@link java.util.List} object.
+     */
     protected List<CsvProtein> createProteinsFromString(String protein1, int lineNumber, int columnNumber){
         List<CsvProtein> proteins = new ArrayList<CsvProtein>();
 
@@ -368,6 +449,14 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         return proteins;
     }
 
+    /**
+     * <p>createProteinFromNameAndIdentifier.</p>
+     *
+     * @param protein a {@link java.lang.String} object.
+     * @param lineNumber a int.
+     * @param columnNumber a int.
+     * @return a {@link psidev.psi.mi.jami.crosslink.extension.CsvProtein} object.
+     */
     protected CsvProtein createProteinFromNameAndIdentifier(String protein, int lineNumber, int columnNumber){
         // we have identifier and name
         if (protein.contains(CsvUtils.XREF_SEPARATOR)){
@@ -392,38 +481,80 @@ public abstract class AbstractCsvInteractionEvidenceParser<T extends Interaction
         }
     }
 
+    /**
+     * <p>instantiateInteractionEvidence.</p>
+     *
+     * @param linePosition a int.
+     * @param bait a {@link java.lang.String} object.
+     * @return a T object.
+     */
     protected abstract T instantiateInteractionEvidence(int linePosition, String bait);
 
+    /**
+     * <p>processMismatchPeptidePositions.</p>
+     *
+     * @param peptidePositions a {@link java.util.List} object.
+     * @param linkedPositions a {@link java.util.List} object.
+     */
     protected void processMismatchPeptidePositions(List<CsvRange> peptidePositions, List<CsvRange> linkedPositions){
         if (this.parserListener != null){
             this.parserListener.onMismatchBetweenPeptideAndLinkedPositions(peptidePositions, linkedPositions);
         }
     }
 
+    /**
+     * <p>processMismatchProteinPositions.</p>
+     *
+     * @param rangePositions a {@link java.util.List} object.
+     * @param proteins a {@link java.util.List} object.
+     */
     protected void processMismatchProteinPositions(List<CsvRange> rangePositions, List<CsvProtein> proteins){
         if (this.parserListener != null){
             this.parserListener.onMismatchBetweenRangePositionsAndProteins(rangePositions, proteins);
         }
     }
 
+    /**
+     * <p>processInvalidPosition.</p>
+     *
+     * @param message a {@link java.lang.String} object.
+     * @param context a {@link psidev.psi.mi.jami.datasource.FileSourceContext} object.
+     */
     protected void processInvalidPosition(String message, FileSourceContext context){
         if (this.parserListener != null){
             this.parserListener.onInvalidPosition(message, context);
         }
     }
 
+    /**
+     * <p>processProteinIdentifiersError.</p>
+     *
+     * @param identifiers an array of {@link java.lang.String} objects.
+     * @param lineNumber a int.
+     * @param columnNumber a int.
+     */
     protected void processProteinIdentifiersError(String[] identifiers, int lineNumber, int columnNumber){
         if (this.parserListener != null){
             this.parserListener.onInvalidProteinIdentifierSyntax(identifiers, lineNumber, columnNumber);
         }
     }
 
+    /**
+     * <p>processNoProtein1Error.</p>
+     *
+     * @param lineNumber a int.
+     */
     protected void processNoProtein1Error(int lineNumber){
         if (this.parserListener != null){
             this.parserListener.onMissingProtein1Column(lineNumber);
         }
     }
 
+    /**
+     * <p>initialiseColumnNames.</p>
+     *
+     * @param data a {@link java.util.List} object.
+     */
     public void initialiseColumnNames(List<String> data){
         currentLineIndex++;
         columnsIndex = new HashMap<Integer, CrossLinkCSVColumns>(CrossLinkCSVColumns.values().length);

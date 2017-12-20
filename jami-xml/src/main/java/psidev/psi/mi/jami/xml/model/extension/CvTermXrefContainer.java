@@ -28,6 +28,12 @@ public class CvTermXrefContainer extends XrefContainer  {
     private Xref parIdentifier;
     private List<Xref> identifiers;
 
+    /**
+     * <p>isAnIdentifier.</p>
+     *
+     * @param ref a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a boolean.
+     */
     protected boolean isAnIdentifier(Xref ref){
         if (XrefUtils.isXrefAnIdentifier(ref)){
            return true;
@@ -40,6 +46,7 @@ public class CvTermXrefContainer extends XrefContainer  {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAddedPrimaryRef(Xref added) {
         if (isAnIdentifier(added)){
@@ -50,6 +57,11 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
             initialiseIdentifiers();
@@ -57,18 +69,38 @@ public class CvTermXrefContainer extends XrefContainer  {
         return identifiers;
     }
 
+    /**
+     * <p>getMIIdentifier.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getMIIdentifier() {
         return this.miIdentifier != null ? this.miIdentifier.getId() : null;
     }
 
+    /**
+     * <p>getMODIdentifier.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getMODIdentifier() {
         return this.modIdentifier != null ? this.modIdentifier.getId() : null;
     }
 
+    /**
+     * <p>getPARIdentifier.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPARIdentifier() {
         return this.parIdentifier != null ? this.parIdentifier.getId() : null;
     }
 
+    /**
+     * <p>setMIIdentifier.</p>
+     *
+     * @param mi a {@link java.lang.String} object.
+     */
     public void setMIIdentifier(String mi) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
 
@@ -90,6 +122,11 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>setMODIdentifier.</p>
+     *
+     * @param mod a {@link java.lang.String} object.
+     */
     public void setMODIdentifier(String mod) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
 
@@ -112,6 +149,11 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>setPARIdentifier.</p>
+     *
+     * @param par a {@link java.lang.String} object.
+     */
     public void setPARIdentifier(String par) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
 
@@ -134,6 +176,11 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>processAddedIdentifierEvent.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
 
         // the added identifier is psi-mi and it is not the current mi identifier
@@ -201,6 +248,11 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent.</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is psi-mi
         if (miIdentifier != null && miIdentifier.equals(removed)){
@@ -216,16 +268,23 @@ public class CvTermXrefContainer extends XrefContainer  {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers.</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         miIdentifier = null;
         modIdentifier = null;
         parIdentifier = null;
     }
 
+    /**
+     * <p>initialiseIdentifiers.</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new FullIdentifierList();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSecondaryRefs() {
         super.initialiseSecondaryResWith(new JAXBSecondaryXrefList());

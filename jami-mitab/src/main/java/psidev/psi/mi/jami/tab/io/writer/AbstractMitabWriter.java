@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Abstract writer for Mitab 2.5.
  *
- * The general options when calling method initialiseContext(Map<String, Object> options) are :
+ * The general options when calling method {@link #initialiseContext} are :
  *  - output_file_key : File. Specifies the file where to write
  *  - output_stream_key : OutputStream. Specifies the stream where to write
  *  - output_writer_key : Writer. Specifies the writer.
@@ -35,53 +35,91 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public abstract class AbstractMitabWriter<T extends Interaction, B extends BinaryInteraction, P extends Participant> implements InteractionWriter<T>{
 
     private ComplexExpansionMethod<T, B> expansionMethod;
     private AbstractMitab25BinaryWriter<B, P> binaryWriter;
     private boolean hasStarted;
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     */
     public AbstractMitabWriter(){
 
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMitabWriter(File file) throws IOException {
 
         initialiseFile(file);
         initialiseExpansionMethod(null);
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public AbstractMitabWriter(OutputStream output) {
 
         initialiseOutputStream(output);
         initialiseExpansionMethod(null);
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public AbstractMitabWriter(Writer writer) {
 
         initialiseWriter(writer);
         initialiseExpansionMethod(null);
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMitabWriter(File file, ComplexExpansionMethod<T, B> expansionMethod) throws IOException {
 
         initialiseFile(file);
         initialiseExpansionMethod(expansionMethod);
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     public AbstractMitabWriter(OutputStream output, ComplexExpansionMethod<T, B> expansionMethod) {
 
         initialiseOutputStream(output);
         initialiseExpansionMethod(expansionMethod);
     }
 
+    /**
+     * <p>Constructor for AbstractMitabWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     public AbstractMitabWriter(Writer writer, ComplexExpansionMethod<T, B> expansionMethod) {
 
         initialiseWriter(writer);
         initialiseExpansionMethod(expansionMethod);
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
 
         if (options == null && this.binaryWriter == null){
@@ -131,12 +169,22 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         }
     }
 
+    /**
+     * <p>end.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void end() throws MIIOException {
         if (binaryWriter == null){
             throw new IllegalStateException("The mitab writer was not initialised. The options for the Mitab writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
     }
 
+    /**
+     * <p>start.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void start() throws MIIOException {
         if (binaryWriter == null){
             throw new IllegalStateException("The mitab writer was not initialised. The options for the Mitab writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -145,6 +193,12 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         hasStarted = true;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interaction a T object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(T interaction) throws MIIOException {
         if (this.binaryWriter == null){
             throw new IllegalStateException("The mitab writer was not initialised. The options for the Mitab writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -157,23 +211,40 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         }
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(Collection<? extends T> interactions) throws MIIOException {
         Iterator<? extends T> binaryIterator = interactions.iterator();
         write(binaryIterator);
     }
 
+    /** {@inheritDoc} */
     public void write(Iterator<? extends T> interactions) throws MIIOException {
         while (interactions.hasNext()){
             write(interactions.next());
         }
     }
 
+    /**
+     * <p>flush.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void flush() throws MIIOException{
         if (this.binaryWriter != null){
             this.binaryWriter.flush();
         }
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         try{
             if (this.binaryWriter != null){
@@ -186,6 +257,11 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         }
     }
 
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException {
         try{
             if (this.binaryWriter != null){
@@ -198,38 +274,94 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         }
     }
 
+    /**
+     * <p>getVersion.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.tab.MitabVersion} object.
+     */
     public abstract MitabVersion getVersion();
 
+    /**
+     * <p>isWriteHeader.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isWriteHeader() {
         return binaryWriter != null ? binaryWriter.isWriteHeader():false;
     }
 
+    /**
+     * <p>setWriteHeader.</p>
+     *
+     * @param writeHeader a boolean.
+     */
     public void setWriteHeader(boolean writeHeader) {
         if (this.binaryWriter != null){
             this.binaryWriter.setWriteHeader(writeHeader);
         }
     }
 
+    /**
+     * <p>initialiseExpansionMethod.</p>
+     *
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected abstract void initialiseExpansionMethod(ComplexExpansionMethod<T, B> expansionMethod);
 
+    /**
+     * <p>initialiseWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     protected abstract void initialiseWriter(Writer writer);
 
+    /**
+     * <p>initialiseOutputStream.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     protected abstract void initialiseOutputStream(OutputStream output);
 
+    /**
+     * <p>initialiseFile.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void initialiseFile(File file) throws IOException;
 
+    /**
+     * <p>Setter for the field <code>expansionMethod</code>.</p>
+     *
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected void setExpansionMethod(ComplexExpansionMethod<T, B> expansionMethod) {
         this.expansionMethod = expansionMethod;
     }
 
+    /**
+     * <p>Setter for the field <code>binaryWriter</code>.</p>
+     *
+     * @param binaryWriter a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab25BinaryWriter} object.
+     */
     protected void setBinaryWriter(AbstractMitab25BinaryWriter<B, P> binaryWriter) {
         this.binaryWriter = binaryWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>binaryWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab25BinaryWriter} object.
+     */
     protected AbstractMitab25BinaryWriter<B, P> getBinaryWriter() {
         return binaryWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>expansionMethod</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected ComplexExpansionMethod<T, B> getExpansionMethod() {
         if (expansionMethod == null){
             initialiseExpansionMethod(null);
@@ -237,10 +369,20 @@ public abstract class AbstractMitabWriter<T extends Interaction, B extends Binar
         return expansionMethod;
     }
 
+    /**
+     * <p>hasStarted.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean hasStarted() {
         return hasStarted;
     }
 
+    /**
+     * <p>setStarted.</p>
+     *
+     * @param hasStarted a boolean.
+     */
     protected void setStarted(boolean hasStarted) {
         this.hasStarted = hasStarted;
     }

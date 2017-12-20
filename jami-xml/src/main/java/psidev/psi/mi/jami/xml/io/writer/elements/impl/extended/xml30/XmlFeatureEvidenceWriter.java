@@ -17,27 +17,36 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlFeatureEvidenceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlFeatureEvidenceWriter {
+    /**
+     * <p>Constructor for XmlFeatureEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlFeatureEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter(){
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseRangeWriter() {
         super.setRangeWriter(new XmlRangeWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter() {
         super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(FeatureEvidence object) throws XMLStreamException {
         // write detection method
@@ -57,6 +66,7 @@ public class XmlFeatureEvidenceWriter extends psidev.psi.mi.jami.xml.io.writer.e
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFeatureTypeWriter() {
         super.setFeatureTypeWriter(new XmlCvTermWriter(getStreamWriter()));

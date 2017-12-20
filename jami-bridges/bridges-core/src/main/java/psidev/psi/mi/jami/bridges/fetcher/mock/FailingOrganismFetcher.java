@@ -16,19 +16,27 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/07/13
+
  */
 public class FailingOrganismFetcher
         extends AbstractFailingFetcher<Organism>
         implements OrganismFetcher {
 
+    /**
+     * <p>Constructor for FailingOrganismFetcher.</p>
+     *
+     * @param maxQuery a int.
+     */
     public FailingOrganismFetcher(int maxQuery) {
         super(maxQuery);
     }
 
+    /** {@inheritDoc} */
     public Organism fetchByTaxID(int taxID) throws BridgeFailedException {
         return getEntry( Integer.toString(taxID) );
     }
 
+    /** {@inheritDoc} */
     public Collection<Organism> fetchByTaxIDs(Collection<Integer> taxIDs) throws BridgeFailedException {
         Collection<Organism> resultsList= new ArrayList<Organism>();
         for(Integer identifier : taxIDs){

@@ -11,17 +11,23 @@ import psidev.psi.mi.jami.bridges.fetcher.SequenceVersionFetcher;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class CachedUnisaveClient extends AbstractCachedFetcher implements SequenceVersionFetcher {
 
+    /** Constant <code>CACHE_NAME="unisave-service-cache"</code> */
     public static final String CACHE_NAME = "unisave-service-cache";
     private SequenceVersionFetcher sequenceFetcher;
 
+    /**
+     * <p>Constructor for CachedUnisaveClient.</p>
+     *
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public CachedUnisaveClient() throws BridgeFailedException {
         super(CACHE_NAME);
         this.sequenceFetcher = new UnisaveClient();
     }
 
+    /** {@inheritDoc} */
     public String fetchSequenceFromVersion(String id, int version) throws BridgeFailedException {
         final String key = "GET_SEQUENCE_"+id+"_VERSION_"+version;
         Object data = getFromCache( key );
@@ -32,6 +38,7 @@ public class CachedUnisaveClient extends AbstractCachedFetcher implements Sequen
         return (String)data;
     }
 
+    /** {@inheritDoc} */
     public int fetchVersionFromSequence(String id, String sequence) throws BridgeFailedException {
         final String key = "GET_VERSION_"+id+"_SEQUENCE_"+sequence;
         Object data = getFromCache( key );

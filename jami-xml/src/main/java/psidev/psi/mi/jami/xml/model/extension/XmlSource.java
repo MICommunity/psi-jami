@@ -18,59 +18,140 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Desciption of the source of the entry, usually an organisation
- *             
- * 
+ *
+ *
  * <p>Java class for source complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * The JAXB binding is designed to be read-only and is not designed for writing
- * 
+ *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "defaultSource")
 public class XmlSource extends AbstractXmlSource
 {
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     */
     public XmlSource() {
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlSource(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlSource(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlSource(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlSource(String shortName, String url, String address, Publication bibRef) {
         super(shortName, url, address, bibRef);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlSource(String shortName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, ontologyId, url, address, bibRef);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlSource(String shortName, String fullName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, fullName, ontologyId, url, address, bibRef);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public XmlSource(String shortName, String miId) {
         super(shortName, miId);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public XmlSource(String shortName, String fullName, String miId) {
         super(shortName, fullName, miId);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlSource(String shortName, String miId, String url, String address, Publication bibRef) {
         super(shortName, miId, url, address, bibRef);
     }
 
+    /**
+     * <p>Constructor for XmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlSource(String shortName, String fullName, String miId, String url, String address, Publication bibRef) {
         super(shortName, fullName, miId, url, address, bibRef);
     }

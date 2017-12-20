@@ -11,17 +11,25 @@ import psidev.psi.mi.jami.model.Interactor;
  * @version $Id$
  * @since <pre>30/01/14</pre>
  */
-
 public class FullInteractorBaseEnricher<T extends Interactor> extends MinimalInteractorBaseEnricher<T> {
 
+    /**
+     * <p>Constructor for FullInteractorBaseEnricher.</p>
+     */
     public FullInteractorBaseEnricher() {
         super();
     }
 
+    /**
+     * <p>Constructor for FullInteractorBaseEnricher.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public FullInteractorBaseEnricher(InteractorFetcher<T> fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return true;

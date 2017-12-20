@@ -18,6 +18,7 @@ package psidev.psi.mi.jami.bridges.picr;
 /**
  * Enum for all database supported by PICR
  *
+
  */
 public enum PicrSearchDatabase {
 

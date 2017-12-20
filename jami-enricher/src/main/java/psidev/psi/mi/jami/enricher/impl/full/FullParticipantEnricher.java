@@ -14,10 +14,18 @@ import psidev.psi.mi.jami.model.Participant;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class FullParticipantEnricher<P extends Participant, F extends Feature>
         extends MinimalParticipantEnricher<P,F> {
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processOtherProperties(P objectToEnrich, P objectSource) throws EnricherException {
         super.processOtherProperties(objectToEnrich, objectSource);
         // causal relationships
@@ -30,11 +38,25 @@ public class FullParticipantEnricher<P extends Participant, F extends Feature>
         processOtherProperties(objectToEnrich);
     }
 
+    /**
+     * <p>processCausalRelationships.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCausalRelationships(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeCausalRelationships(objectToEnrich, objectToEnrich.getCausalRelationships(), objectSource.getCausalRelationships(),
                 false, getParticipantEnricherListener());
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processXrefs(P objectToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getXrefs(), objectSource.getXrefs(), false,
                 false,
@@ -42,6 +64,13 @@ public class FullParticipantEnricher<P extends Participant, F extends Feature>
                 null);
     }
 
+    /**
+     * <p>processAnnotations.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAnnotations(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeAnnotations(objectToEnrich, objectToEnrich.getAnnotations(), objectSource.getAnnotations(), false,
                 getParticipantEnricherListener() instanceof AnnotationsChangeListener ? (AnnotationsChangeListener)getParticipantEnricherListener():null);

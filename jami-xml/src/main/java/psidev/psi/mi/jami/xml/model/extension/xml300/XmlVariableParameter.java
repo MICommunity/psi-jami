@@ -41,10 +41,18 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
 
     private JAXBVariableValueWrapper jaxbVariableValueWrapper;
 
+    /**
+     * <p>Constructor for XmlVariableParameter.</p>
+     */
     public XmlVariableParameter(){
 
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameter.</p>
+     *
+     * @param description a {@link java.lang.String} object.
+     */
     public XmlVariableParameter(String description){
         if (description == null){
             throw new IllegalArgumentException("The description of the variableParameter is required and cannot be null.");
@@ -52,25 +60,52 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         this.description = description;
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameter.</p>
+     *
+     * @param description a {@link java.lang.String} object.
+     * @param experiment a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public XmlVariableParameter(String description, Experiment experiment){
         this(description);
         this.experiment = experiment;
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameter.</p>
+     *
+     * @param description a {@link java.lang.String} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlVariableParameter(String description, CvTerm unit){
         this(description);
         this.unit = unit;
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameter.</p>
+     *
+     * @param description a {@link java.lang.String} object.
+     * @param experiment a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlVariableParameter(String description, Experiment experiment, CvTerm unit){
         this(description, experiment);
         this.unit = unit;
     }
 
+    /**
+     * <p>initialiseVatiableParameterValues.</p>
+     */
     protected void initialiseVatiableParameterValues(){
         this.jaxbVariableValueWrapper = new JAXBVariableValueWrapper();
     }
 
+    /**
+     * <p>Getter for the field <code>description</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDescription() {
         if (this.description == null){
             this.description = PsiXmlUtils.UNSPECIFIED;
@@ -78,6 +113,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         return this.description;
     }
 
+    /** {@inheritDoc} */
     public void setDescription(String description) {
         if (description == null){
             throw new IllegalArgumentException("The description cannot be null");
@@ -85,14 +121,25 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         this.description = description;
     }
 
+    /**
+     * <p>Getter for the field <code>unit</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getUnit() {
         return this.unit;
     }
 
+    /** {@inheritDoc} */
     public void setUnit(CvTerm unit) {
         this.unit = unit;
     }
 
+    /**
+     * <p>getVariableValues.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<VariableParameterValue> getVariableValues() {
         if (jaxbVariableValueWrapper == null){
             initialiseVatiableParameterValues();
@@ -100,14 +147,21 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         return this.jaxbVariableValueWrapper.variableValues;
     }
 
+    /**
+     * <p>Getter for the field <code>experiment</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public Experiment getExperiment() {
         return this.experiment;
     }
 
+    /** {@inheritDoc} */
     public void setExperiment(Experiment experiment) {
         this.experiment = experiment;
     }
 
+    /** {@inheritDoc} */
     public void setExperimentAndAddVariableParameter(Experiment experiment) {
         if (this.experiment != null){
             this.experiment.removeVariableParameter(this);
@@ -118,6 +172,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -131,11 +186,17 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         return UnambiguousVariableParameterComparator.areEquals(this, (VariableParameter) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -143,6 +204,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -155,30 +217,52 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousVariableParameterComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return description.toString() + (unit != null ? "(unit: "+unit.toString()+")":"");
     }
 
+    /**
+     * <p>setJAXBDescription.</p>
+     *
+     * @param desc a {@link java.lang.String} object.
+     */
     @XmlElement(name = "description", required = true)
     public void setJAXBDescription(String desc){
         this.description = desc;
     }
 
+    /**
+     * <p>setJAXBUnit.</p>
+     *
+     * @param unit a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     */
     @XmlElement(name = "unit")
     public void setJAXBUnit(XmlCvTerm unit){
         this.unit = unit;
     }
 
+    /**
+     * <p>setJAXBVariableParameterValuesWrapper.</p>
+     *
+     * @param jaxbVariableValueList a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlVariableParameter.JAXBVariableValueWrapper} object.
+     */
     @XmlElement(name = "variableValueList", required = true)
     public void setJAXBVariableParameterValuesWrapper(JAXBVariableValueWrapper jaxbVariableValueList) {
         this.jaxbVariableValueWrapper = jaxbVariableValueList;

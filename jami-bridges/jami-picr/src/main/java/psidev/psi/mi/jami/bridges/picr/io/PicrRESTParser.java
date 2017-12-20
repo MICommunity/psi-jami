@@ -17,7 +17,6 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>25-Mar-2010</pre>
  */
-
 public class PicrRESTParser {
 
    /**
@@ -126,6 +125,13 @@ public class PicrRESTParser {
     // ////////////////////////
     // Public methods
 
+    /**
+     * <p>read.</p>
+     *
+     * @param s a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse} object.
+     * @throws psidev.psi.mi.jami.bridges.picr.io.PicrParsingException if any.
+     */
     public GetUPIForAccessionResponse read( String s ) throws PicrParsingException {
         try {
             return unmarshall( s );
@@ -134,6 +140,13 @@ public class PicrRESTParser {
         }
     }
 
+    /**
+     * <p>read.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse} object.
+     * @throws psidev.psi.mi.jami.bridges.picr.io.PicrParsingException if any.
+     */
     public GetUPIForAccessionResponse read( File file ) throws PicrParsingException {
         try {
             return unmarshall( file );
@@ -144,6 +157,13 @@ public class PicrRESTParser {
         }
     }
 
+    /**
+     * <p>read.</p>
+     *
+     * @param is a {@link java.io.InputStream} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse} object.
+     * @throws psidev.psi.mi.jami.bridges.picr.io.PicrParsingException if any.
+     */
     public GetUPIForAccessionResponse read( InputStream is ) throws PicrParsingException {
         try {
             return unmarshall( is );
@@ -152,6 +172,13 @@ public class PicrRESTParser {
         }
     }
 
+    /**
+     * <p>read.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse} object.
+     * @throws psidev.psi.mi.jami.bridges.picr.io.PicrParsingException if any.
+     */
     public GetUPIForAccessionResponse read( URL url ) throws PicrParsingException {
         try {
             return unmarshall( url );

@@ -18,19 +18,24 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>10/09/13</pre>
  */
-
 public class CachedUniprotProteinMapper extends UniprotProteinMapper implements ProteinMapper{
 
+    /** Constant <code>CACHE_NAME="uniprot-mapping-cache"</code> */
     public static final String CACHE_NAME = "uniprot-mapping-cache";
     private Cache cache;
     private static CacheManager cacheManager;
 
+    /** Constant <code>EHCACHE_CONFIG_FILE="/service.ehcache.xml"</code> */
     public static final String EHCACHE_CONFIG_FILE = "/service.ehcache.xml";
 
+    /**
+     * <p>Constructor for CachedUniprotProteinMapper.</p>
+     */
     public CachedUniprotProteinMapper() {
         initialiseCache();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected IdentificationResults identifyProtein(
             Xref xrefToMap, IdentificationContext context)
@@ -62,9 +67,9 @@ public class CachedUniprotProteinMapper extends UniprotProteinMapper implements 
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Finds a Mapping for the proteins sequence using the method which is implemented.
-     * @param sequence the protein sequence to find a Mapping for
-     * @return  The results of the query. Can be null.
      */
     @Override
     protected IdentificationResults identifyProtein(String sequence, IdentificationContext context)
@@ -86,10 +91,18 @@ public class CachedUniprotProteinMapper extends UniprotProteinMapper implements 
     /////////////////////////
     // EH CACHE utilities
 
+    /**
+     * <p>initialiseCache.</p>
+     */
     public void initialiseCache() {
         initialiseCache( EHCACHE_CONFIG_FILE );
     }
 
+    /**
+     * <p>initialiseCache.</p>
+     *
+     * @param settingsFile a {@link java.lang.String} object.
+     */
     public void initialiseCache(String settingsFile) {
         URL url = getClass().getResource( settingsFile );
         cacheManager =  CacheManager.create(url);
@@ -100,6 +113,12 @@ public class CachedUniprotProteinMapper extends UniprotProteinMapper implements 
     }
 
 
+    /**
+     * <p>getFromCache.</p>
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link java.lang.Object} object.
+     */
     public Object getFromCache( String key ) {
         Object data = null;
         Element element = cache.get( key );
@@ -110,16 +129,28 @@ public class CachedUniprotProteinMapper extends UniprotProteinMapper implements 
         return data;
     }
 
+    /**
+     * <p>storeInCache.</p>
+     *
+     * @param key a {@link java.lang.String} object.
+     * @param data a {@link java.lang.Object} object.
+     */
     public void storeInCache( String key, Object data ) {
         //if( log.isTraceEnabled() ) log.trace("storing key: "+key);
         Element element = new Element( key, data );
         cache.put( element );
     }
 
+    /**
+     * <p>clearCache.</p>
+     */
     public void clearCache() {
         cacheManager.clearAll();
     }
 
+    /**
+     * <p>shutDownCache.</p>
+     */
     public void shutDownCache() {
         cacheManager.shutdown();
     }

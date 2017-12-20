@@ -15,29 +15,49 @@ import java.util.Iterator;
 /**
  * A mitab datasource that loads interaction evidences (full experimental details)
  * It only provides an iterator of the interactions
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>25/06/13</pre>
  */
-
 public class MitabBinaryEvidenceStreamSource extends AbstractMitabStreamSource<BinaryInteractionEvidence, ParticipantEvidence, FeatureEvidence> implements BinaryInteractionEvidenceStream{
 
+    /**
+     * <p>Constructor for MitabBinaryEvidenceStreamSource.</p>
+     */
     public MitabBinaryEvidenceStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for MitabBinaryEvidenceStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MitabBinaryEvidenceStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for MitabBinaryEvidenceStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public MitabBinaryEvidenceStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for MitabBinaryEvidenceStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public MitabBinaryEvidenceStreamSource(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(Reader reader) {
         if (reader == null){
@@ -47,6 +67,7 @@ public class MitabBinaryEvidenceStreamSource extends AbstractMitabStreamSource<B
         setLineParser(new BinaryEvidenceLineParser(reader));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(File file) {
         if (file == null){
@@ -64,17 +85,20 @@ public class MitabBinaryEvidenceStreamSource extends AbstractMitabStreamSource<B
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(InputStream input) {
         setOriginalStream(input);
         setLineParser(new BinaryEvidenceLineParser(input));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<BinaryInteractionEvidence> createMitabIterator() {
         return new MitabBinaryEvidenceIterator(getLineParser());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(URL url) throws MIIOException{
         if (url == null){

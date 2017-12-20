@@ -17,24 +17,50 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class FullXmlParser extends AbstractFullPsiXmlParser<Interaction> {
+    /**
+     * <p>Constructor for FullXmlParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     * @throws java.io.FileNotFoundException if any.
+     */
     public FullXmlParser(File file) throws JAXBException, FileNotFoundException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for FullXmlParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public FullXmlParser(InputStream inputStream) throws JAXBException {
         super(inputStream);
     }
 
+    /**
+     * <p>Constructor for FullXmlParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public FullXmlParser(URL url) throws IOException, JAXBException {
         super(url);
     }
 
+    /**
+     * <p>Constructor for FullXmlParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public FullXmlParser(Reader reader) throws JAXBException {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Unmarshaller createJAXBUnmarshaller() throws JAXBException {
         return JaxbUnmarshallerFactory.getInstance().createFullUnmarshaller(getVersion(), InteractionCategory.mixed);

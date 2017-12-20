@@ -25,23 +25,43 @@ public abstract class AbstractPsiXmlInteraction<T extends Participant> extends A
     private List<CvTerm> interactionTypes;
     private JAXBInferredInteractionWrapper jaxbInferredInteractionWrapper;
 
+    /**
+     * <p>Constructor for AbstractPsiXmlInteraction.</p>
+     */
     public AbstractPsiXmlInteraction(){
         super();
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public AbstractPsiXmlInteraction(String shortName){
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractPsiXmlInteraction(String shortName, CvTerm type){
         super(shortName);
         setInteractionType(type);
     }
 
+    /**
+     * <p>getInteractionType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getInteractionType() {
         return (this.interactionTypes != null && !this.interactionTypes.isEmpty())? this.interactionTypes.iterator().next() : null;
     }
 
+    /** {@inheritDoc} */
     public void setInteractionType(CvTerm term) {
         if (this.interactionTypes == null && term != null){
             this.interactionTypes = new ArrayList<CvTerm>();
@@ -61,10 +81,7 @@ public abstract class AbstractPsiXmlInteraction<T extends Participant> extends A
     /**
      * Gets the value of the interactionTypeList property.
      *
-     * @return
-     *     possible object is
-     *     {@link XmlCvTerm }
-     *
+     * @return a {@link java.util.List} object.
      */
     public List<CvTerm> getInteractionTypes() {
         if (this.interactionTypes == null){
@@ -73,6 +90,11 @@ public abstract class AbstractPsiXmlInteraction<T extends Participant> extends A
         return this.interactionTypes;
     }
 
+    /**
+     * <p>getInferredInteractions.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<InferredInteraction> getInferredInteractions() {
         if (this.jaxbInferredInteractionWrapper == null){
             this.jaxbInferredInteractionWrapper = new JAXBInferredInteractionWrapper();
@@ -80,6 +102,11 @@ public abstract class AbstractPsiXmlInteraction<T extends Participant> extends A
         return this.jaxbInferredInteractionWrapper.inferredInteractions;
     }
 
+    /**
+     * <p>setJAXBInferredInteractionWrapper.</p>
+     *
+     * @param jaxbInferredWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractPsiXmlInteraction.JAXBInferredInteractionWrapper} object.
+     */
     public void setJAXBInferredInteractionWrapper(JAXBInferredInteractionWrapper jaxbInferredWrapper) {
         this.jaxbInferredInteractionWrapper = jaxbInferredWrapper;
     }

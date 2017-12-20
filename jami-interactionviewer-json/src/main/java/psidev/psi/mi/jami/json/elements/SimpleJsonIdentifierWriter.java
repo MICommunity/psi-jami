@@ -14,11 +14,15 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonIdentifierWriter implements JsonElementWriter<Xref>{
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for SimpleJsonIdentifierWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonIdentifierWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json identifier writer needs a non null Writer");
@@ -26,6 +30,12 @@ public class SimpleJsonIdentifierWriter implements JsonElementWriter<Xref>{
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Xref object) throws IOException {
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("db", JSONValue.escape(object.getDatabase().getShortName()), writer);

@@ -41,66 +41,115 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
     private Locator locator;
     private JAXBVariableValueRefList jaxbVariableValueRefList;
 
+    /**
+     * <p>Constructor for XmlVariableParameterValueSet.</p>
+     */
     public XmlVariableParameterValueSet(){
         initialiseVatiableParameterValuesSet();
     }
 
+    /**
+     * <p>initialiseVatiableParameterValuesSet.</p>
+     */
     protected void initialiseVatiableParameterValuesSet(){
         this.jaxbVariableValueRefList = new JAXBVariableValueRefList();
     }
 
+    /**
+     * <p>size.</p>
+     *
+     * @return a int.
+     */
     public int size() {
         return jaxbVariableValueRefList.variableParameterValues.size();
     }
 
+    /**
+     * <p>isEmpty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isEmpty() {
         return jaxbVariableValueRefList.variableParameterValues.isEmpty();
     }
 
+    /** {@inheritDoc} */
     public boolean contains(Object o) {
         return jaxbVariableValueRefList.variableParameterValues.contains(o);
     }
 
+    /**
+     * <p>iterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     public Iterator<VariableParameterValue> iterator() {
         return jaxbVariableValueRefList.variableParameterValues.iterator();
     }
 
+    /**
+     * <p>toArray.</p>
+     *
+     * @return an array of {@link java.lang.Object} objects.
+     */
     public Object[] toArray() {
         return jaxbVariableValueRefList.variableParameterValues.toArray();
     }
 
+    /**
+     * <p>toArray.</p>
+     *
+     * @param ts an array of T objects.
+     * @param <T> a T object.
+     * @return an array of T objects.
+     */
     public <T> T[] toArray(T[] ts) {
         return jaxbVariableValueRefList.variableParameterValues.toArray(ts);
     }
 
+    /**
+     * <p>add.</p>
+     *
+     * @param variableParameterValue a {@link psidev.psi.mi.jami.model.VariableParameterValue} object.
+     * @return a boolean.
+     */
     public boolean add(VariableParameterValue variableParameterValue) {
         return jaxbVariableValueRefList.variableParameterValues.add(variableParameterValue);
     }
 
+    /** {@inheritDoc} */
     public boolean remove(Object o) {
         return jaxbVariableValueRefList.variableParameterValues.remove(o);
     }
 
+    /** {@inheritDoc} */
     public boolean containsAll(Collection<?> objects) {
         return jaxbVariableValueRefList.variableParameterValues.containsAll(objects);
     }
 
+    /** {@inheritDoc} */
     public boolean addAll(Collection<? extends VariableParameterValue> variableParameterValues) {
         return this.jaxbVariableValueRefList.variableParameterValues.addAll(variableParameterValues);
     }
 
+    /** {@inheritDoc} */
     public boolean retainAll(Collection<?> objects) {
         return jaxbVariableValueRefList.variableParameterValues.retainAll(objects);
     }
 
+    /** {@inheritDoc} */
     public boolean removeAll(Collection<?> objects) {
         return jaxbVariableValueRefList.variableParameterValues.removeAll(objects);
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear() {
         jaxbVariableValueRefList.variableParameterValues.clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -114,16 +163,23 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
         return VariableParameterValueSetComparator.areEquals(this, (VariableParameterValueSet) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return VariableParameterValueSetComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -131,6 +187,7 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -143,10 +200,20 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /**
+     * <p>getJAXBVariableValueRefs.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     @XmlElement(name = "variableValueRef", type = Integer.class, required = true)
     public Set<Integer> getJAXBVariableValueRefs() {
         return this.jaxbVariableValueRefList;

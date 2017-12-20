@@ -15,13 +15,17 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/02/14</pre>
  */
-
 public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> {
 
     private EntityEnricher<Entity,Feature> entityBaseEnricher;
     private EntityEnricher<ModelledEntity,ModelledFeature> modelledEntityEnricher;
     private EntityEnricher<ExperimentalEntity,FeatureEvidence> experimentalEntityEnricher;
 
+    /**
+     * <p>Constructor for CompositeEntityEnricher.</p>
+     *
+     * @param entityBaseEnricher a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public CompositeEntityEnricher(EntityEnricher<Entity, Feature> entityBaseEnricher){
         super();
         if (entityBaseEnricher == null){
@@ -30,26 +34,57 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
         this.entityBaseEnricher = entityBaseEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>entityBaseEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public EntityEnricher<Entity, Feature> getEntityBaseEnricher() {
         return entityBaseEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledEntityEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public EntityEnricher<ModelledEntity,ModelledFeature> getModelledEntityEnricher() {
         return modelledEntityEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>modelledEntityEnricher</code>.</p>
+     *
+     * @param modelledEntityEnricher a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public void setModelledEntityEnricher(EntityEnricher<ModelledEntity,ModelledFeature> modelledEntityEnricher) {
         this.modelledEntityEnricher = modelledEntityEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalEntityEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public EntityEnricher<ExperimentalEntity,FeatureEvidence> getExperimentalEntityEnricher() {
         return experimentalEntityEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>experimentalEntityEnricher</code>.</p>
+     *
+     * @param experimentalEntityEnricher a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
+     */
     public void setExperimentalEntityEnricher(EntityEnricher<ExperimentalEntity,FeatureEvidence> experimentalEntityEnricher) {
         this.experimentalEntityEnricher = experimentalEntityEnricher;
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Entity object) throws EnricherException {
         if(object == null)
             throw new IllegalArgumentException("Cannot enrich a null entity.");
@@ -74,6 +109,12 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<Entity> objects) throws EnricherException {
         if(objects == null)
             throw new IllegalArgumentException("Cannot enrich a null collection of interactors.");
@@ -83,6 +124,13 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param objectSource a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Entity object, Entity objectSource) throws EnricherException {
         if (object instanceof ExperimentalEntity && objectSource instanceof ExperimentalEntity){
             if (this.experimentalEntityEnricher != null){
@@ -105,18 +153,34 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
         }
     }
 
+    /**
+     * <p>getInteractorEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public CompositeInteractorEnricher getInteractorEnricher() {
         return this.entityBaseEnricher.getInteractorEnricher();
     }
 
+    /**
+     * <p>getFeatureEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.FeatureEnricher} object.
+     */
     public FeatureEnricher getFeatureEnricher() {
         return this.entityBaseEnricher.getFeatureEnricher();
     }
 
+    /**
+     * <p>getParticipantEnricherListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.EntityEnricherListener} object.
+     */
     public EntityEnricherListener getParticipantEnricherListener() {
         return this.entityBaseEnricher.getParticipantEnricherListener();
     }
 
+    /** {@inheritDoc} */
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher) {
         this.entityBaseEnricher.setInteractorEnricher(interactorEnricher);
         if (getModelledEntityEnricher() != null){
@@ -127,10 +191,12 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
         }
     }
 
+    /** {@inheritDoc} */
     public void setFeatureEnricher(FeatureEnricher<Feature> enricher) {
         this.entityBaseEnricher.setFeatureEnricher(enricher);
     }
 
+    /** {@inheritDoc} */
     public void setParticipantEnricherListener(EntityEnricherListener listener) {
         this.entityBaseEnricher.setParticipantEnricherListener(listener);
     }

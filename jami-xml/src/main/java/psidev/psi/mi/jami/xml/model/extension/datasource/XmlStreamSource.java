@@ -19,28 +19,51 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlStreamSource extends AbstractPsiXmlStream<Interaction> {
 
+    /**
+     * <p>Constructor for XmlStreamSource.</p>
+     */
     public XmlStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         XmlParser parser = new XmlParser(reader);
@@ -49,6 +72,7 @@ public class XmlStreamSource extends AbstractPsiXmlStream<Interaction> {
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         XmlParser parser = new XmlParser(file);
@@ -57,6 +81,7 @@ public class XmlStreamSource extends AbstractPsiXmlStream<Interaction> {
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         XmlParser parser = new XmlParser(input);
@@ -65,6 +90,7 @@ public class XmlStreamSource extends AbstractPsiXmlStream<Interaction> {
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         XmlParser parser = new XmlParser(url);
@@ -73,11 +99,13 @@ public class XmlStreamSource extends AbstractPsiXmlStream<Interaction> {
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         // nothing to do as we don't expand
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<Interaction> createXmlIterator() {
         return new XmlInteractionIterator(getParser());

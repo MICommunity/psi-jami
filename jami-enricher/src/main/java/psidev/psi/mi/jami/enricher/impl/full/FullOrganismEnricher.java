@@ -19,23 +19,32 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public class FullOrganismEnricher extends MinimalOrganismEnricher {
     private CvTermEnricher<CvTerm> cvEnricher;
 
+    /**
+     * <p>Constructor for FullOrganismEnricher.</p>
+     *
+     * @param organismFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher} object.
+     */
     public FullOrganismEnricher(OrganismFetcher organismFetcher) {
         super(organismFetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return cvEnricher;
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvEnricher) {
         this.cvEnricher = cvEnricher;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Organism organismToEnrich, Organism organismFetched) throws EnricherException {
         processAliases(organismToEnrich, organismFetched);
@@ -45,10 +54,24 @@ public class FullOrganismEnricher extends MinimalOrganismEnricher {
         processCompartment(organismToEnrich, organismFetched);
     }
 
+    /**
+     * <p>processAliases.</p>
+     *
+     * @param organismToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organismFetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAliases(Organism organismToEnrich, Organism organismFetched) throws EnricherException{
         EnricherUtils.mergeAliases(organismToEnrich, organismToEnrich.getAliases(), organismFetched.getAliases(), false, getOrganismEnricherListener());
     }
 
+    /**
+     * <p>processCellType.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCellType(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (entityToEnrich.getCellType() == null && fetched.getCellType() != null){
             entityToEnrich.setCellType(fetched.getCellType());
@@ -61,6 +84,13 @@ public class FullOrganismEnricher extends MinimalOrganismEnricher {
         }
     }
 
+    /**
+     * <p>processTissue.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processTissue(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (entityToEnrich.getTissue() == null && fetched.getTissue() != null){
             entityToEnrich.setTissue(fetched.getTissue());
@@ -73,6 +103,13 @@ public class FullOrganismEnricher extends MinimalOrganismEnricher {
         }
     }
 
+    /**
+     * <p>processCompartment.</p>
+     *
+     * @param entityToEnrich a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCompartment(Organism entityToEnrich, Organism fetched) throws EnricherException {
         if (entityToEnrich.getCompartment() == null && fetched.getCompartment() != null){
             entityToEnrich.setCompartment(fetched.getCompartment());

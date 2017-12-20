@@ -14,15 +14,16 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class InteractorEnricherLogger<T extends Interactor> extends InteractorChangeLogger<T> implements InteractorEnricherListener<T> {
 
     private static final Logger log = LoggerFactory.getLogger(InteractorEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(T object, EnrichmentStatus status, String message) {
         log.info("Bioactive Participant "+object.toString()+" has been enriched with status of "+status+", message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(T object, String message, Exception e) {
         log.error("Enrichment error for bioactive Participant "+object.toString()+", message: "+message, e);
     }

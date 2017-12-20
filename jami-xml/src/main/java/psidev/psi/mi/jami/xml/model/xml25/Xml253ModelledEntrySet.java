@@ -21,6 +21,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Xml253ModelledEntrySet extends AbstractEntrySet<ModelledEntry> {
 
+    /**
+     * <p>getEntries.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     @XmlElement(type=ModelledEntry.class, name="entry", required = true)
     public List<ModelledEntry> getEntries() {
         return super.getEntries();

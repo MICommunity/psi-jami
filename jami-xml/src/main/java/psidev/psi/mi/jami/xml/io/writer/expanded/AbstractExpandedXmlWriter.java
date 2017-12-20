@@ -23,47 +23,83 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends AbstractXmlWriter<T> {
 
     private Class<T> type;
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     */
     public AbstractExpandedXmlWriter(Class<T> type) {
         super();
         this.type = type;
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlWriter(Class<T> type, File file) throws IOException, XMLStreamException {
         super(file);
         this.type = type;
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlWriter(Class<T> type, OutputStream output) throws XMLStreamException {
         super(output);
         this.type = type;
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlWriter(Class<T> type, Writer writer) throws XMLStreamException {
         super(writer);
         this.type = type;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseOptionalWriters(PsiXmlExperimentWriter experimentWriter, PsiXmlElementWriter<String> availabilityWriter,
                                              PsiXmlElementWriter<Interactor> interactorWriter) {
         // no optional writers for experiments, interactors and availability
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected AbstractExpandedXmlWriter(Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
         super(streamWriter, elementCache);
         this.type = type;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultElementCache() {
         setElementCache(new InMemoryLightIdentityObjectCache());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartEntryContent() throws XMLStreamException {
         // write start entry
@@ -74,10 +110,20 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
         writeStartInteractionList();
     }
 
+    /**
+     * <p>getInteractionType.</p>
+     *
+     * @return a {@link java.lang.Class} object.
+     */
     protected Class<T> getInteractionType() {
         return type;
     }
 
+    /**
+     * <p>writeInteraction.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInteraction() throws XMLStreamException {
         // write interaction
         super.writeInteraction();
@@ -85,6 +131,7 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
         getElementCache().removeObject(getInteractionWriter().extractDefaultExperimentFrom(getCurrentInteraction()));
     }
 
+    /** {@inheritDoc} */
     protected void writeComplex(ModelledInteraction modelled) {
         super.writeComplex(modelled);
         // remove experiments

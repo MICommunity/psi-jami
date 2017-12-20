@@ -16,30 +16,50 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>02/04/13</pre>
  */
-
 public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEvidence, ParticipantEvidence, FeatureEvidence>{
 
+    /**
+     * <p>Constructor for MIEvidenceHtmlWriter.</p>
+     */
     public MIEvidenceHtmlWriter() {
         super(new MIModelledHtmlWriter());
     }
 
+    /**
+     * <p>Constructor for MIEvidenceHtmlWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MIEvidenceHtmlWriter(File file) throws IOException {
         super(file, new MIModelledHtmlWriter(file));
     }
 
+    /**
+     * <p>Constructor for MIEvidenceHtmlWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public MIEvidenceHtmlWriter(OutputStream output) {
         super(output, new MIModelledHtmlWriter(output));
     }
 
+    /**
+     * <p>Constructor for MIEvidenceHtmlWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public MIEvidenceHtmlWriter(Writer writer) {
         super(writer, new MIModelledHtmlWriter(writer));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeCooperativeEffects(InteractionEvidence interaction) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(InteractionEvidence interaction) throws IOException {
         if (!interaction.getConfidences().isEmpty()){
@@ -51,6 +71,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(InteractionEvidence interaction) throws IOException {
         if (!interaction.getParameters().isEmpty()){
@@ -66,6 +87,12 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /**
+     * <p>writeExperiment</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeExperiment(InteractionEvidence interaction) throws IOException {
         Experiment experiment = interaction.getExperiment();
         if (experiment != null){
@@ -125,6 +152,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(ParticipantEvidence participant) throws IOException {
         if (!participant.getConfidences().isEmpty()){
@@ -136,6 +164,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(ParticipantEvidence participant) throws IOException {
         if (!participant.getParameters().isEmpty()){
@@ -151,6 +180,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalPreparations(ParticipantEvidence participant) throws IOException {
         int index = 1;
@@ -160,6 +190,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExpressedInOrganism(ParticipantEvidence participant) throws IOException {
         if (participant.getExpressedInOrganism() != null){
@@ -167,11 +198,13 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalRole(ParticipantEvidence participant) throws IOException {
         writeCvTerm("Experimental role", participant.getExperimentalRole());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParticipantIdentificationMethods(ParticipantEvidence participant) throws IOException {
         for (CvTerm ref : participant.getIdentificationMethods()){
@@ -179,6 +212,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeGeneralProperties(InteractionEvidence interaction) throws IOException {
         // write IMEx id
@@ -228,6 +262,7 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         return buffer.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeDetectionMethods(FeatureEvidence feature) throws IOException {
         for (CvTerm ref : feature.getDetectionMethods()){
@@ -235,6 +270,12 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
         }
     }
 
+    /**
+     * <p>writePublication</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writePublication(Publication publication) throws IOException {
         if (publication != null){
             getWriter().write("        <tr>");

@@ -10,8 +10,17 @@ import psidev.psi.mi.jami.model.Feature;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public interface ExtendedPsiXmlFeature<P extends Entity, F extends Feature> extends Feature<P,F> {
+    /**
+     * <p>getId.</p>
+     *
+     * @return a int.
+     */
     public int getId();
+    /**
+     * <p>setId.</p>
+     *
+     * @param id a int.
+     */
     public void setId(int id);
 }

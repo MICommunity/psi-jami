@@ -31,21 +31,43 @@ public class XmlExperiment extends AbstractXmlExperiment {
 
     private JAXBVariableParameterWrapper jaxbVariableParameterWrapper;
 
+    /**
+     * <p>Constructor for XmlExperiment.</p>
+     */
     public XmlExperiment() {
     }
 
+    /**
+     * <p>Constructor for XmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public XmlExperiment(Publication publication) {
         super(publication);
     }
 
+    /**
+     * <p>Constructor for XmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlExperiment(Publication publication, CvTerm interactionDetectionMethod) {
         super(publication, interactionDetectionMethod);
     }
 
+    /**
+     * <p>Constructor for XmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public XmlExperiment(Publication publication, CvTerm interactionDetectionMethod, Organism organism) {
         super(publication, interactionDetectionMethod, organism);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<VariableParameter> getVariableParameters() {
         if (this.jaxbVariableParameterWrapper == null){
@@ -54,6 +76,11 @@ public class XmlExperiment extends AbstractXmlExperiment {
         return this.jaxbVariableParameterWrapper.variableParameters;
     }
 
+    /**
+     * <p>setJAXBVariableParameterValuesWrapper.</p>
+     *
+     * @param jaxbVariableParameterList a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlExperiment.JAXBVariableParameterWrapper} object.
+     */
     @XmlElement(name = "variableParameterList")
     public void setJAXBVariableParameterValuesWrapper(JAXBVariableParameterWrapper jaxbVariableParameterList) {
         this.jaxbVariableParameterWrapper = jaxbVariableParameterList;
@@ -65,6 +92,7 @@ public class XmlExperiment extends AbstractXmlExperiment {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFullNameFromPublication(BibRef publication) {
         // does nothing

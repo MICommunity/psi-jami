@@ -17,18 +17,24 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlPublicationWriter extends AbstractXmlPublicationWriter {
 
+    /**
+     * <p>Constructor for XmlPublicationWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlPublicationWriter(XMLStreamWriter writer){
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeBibrefContent(Publication object) throws MIIOException {
         try {

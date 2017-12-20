@@ -51,15 +51,29 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlExperiment.</p>
+     */
     public AbstractXmlExperiment(){
     }
 
+    /**
+     * <p>Constructor for AbstractXmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlExperiment(Publication publication){
 
         this.publication = publication;
         this.interactionDetectionMethod = new XmlCvTerm(Experiment.UNSPECIFIED_METHOD, new XmlXref(CvTermUtils.createPsiMiDatabase(), Experiment.UNSPECIFIED_METHOD_MI, CvTermUtils.createIdentityQualifier()));
     }
 
+    /**
+     * <p>Constructor for AbstractXmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlExperiment(Publication publication, CvTerm interactionDetectionMethod){
 
         this.publication = publication;
@@ -71,6 +85,13 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>Constructor for AbstractXmlExperiment.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public AbstractXmlExperiment(Publication publication, CvTerm interactionDetectionMethod, Organism organism){
         this(publication, interactionDetectionMethod);
         if (organism != null){
@@ -79,10 +100,16 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.publication;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         this.publication = publication;
         if (this.xrefContainer == null){
@@ -91,6 +118,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         this.xrefContainer.setPublication(this.publication);
     }
 
+    /** {@inheritDoc} */
     public void setPublicationAndAddExperiment(Publication publication) {
         if (this.publication != null){
             this.publication.removeExperiment(this);
@@ -106,6 +134,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         this.xrefContainer.setPublication(this.publication);
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (this.xrefContainer == null){
             this.xrefContainer = new ExperimentXrefContainer();
@@ -114,10 +147,16 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.xrefContainer.getXrefs();
     }
 
+    /**
+     * <p>getHostOrganism.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getHostOrganism() {
         return (this.jaxbHostOrganismWrapper != null && !this.jaxbHostOrganismWrapper.hostOrganisms.isEmpty())? this.jaxbHostOrganismWrapper.hostOrganisms.iterator().next() : null;
     }
 
+    /** {@inheritDoc} */
     public void setHostOrganism(Organism organism) {
         if (this.jaxbHostOrganismWrapper == null && organism != null){
             this.jaxbHostOrganismWrapper = new JAXBHostOrganismWrapper();
@@ -139,22 +178,16 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the interactionDetectionMethod property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionDetectionMethod() {
         return interactionDetectionMethod;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the interactionDetectionMethod property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
      */
     public void setInteractionDetectionMethod(CvTerm value) {
         if (value == null){
@@ -165,6 +198,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>getConfidences.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Confidence> getConfidences() {
         if (jaxbConfidenceWrapper == null){
             initialiseConfidenceWrapper();
@@ -172,6 +210,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.jaxbConfidenceWrapper.confidences;
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -179,6 +222,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>getInteractionEvidences.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (interactions == null){
             initialiseInteractions();
@@ -186,6 +234,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.interactions;
     }
 
+    /** {@inheritDoc} */
     public boolean addInteractionEvidence(InteractionEvidence evidence) {
         if (evidence == null){
             return false;
@@ -198,6 +247,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean removeInteractionEvidence(InteractionEvidence evidence) {
         if (evidence == null){
             return false;
@@ -210,6 +260,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllInteractionEvidences(Collection<? extends InteractionEvidence> evidences) {
         if (evidences == null){
             return false;
@@ -224,6 +275,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllInteractionEvidences(Collection<? extends InteractionEvidence> evidences) {
         if (evidences == null){
             return false;
@@ -238,6 +290,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return removed;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameters</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<VariableParameter> getVariableParameters() {
         if (variableParameters == null){
             initialiseVariableParameters();
@@ -245,6 +302,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return variableParameters;
     }
 
+    /** {@inheritDoc} */
     public boolean addVariableParameter(VariableParameter variableParameter) {
         if (variableParameter == null){
             return false;
@@ -257,6 +315,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean removeVariableParameter(VariableParameter variableParameter) {
         if (variableParameter == null){
             return false;
@@ -269,6 +328,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllVariableParameters(Collection<? extends VariableParameter> variableParameters) {
         if (variableParameters == null){
             return false;
@@ -283,6 +343,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllVariableParameters(Collection<? extends VariableParameter> variableParameters) {
         if (variableParameters == null){
             return false;
@@ -300,10 +361,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the namesContainer property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer }
-     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
      */
     public NamesContainer getNames() {
         return namesContainer;
@@ -314,14 +372,18 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     @XmlElement(name = "names")
     public void setNames(NamesContainer value) {
         this.namesContainer = value;
     }
 
+    /**
+     * <p>setJAXBPublication.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     */
     @XmlElement(name = "bibref", required = true)
     public void setJAXBPublication(BibRef publication) {
         setPublicationAndAddExperiment(publication);
@@ -338,6 +400,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>initialiseFullNameFromPublication.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     */
     protected abstract void initialiseFullNameFromPublication(BibRef publication);
 
     /**
@@ -345,8 +412,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer}
      */
     @XmlElement(name = "xref")
     public void setJAXBXref(ExperimentXrefContainer value) {
@@ -356,6 +422,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>setJAXBHostOrganismWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlExperiment.JAXBHostOrganismWrapper} object.
+     */
     @XmlElement(name="hostOrganismList")
     public void setJAXBHostOrganismWrapper(JAXBHostOrganismWrapper wrapper) {
         this.jaxbHostOrganismWrapper = wrapper;
@@ -372,8 +443,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm}
      */
     @XmlElement(name = "interactionDetectionMethod", required = true)
     public void setJAXBInteractionDetectionMethod(XmlCvTerm value) {
@@ -388,22 +458,16 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the participantIdentificationMethod property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getParticipantIdentificationMethod() {
         return participantIdentificationMethod;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the participantIdentificationMethod property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
      */
     @XmlElement(name = "participantIdentificationMethod", type = XmlCvTerm.class)
     public void setParticipantIdentificationMethod(CvTerm value) {
@@ -413,33 +477,37 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the featureDetectionMethod property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getFeatureDetectionMethod() {
         return featureDetectionMethod;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the featureDetectionMethod property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm }
-     *
      */
     @XmlElement(name = "featureDetectionMethod", type = XmlCvTerm.class)
     public void setFeatureDetectionMethod(CvTerm value) {
         this.featureDetectionMethod = value;
     }
 
+    /**
+     * <p>setJAXBConfidenceWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlExperiment.JAXBConfidenceWrapper} object.
+     */
     @XmlElement(name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
         this.jaxbConfidenceWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlExperiment.JAXBAttributeWrapper} object.
+     */
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;
@@ -542,14 +610,16 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the id property.
      *
+     * @return a int.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Sets the value of the id property.
+     * {@inheritDoc}
      *
+     * Sets the value of the id property.
      */
     public void setId(int value) {
         this.id = value;
@@ -559,21 +629,33 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param value a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         setId(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "ExperimentDescription: "+getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), getId());
@@ -581,6 +663,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -594,11 +677,13 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getShortName() {
         return this.namesContainer != null ? this.namesContainer.getShortLabel():null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
         if (this.namesContainer == null){
@@ -607,11 +692,13 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         this.namesContainer.setShortLabel(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return this.namesContainer != null ? this.namesContainer.getFullName():null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         if (this.namesContainer == null){
@@ -620,6 +707,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         this.namesContainer.setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
         if (this.namesContainer == null){
@@ -628,6 +716,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.namesContainer.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Organism> getHostOrganisms() {
         if (this.jaxbHostOrganismWrapper == null){
@@ -636,18 +725,30 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         return this.jaxbHostOrganismWrapper.hostOrganisms;
     }
 
+    /**
+     * <p>initialiseAnnotationWrapper.</p>
+     */
     protected void initialiseAnnotationWrapper(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>initialiseInteractions.</p>
+     */
     protected void initialiseInteractions(){
         this.interactions = new ArrayList<InteractionEvidence>();
     }
 
+    /**
+     * <p>initialiseConfidenceWrapper.</p>
+     */
     protected void initialiseConfidenceWrapper(){
         this.jaxbConfidenceWrapper = new JAXBConfidenceWrapper();
     }
 
+    /**
+     * <p>initialiseVariableParameters.</p>
+     */
     protected void initialiseVariableParameters(){
         this.variableParameters = new ArrayList<VariableParameter>();
     }

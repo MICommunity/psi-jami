@@ -7,11 +7,16 @@ package psidev.psi.mi.jami.crosslink.io.parser;
  * @version $Id$
  * @since <pre>22/08/14</pre>
  */
-
 public enum CrossLinkCSVColumns {
 
     protein1, protein2, peppos1, peppos2, linkpos1, linkpos2, narygroup;
 
+    /**
+     * <p>convertFromString.</p>
+     *
+     * @param val a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.crosslink.io.parser.CrossLinkCSVColumns} object.
+     */
     public static CrossLinkCSVColumns convertFromString(String val){
          if (val == null){
               return null;

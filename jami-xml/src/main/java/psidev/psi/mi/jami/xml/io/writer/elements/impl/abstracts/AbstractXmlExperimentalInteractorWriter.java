@@ -17,11 +17,16 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<ExperimentalInteractor> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for AbstractXmlExperimentalInteractorWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlExperimentalInteractorWriter");
@@ -32,6 +37,7 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
         }
         this.objectIndex = objectIndex;
     }
+    /** {@inheritDoc} */
     @Override
     public void write(ExperimentalInteractor object) throws MIIOException {
         try {
@@ -57,12 +63,28 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
         }
     }
 
+    /**
+     * <p>writeInteractor.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeInteractor(Interactor interactor) throws XMLStreamException;
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }

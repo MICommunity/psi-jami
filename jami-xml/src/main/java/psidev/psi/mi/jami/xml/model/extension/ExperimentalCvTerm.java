@@ -27,13 +27,15 @@ import java.util.List;
 /**
  * This elements is controlled by the PSI-MI controlled vocabulary
  *                 "experimentalPreparation", root term id MI:0346.
- *             
- * 
+ *
+ *
  * <p>Java class for experimentalPreparation complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * The JAXB binding is designed to be read-only and is not designed for writing
+ *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public class ExperimentalCvTerm
@@ -41,29 +43,68 @@ public class ExperimentalCvTerm
 {
     private JAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     */
     public ExperimentalCvTerm() {
     }
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public ExperimentalCvTerm(String shortName, String miIdentifier) {
         super(shortName, miIdentifier);
     }
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public ExperimentalCvTerm(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public ExperimentalCvTerm(String shortName, String fullName, String miIdentifier) {
         super(shortName, fullName, miIdentifier);
     }
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public ExperimentalCvTerm(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for ExperimentalCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public ExperimentalCvTerm(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (this.jaxbExperimentRefWrapper == null){
             this.jaxbExperimentRefWrapper = new JAXBExperimentRefWrapper();
@@ -74,16 +115,14 @@ public class ExperimentalCvTerm
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.ExperimentalCvTerm.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {
         this.jaxbExperimentRefWrapper = wrapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Experimental Cv Term: "+getSourceLocator().toString():super.toString());

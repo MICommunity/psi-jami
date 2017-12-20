@@ -16,12 +16,18 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInteractorWriter implements CompactPsiXmlElementWriter<ExperimentalInteractor> {
+    /**
+     * <p>Constructor for XmlExperimentalInteractorWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeInteractor(Interactor interactor) throws XMLStreamException {
         if (interactor != null){

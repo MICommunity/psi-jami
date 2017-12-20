@@ -11,6 +11,5 @@ import psidev.psi.mi.jami.model.NamedParticipant;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public interface ExtendedPsiXmlParticipant<I extends Interaction, F extends Feature> extends ExtendedPsiXmlEntity<F>, NamedParticipant<I,F> {
 }

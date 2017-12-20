@@ -11,27 +11,33 @@ import psidev.psi.mi.jami.model.Publication;
  * @version $Id$
  * @since <pre>29/03/12</pre>
  */
-
 public interface ImexCentralPublicationRegister {
 
     /**
      * Retrieve an existing record in IMEx central matching the publication identifier (pubmed, doi, jint or imex).
      * Returns null if we cannot find a record in IMEx central for this publication identifier.
-     * @param publicationId
-     * @param source
-     * @return
+     *
+     * @param publicationId a {@link java.lang.String} object.
+     * @param source a {@link java.lang.String} object.
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if it is not possible to retrieve any publications with this identifier
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getExistingPublicationInImexCentral(String publicationId, String source) throws BridgeFailedException;
 
     /**
      * Register a publication in IMEx central which is not existing in IMEx central. Can only register publications having valid pubmed id
      * imex ids or doi numbers.
-     * @param publication
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return  the record in IMEx central which have been created, Null if it could not create a record in IMEx central
-     * @throws BridgeFailedException if it is not possible to create a new record for this publication (may already exists, publication identifier not recognized, etc.)
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if it is not possible to create a new record for this publication (may already exists, publication identifier not recognized, etc.)
      */
     public Publication registerPublicationInImexCentral(Publication publication) throws BridgeFailedException;
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient();
 }

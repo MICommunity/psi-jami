@@ -15,7 +15,6 @@ import psidev.psi.mi.jami.xml.io.writer.expanded.*;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class PsiXmlWriterFactory {
 
     private static final PsiXmlWriterFactory instance = new PsiXmlWriterFactory();
@@ -23,10 +22,25 @@ public class PsiXmlWriterFactory {
     private PsiXmlWriterFactory(){
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.PsiXmlWriterFactory} object.
+     */
     public static PsiXmlWriterFactory getInstance() {
         return instance;
     }
 
+    /**
+     * <p>createPsiXmlWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param extended a boolean.
+     * @param named a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createPsiXmlWriter(InteractionCategory interactionCategory, ComplexType complexType,
                                                 PsiXmlType type, boolean extended, boolean named){
         switch (complexType){
@@ -37,6 +51,15 @@ public class PsiXmlWriterFactory {
         }
     }
 
+    /**
+     * <p>createPsiXmlBinaryWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param extended a boolean.
+     * @param named a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createPsiXmlBinaryWriter(InteractionCategory interactionCategory,
                                                       PsiXmlType type, boolean extended, boolean named){
         if (interactionCategory == null){
@@ -135,6 +158,15 @@ public class PsiXmlWriterFactory {
         }
     }
 
+    /**
+     * <p>createPsiXmlWriter.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param extended a boolean.
+     * @param named a boolean.
+     * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
+     */
     public InteractionWriter createPsiXmlWriter(InteractionCategory interactionCategory, PsiXmlType type,
                                                 boolean extended, boolean named){
         if (interactionCategory == null){

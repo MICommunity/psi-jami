@@ -22,29 +22,57 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<BinaryInteractionEvidence> {
 
+    /**
+     * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
+     */
     public ExpandedXmlBinaryEvidenceWriter() {
         super(BinaryInteractionEvidence.class);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlBinaryEvidenceWriter(File file) throws IOException, XMLStreamException {
         super(BinaryInteractionEvidence.class, file);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlBinaryEvidenceWriter(OutputStream output) throws XMLStreamException {
         super(BinaryInteractionEvidence.class, output);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlBinaryEvidenceWriter(Writer writer) throws XMLStreamException {
         super(BinaryInteractionEvidence.class, writer);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public ExpandedXmlBinaryEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
         super(BinaryInteractionEvidence.class, streamWriter, elementCache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         Experiment exp = getCurrentInteraction().getExperiment();
@@ -54,6 +82,7 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
         return super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(false, false, PsiXmlType.expanded, InteractionCategory.evidence, ComplexType.binary);

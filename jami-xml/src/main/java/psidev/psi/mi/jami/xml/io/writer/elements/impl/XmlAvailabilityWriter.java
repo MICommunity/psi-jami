@@ -14,12 +14,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlAvailabilityWriter implements PsiXmlElementWriter<String> {
 
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlAvailabilityWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlAvailabilityWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlAvailabilityWriter");
@@ -31,6 +36,7 @@ public class XmlAvailabilityWriter implements PsiXmlElementWriter<String> {
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(String object) throws MIIOException {
         try {

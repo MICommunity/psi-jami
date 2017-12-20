@@ -19,10 +19,20 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     private static final Logger logger = Logger.getLogger("AbstractInteractorRef");
     private ExtendedPsiXmlInteractor delegate;
 
+    /**
+     * <p>Constructor for AbstractInteractorRef.</p>
+     *
+     * @param ref a int.
+     */
     public AbstractInteractorRef(int ref) {
         super(ref);
     }
 
+    /**
+     * <p>getShortName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getShortName() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -31,6 +41,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getShortName();
     }
 
+    /** {@inheritDoc} */
     public void setShortName(String name) {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -39,6 +50,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         this.delegate.setShortName(name);
     }
 
+    /**
+     * <p>getFullName.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFullName() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -47,6 +63,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getFullName();
     }
 
+    /** {@inheritDoc} */
     public void setFullName(String name) {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -55,6 +72,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         this.delegate.setFullName(name);
     }
 
+    /**
+     * <p>getIdentifiers.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -63,6 +85,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getIdentifiers();
     }
 
+    /**
+     * <p>getPreferredIdentifier.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public Xref getPreferredIdentifier() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -71,6 +98,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getPreferredIdentifier();
     }
 
+    /**
+     * <p>getChecksums.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Checksum> getChecksums() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -79,6 +111,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getChecksums();
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -87,6 +124,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getXrefs();
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -95,6 +137,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getAnnotations();
     }
 
+    /**
+     * <p>getAliases.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Alias> getAliases() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -103,6 +150,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getAliases();
     }
 
+    /**
+     * <p>getOrganism.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getOrganism() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -111,6 +163,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getOrganism();
     }
 
+    /** {@inheritDoc} */
     public void setOrganism(Organism organism) {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -119,6 +172,11 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         this.delegate.setOrganism(organism);
     }
 
+    /**
+     * <p>getInteractorType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getInteractorType() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -127,6 +185,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         return this.delegate.getInteractorType();
     }
 
+    /** {@inheritDoc} */
     public void setInteractorType(CvTerm type) {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (this.delegate == null){
@@ -135,6 +194,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         this.delegate.setInteractorType(type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -144,24 +204,39 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
         this.delegate.setId(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return this.delegate != null ? this.delegate.getId() : this.ref;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Interactor Reference: "+ref+(getSourceLocator() != null ? ", "+getSourceLocator().toString():super.toString());
     }
+    /**
+     * <p>initialiseInteractorDelegate.</p>
+     */
     protected void initialiseInteractorDelegate(){
         this.delegate = new XmlInteractor();
         this.delegate.setId(this.ref);
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
+     */
     protected ExtendedPsiXmlInteractor getDelegate() {
         return delegate;
     }
 
+    /**
+     * <p>Setter for the field <code>delegate</code>.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
+     */
     protected void setDelegate(ExtendedPsiXmlInteractor delegate) {
         this.delegate = delegate;
     }

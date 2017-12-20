@@ -35,9 +35,18 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlAnnotation.</p>
+     */
     public AbstractXmlAnnotation() {
     }
 
+    /**
+     * <p>Constructor for AbstractXmlAnnotation.</p>
+     *
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public AbstractXmlAnnotation(CvTerm topic, String value) {
         if (topic == null){
             throw new IllegalArgumentException("The annotation topic cannot be null.");
@@ -46,6 +55,11 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         this.value = value;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlAnnotation.</p>
+     *
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlAnnotation(CvTerm topic) {
         if (topic == null){
             throw new IllegalArgumentException("The annotation topic cannot be null.");
@@ -53,6 +67,11 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         this.topic = topic;
     }
 
+    /**
+     * <p>Getter for the field <code>topic</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getTopic() {
         if (topic == null){
             this.topic = new DefaultCvTerm(PsiXmlUtils.UNSPECIFIED);
@@ -60,10 +79,16 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         return this.topic;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getValue() {
         return this.value;
     }
 
+    /** {@inheritDoc} */
     @XmlValue
     public void setValue(String value) {
         this.value = value;
@@ -74,8 +99,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "name", required = true)
     public void setJAXBName(String value) {
@@ -98,8 +122,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "nameAc")
     public void setJAXBNameAc(String value) {
@@ -111,11 +134,17 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -123,6 +152,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -135,11 +165,13 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousAnnotationComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -153,6 +185,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
         return UnambiguousAnnotationComparator.areEquals(this, (Annotation) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Xml Annotation: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

@@ -12,9 +12,14 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlFeatureEvidenceWriter extends AbstractXmlFeatureEvidenceWriter {
 
+    /**
+     * <p>Constructor for XmlFeatureEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlFeatureEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }

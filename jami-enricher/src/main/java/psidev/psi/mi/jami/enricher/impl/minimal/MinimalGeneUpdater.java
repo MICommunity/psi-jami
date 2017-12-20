@@ -14,13 +14,24 @@ import psidev.psi.mi.jami.model.Gene;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 04/09/13
+
  */
 public class MinimalGeneUpdater extends AbstractInteractorUpdater<Gene> {
 
+    /**
+     * <p>Constructor for MinimalGeneUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.GeneFetcher} object.
+     */
     public MinimalGeneUpdater(GeneFetcher fetcher) {
         super(new MinimalGeneEnricher(fetcher));
     }
 
+    /**
+     * <p>Constructor for MinimalGeneUpdater.</p>
+     *
+     * @param interactorEnricher a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
+     */
     protected MinimalGeneUpdater(AbstractInteractorEnricher<Gene> interactorEnricher) {
         super(interactorEnricher);
     }

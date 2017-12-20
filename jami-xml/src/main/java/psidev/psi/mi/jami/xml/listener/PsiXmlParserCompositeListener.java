@@ -16,14 +16,17 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>13/12/13</pre>
  */
-
 public class PsiXmlParserCompositeListener extends MIFileParserCompositeListener<PsiXmlParserListener> implements PsiXmlParserListener {
 
+    /**
+     * <p>Constructor for PsiXmlParserCompositeListener.</p>
+     */
     public PsiXmlParserCompositeListener(){
         super();
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public void onUnresolvedReference(XmlIdReference ref, String message) {
         for (PsiXmlParserListener delegate : getDelegates()){
@@ -31,6 +34,7 @@ public class PsiXmlParserCompositeListener extends MIFileParserCompositeListener
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralHostOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         for (PsiXmlParserListener delegate : getDelegates()){
@@ -38,6 +42,7 @@ public class PsiXmlParserCompositeListener extends MIFileParserCompositeListener
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExpressedInOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         for (PsiXmlParserListener delegate : getDelegates()){
@@ -45,6 +50,7 @@ public class PsiXmlParserCompositeListener extends MIFileParserCompositeListener
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentalRolesFound(Collection<CvTerm> roles, FileSourceLocator locator) {
         for (PsiXmlParserListener delegate : getDelegates()){
@@ -52,6 +58,7 @@ public class PsiXmlParserCompositeListener extends MIFileParserCompositeListener
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentsFound(Collection<Experiment> experiments, FileSourceLocator locator) {
         for (PsiXmlParserListener delegate : getDelegates()){

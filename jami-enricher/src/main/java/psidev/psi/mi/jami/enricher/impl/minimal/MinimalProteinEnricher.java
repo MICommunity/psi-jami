@@ -30,16 +30,19 @@ import java.util.Collections;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/05/13
+
  */
 public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> implements ProteinEnricher {
 
     private ProteinMapper proteinMapper = null;
     private static final Logger log = LoggerFactory.getLogger(MinimalProteinEnricher.class.getName());
 
+    /** Constant <code>CAUTION_MESSAGE="This sequence has been withdrawn from U"{trunked}</code> */
     public static final String CAUTION_MESSAGE = "This sequence has been withdrawn from Uniprot.";
     /**
      * The only constructor, fulfilling the requirement of a protein fetcher.
      * If the protein fetcher is null, an illegal state exception will be thrown at the next enrichment.
+     *
      * @param fetcher   The fetcher used to collect protein records.
      */
     public MinimalProteinEnricher(ProteinFetcher fetcher){
@@ -51,6 +54,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
 
     /**
      * The fetcher to be used for used to collect data.
+     *
      * @return  The fetcher which is currently being used for fetching.
      */
     public ProteinFetcher getInteractorFetcher() {
@@ -58,20 +62,23 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
     }
 
     /**
+     * {@inheritDoc}
+     *
      * The protein mapper to be used when a protein doesn't have a uniprot id or the uniprotID is dead.
-     * @param proteinMapper   The remapper to use.
      */
     public void setProteinMapper(ProteinMapper proteinMapper){
         this.proteinMapper = proteinMapper;
     }
     /**
      * The protein remapper has no default and can be left null
+     *
      * @return  The current remapper.
      */
     public ProteinMapper getProteinMapper(){
         return proteinMapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Protein find(Protein proteinToEnrich) throws EnricherException {
         // If there is no uniprotID - try and remap.
@@ -139,6 +146,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Protein objectToEnrich) throws EnricherException{
         if (getListener() != null){
@@ -148,11 +156,13 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onCompletedEnrichment(Protein objectToEnrich) {
         if(getListener() != null)
@@ -160,6 +170,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
                     objectToEnrich , EnrichmentStatus.SUCCESS , "The protein ["+ objectToEnrich.getUniprotkb() +"] has been successfully enriched.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInteractorCheckFailure(Protein objectToEnrich, Protein fetchedObject) throws EnricherException{
         if(getListener() != null)
@@ -167,6 +178,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
                     objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the protein ["+ objectToEnrich.getUniprotkb() +"] because the interactor type is not a protein/peptide type and/or there is a conflict with the organism.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean canEnrichInteractor(Protein entityToEnrich, Protein fetchedEntity) throws EnricherException{
         if (fetchedEntity == null){
@@ -191,6 +203,12 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
         return true;
     }
 
+    /**
+     * <p>processDeadUniprotIdentity.</p>
+     *
+     * @param proteinToEnrich a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param uniprotIdentity a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processDeadUniprotIdentity(Protein proteinToEnrich, Xref uniprotIdentity) {
         proteinToEnrich.getIdentifiers().remove(uniprotIdentity);
         if(getListener() != null){
@@ -209,6 +227,7 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
      *
      * @param proteinToEnrich   The protein to find a remapping for.
      * @return                  Whether the remapping was successful.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected boolean remapProtein(Protein proteinToEnrich) throws EnricherException {
 

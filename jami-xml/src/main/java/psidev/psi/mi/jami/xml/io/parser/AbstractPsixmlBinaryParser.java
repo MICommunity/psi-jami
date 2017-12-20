@@ -24,7 +24,6 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extends BinaryInteraction> implements PsiXmlParser<B> {
 
     private ComplexExpansionMethod<T,B> expansionMethod;
@@ -32,6 +31,11 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
     private Iterator<B> binaryInteractionIterator;
     private PsiXmlParser<T> delegateParser;
 
+    /**
+     * <p>Constructor for AbstractPsixmlBinaryParser.</p>
+     *
+     * @param delegateParser a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     */
     public AbstractPsixmlBinaryParser(PsiXmlParser<T> delegateParser) {
         if (delegateParser == null){
            throw new IllegalArgumentException("An AbstractPsiXmlParser is required to parse Xml interactions");
@@ -40,6 +44,7 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         this.binaryInteractions = new ArrayList<B>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public B parseNextInteraction() throws PsiXmlParserException {
         // first look at loaded interaction
@@ -68,6 +73,7 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasFinished() throws PsiXmlParserException {
         if (this.binaryInteractionIterator != null && this.binaryInteractionIterator.hasNext()){
@@ -76,6 +82,7 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         return delegateParser.hasFinished();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reInit() throws MIIOException {
         this.binaryInteractionIterator = null;
@@ -83,6 +90,7 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         this.delegateParser.reInit();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() {
         this.binaryInteractionIterator = null;
@@ -90,16 +98,23 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         this.delegateParser.close();
     }
 
+    /** {@inheritDoc} */
     @Override
     public PsiXmlParserListener getListener() {
         return delegateParser.getListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setListener(PsiXmlParserListener listener) {
         delegateParser.getListener();
     }
 
+    /**
+     * <p>Setter for the field <code>expansionMethod</code>.</p>
+     *
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     public void setExpansionMethod(ComplexExpansionMethod<T, B> expansionMethod) {
         this.expansionMethod = expansionMethod;
         if (expansionMethod != null){
@@ -108,6 +123,11 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         }
     }
 
+    /**
+     * <p>instantiateInteractionFactory.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.factory.BinaryInteractionFactory} object.
+     */
     protected BinaryInteractionFactory instantiateInteractionFactory() {
         BinaryInteractionFactory binaryFactory;
         switch (this.delegateParser.getVersion()){
@@ -121,25 +141,34 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         return binaryFactory;
     }
 
+    /** {@inheritDoc} */
     public void setCacheOfObjects(PsiXmlIdCache indexOfObjects) {
         this.delegateParser.setCacheOfObjects(indexOfObjects);
     }
 
+    /** {@inheritDoc} */
     @Override
     public XmlInteractorFactory getInteractorFactory() {
         return this.delegateParser.getInteractorFactory();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorFactory(XmlInteractorFactory factory) {
         this.delegateParser.setInteractorFactory(factory);
     }
 
+    /** {@inheritDoc} */
     @Override
     public PsiXmlVersion getVersion() {
         return this.delegateParser.getVersion();
     }
 
+    /**
+     * <p>Getter for the field <code>expansionMethod</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected ComplexExpansionMethod<T,B> getExpansionMethod(){
         if (expansionMethod == null){
             this.expansionMethod = initialiseDefaultExpansionMethod();
@@ -148,8 +177,18 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
         return this.expansionMethod;
     }
 
+    /**
+     * <p>initialiseDefaultExpansionMethod.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected abstract ComplexExpansionMethod<T,B> initialiseDefaultExpansionMethod();
 
+    /**
+     * <p>Getter for the field <code>delegateParser</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     */
     protected PsiXmlParser<T> getDelegateParser() {
         return delegateParser;
     }

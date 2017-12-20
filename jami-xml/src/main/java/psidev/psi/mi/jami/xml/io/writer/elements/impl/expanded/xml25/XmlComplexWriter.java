@@ -21,25 +21,33 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlComplexWriter extends AbstractXmlModelledInteractionWriter<Complex>
         implements ExpandedPsiXmlElementWriter<Complex> {
 
+    /**
+     * <p>Constructor for XmlComplexWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlComplexWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter( new XmlModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(Complex object) throws XMLStreamException {
         super.setDefaultExperiment(extractDefaultExperimentFrom(object));
         return writeExperimentDescription();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(Complex interaction) {
         XmlExperiment exp = new XmlExperiment(new BibRef("Mock publication for biological complexes."));

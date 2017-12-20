@@ -20,22 +20,31 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class MinimalInteractorBaseEnricher<T extends Interactor> extends AbstractInteractorEnricher<T> {
 
+    /**
+     * <p>Constructor for MinimalInteractorBaseEnricher.</p>
+     */
     public MinimalInteractorBaseEnricher(){
         super();
     }
 
+    /**
+     * <p>Constructor for MinimalInteractorBaseEnricher.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public MinimalInteractorBaseEnricher(InteractorFetcher<T> fetcher){
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onCompletedEnrichment(T objectToEnrich) {
         if(getListener() != null)
@@ -43,11 +52,13 @@ public class MinimalInteractorBaseEnricher<T extends Interactor> extends Abstrac
                     objectToEnrich , EnrichmentStatus.SUCCESS , "The interactor has been successfully enriched.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInteractorCheckFailure(T objectToEnrich, T fetchedObject) throws EnricherException{
         // nothing to do here
     }
 
+    /** {@inheritDoc} */
     @Override
     public T find(T objectToEnrich) throws EnricherException {
         T fetchInteractor = null;

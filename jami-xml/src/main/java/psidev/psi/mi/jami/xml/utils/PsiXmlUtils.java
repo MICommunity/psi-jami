@@ -25,43 +25,81 @@ import java.util.List;
  * @version $Id$
  * @since <pre>18/07/13</pre>
  */
-
 public class PsiXmlUtils {
 
+    /** Constant <code>UNSPECIFIED="unspecified"</code> */
     public static final String UNSPECIFIED = "unspecified";
+    /** Constant <code>YEAR_FORMAT</code> */
     public final static DateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
+    /** Constant <code>STOICHIOMETRY_PREFIX="stoichiometry: "</code> */
     public static final String STOICHIOMETRY_PREFIX = "stoichiometry: ";
+    /** Constant <code>ENTRYSET_TAG="entrySet"</code> */
     public static final String ENTRYSET_TAG = "entrySet";
+    /** Constant <code>ENTRY_TAG="entry"</code> */
     public static final String ENTRY_TAG = "entry";
+    /** Constant <code>EXPERIMENTLIST_TAG="experimentList"</code> */
     public static final String EXPERIMENTLIST_TAG = "experimentList";
+    /** Constant <code>INTERACTORLIST_TAG="interactorList"</code> */
     public static final String INTERACTORLIST_TAG = "interactorList";
+    /** Constant <code>INTERACTIONLIST_TAG="interactionList"</code> */
     public static final String INTERACTIONLIST_TAG = "interactionList";
+    /** Constant <code>EXPERIMENT_TAG="experimentDescription"</code> */
     public static final String EXPERIMENT_TAG = "experimentDescription";
+    /** Constant <code>INTERACTOR_TAG="interactor"</code> */
     public static final String INTERACTOR_TAG = "interactor";
+    /** Constant <code>INTERACTION_TAG="interaction"</code> */
     public static final String INTERACTION_TAG = "interaction";
+    /** Constant <code>ABSTRACT_INTERACTION_TAG="abstractInteraction"</code> */
     public static final String ABSTRACT_INTERACTION_TAG = "abstractInteraction";
+    /** Constant <code>SOURCE_TAG="source"</code> */
     public static final String SOURCE_TAG = "source";
+    /** Constant <code>AVAILABILITYLIST_TAG="availabilityList"</code> */
     public static final String AVAILABILITYLIST_TAG = "availabilityList";
+    /** Constant <code>AVAILABILITY_TAG="availability"</code> */
     public static final String AVAILABILITY_TAG = "availability";
+    /** Constant <code>ATTRIBUTELIST_TAG="attributeList"</code> */
     public static final String ATTRIBUTELIST_TAG = "attributeList";
+    /** Constant <code>ATTRIBUTE_TAG="attribute"</code> */
     public static final String ATTRIBUTE_TAG = "attribute";
 
+    /** Constant <code>LINE_BREAK="\n"</code> */
     public static final String LINE_BREAK = "\n";
+    /** Constant <code>XML_BUFFER_SIZE=2048</code> */
     public static final int XML_BUFFER_SIZE = 2048;
 
+    /** Constant <code>Xml300_NAMESPACE_URI="http://psi.hupo.org/mi/mif300"</code> */
     public final static String Xml300_NAMESPACE_URI = "http://psi.hupo.org/mi/mif300";
+    /** Constant <code>Xml254_NAMESPACE_URI="http://psi.hupo.org/mi/mif"</code> */
     public final static String Xml254_NAMESPACE_URI = "http://psi.hupo.org/mi/mif";
+    /** Constant <code>Xml253_NAMESPACE_URI="net:sf:psidev:mi"</code> */
     public final static String Xml253_NAMESPACE_URI = "net:sf:psidev:mi";
+    /** Constant <code>XML_SCHEMA="http://www.w3.org/2001/XMLSchema-instan"{trunked}</code> */
     public final static String XML_SCHEMA = "http://www.w3.org/2001/XMLSchema-instance";
+    /** Constant <code>XML_SCHEMA_PREFIX="xsi"</code> */
     public final static String XML_SCHEMA_PREFIX = "xsi";
+    /** Constant <code>PSI_SCHEMA_300_LOCATION="http://psi.hupo.org/mi/mif300 https://r"{trunked}</code> */
     public final static String PSI_SCHEMA_300_LOCATION = "http://psi.hupo.org/mi/mif300 https://raw.githubusercontent.com/HUPO-PSI/miXML/master/3.0/src/MIF300.xsd";
+    /** Constant <code>PSI_SCHEMA_254_LOCATION="http://psi.hupo.org/mi/mif https://raw."{trunked}</code> */
     public final static String PSI_SCHEMA_254_LOCATION = "http://psi.hupo.org/mi/mif https://raw.githubusercontent.com/HUPO-PSI/miXML/master/2.5/src/MIF254.xsd";
+    /** Constant <code>PSI_SCHEMA_253_LOCATION="net:sf:psidev:mi https://raw.githubuser"{trunked}</code> */
     public final static String PSI_SCHEMA_253_LOCATION = "net:sf:psidev:mi https://raw.githubusercontent.com/HUPO-PSI/miXML/master/2.5/src/MIF253.xsd";
+    /** Constant <code>SCHEMA_LOCATION_ATTRIBUTE="schemaLocation"</code> */
     public final static String SCHEMA_LOCATION_ATTRIBUTE = "schemaLocation";
+    /** Constant <code>MINOR_VERSION_ATTRIBUTE="minorVersion"</code> */
     public final static String MINOR_VERSION_ATTRIBUTE="minorVersion";
+    /** Constant <code>VERSION_ATTRIBUTE="version"</code> */
     public final static String VERSION_ATTRIBUTE="version";
+    /** Constant <code>LEVEL_ATTRIBUTE="level"</code> */
     public final static String LEVEL_ATTRIBUTE="level";
 
+    /**
+     * <p>extractCooperativeEffectFrom.</p>
+     *
+     * @param annots a {@link java.util.Collection} object.
+     * @param experiments a {@link java.util.Collection} object.
+     * @param listener a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
+     * @return a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     */
     public static CooperativeEffect extractCooperativeEffectFrom(Collection<Annotation> annots, Collection<Experiment> experiments,
                                                                  PsiXmlParserListener listener){
         if (!annots.isEmpty()){
@@ -302,6 +340,16 @@ public class PsiXmlUtils {
         return null;
     }
 
+    /**
+     * <p>writeCompleteNamesElement.</p>
+     *
+     * @param shortLabel a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param aliases a {@link java.util.Collection} object.
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public static void writeCompleteNamesElement(String shortLabel, String fullName, Collection<Alias> aliases, XMLStreamWriter writer,
                                                  PsiXmlElementWriter<Alias> aliasWriter) throws XMLStreamException {
         // write names
@@ -332,6 +380,14 @@ public class PsiXmlUtils {
         }
     }
 
+    /**
+     * <p>writeCompleteNamesForExperiment.</p>
+     *
+     * @param xmlExperiment a {@link psidev.psi.mi.jami.model.NamedExperiment} object.
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public static void writeCompleteNamesForExperiment(NamedExperiment xmlExperiment, XMLStreamWriter writer,
                                                        PsiXmlElementWriter<Alias> aliasWriter) throws XMLStreamException {
         boolean hasExperimentFullLabel = xmlExperiment.getFullName() != null;

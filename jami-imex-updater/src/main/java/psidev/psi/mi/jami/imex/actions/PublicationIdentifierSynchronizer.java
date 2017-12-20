@@ -13,16 +13,19 @@ import psidev.psi.mi.jami.model.Publication;
  * @version $Id$
  * @since <pre>29/03/12</pre>
  */
-
 public interface PublicationIdentifierSynchronizer {
+    /** Constant <code>INTERNAL="jint"</code> */
     public static String INTERNAL = "jint";
 
     /**
      * It will look at all identifiers attached to the record in IMEx central and see if the publication identifier is also attached to the
      * IMEx record
-     * @param pubId
-     * @param imexPublication
+     *
+     * @param pubId a {@link java.lang.String} object.
+     * @param imexPublication a {@link psidev.psi.mi.jami.bridges.imex.extension.ImexPublication} object.
      * @return true if the publication identifier is in IMEx central, false otherwise
+     * @param source a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public boolean isPublicationIdentifierInSyncWithImexCentral(String pubId, String source, ImexPublication imexPublication) throws BridgeFailedException;
 
@@ -30,12 +33,18 @@ public interface PublicationIdentifierSynchronizer {
      * Update the IMEx record in case intact publication has a valid pubmed, unassigned or doi identifier that is not in IMEx central.
      * It will not update the publication and it is possible that it will not update the IMEx record if the pubmed or doi identifier is different in IMEx central.
      * The publication record in IMEx central should have a valid IMEx id.
-     * @param publication
-     * @param imexPublication
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param imexPublication a {@link psidev.psi.mi.jami.model.Publication} object.
      * @throws psidev.psi.mi.jami.enricher.exception.EnricherException : if the pubmed/doi identifier is different from the one in IMEx central
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException : if record not found, idnetifier s not recognized or IMEx central is not responding
      */
     public void synchronizePublicationIdentifier(Publication publication, Publication imexPublication) throws EnricherException, BridgeFailedException;
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient();
 }

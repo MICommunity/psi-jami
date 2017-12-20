@@ -38,15 +38,24 @@ public class BindingFeatures implements FileSourceContext, Locatable {
     private JAXBFeatureRefList jaxbFeatureRefs;
     private List<ModelledFeature> linkedFeatures;
 
+    /**
+     * <p>Constructor for BindingFeatures.</p>
+     */
     public BindingFeatures() {
         XmlEntryContext.getInstance().registerBindingFeature(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -54,6 +63,7 @@ public class BindingFeatures implements FileSourceContext, Locatable {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -66,6 +76,11 @@ public class BindingFeatures implements FileSourceContext, Locatable {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>linkedFeatures</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledFeature> getLinkedFeatures() {
         if (linkedFeatures == null){
             linkedFeatures = new ArrayList<ModelledFeature>();
@@ -73,6 +88,11 @@ public class BindingFeatures implements FileSourceContext, Locatable {
         return this.linkedFeatures;
     }
 
+    /**
+     * <p>getJAXBFeatureRefs.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     @XmlElement(name = "participantFeatureRef", type = Integer.class, required = true, namespace = "http://psi.hupo.org/mi/mif300")
     public List<Integer> getJAXBFeatureRefs() {
         if (this.jaxbFeatureRefs == null){

@@ -20,23 +20,35 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlNamedInteractionEvidenceWriter extends XmlInteractionEvidenceWriter{
     private PsiXmlElementWriter<Alias> aliasWriter;
+    /**
+     * <p>Constructor for XmlNamedInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter() {
         super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(getStreamWriter());
@@ -44,10 +56,16 @@ public class XmlNamedInteractionEvidenceWriter extends XmlInteractionEvidenceWri
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(InteractionEvidence object) throws XMLStreamException {
         if (object instanceof NamedInteraction){

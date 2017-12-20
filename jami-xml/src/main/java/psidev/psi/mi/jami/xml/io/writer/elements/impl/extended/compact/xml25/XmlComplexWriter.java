@@ -24,25 +24,33 @@ import java.util.List;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public class XmlComplexWriter extends AbstractXmlModelledInteractionWriter<Complex>
         implements CompactPsiXmlElementWriter<Complex> {
 
+    /**
+     * <p>Constructor for XmlComplexWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlComplexWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(Complex object) throws XMLStreamException {
         super.setDefaultExperiment(extractDefaultExperimentFrom(object));
         return writeExperimentRef();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(Complex interaction) {
         XmlExperiment exp = new XmlExperiment(new BibRef("Mock publication for biological complexes."));
@@ -54,6 +62,7 @@ public class XmlComplexWriter extends AbstractXmlModelledInteractionWriter<Compl
         return exp;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Experiment> extractDefaultExperimentsFrom(Complex interaction) {
         return Arrays.asList(extractDefaultExperimentFrom(interaction));

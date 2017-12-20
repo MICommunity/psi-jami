@@ -15,6 +15,7 @@ import psidev.psi.mi.jami.model.InteractorPool;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  12/06/13
+
  */
 public class InteractorPoolEnricherListenerManager
         extends InteractorEnricherListenerManager<InteractorPool>
@@ -27,6 +28,7 @@ public class InteractorPoolEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public InteractorPoolEnricherListenerManager(InteractorPoolEnricherListener... listeners){
@@ -35,6 +37,7 @@ public class InteractorPoolEnricherListenerManager
 
     //============================================================================================
 
+    /** {@inheritDoc} */
     public void onAddedInteractor(InteractorPool interactor, Interactor added) {
         for(InteractorEnricherListener<InteractorPool> l : getListenersList()){
             if (l instanceof InteractorPoolEnricherListener){
@@ -43,6 +46,7 @@ public class InteractorPoolEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedInteractor(InteractorPool interactor, Interactor removed) {
         for(InteractorEnricherListener<InteractorPool> l : getListenersList()){
             if (l instanceof InteractorPoolEnricherListener){

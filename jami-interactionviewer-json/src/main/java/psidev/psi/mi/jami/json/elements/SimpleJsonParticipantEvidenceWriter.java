@@ -17,23 +17,41 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWriter<ParticipantEvidence>{
 
     private JsonElementWriter<Parameter> parameterWriter;
     private JsonElementWriter<Confidence> confidenceWriter;
     private JsonElementWriter<Organism> hostOrganismWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonParticipantEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonParticipantEvidenceWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                                Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants) {
         super(writer, processedFeatures, processedInteractors, processedParticipants);
     }
 
+    /**
+     * <p>Constructor for SimpleJsonParticipantEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public SimpleJsonParticipantEvidenceWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                                Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator, OntologyTermFetcher fetcher) {
         super(writer, processedFeatures, processedInteractors, processedParticipants, idGenerator, fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultFeatureWriter() {
         super.setFeatureWriter(new SimpleJsonFeatureEvidenceWriter(getWriter(), getProcessedFeatures(), getProcessedInteractors(),
@@ -42,6 +60,11 @@ public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWr
         ((SimpleJsonFeatureEvidenceWriter)getFeatureWriter()).setParameterWriter(getParameterWriter());
     }
 
+    /**
+     * <p>Getter for the field <code>parameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Parameter> getParameterWriter() {
         if (this.parameterWriter == null){
             this.parameterWriter = new SimpleJsonParameterWriter(getWriter());
@@ -49,10 +72,20 @@ public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWr
         return parameterWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>parameterWriter</code>.</p>
+     *
+     * @param parameterWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setParameterWriter(JsonElementWriter<Parameter> parameterWriter) {
         this.parameterWriter = parameterWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Confidence> getConfidenceWriter() {
         if (this.confidenceWriter == null){
             this.confidenceWriter = new SimpleJsonConfidenceWriter(getWriter());
@@ -60,10 +93,16 @@ public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWr
         return confidenceWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setConfidenceWriter(JsonElementWriter<Confidence> confidenceWriter) {
         this.confidenceWriter = confidenceWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(ParticipantEvidence object) throws IOException {
 
@@ -130,6 +169,11 @@ public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWr
         }
     }
 
+    /**
+     * <p>Getter for the field <code>hostOrganismWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Organism> getHostOrganismWriter() {
         if (this.hostOrganismWriter == null){
             this.hostOrganismWriter = new SimpleJsonHostOrganismWriter(getWriter());
@@ -138,6 +182,11 @@ public class SimpleJsonParticipantEvidenceWriter extends SimpleJsonParticipantWr
         return hostOrganismWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>hostOrganismWriter</code>.</p>
+     *
+     * @param hostOrganismWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setHostOrganismWriter(JsonElementWriter<Organism> hostOrganismWriter) {
         this.hostOrganismWriter = hostOrganismWriter;
     }

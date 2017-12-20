@@ -25,29 +25,50 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class XmlComplexParser extends AbstractPsiXmlParser<Complex> {
+    /**
+     * <p>Constructor for XmlComplexParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlComplexParser(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlComplexParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     */
     public XmlComplexParser(InputStream inputStream){
         super(inputStream);
     }
 
+    /**
+     * <p>Constructor for XmlComplexParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlComplexParser(URL url) {
         super(url);
     }
 
+    /**
+     * <p>Constructor for XmlComplexParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlComplexParser(Reader reader){
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Unmarshaller createJAXBUnmarshaller() throws JAXBException {
         return JaxbUnmarshallerFactory.getInstance().createUnmarshaller(getVersion(), InteractionCategory.complex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void parseAvailabilityList(XmlEntryContext entryContext) throws PsiXmlParserException {
         // read availabilityList

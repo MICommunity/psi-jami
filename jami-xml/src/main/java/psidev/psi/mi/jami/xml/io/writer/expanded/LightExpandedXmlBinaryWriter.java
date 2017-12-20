@@ -20,29 +20,57 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class LightExpandedXmlBinaryWriter extends AbstractExpandedXmlWriter<BinaryInteraction> {
 
+    /**
+     * <p>Constructor for LightExpandedXmlBinaryWriter.</p>
+     */
     public LightExpandedXmlBinaryWriter() {
         super(BinaryInteraction.class);
     }
 
+    /**
+     * <p>Constructor for LightExpandedXmlBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public LightExpandedXmlBinaryWriter(File file) throws IOException, XMLStreamException {
         super(BinaryInteraction.class, file);
     }
 
+    /**
+     * <p>Constructor for LightExpandedXmlBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public LightExpandedXmlBinaryWriter(OutputStream output) throws XMLStreamException {
         super(BinaryInteraction.class, output);
     }
 
+    /**
+     * <p>Constructor for LightExpandedXmlBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public LightExpandedXmlBinaryWriter(Writer writer) throws XMLStreamException {
         super(BinaryInteraction.class, writer);
     }
 
+    /**
+     * <p>Constructor for LightExpandedXmlBinaryWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public LightExpandedXmlBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(BinaryInteraction.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(false, false, PsiXmlType.expanded, InteractionCategory.basic, ComplexType.binary);

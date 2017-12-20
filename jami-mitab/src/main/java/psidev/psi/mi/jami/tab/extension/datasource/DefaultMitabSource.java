@@ -19,19 +19,28 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class DefaultMitabSource extends DefaultMitabStreamSource implements MitabSource{
 
+    /**
+     * <p>Constructor for DefaultMitabSource.</p>
+     */
     public DefaultMitabSource(){
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDelegate(Map<String, Object> options, MitabDataSourceFactory factory, InteractionCategory category, ComplexType type) {
         super.setDelegate(factory.createMitabDataSource(category, type, false));
         getDelegate().initialiseContext(options);
     }
 
+    /**
+     * <p>getInteractions.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public Collection<Interaction> getInteractions() throws MIIOException {
         if (getDelegate() == null){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource " +
@@ -40,6 +49,11 @@ public class DefaultMitabSource extends DefaultMitabStreamSource implements Mita
         return getDelegate().getInteractions();
     }
 
+    /**
+     * <p>getNumberOfInteractions.</p>
+     *
+     * @return a long.
+     */
     public long getNumberOfInteractions() {
         if (getDelegate() == null){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource " +
@@ -48,6 +62,7 @@ public class DefaultMitabSource extends DefaultMitabStreamSource implements Mita
         return getDelegate().getNumberOfInteractions();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected MitabSource getDelegate() {
         return (MitabSource)super.getDelegate();

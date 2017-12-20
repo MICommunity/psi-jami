@@ -12,7 +12,6 @@ import psidev.psi.mi.jami.xml.model.extension.datasource.*;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class PsiXmlDataSourceFactory {
 
     private static final PsiXmlDataSourceFactory instance = new PsiXmlDataSourceFactory();
@@ -20,10 +19,23 @@ public class PsiXmlDataSourceFactory {
     private PsiXmlDataSourceFactory(){
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.PsiXmlDataSourceFactory} object.
+     */
     public static PsiXmlDataSourceFactory getInstance() {
         return instance;
     }
 
+    /**
+     * <p>createPsiXmlDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.datasource.PsiXmlStreamSource} object.
+     */
     public PsiXmlStreamSource createPsiXmlDataSource(InteractionCategory interactionCategory, ComplexType complexType,
                                                      boolean streaming){
         switch (complexType){
@@ -34,6 +46,13 @@ public class PsiXmlDataSourceFactory {
         }
     }
 
+    /**
+     * <p>createPsiXmlBinaryDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.datasource.PsiXmlStreamSource} object.
+     */
     public PsiXmlStreamSource createPsiXmlBinaryDataSource(InteractionCategory interactionCategory, boolean streaming){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;
@@ -69,6 +88,13 @@ public class PsiXmlDataSourceFactory {
         }
     }
 
+    /**
+     * <p>createPsiXmlDataSource.</p>
+     *
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param streaming a boolean.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.datasource.PsiXmlStreamSource} object.
+     */
     public PsiXmlStreamSource createPsiXmlDataSource(InteractionCategory interactionCategory, boolean streaming){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;

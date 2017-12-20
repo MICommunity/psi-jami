@@ -16,11 +16,15 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
     private XMLStreamWriter streamWriter;
     private PsiXmlVariableNameWriter<CvTerm> typeWriter;
 
+    /**
+     * <p>Constructor for XmlConfidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlConfidenceWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlConfidenceWriter");
@@ -28,6 +32,11 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>typeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getTypeWriter() {
         if (this.typeWriter == null){
             initialiseTypeWriter();
@@ -36,14 +45,23 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
         return typeWriter;
     }
 
+    /**
+     * <p>initialiseTypeWriter.</p>
+     */
     protected void initialiseTypeWriter() {
         this.typeWriter = new XmlOpenCvTermWriter(streamWriter);
     }
 
+    /**
+     * <p>Setter for the field <code>typeWriter</code>.</p>
+     *
+     * @param typeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setTypeWriter(PsiXmlVariableNameWriter<CvTerm> typeWriter) {
         this.typeWriter = typeWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Confidence object) throws MIIOException {
         if (object != null){
@@ -70,10 +88,20 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Confidence} object.
+     */
     protected void writeOtherProperties(Confidence object) {
         // nothing to do here
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

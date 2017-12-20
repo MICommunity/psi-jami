@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.Protein;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  12/06/13
+
  */
 public class ProteinEnricherListenerManager
         extends PolymerEnricherListenerManager<Protein>
@@ -25,6 +26,7 @@ public class ProteinEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public ProteinEnricherListenerManager(ProteinEnricherListener... listeners){

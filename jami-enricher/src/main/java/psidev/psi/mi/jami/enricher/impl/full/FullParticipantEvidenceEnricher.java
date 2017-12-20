@@ -18,9 +18,11 @@ import java.util.Iterator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class FullParticipantEvidenceEnricher<P extends ParticipantEvidence> extends MinimalParticipantEvidenceEnricher<P> {
 
+    /** {@inheritDoc} */
     @Override
     public void processOtherProperties(P participantEvidenceToEnrich)
             throws EnricherException {
@@ -29,6 +31,7 @@ public class FullParticipantEvidenceEnricher<P extends ParticipantEvidence> exte
         processExperimentalPreparations(participantEvidenceToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processOtherProperties(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         super.processOtherProperties(participantEvidenceToEnrich, objectSource);
@@ -43,6 +46,13 @@ public class FullParticipantEvidenceEnricher<P extends ParticipantEvidence> exte
         processExperimentalPreparations(participantEvidenceToEnrich, objectSource);
     }
 
+    /**
+     * <p>processExperimentalPreparations.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processExperimentalPreparations(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         mergeExperimentalPreparations(participantEvidenceToEnrich, participantEvidenceToEnrich.getExperimentalPreparations(), objectSource.getExperimentalPreparations(),
                 false);
@@ -50,27 +60,63 @@ public class FullParticipantEvidenceEnricher<P extends ParticipantEvidence> exte
         processExperimentalPreparations(participantEvidenceToEnrich);
     }
 
+    /**
+     * <p>processExperimentalPreparations.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processExperimentalPreparations(P participantEvidenceToEnrich) throws EnricherException {
         if(!participantEvidenceToEnrich.getExperimentalPreparations().isEmpty() && getCvTermEnricher() != null){
             getCvTermEnricher().enrich(participantEvidenceToEnrich.getExperimentalPreparations());
         }
     }
 
+    /**
+     * <p>processParameters.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processParameters(P participantEvidenceToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeParameters(participantEvidenceToEnrich, participantEvidenceToEnrich.getParameters(), objectSource.getParameters(), false,
                 (getParticipantEnricherListener() instanceof ParticipantEvidenceEnricherListener ? (ParticipantEvidenceEnricherListener)getParticipantEnricherListener() : null));
     }
 
+    /**
+     * <p>processConfidences.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processConfidences(P participantEvidenceToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeConfidences(participantEvidenceToEnrich, participantEvidenceToEnrich.getConfidences(), objectSource.getConfidences(), false,
                 (getParticipantEnricherListener() instanceof ParticipantEvidenceEnricherListener ? (ParticipantEvidenceEnricherListener)getParticipantEnricherListener() : null));
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processXrefs(P participantEvidenceToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(participantEvidenceToEnrich, participantEvidenceToEnrich.getXrefs(), objectSource.getXrefs(), false, false,
                 getParticipantEnricherListener() instanceof XrefsChangeListener ? (XrefsChangeListener)getParticipantEnricherListener():null, null);
     }
 
+    /**
+     * <p>mergeExperimentalPreparations.</p>
+     *
+     * @param termToEnrich a P object.
+     * @param toEnrichTerms a {@link java.util.Collection} object.
+     * @param fetchedTerms a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void mergeExperimentalPreparations(P termToEnrich, Collection<CvTerm> toEnrichTerms, Collection<CvTerm> fetchedTerms , boolean remove) throws EnricherException {
 
         Iterator<CvTerm> termIterator = toEnrichTerms.iterator();

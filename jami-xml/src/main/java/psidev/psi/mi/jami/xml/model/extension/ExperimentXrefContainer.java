@@ -23,14 +23,29 @@ public class ExperimentXrefContainer extends XrefContainer {
     private Xref imexId;
     private Publication publication;
 
+    /**
+     * <p>Getter for the field <code>publication</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return publication;
     }
 
+    /**
+     * <p>Setter for the field <code>publication</code>.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public void setPublication(Publication publication) {
         this.publication = publication;
     }
 
+    /**
+     * <p>processAddedPotentialImex.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedPotentialImex(Xref added) {
         if (publication != null){
             // the added identifier is imex and the current imex is not set
@@ -44,6 +59,11 @@ public class ExperimentXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>processRemovedPotentialImex.</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedPotentialImex(Xref removed) {
         if (publication != null){
             // the removed identifier is pubmed
@@ -54,6 +74,9 @@ public class ExperimentXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>clearImexId.</p>
+     */
     protected void clearImexId() {
         if (imexId != null){
             publication.getXrefs().remove(imexId);
@@ -61,6 +84,7 @@ public class ExperimentXrefContainer extends XrefContainer {
         imexId = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefs() {
         super.initialiseXrefsWith(new FullXrefList());

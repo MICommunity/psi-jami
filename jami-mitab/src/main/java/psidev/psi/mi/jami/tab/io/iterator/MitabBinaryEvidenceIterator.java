@@ -13,8 +13,13 @@ import psidev.psi.mi.jami.tab.io.parser.MitabLineParser;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class MitabBinaryEvidenceIterator extends AbstractMitabIterator<BinaryInteractionEvidence, ParticipantEvidence, FeatureEvidence>{
+    /**
+     * <p>Constructor for MitabBinaryEvidenceIterator.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParser} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public MitabBinaryEvidenceIterator(MitabLineParser<BinaryInteractionEvidence, ParticipantEvidence, FeatureEvidence> lineParser) throws MIIOException {
         super(lineParser);
     }

@@ -15,6 +15,7 @@ import java.math.BigInteger;
  * Xml implementation of a simple Position
  *
  * The JAXB binding is designed to be read-only and is not designed for writing
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>19/07/13</pre>
@@ -27,31 +28,59 @@ public class XmlPosition extends AbstractXmlPosition  {
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for XmlPosition.</p>
+     */
     public XmlPosition() {
     }
 
+    /**
+     * <p>Constructor for XmlPosition.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param positionUndetermined a boolean.
+     */
     public XmlPosition(CvTerm status, boolean positionUndetermined) {
         super(status, positionUndetermined);
     }
 
+    /**
+     * <p>Constructor for XmlPosition.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param pos a long.
+     * @param positionUndetermined a boolean.
+     */
     public XmlPosition(CvTerm status, long pos, boolean positionUndetermined) {
         super(status, positionUndetermined);
         this.pos = pos;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getStatus() {
         return super.getStatus();
     }
 
+    /**
+     * <p>getStart.</p>
+     *
+     * @return a long.
+     */
     public long getStart() {
         return pos;
     }
 
+    /**
+     * <p>getEnd.</p>
+     *
+     * @return a long.
+     */
     public long getEnd() {
         return pos;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isPositionUndetermined() {
         return super.isPositionUndetermined();
@@ -62,14 +91,14 @@ public class XmlPosition extends AbstractXmlPosition  {
      *
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
-     *
+     *     {@link java.math.BigInteger}
      */
     @XmlAttribute(name = "position", required = true)
     public void setJAXBPosition(long value) {
         this.pos = value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -78,6 +107,7 @@ public class XmlPosition extends AbstractXmlPosition  {
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Range Position: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

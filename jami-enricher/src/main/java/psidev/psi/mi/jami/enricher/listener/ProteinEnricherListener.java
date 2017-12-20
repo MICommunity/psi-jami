@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.Protein;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  10/06/13
+
  */
 public interface ProteinEnricherListener
         extends InteractorEnricherListener<Protein>, ProteinChangeListener {

@@ -16,23 +16,32 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class FullModelledInteractionUpdater<I extends ModelledInteraction> extends FullModelledInteractionEnricher<I>{
 
+    /**
+     * <p>Constructor for FullModelledInteractionUpdater.</p>
+     */
     public FullModelledInteractionUpdater() {
         super(new FullInteractionUpdater<I>());
     }
 
+    /**
+     * <p>Constructor for FullModelledInteractionUpdater.</p>
+     *
+     * @param interactionEnricher a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractionUpdater} object.
+     */
     protected FullModelledInteractionUpdater(FullInteractionUpdater<I> interactionEnricher) {
         super(interactionEnricher != null ? interactionEnricher : new FullInteractionUpdater<I>());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processConfidences(I objectToEnrich, I objectSource) {
         EnricherUtils.mergeConfidences(objectToEnrich, objectToEnrich.getModelledConfidences(), objectSource.getModelledConfidences(), true,
                 (getInteractionEnricherListener() instanceof ModelledInteractionEnricherListener ? (ModelledInteractionEnricherListener) getInteractionEnricherListener() : null));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processParameters(I objectToEnrich, I objectSource) {
 
@@ -40,11 +49,13 @@ public class FullModelledInteractionUpdater<I extends ModelledInteraction> exten
                 (getInteractionEnricherListener() instanceof ModelledInteractionEnricherListener ? (ModelledInteractionEnricherListener) getInteractionEnricherListener() : null));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processCooperativeEffects(I objectToEnrich, I objectSource) {
         mergeCooperativeEffects(objectToEnrich, objectSource, true);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processInteractionEvidences(I objectToEnrich, I objectSource) throws EnricherException {
         mergeInteractionEvidences(objectToEnrich, objectSource, true);
@@ -52,6 +63,7 @@ public class FullModelledInteractionUpdater<I extends ModelledInteraction> exten
         processInteractionEvidences(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processSource(I objectToEnrich, I objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(objectSource.getSource(), objectToEnrich.getSource())){
@@ -69,6 +81,7 @@ public class FullModelledInteractionUpdater<I extends ModelledInteraction> exten
         processSource(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processEvidenceType(I objectToEnrich, I objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(objectSource.getEvidenceType(), objectToEnrich.getEvidenceType())){

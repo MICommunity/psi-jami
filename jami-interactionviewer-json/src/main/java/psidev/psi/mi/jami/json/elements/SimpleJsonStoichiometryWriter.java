@@ -13,11 +13,15 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonStoichiometryWriter implements JsonElementWriter<Stoichiometry>{
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for SimpleJsonStoichiometryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonStoichiometryWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json stoichiometry writer needs a non null Writer");
@@ -25,6 +29,12 @@ public class SimpleJsonStoichiometryWriter implements JsonElementWriter<Stoichio
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Stoichiometry object) throws IOException {
         if (object != null &&
                 object.getMinValue() > 0 &&

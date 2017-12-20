@@ -11,6 +11,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public abstract class AbstractFailingFetcher<T>
         extends AbstractMockFetcher<T>{
@@ -24,6 +25,7 @@ public abstract class AbstractFailingFetcher<T>
      * If the maxQuery is positive, a query must be made that many times before a solution is given.
      * If a new query is made, the count resets.
      * If the maxQuery is -1, it will always throw an exception.
+     *
      * @param maxQuery  The number of time to throw an exception, or -1 if exception should always be thrown.
      */
     protected AbstractFailingFetcher(int maxQuery){
@@ -32,12 +34,10 @@ public abstract class AbstractFailingFetcher<T>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Used to retrieve an entry from the internal list.
      * will throw exceptions if the required number of queries has not been made.
-     *
-     * @param identifier    The identifier to search for.
-     * @return              The entry matching the identifier if the required number of exceptions have been thrown.
-     * @throws BridgeFailedException        Thrown if the required number of queries has not been made.
      */
     protected T getEntry(String identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException(
@@ -60,6 +60,13 @@ public abstract class AbstractFailingFetcher<T>
         }
     }
 
+    /**
+     * <p>getEntries.</p>
+     *
+     * @param identifier a {@link java.util.Collection} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     protected Collection<T> getEntries(Collection<String> identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException(
                 "Attempted to query mock protein fetcher for null identifier.");

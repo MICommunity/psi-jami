@@ -17,22 +17,38 @@ import psidev.psi.mi.jami.xml.model.reference.AbstractComplexRef;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public class XmlPreAssembly extends DefaultPreassemby implements FileSourceContext {
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for XmlPreAssembly.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlPreAssembly(CvTerm outcome) {
         super(outcome);
     }
 
+    /**
+     * <p>Constructor for XmlPreAssembly.</p>
+     *
+     * @param outcome a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlPreAssembly(CvTerm outcome, CvTerm response) {
         super(outcome, response);
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator locator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -42,15 +58,27 @@ public class XmlPreAssembly extends DefaultPreassemby implements FileSourceConte
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Pre-assembly: "+getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>addAffectedInteractionRef.</p>
+     *
+     * @param affectedInteraction a int.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void addAffectedInteractionRef(int affectedInteraction, PsiXmlLocator locator){
         getAffectedInteractions().add(new ModelledInteractionRef(affectedInteraction, locator));
     }

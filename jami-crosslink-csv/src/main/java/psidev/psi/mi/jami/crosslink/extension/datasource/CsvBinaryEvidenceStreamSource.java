@@ -17,29 +17,53 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>26/08/14</pre>
  */
-
 public class CsvBinaryEvidenceStreamSource extends AbstractCsvStreamSource<BinaryInteractionEvidence>{
 
+    /**
+     * <p>Constructor for CsvBinaryEvidenceStreamSource.</p>
+     */
     public CsvBinaryEvidenceStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for CsvBinaryEvidenceStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public CsvBinaryEvidenceStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for CsvBinaryEvidenceStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public CsvBinaryEvidenceStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for CsvBinaryEvidenceStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public CsvBinaryEvidenceStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for CsvBinaryEvidenceStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public CsvBinaryEvidenceStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected AbstractCsvInteractionEvidenceParser<BinaryInteractionEvidence> instantiateLineParser() {
         return new CsvBinaryInteractionEvidenceParser();

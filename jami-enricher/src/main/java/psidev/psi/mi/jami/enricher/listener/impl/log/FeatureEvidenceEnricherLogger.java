@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.model.FeatureEvidence;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/07/13
+
  */
 public class FeatureEvidenceEnricherLogger extends FeatureEvidenceChangeLogger
         implements FeatureEvidenceEnricherListener {
@@ -19,10 +20,12 @@ public class FeatureEvidenceEnricherLogger extends FeatureEvidenceChangeLogger
 
     private static final Logger log = LoggerFactory.getLogger(FeatureEvidenceEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(FeatureEvidence feature, EnrichmentStatus status, String message) {
         log.info(feature.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(FeatureEvidence object, String message, Exception e) {
         log.error(object.toString()+" enrichment error, message: "+message, e);
     }

@@ -19,28 +19,51 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class XmlBinarySource extends AbstractPsiXmlBinarySource<Interaction<?extends Participant>, BinaryInteraction> implements BinaryInteractionSource<BinaryInteraction>{
 
+    /**
+     * <p>Constructor for XmlBinarySource.</p>
+     */
     public XmlBinarySource() {
     }
 
+    /**
+     * <p>Constructor for XmlBinarySource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlBinarySource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlBinarySource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlBinarySource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlBinarySource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlBinarySource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlBinarySource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlBinarySource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -53,6 +76,7 @@ public class XmlBinarySource extends AbstractPsiXmlBinarySource<Interaction<?ext
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -67,6 +91,7 @@ public class XmlBinarySource extends AbstractPsiXmlBinarySource<Interaction<?ext
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -79,6 +104,7 @@ public class XmlBinarySource extends AbstractPsiXmlBinarySource<Interaction<?ext
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {

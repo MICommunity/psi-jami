@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>24/06/13</pre>
  */
-
 public class CsvParserLogger extends MIFileParserLogger implements CsvParserListener {
     private static final Logger logger = Logger.getLogger("CsvParserLogger");
 
+    /** {@inheritDoc} */
     public void onMismatchBetweenPeptideAndLinkedPositions(List<CsvRange> peptidePositions, List<CsvRange> linkedPositions) {
         FileSourceLocator locator1 = peptidePositions.isEmpty() ? null : peptidePositions.iterator().next().getSourceLocator();
         FileSourceLocator locator2 = linkedPositions.isEmpty() ? null : linkedPositions.iterator().next().getSourceLocator();
@@ -31,6 +31,7 @@ public class CsvParserLogger extends MIFileParserLogger implements CsvParserList
                 "These positions will be ignored as too ambiguous.");
     }
 
+    /** {@inheritDoc} */
     public void onMismatchBetweenRangePositionsAndProteins(List<CsvRange> rangePositions, List<CsvProtein> proteins) {
         FileSourceLocator locator1 = rangePositions.isEmpty() ? null : rangePositions.iterator().next().getSourceLocator();
         FileSourceLocator locator2 = proteins.isEmpty() ? null : proteins.iterator().next().getSourceLocator();
@@ -42,11 +43,13 @@ public class CsvParserLogger extends MIFileParserLogger implements CsvParserList
                 "These positions will be ignored as too ambiguous.");
     }
 
+    /** {@inheritDoc} */
     public void onInvalidProteinIdentifierSyntax(String[] identifiers, int lineNumber, int columnNumber) {
         logger.log(Level.SEVERE, "We found "+identifiers.length + " elements at line "+lineNumber+", column "+columnNumber+" separated by '|' but we only expected " +
                 "three elements separated by '|' (sp|uniprotId|name)");
     }
 
+    /** {@inheritDoc} */
     public void onMissingProtein1Column(int lineNumber) {
         logger.log(Level.SEVERE, "The Protein1 column is missing or empty at line "+lineNumber+". The column is required and cannot be empty.");
     }

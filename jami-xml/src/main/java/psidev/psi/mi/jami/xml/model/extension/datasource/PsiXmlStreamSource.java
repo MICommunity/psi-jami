@@ -13,6 +13,5 @@ import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public interface PsiXmlStreamSource<I extends Interaction> extends MIFileDataSource, InteractionStream<I>, PsiXmlParserListener ,ErrorHandler {
 }

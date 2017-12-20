@@ -16,12 +16,12 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>23/07/13</pre>
  */
-
 public class SimpleJobRegistry implements ListableJobLocator {
 
     @Autowired
     private ApplicationContext applicationContext;
 
+    /** {@inheritDoc} */
     public Job getJob(String name) throws NoSuchJobException {
         Job job = (Job) applicationContext.getBean(name);
 
@@ -32,6 +32,11 @@ public class SimpleJobRegistry implements ListableJobLocator {
         return job;
     }
 
+    /**
+     * <p>getJobNames.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<String> getJobNames() {
         return Arrays.asList(applicationContext.getBeanNamesForType(Job.class));
     }

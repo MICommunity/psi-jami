@@ -24,29 +24,52 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public abstract class AbstractPsiXmlSource<T extends Interaction> extends AbstractPsiXmlStream<T> implements PsiXmlSource<T>{
     private Collection<T> loadedInteractions;
 
+    /**
+     * <p>Constructor for AbstractPsiXmlSource.</p>
+     */
     protected AbstractPsiXmlSource() {
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     protected AbstractPsiXmlSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     protected AbstractPsiXmlSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     protected AbstractPsiXmlSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     protected AbstractPsiXmlSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<T> getInteractions() throws MIIOException {
         if (!isInitialised()){
@@ -72,28 +95,33 @@ public abstract class AbstractPsiXmlSource<T extends Interaction> extends Abstra
         return loadedInteractions;
     }
 
+    /** {@inheritDoc} */
     @Override
     public long getNumberOfInteractions() {
         return getInteractions().size();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> getInteractionsIterator() throws MIIOException {
         return getInteractions().iterator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException{
         super.close();
         this.loadedInteractions = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException{
         super.reset();
         this.loadedInteractions = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<T> createXmlIterator() {
         return getInteractions().iterator();

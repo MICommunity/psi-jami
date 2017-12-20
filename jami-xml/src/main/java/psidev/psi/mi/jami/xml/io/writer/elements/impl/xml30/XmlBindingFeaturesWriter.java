@@ -16,11 +16,16 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlBindingFeaturesWriter implements PsiXmlElementWriter<Set<Feature>> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlBindingFeaturesWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlBindingFeaturesWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlBindingFeaturesWriter");
@@ -32,6 +37,7 @@ public class XmlBindingFeaturesWriter implements PsiXmlElementWriter<Set<Feature
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Set<Feature> object) throws MIIOException {
         try {

@@ -14,15 +14,24 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonHostOrganismWriter extends SimpleJsonOrganismWriter{
 
     private JsonElementWriter<CvTerm> cvWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonHostOrganismWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonHostOrganismWriter(Writer writer){
         super(writer);
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
            this.cvWriter = new SimpleJsonCvTermWriter(getWriter());
@@ -30,10 +39,16 @@ public class SimpleJsonHostOrganismWriter extends SimpleJsonOrganismWriter{
         return cvWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setCvWriter(JsonElementWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Organism object) throws IOException {
         if (object.getCellType() != null){

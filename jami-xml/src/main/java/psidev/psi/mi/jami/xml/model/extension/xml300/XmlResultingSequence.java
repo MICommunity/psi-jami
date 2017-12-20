@@ -33,24 +33,48 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     private Locator locator;
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for XmlResultingSequence.</p>
+     */
     public XmlResultingSequence(){
         this.originalSequence = null;
         this.newSequence = null;
     }
 
+    /**
+     * <p>Constructor for XmlResultingSequence.</p>
+     *
+     * @param oldSequence a {@link java.lang.String} object.
+     * @param newSequence a {@link java.lang.String} object.
+     */
     public XmlResultingSequence(String oldSequence, String newSequence){
         this.originalSequence = oldSequence;
         this.newSequence = newSequence;
     }
 
+    /**
+     * <p>Getter for the field <code>newSequence</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getNewSequence() {
         return newSequence;
     }
 
+    /**
+     * <p>Getter for the field <code>originalSequence</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getOriginalSequence() {
         return originalSequence;
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
             xrefContainer = new XrefContainer();
@@ -58,29 +82,47 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
         return this.xrefContainer.getXrefs();
     }
 
+    /** {@inheritDoc} */
     public void setNewSequence(String sequence) {
         this.newSequence = sequence;
     }
 
+    /** {@inheritDoc} */
     public void setOriginalSequence(String sequence) {
         this.originalSequence = sequence;
     }
 
+    /**
+     * <p>setJAXBNewSequence.</p>
+     *
+     * @param sequence a {@link java.lang.String} object.
+     */
     @XmlElement(name = "newSequence", required = true, namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBNewSequence(String sequence) {
         setNewSequence(sequence);
     }
 
+    /**
+     * <p>setJAXBOriginalSequence.</p>
+     *
+     * @param sequence a {@link java.lang.String} object.
+     */
     @XmlElement(name = "originalSequence", required = true, namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBOriginalSequence(String sequence) {
         setOriginalSequence(sequence);
     }
 
+    /**
+     * <p>setJAXBXref.</p>
+     *
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer} object.
+     */
     @XmlElement(name = "xref", namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBXref(XrefContainer value) {
         this.xrefContainer = value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -94,22 +136,30 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
         return ResultingSequenceComparator.areEquals(this, (ResultingSequence) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return ResultingSequenceComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (originalSequence != null ? "original sequence: "+originalSequence : "") +
                 (newSequence != null ? "new sequence: "+newSequence : "");
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -117,6 +167,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -129,6 +180,11 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }

@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.InteractorPool;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface InteractorPoolEnricherListener extends InteractorPoolChangeListener, InteractorEnricherListener<InteractorPool> {
 }

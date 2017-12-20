@@ -14,20 +14,31 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlSourceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlSourceWriter {
+    /**
+     * <p>Constructor for XmlSourceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlSourceWriter(XMLStreamWriter writer) {
         super(writer);
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         super.setPublicationWriter(new XmlPublicationWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeReleaseAttributes(Source object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlSource){

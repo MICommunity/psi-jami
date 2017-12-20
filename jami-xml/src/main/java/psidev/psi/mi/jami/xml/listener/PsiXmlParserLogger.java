@@ -18,29 +18,33 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>24/06/13</pre>
  */
-
 public class PsiXmlParserLogger extends MIFileParserLogger implements PsiXmlParserListener {
     private static final Logger logger = Logger.getLogger("PsiXmlParserLogger");
 
+    /** {@inheritDoc} */
     public void onUnresolvedReference(XmlIdReference ref, String message) {
         logger.log(Level.SEVERE, "Unresolved reference: "+ref.toString()+ ", "+message);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralHostOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         logger.log(Level.WARNING, "Found " + organisms + " host organisms attached to the same experiment. "+locator.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExpressedInOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         logger.log(Level.WARNING, "Found " + organisms + " host organisms attached to the same participant. "+locator.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentalRolesFound(Collection<CvTerm> roles, FileSourceLocator locator) {
         logger.log(Level.WARNING, "Found " + roles + " experimental roles attached to the same participant. "+locator.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentsFound(Collection<Experiment> experiments, FileSourceLocator locator) {
         logger.log(Level.WARNING, "Found " + experiments + " experiments attached to the same interaction. "+locator.toString());

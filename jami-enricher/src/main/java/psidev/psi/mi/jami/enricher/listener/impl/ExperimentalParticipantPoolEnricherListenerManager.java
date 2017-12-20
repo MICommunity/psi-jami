@@ -15,6 +15,7 @@ import psidev.psi.mi.jami.model.ParticipantCandidate;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class ExperimentalParticipantPoolEnricherListenerManager
         extends ParticipantEvidenceEnricherListenerManager<ExperimentalParticipantPool>
@@ -27,12 +28,14 @@ public class ExperimentalParticipantPoolEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public ExperimentalParticipantPoolEnricherListenerManager(ParticipantEvidenceEnricherListener<ExperimentalParticipantPool>... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onTypeUpdate(ExperimentalParticipantPool participant, CvTerm oldType) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantPoolEnricherListener){
@@ -41,6 +44,7 @@ public class ExperimentalParticipantPoolEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedCandidate(ExperimentalParticipantPool participant, ParticipantCandidate added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantPoolEnricherListener){
@@ -49,6 +53,7 @@ public class ExperimentalParticipantPoolEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedCandidate(ExperimentalParticipantPool participant, ParticipantCandidate removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantPoolEnricherListener){

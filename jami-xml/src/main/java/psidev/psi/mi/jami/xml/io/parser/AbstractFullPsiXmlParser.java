@@ -32,7 +32,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>07/11/13</pre>
  */
-
 public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements PsiXmlParser<T>, FullPsiXmlParser<T> {
     private static final Logger logger = Logger.getLogger("AbstractFullPsiXmlParser");
 
@@ -52,6 +51,13 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
 
     private PsiXmlVersion version;
 
+    /**
+     * <p>Constructor for AbstractFullPsiXmlParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     * @throws java.io.FileNotFoundException if any.
+     */
     public AbstractFullPsiXmlParser(File file) throws JAXBException, FileNotFoundException {
         if (file == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null File");
@@ -60,6 +66,12 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         this.reader = new PushbackReader(new FileReader(file), PsiXmlUtils.XML_BUFFER_SIZE);
     }
 
+    /**
+     * <p>Constructor for AbstractFullPsiXmlParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public AbstractFullPsiXmlParser(InputStream inputStream) throws JAXBException {
         if (inputStream == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null InputStream");
@@ -68,6 +80,13 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         this.reader = new PushbackReader(new InputStreamReader(inputStream), PsiXmlUtils.XML_BUFFER_SIZE);
     }
 
+    /**
+     * <p>Constructor for AbstractFullPsiXmlParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public AbstractFullPsiXmlParser(URL url) throws IOException, JAXBException {
         if (url == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null URL");
@@ -76,6 +95,12 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         this.reader = new PushbackReader(new InputStreamReader(url.openStream()), PsiXmlUtils.XML_BUFFER_SIZE);
     }
 
+    /**
+     * <p>Constructor for AbstractFullPsiXmlParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public AbstractFullPsiXmlParser(Reader reader) throws JAXBException {
         if (reader == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null Reader");
@@ -84,6 +109,7 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         this.reader = new PushbackReader(reader, PsiXmlUtils.XML_BUFFER_SIZE);
     }
 
+    /** {@inheritDoc} */
     @Override
     public T parseNextInteraction() throws PsiXmlParserException {
         // did not parse the entry set yet
@@ -133,6 +159,7 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
 
@@ -174,6 +201,11 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         XmlEntryContext.remove();
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public XmlInteractorFactory getInteractorFactory() {
         if (interactorFactory == null){
             interactorFactory = new XmlInteractorFactory();
@@ -181,10 +213,12 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         return interactorFactory;
     }
 
+    /** {@inheritDoc} */
     public void setInteractorFactory(XmlInteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasFinished() throws PsiXmlParserException {
         if (this.entryIterator != null && !this.entryIterator.hasNext()){
@@ -195,6 +229,7 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reInit() throws MIIOException {
         this.interactionIterator = null;
@@ -253,20 +288,29 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public PsiXmlParserListener getListener() {
         return this.listener;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setListener(PsiXmlParserListener listener) {
         this.listener = listener;
     }
 
+    /** {@inheritDoc} */
     public void setCacheOfObjects(PsiXmlIdCache indexOfObjects) {
         this.indexOfObjects = indexOfObjects;
     }
 
+    /**
+     * <p>Getter for the field <code>entrySet</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.AbstractEntrySet} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     public AbstractEntrySet<AbstractEntry<T>> getEntrySet() throws PsiXmlParserException {
         if (this.entrySet == null){
             this.entrySet = parseEntrySet();
@@ -275,8 +319,20 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         return entrySet;
     }
 
+    /**
+     * <p>createJAXBUnmarshaller.</p>
+     *
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     protected abstract Unmarshaller createJAXBUnmarshaller() throws JAXBException;
 
+    /**
+     * <p>parseEntrySet.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.AbstractEntrySet} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected AbstractEntrySet<AbstractEntry<T>> parseEntrySet() throws PsiXmlParserException {
         if (this.reader != null){
             try {
@@ -292,10 +348,22 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
         }
     }
 
+    /**
+     * <p>createPsiXmlExceptionFrom.</p>
+     *
+     * @param message a {@link java.lang.String} object.
+     * @param e a {@link java.lang.Exception} object.
+     * @return a {@link psidev.psi.mi.jami.xml.exception.PsiXmlParserException} object.
+     */
     protected PsiXmlParserException createPsiXmlExceptionFrom(String message, Exception e) {
         return new PsiXmlParserException(null, message, e);
     }
 
+    /**
+     * <p>Getter for the field <code>version</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     */
     public PsiXmlVersion getVersion() {
         return version;
     }

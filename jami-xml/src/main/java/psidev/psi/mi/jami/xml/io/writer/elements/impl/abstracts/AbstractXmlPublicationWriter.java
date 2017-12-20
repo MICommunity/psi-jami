@@ -26,12 +26,16 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationWriter {
     private XMLStreamWriter streamWriter;
     private PsiXmlXrefWriter xrefWriter;
     private PsiXmlElementWriter<Annotation> attributeWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlPublicationWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public AbstractXmlPublicationWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlPublicationWriter");
@@ -39,6 +43,11 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         this.streamWriter = writer;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -46,12 +55,25 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected abstract void initialiseXrefWriter();
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -60,10 +82,16 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         return attributeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Publication object) throws MIIOException {
         try {
@@ -81,6 +109,7 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAllPublicationAttributes(Publication object){
         try{
             boolean hasTitle = object.getTitle() != null;
@@ -111,6 +140,7 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAllPublicationAttributes(Publication object, Collection<Annotation> attributesToFilter){
         try{
             boolean hasTitle = object.getTitle() != null;
@@ -161,6 +191,17 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         }
     }
 
+    /**
+     * <p>writePublicationPropertiesAsAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param hasTitle a boolean.
+     * @param hasJournal a boolean.
+     * @param hasPublicationDate a boolean.
+     * @param hasCurationDepth a boolean.
+     * @param hasAuthors a boolean.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writePublicationPropertiesAsAttributes(Publication object, boolean hasTitle, boolean hasJournal, boolean hasPublicationDate, boolean hasCurationDepth, boolean hasAuthors) throws XMLStreamException {
         if (hasTitle){
             writeAnnotation(Annotation.PUBLICATION_TITLE, Annotation.PUBLICATION_TITLE_MI, object.getTitle());
@@ -194,6 +235,14 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         }
     }
 
+    /**
+     * <p>writeAnnotation.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param nameAc a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAnnotation(String name, String nameAc, String value) throws XMLStreamException {
         // write start
         this.streamWriter.writeStartElement("attribute");
@@ -211,6 +260,12 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromPublicationXrefs.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromPublicationXrefs(Publication object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -238,6 +293,12 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromPublicationIdentifiers.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromPublicationIdentifiers(Publication object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -311,14 +372,32 @@ public abstract class AbstractXmlPublicationWriter implements PsiXmlPublicationW
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writePrimaryRef.</p>
+     *
+     * @param writer a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param ref a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writePrimaryRef(PsiXmlXrefWriter writer, Xref ref, String name) throws XMLStreamException {
         writer.setDefaultRefType(Xref.PRIMARY);
         writer.setDefaultRefTypeAc(Xref.PRIMARY_MI);
         writer.write(ref, name);
     }
 
+    /**
+     * <p>writeBibrefContent.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     protected abstract void writeBibrefContent(Publication object);
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }

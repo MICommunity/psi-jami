@@ -20,36 +20,55 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>10/06/13</pre>
  */
-
 public class MitabUtils {
 
+    /** Constant <code>LINE_BREAK="System.getProperty(line.separator)"</code> */
     public static final String LINE_BREAK = System.getProperty("line.separator");
+    /** Constant <code>COLUMN_SEPARATOR="\t"</code> */
     public static final String COLUMN_SEPARATOR = "\t";
+    /** Constant <code>FIELD_SEPARATOR="|"</code> */
     public static final String FIELD_SEPARATOR = "|";
+    /** Constant <code>EMPTY_COLUMN="-"</code> */
     public static final String EMPTY_COLUMN = "-";
+    /** Constant <code>XREF_SEPARATOR=":"</code> */
     public static final String XREF_SEPARATOR = ":";
+    /** Constant <code>RANGE_SEPARATOR=","</code> */
     public static final String RANGE_SEPARATOR = ",";
+    /** Constant <code>COMMENT_PREFIX="#"</code> */
     public static final String COMMENT_PREFIX = "#";
+    /** Constant <code>DATE_FORMAT</code> */
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
+    /** Constant <code>PUBLICATION_YEAR_FORMAT</code> */
     public static final DateFormat PUBLICATION_YEAR_FORMAT = new SimpleDateFormat("yyyy");
+    /** Constant <code>UNKNOWN_DATABASE="unknown"</code> */
     public static final String UNKNOWN_DATABASE = "unknown";
+    /** Constant <code>UNKNOWN_TYPE="unknown"</code> */
     public static final String UNKNOWN_TYPE= "unknown";
+    /** Constant <code>UNKNOWN_ID="unknown"</code> */
     public static final String UNKNOWN_ID = "unknown";
+    /** Constant <code>UNKNOWN_NAME="unspecified name"</code> */
     public static final String UNKNOWN_NAME = "unspecified name";
+    /** Constant <code>AUTHOR_SUFFIX=" et al."</code> */
     public static final String AUTHOR_SUFFIX = " et al.";
+    /** Constant <code>TAXID="taxid"</code> */
     public static final String TAXID = "taxid";
+    /** Constant <code>SHORTLABEL="shortlabel"</code> */
     public static final String SHORTLABEL = "shortlabel";
+    /** Constant <code>DISPLAY_SHORT="display_short"</code> */
     public static final String DISPLAY_SHORT = "display_short";
+    /** Constant <code>DISPLAY_LONG="display_long"</code> */
     public static final String DISPLAY_LONG = "display_long";
 
+    /** Constant <code>SPECIAL_CHARACTERS="new String[]{FIELD_SEPARATOR,XREF_SEPAR"{trunked}</code> */
     public static final String [] SPECIAL_CHARACTERS = new String[]{FIELD_SEPARATOR,
             XREF_SEPARATOR, "(", ")"};
 
     /**
      * Build the header and return an array of String which is an array of column names
-     * @param version
-     * @return
-     * @throws IllegalArgumentException
+     *
+     * @param version a {@link psidev.psi.mi.jami.tab.MitabVersion} object.
+     * @throws java.lang.IllegalArgumentException if any.
+     * @return an array of {@link java.lang.String} objects.
      */
     public static String[] buildHeader(MitabVersion version) throws IllegalArgumentException {
         if (version == null) {
@@ -72,7 +91,8 @@ public class MitabUtils {
     /**
      * The source of the Alias is uniprotkb if the alias type is gene name, gene name synonym, isoform synonym,
      * locus name or orf name. It is unknown otherwise.
-     * @param alias
+     *
+     * @param alias a {@link psidev.psi.mi.jami.model.Alias} object.
      * @return the default dbsource for this alias
      */
     public static String findDbSourceForAlias(Alias alias){
@@ -93,8 +113,9 @@ public class MitabUtils {
      * The source of the Alias is uniprotkb if the alias type is gene name, gene name synonym, isoform synonym,
      * locus name or orf name. If the participant evidence has an interaction evidence with an experiment, publication and source,
      * it will return the source shortname. It is unknown otherwise.
-     * @param participant
-     * @param alias
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param alias a {@link psidev.psi.mi.jami.model.Alias} object.
      * @return the default dbsource for this alias and participant
      */
     public static String findDbSourceForAlias(ParticipantEvidence participant, Alias alias){
@@ -131,9 +152,10 @@ public class MitabUtils {
      * The source of the Alias is uniprotkb if the alias type is gene name, gene name synonym, isoform synonym,
      * locus name or orf name. If the participant has an modelled interaction with a source,
      * it will return the source shortname. It is unknown otherwise.
-     * @param participant
-     * @param alias
-     * @return
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param alias a {@link psidev.psi.mi.jami.model.Alias} object.
+     * @return a {@link java.lang.String} object.
      */
     public static String findDbSourceForAlias(ModelledParticipant participant, Alias alias){
 
@@ -159,14 +181,21 @@ public class MitabUtils {
         return UNKNOWN_DATABASE;
     }
 
+    /**
+     * <p>unescapeDoubleQuote.</p>
+     *
+     * @param stringToReplace a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String unescapeDoubleQuote(String stringToReplace){
         return stringToReplace.replaceAll("\\\\\"", "\"");
     }
 
     /**
      * To know if a publication annotation is an interactionTag
-     * @param annot
-     * @return
+     *
+     * @param annot a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @return a boolean.
      */
     public static boolean isAnnotationAnInteractionTag(Annotation annot){
         return AnnotationUtils.doesAnnotationHaveTopic(annot, Annotation.FULL_COVERAGE_MI, Annotation.FULL_COVERAGE)
@@ -188,7 +217,8 @@ public class MitabUtils {
      * It will first collect the alias with display_short if it exists, otherwise display_long if it exists, otherwise gene name if it exists
      * , otherwise shortlabel if it exists
      * otherwise the alias with the shortest alias name.
-     * @param aliases
+     *
+     * @param aliases a {@link java.util.Collection} object.
      * @return the best alias to use as a shortname
      */
     public static MitabAlias[] findBestShortNameAndFullNameFromAliases(Collection<MitabAlias> aliases){
@@ -263,7 +293,8 @@ public class MitabUtils {
      * It will first collect the id with qualifier = display_short if it exists, otherwise qualifier =  display_long if it exists, otherwise qualifier = gene name if it exists
      * , otherwise qualifier = shortlabel if it exists
      * otherwise null.
-     * @param altids
+     *
+     * @param altids a {@link java.util.Collection} object.
      * @return the best id to use as a shortname
      */
     public static MitabXref findBestShortNameFromAlternativeIdentifiers(Collection<MitabXref> altids){

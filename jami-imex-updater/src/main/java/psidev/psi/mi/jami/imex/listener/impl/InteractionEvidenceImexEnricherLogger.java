@@ -14,17 +14,20 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/07/13
+
  */
 public class InteractionEvidenceImexEnricherLogger
         extends InteractionEvidenceEnricherLogger implements InteractionImexEnricherListener {
 
     private static final Logger log = LoggerFactory.getLogger(InteractionEvidenceImexEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onImexIdConflicts(InteractionEvidence interactionEvidence, Collection<Xref> conflictingXrefs) {
         log.error("The interaction " + interactionEvidence + " has " + conflictingXrefs.size() + " IMEx primary references and only one" +
                 "is allowed");
     }
 
+    /** {@inheritDoc} */
     public void onImexIdAssigned(InteractionEvidence interaction, String imex) {
         log.info("The IMEx primary reference " + imex + " has been added to the interaction " + interaction);
     }

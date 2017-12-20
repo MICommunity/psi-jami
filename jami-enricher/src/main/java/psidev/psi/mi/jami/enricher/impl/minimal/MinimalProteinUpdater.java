@@ -24,19 +24,28 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public class MinimalProteinUpdater extends AbstractInteractorUpdater<Protein> implements ProteinEnricher{
+    /** Constant <code>UNIPROT_REMOVED_QUALIFIER="uniprot-removed-ac"</code> */
     public static final String UNIPROT_REMOVED_QUALIFIER = "uniprot-removed-ac";
 
     /**
      * The only constructor which forces the setting of the fetcher
      * If the cvTerm fetcher is null, an illegal state exception will be thrown at the next enrichment.
+     *
      * @param proteinFetcher    The protein fetcher to use.
      */
     public MinimalProteinUpdater(ProteinFetcher proteinFetcher) {
         super(new MinimalProteinEnricher(proteinFetcher));
     }
 
+    /**
+     * <p>processDeadUniprotIdentity.</p>
+     *
+     * @param proteinToEnrich a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param oldUniprot a {@link java.lang.String} object.
+     */
     protected void processDeadUniprotIdentity(Protein proteinToEnrich, String oldUniprot) {
         Collection<Xref> uniprotIdentities = XrefUtils.collectAllXrefsHavingDatabaseAndId(proteinToEnrich.getXrefs(), Xref.UNIPROTKB_MI, Xref.UNIPROTKB, oldUniprot);
         for (Xref uniprotIdentity : uniprotIdentities){
@@ -52,6 +61,7 @@ public class MinimalProteinUpdater extends AbstractInteractorUpdater<Protein> im
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Protein find(Protein objectToEnrich) throws EnricherException {
         String oldUniprot = objectToEnrich.getUniprotkb();
@@ -62,10 +72,16 @@ public class MinimalProteinUpdater extends AbstractInteractorUpdater<Protein> im
         return prot;
     }
 
+    /**
+     * <p>getProteinMapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.mapper.ProteinMapper} object.
+     */
     public ProteinMapper getProteinMapper() {
         return ((ProteinEnricher)getInteractorEnricher()).getProteinMapper();
     }
 
+    /** {@inheritDoc} */
     public void setProteinMapper(ProteinMapper mapper){
         ((MinimalProteinEnricher)getInteractorEnricher()).setProteinMapper(mapper);
     }

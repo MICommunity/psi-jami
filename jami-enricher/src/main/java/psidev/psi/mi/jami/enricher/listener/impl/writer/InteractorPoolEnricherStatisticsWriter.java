@@ -15,6 +15,7 @@ import java.io.IOException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class InteractorPoolEnricherStatisticsWriter
         extends InteractorEnricherStatisticsWriter<InteractorPool>
@@ -25,6 +26,7 @@ public class InteractorPoolEnricherStatisticsWriter
 
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
+     *
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public InteractorPoolEnricherStatisticsWriter() throws IOException {
@@ -33,6 +35,7 @@ public class InteractorPoolEnricherStatisticsWriter
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
@@ -42,6 +45,7 @@ public class InteractorPoolEnricherStatisticsWriter
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -52,6 +56,7 @@ public class InteractorPoolEnricherStatisticsWriter
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -60,11 +65,13 @@ public class InteractorPoolEnricherStatisticsWriter
         super(successFile, failureFile);
     }
 
+    /** {@inheritDoc} */
     public void onAddedInteractor(InteractorPool interactor, Interactor added) {
         checkObject(interactor);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedInteractor(InteractorPool interactor, Interactor removed) {
         checkObject(interactor);
         incrementRemovedCount();

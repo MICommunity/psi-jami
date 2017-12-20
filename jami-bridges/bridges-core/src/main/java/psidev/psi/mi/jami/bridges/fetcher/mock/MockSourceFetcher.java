@@ -15,21 +15,34 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public class MockSourceFetcher
         implements SourceFetcher{
 
     private Map<String,Source> localSource;
 
+    /**
+     * <p>Constructor for MockSourceFetcher.</p>
+     */
     public MockSourceFetcher(){
         localSource = new HashMap<String, Source>();
     }
 
+    /**
+     * <p>addOntologyTerm.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public void addOntologyTerm(String identifier , Source source){
         if(source == null || identifier == null) return;
         this.localSource.put(identifier, source);
     }
 
+    /**
+     * <p>clear.</p>
+     */
     public void clear(){
         localSource.clear();
     }
@@ -42,40 +55,62 @@ public class MockSourceFetcher
         return value;
     }
 
+    /** {@inheritDoc} */
     public Source fetchByIdentifier(String termIdentifier, String ontologyDatabaseName)
             throws BridgeFailedException {
         return localSource.get(termIdentifier);
     }
 
+    /**
+     * <p>fetchByIdentifier.</p>
+     *
+     * @param termIdentifier a {@link java.lang.String} object.
+     * @param ontologyDatabase a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Source fetchByIdentifier(String termIdentifier, CvTerm ontologyDatabase)
             throws BridgeFailedException {
         return localSource.get(termIdentifier);
     }
 
+    /** {@inheritDoc} */
     public Source fetchByName(String searchName, String ontologyDatabaseName)
             throws BridgeFailedException {
         return localSource.get(searchName);
     }
 
+    /** {@inheritDoc} */
     public Collection<Source> fetchByName(String searchName) throws BridgeFailedException {
         return Arrays.asList(localSource.get(searchName));
     }
 
+    /**
+     * <p>fetchByIdentifiers.</p>
+     *
+     * @param identifiers a {@link java.util.Collection} object.
+     * @param ontologyDatabaseName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<Source> fetchByIdentifiers(Collection<String> identifiers, String ontologyDatabaseName)
             throws BridgeFailedException {
         return getMockTermCollection(identifiers);
     }
 
+    /** {@inheritDoc} */
     public Collection<Source> fetchByIdentifiers(Collection<String> identifiers, CvTerm ontologyDatabase)
             throws BridgeFailedException {
         return getMockTermCollection(identifiers);
     }
 
+    /** {@inheritDoc} */
     public Collection<Source> fetchByNames(Collection<String> searchNames, String ontologyDatabaseName)
             throws BridgeFailedException {
         return getMockTermCollection(searchNames);
     }
 
+    /** {@inheritDoc} */
     public Collection<Source> fetchByNames(Collection<String> searchNames)
             throws BridgeFailedException {
         return getMockTermCollection(searchNames);

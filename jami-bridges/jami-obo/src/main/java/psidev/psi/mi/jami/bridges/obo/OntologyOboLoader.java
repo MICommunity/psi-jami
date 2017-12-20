@@ -21,12 +21,12 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>17/07/13</pre>
  */
-
 public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
 
     private static final String SHORTLABEL_IDENTIFIER = "Unique short label curated by PSI-MI";
     private static final String ALIAS_IDENTIFIER = "Alternate label curated by PSI-MI";
     private static final String MOD_SHORTLABEL_IDENTIFIER = "Short label curated by PSI-MOD";
+    /** Constant <code>EXACT_KEY="exact"</code> */
     protected static final String EXACT_KEY = "exact";
     private static final String MOD_ALIAS_IDENTIFIER = "Alternate name curated by PSI-MOD"; //
     private static final String RESID_IDENTIFIER = "Alternate name from RESID"; //
@@ -34,6 +34,7 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
     private static final String RESID_NAME_IDENTIFIER = "Name from RESID"; //
     private static final String RESID_SYSTEMATIC_IDENTIFIER = "Systematic name from RESID";   //
     private static final String UNIPROT_FEATURE_IDENTIFIER = "Protein feature description from UniProtKB";
+    /** Constant <code>XREF_TYPE=3</code> */
     protected static final int XREF_TYPE = 3;
     private static final String PMID_APPLICATION = "PMID for application instance";
     private static final String SO = "so";
@@ -44,37 +45,58 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
     private static final String SEARCH_URL = "search-url";
     private static final String SEARCH_URL_MI_REF = "MI:0615";
     private static final String QUOTE = "&quot;";
+    /** Constant <code>META_XREF_SEPARATOR=":"</code> */
     protected static final String META_XREF_SEPARATOR = ":";
+    /** Constant <code>LINE_BREAK="\n"</code> */
     protected static final String LINE_BREAK = "\n";
+    /** Constant <code>COMMENT_KEY="comment"</code> */
     protected static final String COMMENT_KEY = "comment";
+    /** Constant <code>PMID="PMID"</code> */
     protected static final String PMID = "PMID";
+    /** Constant <code>METHOD_REFERENCE="method reference"</code> */
     protected static final String METHOD_REFERENCE = "method reference";
+    /** Constant <code>METHOD_REFERENCE_MI_REF="MI:0357"</code> */
     protected static final String METHOD_REFERENCE_MI_REF = "MI:0357";
     private static final String GO = "go";
     private static final String GO_MI_REF = "MI:0448";
+    /** Constant <code>RESID="resid"</code> */
     protected static final String RESID = "resid";
+    /** Constant <code>RESID_MI_REF="MI:0248"</code> */
     protected static final String RESID_MI_REF = "MI:0248";
 
+    /**
+     * <p>Constructor for OntologyOboLoader.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public OntologyOboLoader(CvTerm database) {
         super(database);
     }
 
+    /**
+     * <p>Constructor for OntologyOboLoader.</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     */
     public OntologyOboLoader(String databaseName) {
         super(databaseName);
     }
 
+    /** {@inheritDoc} */
     public void buildOntology(Map<String, OntologyTerm> id2Terms, Map<String, OntologyTerm> name2Terms) {
 
         super.buildOntology(id2Terms, name2Terms);
         buildTermRelationships(id2Terms);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected OntologyTerm instantiateNewTerm(String name, Xref identity) {
         OntologyTerm ontologyTerm = new DefaultOntologyTerm("", name, identity);
         return ontologyTerm;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void createDefinitionFor(String def, OntologyTerm term) {
         if (term.getDefinition() != null){
@@ -87,7 +109,9 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
 
     /**
      * Process the annotations of a term
-     * @param term
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
      */
     protected void processAnnotations(Term term, OntologyTerm ontologyTerm) {
         Collection<uk.ac.ebi.ols.model.interfaces.Annotation> annotations = term.getAnnotations();
@@ -102,6 +126,12 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         }
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     protected void processXrefs(Term term, OntologyTerm ontologyTerm) {
         Collection<DbXref> dbXrefs = term.getXrefs();
 
@@ -124,6 +154,16 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         }
     }
 
+    /**
+     * <p>processXrefDefinition.</p>
+     *
+     * @param xref a {@link java.lang.String} object.
+     * @param database a {@link java.lang.String} object.
+     * @param accession a {@link java.lang.String} object.
+     * @param pubmedPrimary a {@link java.lang.String} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @return a {@link java.lang.String} object.
+     */
     protected String processXrefDefinition(String xref, String database, String accession, String pubmedPrimary, OntologyTerm ontologyTerm) {
 
         if ( PMID.equalsIgnoreCase(database) ) {
@@ -175,6 +215,13 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         return pubmedPrimary;
     }
 
+    /**
+     * <p>processXref.</p>
+     *
+     * @param db a {@link java.lang.String} object.
+     * @param accession a {@link java.lang.String} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     protected void processXref(String db, String accession, OntologyTerm ontologyTerm) {
         // xref validation regexp
         if (XREF_VALIDATION_REGEXP.equalsIgnoreCase(db)){
@@ -229,7 +276,9 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
 
     /**
      * Process the definition of a term
-     * @param term
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
      */
     protected void processDefinition(Term term, OntologyTerm ontologyTerm) {
 
@@ -239,8 +288,9 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
 
     /**
      * Process the definition String
-     * @param definition
-     * @return
+     *
+     * @param definition a {@link java.lang.String} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
      */
     protected void processDefinition(String definition, OntologyTerm ontologyTerm) {
         if ( definition.contains( LINE_BREAK ) ) {
@@ -268,9 +318,10 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
 
     /**
      * Process the other information in the description
-     * @param definition
-     * @param otherInfoString
-     * @return true if an obsolete annotation has been added
+     *
+     * @param definition a {@link java.lang.String} object.
+     * @param otherInfoString a {@link java.lang.String} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
      */
     protected void processInfoInDescription(String definition, String otherInfoString, OntologyTerm ontologyTerm) {
 
@@ -308,6 +359,12 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         }
     }
 
+    /**
+     * <p>processSynonyms.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     protected void processSynonyms(Term term, OntologyTerm ontologyTerm) {
         Collection<TermSynonym> synonyms = term.getSynonyms();
 
@@ -335,12 +392,23 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         }
     }
 
+    /**
+     * <p>processShortLabel.</p>
+     *
+     * @param term a {@link uk.ac.ebi.ols.model.interfaces.Term} object.
+     * @param ontologyTerm a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     */
     protected void processShortLabel(Term term, OntologyTerm ontologyTerm) {
         if (ontologyTerm.getShortName().length() == 0){
             ontologyTerm.setShortName(term.getName());
         }
     }
 
+    /**
+     * <p>buildTermRelationships.</p>
+     *
+     * @param id2Terms a {@link java.util.Map} object.
+     */
     protected void buildTermRelationships(Map<String, OntologyTerm> id2Terms) {
         // 2. build hierarchy based on the relations of the Terms
         for ( Iterator iterator = ontBean.getTerms().iterator(); iterator.hasNext(); ) {
@@ -360,6 +428,13 @@ public class OntologyOboLoader extends AbstractOboLoader<OntologyTerm> {
         }
     }
 
+    /**
+     * <p>addLinkToTerm.</p>
+     *
+     * @param parentId a {@link java.lang.String} object.
+     * @param childId a {@link java.lang.String} object.
+     * @param id2Terms a {@link java.util.Map} object.
+     */
     protected void addLinkToTerm(String parentId, String childId, Map<String, OntologyTerm> id2Terms){
         OntologyTerm child = id2Terms.get( childId );
         OntologyTerm parent = id2Terms.get( parentId );

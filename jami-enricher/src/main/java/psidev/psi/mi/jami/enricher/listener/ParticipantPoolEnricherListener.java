@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.ParticipantPool;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface ParticipantPoolEnricherListener<P extends ParticipantPool> extends ParticipantEnricherListener<P>, ParticipantPoolChangeListener<P>{
 

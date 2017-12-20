@@ -22,34 +22,62 @@ import java.util.*;
  * @version $Id$
  * @since <pre>20/11/13</pre>
  */
-
 public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M extends ModelledInteraction, E extends InteractionEvidence> extends AbstractExpandedXmlWriter<I> {
 
     private AbstractExpandedXmlWriter<E> evidenceWriter;
     private AbstractExpandedXmlWriter<M> modelledWriter;
     private AbstractExpandedXmlWriter<I> lightWriter;
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     */
     public AbstractExpandedXmlMixWriter(Class<I> type) {
         super(type);
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlMixWriter(Class<I> type, File file) throws IOException, XMLStreamException {
         super(type, file);
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlMixWriter(Class<I> type, OutputStream output) throws XMLStreamException {
         super(type, output);
     }
 
+    /**
+     * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractExpandedXmlMixWriter(Class<I> type, Writer writer) throws XMLStreamException {
         super(type, writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         initialiseDelegateWriters();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
         super.close();
@@ -58,6 +86,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         this.lightWriter = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException {
         super.reset();
@@ -66,6 +95,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         this.lightWriter = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void flush() throws MIIOException {
         super.flush();
@@ -74,6 +104,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         this.lightWriter.flush();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setWriteComplexesAsInteractors(boolean writeComplexesAsInteractors) {
         super.setWriteComplexesAsInteractors(writeComplexesAsInteractors);
@@ -88,6 +119,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionSet(Set<Interaction> processedInteractions) {
         super.setInteractionSet(processedInteractions);
@@ -102,6 +134,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultSource(Source defaultSource) {
         super.setDefaultSource(defaultSource);
@@ -116,6 +149,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultReleaseDate(XMLGregorianCalendar defaultReleaseDate) {
         super.setDefaultReleaseDate(defaultReleaseDate);
@@ -130,6 +164,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Iterator<? extends I> interactions) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
@@ -196,11 +231,13 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         while (interaction != null);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Collection<? extends I> interactions) throws MIIOException {
         write(interactions.iterator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(I interaction) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
@@ -217,6 +254,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceWriter(PsiXmlSourceWriter sourceWriter) {
         super.setSourceWriter(sourceWriter);
@@ -231,6 +269,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setComplexWriter(PsiXmlInteractionWriter<ModelledInteraction> complexWriter) {
         super.setComplexWriter(complexWriter);
@@ -246,6 +285,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setElementCache(PsiXmlObjectCache elementCache) {
         super.setElementCache(elementCache);
@@ -260,6 +300,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setVersion(PsiXmlVersion version) {
         super.setVersion(version);
@@ -274,32 +315,65 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
     }
 
+    /**
+     * <p>Getter for the field <code>evidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected AbstractExpandedXmlWriter<E> getEvidenceWriter() {
         return evidenceWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>evidenceWriter</code>.</p>
+     *
+     * @param evidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected void setEvidenceWriter(AbstractExpandedXmlWriter<E> evidenceWriter) {
         this.evidenceWriter = evidenceWriter;
         this.evidenceWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>Getter for the field <code>modelledWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected AbstractExpandedXmlWriter<M> getModelledWriter() {
         return modelledWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>modelledWriter</code>.</p>
+     *
+     * @param modelledWriter a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected void setModelledWriter(AbstractExpandedXmlWriter<M> modelledWriter) {
         this.modelledWriter = modelledWriter;
         this.modelledWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>Getter for the field <code>lightWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected AbstractExpandedXmlWriter<I> getLightWriter() {
         return lightWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>lightWriter</code>.</p>
+     *
+     * @param lightWriter a {@link psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter} object.
+     */
     protected void setLightWriter(AbstractExpandedXmlWriter<I> lightWriter) {
         this.lightWriter = lightWriter;
         this.lightWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>initialiseDelegateWriters.</p>
+     */
     protected abstract void initialiseDelegateWriters();
 }

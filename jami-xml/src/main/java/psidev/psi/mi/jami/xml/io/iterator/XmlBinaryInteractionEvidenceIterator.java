@@ -12,6 +12,12 @@ import psidev.psi.mi.jami.xml.io.parser.PsiXmlParser;
  * @since <pre>17/10/13</pre>
  */
 public class XmlBinaryInteractionEvidenceIterator extends AbstractXmlIterator<BinaryInteractionEvidence> {
+    /**
+     * <p>Constructor for XmlBinaryInteractionEvidenceIterator.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public XmlBinaryInteractionEvidenceIterator(PsiXmlParser<BinaryInteractionEvidence> lineParser) throws MIIOException {
         super(lineParser);
     }

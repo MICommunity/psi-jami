@@ -20,7 +20,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class CrossLinkCsvOptionFactory {
 
     private static final CrossLinkCsvOptionFactory instance = new CrossLinkCsvOptionFactory();
@@ -29,15 +28,21 @@ public class CrossLinkCsvOptionFactory {
 
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.crosslink.CrossLinkCsvOptionFactory} object.
+     */
     public static CrossLinkCsvOptionFactory getInstance() {
         return instance;
     }
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the file content.
-     * @param file
+     *
+     * @param file a {@link java.io.File} object.
      * @return the default options for the MI datasource corresponding to this file
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(File file) throws IOException {
 
@@ -46,9 +51,10 @@ public class CrossLinkCsvOptionFactory {
 
     /**
      * Creates a map with the default options to retrieve MI datasource that will read the URL content
-     * @param url
+     *
+     * @param url a {@link java.net.URL} object.
      * @return the default options for the MI datasource corresponding to this url
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(URL url) throws IOException {
         return getDefaultFileOptions(CsvType.mix,url);
@@ -56,9 +62,10 @@ public class CrossLinkCsvOptionFactory {
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the inputstream content.
+     *
      * @param streamToAnalyse : stream to be used to analyze the MIFileType
      * @return the default options for the MI datasource corresponding to this source inputstream
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(InputStream streamToAnalyse) throws IOException {
         return getDefaultFileOptions(CsvType.mix,streamToAnalyse);
@@ -66,9 +73,10 @@ public class CrossLinkCsvOptionFactory {
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the reader content.
+     *
      * @param readerToAnalyze : reader to be used to analyze the MIFileType
      * @return the default options for the MI datasource corresponding to this source reader
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultCsvOptions(Reader readerToAnalyze) throws IOException {
         return getDefaultFileOptions(CsvType.mix,readerToAnalyze);
@@ -77,8 +85,9 @@ public class CrossLinkCsvOptionFactory {
     /**
      * Create a map of default options depending on the provided sourceType.
      * It can recognize mitab, psi-xml and other
-     * @param csvType
-     * @param inputData
+     *
+     * @param csvType a {@link psidev.psi.mi.jami.crosslink.CsvType} object.
+     * @param inputData a {@link java.lang.Object} object.
      * @return the map of default options for this sourceType
      */
     public Map<String, Object> getDefaultFileOptions(CsvType csvType, Object inputData){
@@ -101,7 +110,9 @@ public class CrossLinkCsvOptionFactory {
      * Create the default options for the CSV datasource.
      * It will read InteractionEvidence elements usingCsvType.mix.
      * It will use the CsvParserLogger to listen to the CSV parsing events
+     *
      * @return the default options for the CSV datasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getDefaultCsvOptions(Object inputData){
         return getCsvOptions(CsvType.mix, ComplexType.n_ary, null, new CsvParserLogger(), inputData);
@@ -111,9 +122,11 @@ public class CrossLinkCsvOptionFactory {
      * Create the options for the CSV datasource using the provided csvtype.
      * It will read elements from this objectCategory.
      * It will use the CsvParserLogger to listen to the CSV parsing events
-     * @param csvType
+     *
+     * @param csvType a {@link psidev.psi.mi.jami.crosslink.CsvType} object.
      * @param complexType: the kind of complex : n-ary or binary
      * @return the options for the CSV datasource using the provided objectCategory
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getCsvOptions(CsvType csvType, ComplexType complexType, Object inputData){
         return getCsvOptions(csvType, complexType, true, new CsvParserLogger(), inputData);
@@ -123,8 +136,10 @@ public class CrossLinkCsvOptionFactory {
      * Create the options for the CSV datasource and specify if we want a Streaming MIFileDatasource.
      * It will read InteractionEvidence elements using CsvType.binary_only.
      * It will use the CsvParserLogger to listen to the Csv parsing events
+     *
      * @param streaming : tru if we want to read the interactions in a streaming way
      * @return the options for the MITAB datasource and specify if we want a Streaming MIFileDatasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getCsvOptions(boolean streaming, Object inputData){
         return getCsvOptions(CsvType.binary_only, ComplexType.n_ary, streaming, new CsvParserLogger(), inputData);
@@ -133,7 +148,8 @@ public class CrossLinkCsvOptionFactory {
     /**
      * Create the options for the CSV datasource using the provided MIFileParserListener.
      * It will read InteractionEvidence elements and use CsvType.mix by default.
-     * @param listener
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
      * @param inputData is the mitab data to read
      * @return the options for the MITAB datasource with the provided listener
      */
@@ -143,6 +159,7 @@ public class CrossLinkCsvOptionFactory {
 
     /**
      * Create a map of options
+     *
      * @param csvType : Crosslink Csv type (mix, binary_only, single_nary, etc.)
      * @param complexType: the kind of complex : n-ary or binary
      * @param streaming : boolean value to know if we want to stream the interactions or load the full interaction dataset

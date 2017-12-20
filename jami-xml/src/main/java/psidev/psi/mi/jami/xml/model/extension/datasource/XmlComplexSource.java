@@ -20,28 +20,51 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlComplexSource extends AbstractPsiXmlSource<Complex> implements ComplexSource{
 
+    /**
+     * <p>Constructor for XmlComplexSource.</p>
+     */
     public XmlComplexSource() {
     }
 
+    /**
+     * <p>Constructor for XmlComplexSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlComplexSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlComplexSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlComplexSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlComplexSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlComplexSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlComplexSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlComplexSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -54,6 +77,7 @@ public class XmlComplexSource extends AbstractPsiXmlSource<Complex> implements C
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -68,6 +92,7 @@ public class XmlComplexSource extends AbstractPsiXmlSource<Complex> implements C
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -80,6 +105,7 @@ public class XmlComplexSource extends AbstractPsiXmlSource<Complex> implements C
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -95,6 +121,7 @@ public class XmlComplexSource extends AbstractPsiXmlSource<Complex> implements C
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         //do nothing

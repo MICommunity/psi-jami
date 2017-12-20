@@ -36,10 +36,19 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
 
     private int id;
 
+    /**
+     * <p>Constructor for XmlVariableParameterValue.</p>
+     */
     public XmlVariableParameterValue(){
 
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameterValue.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     */
     public XmlVariableParameterValue(String value, VariableParameter variableParameter){
         if (value == null){
             throw new IllegalArgumentException("The value of a variableParameterValue cannot be null");
@@ -48,6 +57,13 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         this.variableParameter = variableParameter;
     }
 
+    /**
+     * <p>Constructor for XmlVariableParameterValue.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param order a {@link java.lang.Integer} object.
+     */
     public XmlVariableParameterValue(String value, VariableParameter variableParameter, Integer order){
         if (value == null){
             throw new IllegalArgumentException("The value of a variableParameterValue cannot be null");
@@ -57,6 +73,11 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         this.order = order;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getValue() {
         if (value == null){
             this.value = PsiXmlUtils.UNSPECIFIED;
@@ -64,18 +85,34 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         return value;
     }
 
+    /**
+     * <p>Getter for the field <code>order</code>.</p>
+     *
+     * @return a {@link java.lang.Integer} object.
+     */
     public Integer getOrder() {
         return order;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     */
     public VariableParameter getVariableParameter() {
         return variableParameter;
     }
 
+    /**
+     * <p>Setter for the field <code>variableParameter</code>.</p>
+     *
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     */
     public void setVariableParameter(VariableParameter variableParameter) {
         this.variableParameter = variableParameter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -89,21 +126,29 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         return VariableParameterValueComparator.areEquals(this, (VariableParameterValue) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return VariableParameterValueComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return value != null ? value.toString() : super.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -111,6 +156,7 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -124,19 +170,39 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         }
     }
 
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /**
+     * <p>Getter for the field <code>id</code>.</p>
+     *
+     * @return a int.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * <p>setJAXBValue.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     */
     @XmlElement(name = "value", required = true)
     public void setJAXBValue(String value){
         this.value = value;
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param id a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int id){
         this.id = id;
@@ -147,6 +213,11 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
         }
     }
 
+    /**
+     * <p>setJAXBOrder.</p>
+     *
+     * @param order a {@link java.lang.Integer} object.
+     */
     @XmlElement(name = "order", required = true)
     public void setJAXBOrder(Integer order){
         this.order = order;

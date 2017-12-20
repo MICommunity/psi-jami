@@ -36,7 +36,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public abstract class AbstractCsvSource<T extends InteractionEvidence> implements CsvSource<T> {
     private static final Logger logger = Logger.getLogger("AbstractCsvStreamSource");
     private AbstractCsvInteractionEvidenceParser<T> lineParser;
@@ -62,34 +61,61 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
     public AbstractCsvSource(){
     }
 
+    /**
+     * <p>Constructor for AbstractCsvSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractCsvSource(File file) throws IOException {
 
         initialiseFile(file);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractCsvSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public AbstractCsvSource(InputStream input) {
 
         initialiseInputStream(input);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractCsvSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public AbstractCsvSource(Reader reader) {
 
         initialiseReader(reader);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractCsvSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public AbstractCsvSource(URL url) {
 
         initialiseURL(url);
         isInitialised = true;
     }
 
+    /**
+     * <p>getFileParserListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
+     */
     public MIFileParserListener getFileParserListener() {
         return this.defaultParserListener;
     }
 
+    /** {@inheritDoc} */
     public void setFileParserListener(MIFileParserListener listener) {
         this.defaultParserListener = listener;
         if (listener instanceof CsvParserListener){
@@ -97,6 +123,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
         if (options == null && !isInitialised){
             throw new IllegalArgumentException("The options for the CrossLink CSV interaction datasource should contain at least "+
@@ -162,6 +189,11 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         isInitialised = true;
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (isInitialised){
 
@@ -224,6 +256,11 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException{
         if (isInitialised){
             this.originalFile = null;
@@ -241,11 +278,17 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public boolean validateSyntax(MIFileParserListener listener) {
         setMIFileParserListener(listener);
         return validateSyntax();
     }
 
+    /**
+     * <p>validateSyntax.</p>
+     *
+     * @return a boolean.
+     */
     public boolean validateSyntax() {
         if (!isInitialised){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource should contain at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
@@ -268,6 +311,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         return isValid;
     }
 
+    /** {@inheritDoc} */
     public void onInvalidSyntax(FileSourceContext context, Exception e) {
         isValid = false;
         if (defaultParserListener != null){
@@ -275,24 +319,28 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onSyntaxWarning(FileSourceContext context, String message) {
         if (defaultParserListener != null){
             defaultParserListener.onSyntaxWarning(context, message);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingCvTermName(CvTerm term, FileSourceContext context, String message) {
         if (defaultParserListener != null){
             defaultParserListener.onMissingCvTermName(term, context, message);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingInteractorName(Interactor interactor, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onMissingInteractorName(interactor, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMismatchBetweenPeptideAndLinkedPositions(List<CsvRange> peptidePositions, List<CsvRange> linkedPositions) {
         if (parserListener != null){
             parserListener.onMismatchBetweenPeptideAndLinkedPositions(peptidePositions, linkedPositions);
@@ -303,6 +351,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMismatchBetweenRangePositionsAndProteins(List<CsvRange> rangePositions, List<CsvProtein> proteins) {
         if (parserListener != null){
             parserListener.onMismatchBetweenRangePositionsAndProteins(rangePositions, proteins);
@@ -313,6 +362,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidProteinIdentifierSyntax(String[] identifiers, int lineNumber, int columnNumber) {
         if (parserListener != null){
             parserListener.onInvalidProteinIdentifierSyntax(identifiers, lineNumber, columnNumber);
@@ -324,6 +374,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingProtein1Column(int lineNumber) {
         if (parserListener != null){
             parserListener.onMissingProtein1Column(lineNumber);
@@ -334,6 +385,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onParticipantWithoutInteractor(Participant participant, FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -341,6 +393,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractionWithoutParticipants(Interaction interaction, FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -348,12 +401,14 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidOrganismTaxid(String taxid, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidOrganismTaxid(taxid, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingParameterValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -361,6 +416,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingParameterType(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -368,6 +424,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingConfidenceValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -375,6 +432,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingConfidenceType(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -382,6 +440,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingChecksumValue(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -389,6 +448,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingChecksumMethod(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -396,24 +456,28 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidPosition(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidPosition(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidRange(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidRange(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onInvalidStoichiometry(String message, FileSourceContext context) {
         if (defaultParserListener != null){
             defaultParserListener.onInvalidStoichiometry(message, context);
         }
     }
 
+    /** {@inheritDoc} */
     public void onXrefWithoutDatabase(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -421,6 +485,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onXrefWithoutId(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -428,6 +493,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onAnnotationWithoutTopic(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -435,6 +501,7 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /** {@inheritDoc} */
     public void onAliasWithoutName(FileSourceContext context) {
         isValid = false;
         if (defaultParserListener != null){
@@ -442,6 +509,11 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /**
+     * <p>getInteractionsIterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     public Iterator<T> getInteractionsIterator() {
         if (!isInitialised){
             throw new IllegalStateException("The Mitab interaction datasource has not been initialised. The options for the Mitab interaction datasource should contain at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
@@ -458,6 +530,12 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         return this.interactions.iterator();
     }
 
+    /**
+     * <p>Getter for the field <code>interactions</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public Collection<T> getInteractions() throws MIIOException {
         // reset parser if possible
         if (this.interactions.isEmpty()){
@@ -471,6 +549,11 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         return this.interactions;
     }
 
+    /**
+     * <p>getNumberOfInteractions.</p>
+     *
+     * @return a long.
+     */
     public long getNumberOfInteractions() {
         // reset parser if possible
         if (this.interactions.isEmpty()){
@@ -484,19 +567,39 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         return this.interactions.size();
     }
 
+    /**
+     * <p>Getter for the field <code>lineParser</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.crosslink.io.parser.AbstractCsvInteractionEvidenceParser} object.
+     */
     protected AbstractCsvInteractionEvidenceParser<T> getLineParser() {
         return lineParser;
     }
 
+    /**
+     * <p>Setter for the field <code>lineParser</code>.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.crosslink.io.parser.AbstractCsvInteractionEvidenceParser} object.
+     */
     protected void setLineParser(AbstractCsvInteractionEvidenceParser<T> lineParser) {
         this.lineParser = lineParser;
         this.lineParser.setParserListener(this);
     }
 
+    /**
+     * <p>createCsvIterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     protected Iterator<T> createCsvIterator(){
         return new CsvInteractionEvidenceIterator<T>(this.csvReader, this);
     }
 
+    /**
+     * <p>reInit.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     protected void reInit() throws MIIOException{
         if (isInitialised){
 
@@ -570,6 +673,11 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /**
+     * <p>instantiateLineParser.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.crosslink.io.parser.AbstractCsvInteractionEvidenceParser} object.
+     */
     protected abstract AbstractCsvInteractionEvidenceParser<T> instantiateLineParser();
 
     private void initialiseReader(Reader reader) {
@@ -645,27 +753,57 @@ public abstract class AbstractCsvSource<T extends InteractionEvidence> implement
         }
     }
 
+    /**
+     * <p>Setter for the field <code>originalFile</code>.</p>
+     *
+     * @param originalFile a {@link java.io.File} object.
+     */
     protected void setOriginalFile(File originalFile) {
         this.originalFile = originalFile;
     }
 
+    /**
+     * <p>Setter for the field <code>originalStream</code>.</p>
+     *
+     * @param originalStream a {@link java.io.InputStream} object.
+     */
     protected void setOriginalStream(InputStream originalStream) {
         this.originalStream = originalStream;
     }
 
+    /**
+     * <p>Setter for the field <code>originalReader</code>.</p>
+     *
+     * @param originalReader a {@link java.io.Reader} object.
+     */
     protected void setOriginalReader(Reader originalReader) {
         this.originalReader = originalReader;
     }
 
+    /**
+     * <p>Setter for the field <code>originalURL</code>.</p>
+     *
+     * @param originalURL a {@link java.net.URL} object.
+     */
     protected void setOriginalURL(URL originalURL) {
         this.originalURL = originalURL;
     }
 
+    /**
+     * <p>setCsvFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.crosslink.listener.CsvParserListener} object.
+     */
     protected void setCsvFileParserListener(CsvParserListener listener) {
         this.parserListener = listener;
         this.defaultParserListener = listener;
     }
 
+    /**
+     * <p>setMIFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
+     */
     protected void setMIFileParserListener(MIFileParserListener listener) {
         if (listener instanceof CsvParserListener){
             setCsvFileParserListener((CsvParserListener) listener);

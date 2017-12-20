@@ -21,21 +21,41 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public abstract class AbstractInteractionEvidenceLineParser<T extends InteractionEvidence> extends AbstractInteractionLineParser<T, ParticipantEvidence, FeatureEvidence> {
 
+    /**
+     * <p>Constructor for AbstractInteractionEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public AbstractInteractionEvidenceLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public AbstractInteractionEvidenceLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public AbstractInteractionEvidenceLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractInteractionEvidenceLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public AbstractInteractionEvidenceLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
@@ -206,6 +226,12 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         return interaction;
     }
 
+    /**
+     * <p>initialiseInteractionAnnotations.</p>
+     *
+     * @param annots a {@link java.util.Collection} object.
+     * @param interaction a T object.
+     */
     protected void initialiseInteractionAnnotations(Collection<MitabAnnotation> annots, T interaction){
 
         Iterator<MitabAnnotation> annotsIterator = annots.iterator();
@@ -228,6 +254,14 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         }
     }
 
+    /**
+     * <p>createExperimentFrom.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.tab.extension.MitabPublication} object.
+     * @param detMethod a {@link java.util.Collection} object.
+     * @param host a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.tab.extension.MitabExperiment} object.
+     */
     protected MitabExperiment createExperimentFrom(MitabPublication publication, Collection<MitabCvTerm> detMethod, Collection<MitabOrganism> host){
 
         // first get the interaction detection method
@@ -257,6 +291,12 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         return experiment;
     }
 
+    /**
+     * <p>initialiseHostOrganism.</p>
+     *
+     * @param organisms a {@link java.util.Collection} object.
+     * @param exp a {@link psidev.psi.mi.jami.tab.extension.MitabExperiment} object.
+     */
     protected void initialiseHostOrganism(Collection<MitabOrganism> organisms, MitabExperiment exp){
 
         if (organisms.size() > 1){
@@ -330,6 +370,14 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         }
     }
 
+    /**
+     * <p>createPublicationFrom.</p>
+     *
+     * @param firstAuthor a {@link java.util.Collection} object.
+     * @param pubId a {@link java.util.Collection} object.
+     * @param source a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.tab.extension.MitabPublication} object.
+     */
     protected MitabPublication createPublicationFrom(Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabSource> source){
         MitabPublication publication = new MitabPublication();
         boolean hasSetLocator = false;
@@ -376,6 +424,14 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         return publication;
     }
 
+    /**
+     * <p>initialisePublicationIdentifiers.</p>
+     *
+     * @param pubId a {@link java.util.Collection} object.
+     * @param publication a {@link psidev.psi.mi.jami.tab.extension.MitabPublication} object.
+     * @param hasInitialisedLocator a boolean.
+     * @return a boolean.
+     */
     protected boolean initialisePublicationIdentifiers(Collection<MitabXref> pubId, MitabPublication publication, boolean hasInitialisedLocator){
 
         Iterator<MitabXref> refsIterator = pubId.iterator();
@@ -398,6 +454,12 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
         return hasInitialisedLocator;
     }
 
+    /**
+     * <p>initialiseAuthorAndPublicationDate.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.tab.extension.MitabPublication} object.
+     * @param author a {@link psidev.psi.mi.jami.tab.extension.MitabAuthor} object.
+     */
     protected void initialiseAuthorAndPublicationDate(MitabPublication publication, MitabAuthor author) {
         if (author.getFirstAuthor() != null){
             publication.getAuthors().add(author.getFirstAuthor());

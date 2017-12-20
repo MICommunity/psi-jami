@@ -12,18 +12,23 @@ import psidev.psi.mi.jami.model.Publication;
  * @version $Id$
  * @since <pre>29/03/12</pre>
  */
-
 public interface PublicationAdminGroupSynchronizer {
 
     /**
      * Update IMEx central and synchronize the publication ADMIN group. It can only be applied on publications having a valid pubmed identifier, doi number, jint identifier or IMEx identifier.
      * it will add the institution.
      * admin group
-     * @param publication
-     * @param imexPublication
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param imexPublication a {@link psidev.psi.mi.jami.bridges.imex.extension.ImexPublication} object.
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if does not have a valid ADMIn group and if IMEx central is not available or the publication id is not recognized
      */
     public void synchronizePublicationAdminGroup(Publication publication, ImexPublication imexPublication) throws BridgeFailedException;
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient();
 }

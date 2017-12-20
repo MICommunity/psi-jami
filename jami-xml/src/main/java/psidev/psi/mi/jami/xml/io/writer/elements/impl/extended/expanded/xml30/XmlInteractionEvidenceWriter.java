@@ -17,18 +17,25 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlInteractionEvidenceWriter extends AbstractXmlInteractionEvidenceWriter<InteractionEvidence>
         implements ExpandedPsiXmlElementWriter<InteractionEvidence> {
+    /**
+     * <p>Constructor for XmlInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAvailability(InteractionEvidence object) throws XMLStreamException {
         if (object.getAvailability() != null){
@@ -36,6 +43,7 @@ public class XmlInteractionEvidenceWriter extends AbstractXmlInteractionEvidence
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(InteractionEvidence object) throws XMLStreamException {
         super.writeExperiments(object);

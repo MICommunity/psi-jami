@@ -15,10 +15,15 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlExperimentalCvTermWriter extends XmlCvTermWriter {
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlExperimentalCvTermWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlExperimentalCvTermWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer);
         if (objectIndex == null){
@@ -27,6 +32,7 @@ public class XmlExperimentalCvTermWriter extends XmlCvTermWriter {
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(CvTerm object) throws XMLStreamException {
         if (object instanceof ExperimentalCvTerm){

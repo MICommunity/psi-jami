@@ -15,7 +15,6 @@ import org.springframework.batch.core.scope.context.ChunkContext;
  * @version $Id$
  * @since <pre>02/08/13</pre>
  */
-
 public class BasicChunkLoggerListener implements StepExecutionListener, ChunkListener {
 
     private static final Log log = LogFactory.getLog(BasicChunkLoggerListener.class);
@@ -23,22 +22,26 @@ public class BasicChunkLoggerListener implements StepExecutionListener, ChunkLis
     private StepExecution stepExecution;
     private long startTime;
 
+    /** {@inheritDoc} */
     public ExitStatus afterStep(StepExecution stepExecution) {
         log.info("Step finished after " + startTime + " milliseconds");
 
         return null;
     }
 
+    /** {@inheritDoc} */
     public void beforeStep(StepExecution stepExecution) {
         this.stepExecution = stepExecution;
 
         this.startTime = System.currentTimeMillis();
     }
 
+    /** {@inheritDoc} */
     public void beforeChunk(ChunkContext chunkContext) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void afterChunk(ChunkContext chunkContext) {
         if (!log.isInfoEnabled()) {
             return;
@@ -49,6 +52,7 @@ public class BasicChunkLoggerListener implements StepExecutionListener, ChunkLis
         log.info("Number of lines read : " + readCount);
     }
 
+    /** {@inheritDoc} */
     public void afterChunkError(ChunkContext chunkContext) {
         log.error("Chunk error: " + chunkContext.toString());
     }

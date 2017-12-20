@@ -15,9 +15,14 @@ import psidev.psi.mi.jami.utils.checksum.RogidGenerator;
  * @version $Id$
  * @since <pre>09/02/15</pre>
  */
-
 public class CreateRogidAndRigid {
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects.
+     * @throws java.lang.Exception if any.
+     */
     public static void main(String[] args) throws Exception{
         // Create test environment
         Interaction i1 = createInteraction();
@@ -54,6 +59,11 @@ public class CreateRogidAndRigid {
         rigidGenerator.getRogids().clear();
     }
 
+    /**
+     * <p>createInteraction.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Interaction} object.
+     */
     protected static Interaction createInteraction() {
         // first create an interaction
 

@@ -15,13 +15,16 @@ import psidev.psi.mi.jami.model.CvTerm;
  * - update identifiers of CvTerm. It will add missing identifiers and remove any existing identifiers that are not in the fetched CvTerm using DefaultXrefComparator
  *
  * It will ignore all other properties of a CvTerm
+ *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public class MinimalCvTermUpdater<C extends CvTerm> extends MinimalCvTermEnricher<C>{
 
     /**
      * A constructor matching super.
+     *
      * @param cvTermFetcher The fetcher to initiate the enricher with.
      *                      If null, an illegal state exception will be thrown at the next enrichment.
      */
@@ -30,8 +33,9 @@ public class MinimalCvTermUpdater<C extends CvTerm> extends MinimalCvTermEnriche
     }
 
     /**
+     * {@inheritDoc}
+     *
      * A method that can be overridden to add to or change the behaviour of enrichment without effecting fetching.
-     * @param cvTermToEnrich the CvTerm to enrich
      */
     @Override
     public void processCvTerm(C cvTermToEnrich, C cvTermFetched) throws EnricherException {
@@ -41,6 +45,13 @@ public class MinimalCvTermUpdater<C extends CvTerm> extends MinimalCvTermEnriche
         processShortabel(cvTermToEnrich, cvTermFetched);
     }
 
+    /**
+     * <p>processShortabel.</p>
+     *
+     * @param cvTermToEnrich a C object.
+     * @param cvTermFetched a C object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processShortabel(C cvTermToEnrich, C cvTermFetched) throws EnricherException{
         if(cvTermFetched.getShortName() != null
                 && ! cvTermFetched.getShortName().equalsIgnoreCase(cvTermToEnrich.getShortName())){
@@ -52,12 +63,14 @@ public class MinimalCvTermUpdater<C extends CvTerm> extends MinimalCvTermEnriche
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(C cvTermToEnrich, C cvTermFetched) throws EnricherException{
         EnricherUtils.mergeXrefs(cvTermToEnrich, cvTermToEnrich.getIdentifiers(), cvTermFetched.getIdentifiers(), true, true,
                 getCvTermEnricherListener(), getCvTermEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processFullName(C cvTermToEnrich, C cvTermFetched) throws EnricherException{
         // == Full Name ======================================================================

@@ -16,8 +16,8 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>18/07/13</pre>
  */
-
 public class OntologyTermCompositeFetcher extends CvTermCompositeFetcherTemplate<OntologyTerm, OntologyTermFetcher> implements OntologyTermFetcher{
+    /** {@inheritDoc} */
     public Set<OntologyTerm> fetchRootTerms(String databaseName) throws BridgeFailedException {
         if (databaseName == null || !getDelegateFetchers().containsKey(databaseName)){
             Set<OntologyTerm> firstTermRetrieved = Collections.EMPTY_SET;
@@ -37,6 +37,13 @@ public class OntologyTermCompositeFetcher extends CvTermCompositeFetcherTemplate
         }
     }
 
+    /**
+     * <p>fetchRootTerms.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a {@link java.util.Set} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Set<OntologyTerm> fetchRootTerms(CvTerm database) throws BridgeFailedException {
         if (database == null || !getDelegateFetchers().containsKey(database.getShortName())){
             Set<OntologyTerm> firstTermRetrieved = Collections.EMPTY_SET;

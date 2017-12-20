@@ -47,7 +47,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>14/10/13</pre>
  */
-
 public abstract class AbstractPsiXmlParser<T extends Interaction> implements PsiXmlParser<T> {
 
     private static final Logger logger = Logger.getLogger("AbstractPsiXmlParser");
@@ -69,6 +68,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
     private PsiXmlVersion version = null;
 
+    /**
+     * <p>Constructor for AbstractPsiXmlParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public AbstractPsiXmlParser(File file) {
         if (file == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null File");
@@ -77,6 +81,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         loadedInteractions = new ArrayList<Integer>();
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     */
     public AbstractPsiXmlParser(InputStream inputStream) {
         if (inputStream == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null InputStream");
@@ -86,6 +95,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public AbstractPsiXmlParser(URL url) {
         if (url == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null URL");
@@ -94,6 +108,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         loadedInteractions = new ArrayList<Integer>();
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public AbstractPsiXmlParser(Reader reader) {
         if (reader == null){
             throw new IllegalArgumentException("The PsiXmlParser needs a non null Reader");
@@ -102,6 +121,12 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         loadedInteractions = new ArrayList<Integer>();
     }
 
+    /**
+     * <p>parseNextInteraction.</p>
+     *
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     public T parseNextInteraction() throws PsiXmlParserException{
         // Parse into typed objects
         if (this.streamReader == null){
@@ -189,6 +214,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         return null;
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (this.streamReader != null){
             try {
@@ -201,6 +231,12 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         closeOriginalInputSources();
     }
 
+    /**
+     * <p>hasFinished.</p>
+     *
+     * @return a boolean.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     public boolean hasFinished() throws PsiXmlParserException{
         if (this.streamReader == null){
             return false;
@@ -216,6 +252,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>reInit.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reInit() throws MIIOException{
         loadedInteractions.clear();
         this.version = null;
@@ -298,18 +339,30 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>Getter for the field <code>listener</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
+     */
     public PsiXmlParserListener getListener() {
         return listener;
     }
 
+    /** {@inheritDoc} */
     public void setListener(PsiXmlParserListener listener) {
         this.listener = listener;
     }
 
+    /** {@inheritDoc} */
     public void setCacheOfObjects(PsiXmlIdCache indexOfObjects) {
         this.indexOfObjects = indexOfObjects;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public XmlInteractorFactory getInteractorFactory() {
         if (this.interactorFactory == null){
             this.interactorFactory = new XmlInteractorFactory();
@@ -317,10 +370,17 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         return interactorFactory;
     }
 
+    /** {@inheritDoc} */
     public void setInteractorFactory(XmlInteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
     }
 
+    /**
+     * <p>getNextPsiXmlStartElement.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected String getNextPsiXmlStartElement() throws PsiXmlParserException{
         // Parse into typed objects
         try{
@@ -406,6 +466,13 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>createPsiXmlExceptionFrom.</p>
+     *
+     * @param message a {@link java.lang.String} object.
+     * @param e a {@link java.lang.Exception} object.
+     * @return a {@link psidev.psi.mi.jami.xml.exception.PsiXmlParserException} object.
+     */
     protected PsiXmlParserException createPsiXmlExceptionFrom(String message, Exception e) {
         Location loc = this.streamReader.getLocation();
         FileSourceLocator locator = null;
@@ -417,17 +484,20 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
 
     /**
+     * <p>createJAXBUnmarshaller.</p>
      *
      * @return the unmarshaller with the class context
+     * @throws javax.xml.bind.JAXBException if any.
      */
     protected abstract Unmarshaller createJAXBUnmarshaller() throws JAXBException;
 
     /**
      * Process an entry that is opened (source, experimentList, etc) and read the first interaction
-     * @param entryContext
-     * @return
-     * @throws XMLStreamException
-     * @throws JAXBException
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @param startEntry a {@link javax.xml.stream.Location} object.
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
     protected T processEntryAndLoadNextInteraction(XmlEntryContext entryContext, Location startEntry) throws PsiXmlParserException {
         T loadedInteraction = null;
@@ -491,6 +561,12 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         return loadedInteraction;
     }
 
+    /**
+     * <p>parseAttributeList.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void parseAttributeList(XmlEntryContext entryContext) throws PsiXmlParserException {
         // read attributeList
         try{
@@ -526,6 +602,14 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>parseInteractionList.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @param loadedInteraction a T object.
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected T parseInteractionList(XmlEntryContext entryContext, T loadedInteraction) throws PsiXmlParserException {
         // read interaction list
         try{
@@ -555,6 +639,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>parseInteractorList.</p>
+     *
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void parseInteractorList() throws PsiXmlParserException {
         // read experiment list
         try{
@@ -591,6 +680,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>parseExperimentList.</p>
+     *
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void parseExperimentList() throws PsiXmlParserException {
         // read experiment list
         try{
@@ -625,11 +719,23 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>parseAvailabilityList.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void parseAvailabilityList(XmlEntryContext entryContext) throws PsiXmlParserException {
         processAvailabilityList(entryContext);
         this.currentElement = getNextPsiXmlStartElement();
     }
 
+    /**
+     * <p>parseSource.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void parseSource(XmlEntryContext entryContext) throws PsiXmlParserException {
 
         ExtendedPsiXmlSource sourceElement = null;
@@ -644,10 +750,10 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
     /**
      * Creates a new Entry, parses the entry and return the next available interaction
-     * @param entryContext
-     * @return
-     * @throws JAXBException
-     * @throws XMLStreamException
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
     protected T processEntry(XmlEntryContext entryContext) throws PsiXmlParserException {
         try{
@@ -669,9 +775,10 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
     /**
      * Some interactions contains references and we want to load the remaining interactions until the end of the entry
-     * @param entryContext
-     * @throws XMLStreamException
-     * @throws JAXBException
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @param currentInteraction a T object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
     protected void loadEntry(XmlEntryContext entryContext, T currentInteraction) throws PsiXmlParserException {
         // load the all entry
@@ -718,8 +825,10 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
     }
 
     /**
+     * <p>parseNextPreLoadedInteraction.</p>
      *
      * @return the next interaction preloaded in the interactionIterator. Deletes the returned interaction
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
     protected T parseNextPreLoadedInteraction() throws PsiXmlParserException {
         int id = this.interactionIterator.next();
@@ -737,10 +846,10 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
 
     /**
      * The unmarshaller must be able to return the expected interaction type
-     * @param entryContext
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
      * @return next interaction parsed in the interaction list. Will load the all entry if we have references to solve
-     * @throws JAXBException
-     * @throws XMLStreamException
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
     protected T parseInteractionTag(XmlEntryContext entryContext) throws PsiXmlParserException{
         T interaction = null;
@@ -763,14 +872,32 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>containsUnresolvedReferences.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @return a boolean.
+     */
     protected boolean containsUnresolvedReferences(XmlEntryContext entryContext) {
         return entryContext.hasInferredInteractions() || entryContext.hasUnresolvedReferences();
     }
 
+    /**
+     * <p>unmarshallInteraction.</p>
+     *
+     * @return a T object.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     protected T unmarshallInteraction() throws JAXBException{
         return (T) this.unmarshaller.unmarshal(this.streamReader);
     }
 
+    /**
+     * <p>processAvailabilityList.</p>
+     *
+     * @param entryContext a {@link psidev.psi.mi.jami.xml.XmlEntryContext} object.
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void processAvailabilityList(XmlEntryContext entryContext) throws PsiXmlParserException {
         // read availability list
         try{
@@ -808,18 +935,38 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>Getter for the field <code>streamReader</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamReader} object.
+     */
     protected XMLStreamReader getStreamReader() {
         return streamReader;
     }
 
+    /**
+     * <p>Getter for the field <code>currentElement</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     protected String getCurrentElement() {
         return currentElement;
     }
 
+    /**
+     * <p>Setter for the field <code>currentElement</code>.</p>
+     *
+     * @param currentElement a {@link java.lang.String} object.
+     */
     protected void setCurrentElement(String currentElement) {
         this.currentElement = currentElement;
     }
 
+    /**
+     * <p>skipNextElement.</p>
+     *
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void skipNextElement() throws PsiXmlParserException {
         try{
             String currentNamespace = null;
@@ -858,6 +1005,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>processUnexpectedNode.</p>
+     *
+     * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
+     */
     protected void processUnexpectedNode() throws PsiXmlParserException {
         // skip nodes from other schema
         FileSourceContext context = null;
@@ -873,6 +1025,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
         skipNextElement();
     }
 
+    /**
+     * <p>Getter for the field <code>version</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     */
     public PsiXmlVersion getVersion() {
         return version;
     }

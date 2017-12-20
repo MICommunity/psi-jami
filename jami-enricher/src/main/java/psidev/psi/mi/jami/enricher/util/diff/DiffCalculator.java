@@ -29,14 +29,32 @@ public class DiffCalculator {
 
     private diff_match_patch diffMatchPatch;
 
+    /**
+     * <p>Constructor for DiffCalculator.</p>
+     */
     public DiffCalculator() {
         diffMatchPatch = new diff_match_patch();
     }
 
+    /**
+     * <p>calculateDiffs.</p>
+     *
+     * @param str1 a {@link java.lang.String} object.
+     * @param str2 a {@link java.lang.String} object.
+     * @return a {@link java.util.List} object.
+     */
     public List<Diff> calculateDiffs(String str1, String str2) {
         return calculateDiffs(str1, str2, false);
     }
 
+    /**
+     * <p>calculateDiffs.</p>
+     *
+     * @param str1 a {@link java.lang.String} object.
+     * @param str2 a {@link java.lang.String} object.
+     * @param checkLines a boolean.
+     * @return a {@link java.util.List} object.
+     */
     public List<Diff> calculateDiffs(String str1, String str2, boolean checkLines) {
         if (str1 == null) throw new NullPointerException("String 1 is null");
         if (str2 == null) throw new NullPointerException("String 2 is null");
@@ -76,6 +94,11 @@ public class DiffCalculator {
         return diffs;
     }
 
+    /**
+     * <p>setTimeOut.</p>
+     *
+     * @param timeout a float.
+     */
     public void setTimeOut(float timeout) {
         diffMatchPatch.Diff_Timeout = timeout;
     }

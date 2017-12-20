@@ -9,8 +9,13 @@ import java.io.IOException;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public interface JsonElementWriter<T extends Object>{
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a T object.
+     * @throws java.io.IOException if any.
+     */
     public void write(T object) throws IOException;
 }

@@ -16,14 +16,31 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonModelledFeatureWriter extends SimpleJsonFeatureWriter<ModelledFeature>{
 
+    /**
+     * <p>Constructor for SimpleJsonModelledFeatureWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonModelledFeatureWriter(Writer writer, Map<Feature, Integer> processedFeatures, Map<String, String> processedInteractors,
                                            Map<Entity, Integer> processedParticipants) {
         super(writer, processedFeatures, processedInteractors, processedParticipants);
     }
 
+    /**
+     * <p>Constructor for SimpleJsonModelledFeatureWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public SimpleJsonModelledFeatureWriter(Writer writer, Map<Feature, Integer> processedFeatures, Map<String, String> processedInteractors,
                                            Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator,
                                            OntologyTermFetcher fetcher) {

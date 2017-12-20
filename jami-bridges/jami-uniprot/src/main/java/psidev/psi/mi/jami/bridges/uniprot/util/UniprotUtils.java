@@ -15,17 +15,27 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>10/09/13</pre>
  */
-
 public class UniprotUtils {
 
     // PRO regular expression: "PRO" followed by "-" OR "_" then any number of digits.
+    /** Constant <code>UNIPROT_PRO_REGEX</code> */
     public static final Pattern UNIPROT_PRO_REGEX = Pattern.compile("PRO[_|-][0-9]+");
     // Isoform regular expression: "-" followed by any number of digits.
+    /** Constant <code>UNIPROT_ISOFORM_REGEX</code> */
     public static final Pattern UNIPROT_ISOFORM_REGEX = Pattern.compile("-[0-9]+");
+    /** Constant <code>FEATURE_CHAIN_FIELD="feature.chain:"</code> */
     public final static String FEATURE_CHAIN_FIELD = "feature.chain:";
+    /** Constant <code>FEATURE_PEPTIDE_FIELD="feature.peptide:"</code> */
     public final static String FEATURE_PEPTIDE_FIELD = "feature.peptide:";
+    /** Constant <code>FEATURE_PRO_PEPTIDE_FIELD="feature.propep:"</code> */
     public final static String FEATURE_PRO_PEPTIDE_FIELD = "feature.propep:";
 
+    /**
+     * <p>createOrganismFromEntry.</p>
+     *
+     * @param entity a {@link uk.ac.ebi.kraken.interfaces.uniprot.UniProtEntry} object.
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public static psidev.psi.mi.jami.model.Organism createOrganismFromEntry(UniProtEntry entity){
 
         if(entity.getNcbiTaxonomyIds() == null

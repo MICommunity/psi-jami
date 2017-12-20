@@ -18,27 +18,36 @@ import psidev.psi.mi.jami.utils.ChecksumUtils;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class FullInteractionUpdater<I extends Interaction>
         extends FullInteractionEnricher<I>  {
 
     private MinimalInteractionUpdater<I> delegate;
 
+    /**
+     * <p>Constructor for FullInteractionUpdater.</p>
+     */
     public FullInteractionUpdater(){
          super();
         this.delegate = new MinimalInteractionUpdater<I>();
     }
 
+    /**
+     * <p>Constructor for FullInteractionUpdater.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalInteractionUpdater} object.
+     */
     protected FullInteractionUpdater(MinimalInteractionUpdater<I> delegate){
         super();
         this.delegate = delegate != null ? delegate : new MinimalInteractionUpdater<I>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processMinimalUpdates(I objectToEnrich, I objectSource) throws EnricherException {
         this.delegate.processMinimalUpdates(objectToEnrich, objectSource);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processRigid(I interactionToEnrich) throws EnricherException {
         String rigid = generateRigid(interactionToEnrich);
@@ -57,6 +66,7 @@ public class FullInteractionUpdater<I extends Interaction>
         getRigidGenerator().getRogids().clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processChecksums(I objectToEnrich, I objectSource) throws EnricherException {
         EnricherUtils.mergeChecksums(objectToEnrich, objectToEnrich.getChecksums(), objectSource.getChecksums(), true, getInteractionEnricherListener());
@@ -64,47 +74,60 @@ public class FullInteractionUpdater<I extends Interaction>
         processRigid(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(I objectToEnrich, I objectSource) throws EnricherException {
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getXrefs(), objectSource.getXrefs(), true, false, getInteractionEnricherListener(),
                 getInteractionEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(I objectToEnrich, I objectSource) throws EnricherException {
         EnricherUtils.mergeAnnotations(objectToEnrich, objectToEnrich.getAnnotations(), objectSource.getAnnotations(), true, getInteractionEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return delegate.getCvTermEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setCvTermEnricher(CvTermEnricher<CvTerm> cvTermEnricher) {
         delegate.setCvTermEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipantEnricher(ParticipantEnricher participantEnricher) {
         delegate.setParticipantEnricher(participantEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ParticipantEnricher getParticipantEnricher() {
         return delegate.getParticipantEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractionEnricherListener<I> getInteractionEnricherListener() {
         return delegate.getInteractionEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionEnricherListener(InteractionEnricherListener<I> listener) {
         delegate.setInteractionEnricherListener(listener);
     }
 
+    /**
+     * <p>Getter for the field <code>delegate</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalInteractionUpdater} object.
+     */
     protected MinimalInteractionUpdater<I> getDelegate() {
         return delegate;
     }

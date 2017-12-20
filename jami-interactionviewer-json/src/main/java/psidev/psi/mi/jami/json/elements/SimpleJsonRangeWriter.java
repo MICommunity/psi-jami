@@ -17,7 +17,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonRangeWriter implements JsonRangeWriter{
 
     private Writer writer;
@@ -25,6 +24,13 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
     private Map<Entity, Integer> processedParticipants;
     private IncrementalIdGenerator idGenerator;
 
+    /**
+     * <p>Constructor for SimpleJsonRangeWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonRangeWriter(Writer writer, Map<String, String> processedInteractors,
                                  Map<Entity, Integer> processedParticipants){
         if (writer == null){
@@ -41,16 +47,31 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
         this.processedParticipants = processedParticipants;
     }
 
+    /**
+     * <p>Constructor for SimpleJsonRangeWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public SimpleJsonRangeWriter(Writer writer, Map<String, String> processedInteractors,
                                  Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator){
         this(writer, processedInteractors, processedParticipants);
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Range} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Range object) throws IOException {
         write(object, null);
     }
 
+    /** {@inheritDoc} */
     public void write(Range object, Feature parent) throws IOException {
         // start object
         MIJsonUtils.writeStartObject(writer);
@@ -101,6 +122,11 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
 
     }
 
+    /**
+     * <p>Getter for the field <code>idGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public IncrementalIdGenerator getIdGenerator() {
         if (idGenerator == null){
            idGenerator = new IncrementalIdGenerator();
@@ -108,6 +134,11 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
         return idGenerator;
     }
 
+    /**
+     * <p>Setter for the field <code>idGenerator</code>.</p>
+     *
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public void setIdGenerator(IncrementalIdGenerator idGenerator) {
         this.idGenerator = idGenerator;
     }

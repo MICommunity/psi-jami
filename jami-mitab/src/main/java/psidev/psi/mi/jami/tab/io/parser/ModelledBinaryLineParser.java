@@ -15,29 +15,51 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public class ModelledBinaryLineParser extends AbstractModelledInteractionLineParser<ModelledBinaryInteraction> {
+    /**
+     * <p>Constructor for ModelledBinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public ModelledBinaryLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for ModelledBinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public ModelledBinaryLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for ModelledBinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public ModelledBinaryLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for ModelledBinaryLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public ModelledBinaryLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected MitabModelledBinaryInteraction createInteraction() {
         return new MitabModelledBinaryInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(Collection<MitabCvTerm> expansion, ModelledBinaryInteraction interaction) {
         if (expansion.size() > 1){

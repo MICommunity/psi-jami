@@ -14,13 +14,19 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlParameterWriter extends AbstractXmlParameterWriter {
 
+    /**
+     * <p>Constructor for XmlParameterWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlParameterWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Parameter object) throws XMLStreamException {
         // by default does not write anything

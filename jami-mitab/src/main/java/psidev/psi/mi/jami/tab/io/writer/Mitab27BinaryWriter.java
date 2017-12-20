@@ -23,42 +23,63 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInteraction, Participant>{
 
     private AbstractMitab27BinaryWriter<ModelledBinaryInteraction, ModelledParticipant> modelledBinaryWriter;
     private AbstractMitab27BinaryWriter<BinaryInteractionEvidence, ParticipantEvidence> binaryEvidenceWriter;
 
+    /**
+     * <p>Constructor for Mitab27BinaryWriter.</p>
+     */
     public Mitab27BinaryWriter() {
         super();
     }
 
+    /**
+     * <p>Constructor for Mitab27BinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public Mitab27BinaryWriter(File file) throws IOException {
         super(file);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for Mitab27BinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public Mitab27BinaryWriter(OutputStream output) {
         super(output);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for Mitab27BinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public Mitab27BinaryWriter(Writer writer) {
         super(writer);
         initialiseSubWritersWith(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void initialiseContext(Map<String, Object> options) {
         super.initialiseContext(options);
         initialiseSubWritersWith(getWriter());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void start() throws MIIOException {
         super.start();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
         try{
@@ -70,6 +91,7 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException {
         try{
@@ -81,6 +103,7 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(BinaryInteraction interaction) throws MIIOException {
         if (this.binaryEvidenceWriter == null || this.modelledBinaryWriter == null){
@@ -109,6 +132,11 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         }
     }
 
+    /**
+     * <p>initialiseSubWritersWith.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     protected void initialiseSubWritersWith(Writer writer) {
 
         this.modelledBinaryWriter = new Mitab27ModelledBinaryWriter(writer);
@@ -117,11 +145,13 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         this.binaryEvidenceWriter.setWriteHeader(isWriteHeader());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseColumnFeeder() {
         setColumnFeeder(new DefaultMitabColumnFeeder(getWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setWriteHeader(boolean writeHeader) {
         super.setWriteHeader(writeHeader);
@@ -133,11 +163,21 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         }
     }
 
+    /**
+     * <p>Setter for the field <code>modelledBinaryWriter</code>.</p>
+     *
+     * @param modelledBinaryWriter a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab27BinaryWriter} object.
+     */
     protected void setModelledBinaryWriter(AbstractMitab27BinaryWriter<ModelledBinaryInteraction, ModelledParticipant> modelledBinaryWriter) {
         this.modelledBinaryWriter = modelledBinaryWriter;
         this.modelledBinaryWriter.setWriteHeader(false);
     }
 
+    /**
+     * <p>Setter for the field <code>binaryEvidenceWriter</code>.</p>
+     *
+     * @param binaryEvidenceWriter a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab27BinaryWriter} object.
+     */
     protected void setBinaryEvidenceWriter(AbstractMitab27BinaryWriter<BinaryInteractionEvidence, ParticipantEvidence> binaryEvidenceWriter) {
         this.binaryEvidenceWriter = binaryEvidenceWriter;
         this.binaryEvidenceWriter.setWriteHeader(false);

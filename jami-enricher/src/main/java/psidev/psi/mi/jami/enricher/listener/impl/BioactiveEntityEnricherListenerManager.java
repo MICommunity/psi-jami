@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public class BioactiveEntityEnricherListenerManager extends InteractorEnricherListenerManager<BioactiveEntity>
         implements BioactiveEntityEnricherListener{
@@ -22,6 +23,7 @@ public class BioactiveEntityEnricherListenerManager extends InteractorEnricherLi
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public BioactiveEntityEnricherListenerManager(BioactiveEntityEnricherListener... listeners){

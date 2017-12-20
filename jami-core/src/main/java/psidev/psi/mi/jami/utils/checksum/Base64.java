@@ -59,8 +59,7 @@ package psidev.psi.mi.jami.utils.checksum;
  * periodically to check for updates or to contribute improvements.
  * </p>
  *
- * @author ntoro
- * @version $Id: $
+  * @version $Id: $
  */
 public class Base64 {
 

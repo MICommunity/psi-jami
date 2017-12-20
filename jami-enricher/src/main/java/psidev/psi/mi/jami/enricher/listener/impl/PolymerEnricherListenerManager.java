@@ -15,6 +15,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  12/06/13
+
  */
 public class PolymerEnricherListenerManager<P extends Polymer>
         extends InteractorEnricherListenerManager<P>
@@ -27,6 +28,7 @@ public class PolymerEnricherListenerManager<P extends Polymer>
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public PolymerEnricherListenerManager(InteractorEnricherListener<P>... listeners){
@@ -35,6 +37,7 @@ public class PolymerEnricherListenerManager<P extends Polymer>
 
     //============================================================================================
 
+    /** {@inheritDoc} */
     public void onSequenceUpdate(P protein, String oldSequence) {
         for(InteractorEnricherListener<P> l : getListenersList()){
             if (l instanceof PolymerChangeListener){

@@ -19,8 +19,10 @@ import psidev.psi.mi.jami.utils.CvTermUtils;
  * - enrich identifiers of CvTerm. It will only add missing identifiers and not remove any existing identifiers using DefaultXrefComparator
  *
  * It will ignore all other properties of a CvTerm
+ *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/05/13
+
  */
 public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<C> implements CvTermEnricher<C>{
 
@@ -31,6 +33,7 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
 
     /**
      * A constructor matching super.
+     *
      * @param cvTermFetcher The fetcher to initiate the enricher with.
      *                      If null, an illegal state exception will be thrown at the next enrichment.
      */
@@ -43,6 +46,7 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
 
     /**
      * The fetcher to be used for used for fetcher.
+     *
      * @return  The fetcher which is being used for fetching.
      */
     public CvTermFetcher<C> getCvTermFetcher() {
@@ -50,32 +54,47 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
     }
 
     /**
+     * {@inheritDoc}
+     *
      * The cvTermEnricherListener to be used.
      * It will be fired at all points where a change is made to the cvTerm
-     * @param listener  The listener to use. Can be null.
      */
     public void setCvTermEnricherListener(CvTermEnricherListener<C> listener) {
         this.listener = listener;
     }
     /**
      * The current CvTermEnricherListener.
+     *
      * @return  the current listener. May be null.
      */
     public CvTermEnricherListener<C> getCvTermEnricherListener() {
         return listener;
     }
 
+    /**
+     * <p>Getter for the field <code>retryCount</code>.</p>
+     *
+     * @return a int.
+     */
     public int getRetryCount() {
         return retryCount;
     }
 
+    /**
+     * <p>Setter for the field <code>retryCount</code>.</p>
+     *
+     * @param retryCount a int.
+     */
     public void setRetryCount(int retryCount) {
         this.retryCount = retryCount;
     }
 
     /**
      * A method that can be overridden to add to or change the behaviour of enrichment without effecting fetching.
+     *
      * @param cvTermToEnrich the CvTerm to enrich
+     * @param cvTermFetched a C object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void processCvTerm(C cvTermToEnrich, C cvTermFetched) throws EnricherException {
 
@@ -88,11 +107,25 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
         processIdentifiers(cvTermToEnrich, cvTermFetched);
     }
 
+    /**
+     * <p>processIdentifiers.</p>
+     *
+     * @param cvTermToEnrich a C object.
+     * @param cvTermFetched a C object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentifiers(C cvTermToEnrich, C cvTermFetched) throws EnricherException {
         EnricherUtils.mergeXrefs(cvTermToEnrich, cvTermToEnrich.getIdentifiers(), cvTermFetched.getIdentifiers(), false, true,
                 getCvTermEnricherListener(), getCvTermEnricherListener());
     }
 
+    /**
+     * <p>processFullName.</p>
+     *
+     * @param cvTermToEnrich a C object.
+     * @param cvTermFetched a C object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processFullName(C cvTermToEnrich, C cvTermFetched) throws EnricherException{
         if(cvTermToEnrich.getFullName() == null
                 && cvTermFetched.getFullName() != null){
@@ -103,6 +136,7 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public C find(C cvTermToEnrich) throws EnricherException {
         C cvTermFetched = null;
@@ -157,12 +191,14 @@ public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<
         return cvTermFetched;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(C cvTermToEnrich) throws EnricherException{
         if(getCvTermEnricherListener() != null)
             getCvTermEnricherListener().onEnrichmentComplete(cvTermToEnrich, EnrichmentStatus.FAILED, "The cvTerm does not exist.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(C cvTermToEnrich, C cvTermFetched) throws EnricherException {
         processCvTerm(cvTermToEnrich, cvTermFetched);

@@ -19,20 +19,38 @@ import java.io.Reader;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class MitabEvidenceSource extends AbstractMitabSource<InteractionEvidence, ParticipantEvidence, FeatureEvidence> implements InteractionEvidenceSource<InteractionEvidence>{
+    /**
+     * <p>Constructor for MitabEvidenceSource.</p>
+     */
     public MitabEvidenceSource() {
         super(new MitabEvidenceStreamSource());
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MitabEvidenceSource(File file) throws IOException {
         super(new MitabEvidenceStreamSource(file));
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public MitabEvidenceSource(InputStream input) {
         super(new MitabEvidenceStreamSource(input));
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public MitabEvidenceSource(Reader reader) {
         super(new MitabEvidenceStreamSource(reader));
     }

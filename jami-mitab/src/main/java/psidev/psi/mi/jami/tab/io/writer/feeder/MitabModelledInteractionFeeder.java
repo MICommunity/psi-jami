@@ -17,29 +17,63 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<ModelledBinaryInteraction, ModelledParticipant> {
 
+    /**
+     * <p>Constructor for MitabModelledInteractionFeeder.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public MitabModelledInteractionFeeder(Writer writer) {
         super(writer);
     }
 
+    /**
+     * <p>writeInteractionDetectionMethod.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionDetectionMethod(ModelledBinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writeFirstAuthor.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeFirstAuthor(ModelledBinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writePublicationIdentifiers.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writePublicationIdentifiers(ModelledBinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writeSource.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeSource(ModelledBinaryInteraction interaction) throws IOException {
         writeCvTerm(interaction.getSource());
     }
 
+    /**
+     * <p>writeInteractionIdentifiers.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionIdentifiers(ModelledBinaryInteraction interaction) throws IOException {
         // get imex id
         Collection<Xref> imexId = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(interaction.getXrefs(), Xref.IMEX_MI, Xref.IMEX, Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY);
@@ -77,6 +111,12 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /**
+     * <p>writeInteractionConfidences.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionConfidences(ModelledBinaryInteraction interaction) throws IOException {
         if (!interaction.getModelledConfidences().isEmpty()){
 
@@ -94,6 +134,7 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAlias(ModelledParticipant participant, Alias alias) throws IOException {
         if (alias != null){
             // write db first
@@ -111,10 +152,22 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /**
+     * <p>writeExperimentalRole.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeExperimentalRole(ModelledParticipant participant) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writeInteractionXrefs.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionXrefs(ModelledBinaryInteraction interaction) throws IOException {
         // write interaction ref
         if (!interaction.getXrefs().isEmpty()){
@@ -149,6 +202,12 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /**
+     * <p>writeInteractionAnnotations.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionAnnotations(ModelledBinaryInteraction interaction) throws IOException {
         // writes interaction annotations first
         if (!interaction.getAnnotations().isEmpty()){
@@ -168,10 +227,22 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /**
+     * <p>writeHostOrganism.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeHostOrganism(ModelledBinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writeInteractionParameters.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionParameters(ModelledBinaryInteraction interaction) throws IOException {
         if (!interaction.getModelledParameters().isEmpty()){
 
@@ -188,10 +259,22 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
         }
     }
 
+    /**
+     * <p>writeNegativeProperty.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeNegativeProperty(ModelledBinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /**
+     * <p>writeParticipantIdentificationMethod.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantIdentificationMethod(ModelledParticipant participant) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }

@@ -18,24 +18,40 @@ import java.util.Iterator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalFeatureEvidenceEnricher extends MinimalFeatureEnricher<FeatureEvidence> {
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(FeatureEvidence featureToEnrich) throws EnricherException {
         processDetectionMethods(featureToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(FeatureEvidence featureToEnrich, FeatureEvidence objectSource) throws EnricherException {
         processDetectionMethods(featureToEnrich, objectSource);
     }
 
+    /**
+     * <p>processDetectionMethods.</p>
+     *
+     * @param featureToEnrich a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processDetectionMethods(FeatureEvidence featureToEnrich) throws EnricherException {
         if(getCvTermEnricher() != null)
             getCvTermEnricher().enrich(featureToEnrich.getDetectionMethods());
     }
 
+    /**
+     * <p>processDetectionMethods.</p>
+     *
+     * @param featureToEnrich a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @param source a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processDetectionMethods(FeatureEvidence featureToEnrich, FeatureEvidence source) throws EnricherException {
         mergeDetectionMethods(featureToEnrich, featureToEnrich.getDetectionMethods(), source.getDetectionMethods(), false);
         processDetectionMethods(featureToEnrich);
@@ -47,10 +63,11 @@ public class MinimalFeatureEvidenceEnricher extends MinimalFeatureEnricher<Featu
      * It will add in toEnrichTerms all detection methods from fetchedTerms that are not there. It will also remove extra detection methods from toEnrichTerms
      * if remove boolean is true.
      *
-     *
      * @param termToEnrich     The object to enrich
      * @param fetchedTerms      The new terms to be added.
      * @param remove: if true, we remove terms that are not in enriched list
+     * @param toEnrichTerms a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected void mergeDetectionMethods(FeatureEvidence termToEnrich, Collection<CvTerm> toEnrichTerms, Collection<CvTerm> fetchedTerms , boolean remove) throws EnricherException {
 

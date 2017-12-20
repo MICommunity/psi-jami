@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * A container for aliases, shortname and fullname
  * The JAXB binding is designed to be read-only and is not designed for writing
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>19/07/13</pre>
@@ -36,10 +37,7 @@ public class NamesContainer implements FileSourceContext, Locatable{
     /**
      * Gets the value of the shortLabel property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return a {@link java.lang.String} object.
      */
     public String getShortLabel() {
         return shortLabel;
@@ -50,8 +48,7 @@ public class NamesContainer implements FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlElement(name = "shortLabel")
     public void setShortLabel(String value) {
@@ -61,10 +58,7 @@ public class NamesContainer implements FileSourceContext, Locatable{
     /**
      * Gets the value of the fullName property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return a {@link java.lang.String} object.
      */
     public String getFullName() {
         return fullName;
@@ -75,8 +69,7 @@ public class NamesContainer implements FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlElement(name = "fullName")
     public void setFullName(String value) {
@@ -101,9 +94,9 @@ public class NamesContainer implements FileSourceContext, Locatable{
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlAlias }
+     * {@link psidev.psi.mi.jami.xml.model.extension.XmlAlias}
      *
-     *
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(type=XmlAlias.class, name = "alias")
     public List<Alias> getAliases() {
@@ -113,11 +106,17 @@ public class NamesContainer implements FileSourceContext, Locatable{
         return this.aliases;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -125,6 +124,7 @@ public class NamesContainer implements FileSourceContext, Locatable{
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -137,19 +137,33 @@ public class NamesContainer implements FileSourceContext, Locatable{
         }
     }
 
+    /**
+     * <p>isEmpty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isEmpty(){
         return (shortLabel == null && fullName == null && getAliases().isEmpty());
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Names: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>initialiseAliases.</p>
+     */
     protected void initialiseAliases(){
         this.aliases = new ArrayList<Alias>();
     }
 
+    /**
+     * <p>initialiseAliasesWith.</p>
+     *
+     * @param aliases a {@link java.util.List} object.
+     */
     protected void initialiseAliasesWith(List<Alias> aliases){
         if (aliases == null){
             this.aliases = Collections.EMPTY_LIST;

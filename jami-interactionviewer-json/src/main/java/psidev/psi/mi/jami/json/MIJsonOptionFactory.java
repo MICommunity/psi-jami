@@ -18,7 +18,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class MIJsonOptionFactory {
 
     private static final MIJsonOptionFactory instance = new MIJsonOptionFactory();
@@ -27,12 +26,18 @@ public class MIJsonOptionFactory {
 
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.MIJsonOptionFactory} object.
+     */
     public static MIJsonOptionFactory getInstance() {
         return instance;
     }
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param outputFile : the file where to write the interactions
      * @return the options for the JSON InteractionWriter
      */
@@ -43,6 +48,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param outputFile : the file where to write the interactions
      * @return the options for the JSON InteractionWriter
@@ -54,6 +60,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param type : json type
      * @param output : the outputstream
      * @return the options for a JSON interaction writer.
@@ -65,6 +72,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param fetcher : the ontology term fetcher
      * @param writer : the writer
@@ -77,6 +85,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param fetcher : the ontology term fetcher
@@ -91,6 +100,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param writer : the writer
@@ -104,6 +114,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param output : the output
      * @return the options for the JSON InteractionWriter
      */
@@ -116,6 +127,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param output : the output
      * @return the options for the JSON InteractionWriter
@@ -127,6 +139,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param type : json type
      * @param output : the outputstream
      * @return the options for a JSON interaction writer.
@@ -138,6 +151,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param fetcher : the ontology term fetcher
      * @param writer : the writer
@@ -150,6 +164,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param fetcher : the ontology term fetcher
@@ -164,6 +179,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param writer : the writer
@@ -177,6 +193,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param writer : the writer
      * @return the options for the JSON InteractionWriter
      */
@@ -187,6 +204,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param writer : the writer
      * @return the options for the JSON InteractionWriter
@@ -198,6 +216,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param objectCategory : the interaction object type to write
      * @param fetcher : the ontology term fetcher
      * @param writer : the writer
@@ -210,6 +229,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param fetcher : the ontology term fetcher
@@ -224,6 +244,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer which will be by default of type MIJsonType.binary_only as a complex ecpasnion is provided.
+     *
      * @param objectCategory : the interaction object type to write
      * @param expansion : the complex expansion
      * @param writer : the writer
@@ -237,6 +258,7 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for a JSON interaction writer.
+     *
      * @param type : type of json
      * @param writer : the writer
      * @return the options for a JSON interaction writer.
@@ -248,12 +270,14 @@ public class MIJsonOptionFactory {
 
     /**
      * Create the options for the JSON InteractionWriter.
-     * @param output
+     *
+     * @param output a {@link java.lang.Object} object.
      * @param objectCategory : the interaction object type to write
      * @param complexType : binary, n-ary, etc
      * @param type: the MI jason type (n_ary_only or binary_only)
      * @param ontologyFetcher : the ontology fetcher
      * @return the options for the JSON InteractionWriter
+     * @param complexExpansion a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      */
     public Map<String, Object> getJsonOptions(Object output, InteractionCategory objectCategory, ComplexType complexType,
                                               MIJsonType type, OntologyTermFetcher ontologyFetcher, ComplexExpansionMethod complexExpansion){

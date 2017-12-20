@@ -16,13 +16,19 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlAllosteryWriter extends AbstractXmlCooperativeEffectWriter<Allostery> {
 
+    /**
+     * <p>Constructor for XmlAllosteryWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlAllosteryWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Allostery object) throws XMLStreamException {
         // write allosteric molecule ref
@@ -35,18 +41,35 @@ public class XmlAllosteryWriter extends AbstractXmlCooperativeEffectWriter<Allos
         writeAllosteryType(object);
     }
 
+    /**
+     * <p>writeAllosteryType.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAllosteryType(Allostery object) throws XMLStreamException {
         if (object.getAllosteryType() != null){
             getCvWriter().write(object.getAllosteryType(), "allosteryType");
         }
     }
 
+    /**
+     * <p>writeAllostericMechanism.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Allostery} object.
+     */
     protected void writeAllostericMechanism(Allostery object) {
         if (object.getAllostericMechanism() != null){
             getCvWriter().write(object.getAllostericMechanism(), "allostericMechanism");
         }
     }
 
+    /**
+     * <p>writeAllostericEffector.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAllostericEffector(Allostery object) throws XMLStreamException {
         switch (object.getAllostericEffector().getEffectorType()){
             case molecule:
@@ -71,6 +94,12 @@ public class XmlAllosteryWriter extends AbstractXmlCooperativeEffectWriter<Allos
         }
     }
 
+    /**
+     * <p>writeAllostericMolecule.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Allostery} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAllostericMolecule(Allostery object) throws XMLStreamException {
         // write start molecule
         getStreamWriter().writeStartElement("allostericMoleculeRef");
@@ -79,6 +108,7 @@ public class XmlAllosteryWriter extends AbstractXmlCooperativeEffectWriter<Allos
         getStreamWriter().writeEndElement();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartCooperativeEffect() throws XMLStreamException {
         getStreamWriter().writeStartElement("allostery");

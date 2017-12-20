@@ -18,14 +18,28 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlBasicInteraction extends AbstractXmlBasicInteraction {
 
+    /**
+     * <p>Constructor for XmlBasicInteraction.</p>
+     */
     public XmlBasicInteraction() {
         super();
     }
 
+    /**
+     * <p>Constructor for XmlBasicInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlBasicInteraction(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlBasicInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlBasicInteraction(String shortName, CvTerm type) {
         super(shortName, type);
     }

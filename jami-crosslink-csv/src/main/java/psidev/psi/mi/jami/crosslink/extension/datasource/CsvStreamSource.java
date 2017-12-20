@@ -12,6 +12,5 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public interface CsvStreamSource<I extends InteractionEvidence> extends MIFileDataSource, InteractionEvidenceStream<I>, CsvParserListener {
 }

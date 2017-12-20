@@ -29,7 +29,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public abstract class AbstractXmlWriter<T extends Interaction> implements InteractionWriter<T>{
 
     private XMLStreamWriter streamWriter;
@@ -55,11 +54,21 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     private PsiXmlVersion version = PsiXmlVersion.v2_5_4;
     private PsiXmlElementWriterFactory subWritersFactory;
 
+    /**
+     * <p>Constructor for AbstractXmlWriter.</p>
+     */
     public AbstractXmlWriter(){
         this.interactionsToWrite = new ArrayList<T>();
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractXmlWriter(File file) throws IOException, XMLStreamException {
 
         initialiseFile(file);
@@ -68,6 +77,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractXmlWriter(OutputStream output) throws XMLStreamException {
 
         initialiseOutputStream(output);
@@ -76,6 +91,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractXmlWriter(Writer writer) throws XMLStreamException {
 
         initialiseWriter(writer);
@@ -84,6 +105,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected AbstractXmlWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
         if (streamWriter == null){
             throw new IllegalArgumentException("The stream writer cannot be null.");
@@ -96,6 +123,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
         if (options != null && options.containsKey(PsiXmlWriterOptions.ELEMENT_WITH_ID_CACHE_OPTION)){
             this.elementCache = (PsiXmlObjectCache)options.get(PsiXmlWriterOptions.ELEMENT_WITH_ID_CACHE_OPTION);
@@ -192,6 +220,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         isInitialised = true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void end() throws MIIOException {
         if (!isInitialised){
@@ -212,6 +241,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void start() throws MIIOException {
         if (!isInitialised){
@@ -246,6 +276,16 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>writeEntrySetAttributes.</p>
+     *
+     * @param level a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
+     * @param minorVersion a {@link java.lang.String} object.
+     * @param namespaceURI a {@link java.lang.String} object.
+     * @param schemaLocation a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeEntrySetAttributes(String level, String version, String minorVersion, String namespaceURI, String schemaLocation) throws XMLStreamException {
         this.streamWriter.writeDefaultNamespace(namespaceURI);
         this.streamWriter.writeNamespace(PsiXmlUtils.XML_SCHEMA_PREFIX, PsiXmlUtils.XML_SCHEMA);
@@ -255,6 +295,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.streamWriter.writeAttribute(PsiXmlUtils.MINOR_VERSION_ATTRIBUTE,minorVersion);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(T interaction) throws MIIOException {
         if (!isInitialised){
@@ -264,6 +305,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         writeInteractionListContent();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Collection<? extends T> interactions) throws MIIOException {
         if (!isInitialised){
@@ -273,6 +315,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         writeInteractionListContent();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Iterator<? extends T> interactions) throws MIIOException {
         if (!isInitialised){
@@ -282,6 +325,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         writeInteractionListContent();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void flush() throws MIIOException{
         if (isInitialised){
@@ -293,6 +337,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>close.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (isInitialised){
             try {
@@ -312,6 +361,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
             }
         }
     }
+    /**
+     * <p>reset.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException{
         if (isInitialised){
             try {
@@ -329,6 +383,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>Setter for the field <code>writeComplexesAsInteractors</code>.</p>
+     *
+     * @param writeComplexesAsInteractors a boolean.
+     */
     public void setWriteComplexesAsInteractors(boolean writeComplexesAsInteractors) {
         this.writeComplexesAsInteractors = writeComplexesAsInteractors;
         if (this.interactionWriter != null){
@@ -339,10 +398,20 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>setInteractionSet.</p>
+     *
+     * @param processedInteractions a {@link java.util.Set} object.
+     */
     public void setInteractionSet(Set<Interaction> processedInteractions) {
         this.processedInteractions = processedInteractions;
     }
 
+    /**
+     * <p>Setter for the field <code>sourceWriter</code>.</p>
+     *
+     * @param sourceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlSourceWriter} object.
+     */
     public void setSourceWriter(PsiXmlSourceWriter sourceWriter) {
         if (sourceWriter == null){
             throw new IllegalArgumentException("The source writer cannot be null");
@@ -350,6 +419,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.sourceWriter = sourceWriter;
         this.sourceWriter.setDefaultReleaseDate(this.defaultReleaseDate);
     }
+    /**
+     * <p>Setter for the field <code>complexWriter</code>.</p>
+     *
+     * @param complexWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} object.
+     */
     public void setComplexWriter(PsiXmlInteractionWriter<ModelledInteraction> complexWriter) {
         if (complexWriter == null){
             throw new IllegalArgumentException("The Complex writer cannot be null");
@@ -357,6 +431,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.complexWriter = complexWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>elementCache</code>.</p>
+     *
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public void setElementCache(PsiXmlObjectCache elementCache) {
         if (elementCache == null){
             initialiseDefaultElementCache();
@@ -368,14 +447,29 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         initialiseSubWriters();
     }
 
+    /**
+     * <p>Setter for the field <code>started</code>.</p>
+     *
+     * @param started a boolean.
+     */
     public void setStarted(boolean started) {
         this.started = started;
     }
 
+    /**
+     * <p>Setter for the field <code>defaultSource</code>.</p>
+     *
+     * @param defaultSource a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public void setDefaultSource(Source defaultSource) {
         this.defaultSource = defaultSource;
     }
 
+    /**
+     * <p>Setter for the field <code>defaultReleaseDate</code>.</p>
+     *
+     * @param defaultReleaseDate a {@link javax.xml.datatype.XMLGregorianCalendar} object.
+     */
     public void setDefaultReleaseDate(XMLGregorianCalendar defaultReleaseDate) {
         this.defaultReleaseDate = defaultReleaseDate;
         if (this.sourceWriter != null){
@@ -383,10 +477,20 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>Setter for the field <code>entryAnnotations</code>.</p>
+     *
+     * @param entryAnnotations a {@link java.util.Collection} object.
+     */
     public void setEntryAnnotations(Collection<Annotation> entryAnnotations) {
         this.entryAnnotations = entryAnnotations;
     }
 
+    /**
+     * <p>Setter for the field <code>annotationsWriter</code>.</p>
+     *
+     * @param annotationsWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAnnotationsWriter(PsiXmlElementWriter<Annotation> annotationsWriter) {
         if (annotationsWriter == null){
             throw new IllegalArgumentException("The annotations writer cannot be null");
@@ -394,11 +498,21 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.annotationsWriter = annotationsWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>version</code>.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     */
     public void setVersion(PsiXmlVersion version) {
         this.version = version;
         initialiseSubWriters();
     }
 
+    /**
+     * <p>Getter for the field <code>processedInteractions</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<Interaction> getProcessedInteractions() {
         if (processedInteractions == null){
             initialiseDefaultInteractionSet();
@@ -406,6 +520,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         return processedInteractions;
     }
 
+    /**
+     * <p>writeEndEntryContent.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeEndEntryContent() throws XMLStreamException {
         // write subComplexes
         writeSubComplexInEntry();
@@ -417,6 +536,11 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         writeEndEntry();
     }
 
+    /**
+     * <p>writeEntryAttributes.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeEntryAttributes() throws XMLStreamException {
         if (this.entryAnnotations != null && !this.entryAnnotations.isEmpty()){
             this.streamWriter.writeStartElement(PsiXmlUtils.ATTRIBUTELIST_TAG);
@@ -427,6 +551,9 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>writeInteractionListContent.</p>
+     */
     protected void writeInteractionListContent() {
         started = true;
         try {
@@ -466,23 +593,48 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         }
     }
 
+    /**
+     * <p>writeStartEntryContent.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeStartEntryContent() throws XMLStreamException;
 
+    /**
+     * <p>writeStartInteractionList.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeStartInteractionList() throws XMLStreamException {
         // write start interaction list
         this.streamWriter.writeStartElement(PsiXmlUtils.INTERACTIONLIST_TAG);
     }
 
+    /**
+     * <p>writeEndInteractionList.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeEndInteractionList() throws XMLStreamException {
         // write end interaction list
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeInteraction.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInteraction() throws XMLStreamException {
         // write interaction
         this.interactionWriter.write(this.currentInteraction);
     }
 
+    /**
+     * <p>writeSubComplexInEntry.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeSubComplexInEntry() throws XMLStreamException {
          while (this.elementCache.hasRegisteredSubComplexes()){
              Set<ModelledInteraction> registeredComplexes = this.elementCache.clearRegisteredSubComplexes();
@@ -492,10 +644,20 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
          }
     }
 
+    /**
+     * <p>writeComplex.</p>
+     *
+     * @param modelled a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     */
     protected void writeComplex(ModelledInteraction modelled) {
         this.complexWriter.write(modelled);
     }
 
+    /**
+     * <p>extractSourceFromInteraction.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     protected Source extractSourceFromInteraction(){
         if (this.defaultSource == null && this.defaultReleaseDate != null){
            initialiseDefaultSource();
@@ -503,26 +665,53 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         return this.defaultSource;
     }
 
+    /**
+     * <p>initialiseDefaultSource.</p>
+     */
     protected void initialiseDefaultSource() {
         this.defaultSource = new DefaultSource("Unknown source");
     }
 
+    /**
+     * <p>writeSource.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeSource() throws XMLStreamException {
         if (this.currentSource != null){
             this.sourceWriter.write(this.currentSource);
         }
     }
 
+    /**
+     * <p>writeStartEntry.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeStartEntry() throws XMLStreamException {
         this.elementCache.clear();
         this.streamWriter.writeStartElement(PsiXmlUtils.ENTRY_TAG);
     }
 
+    /**
+     * <p>writeEndEntry.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeEndEntry() throws XMLStreamException {
         this.streamWriter.writeEndElement();
         this.elementCache.clear();
     }
 
+    /**
+     * <p>initialiseSubWriters.</p>
+     *
+     * @param extended a boolean.
+     * @param named a boolean.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     */
     protected void initialiseSubWriters(boolean extended, boolean named, PsiXmlType xmlType, InteractionCategory interactionCategory,
                                         ComplexType complexType) {
         // basic sub writers
@@ -580,19 +769,44 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         setAnnotationsWriter(attributeWriter);
     }
 
+    /**
+     * <p>initialiseOptionalWriters.</p>
+     *
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     protected abstract void initialiseOptionalWriters(PsiXmlExperimentWriter experimentWriter, PsiXmlElementWriter<String> availabilityWriter,
                                                       PsiXmlElementWriter<Interactor> interactorWriter);
 
+    /**
+     * <p>initialiseDefaultElementCache.</p>
+     */
     protected abstract void initialiseDefaultElementCache();
 
+    /**
+     * <p>Getter for the field <code>interactionWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} object.
+     */
     protected PsiXmlInteractionWriter<T> getInteractionWriter() {
         return interactionWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>complexWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} object.
+     */
     protected PsiXmlInteractionWriter<ModelledInteraction> getComplexWriter() {
         return complexWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>elementCache</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getElementCache() {
         if (elementCache == null){
            initialiseDefaultElementCache();
@@ -600,22 +814,47 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         return elementCache;
     }
 
+    /**
+     * <p>Setter for the field <code>currentSource</code>.</p>
+     *
+     * @param currentSource a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     protected void setCurrentSource(Source currentSource) {
         this.currentSource = currentSource;
     }
 
+    /**
+     * <p>Getter for the field <code>currentSource</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     protected Source getCurrentSource() {
         return currentSource;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionsIterator</code>.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     protected Iterator<? extends T> getInteractionsIterator() {
         return interactionsIterator;
     }
 
+    /**
+     * <p>Setter for the field <code>interactionsIterator</code>.</p>
+     *
+     * @param interactionsIterator a {@link java.util.Iterator} object.
+     */
     protected void setInteractionsIterator(Iterator<? extends T> interactionsIterator) {
         this.interactionsIterator = interactionsIterator;
     }
 
+    /**
+     * <p>Setter for the field <code>interactionWriter</code>.</p>
+     *
+     * @param interactionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} object.
+     */
     protected void setInteractionWriter(PsiXmlInteractionWriter<T> interactionWriter) {
         if (interactionWriter == null){
             throw new IllegalArgumentException("The interaction writer cannot be null");
@@ -623,30 +862,63 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.interactionWriter = interactionWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>currentInteraction</code>.</p>
+     *
+     * @return a T object.
+     */
     protected T getCurrentInteraction() {
         return currentInteraction;
     }
 
+    /**
+     * <p>Setter for the field <code>currentInteraction</code>.</p>
+     *
+     * @param currentInteraction a T object.
+     */
     protected void setCurrentInteraction(T currentInteraction) {
         this.currentInteraction = currentInteraction;
     }
 
+    /**
+     * <p>isStarted.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean isStarted() {
         return started;
     }
 
+    /**
+     * <p>writeComplexesAsInteractors.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean writeComplexesAsInteractors() {
         return writeComplexesAsInteractors;
     }
 
+    /**
+     * <p>initialiseDefaultInteractionSet.</p>
+     */
     protected void initialiseDefaultInteractionSet() {
         this.processedInteractions = Collections.newSetFromMap(new IdentityHashMap<Interaction, Boolean>());
     }
 
+    /**
+     * <p>Getter for the field <code>version</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     */
     protected PsiXmlVersion getVersion() {
         return version;
     }
@@ -690,12 +962,25 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         initialiseSubWriters();
     }
 
+    /**
+     * <p>initialiseSubWriters.</p>
+     */
     protected abstract void initialiseSubWriters();
 
+    /**
+     * <p>Getter for the field <code>subWritersFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriterFactory} object.
+     */
     protected PsiXmlElementWriterFactory getSubWritersFactory() {
         return subWritersFactory;
     }
 
+    /**
+     * <p>Setter for the field <code>subWritersFactory</code>.</p>
+     *
+     * @param subWritersFactory a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriterFactory} object.
+     */
     protected void setSubWritersFactory(PsiXmlElementWriterFactory subWritersFactory) {
         this.subWritersFactory = subWritersFactory != null ? subWritersFactory : PsiXmlElementWriterFactory.getInstance();
     }

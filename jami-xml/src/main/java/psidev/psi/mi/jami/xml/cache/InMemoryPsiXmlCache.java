@@ -13,7 +13,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>06/11/13</pre>
  */
-
 public class InMemoryPsiXmlCache implements PsiXmlIdCache {
     private Map<Integer, Complex> mapOfReferencedComplexes;
     private Map<Integer, ModelledEntity> mapOfReferencedComplexParticipants;
@@ -26,6 +25,9 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
     private Map<Integer, VariableParameterValue> mapOfReferencedVariableParameterValues;
     private Map<Integer, AbstractAvailability> mapOfReferencedAvailabilities;
 
+    /**
+     * <p>Constructor for InMemoryPsiXmlCache.</p>
+     */
     public InMemoryPsiXmlCache(){
         this.mapOfReferencedAvailabilities = new HashMap<Integer, AbstractAvailability>();
         this.mapOfReferencedExperiments = new HashMap<Integer, Experiment>();
@@ -39,71 +41,85 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         this.mapOfReferencedComplexFeatures = new HashMap<Integer, ModelledFeature>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerAvailability(int id, AbstractAvailability object) {
         this.mapOfReferencedAvailabilities.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public AbstractAvailability getAvailability(int id) {
         return this.mapOfReferencedAvailabilities.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerExperiment(int id, Experiment object) {
         this.mapOfReferencedExperiments.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment getExperiment(int id) {
         return this.mapOfReferencedExperiments.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerInteraction(int id, Interaction object) {
         this.mapOfReferencedInteractions.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interaction getInteraction(int id) {
         return this.mapOfReferencedInteractions.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerInteractor(int id, Interactor object) {
         this.mapOfReferencedInteractors.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interactor getInteractor(int id) {
         return this.mapOfReferencedInteractors.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerParticipant(int id, Entity object) {
         this.mapOfReferencedParticipants.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Entity getParticipant(int id) {
         return this.mapOfReferencedParticipants.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerFeature(int id, Feature object) {
         this.mapOfReferencedFeatures.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Feature getFeature(int id) {
         return this.mapOfReferencedFeatures.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplexParticipant(int id, ModelledEntity object) {
         this.mapOfReferencedComplexParticipants.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledEntity getComplexParticipant(int id) {
         ModelledEntity object = this.mapOfReferencedComplexParticipants.get(id);
@@ -119,11 +135,13 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplexFeature(int id, ModelledFeature object) {
         this.mapOfReferencedComplexFeatures.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledFeature getComplexFeature(int id) {
         ModelledFeature object = this.mapOfReferencedComplexFeatures.get(id);
@@ -139,11 +157,13 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplex(int id, Complex object) {
         this.mapOfReferencedComplexes.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Complex getComplex(int id) {
         Complex object = this.mapOfReferencedComplexes.get(id);
@@ -159,17 +179,20 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerVariableParameterValue(int id, VariableParameterValue object) {
         this.mapOfReferencedVariableParameterValues.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public VariableParameterValue getVariableParameterValue(int id) {
         return this.mapOfReferencedVariableParameterValues.get(id);
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         this.mapOfReferencedVariableParameterValues.clear();
@@ -184,62 +207,74 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         this.mapOfReferencedComplexFeatures.clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() {
         clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsExperiment(int id) {
         return this.mapOfReferencedExperiments.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsAvailability(int id) {
         return this.mapOfReferencedAvailabilities.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsInteraction(int id) {
         return this.mapOfReferencedInteractions.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsInteractor(int id) {
         return this.mapOfReferencedInteractors.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsParticipant(int id) {
         return this.mapOfReferencedParticipants.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsFeature(int id) {
         return this.mapOfReferencedFeatures.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsVariableParameter(int id) {
         return this.mapOfReferencedVariableParameterValues.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplex(int id) {
         return this.mapOfReferencedComplexes.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplexParticipant(int id) {
         return this.mapOfReferencedComplexParticipants.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplexFeature(int id) {
         return this.mapOfReferencedComplexFeatures.containsKey(id);
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public ModelledFeature registerModelledFeatureLoadedFrom(Feature f) {
         Entity parent = f.getParticipant();
@@ -263,6 +298,7 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledEntity registerModelledParticipantLoadedFrom(Entity f) {
         if (f instanceof ParticipantCandidate){
@@ -315,6 +351,7 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Complex registerComplexLoadedFrom(Interaction f) {
 

@@ -18,21 +18,33 @@ import psidev.psi.mi.jami.model.Publication;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 31/07/13
+
  */
 public class FullCuratedPublicationEnricher extends MinimalCuratedPublicationEnricher {
 
+    /**
+     * <p>Constructor for FullCuratedPublicationEnricher.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher} object.
+     */
     public FullCuratedPublicationEnricher(PublicationFetcher fetcher) {
         super(new FullPublicationEnricher(fetcher));
     }
 
+    /**
+     * <p>Constructor for FullCuratedPublicationEnricher.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalPublicationEnricher} object.
+     */
     protected FullCuratedPublicationEnricher(MinimalPublicationEnricher delegate) {
         super(delegate);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * The strategy for the enrichment of the publication.
      * This methods can be overwritten to change the behaviour of the enrichment.
-     * @param publicationToEnrich   The publication which is being enriched.
      */
     @Override
     protected void processOtherProperties(Publication publicationToEnrich, Publication fetched) throws EnricherException {
@@ -44,6 +56,13 @@ public class FullCuratedPublicationEnricher extends MinimalCuratedPublicationEnr
         processCurationDepth(publicationToEnrich, fetched);
     }
 
+    /**
+     * <p>processCurationDepth.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCurationDepth(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if (publicationToEnrich.getCurationDepth().equals(CurationDepth.undefined)
                 && !fetched.getCurationDepth().equals(CurationDepth.undefined)){
@@ -54,6 +73,13 @@ public class FullCuratedPublicationEnricher extends MinimalCuratedPublicationEnr
         }
     }
 
+    /**
+     * <p>processReleasedDate.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processReleasedDate(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if (publicationToEnrich.getReleasedDate() == null && fetched.getReleasedDate() != null){
             publicationToEnrich.setReleasedDate(fetched.getReleasedDate());

@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.Interaction;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public interface MitabSource<I extends Interaction> extends MitabStreamSource<I>, InteractionSource<I> {
 }

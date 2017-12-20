@@ -15,10 +15,15 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlHostOrganismWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlHostOrganismWriter {
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlHostOrganismWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlHostOrganismWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer);
         if (objectIndex == null){
@@ -27,6 +32,7 @@ public class XmlHostOrganismWriter extends psidev.psi.mi.jami.xml.io.writer.elem
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Organism object) throws XMLStreamException {
         if (object instanceof HostOrganism){
@@ -44,6 +50,7 @@ public class XmlHostOrganismWriter extends psidev.psi.mi.jami.xml.io.writer.elem
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseCvWriter() {
         super.setCvWriter(new XmlOpenCvTermWriter(getStreamWriter()));

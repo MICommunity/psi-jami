@@ -15,6 +15,7 @@ import java.io.IOException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class SourceEnricherStatisticsWriter
         extends CvTermEnricherStatisticsWriter<Source>
@@ -24,6 +25,7 @@ public class SourceEnricherStatisticsWriter
 
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
+     *
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public SourceEnricherStatisticsWriter() throws IOException {
@@ -32,6 +34,7 @@ public class SourceEnricherStatisticsWriter
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
@@ -41,6 +44,7 @@ public class SourceEnricherStatisticsWriter
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -51,6 +55,7 @@ public class SourceEnricherStatisticsWriter
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -63,16 +68,19 @@ public class SourceEnricherStatisticsWriter
     // ================================================================
 
 
+    /** {@inheritDoc} */
     public void onUrlUpdate(Source cv, String oldUrl) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onPostalAddressUpdate(Source cv, String oldPostalAddress) {
         checkObject(cv);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onPublicationUpdate(Source cv, Publication oldPublication) {
         checkObject(cv);
         incrementUpdateCount();

@@ -21,19 +21,19 @@ import java.util.List;
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
- * &lt;complexType name="inferredInteraction">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;elements name="participant" type="{http://psi.hupo.org/mi/mif}inferredInteractionParticipant" maxOccurs="unbounded" minOccurs="2"/>
- *         &lt;elements name="experimentRefList" type="{http://psi.hupo.org/mi/mif}experimentRefList" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="inferredInteraction"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;elements name="participant" type="{http://psi.hupo.org/mi/mif}inferredInteractionParticipant" maxOccurs="unbounded" minOccurs="2"/&gt;
+ *         &lt;elements name="experimentRefList" type="{http://psi.hupo.org/mi/mif}experimentRefList" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  *
- *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public class InferredInteraction
@@ -47,10 +47,18 @@ public class InferredInteraction
     private Locator locator;
     private JAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
+    /**
+     * <p>Constructor for InferredInteraction.</p>
+     */
     public InferredInteraction() {
         XmlEntryContext.getInstance().registerInferredInteraction(this);
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (this.jaxbExperimentRefWrapper == null){
             this.jaxbExperimentRefWrapper = new JAXBExperimentRefWrapper();
@@ -58,11 +66,17 @@ public class InferredInteraction
         return this.jaxbExperimentRefWrapper.experiments;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -70,6 +84,7 @@ public class InferredInteraction
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -100,9 +115,9 @@ public class InferredInteraction
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link InferredInteractionParticipant }
+     * {@link psidev.psi.mi.jami.xml.model.extension.InferredInteractionParticipant}
      *
-     *
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(name="participant", type = InferredInteractionParticipant.class, required = true)
     public List<InferredInteractionParticipant> getParticipants() {
@@ -115,10 +130,7 @@ public class InferredInteraction
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.InferredInteraction.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

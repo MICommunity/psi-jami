@@ -24,19 +24,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
- * &lt;complexType name="inferredInteractionParticipant">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;elements name="participantRef" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;elements name="participantFeatureRef" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="inferredInteractionParticipant"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;elements name="participantRef" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;elements name="participantFeatureRef" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  *
- *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public class InferredInteractionParticipant implements FileSourceContext, Locatable
@@ -49,30 +49,59 @@ public class InferredInteractionParticipant implements FileSourceContext, Locata
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for InferredInteractionParticipant.</p>
+     */
     public InferredInteractionParticipant(){
     }
 
+    /**
+     * <p>Getter for the field <code>feature</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Feature} object.
+     */
     public Feature getFeature() {
         return feature;
     }
 
+    /**
+     * <p>Getter for the field <code>participant</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     public Entity getParticipant() {
         return participant;
     }
 
+    /**
+     * <p>Setter for the field <code>feature</code>.</p>
+     *
+     * @param feature a {@link psidev.psi.mi.jami.model.Feature} object.
+     */
     public void setFeature(Feature feature) {
         this.feature = feature;
     }
 
+    /**
+     * <p>Setter for the field <code>participant</code>.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     public void setParticipant(Entity participant) {
         this.participant = participant;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -80,6 +109,7 @@ public class InferredInteractionParticipant implements FileSourceContext, Locata
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -97,8 +127,7 @@ public class InferredInteractionParticipant implements FileSourceContext, Locata
      *
      * @param value
      *     allowed object is
-     *     {@link Integer }
-     *
+     *     {@link java.lang.Integer}
      */
     @XmlElement(name = "participantFeatureRef")
     public void setJAXBParticipantFeatureRef(Integer value) {
@@ -112,8 +141,7 @@ public class InferredInteractionParticipant implements FileSourceContext, Locata
      *
      * @param value
      *     allowed object is
-     *     {@link Integer }
-     *
+     *     {@link java.lang.Integer}
      */
     @XmlElement(name = "participantRef")
     public void setJAXBParticipantRef(Integer value) {
@@ -126,6 +154,7 @@ public class InferredInteractionParticipant implements FileSourceContext, Locata
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Inferred participant: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

@@ -15,20 +15,26 @@ import java.util.List;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class CachedUniprotTaxonomyFetcher
         extends AbstractCachedFetcher
         implements OrganismFetcher{
 
+    /** Constant <code>CACHE_NAME="uniprot-taxonomy-service-cache"</code> */
     public static final String CACHE_NAME = "uniprot-taxonomy-service-cache";
     private OrganismFetcher organismFetcher;
 
+    /**
+     * <p>Constructor for CachedUniprotTaxonomyFetcher.</p>
+     */
     public CachedUniprotTaxonomyFetcher() {
         super(CACHE_NAME);
         this.organismFetcher = new UniprotTaxonomyFetcher();
     }
 
 
+    /** {@inheritDoc} */
     public Organism fetchByTaxID(int taxID) throws BridgeFailedException {
         final String key = "GET_BY_TAXID_"+taxID;
         Object data = getFromCache( key );
@@ -39,6 +45,7 @@ public class CachedUniprotTaxonomyFetcher
         return (Organism )data;
     }
 
+    /** {@inheritDoc} */
     public Collection<Organism> fetchByTaxIDs(Collection<Integer> taxIDs) throws BridgeFailedException {
         if (taxIDs != null){
             List<Integer> ids = new ArrayList<Integer>(taxIDs);

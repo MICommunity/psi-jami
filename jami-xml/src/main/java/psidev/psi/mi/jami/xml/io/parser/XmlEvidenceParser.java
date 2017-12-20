@@ -17,25 +17,45 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class XmlEvidenceParser extends AbstractPsiXmlParser<InteractionEvidence> {
 
+    /**
+     * <p>Constructor for XmlEvidenceParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlEvidenceParser(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     */
     public XmlEvidenceParser(InputStream inputStream) {
         super(inputStream);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlEvidenceParser(URL url) {
         super(url);
     }
 
+    /**
+     * <p>Constructor for XmlEvidenceParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlEvidenceParser(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Unmarshaller createJAXBUnmarshaller() throws JAXBException {
         return JaxbUnmarshallerFactory.getInstance().createUnmarshaller(getVersion(), InteractionCategory.evidence);

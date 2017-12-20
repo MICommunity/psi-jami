@@ -14,11 +14,15 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonAnnotationWriter implements JsonElementWriter<Annotation>{
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for SimpleJsonAnnotationWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonAnnotationWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json annotation writer needs a non null Writer");
@@ -26,6 +30,12 @@ public class SimpleJsonAnnotationWriter implements JsonElementWriter<Annotation>
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Annotation} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Annotation object) throws IOException {
         if (object.getValue() != null){
             MIJsonUtils.writePropertyValue(JSONValue.escape(object.getValue()), writer);

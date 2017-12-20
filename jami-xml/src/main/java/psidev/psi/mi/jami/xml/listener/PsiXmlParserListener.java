@@ -16,16 +16,45 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>14/06/13</pre>
  */
-
 public interface PsiXmlParserListener extends MIFileParserListener{
 
+    /**
+     * <p>onUnresolvedReference.</p>
+     *
+     * @param ref a {@link psidev.psi.mi.jami.xml.model.reference.XmlIdReference} object.
+     * @param message a {@link java.lang.String} object.
+     */
     public void onUnresolvedReference(XmlIdReference ref, String message);
 
+    /**
+     * <p>onSeveralHostOrganismFound.</p>
+     *
+     * @param organisms a {@link java.util.Collection} object.
+     * @param locator a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public void onSeveralHostOrganismFound(Collection<Organism> organisms, FileSourceLocator locator);
 
+    /**
+     * <p>onSeveralExpressedInOrganismFound.</p>
+     *
+     * @param organisms a {@link java.util.Collection} object.
+     * @param locator a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public void onSeveralExpressedInOrganismFound(Collection<Organism> organisms, FileSourceLocator locator);
 
+    /**
+     * <p>onSeveralExperimentalRolesFound.</p>
+     *
+     * @param roles a {@link java.util.Collection} object.
+     * @param locator a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public void onSeveralExperimentalRolesFound(Collection<CvTerm> roles, FileSourceLocator locator);
 
+    /**
+     * <p>onSeveralExperimentsFound.</p>
+     *
+     * @param experiments a {@link java.util.Collection} object.
+     * @param locator a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public void onSeveralExperimentsFound(Collection<Experiment> experiments, FileSourceLocator locator);
 }

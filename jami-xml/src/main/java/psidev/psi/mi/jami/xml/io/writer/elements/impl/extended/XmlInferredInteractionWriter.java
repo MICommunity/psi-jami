@@ -17,11 +17,16 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlInferredInteractionWriter implements PsiXmlElementWriter<InferredInteraction> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
+    /**
+     * <p>Constructor for XmlInferredInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlInferredInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlInferredInteractionWriter");
@@ -33,6 +38,7 @@ public class XmlInferredInteractionWriter implements PsiXmlElementWriter<Inferre
         this.objectIndex = objectIndex;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(InferredInteraction object) throws MIIOException {
         try {

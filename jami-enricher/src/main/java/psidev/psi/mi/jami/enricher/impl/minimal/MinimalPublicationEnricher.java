@@ -24,6 +24,7 @@ import psidev.psi.mi.jami.model.Xref;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 31/07/13
+
  */
 public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> implements PublicationEnricher {
 
@@ -35,6 +36,7 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
     /**
      * The only constructor. It requires a publication fetcher.
      * If the publication fetcher is null, an illegal state exception will be thrown at the next enrichment.
+     *
      * @param fetcher  The PublicationFetcher to use.
      */
     public MinimalPublicationEnricher(PublicationFetcher fetcher){
@@ -46,6 +48,7 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
 
     /**
      * Gets the publication fetcher which is currently being used to retrieve entries
+     *
      * @return  the current publication fetcher.
      */
     public PublicationFetcher getPublicationFetcher(){
@@ -53,25 +56,37 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the listener to report publication changes to.
      * Can be null.
-     * @param listener the new publication listener
      */
     public void setPublicationEnricherListener(PublicationEnricherListener listener){
         this.listener = listener;
     }
     /**
      * Gets the current publication listener
+     *
      * @return  the current publication listener
      */
     public PublicationEnricherListener getPublicationEnricherListener(){
         return listener;
     }
 
+    /**
+     * <p>Getter for the field <code>retryCount</code>.</p>
+     *
+     * @return a int.
+     */
     public int getRetryCount() {
         return retryCount;
     }
 
+    /**
+     * <p>Setter for the field <code>retryCount</code>.</p>
+     *
+     * @param retryCount a int.
+     */
     public void setRetryCount(int retryCount) {
         this.retryCount = retryCount;
     }
@@ -79,7 +94,10 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
     /**
      * The strategy for the enrichment of the publication.
      * This methods can be overwritten to change the behaviour of the enrichment.
+     *
      * @param publicationToEnrich   The publication which is being enriched.
+     * @param fetchedPublication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void processPublication(Publication publicationToEnrich, Publication fetchedPublication) throws EnricherException{
 
@@ -96,10 +114,24 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
         processOtherProperties(publicationToEnrich, fetchedPublication);
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetchedPublication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(Publication publicationToEnrich, Publication fetchedPublication) throws EnricherException{
         // do nothing
     }
 
+    /**
+     * <p>processPublicationDate.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processPublicationDate(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if(publicationToEnrich.getPublicationDate() == null
                 && fetched.getPublicationDate() != null) {
@@ -109,6 +141,13 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
         }
     }
 
+    /**
+     * <p>processAuthors.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAuthors(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         // only add authors if empty collection. Authors are an ordered list and it does not make sens to complete an author list. Either it is there or it is not.
         if(!fetched.getAuthors().isEmpty() && publicationToEnrich.getAuthors().isEmpty()){
@@ -120,11 +159,19 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
         }
     }
 
+    /**
+     * <p>processIdentifiers.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentifiers(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         EnricherUtils.mergeXrefs(publicationToEnrich, publicationToEnrich.getIdentifiers(), fetched.getIdentifiers(), false, true,
                 getPublicationEnricherListener(), getPublicationEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Publication find(Publication publicationToEnrich) throws EnricherException {
         Publication publicationFetched = null;
@@ -142,6 +189,7 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
         return publicationFetched;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Publication publicationToEnrich) throws EnricherException {
         if(getPublicationEnricherListener() != null)
@@ -149,6 +197,7 @@ public class MinimalPublicationEnricher extends AbstractMIEnricher<Publication> 
                     publicationToEnrich, EnrichmentStatus.FAILED, "No matching publication could be found.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(Publication publicationToEnrich, Publication publicationFetched) throws EnricherException {
         processPublication(publicationToEnrich, publicationFetched);

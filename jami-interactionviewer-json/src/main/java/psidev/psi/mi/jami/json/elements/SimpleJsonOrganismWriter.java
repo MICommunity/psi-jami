@@ -14,11 +14,15 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonOrganismWriter implements JsonElementWriter<Organism>{
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for SimpleJsonOrganismWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public SimpleJsonOrganismWriter(Writer writer){
         if (writer == null){
             throw new IllegalArgumentException("The json organism writer needs a non null Writer");
@@ -26,6 +30,12 @@ public class SimpleJsonOrganismWriter implements JsonElementWriter<Organism>{
         this.writer = writer;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Organism object) throws IOException {
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("taxid", Integer.toString(object.getTaxId()), writer);
@@ -43,10 +53,21 @@ public class SimpleJsonOrganismWriter implements JsonElementWriter<Organism>{
         MIJsonUtils.writeEndObject(writer);
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherProperties(Organism object) throws IOException {
         // nothing to do here but can be overriden
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }

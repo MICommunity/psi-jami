@@ -16,6 +16,7 @@ import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/08/13
+
  */
 public class LazySource extends LazyCvTerm implements Source {
 
@@ -25,19 +26,34 @@ public class LazySource extends LazyCvTerm implements Source {
     private Annotation postalAddress;
     private Publication bibRef;
 
+    /**
+     * <p>Constructor for LazySource.</p>
+     *
+     * @param olsClient a {@link uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param identityRef a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ontologyName a {@link java.lang.String} object.
+     */
     public LazySource(OLSClient olsClient, String fullName, Xref identityRef, String ontologyName) {
         super(olsClient, fullName, identityRef, ontologyName);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAnnotations() {
         initialiseAnnotationsWith(new SourceAnnotationList());
     }
 
+    /**
+     * <p>Getter for the field <code>url</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getUrl() {
         return this.url != null ? this.url.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setUrl(String url) {
         SourceAnnotationList sourceAnnotationList = (SourceAnnotationList)getAnnotations();
 
@@ -58,10 +74,16 @@ public class LazySource extends LazyCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>postalAddress</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPostalAddress() {
         return this.postalAddress != null ? this.postalAddress.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setPostalAddress(String address) {
         SourceAnnotationList sourceAnnotationList = (SourceAnnotationList)getAnnotations();
 
@@ -82,14 +104,25 @@ public class LazySource extends LazyCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>getPublication.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.bibRef;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication ref) {
         this.bibRef = ref;
     }
 
+    /**
+     * <p>processAddedAnnotationEvent.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     protected void processAddedAnnotationEvent(Annotation added) {
         if (url == null && AnnotationUtils.doesAnnotationHaveTopic(added, Annotation.URL_MI, Annotation.URL)){
             url = added;
@@ -99,6 +132,11 @@ public class LazySource extends LazyCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>processRemovedAnnotationEvent.</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     protected void processRemovedAnnotationEvent(Annotation removed) {
         if (url != null && url.equals(removed)){
             url = null;
@@ -108,6 +146,9 @@ public class LazySource extends LazyCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToAnnotations.</p>
+     */
     protected void clearPropertiesLinkedToAnnotations() {
         url = null;
         postalAddress = null;

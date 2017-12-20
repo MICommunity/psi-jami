@@ -16,6 +16,7 @@ import java.util.Date;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class InteractionEnricherStatisticsWriter<I extends Interaction>
         extends EnricherStatisticsWriter<I>
@@ -25,7 +26,8 @@ public class InteractionEnricherStatisticsWriter<I extends Interaction>
     private static final String FILE_NAME = "Interaction";
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     *
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public InteractionEnricherStatisticsWriter() throws IOException {
         super(FILE_NAME);
@@ -33,8 +35,9 @@ public class InteractionEnricherStatisticsWriter<I extends Interaction>
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public InteractionEnricherStatisticsWriter(String fileName) throws IOException {
         super(fileName);
@@ -42,9 +45,10 @@ public class InteractionEnricherStatisticsWriter<I extends Interaction>
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public InteractionEnricherStatisticsWriter(String successFileName, String failureFileName) throws IOException {
         super(successFileName, failureFileName);
@@ -52,79 +56,94 @@ public class InteractionEnricherStatisticsWriter<I extends Interaction>
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
-     * @throws IOException      Thrown if a problem is encountered with file location.
+     * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public InteractionEnricherStatisticsWriter(File successFile, File failureFile) throws IOException {
         super(successFile, failureFile);
     }
 
+    /** {@inheritDoc} */
     public void onShortNameUpdate(I interaction, String oldName) {
         checkObject(interaction);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onUpdatedDateUpdate(I interaction, Date oldUpdate) {
         checkObject(interaction);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onCreatedDateUpdate(I interaction, Date oldCreated) {
         checkObject(interaction);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onInteractionTypeUpdate(I interaction, CvTerm oldType) {
         checkObject(interaction);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedParticipant(I interaction, Participant addedParticipant) {
         checkObject(interaction);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParticipant(I interaction, Participant removedParticipant) {
         checkObject(interaction);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(I o, Annotation added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(I o, Annotation removed) {
         checkObject(o);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedChecksum(I interactor, Checksum added) {
         checkObject(interactor);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedChecksum(I interactor, Checksum removed) {
         checkObject(interactor);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentifier(I o, Xref added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentifier(I o, Xref removed) {
         checkObject(o);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(I o, Xref added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(I o, Xref removed) {
         checkObject(o);
         incrementRemovedCount();

@@ -11,17 +11,20 @@ import psidev.psi.mi.jami.model.Feature;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public interface EntityEnricher<P extends Entity, F extends Feature> extends MIEnricher<P>{
 
     /**
      * The current enricher used for general interactors. If null, interactors are not being enriched.
+     *
      * @return  The new enricher for general interactors.
      */
     public CompositeInteractorEnricher getInteractorEnricher();
 
     /**
      * The current enricher used for features. If null, features are not currently being enriched.
+     *
      * @return  The current enricher. May be null.
      */
     public FeatureEnricher<F> getFeatureEnricher();
@@ -29,14 +32,30 @@ public interface EntityEnricher<P extends Entity, F extends Feature> extends MIE
     /**
      * The current listener that participant changes are reported to.
      * If null, events are not being reported.
+     *
      * @return  TThe current listener. Can be null.
      */
     public EntityEnricherListener getParticipantEnricherListener();
 
+    /**
+     * <p>setInteractorEnricher.</p>
+     *
+     * @param interactorEnricher a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher);
 
+    /**
+     * <p>setFeatureEnricher.</p>
+     *
+     * @param enricher a {@link psidev.psi.mi.jami.enricher.FeatureEnricher} object.
+     */
     public void setFeatureEnricher(FeatureEnricher<F> enricher);
 
+    /**
+     * <p>setParticipantEnricherListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.enricher.listener.EntityEnricherListener} object.
+     */
     public void setParticipantEnricherListener(EntityEnricherListener listener);
 
 }

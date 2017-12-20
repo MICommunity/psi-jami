@@ -19,18 +19,24 @@ import java.util.List;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInteraction>
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlModelledInteractionWriter<I>
         implements PsiXmlExtendedInteractionWriter<I> {
 
     private List<Experiment> defaultExperiments;
 
+    /**
+     * <p>Constructor for AbstractXmlModelledInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Experiment> getDefaultExperiments() {
         if (this.defaultExperiments == null || this.defaultExperiments.isEmpty()){
@@ -39,6 +45,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return this.defaultExperiments;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultExperiments(List<Experiment> exp) {
         this.defaultExperiments = exp;
@@ -47,26 +54,31 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter(){
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInferredInteractionWriter() {
         super.setInferredInteractionWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlInferredInteractionWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractionTypeWriter() {
         super.setInteractionTypeWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeIntraMolecular(I object) throws XMLStreamException {
         if (object instanceof PsiXmlInteraction){

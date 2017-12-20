@@ -12,10 +12,18 @@ import psidev.psi.mi.jami.model.Feature;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class FullEntityEnricher<P extends Entity, F extends Feature>
         extends MinimalEntityEnricher<P,F> {
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processOtherProperties(P objectToEnrich, P objectSource) throws EnricherException {
         // causal relationships
         processCausalRelationships(objectToEnrich, objectSource);
@@ -23,6 +31,13 @@ public class FullEntityEnricher<P extends Entity, F extends Feature>
         processOtherProperties(objectToEnrich);
     }
 
+    /**
+     * <p>processCausalRelationships.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processCausalRelationships(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeCausalRelationships(objectToEnrich, objectToEnrich.getCausalRelationships(), objectSource.getCausalRelationships(),
                 false, getParticipantEnricherListener());

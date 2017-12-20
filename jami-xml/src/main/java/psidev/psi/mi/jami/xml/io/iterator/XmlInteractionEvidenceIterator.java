@@ -11,8 +11,13 @@ import psidev.psi.mi.jami.xml.io.parser.PsiXmlParser;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlInteractionEvidenceIterator extends AbstractXmlIterator<InteractionEvidence> {
+    /**
+     * <p>Constructor for XmlInteractionEvidenceIterator.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public XmlInteractionEvidenceIterator(PsiXmlParser<InteractionEvidence> lineParser) throws MIIOException {
         super(lineParser);
     }

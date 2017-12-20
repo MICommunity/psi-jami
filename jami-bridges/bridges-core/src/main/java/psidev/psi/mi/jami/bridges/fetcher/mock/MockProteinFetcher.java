@@ -17,11 +17,11 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public class MockProteinFetcher
         extends AbstractMockFetcher<Collection<Protein>>
         implements ProteinFetcher {
 
+    /** {@inheritDoc} */
     protected Collection<Protein> getEntry(String identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException(
                 "Attempted to query mock protein fetcher for null identifier.");
@@ -33,10 +33,12 @@ public class MockProteinFetcher
         }
     }
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifier(String identifier) throws BridgeFailedException {
         return getEntry(identifier);
     }
 
+    /** {@inheritDoc} */
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         Collection<Protein> resultsList= new ArrayList<Protein>();
         for(String identifier : identifiers){

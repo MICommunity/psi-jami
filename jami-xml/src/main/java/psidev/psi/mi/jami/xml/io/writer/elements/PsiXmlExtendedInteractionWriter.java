@@ -12,12 +12,12 @@ import java.util.List;
  * @version $Id$
  * @since <pre>20/11/13</pre>
  */
-
 public interface PsiXmlExtendedInteractionWriter<T extends Interaction> extends PsiXmlInteractionWriter<T> {
 
     /**
+     * <p>extractDefaultExperimentsFrom.</p>
      *
-     * @param interaction
+     * @param interaction a T object.
      * @return the default experiments for this interaction
      */
     public List<Experiment> extractDefaultExperimentsFrom(T interaction);
@@ -26,14 +26,16 @@ public interface PsiXmlExtendedInteractionWriter<T extends Interaction> extends 
      * The default experiments that will be used to write a valid XML 2.5 file but are not real experiments attached
      * to the interaction.
      * It cannot be null.
-     * @return
+     *
+     * @return a {@link java.util.List} object.
      */
     public List<Experiment> getDefaultExperiments();
 
     /**
      * Sets the default experiments that will be used to write a valid XML 2.5 file even if the interaction does not have any valid experiment
-     * @param exp
-     * @throws IllegalArgumentException when default experiments is null
+     *
+     * @param exp a {@link java.util.List} object.
+     * @throws java.lang.IllegalArgumentException when default experiments is null
      */
     public void setDefaultExperiments(List<Experiment> exp);
 }

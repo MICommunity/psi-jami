@@ -20,28 +20,51 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlModelledBinaryStreamSource extends AbstractPsiXmlBinaryStream<ModelledInteraction, ModelledBinaryInteraction> implements ModelledBinaryInteractionStream{
 
+    /**
+     * <p>Constructor for XmlModelledBinaryStreamSource.</p>
+     */
     public XmlModelledBinaryStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlModelledBinaryStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlModelledBinaryStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlModelledBinaryStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlModelledBinaryStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlModelledBinaryStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -57,6 +80,7 @@ public class XmlModelledBinaryStreamSource extends AbstractPsiXmlBinaryStream<Mo
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -74,6 +98,7 @@ public class XmlModelledBinaryStreamSource extends AbstractPsiXmlBinaryStream<Mo
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -89,6 +114,7 @@ public class XmlModelledBinaryStreamSource extends AbstractPsiXmlBinaryStream<Mo
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -106,6 +132,7 @@ public class XmlModelledBinaryStreamSource extends AbstractPsiXmlBinaryStream<Mo
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<ModelledBinaryInteraction> createXmlIterator() {
         return new XmlModelledBinaryInteractionIterator(getParser());

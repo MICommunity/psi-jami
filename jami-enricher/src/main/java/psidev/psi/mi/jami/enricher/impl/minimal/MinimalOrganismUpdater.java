@@ -15,13 +15,20 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public class MinimalOrganismUpdater extends MinimalOrganismEnricher {
 
+    /**
+     * <p>Constructor for MinimalOrganismUpdater.</p>
+     *
+     * @param organismFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher} object.
+     */
     public MinimalOrganismUpdater(OrganismFetcher organismFetcher) {
         super(organismFetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processScientificName(Organism organismToEnrich, Organism organismFetched) {
         // Scientific name
@@ -36,6 +43,7 @@ public class MinimalOrganismUpdater extends MinimalOrganismEnricher {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processCommonName(Organism organismToEnrich, Organism organismFetched) {
 // Common name
@@ -50,6 +58,7 @@ public class MinimalOrganismUpdater extends MinimalOrganismEnricher {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processTaxid(Organism organismToEnrich, Organism organismFetched) throws EnricherException{
         if (organismToEnrich.getTaxId() != organismFetched.getTaxId()){

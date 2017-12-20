@@ -15,17 +15,29 @@ import java.util.*;
  * @version $Id$
  * @since <pre>17/07/13</pre>
  */
-
 public class OboOntologyTermFetcher extends OboFetcherTemplate<OntologyTerm> implements OntologyTermFetcher{
 
+    /**
+     * <p>Constructor for OboOntologyTermFetcher.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param filePath a {@link java.lang.String} object.
+     */
     public OboOntologyTermFetcher(CvTerm database, String filePath) {
         super(database, new OntologyOboLoader(database), filePath);
     }
 
+    /**
+     * <p>Constructor for OboOntologyTermFetcher.</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param filePath a {@link java.lang.String} object.
+     */
     public OboOntologyTermFetcher(String databaseName, String filePath) {
         super(databaseName, new OntologyOboLoader(databaseName), filePath);
     }
 
+    /** {@inheritDoc} */
     public Set<OntologyTerm> fetchRootTerms(String database) throws BridgeFailedException {
 
         if (database != null && !getOntologyDatabase().getShortName().equalsIgnoreCase(database)){
@@ -48,6 +60,13 @@ public class OboOntologyTermFetcher extends OboFetcherTemplate<OntologyTerm> imp
         return terms;
     }
 
+    /**
+     * <p>fetchRootTerms.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a {@link java.util.Set} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Set<OntologyTerm> fetchRootTerms(CvTerm database) throws BridgeFailedException{
 
         if (database != null && !DefaultCvTermComparator.areEquals(getOntologyDatabase(), database)){

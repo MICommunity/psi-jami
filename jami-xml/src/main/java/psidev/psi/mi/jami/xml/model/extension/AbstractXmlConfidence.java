@@ -34,9 +34,18 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlConfidence.</p>
+     */
     public AbstractXmlConfidence() {
     }
 
+    /**
+     * <p>Constructor for AbstractXmlConfidence.</p>
+     *
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
+     */
     public AbstractXmlConfidence(CvTerm type, String value) {
         if (type == null){
             throw new IllegalArgumentException("The confidence type is required and cannot be null");
@@ -51,10 +60,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     /**
      * Gets the value of the type property.
      *
-     * @return
-     *     possible object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm }
-     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getType() {
         if (this.type == null){
@@ -63,6 +69,11 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
         return type;
     }
 
+    /**
+     * <p>Getter for the field <code>value</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getValue() {
         return value;
     }
@@ -72,8 +83,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlElement(name = "value", required = true)
     public void setJAXBValue(String value) {
@@ -91,8 +101,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm }
-     *
+     *     {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm}
      */
     @XmlElement(name = "unit", required = true)
     public void setJAXBType(XmlOpenCvTerm value) {
@@ -105,11 +114,17 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -117,6 +132,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -129,6 +145,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -142,11 +159,13 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
         return UnambiguousConfidenceComparator.areEquals(this, (Confidence) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Xml Confidence: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousConfidenceComparator.hashCode(this);

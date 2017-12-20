@@ -14,20 +14,30 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 23/07/13
+
  */
 public class ProteinMappingStatisticsWriter implements ProteinMapperListener {
 
 
+    /** Constant <code>log</code> */
     protected static final Logger log = LoggerFactory.getLogger(ProteinMappingStatisticsWriter.class.getName());
 
     private Writer writer ;
 
+    /** Constant <code>NEW_LINE="\n"</code> */
     public static final String NEW_LINE = "\n";
+    /** Constant <code>NEW_EVENT="\t"</code> */
     public static final String NEW_EVENT = "\t";
 
     //protected int updateCount = 0, removedCount = 0, additionCount = 0;
 
 
+    /**
+     * <p>Constructor for ProteinMappingStatisticsWriter.</p>
+     *
+     * @param fileName a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     public ProteinMappingStatisticsWriter(String fileName) throws IOException {
         if(fileName == null || fileName.length() == 0)
             throw new IllegalArgumentException("Provided a no file to write to.");
@@ -45,13 +55,15 @@ public class ProteinMappingStatisticsWriter implements ProteinMapperListener {
 
     /**
      * Close both files.
-     * @throws IOException
+     *
+     * @throws java.io.IOException if any.
      */
     public void close() throws IOException {
         if(writer != null) writer.close();
     }
 
 
+    /** {@inheritDoc} */
     public void onSuccessfulMapping(Protein p, Collection<String> report) {
         try{
             writer.write(NEW_LINE);
@@ -74,6 +86,7 @@ public class ProteinMappingStatisticsWriter implements ProteinMapperListener {
 
 
 
+    /** {@inheritDoc} */
     public void onFailedMapping(Protein p, Collection<String> report) {
         try{
             writer.write(NEW_LINE);
@@ -93,6 +106,7 @@ public class ProteinMappingStatisticsWriter implements ProteinMapperListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onToBeReviewedMapping(Protein p, Collection<String> report) {
         try{
             writer.write(NEW_LINE);

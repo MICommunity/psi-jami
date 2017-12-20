@@ -15,23 +15,35 @@ import javax.xml.stream.XMLStreamWriter;
 /**
  * Expanded XML 2.5 writer for a named binary interaction evidence (with full experimental details).
  * The interaction has aliases and a fullname in addition to the shortname
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlNamedBinaryInteractionEvidenceWriter extends XmlBinaryInteractionEvidenceWriter{
     private PsiXmlElementWriter<Alias> aliasWriter;
 
+    /**
+     * <p>Constructor for XmlNamedBinaryInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlNamedBinaryInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter = new XmlAliasWriter(getStreamWriter());
@@ -39,15 +51,22 @@ public class XmlNamedBinaryInteractionEvidenceWriter extends XmlBinaryInteractio
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(BinaryInteractionEvidence object) throws XMLStreamException {
         if (object instanceof NamedInteraction){

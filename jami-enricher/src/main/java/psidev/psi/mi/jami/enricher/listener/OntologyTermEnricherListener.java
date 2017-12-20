@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public interface OntologyTermEnricherListener
         extends CvTermEnricherListener<OntologyTerm>, OntologyTermChangeListener{

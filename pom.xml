@@ -101,6 +101,18 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <!--Excludes self-generated sources-->
+                <configuration>
+                    <excludePackageNames>uk.ac.ebi.cdb.webservice:uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral</excludePackageNames>
+                    <reportOutputDirectory>doc</reportOutputDirectory>
+                    <destDir>doc</destDir>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
