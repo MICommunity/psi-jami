@@ -59,7 +59,7 @@ public class CachedEuroPubmedCentralFetcherTest {
         assertEquals( "10831611" , publication.getPubmedId() );
         assertEquals( "10.1083/jcb.149.5.1073" , publication.getDoi() );
         assertEquals( "Zyxin, a regulator of actin filament assembly, targets the mitotic apparatus by interacting with h-warts/LATS1 tumor suppressor." , publication.getTitle());
-        assertEquals( "The Journal of cell biology" , publication.getJournal());
+        assertTrue( publication.getJournal().equalsIgnoreCase("The Journal of cell biology"));
         // month 5 - year 2000
         //publication.addAuthor: Hirota T
         //publication.addAuthor: Morisaki T
