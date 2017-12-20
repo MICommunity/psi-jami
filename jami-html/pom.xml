@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-html</artifactId>
-    <name>PSI :: JAMI Html parser and writer</name>
+    <name>PSI :: JAMI - Html parser and writer</name>
 
     <build>
         <plugins>

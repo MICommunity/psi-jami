@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-ols</artifactId>
-    <name>PSI :: JAMI - OLS</name>
+    <name>PSI :: JAMI - Bridges - OLS</name>
     <description>JAMI-OLS bridge</description>
 
     <dependencies>

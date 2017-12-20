@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-ontology-manager</artifactId>
-    <name>PSI :: JAMI - Ontology manager</name>
+    <name>PSI :: JAMI - Bridges - Ontology manager</name>
     <description>Jami ontology manager extension</description>
 
     <dependencies>

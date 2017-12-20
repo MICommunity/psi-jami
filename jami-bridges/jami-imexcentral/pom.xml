@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-imexcentral</artifactId>
-    <name>PSI :: JAMI - IMEx central</name>
+    <name>PSI :: JAMI - Bridges - IMEx central</name>
     <description>Module to connect JAMI to IMEx central</description>
 
     <build>

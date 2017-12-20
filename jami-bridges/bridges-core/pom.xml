@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>bridges-core</artifactId>
-    <name>PSI :: JAMI bridges core interfaces</name>
+    <name>PSI :: JAMI - Bridges - Core interfaces</name>
 
     <dependencies>
         <!-- Caching Service-->

@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-unisave</artifactId>
-    <name>PSI :: JAMI - Unisave</name>
+    <name>PSI :: JAMI - Bridges - Unisave</name>
     <description>Bridges module with Unisave webservice</description>
 
     <dependencies>

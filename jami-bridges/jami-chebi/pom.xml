@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jami-chebi</artifactId>
-    <name>PSI :: JAMI - CHEBI</name>
+    <name>PSI :: JAMI - Bridges - CHEBI</name>
     <description>JAMI-CHEBI bridge</description>
 
     <dependencies>

@@ -9,7 +9,7 @@
 
     <artifactId>uniprot-mapping</artifactId>
 
-    <name>PSI :: JAMI - Uniprot mapping</name>
+    <name>PSI :: JAMI - Bridges - Uniprot mapping</name>
     <description>JAMI module to map proteins to uniprot</description>
 
     <dependencies>

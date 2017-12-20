@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-europubmedcentral</artifactId>
-    <name>PSI :: JAMI - EuroPubmedCentral</name>
+    <name>PSI :: JAMI - Bridges - EuroPubmedCentral</name>
     <description>JAMI-EuroPubmedCentral bridge</description>
 
     <dependencies>

@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-obo</artifactId>
-    <name>PSI :: JAMI - OBO</name>
+    <name>PSI :: JAMI - Bridges - OBO</name>
     <description>JAMI-OBO bridge</description>
 
     <dependencies>

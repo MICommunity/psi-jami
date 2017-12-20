@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-uniprot</artifactId>
-    <name>PSI :: JAMI - Uniprot</name>
+    <name>PSI :: JAMI - Bridges - Uniprot</name>
     <description>JAMI- Uniprot bridge based on Uniprot java API</description>
 
     <dependencies>
