@@ -18,12 +18,17 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class CooperativityEvidenceComparator implements Comparator<CooperativityEvidence> {
 
     private CollectionComparator<CvTerm> cvTermsCollectionComparator;
     private Comparator<Publication> publicationComparator;
 
+    /**
+     * <p>Constructor for CooperativityEvidenceComparator.</p>
+     *
+     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param publicationComparator a {@link java.util.Comparator} object.
+     */
     public CooperativityEvidenceComparator(Comparator<CvTerm> cvTermComparator, Comparator<Publication> publicationComparator){
 
         if (cvTermComparator == null){
@@ -36,6 +41,12 @@ public class CooperativityEvidenceComparator implements Comparator<Cooperativity
         this.publicationComparator = publicationComparator;
     }
 
+    /**
+     * <p>Constructor for CooperativityEvidenceComparator.</p>
+     *
+     * @param cvTermComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param publicationComparator a {@link java.util.Comparator} object.
+     */
     public CooperativityEvidenceComparator(CollectionComparator<CvTerm> cvTermComparator, Comparator<Publication> publicationComparator){
 
         if (cvTermComparator == null){
@@ -48,19 +59,30 @@ public class CooperativityEvidenceComparator implements Comparator<Cooperativity
         this.publicationComparator = publicationComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermsCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<CvTerm> getCvTermsCollectionComparator() {
         return cvTermsCollectionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Publication> getPublicationComparator() {
         return publicationComparator;
     }
 
     /**
      * It will first compare the publications using AbstractPublicationComparator and then the evidenceMethods using AbstractCvTermComparator
-     * @param cooperativityEvidence1
-     * @param cooperativityEvidence2
-     * @return
+     *
+     * @param cooperativityEvidence1 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @param cooperativityEvidence2 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @return a int.
      */
     public int compare(CooperativityEvidence cooperativityEvidence1, CooperativityEvidence cooperativityEvidence2) {
         int EQUAL = 0;

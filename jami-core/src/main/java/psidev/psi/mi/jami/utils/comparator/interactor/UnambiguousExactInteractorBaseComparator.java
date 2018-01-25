@@ -14,7 +14,6 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousExactInteractorBaseComparator extends ExactInteractorBaseComparator {
 
     private static UnambiguousExactInteractorBaseComparator unambiguousExactInteractorComparator;
@@ -28,18 +27,29 @@ public class UnambiguousExactInteractorBaseComparator extends ExactInteractorBas
         super(new OrganismTaxIdComparator(), new UnambiguousCvTermComparator(), new UnambiguousInteractorBaseComparator());
     }
 
+    /**
+     * <p>getInteractorBaseComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorBaseComparator} object.
+     */
     public UnambiguousInteractorBaseComparator getInteractorBaseComparator() {
         return (UnambiguousInteractorBaseComparator)super.getInteractorBaseComparator();
     }
 
+    /**
+     * <p>getTypeComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator} object.
+     */
     public UnambiguousCvTermComparator getTypeComparator() {
         return (UnambiguousCvTermComparator)super.getTypeComparator();
     }
 
     /**
      * Use UnambiguousExacttInteractorBaseComparator to know if two interactors are equals.
-     * @param interactor1
-     * @param interactor2
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return true if the two interactors are equal
      */
     public static boolean areEquals(Interactor interactor1, Interactor interactor2){
@@ -51,8 +61,9 @@ public class UnambiguousExactInteractorBaseComparator extends ExactInteractorBas
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param interactor
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Interactor interactor){

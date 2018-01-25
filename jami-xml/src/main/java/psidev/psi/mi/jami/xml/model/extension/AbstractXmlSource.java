@@ -29,14 +29,15 @@ import java.util.List;
 
 /**
  * Desciption of the source of the entry, usually an organisation
- *             
- * 
+ *
+ *
  * <p>Java class for source complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * The JAXB binding is designed to be read-only and is not designed for writing
- * 
+ *
+
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements ExtendedPsiXmlSource
@@ -49,22 +50,51 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     */
     public AbstractXmlSource(){
         super();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public AbstractXmlSource(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlSource(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public AbstractXmlSource(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlSource(String shortName, String url, String address, Publication bibRef) {
         super(shortName);
         setUrl(url);
@@ -72,6 +102,15 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlSource(String shortName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, ontologyId);
         setUrl(url);
@@ -79,6 +118,16 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlSource(String shortName, String fullName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, fullName, ontologyId);
         setUrl(url);
@@ -86,14 +135,36 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public AbstractXmlSource(String shortName, String miId) {
         super(shortName, miId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public AbstractXmlSource(String shortName, String fullName, String miId) {
         super(shortName, fullName, miId);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlSource(String shortName, String miId, String url, String address, Publication bibRef) {
         super(shortName, miId);
         setUrl(url);
@@ -101,6 +172,16 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for AbstractXmlSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public AbstractXmlSource(String shortName, String fullName, String miId, String url, String address, Publication bibRef) {
         super(shortName, fullName, miId);
         setUrl(url);
@@ -108,6 +189,7 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         this.bibRef = bibRef;
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -116,11 +198,17 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         return super.getSourceLocator();
     }
 
+    /**
+     * <p>getUrl.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getUrl() {
         Annotation url = getAttributeWrapper().url;
         return url != null ? url.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setUrl(String url) {
         JAXBAttributeWrapper.SourceAnnotationList sourceAnnotationList = (JAXBAttributeWrapper.SourceAnnotationList)getAnnotations();
         Annotation urlAnnot = getAttributeWrapper().url;
@@ -142,11 +230,17 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         }
     }
 
+    /**
+     * <p>getPostalAddress.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPostalAddress() {
         Annotation postal = getAttributeWrapper().postalAddress;
         return postal != null ? postal.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setPostalAddress(String address) {
         JAXBAttributeWrapper.SourceAnnotationList sourceAnnotationList = (JAXBAttributeWrapper.SourceAnnotationList)getAnnotations();
         Annotation postalAnnot = getAttributeWrapper().postalAddress;
@@ -168,14 +262,25 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
         }
     }
 
+    /**
+     * <p>getPublication.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.bibRef;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication ref) {
         this.bibRef = ref;
     }
 
+    /**
+     * <p>setJAXBBibRef.</p>
+     *
+     * @param ref a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     */
     @XmlElement(name = "bibRef", type = BibRef.class)
     public void setJAXBBibRef(BibRef ref) {
         this.bibRef = ref;
@@ -184,27 +289,26 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     /**
      * Gets the value of the release property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return a {@link java.lang.String} object.
      */
     public String getRelease() {
         return release;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the release property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     public void setRelease(String value) {
         this.release = value;
     }
 
+    /**
+     * <p>setJAXBRelease.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     */
     @XmlAttribute(name = "release")
     public void setJAXBRelease(String value) {
         this.release = value;
@@ -213,60 +317,64 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     /**
      * Gets the value of the releaseDate property.
      *
-     * @return
-     *     possible object is
-     *     {@link javax.xml.datatype.XMLGregorianCalendar }
-     *
+     * @return a {@link javax.xml.datatype.XMLGregorianCalendar} object.
      */
     public XMLGregorianCalendar getReleaseDate() {
         return releaseDate;
     }
 
     /**
-     * Sets the value of the releaseDate property.
+     * {@inheritDoc}
      *
-     * @param value
-     *     allowed object is
-     *     {@link javax.xml.datatype.XMLGregorianCalendar }
-     *     
+     * Sets the value of the releaseDate property.
      */
     public void setReleaseDate(XMLGregorianCalendar value) {
         this.releaseDate = value;
     }
 
+    /**
+     * <p>setJAXBReleaseDate.</p>
+     *
+     * @param value a {@link javax.xml.datatype.XMLGregorianCalendar} object.
+     */
     @XmlAttribute(name = "releaseDate")
     @XmlSchemaType(name = "date")
     public void setJAXBReleaseDate(XMLGregorianCalendar value) {
         this.releaseDate = value;
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlSource.JAXBAttributeWrapper} object.
+     */
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper){
         super.setAttributeWrapper(wrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected JAXBAttributeWrapper getAttributeWrapper() {
         return (JAXBAttributeWrapper) super.getAttributeWrapper();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAnnotationWrapper() {
         super.setAttributeWrapper(new JAXBAttributeWrapper());
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Source: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the names property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer }
-     *
      */
     @XmlElement(name = "names", required = true)
     @Override
@@ -275,12 +383,9 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the xrefContainer property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer }
-     *
      */
     @XmlElement(name = "xref", required = true)
     @Override

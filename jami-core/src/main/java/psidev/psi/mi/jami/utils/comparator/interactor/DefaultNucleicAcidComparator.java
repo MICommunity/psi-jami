@@ -12,13 +12,13 @@ import psidev.psi.mi.jami.model.NucleicAcid;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class DefaultNucleicAcidComparator {
 
     /**
      * Use DefaultNucleicAcidComparator to know if two nucleic acids are equals.
-     * @param nucleicAcid1
-     * @param nucleicAcid2
+     *
+     * @param nucleicAcid1 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
+     * @param nucleicAcid2 a {@link psidev.psi.mi.jami.model.NucleicAcid} object.
      * @return true if the two nucleic acids are equal
      */
     public static boolean areEquals(NucleicAcid nucleicAcid1, NucleicAcid nucleicAcid2){

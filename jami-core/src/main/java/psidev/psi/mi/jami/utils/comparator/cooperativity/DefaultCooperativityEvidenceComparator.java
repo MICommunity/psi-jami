@@ -13,18 +13,17 @@ import java.util.Collection;
  *
  * It will first compare the publications using DefaultPublicationComparator and then the evidenceMethods using DefaultCvTermComparator
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultCooperativityEvidenceComparator {
 
     /**
      * Use DefaultCooperativityEvidenceComparator to know if two cooperativityEvidences are equals.
-     * @param cooperativityEvidence1
-     * @param cooperativityEvidence2
+     *
+     * @param cooperativityEvidence1 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @param cooperativityEvidence2 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
      * @return true if the two cooperativityEvidences are equal
      */
     public static boolean areEquals(CooperativityEvidence cooperativityEvidence1, CooperativityEvidence cooperativityEvidence2){

@@ -25,34 +25,63 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class ExpandedXmlModelledBinaryWriter extends AbstractExpandedXmlWriter<ModelledBinaryInteraction> {
 
+    /**
+     * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     */
     public ExpandedXmlModelledBinaryWriter() {
         super(ModelledBinaryInteraction.class);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlModelledBinaryWriter(File file) throws IOException, XMLStreamException {
         super(ModelledBinaryInteraction.class, file);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlModelledBinaryWriter(OutputStream output) throws XMLStreamException {
         super(ModelledBinaryInteraction.class, output);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlModelledBinaryWriter(Writer writer) throws XMLStreamException {
         super(ModelledBinaryInteraction.class, writer);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public ExpandedXmlModelledBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(ModelledBinaryInteraction.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         return getCurrentInteraction().getSource() != null ? getCurrentInteraction().getSource() : super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(true, true, PsiXmlType.expanded, InteractionCategory.modelled, ComplexType.binary);
@@ -60,11 +89,13 @@ public class ExpandedXmlModelledBinaryWriter extends AbstractExpandedXmlWriter<M
         getComplexWriter().setDefaultExperiment(getInteractionWriter().getDefaultExperiment());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
         setDefaultSource(new XmlSource("Unknown source"));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeInteraction() throws XMLStreamException {
         // write interaction
@@ -75,6 +106,7 @@ public class ExpandedXmlModelledBinaryWriter extends AbstractExpandedXmlWriter<M
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeComplex(ModelledInteraction modelled) {
         super.writeComplex(modelled);

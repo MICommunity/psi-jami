@@ -12,12 +12,11 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class CvTermsCollectionComparator extends CollectionComparator<CvTerm> {
     /**
      * Creates a new cvTerm CollectionComparator. It requires a Comparator for the cvTerms in the Collection
      *
-     * @param cvTermComparator
+     * @param cvTermComparator a {@link java.util.Comparator} object.
      */
     public CvTermsCollectionComparator(Comparator<CvTerm> cvTermComparator) {
         super(cvTermComparator);

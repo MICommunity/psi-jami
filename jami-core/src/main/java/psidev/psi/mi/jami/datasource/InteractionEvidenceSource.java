@@ -11,6 +11,5 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public interface InteractionEvidenceSource<T extends InteractionEvidence> extends InteractionEvidenceStream<T>, InteractionSource<T> {
 }

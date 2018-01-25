@@ -9,19 +9,23 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousModelledEntity
  * Unambiguous Comparator for MoleculeEffector.
  *
  * It is using a UnambiguousModelledEntityComparator to compare the molecule
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class UnambiguousMoleculeEffectorComparator extends MoleculeEffectorComparator {
 
     private static UnambiguousMoleculeEffectorComparator unambiguousMoleculeEffectorComparator;
 
+    /**
+     * <p>Constructor for UnambiguousMoleculeEffectorComparator.</p>
+     */
     public UnambiguousMoleculeEffectorComparator() {
         super(new UnambiguousModelledEntityComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousModelledEntityComparator getParticipantComparator() {
         return (UnambiguousModelledEntityComparator) super.getParticipantComparator();
@@ -29,9 +33,10 @@ public class UnambiguousMoleculeEffectorComparator extends MoleculeEffectorCompa
 
     /**
      * It is using a UnambiguousModelledParticipantComparator to compare the molecule
-     * @param molecule1
-     * @param molecule2
-     * @return
+     *
+     * @param molecule1 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @param molecule2 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @return a int.
      */
     public int compare(MoleculeEffector molecule1, MoleculeEffector molecule2) {
         return super.compare(molecule1, molecule2);
@@ -39,8 +44,9 @@ public class UnambiguousMoleculeEffectorComparator extends MoleculeEffectorCompa
 
     /**
      * Use UnambiguousMoleculeEffectorComparator to know if two moleculeEffectors are equals.
-     * @param molecule1
-     * @param molecule2
+     *
+     * @param molecule1 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
+     * @param molecule2 a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
      * @return true if the two moleculeEffectors are equal
      */
     public static boolean areEquals(MoleculeEffector molecule1, MoleculeEffector molecule2){
@@ -52,8 +58,9 @@ public class UnambiguousMoleculeEffectorComparator extends MoleculeEffectorCompa
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param effector
+     * @param effector a {@link psidev.psi.mi.jami.model.MoleculeEffector} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(MoleculeEffector effector){

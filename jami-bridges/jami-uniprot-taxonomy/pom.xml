@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.13-SNAPSHOT</version>
+        <version>3.0.14</version>
     </parent>
 
     <artifactId>jami-uniprot-taxonomy</artifactId>
-    <name>PSI :: JAMI - Uniprot taxonomy</name>
+    <name>PSI :: JAMI - Bridges - Uniprot taxonomy</name>
     <description>JAMI bridge using the uniprot taxonomy webservice</description>
 
     <dependencies>

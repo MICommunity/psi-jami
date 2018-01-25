@@ -26,27 +26,41 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>29/10/14</pre>
  */
-
 public class ImexPublicationUpdater extends FullPublicationEnricher{
 
     private PublicationAdminGroupSynchronizer adminGroupSynchronizer;
     private PublicationStatusSynchronizer statusSynchronizer;
     private PublicationIdentifierSynchronizer identifierSynchronizer;
 
+    /** Constant <code>IMEX_SECONDARY_MI="MI:0952"</code> */
     public static String IMEX_SECONDARY_MI = "MI:0952";
+    /** Constant <code>IMEX_SECONDARY="imex secondary"</code> */
     public static String IMEX_SECONDARY = "imex secondary";
+    /** Constant <code>FULL_COVERAGE_MI="MI:0957"</code> */
     public static String FULL_COVERAGE_MI = "MI:0957";
+    /** Constant <code>FULL_COVERAGE="full coverage"</code> */
     public static String FULL_COVERAGE = "full coverage";
+    /** Constant <code>IMEX_CURATION_MI="MI:0959"</code> */
     public static String IMEX_CURATION_MI = "MI:0959";
+    /** Constant <code>IMEX_CURATION="imex curation"</code> */
     public static String IMEX_CURATION = "imex curation";
+    /** Constant <code>CURATION_DEPTH_MI="MI:0955"</code> */
     public static String CURATION_DEPTH_MI = "MI:0955";
+    /** Constant <code>CURATION_DEPTH="curation depth"</code> */
     public static String CURATION_DEPTH = "curation depth";
+    /** Constant <code>FULL_COVERAGE_TEXT="Only protein-protein interactions"</code> */
     public static String FULL_COVERAGE_TEXT = "Only protein-protein interactions";
 
+    /**
+     * <p>Constructor for ImexPublicationUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexPublicationUpdater(ImexCentralClient fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processCurationDepth(Publication publicationToEnrich, Publication fetched) {
         if (publicationToEnrich.getCurationDepth() != CurationDepth.IMEx
@@ -72,6 +86,7 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processReleasedDate(Publication publicationToEnrich, Publication fetched) {
         if (publicationToEnrich.getReleasedDate() != null && getStatusSynchronizer() != null && fetched instanceof ImexPublication){
@@ -89,11 +104,13 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(Publication publicationToEnrich, Publication fetched) {
         // nothing to do here
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(Publication publicationToEnrich, Publication fetched) {
         // update publication annotations if necessary
@@ -163,26 +180,31 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processJournal(Publication publicationToEnrich, Publication fetched) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationTitle(Publication publicationToEnrich, Publication fetched) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationDate(Publication publicationToEnrich, Publication fetched) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAuthors(Publication publicationToEnrich, Publication fetched) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(Publication publicationToEnrich, Publication fetched) {
         if (publicationToEnrich.getImexId() != null){
@@ -205,6 +227,7 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public ImexPublication find(Publication publicationToEnrich) throws EnricherException {
         String imex = collectAndCleanUpImexPrimaryReferenceFrom(publicationToEnrich);
@@ -224,6 +247,12 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
         return null;
     }
 
+    /**
+     * <p>collectAndCleanUpImexPrimaryReferenceFrom.</p>
+     *
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @return a {@link java.lang.String} object.
+     */
     protected String collectAndCleanUpImexPrimaryReferenceFrom(Publication publication) {
 
         Collection<Xref> imexPrimaryRefs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(publication.getXrefs(),
@@ -266,30 +295,61 @@ public class ImexPublicationUpdater extends FullPublicationEnricher{
         return null;
     }
 
+    /**
+     * <p>Getter for the field <code>adminGroupSynchronizer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.PublicationAdminGroupSynchronizer} object.
+     */
     public PublicationAdminGroupSynchronizer getAdminGroupSynchronizer() {
         return adminGroupSynchronizer;
     }
 
+    /**
+     * <p>Setter for the field <code>adminGroupSynchronizer</code>.</p>
+     *
+     * @param adminGroupSynchronizer a {@link psidev.psi.mi.jami.imex.actions.PublicationAdminGroupSynchronizer} object.
+     */
     public void setAdminGroupSynchronizer(PublicationAdminGroupSynchronizer adminGroupSynchronizer) {
         this.adminGroupSynchronizer = adminGroupSynchronizer;
     }
 
+    /**
+     * <p>Getter for the field <code>statusSynchronizer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.PublicationStatusSynchronizer} object.
+     */
     public PublicationStatusSynchronizer getStatusSynchronizer() {
         return statusSynchronizer;
     }
 
+    /**
+     * <p>Setter for the field <code>statusSynchronizer</code>.</p>
+     *
+     * @param statusSynchronizer a {@link psidev.psi.mi.jami.imex.actions.PublicationStatusSynchronizer} object.
+     */
     public void setStatusSynchronizer(PublicationStatusSynchronizer statusSynchronizer) {
         this.statusSynchronizer = statusSynchronizer;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierSynchronizer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.PublicationIdentifierSynchronizer} object.
+     */
     public PublicationIdentifierSynchronizer getIdentifierSynchronizer() {
         return identifierSynchronizer;
     }
 
+    /**
+     * <p>Setter for the field <code>identifierSynchronizer</code>.</p>
+     *
+     * @param identifierSynchronizer a {@link psidev.psi.mi.jami.imex.actions.PublicationIdentifierSynchronizer} object.
+     */
     public void setIdentifierSynchronizer(PublicationIdentifierSynchronizer identifierSynchronizer) {
         this.identifierSynchronizer = identifierSynchronizer;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Publication publicationToEnrich) throws EnricherException {
         if(getPublicationEnricherListener() instanceof PublicationImexEnricherListener)

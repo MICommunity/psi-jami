@@ -18,34 +18,62 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public abstract class AbstractPsiXmlBinarySource<T extends Interaction,B extends BinaryInteraction> extends AbstractPsiXmlSource<B> implements BinaryInteractionSource<B> {
     private ComplexExpansionMethod<T,B> complexExpansion;
 
+    /**
+     * <p>Constructor for AbstractPsiXmlBinarySource.</p>
+     */
     public AbstractPsiXmlBinarySource() {
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlBinarySource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public AbstractPsiXmlBinarySource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlBinarySource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public AbstractPsiXmlBinarySource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlBinarySource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public AbstractPsiXmlBinarySource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlBinarySource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public AbstractPsiXmlBinarySource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         this.complexExpansion = (ComplexExpansionMethod<T,B>)expansionMethod;
     }
 
+    /**
+     * <p>Getter for the field <code>complexExpansion</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected ComplexExpansionMethod<T, B> getComplexExpansion() {
         return complexExpansion;
     }

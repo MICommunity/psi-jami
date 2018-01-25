@@ -18,29 +18,33 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>19/06/13</pre>
  */
-
 public class InteractionEvidenceSpokeExpansion extends AbstractSpokeExpansion<InteractionEvidence, BinaryInteractionEvidence>{
 
+    /** {@inheritDoc} */
     @Override
     protected Collection<BinaryInteractionEvidence> createNewSelfBinaryInteractionsFrom(InteractionEvidence interaction) {
         return Collections.singletonList(getBinaryInteractionFactory().createSelfBinaryInteractionEvidenceFrom(interaction));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Collection<BinaryInteractionEvidence> createBinaryInteractionWrappersFrom(InteractionEvidence interaction) {
         return Collections.singletonList(getBinaryInteractionFactory().createBinaryInteractionEvidenceWrapperFrom(interaction));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected ComplexType findInteractionCategory(InteractionEvidence interaction) {
         return InteractionUtils.findInteractionEvidenceCategoryOf(interaction);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected <P extends Participant> BinaryInteractionEvidence createBinaryInteraction(InteractionEvidence interaction, P c1, P c2) {
         return getBinaryInteractionFactory().createBinaryInteractionEvidenceFrom(interaction, (ParticipantEvidence)c1, (ParticipantEvidence)c2, getMethod());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected ParticipantEvidence collectBestBaitForSpokeExpansion(InteractionEvidence interaction) {
         return ParticipantUtils.collectBestParticipantEvidenceAsBaitForSpokeExpansion(interaction.getParticipants());

@@ -29,6 +29,7 @@ public class InteractionXrefContainer extends XrefContainer {
 
     private List<Xref> identifiers;
 
+    /** {@inheritDoc} */
     @Override
     protected void processAddedPrimaryRef(Xref added) {
         // identity ref
@@ -40,6 +41,11 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
             initialiseIdentifiers();
@@ -47,11 +53,20 @@ public class InteractionXrefContainer extends XrefContainer {
         return identifiers;
     }
 
+    /**
+     * <p>Getter for the field <code>imexId</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getImexId() {
         return this.imexId != null ? this.imexId.getId() : null;
     }
 
-    //TODO Review
+    /**
+     * <p>assignImexId.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     */
     public void assignImexId(String identifier) {
         FullXrefList xrefs = (FullXrefList) getXrefs();
         // add new imex if not null
@@ -114,6 +129,11 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>processAddedPotentialImex.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedPotentialImex(Xref added) {
 
         // the added identifier is imex and the current imex is not set
@@ -125,6 +145,11 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>processRemovedPotentialImex.</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedPotentialImex(Xref removed) {
         // the removed identifier is pubmed
         if (imexId != null && imexId.equals(removed)){
@@ -132,6 +157,9 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>clearImexId.</p>
+     */
     protected void clearImexId() {
         imexId = null;
     }
@@ -158,15 +186,20 @@ public class InteractionXrefContainer extends XrefContainer {
         complexAcXref = null;
     }
 
+    /**
+     * <p>initialiseIdentifiers.</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new ArrayList<Xref>();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefs() {
         super.initialiseXrefsWith(new FullXrefList());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSecondaryRefs() {
         super.initialiseSecondaryResWith(new JAXBSecondaryXrefList());
@@ -223,7 +256,6 @@ public class InteractionXrefContainer extends XrefContainer {
         protected void processRemovedObjectEvent(Xref removed) {
             processRemovedPotentialImex(removed);
             processRemovedPotentialComplexAc(removed);
-
         }
 
         @Override

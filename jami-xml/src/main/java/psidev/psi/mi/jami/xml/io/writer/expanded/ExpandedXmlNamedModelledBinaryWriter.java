@@ -22,35 +22,64 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class ExpandedXmlNamedModelledBinaryWriter extends AbstractExpandedXmlWriter<ModelledBinaryInteraction> {
 
+    /**
+     * <p>Constructor for ExpandedXmlNamedModelledBinaryWriter.</p>
+     */
     public ExpandedXmlNamedModelledBinaryWriter() {
         super(ModelledBinaryInteraction.class);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlNamedModelledBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlNamedModelledBinaryWriter(File file) throws IOException, XMLStreamException {
         super(ModelledBinaryInteraction.class, file);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlNamedModelledBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlNamedModelledBinaryWriter(OutputStream output) throws XMLStreamException {
         super(ModelledBinaryInteraction.class, output);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlNamedModelledBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlNamedModelledBinaryWriter(Writer writer) throws XMLStreamException {
         super(ModelledBinaryInteraction.class, writer);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlNamedModelledBinaryWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public ExpandedXmlNamedModelledBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(ModelledBinaryInteraction.class, streamWriter, cache);
     }
 
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         return getCurrentInteraction().getSource() != null ? getCurrentInteraction().getSource() : super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(false, true, PsiXmlType.expanded, InteractionCategory.modelled, ComplexType.binary);

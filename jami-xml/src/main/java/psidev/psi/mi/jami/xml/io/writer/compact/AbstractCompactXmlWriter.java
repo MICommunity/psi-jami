@@ -25,7 +25,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractCompactXmlWriter<T extends Interaction> extends AbstractXmlWriter<T> {
 
     private PsiXmlElementWriter<String> availabilityWriter;
@@ -39,36 +38,71 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     private Set<String> availabilities;
     private Set<Interactor> interactors;
 
+    /**
+     * <p>Constructor for AbstractCompactXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     */
     public AbstractCompactXmlWriter(Class<T> type) {
         super();
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlWriter(Class<T> type, File file) throws IOException, XMLStreamException {
         super(file);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlWriter(Class<T> type, OutputStream output) throws XMLStreamException {
         super(output);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlWriter(Class<T> type, Writer writer) throws XMLStreamException {
         super(writer);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected AbstractCompactXmlWriter(Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
         super(streamWriter, elementCache);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void initialiseContext(Map<String, Object> options) {
         super.initialiseContext(options);
@@ -96,6 +130,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
         this.interactors = null;
@@ -105,6 +140,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         super.close();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException {
         this.interactors = null;
@@ -114,18 +150,34 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         super.reset();
     }
 
+    /**
+     * <p>setExperimentSet.</p>
+     *
+     * @param experiments a {@link java.util.Set} object.
+     */
     public void setExperimentSet(Set<Experiment> experiments) {
         this.experiments = experiments;
     }
 
+    /**
+     * <p>setAvailabilitySet.</p>
+     *
+     * @param availabilities a {@link java.util.Set} object.
+     */
     public void setAvailabilitySet(Set<String> availabilities) {
         this.availabilities = availabilities;
     }
 
+    /**
+     * <p>setInteractorSet.</p>
+     *
+     * @param interactors a {@link java.util.Set} object.
+     */
     public void setInteractorSet(Set<Interactor> interactors) {
         this.interactors = interactors;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseOptionalWriters(PsiXmlExperimentWriter experimentWriter, PsiXmlElementWriter<String> availabilityWriter, PsiXmlElementWriter<Interactor> interactorWriter) {
         setExperimentWriter(experimentWriter);
@@ -133,6 +185,9 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         setAvailabilityWriter(availabilityWriter);
     }
 
+    /**
+     * <p>registerAllInteractionsProperties.</p>
+     */
     protected void registerAllInteractionsProperties() {
         // clear and initialise sets if not done yet
         getInteractors().clear();
@@ -179,6 +234,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         setStarted(started);
     }
 
+    /**
+     * <p>registerAllInteractors.</p>
+     *
+     * @param interaction a T object.
+     */
     protected void registerAllInteractors(T interaction){
         for (Object o : interaction.getParticipants()){
             Participant participant = (Participant)o;
@@ -198,6 +258,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         }
     }
 
+    /**
+     * <p>registerParticipantPoolInteractor.</p>
+     *
+     * @param pool a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     */
     protected void registerParticipantPoolInteractor(ParticipantPool pool) {
         switch (getVersion()){
             case v3_0_0:
@@ -211,6 +276,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
 
     }
 
+    /**
+     * <p>registerParticipantInteractor.</p>
+     *
+     * @param participant a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     protected void registerParticipantInteractor(Entity participant) {
         // we have a complex, we want to register default experiments
         if (!writeComplexesAsInteractors() && participant.getInteractor() instanceof Complex){
@@ -229,6 +299,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         }
     }
 
+    /**
+     * <p>registerAllInteractorsAndExperimentsFrom.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     */
     protected void registerAllInteractorsAndExperimentsFrom(ModelledInteraction interaction){
         // register default experiment
         Experiment modelledExp = getComplexWriter().extractDefaultExperimentFrom(interaction);
@@ -256,10 +331,21 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         }
     }
 
+    /**
+     * <p>registerAvailabilities.</p>
+     *
+     * @param interaction a T object.
+     */
     protected abstract void registerAvailabilities(T interaction);
 
+    /**
+     * <p>registerExperiment.</p>
+     *
+     * @param interaction a T object.
+     */
     protected abstract void registerExperiment(T interaction);
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartEntryContent() throws XMLStreamException {
         registerAllInteractionsProperties();
@@ -302,42 +388,86 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         writeStartInteractionList();
     }
 
+    /**
+     * <p>Getter for the field <code>availabilityWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     protected PsiXmlElementWriter<String> getAvailabilityWriter() {
         return availabilityWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>availabilityWriter</code>.</p>
+     *
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     protected void setAvailabilityWriter(PsiXmlElementWriter<String> availabilityWriter) {
         this.availabilityWriter = availabilityWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     */
     protected PsiXmlExperimentWriter getExperimentWriter() {
         return experimentWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>experimentWriter</code>.</p>
+     *
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     */
     protected void setExperimentWriter(PsiXmlExperimentWriter experimentWriter) {
         this.experimentWriter = experimentWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     protected PsiXmlElementWriter<Interactor> getInteractorWriter() {
         return interactorWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorWriter</code>.</p>
+     *
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     protected void setInteractorWriter(PsiXmlElementWriter<Interactor> interactorWriter) {
         this.interactorWriter = interactorWriter;
     }
 
+    /**
+     * <p>initialiseDefaultExperimentSet.</p>
+     */
     protected void initialiseDefaultExperimentSet() {
         this.experiments = Collections.newSetFromMap(new IdentityHashMap<Experiment, Boolean>());
     }
 
+    /**
+     * <p>initialiseDefaultInteractorSet.</p>
+     */
     protected void initialiseDefaultInteractorSet() {
         this.interactors = Collections.newSetFromMap(new IdentityHashMap<Interactor, Boolean>());
     }
 
+    /**
+     * <p>initialiseDefaultAvailabilitySet.</p>
+     */
     protected void initialiseDefaultAvailabilitySet() {
         this.availabilities = new HashSet<String>();
     }
 
+    /**
+     * <p>Getter for the field <code>experiments</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<Experiment> getExperiments() {
         if (this.experiments == null){
             initialiseDefaultExperimentSet();
@@ -345,6 +475,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         return experiments;
     }
 
+    /**
+     * <p>Getter for the field <code>availabilities</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<String> getAvailabilities() {
         if (this.availabilities == null){
             initialiseDefaultAvailabilitySet();
@@ -352,6 +487,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         return availabilities;
     }
 
+    /**
+     * <p>Getter for the field <code>interactors</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<Interactor> getInteractors() {
         if (this.interactors == null){
             initialiseDefaultInteractorSet();
@@ -359,15 +499,24 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
         return interactors;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultElementCache() {
         setElementCache(new InMemoryIdentityObjectCache());
     }
 
+    /**
+     * <p>getInteractionType.</p>
+     *
+     * @return a {@link java.lang.Class} object.
+     */
     protected Class<T> getInteractionType() {
         return type;
     }
 
+    /**
+     * <p>registerInteractionProperties.</p>
+     */
     protected void registerInteractionProperties() {
         T interaction = getCurrentInteraction();
         // register all experiments

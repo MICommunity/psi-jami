@@ -28,36 +28,67 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm  {
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     */
     public XmlOpenCvTerm() {
     }
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlOpenCvTerm(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public XmlOpenCvTerm(String shortName, String miIdentifier) {
         super(shortName, miIdentifier);
     }
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
+     */
     public XmlOpenCvTerm(String shortName, String fullName, String miIdentifier) {
         super(shortName, fullName, miIdentifier);
     }
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlOpenCvTerm(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for XmlOpenCvTerm.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlOpenCvTerm(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the names property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link NamesContainer }
-     *
      */
     @XmlElement(name = "names", required = true)
     public void setJAXBNames(NamesContainer value) {
@@ -65,23 +96,26 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm  {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the xrefContainer property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link XrefContainer }
-     *
      */
     @XmlElement(name = "xref", required = true)
     public void setJAXBXref(CvTermXrefContainer value) {
         super.setJAXBXref(value);
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param wrapper a JAXBAttributeWrapper object.
+     */
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper){
         super.setAttributeWrapper(wrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -90,6 +124,7 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm  {
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Open Cv Term: "+getSourceLocator().toString():super.toString());

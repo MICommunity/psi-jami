@@ -10,11 +10,17 @@ import psidev.psi.mi.jami.datasource.FileSourceLocator;
  * @version $Id$
  * @since <pre>02/04/13</pre>
  */
-
 public class HtmlWriterUtils {
 
+    /** Constant <code>NEW_LINE="System.getProperty(line.separator)"</code> */
     public final static String NEW_LINE = System.getProperty("line.separator");
 
+    /**
+     * <p>getHtmlAnchorFor</p>
+     *
+     * @param object a {@link java.lang.Object} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String getHtmlAnchorFor(Object object){
 
         if (object != null){

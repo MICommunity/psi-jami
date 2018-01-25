@@ -21,10 +21,12 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  07/06/13
+
  */
 public class UniprotProteinMapper
         implements ProteinMapper {
 
+    /** Constant <code>log</code> */
     public static final Log log = LogFactory.getLog(UniprotProteinMapper.class);
 
     private ProteinMapperListener listener = null;
@@ -40,6 +42,9 @@ public class UniprotProteinMapper
 
     private Map<Xref, IdentificationResults> identifierMappingResults;
 
+    /**
+     * <p>Constructor for UniprotProteinMapper.</p>
+     */
     public UniprotProteinMapper() {
         report = new Stack<String>();
         this.strategyWithIdentifier = new StrategyWithIdentifier();
@@ -48,8 +53,9 @@ public class UniprotProteinMapper
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Maps the provided protein to a uniprot identifier.
-     * @param proteinToMap     the protein to be Mapped
      */
     public void map(Protein proteinToMap) throws BridgeFailedException {
         if(proteinToMap == null){
@@ -316,6 +322,14 @@ public class UniprotProteinMapper
         return null;
     }
 
+    /**
+     * <p>identifyProtein.</p>
+     *
+     * @param xrefToMap a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param context a {@link uk.ac.ebi.intact.protein.mapping.model.contexts.IdentificationContext} object.
+     * @return a {@link uk.ac.ebi.intact.protein.mapping.results.IdentificationResults} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     protected IdentificationResults identifyProtein(
             Xref xrefToMap, IdentificationContext context)
             throws BridgeFailedException {
@@ -348,8 +362,11 @@ public class UniprotProteinMapper
 
     /**
      * Finds a Mapping for the proteins sequence using the method which is implemented.
+     *
      * @param sequence the protein sequence to find a Mapping for
      * @return  The results of the query. Can be null.
+     * @param context a {@link uk.ac.ebi.intact.protein.mapping.model.contexts.IdentificationContext} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     protected IdentificationResults identifyProtein(String sequence, IdentificationContext context)
             throws BridgeFailedException {
@@ -374,6 +391,7 @@ public class UniprotProteinMapper
 
     /**
      * Gives the state of the checking flag.
+     *
      * @return  whether checking is being applied to identifier Mappings
      */
     public boolean isCheckingEnabled() {
@@ -384,6 +402,7 @@ public class UniprotProteinMapper
      * Sets the checking flag as to whether
      * If checking is true, identifiers are Mapped and compared for consistency.
      * If it is false use the first identifier which Maps.
+     *
      * @param checkingEnabled sets whether to check the Mappings of identifiers
      */
     public void setCheckingEnabled(boolean checkingEnabled) {
@@ -392,6 +411,7 @@ public class UniprotProteinMapper
 
     /**
      * Gives the priority of Mapping the identifiers.
+     *
      * @return  whether identifier Mappings have priority
      */
     public boolean isPriorityIdentifiers() {
@@ -404,6 +424,7 @@ public class UniprotProteinMapper
      * Sequence will only be used if the identifiers could not find a Mapping.
      * If sequence is also set to priority, both sequence and identifiers must return a consistent Mapping.
      * If neither is set to priority, then if either Maps without conflicting with the other, that mapping is used.
+     *
      * @param priorityIdentifiers   Should priority be given to Mapping identifiers.
      */
     public void setPriorityIdentifiers(boolean priorityIdentifiers) {
@@ -413,6 +434,7 @@ public class UniprotProteinMapper
 
     /**
      * Gives the priority of Mapping the sequence.
+     *
      * @return  is priority given to the sequence.
      */
     public boolean isPrioritySequence() {
@@ -424,6 +446,7 @@ public class UniprotProteinMapper
      * If the sequence does not Map, then the identifiers will be tried.
      * If identifiers are also set to priority, both sequence and identifiers must return a consistent Mapping.
      * If neither is set to priority, then if either Maps without conflicting with the other, that mapping is used.
+     *
      * @param prioritySequence whether the sequence has priority
      */
     public void setPrioritySequence(boolean prioritySequence) {
@@ -431,8 +454,9 @@ public class UniprotProteinMapper
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets a Map listener for this Mapping service.
-     * @param listener the new Map listener
      */
     public void setListener(ProteinMapperListener listener){
         this.listener = listener;
@@ -440,6 +464,7 @@ public class UniprotProteinMapper
 
     /**
      * gives the Map listener that is listening to this Mapping service.
+     *
      * @return  the current Map listener
      */
     public ProteinMapperListener getListener( ){

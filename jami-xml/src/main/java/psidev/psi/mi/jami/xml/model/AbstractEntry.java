@@ -32,20 +32,30 @@ public abstract class AbstractEntry<T extends Interaction> extends Entry impleme
     private JAXBInteractionsWrapper<T> interactionsWrapper;
     private JAXBAnnotationsWrapper annotationsWrapper;
 
+    /**
+     * <p>Constructor for AbstractEntry.</p>
+     */
     public AbstractEntry() {
         super();
         XmlEntryContext.getInstance().setCurrentSource(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -58,19 +68,31 @@ public abstract class AbstractEntry<T extends Interaction> extends Entry impleme
         }
     }
 
+    /**
+     * <p>getInteractors.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Interactor> getInteractors(){
         return this.interactorsWrapper != null ? this.interactorsWrapper.interactors : Collections.EMPTY_LIST;
     }
 
+    /**
+     * <p>getInteractions.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<T> getInteractions(){
         return this.interactionsWrapper != null ? this.interactionsWrapper.interactions : Collections.EMPTY_LIST;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasLoadedFullEntry() {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setHasLoadedFullEntry(boolean hasLoadedFullEntry) {
         if (!hasLoadedFullEntry){
@@ -78,15 +100,26 @@ public abstract class AbstractEntry<T extends Interaction> extends Entry impleme
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Entry : "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>Setter for the field <code>interactorsWrapper</code>.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractEntry.JAXBInteractorsWrapper} object.
+     */
     protected void setInteractorsWrapper(JAXBInteractorsWrapper wrapper){
         this.interactorsWrapper = wrapper;
     }
 
+    /**
+     * <p>Setter for the field <code>interactionsWrapper</code>.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractEntry.JAXBInteractionsWrapper} object.
+     */
     protected void setInteractionsWrapper(JAXBInteractionsWrapper wrapper){
         this.interactionsWrapper = wrapper;
         if (this.interactionsWrapper != null){
@@ -96,10 +129,16 @@ public abstract class AbstractEntry<T extends Interaction> extends Entry impleme
         }
     }
 
+    /**
+     * <p>Setter for the field <code>annotationsWrapper</code>.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractEntry.JAXBAnnotationsWrapper} object.
+     */
     protected void setAnnotationsWrapper(JAXBAnnotationsWrapper wrapper){
         this.annotationsWrapper = wrapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAnnotations() {
         super.initialiseAnnotationsWith(this.annotationsWrapper != null ? this.annotationsWrapper.annotations : null);

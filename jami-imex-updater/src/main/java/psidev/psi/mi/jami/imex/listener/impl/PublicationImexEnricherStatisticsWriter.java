@@ -17,12 +17,14 @@ import java.util.Collection;
  * Each addition, removal or update is counted and, upon the completion of the enrichment of the object,
  * is logged in either a file of successes or failures depending on the enrichmentStatus.
  *
+
  */
 public class PublicationImexEnricherStatisticsWriter
         extends PublicationEnricherStatisticsWriter implements PublicationImexEnricherListener{
 
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
+     *
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public PublicationImexEnricherStatisticsWriter() throws IOException {
@@ -31,6 +33,7 @@ public class PublicationImexEnricherStatisticsWriter
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
@@ -40,6 +43,7 @@ public class PublicationImexEnricherStatisticsWriter
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -50,6 +54,7 @@ public class PublicationImexEnricherStatisticsWriter
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -58,60 +63,72 @@ public class PublicationImexEnricherStatisticsWriter
         super(successFile, failureFile);
     }
 
+    /** {@inheritDoc} */
     public void onImexIdConflicts(Publication originalPublication, Collection<Xref> conflictingXrefs) {
         super.onEnrichmentError(originalPublication, "The publication "+originalPublication+" has "+conflictingXrefs.size()
                 +" IMEx primary references and only one is allowed.", null);
     }
 
+    /** {@inheritDoc} */
     public void onMissingImexId(Publication publication) {
         super.onEnrichmentError(publication, "The publication "+publication+" does not have any IMEx primary reference and " +
                 "cannot be updated.", null);
     }
 
+    /** {@inheritDoc} */
     public void onCurationDepthUpdated(Publication publication, CurationDepth oldDepth) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onImexAdminGroupUpdated(Publication publication, Source oldSource) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onImexStatusUpdated(Publication publication, PublicationStatus oldStatus) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onImexPublicationIdentifierSynchronized(Publication publication) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onPublicationAlreadyRegisteredInImexCentral(Publication publication, String imex) {
         super.onEnrichmentError(publication, "The publication "+publication+" is already registered in IMEx central with IMEx "+imex, null);
     }
 
+    /** {@inheritDoc} */
     public void onPublicationRegisteredInImexCentral(Publication publication) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onPublicationWhichCannotBeRegistered(Publication publication) {
         super.onEnrichmentError(publication, "The publication "+publication+" cannot be registered in IMEx central. It does not have a valid pubmed id or " +
                 "it is not eligible for IMEx", null);
     }
 
+    /** {@inheritDoc} */
     public void onPublicationNotEligibleForImex(Publication publication) {
         super.onEnrichmentError(publication, "The publication "+publication+" cannot be registered in IMEx central. It does not have a valid pubmed id or " +
                 "it is not eligible for IMEx", null);
     }
 
+    /** {@inheritDoc} */
     public void onImexIdAssigned(Publication publication, String imex) {
         checkObject(publication);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onImexIdNotRecognized(Publication publication, String imex) {
         super.onEnrichmentError(publication, "The publication "+publication+" does have an IMEx identifier which is not recognized in IMEx central "+imex, null);
     }

@@ -9,13 +9,14 @@ import psidev.psi.mi.jami.model.Organism;
  * @version $Id$
  * @since <pre>22/02/13</pre>
  */
-
 public class OrganismCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of organism source in organism target and will override all the other properties of Target organism.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public static void copyAndOverrideOrganismProperties(Organism source, Organism target){
         if (source != null && target != null){

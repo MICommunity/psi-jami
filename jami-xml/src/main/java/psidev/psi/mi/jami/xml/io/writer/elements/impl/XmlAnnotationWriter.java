@@ -15,16 +15,21 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlAnnotationWriter implements PsiXmlElementWriter<Annotation> {
     private XMLStreamWriter streamWriter;
 
+    /**
+     * <p>Constructor for XmlAnnotationWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlAnnotationWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlAnnotationWriter");
         }
         this.streamWriter = writer;
     }
+    /** {@inheritDoc} */
     @Override
     public void write(Annotation object) throws MIIOException {
         if (object != null){

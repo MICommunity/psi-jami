@@ -18,6 +18,7 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public class OrganismEnricherListenerManager
         extends EnricherListenerManager<Organism, OrganismEnricherListener>
@@ -30,6 +31,7 @@ public class OrganismEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public OrganismEnricherListenerManager(OrganismEnricherListener... listeners){
@@ -38,48 +40,56 @@ public class OrganismEnricherListenerManager
 
     //===================================================================================================
 
+    /** {@inheritDoc} */
     public void onCommonNameUpdate(Organism organism, String oldCommonName) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onCommonNameUpdate(organism, oldCommonName);
         }
     }
 
+    /** {@inheritDoc} */
     public void onScientificNameUpdate(Organism organism, String oldScientificName) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onScientificNameUpdate(organism, oldScientificName);
         }
     }
 
+    /** {@inheritDoc} */
     public void onTaxidUpdate(Organism organism, String oldTaxid) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onTaxidUpdate(organism, oldTaxid);
         }
     }
 
+    /** {@inheritDoc} */
     public void onCellTypeUpdate(Organism organism, CvTerm oldType) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onCellTypeUpdate(organism, oldType);
         }
     }
 
+    /** {@inheritDoc} */
     public void onTissueUpdate(Organism organism, CvTerm oldType) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onTissueUpdate(organism, oldType);
         }
     }
 
+    /** {@inheritDoc} */
     public void onCompartmentUpdate(Organism organism, CvTerm oldType) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onCompartmentUpdate(organism, oldType);
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(Organism organism, Alias added) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onAddedAlias(organism, added);
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(Organism organism, Alias removed) {
         for(OrganismEnricherListener listener : getListenersList()){
             listener.onRemovedAlias(organism, removed);

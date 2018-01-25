@@ -18,7 +18,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>06/12/13</pre>
  */
-
 public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Participant, F extends Feature> implements InteractionWriter<T>{
     private Writer writer;
     private boolean isInitialised = false;
@@ -28,12 +27,24 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
     private Set<Object> processedObjects;
     private AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> complexWriter;
 
+    /**
+     * <p>Constructor for AbstractMIHtmlWriter.</p>
+     *
+     * @param complexWriter a {@link psidev.psi.mi.jami.html.AbstractMIHtmlWriter} object.
+     */
     public AbstractMIHtmlWriter(AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> complexWriter){
         complexesToWrite = new HashSet<ModelledInteraction>();
         processedObjects = Collections.newSetFromMap(new IdentityHashMap<Object, Boolean>());
         this.complexWriter = complexWriter;
     }
 
+    /**
+     * <p>Constructor for AbstractMIHtmlWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param complexWriter a {@link psidev.psi.mi.jami.html.AbstractMIHtmlWriter} object.
+     * @throws java.io.IOException if any.
+     */
     public AbstractMIHtmlWriter(File file, AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> complexWriter) throws IOException {
 
         initialiseFile(file);
@@ -43,6 +54,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         this.complexWriter = complexWriter;
     }
 
+    /**
+     * <p>Constructor for AbstractMIHtmlWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @param complexWriter a {@link psidev.psi.mi.jami.html.AbstractMIHtmlWriter} object.
+     */
     public AbstractMIHtmlWriter(OutputStream output, AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> complexWriter) {
 
         initialiseOutputStream(output);
@@ -52,6 +69,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         this.complexWriter = complexWriter;
     }
 
+    /**
+     * <p>Constructor for AbstractMIHtmlWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param complexWriter a {@link psidev.psi.mi.jami.html.AbstractMIHtmlWriter} object.
+     */
     public AbstractMIHtmlWriter(Writer writer, AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> complexWriter) {
 
         initialiseWriter(writer);
@@ -61,6 +84,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         this.complexWriter = complexWriter;
     }
 
+    /**
+     * <p>write</p>
+     *
+     * @param interaction a T object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(T interaction) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The HTML writer was not initialised. The options for the PSI-MI HTML Writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -180,11 +209,18 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>write</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void write(Collection<? extends T> interactions) throws MIIOException {
         Iterator<? extends T> binaryIterator = interactions.iterator();
         write(binaryIterator);
     }
 
+    /** {@inheritDoc} */
     public void write(Iterator<? extends T> interactions) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The HTML writer was not initialised. The options for the PSI-MI HTML Writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -194,6 +230,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>start</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void start() throws MIIOException {
         this.processedObjects.clear();
         this.complexesToWrite.clear();
@@ -210,6 +251,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>end</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void end() throws MIIOException {
         try {
             this.processedObjects.clear();
@@ -228,6 +274,7 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /** {@inheritDoc} */
     public void initialiseContext(Map<String, Object> options) {
         if (options == null && !isInitialised){
             throw new IllegalArgumentException("The options for the HTML writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -274,6 +321,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         isInitialised = true;
     }
 
+    /**
+     * <p>flush</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void flush() throws MIIOException {
         if (isInitialised){
             try {
@@ -284,6 +336,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>close</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void close() throws MIIOException{
         if (isInitialised){
             try {
@@ -307,6 +364,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
             }
         }
     }
+    /**
+     * <p>reset</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public void reset() throws MIIOException{
         if (isInitialised){
             try {
@@ -324,16 +386,45 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>Setter for the field <code>writeHeader</code>.</p>
+     *
+     * @param writeHeader a boolean.
+     */
     public void setWriteHeader(boolean writeHeader) {
         this.writeHeader = writeHeader;
     }
 
+    /**
+     * <p>writeCooperativeEffects</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeCooperativeEffects(T interaction) throws IOException;
 
+    /**
+     * <p>writeConfidences</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeConfidences(T interaction) throws IOException;
 
+    /**
+     * <p>writeParameters</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeParameters(T interaction) throws IOException;
 
+    /**
+     * <p>writeFeature</p>
+     *
+     * @param feature a F object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeFeature(F feature) throws IOException {
         if (feature != null){
             String anchor = HtmlWriterUtils.getHtmlAnchorFor(feature);
@@ -428,8 +519,21 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeDetectionMethods</p>
+     *
+     * @param feature a F object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeDetectionMethods(F feature) throws IOException;
 
+    /**
+     * <p>writeCvTerm</p>
+     *
+     * @param label a {@link java.lang.String} object.
+     * @param term a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeCvTerm(String label, CvTerm term) throws IOException {
         if (term != null){
             writer.write("        <tr>");
@@ -478,6 +582,13 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeOrganism</p>
+     *
+     * @param label a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOrganism(String label, Organism organism) throws IOException {
         if (organism != null){
             writer.write("        <tr>");
@@ -513,6 +624,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeInteractor</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeInteractor(Interactor interactor) throws IOException {
         // we have an interaction as participant of another interaction
         if (interactor instanceof Complex){
@@ -628,10 +745,28 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeGeneralProperties</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeGeneralProperties(T interaction) throws IOException;
 
+    /**
+     * <p>writeExperiment</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeExperiment(T interaction) throws IOException;
 
+    /**
+     * <p>writeParticipant</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeParticipant(P participant) throws IOException {
         if (participant != null){
             String anchor = HtmlWriterUtils.getHtmlAnchorFor(participant);
@@ -726,18 +861,60 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeConfidences</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeConfidences(P participant) throws IOException;
 
+    /**
+     * <p>writeParameters</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeParameters(P participant) throws IOException;
 
+    /**
+     * <p>writeExperimentalPreparations</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeExperimentalPreparations(P participant) throws IOException;
 
+    /**
+     * <p>writeExpressedInOrganism</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeExpressedInOrganism(P participant) throws IOException;
 
+    /**
+     * <p>writeExperimentalRole</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeExperimentalRole(P participant) throws IOException;
 
+    /**
+     * <p>writeParticipantIdentificationMethods</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     protected abstract void writeParticipantIdentificationMethods(P participant) throws IOException;
 
+    /**
+     * <p>writeSubTitle</p>
+     *
+     * @param subTitle a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeSubTitle(String subTitle) throws IOException {
         writer.write("<tr>");
         writer.write(HtmlWriterUtils.NEW_LINE);
@@ -749,6 +926,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         writer.write(HtmlWriterUtils.NEW_LINE);
     }
 
+    /**
+     * <p>writeTag</p>
+     *
+     * @param property a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeTag(String property) throws IOException{
         if (property != null){
             writer.write("        <tr>");
@@ -761,6 +944,13 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeProperty</p>
+     *
+     * @param property a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeProperty(String property, String value) throws IOException{
         if (property != null && value != null){
             writer.write("        <tr>");
@@ -777,6 +967,14 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writePropertyWithQualifier</p>
+     *
+     * @param property a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
+     * @param qualifier a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writePropertyWithQualifier(String property, String value, String qualifier) throws IOException{
         if (property != null && value != null){
             writer.write("        <tr>");
@@ -796,6 +994,12 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
     }
 
+    /**
+     * <p>writeInteractionAnchor</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeInteractionAnchor(Interaction interaction) throws IOException {
         String htmlAnchor = HtmlWriterUtils.getHtmlAnchorFor(interaction);
         writer.write("        <tr>");
@@ -810,6 +1014,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         writer.write(HtmlWriterUtils.NEW_LINE);
     }
 
+    /**
+     * <p>writeInteractionList</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeInteractionList() throws IOException {
         // start table
         writer.write("    <div id=\"interactionList\">");
@@ -819,23 +1028,48 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         writer.write("    <table style=\"border-bottom: 1px solid #fff\" cellspacing=\"1\">");
     }
 
+    /**
+     * <p>writerStartBody</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writerStartBody() throws IOException {
         writer.write("<body>");
         writer.write(HtmlWriterUtils.NEW_LINE);
     }
 
+    /**
+     * <p>writerEndBody</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writerEndBody() throws IOException {
         writer.write("</body>");
     }
 
+    /**
+     * <p>writeStartDocument</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeStartDocument() throws IOException {
         writer.write("<html>");
     }
 
+    /**
+     * <p>writeEndDocument</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeEndDocument() throws IOException {
         writer.write("</html>");
     }
 
+    /**
+     * <p>writeHeader</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeHeader() throws IOException {
         writer.write("<head>");
         writer.write(HtmlWriterUtils.NEW_LINE);
@@ -848,6 +1082,11 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         writer.write(HtmlWriterUtils.NEW_LINE);
     }
 
+    /**
+     * <p>writeHtmlStyle</p>
+     *
+     * @throws java.io.IOException if any.
+     */
     protected void writeHtmlStyle() throws IOException {
         writer.write("    <style>");
         writer.write(HtmlWriterUtils.NEW_LINE);
@@ -898,22 +1137,47 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
 
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }
 
+    /**
+     * <p>Getter for the field <code>processedObjects</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<Object> getProcessedObjects() {
         return processedObjects;
     }
 
+    /**
+     * <p>Getter for the field <code>complexesToWrite</code>.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     protected Set<ModelledInteraction> getComplexesToWrite() {
         return complexesToWrite;
     }
 
+    /**
+     * <p>Getter for the field <code>complexWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.html.AbstractMIHtmlWriter} object.
+     */
     protected AbstractMIHtmlWriter<ModelledInteraction, ModelledParticipant, ModelledFeature> getComplexWriter() {
         return complexWriter;
     }
 
+    /**
+     * <p>writeModelledInteraction</p>
+     *
+     * @param c a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     */
     protected void writeModelledInteraction(ModelledInteraction c) {
         if (this.complexWriter != null){
             this.complexWriter.write(c);

@@ -20,9 +20,13 @@ import java.util.regex.Pattern;
 /**
  * Dummy service that one can use to write test against.
  *
+
  */
 public class MockImexCentralClient implements ImexCentralClient {
 
+    /**
+     * <p>Constructor for MockImexCentralClient.</p>
+     */
     public MockImexCentralClient() {
         allPublications = new ArrayList<psidev.psi.mi.jami.model.Publication>( );
     }
@@ -41,6 +45,11 @@ public class MockImexCentralClient implements ImexCentralClient {
     /////////////////////////////
     // Service initialization
 
+    /**
+     * <p>initImexSequence.</p>
+     *
+     * @param sequence a int.
+     */
     public void initImexSequence( int sequence ) {
         if( sequence < 1 ) {
             throw new IllegalArgumentException( "You must give a positive sequence: " + sequence );
@@ -48,6 +57,11 @@ public class MockImexCentralClient implements ImexCentralClient {
         imexIdSequence = sequence;
     }
 
+    /**
+     * <p>initPublications.</p>
+     *
+     * @param allPublications a {@link java.util.List} object.
+     */
     public void initPublications( List<psidev.psi.mi.jami.model.Publication> allPublications ) {
         if ( allPublications == null ) {
             throw new IllegalArgumentException( "You must give a non null allPublications" );
@@ -55,10 +69,20 @@ public class MockImexCentralClient implements ImexCentralClient {
         this.allPublications = allPublications;
     }
 
+    /**
+     * <p>getNextSequenceValue.</p>
+     *
+     * @return a int.
+     */
     public int getNextSequenceValue() {
         return imexIdSequence;
     }
 
+    /**
+     * <p>addPublication.</p>
+     *
+     * @param p a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public void addPublication( psidev.psi.mi.jami.model.Publication p ) {
         if ( p == null ) {
             throw new IllegalArgumentException( "You must give a non null publication" );
@@ -66,6 +90,14 @@ public class MockImexCentralClient implements ImexCentralClient {
         allPublications.add( p );
     }
 
+    /**
+     * <p>addPublication.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param imexAccession a {@link java.lang.String} object.
+     * @param status a {@link java.lang.String} object.
+     * @param owner a {@link java.lang.String} object.
+     */
     public void addPublication( String identifier, String imexAccession, String status, String owner ) {
         Publication p = new Publication();
         final Identifier id = new Identifier();
@@ -80,10 +112,16 @@ public class MockImexCentralClient implements ImexCentralClient {
     ///////////////////////
     // ImexCentralClient
 
+    /**
+     * <p>getEndpoint.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getEndpoint() {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication fetchByIdentifier( String identifier, String source ) throws BridgeFailedException {
 
         for ( psidev.psi.mi.jami.model.Publication p : allPublications ) {
@@ -101,6 +139,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public Collection<psidev.psi.mi.jami.model.Publication> fetchByIdentifiers(Map<String, Collection<String>> identifiers) throws BridgeFailedException {
         if(identifiers == null)
             throw new IllegalArgumentException("The map of identifiers cannot be null");
@@ -117,6 +156,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return results;
     }
 
+    /** {@inheritDoc} */
     public List<psidev.psi.mi.jami.model.Publication> fetchPublicationsByOwner( String owner, int first, int max) throws BridgeFailedException {
         List<psidev.psi.mi.jami.model.Publication> publications = new ArrayList<psidev.psi.mi.jami.model.Publication>( );
         for ( int i = first; i <= max; i++ ) {
@@ -128,6 +168,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return publications;
     }
 
+    /** {@inheritDoc} */
     public List<psidev.psi.mi.jami.model.Publication> fetchPublicationsByStatus( String status, int first, int max) throws BridgeFailedException{
         List<psidev.psi.mi.jami.model.Publication> publications = new ArrayList<psidev.psi.mi.jami.model.Publication>( );
         for ( int j = first; j <= max; j++ ) {
@@ -140,6 +181,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return publications;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationStatus(String identifier, String source, PublicationStatus status) throws BridgeFailedException {
         psidev.psi.mi.jami.model.Publication p = fetchByIdentifier(identifier, source);
 
@@ -157,6 +199,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return p;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationAdminGroup( String identifier, String source, Operation operation, String group ) throws BridgeFailedException {
         psidev.psi.mi.jami.model.Publication p = fetchByIdentifier(identifier, source);
 
@@ -187,6 +230,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return p;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationAdminUser( String identifier, String source, Operation operation, String user ) throws BridgeFailedException {
         psidev.psi.mi.jami.model.Publication p = fetchByIdentifier(identifier, source);
 
@@ -214,6 +258,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return p;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationIdentifier(String oldIdentifier, String oldSource, String newIdentifier, String source) throws BridgeFailedException {
         psidev.psi.mi.jami.model.Publication existingPub = fetchByIdentifier(newIdentifier, source);
 
@@ -251,6 +296,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return p;
     }
 
+    /** {@inheritDoc} */
     public void createPublication( psidev.psi.mi.jami.model.Publication publication ) throws BridgeFailedException {
         psidev.psi.mi.jami.model.Publication existingP = null;
 
@@ -272,6 +318,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         }
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication createPublicationById( String identifier, String source ) throws BridgeFailedException {
 
         psidev.psi.mi.jami.model.Publication p = new ImexPublication(new Publication());
@@ -280,6 +327,7 @@ public class MockImexCentralClient implements ImexCentralClient {
         return p;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication fetchPublicationImexAccession( String identifier, String source, boolean create ) throws BridgeFailedException {
         final psidev.psi.mi.jami.model.Publication p = fetchByIdentifier(identifier, source);
         

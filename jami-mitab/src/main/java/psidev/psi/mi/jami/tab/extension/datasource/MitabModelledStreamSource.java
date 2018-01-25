@@ -20,25 +20,44 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class MitabModelledStreamSource extends AbstractMitabStreamSource<ModelledInteraction, ModelledParticipant, ModelledFeature> implements ModelledInteractionStream<ModelledInteraction>{
 
+    /**
+     * <p>Constructor for MitabModelledStreamSource.</p>
+     */
     public MitabModelledStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for MitabModelledStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MitabModelledStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for MitabModelledStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public MitabModelledStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for MitabModelledStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public MitabModelledStreamSource(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(Reader reader) {
         if (reader == null){
@@ -48,6 +67,7 @@ public class MitabModelledStreamSource extends AbstractMitabStreamSource<Modelle
         setLineParser(new ModelledInteractionLineParser(reader));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(File file) {
         if (file == null){
@@ -65,17 +85,20 @@ public class MitabModelledStreamSource extends AbstractMitabStreamSource<Modelle
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(InputStream input) {
         setOriginalStream(input);
         setLineParser(new ModelledInteractionLineParser(input));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<ModelledInteraction> createMitabIterator() throws MIIOException {
         return new MitabModelledInteractionIterator(getLineParser());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(URL url) {
         if (url == null){

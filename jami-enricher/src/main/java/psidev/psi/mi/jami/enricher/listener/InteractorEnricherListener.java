@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.Interactor;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface InteractorEnricherListener<T extends Interactor> extends InteractorChangeListener<T>, EnricherListener<T> {
 }

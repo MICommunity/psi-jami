@@ -12,20 +12,22 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public interface BinaryInteractionFactory {
 
     /**
      * Create a new BinaryInteraction object from an Interaction parent and two participants
+     *
      * @param interaction : the original interaction
      * @param p1 : the first participant
      * @param p2 : the second participant
      * @return the new BinaryInteraction object
+     * @param expansionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public BinaryInteraction createBasicBinaryInteractionFrom(Interaction interaction, Participant p1, Participant p2, CvTerm expansionMethod);
 
     /**
      * Create a new BinaryInteractionEvidence object from an InteractionEvidence parent and two participants evidences
+     *
      * @param interaction : the original interaction
      * @param p1 : the first participant
      * @param p2 : the second participant
@@ -36,6 +38,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Create a new ModelledBinaryInteraction object from a ModelledInteraction parent and two modelled participants
+     *
      * @param interaction : the original interaction
      * @param p1 : the first participant
      * @param p2 : the second participant
@@ -46,6 +49,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Create a binary interaction representing a self interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting self binary interaction
      */
@@ -53,6 +57,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Creates a BinaryInteractionEvidence representing a self interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting self binary interaction
      */
@@ -60,6 +65,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Creates a ModelledInteraction representing a self interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting self binary interaction
      */
@@ -67,6 +73,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Creates a BinaryInteraction that wraps the given interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting binary interaction wrapper
      */
@@ -74,6 +81,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Creates a BinaryInteractionEvidence that wraps the given interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting binary interaction wrapper
      */
@@ -81,6 +89,7 @@ public interface BinaryInteractionFactory {
 
     /**
      * Creates a ModelledBinaryInteraction that wraps the given interaction
+     *
      * @param interaction : the original interaction
      * @return the resulting binary interaction wrapper
      */
@@ -88,18 +97,21 @@ public interface BinaryInteractionFactory {
 
     /**
      * Instantiate a new BinaryInteraction
+     *
      * @return the binary interaction instance
      */
     public BinaryInteraction instantiateNewBinaryInteraction();
 
     /**
      * Instantiate a new BinaryInteraction evidence
+     *
      * @return the binary interaction instance
      */
     public BinaryInteractionEvidence instantiateNewBinaryInteractionEvidence();
 
     /**
      * Instantiate a new modelled binary interaction
+     *
      * @return the binary interaction instance
      */
     public ModelledBinaryInteraction instantiateNewModelledBinaryInteraction();

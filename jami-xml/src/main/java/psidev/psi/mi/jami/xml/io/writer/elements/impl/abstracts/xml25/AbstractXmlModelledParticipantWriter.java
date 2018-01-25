@@ -21,43 +21,59 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public abstract class AbstractXmlModelledParticipantWriter
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlModelledParticipantWriter {
 
+    /**
+     * <p>Constructor for AbstractXmlModelledParticipantWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlModelledParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParticipantPool(ParticipantPool pool) throws XMLStreamException {
         writeMolecule(pool.getInteractor());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFeatureWriter() {
         super.setFeatureWriter(new XmlModelledFeatureWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseBiologicalRoleWriter() {
         super.setBiologicalRoleWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
         super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /**
+     * <p>writeStoichiometry.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     */
     protected void writeStoichiometry(ModelledParticipant object){
         // nothing to write
     }
 
+    /** {@inheritDoc} */
     protected void writeOtherAttributes(ModelledParticipant object, boolean writeAttributeList) throws XMLStreamException {
         if (object.getStoichiometry() != null){
             if (writeAttributeList){
@@ -72,6 +88,12 @@ public abstract class AbstractXmlModelledParticipantWriter
         }
     }
 
+    /**
+     * <p>writeStoichiometryAttribute.</p>
+     *
+     * @param stc a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeStoichiometryAttribute(Stoichiometry stc) throws XMLStreamException {
         // write stoichiometry
 

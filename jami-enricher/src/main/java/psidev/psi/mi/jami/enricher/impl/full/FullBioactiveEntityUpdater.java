@@ -12,18 +12,21 @@ import psidev.psi.mi.jami.enricher.impl.minimal.MinimalBioactiveEntityUpdater;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public class FullBioactiveEntityUpdater
         extends MinimalBioactiveEntityUpdater {
 
     /**
      * A constructor which initiates with a fetcher.
+     *
      * @param fetcher   The fetcher to use to gather bioactive Participant records.
      */
     public FullBioactiveEntityUpdater(BioactiveEntityFetcher fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return true;

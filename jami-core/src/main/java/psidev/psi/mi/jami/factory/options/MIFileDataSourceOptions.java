@@ -8,7 +8,6 @@ package psidev.psi.mi.jami.factory.options;
  * @version $Id$
  * @since <pre>05/12/13</pre>
  */
-
 public class MIFileDataSourceOptions extends MIDataSourceOptions {
 
     /**

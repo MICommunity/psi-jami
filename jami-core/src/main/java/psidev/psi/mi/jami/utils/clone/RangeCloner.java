@@ -9,13 +9,13 @@ import psidev.psi.mi.jami.model.Range;
  * @version $Id$
  * @since <pre>22/02/13</pre>
  */
-
 public class RangeCloner {
 
     /**
      * All properties are copied from source to target excepted the participant
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Range} object.
      */
     public static void copyAndOverrideRangeProperties(Range source, Range target){
         if (source != null && target != null){
@@ -27,8 +27,9 @@ public class RangeCloner {
 
     /**
      * All properties are copied from source to target
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Range} object.
      */
     public static void copyAndOverrideRangePropertiesWithParticipant(Range source, Range target){
         copyAndOverrideRangeProperties(source, target);

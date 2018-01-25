@@ -9,19 +9,23 @@ import psidev.psi.mi.jami.enricher.impl.minimal.MinimalBioactiveEntityEnricher;
  * See description of full enrichment in AbstractInteractorEnricher.
  *
  * The bioactive entities fetcher is required for enriching bioactive entities.
+ *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public class FullBioactiveEntityEnricher extends MinimalBioactiveEntityEnricher {
 
     /**
      * A constructor which initiates with a fetcher.
+     *
      * @param fetcher   The fetcher to use to gather bioactive Participant records.
      */
     public FullBioactiveEntityEnricher(BioactiveEntityFetcher fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return true;

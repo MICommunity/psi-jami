@@ -9,12 +9,19 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlSourceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlSourceWriter {
+    /**
+     * <p>Constructor for XmlSourceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlSourceWriter(XMLStreamWriter writer) {
         super(writer);
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         super.setPublicationWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlPublicationWriter(getStreamWriter()));
     }

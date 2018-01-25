@@ -17,12 +17,21 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  * @version $Id$
  * @since <pre>29/01/14</pre>
  */
-
 public class FullOntologyTermEnricher extends MinimalOntologyTermEnricher {
+    /**
+     * <p>Constructor for FullOntologyTermEnricher.</p>
+     *
+     * @param cvTermFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public FullOntologyTermEnricher(OntologyTermFetcher cvTermFetcher) {
         super(new FullCvTermEnricher<OntologyTerm>(cvTermFetcher));
     }
 
+    /**
+     * <p>Constructor for FullOntologyTermEnricher.</p>
+     *
+     * @param cvEnricher a {@link psidev.psi.mi.jami.enricher.impl.full.FullCvTermEnricher} object.
+     */
     protected FullOntologyTermEnricher(FullCvTermEnricher<OntologyTerm> cvEnricher) {
         super(cvEnricher);
     }

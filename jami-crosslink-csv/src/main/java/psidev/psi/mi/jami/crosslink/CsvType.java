@@ -10,7 +10,6 @@ package psidev.psi.mi.jami.crosslink;
  * @version $Id$
  * @since <pre>18/11/14</pre>
  */
-
 public enum CsvType {
 
     mix, single_nary, binary_only

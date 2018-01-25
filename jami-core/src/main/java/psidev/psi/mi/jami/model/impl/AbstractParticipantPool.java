@@ -16,36 +16,67 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-
 public abstract class AbstractParticipantPool<I extends Interaction, F extends Feature, P extends ParticipantCandidate>
         extends AbstractParticipant<I,F> implements ParticipantPool<I,F,P>, EntityInteractorChangeListener {
     private Collection<P> candidates;
     private CvTerm type;
 
+    /**
+     * <p>Constructor for AbstractParticipantPool.</p>
+     *
+     * @param poolName a {@link java.lang.String} object.
+     */
     public AbstractParticipantPool(String poolName){
         super(new DefaultInteractorPool(poolName));
         initialiseComponentCandidatesSet();
     }
 
+    /**
+     * <p>Constructor for AbstractParticipantPool.</p>
+     *
+     * @param poolName a {@link java.lang.String} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractParticipantPool(String poolName, CvTerm bioRole){
         super(new DefaultInteractorPool(poolName));
         initialiseComponentCandidatesSet();
     }
 
+    /**
+     * <p>Constructor for AbstractParticipantPool.</p>
+     *
+     * @param poolName a {@link java.lang.String} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public AbstractParticipantPool(String poolName, Stoichiometry stoichiometry){
         super(new DefaultInteractorPool(poolName), stoichiometry);
         initialiseComponentCandidatesSet();
     }
 
+    /**
+     * <p>Constructor for AbstractParticipantPool.</p>
+     *
+     * @param poolName a {@link java.lang.String} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public AbstractParticipantPool(String poolName, CvTerm bioRole, Stoichiometry stoichiometry){
         super(new DefaultInteractorPool(poolName), stoichiometry);
         initialiseComponentCandidatesSet();
     }
 
+    /**
+     * <p>initialiseComponentCandidatesSet</p>
+     */
     protected void initialiseComponentCandidatesSet() {
         this.candidates = new ArrayList<P>();
     }
 
+    /**
+     * <p>initialiseComponentCandidatesSetWith</p>
+     *
+     * @param candidates a {@link java.util.Collection} object.
+     */
     protected void initialiseComponentCandidatesSetWith(Collection<P> candidates) {
         if (candidates == null){
             this.candidates = Collections.EMPTY_LIST;
@@ -55,21 +86,30 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractorPool getInteractor() {
         return (InteractorPool) super.getInteractor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractor(Interactor interactor) {
         throw new UnsupportedOperationException("Cannot set the interactor of an ParticipantPool as it is an interactorSet that is related to the interactors in the set of entities");
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         return type;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the component set type.
      * Sets the type to molecule set (MI:1304) if the given type is null
      */
@@ -83,30 +123,64 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         getInteractor().setInteractorType(this.type);
     }
 
+    /**
+     * <p>size</p>
+     *
+     * @return a int.
+     */
     public int size() {
         return candidates.size();
     }
 
+    /**
+     * <p>isEmpty</p>
+     *
+     * @return a boolean.
+     */
     public boolean isEmpty() {
         return candidates.isEmpty();
     }
 
+    /** {@inheritDoc} */
     public boolean contains(Object o) {
         return candidates.contains(o);
     }
 
+    /**
+     * <p>iterator</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     public Iterator<P> iterator() {
         return candidates.iterator();
     }
 
+    /**
+     * <p>toArray</p>
+     *
+     * @return an array of {@link java.lang.Object} objects.
+     */
     public Object[] toArray() {
         return candidates.toArray();
     }
 
+    /**
+     * <p>toArray</p>
+     *
+     * @param ts an array of T objects.
+     * @param <T> a T object.
+     * @return an array of T objects.
+     */
     public <T> T[] toArray(T[] ts) {
         return candidates.toArray(ts);
     }
 
+    /**
+     * <p>add</p>
+     *
+     * @param interactor a P object.
+     * @return a boolean.
+     */
     public boolean add(P interactor) {
         if (candidates.add(interactor)){
             interactor.setChangeListener(this);
@@ -117,6 +191,7 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean remove(Object o) {
         if (candidates.remove(o)){
             ParticipantCandidate entity = (ParticipantCandidate)o;
@@ -128,10 +203,12 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean containsAll(Collection<?> objects) {
         return candidates.containsAll(objects);
     }
 
+    /** {@inheritDoc} */
     public boolean addAll(Collection<? extends P> interactors) {
         boolean added = this.candidates.addAll(interactors);
         if (added){
@@ -144,6 +221,7 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean retainAll(Collection<?> objects) {
         boolean retain = candidates.retainAll(objects);
         if (retain){
@@ -156,6 +234,7 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         return retain;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAll(Collection<?> objects) {
         boolean remove = candidates.removeAll(objects);
         if (remove){
@@ -176,6 +255,9 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         return remove;
     }
 
+    /**
+     * <p>clear</p>
+     */
     public void clear() {
         for (P entity : this){
             entity.setChangeListener(null);
@@ -185,6 +267,7 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
         getInteractor().clear();
     }
 
+    /** {@inheritDoc} */
     public void onInteractorUpdate(Entity entity, Interactor oldInteractor) {
         // check that the listener still makes sensr
         if (contains(entity)){
@@ -207,6 +290,7 @@ public abstract class AbstractParticipantPool<I extends Interaction, F extends F
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Participant pool: "+getInteractor().toString() + (getStoichiometry() != null ? ", pool size: " + size() : "");

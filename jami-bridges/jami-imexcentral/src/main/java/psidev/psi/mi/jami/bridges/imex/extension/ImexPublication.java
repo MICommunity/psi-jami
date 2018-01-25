@@ -16,7 +16,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>29/10/14</pre>
  */
-
 public class ImexPublication extends DefaultPublication{
 
     private edu.ucla.mbi.imex.central.ws.v20.Publication delegate;
@@ -27,6 +26,11 @@ public class ImexPublication extends DefaultPublication{
     private PublicationStatus status;
     private List<String> curators;
 
+    /**
+     * <p>Constructor for ImexPublication.</p>
+     *
+     * @param delegate a {@link edu.ucla.mbi.imex.central.ws.v20.Publication} object.
+     */
     public ImexPublication(edu.ucla.mbi.imex.central.ws.v20.Publication delegate) {
         super();
         if (delegate == null){
@@ -58,6 +62,7 @@ public class ImexPublication extends DefaultPublication{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseIdentifiers() {
         super.initialiseIdentifiers();
@@ -66,6 +71,7 @@ public class ImexPublication extends DefaultPublication{
         copyIdentifiersFromDelegate();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefs() {
         super.initialiseIdentifiers();
@@ -74,6 +80,7 @@ public class ImexPublication extends DefaultPublication{
         copyIdentifiersFromDelegate();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAuthors() {
         super.initialiseAuthors();
@@ -118,6 +125,7 @@ public class ImexPublication extends DefaultPublication{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getPubmedId() {
         // initialise identifiers
@@ -125,6 +133,7 @@ public class ImexPublication extends DefaultPublication{
         return super.getPubmedId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPubmedId(String pubmedId) {
         // initialise identifiers
@@ -132,6 +141,7 @@ public class ImexPublication extends DefaultPublication{
         super.setPubmedId(pubmedId);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getDoi() {
         // initialise identifiers
@@ -139,6 +149,7 @@ public class ImexPublication extends DefaultPublication{
         return super.getDoi();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDoi(String doi) {
         // initialise identifiers
@@ -146,6 +157,7 @@ public class ImexPublication extends DefaultPublication{
         super.setDoi(doi);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getImexId() {
         // initialise xrefs
@@ -153,6 +165,7 @@ public class ImexPublication extends DefaultPublication{
         return super.getImexId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void assignImexId(String identifier) {
         // initialise xrefs
@@ -160,6 +173,7 @@ public class ImexPublication extends DefaultPublication{
         super.assignImexId(identifier);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CurationDepth getCurationDepth() {
         if (getImexId() != null){
@@ -168,6 +182,7 @@ public class ImexPublication extends DefaultPublication{
         return super.getCurationDepth();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Source getSource() {
         if (!getSources().isEmpty()){
@@ -176,6 +191,7 @@ public class ImexPublication extends DefaultPublication{
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSource(Source source) {
         if (source == null){
@@ -189,30 +205,65 @@ public class ImexPublication extends DefaultPublication{
         }
     }
 
+    /**
+     * <p>getPaperAbstract.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPaperAbstract() {
         return this.delegate.getPaperAbstract();
     }
 
+    /**
+     * <p>Getter for the field <code>expectedPublicationDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getExpectedPublicationDate() {
         return expectedPublicationDate;
     }
 
+    /**
+     * <p>Getter for the field <code>creationDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getCreationDate() {
         return creationDate;
     }
 
+    /**
+     * <p>Getter for the field <code>status</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.PublicationStatus} object.
+     */
     public PublicationStatus getStatus() {
         return status;
     }
 
+    /**
+     * <p>Setter for the field <code>status</code>.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.bridges.imex.PublicationStatus} object.
+     */
     public void setStatus(PublicationStatus status) {
         this.status = status;
     }
 
+    /**
+     * <p>getOwner.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getOwner() {
         return this.delegate.getOwner();
     }
 
+    /**
+     * <p>Getter for the field <code>curators</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<String> getCurators() {
         if (this.delegate.getAdminUserList() != null){
            return this.delegate.getAdminUserList().getUser();
@@ -223,6 +274,11 @@ public class ImexPublication extends DefaultPublication{
         return this.curators;
     }
 
+    /**
+     * <p>Getter for the field <code>sources</code>.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Source> getSources() {
         if (this.sources == null){
             this.sources = new ArrayList<Source>();

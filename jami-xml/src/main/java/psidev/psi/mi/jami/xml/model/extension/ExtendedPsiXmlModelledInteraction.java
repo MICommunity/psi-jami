@@ -15,10 +15,15 @@ import java.util.List;
  * @version $Id$
  * @since <pre>29/10/13</pre>
  */
-
 public interface ExtendedPsiXmlModelledInteraction extends ExtendedPsiXmlInteraction<ModelledParticipant>, ModelledInteraction{
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Experiment> getExperiments();
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases();
 }

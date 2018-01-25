@@ -16,37 +16,75 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>11/02/13</pre>
  */
-
 public class ExperimentUtils {
 
+    /**
+     * <p>createUnknownBasicExperiment</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createUnknownBasicExperiment(){
         return new DefaultExperiment(PublicationUtils.createUnknownBasicPublication(), CvTermUtils.createUnspecifiedMethod());
     }
 
+    /**
+     * <p>createExperimentWithoutPublication</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createExperimentWithoutPublication(){
         return new DefaultExperiment(null, CvTermUtils.createUnspecifiedMethod());
     }
 
+    /**
+     * <p>createBasicExperimentForModelledInteractions</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createBasicExperimentForModelledInteractions(){
         return new DefaultExperiment(PublicationUtils.createBasicPublicationForModelledInteractions(), CvTermUtils.createUnspecifiedMethod());
     }
 
+    /**
+     * <p>createBasicExperimentForComplexes</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createBasicExperimentForComplexes(){
         return new DefaultExperiment(PublicationUtils.createBasicPublicationForModelledInteractions(), CvTermUtils.createMICvTerm(Experiment.INFERRED_BY_CURATOR, Experiment.INFERRED_BY_CURATOR_MI));
     }
 
+    /**
+     * <p>createBasicExperimentForComplexes</p>
+     *
+     * @param taxid a int.
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createBasicExperimentForComplexes(int taxid){
         Experiment experiment = new DefaultExperiment(PublicationUtils.createBasicPublicationForModelledInteractions(), CvTermUtils.createMICvTerm(Experiment.INFERRED_BY_CURATOR,Experiment.INFERRED_BY_CURATOR_MI));
         experiment.setHostOrganism(new DefaultOrganism(taxid));
         return experiment;
     }
 
+    /**
+     * <p>createBasicExperimentForComplexes</p>
+     *
+     * @param taxid a int.
+     * @param name a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createBasicExperimentForComplexes(int taxid, String name){
         Experiment experiment = new DefaultExperiment(PublicationUtils.createBasicPublicationForModelledInteractions(), CvTermUtils.createMICvTerm(Experiment.INFERRED_BY_CURATOR,Experiment.INFERRED_BY_CURATOR_MI));
         experiment.setHostOrganism(new DefaultOrganism(taxid, name));
         return experiment;
     }
     
+    /**
+     * <p>getPubmedId</p>
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String getPubmedId(Experiment exp){
        if (exp == null){
           return null; 
@@ -59,6 +97,12 @@ public class ExperimentUtils {
        }
     }
 
+    /**
+     * <p>getDoiId</p>
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String getDoiId(Experiment exp){
         if (exp == null){
             return null;
@@ -71,6 +115,12 @@ public class ExperimentUtils {
         }
     }
 
+    /**
+     * <p>getPubmedReference</p>
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref getPubmedReference(Experiment exp){
         if (exp == null){
             return null;
@@ -80,6 +130,12 @@ public class ExperimentUtils {
         }
     }
 
+    /**
+     * <p>getDoiReference</p>
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref getDoiReference(Experiment exp){
         if (exp == null){
             return null;
@@ -89,6 +145,14 @@ public class ExperimentUtils {
         }
     }
 
+    /**
+     * <p>createExperiment</p>
+     *
+     * @param pubmedId a {@link java.lang.String} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param hostOrganism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public static Experiment createExperiment(String pubmedId, CvTerm interactionDetectionMethod,
                                               Organism hostOrganism) {
         Experiment experiment = new DefaultExperiment(new DefaultPublication(pubmedId), interactionDetectionMethod);
@@ -97,6 +161,15 @@ public class ExperimentUtils {
         return experiment;
     }
 
+    /**
+     * <p>createExperiment</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param pubmedId a {@link java.lang.String} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param hostOrganism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @return a {@link psidev.psi.mi.jami.model.NamedExperiment} object.
+     */
     public static NamedExperiment createExperiment(String name, String pubmedId, CvTerm interactionDetectionMethod,
                                               Organism hostOrganism) {
         NamedExperiment experiment = new DefaultNamedExperiment(new DefaultPublication(pubmedId), interactionDetectionMethod);
@@ -108,7 +181,8 @@ public class ExperimentUtils {
 
     /**
      * Compare all participant identification methods in all participant evidences from all the interactions evidences.
-     * @param exp
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
      * @return the most frequent participant identification method (first one if several have same frequency), null if no participant identification methods
      */
     public static CvTerm extractMostCommonParticipantDetectionMethodFrom(Experiment exp){

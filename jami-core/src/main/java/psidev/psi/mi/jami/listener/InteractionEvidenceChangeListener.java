@@ -11,11 +11,11 @@ import psidev.psi.mi.jami.model.VariableParameterValueSet;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface InteractionEvidenceChangeListener extends InteractionChangeListener<InteractionEvidence>, ParametersChangeListener<InteractionEvidence>,
         ConfidencesChangeListener<InteractionEvidence> {
 
     /**
+     * <p>onExperimentUpdate</p>
      *
      * @param interaction : updated interaction
      * @param oldExperiment : old experiment
@@ -23,6 +23,7 @@ public interface InteractionEvidenceChangeListener extends InteractionChangeList
     public void onExperimentUpdate(InteractionEvidence interaction, Experiment oldExperiment);
 
     /**
+     * <p>onAddedVariableParameterValues</p>
      *
      * @param interaction : updated interaction
      * @param added : added variable parameter value
@@ -30,6 +31,7 @@ public interface InteractionEvidenceChangeListener extends InteractionChangeList
     public void onAddedVariableParameterValues(InteractionEvidence interaction, VariableParameterValueSet added);
 
     /**
+     * <p>onRemovedVariableParameterValues</p>
      *
      * @param interaction : updated interaction
      * @param removed : removed parameter value
@@ -37,6 +39,7 @@ public interface InteractionEvidenceChangeListener extends InteractionChangeList
     public void onRemovedVariableParameterValues(InteractionEvidence interaction, VariableParameterValueSet removed);
 
     /**
+     * <p>onInferredPropertyUpdate</p>
      *
      * @param interaction : updated interaction
      * @param oldInferred : old inferred
@@ -44,6 +47,7 @@ public interface InteractionEvidenceChangeListener extends InteractionChangeList
     public void onInferredPropertyUpdate(InteractionEvidence interaction, boolean oldInferred);
 
     /**
+     * <p>onNegativePropertyUpdate</p>
      *
      * @param interaction : updated interaction
      * @param negative  : old negative

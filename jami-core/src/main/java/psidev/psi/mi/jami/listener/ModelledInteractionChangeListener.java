@@ -9,11 +9,11 @@ import psidev.psi.mi.jami.model.*;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface ModelledInteractionChangeListener<I extends ModelledInteraction> extends InteractionChangeListener<I>, ParametersChangeListener<I>,
         ConfidencesChangeListener<I> {
 
     /**
+     * <p>onAddedCooperativeEffect</p>
      *
      * @param interaction : updated interaction
      * @param added : added effect
@@ -21,6 +21,7 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
     public void onAddedCooperativeEffect(I interaction, CooperativeEffect added);
 
     /**
+     * <p>onRemovedCooperativeEffect</p>
      *
      * @param interaction : updated interaction
      * @param removed : removed effect
@@ -28,6 +29,7 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
     public void onRemovedCooperativeEffect(I interaction, CooperativeEffect removed);
 
     /**
+     * <p>onAddedInteractionEvidence</p>
      *
      * @param interaction : updated interaction
      * @param added  : added evidence
@@ -35,6 +37,7 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
     public void onAddedInteractionEvidence(I interaction, InteractionEvidence added);
 
     /**
+     * <p>onRemovedInteractionEvidence</p>
      *
      * @param interaction : updated interaction
      * @param removed : removed evidence
@@ -42,6 +45,7 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
     public void onRemovedInteractionEvidence(I interaction, InteractionEvidence removed);
 
     /**
+     * <p>onSourceUpdate</p>
      *
      * @param interaction : updated interaction
      * @param oldSource : old source
@@ -49,6 +53,7 @@ public interface ModelledInteractionChangeListener<I extends ModelledInteraction
     public void onSourceUpdate(I interaction, Source oldSource);
 
     /**
+     * <p>onEvidenceTypeUpdate</p>
      *
      * @param interaction : updated interaction
      * @param oldType : old evidence type

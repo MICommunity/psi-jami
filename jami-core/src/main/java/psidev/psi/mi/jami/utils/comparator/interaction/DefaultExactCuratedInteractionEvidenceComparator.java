@@ -19,18 +19,17 @@ import java.util.Iterator;
  * the experiment using DefaultCuratedExperimentComparator. If the experiments are the same, it will compare the participants using DefaultExactParticipantEvidenceComparator. Then, it will compare the parameters using DefaultParameterComparator.
  * If the parameters are the same, it will first compare the experimental variableParameters using VariableParameterValueSetComparator and then it will compare the inferred boolean value (Inferred interactions will always come after).
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class DefaultExactCuratedInteractionEvidenceComparator {
 
     /**
      * Use DefaultExactCuratedInteractionEvidenceComparator to know if two experimental interactions are equals.
-     * @param experimentalInteraction1
-     * @param experimentalInteraction2
+     *
+     * @param experimentalInteraction1 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param experimentalInteraction2 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return true if the two experimental interactions are equal
      */
     public static boolean areEquals(InteractionEvidence experimentalInteraction1, InteractionEvidence experimentalInteraction2){

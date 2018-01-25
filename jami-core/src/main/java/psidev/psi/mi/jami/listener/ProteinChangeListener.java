@@ -9,6 +9,5 @@ import psidev.psi.mi.jami.model.Protein;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public interface ProteinChangeListener extends PolymerChangeListener<Protein>{
 }

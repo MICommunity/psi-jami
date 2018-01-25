@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
 /**
  * Default IMEx Central Client.
  *
+
  */
 public class DefaultImexCentralClient implements ImexCentralClient {
 
@@ -31,6 +32,14 @@ public class DefaultImexCentralClient implements ImexCentralClient {
     private IcentralPort port;
     private String endPoint;
 
+    /**
+     * <p>Constructor for DefaultImexCentralClient.</p>
+     *
+     * @param username a {@link java.lang.String} object.
+     * @param password a {@link java.lang.String} object.
+     * @param endPoint a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public DefaultImexCentralClient( String username, String password, String endPoint ) throws BridgeFailedException {
 
         this.endPoint = endPoint;
@@ -53,10 +62,16 @@ public class DefaultImexCentralClient implements ImexCentralClient {
     ///////////////////////
     // IMEx Central
 
+    /**
+     * <p>getEndpoint.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getEndpoint() {
         return endPoint;
     }
 
+    /** {@inheritDoc} */
     public List<psidev.psi.mi.jami.model.Publication> fetchPublicationsByOwner(String owner, int first, int max) throws BridgeFailedException {
         try {
             // create holders for publication and last record
@@ -86,6 +101,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         }
     }
 
+    /** {@inheritDoc} */
     public List<psidev.psi.mi.jami.model.Publication> fetchPublicationsByStatus(String status, int first, int max) throws BridgeFailedException {
 
         try {
@@ -118,13 +134,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         }
     }
 
-    /**
-     *
-     * @param identifier
-     * @param status
-     * @return an updated publication, null if not found.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException
-     */
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationStatus( String identifier, String source, PublicationStatus status) throws BridgeFailedException {
         try {
             Publication pub = port.updatePublicationStatus( buildIdentifier( identifier, source ), status.toString(), null );
@@ -139,6 +149,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationAdminGroup( String identifier, String source, Operation operation, String group ) throws BridgeFailedException {
         try {
             Publication pub = port.updatePublicationAdminGroup( buildIdentifier(identifier, source ), operation.toString(), group );
@@ -153,6 +164,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationAdminUser( String identifier, String source, Operation operation, String user ) throws BridgeFailedException {
         try {
             Publication pub = port.updatePublicationAdminUser( buildIdentifier(identifier, source ), operation.toString(), user );
@@ -167,6 +179,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication updatePublicationIdentifier(String oldIdentifier, String oldSource, String newIdentifier, String source) throws BridgeFailedException {
 
         psidev.psi.mi.jami.model.Publication existingPub = fetchByIdentifier(newIdentifier, source);
@@ -193,6 +206,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public void createPublication( psidev.psi.mi.jami.model.Publication publication ) throws BridgeFailedException {
         if (publication != null){
             try {
@@ -254,6 +268,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         }
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication createPublicationById( String identifier, String source ) throws BridgeFailedException {
         try {
             Publication pub = port.createPublicationById( buildIdentifier( identifier, source ) );
@@ -266,6 +281,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication fetchPublicationImexAccession(String identifier, String source, boolean aBoolean) throws BridgeFailedException {
         try {
             Publication pub = port.getPublicationImexAccession( buildIdentifier( identifier, source ), aBoolean );
@@ -278,6 +294,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public psidev.psi.mi.jami.model.Publication fetchByIdentifier(String identifier, String source) throws BridgeFailedException {
         if(identifier == null)
             throw new IllegalArgumentException("Cannot fetch null identifier");
@@ -300,6 +317,7 @@ public class DefaultImexCentralClient implements ImexCentralClient {
         return null;
     }
 
+    /** {@inheritDoc} */
     public Collection<psidev.psi.mi.jami.model.Publication> fetchByIdentifiers(Map<String, Collection<String>> identifiers) throws BridgeFailedException {
         if(identifiers == null)
             throw new IllegalArgumentException("The map of identifiers cannot be null");

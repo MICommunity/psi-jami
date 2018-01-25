@@ -18,20 +18,28 @@ import java.util.Map;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 05/08/13
+
  */
 public class FailingPublicationFetcher
         extends AbstractFailingFetcher<Publication>
         implements PublicationFetcher {
 
 
+    /**
+     * <p>Constructor for FailingPublicationFetcher.</p>
+     *
+     * @param maxQuery a int.
+     */
     public FailingPublicationFetcher(int maxQuery) {
         super(maxQuery);
     }
 
+    /** {@inheritDoc} */
     public Publication fetchByIdentifier(String pubmedID, String source) throws BridgeFailedException {
         return getEntry(pubmedID);
     }
 
+    /** {@inheritDoc} */
     public Collection<Publication> fetchByIdentifiers(Map<String, Collection<String>> identifiers) throws BridgeFailedException {
         Collection<Publication> results = new ArrayList<Publication>();
         for(Map.Entry<String, Collection<String>> id : identifiers.entrySet()){

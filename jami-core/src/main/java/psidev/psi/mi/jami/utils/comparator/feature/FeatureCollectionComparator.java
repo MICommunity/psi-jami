@@ -12,17 +12,17 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class FeatureCollectionComparator<T extends Feature> extends CollectionComparator<T> {
     /**
      * Creates a new feature CollectionComparator. It requires a Comparator for the ranges in the Collection
      *
-     * @param featureComparator
+     * @param featureComparator a {@link java.util.Comparator} object.
      */
     public FeatureCollectionComparator(Comparator<T> featureComparator) {
         super(featureComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Comparator<T> getObjectComparator() {
         return (Comparator<T>) super.getObjectComparator();

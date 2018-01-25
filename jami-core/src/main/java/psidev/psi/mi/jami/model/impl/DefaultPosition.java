@@ -17,7 +17,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultPosition implements Position {
 
     private CvTerm status;
@@ -29,6 +28,7 @@ public class DefaultPosition implements Position {
 
     /**
      * Create a new Position with status = range.
+     *
      * @param start : the fuzzy start
      * @param end : the fuzzy end
      */
@@ -42,6 +42,13 @@ public class DefaultPosition implements Position {
         isPositionUndetermined = false;
     }
 
+    /**
+     * <p>Constructor for DefaultPosition.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param start a long.
+     * @param end a long.
+     */
     public DefaultPosition(CvTerm status, long start, long end){
         if (start > end){
             throw new IllegalArgumentException("The start cannot be after the end.");
@@ -55,6 +62,12 @@ public class DefaultPosition implements Position {
         isPositionUndetermined = (PositionUtils.isUndetermined(this) || PositionUtils.isCTerminalRange(this) || PositionUtils.isNTerminalRange(this));
     }
 
+    /**
+     * <p>Constructor for DefaultPosition.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param position a long.
+     */
     public DefaultPosition(CvTerm status, long position){
         if (status == null){
             throw new IllegalArgumentException("The position status is required and cannot be null");
@@ -69,7 +82,7 @@ public class DefaultPosition implements Position {
     /**
      * This constructor will create an undetermined status if the position is 0 and a certain status if the position is not 0.
      *
-     * @param position
+     * @param position a long.
      */
     public DefaultPosition(long position){
         if (position == 0){
@@ -86,22 +99,43 @@ public class DefaultPosition implements Position {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>status</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getStatus() {
         return this.status;
     }
 
+    /**
+     * <p>Getter for the field <code>start</code>.</p>
+     *
+     * @return a long.
+     */
     public long getStart() {
         return this.start;
     }
 
+    /**
+     * <p>Getter for the field <code>end</code>.</p>
+     *
+     * @return a long.
+     */
     public long getEnd() {
         return this.end;
     }
 
+    /**
+     * <p>isPositionUndetermined</p>
+     *
+     * @return a boolean.
+     */
     public boolean isPositionUndetermined() {
         return this.isPositionUndetermined;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -115,11 +149,13 @@ public class DefaultPosition implements Position {
         return UnambiguousPositionComparator.areEquals(this, (Position) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getStatus().toString() + ": " + getStart()  +".."+ getEnd();
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousPositionComparator.hashCode(this);

@@ -42,41 +42,83 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     private JAXBParameterWrapper jaxbParameterWrapper;
     private List<ExperimentalCvTerm> originalIdentificationMethods;
 
+    /**
+     * <p>Constructor for XmlParticipantEvidence.</p>
+     */
     public XmlParticipantEvidence() {
     }
 
+    /**
+     * <p>Constructor for XmlParticipantEvidence.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public XmlParticipantEvidence(Interactor interactor) {
         super(interactor);
     }
 
+    /**
+     * <p>Constructor for XmlParticipantEvidence.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlParticipantEvidence(Interactor interactor, CvTerm bioRole) {
         super(interactor, bioRole);
     }
 
+    /**
+     * <p>Constructor for XmlParticipantEvidence.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public XmlParticipantEvidence(Interactor interactor, Stoichiometry stoichiometry) {
         super(interactor, stoichiometry);
     }
 
+    /**
+     * <p>Constructor for XmlParticipantEvidence.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     */
     public XmlParticipantEvidence(Interactor interactor, CvTerm bioRole, Stoichiometry stoichiometry) {
         super(interactor, bioRole, stoichiometry);
     }
 
+    /**
+     * <p>initialiseExperimentalPreparationWrapper.</p>
+     */
     protected void initialiseExperimentalPreparationWrapper() {
         this.jaxbExperimentalPreparationWrapper = new JAXBExperimentalPreparationWrapper();
     }
 
+    /**
+     * <p>initialiseExperimentalRoleWrapper.</p>
+     */
     protected void initialiseExperimentalRoleWrapper() {
         this.jaxbExperimentalRoleWrapper = new JAXBExperimentalRoleWrapper();
     }
 
+    /**
+     * <p>initialiseConfidenceWrapper.</p>
+     */
     protected void initialiseConfidenceWrapper() {
         this.jaxbConfidenceWrapper = new JAXBConfidenceWrapper();
     }
 
+    /**
+     * <p>initialiseParameterWrapper.</p>
+     */
     protected void initialiseParameterWrapper() {
         this.jaxbParameterWrapper = new JAXBParameterWrapper();
     }
 
+    /**
+     * <p>initialiseIdentificationMethodWrapper.</p>
+     */
     protected void initialiseIdentificationMethodWrapper(){
         Collection<Experiment> expToIgnore = Collections.EMPTY_LIST;
 
@@ -116,14 +158,25 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         initialisedMethods = true;
     }
 
+    /**
+     * <p>initialiseHostOrganismWrapper.</p>
+     */
     protected void initialiseHostOrganismWrapper() {
         this.jaxbHostOrganismWrapper = new JAXBHostOrganismWrapper();
     }
 
+    /**
+     * <p>initialiseExperimentalInteractorWrapper.</p>
+     */
     protected void initialiseExperimentalInteractorWrapper() {
         this.jaxbExperimentalInteractorWrapper = new JAXBExperimentalInteractorWrapper();
     }
 
+    /**
+     * <p>getExperimentalRole.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getExperimentalRole() {
         if (this.jaxbExperimentalRoleWrapper == null){
             initialiseExperimentalRoleWrapper();
@@ -134,6 +187,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbExperimentalRoleWrapper.experimentalRoles.get(0);
     }
 
+    /** {@inheritDoc} */
     public void setExperimentalRole(CvTerm expRole) {
         if (this.jaxbExperimentalRoleWrapper == null && expRole != null){
             initialiseExperimentalRoleWrapper();
@@ -152,6 +206,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         }
     }
 
+    /**
+     * <p>getIdentificationMethods.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CvTerm> getIdentificationMethods() {
         if (!initialisedMethods){
             initialiseIdentificationMethodWrapper();
@@ -159,6 +218,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbParticipantionIdentificationWrapper.identificationMethods;
     }
 
+    /**
+     * <p>getExperimentalPreparations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CvTerm> getExperimentalPreparations() {
         if (jaxbExperimentalPreparationWrapper == null){
             initialiseExperimentalPreparationWrapper();
@@ -166,10 +230,16 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbExperimentalPreparationWrapper.experimentalPreparations;
     }
 
+    /**
+     * <p>getExpressedInOrganism.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public Organism getExpressedInOrganism() {
         return (this.jaxbHostOrganismWrapper != null && !this.jaxbHostOrganismWrapper.hostOrganisms.isEmpty())? this.jaxbHostOrganismWrapper.hostOrganisms.iterator().next() : null;
     }
 
+    /** {@inheritDoc} */
     public void setExpressedInOrganism(Organism organism) {
         if (this.jaxbHostOrganismWrapper == null && organism != null){
             initialiseHostOrganismWrapper();
@@ -188,6 +258,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         }
     }
 
+    /**
+     * <p>getConfidences.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Confidence> getConfidences() {
         if (jaxbConfidenceWrapper == null){
             initialiseConfidenceWrapper();
@@ -195,6 +270,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbConfidenceWrapper.confidences;
     }
 
+    /**
+     * <p>getParameters.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Parameter> getParameters() {
         if (this.jaxbParameterWrapper == null){
             initialiseParameterWrapper();
@@ -202,6 +282,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbParameterWrapper.parameters;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Organism> getHostOrganisms() {
         if (this.jaxbHostOrganismWrapper == null){
@@ -210,6 +291,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbHostOrganismWrapper.hostOrganisms;
     }
 
+    /**
+     * <p>getExperimentalInteractors.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<ExperimentalInteractor> getExperimentalInteractors() {
         if (this.jaxbExperimentalInteractorWrapper == null){
             initialiseExperimentalInteractorWrapper();
@@ -217,6 +303,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbExperimentalInteractorWrapper.experimentalInteractors;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<CvTerm> getExperimentalRoles() {
         if (this.jaxbExperimentalRoleWrapper == null){
@@ -226,58 +313,80 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return this.jaxbExperimentalRoleWrapper.experimentalRoles;
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
     public void setJAXBNames(NamesContainer value) {
         super.setJAXBNames(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
     public void setJAXBXref(XrefContainer value) {
         super.setJAXBXref(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "interactor")
     public void setJAXBInteractor(XmlInteractor interactor) {
         super.setJAXBInteractor(interactor);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "interactionRef")
     public void setJAXBInteractionRef(Integer value) {
         super.setJAXBInteractionRef(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "interactorRef")
     public void setJAXBInteractorRef(Integer value) {
         super.setJAXBInteractorRef(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "biologicalRole")
     public void setJAXBBiologicalRole(XmlCvTerm bioRole) {
         super.setJAXBBiologicalRole(bioRole);
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param value a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         super.setId(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
 
+    /**
+     * <p>setFeatureWrapper.</p>
+     *
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBFeatureWrapper} object.
+     */
     @XmlElement(name = "featureList")
     public void setFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {
         super.setFeatureWrapper(jaxbFeatureWrapper);
     }
 
+    /**
+     * <p>setJAXBParticipantIdentificationMethodWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBParticipantIdentificationWrapper} object.
+     */
     @XmlElement(name="participantIdentificationMethodList")
     public void setJAXBParticipantIdentificationMethodWrapper(JAXBParticipantIdentificationWrapper wrapper) {
         this.jaxbParticipantionIdentificationWrapper = wrapper;
@@ -290,6 +399,11 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         }
     }
 
+    /**
+     * <p>setJAXBExperimentalRoleWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBExperimentalRoleWrapper} object.
+     */
     @XmlElement(name="experimentalRoleList")
     public void setJAXBExperimentalRoleWrapper(JAXBExperimentalRoleWrapper wrapper) {
         this.jaxbExperimentalRoleWrapper = wrapper;
@@ -301,16 +415,31 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         }
     }
 
+    /**
+     * <p>setJAXBExperimentalPreparationWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBExperimentalPreparationWrapper} object.
+     */
     @XmlElement(name="experimentalPreparationList")
     public void setJAXBExperimentalPreparationWrapper(JAXBExperimentalPreparationWrapper wrapper) {
         this.jaxbExperimentalPreparationWrapper = wrapper;
     }
 
+    /**
+     * <p>setExperimentalInteractorWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBExperimentalInteractorWrapper} object.
+     */
     @XmlElement(name="experimentalInteractorList")
     public void setExperimentalInteractorWrapper(JAXBExperimentalInteractorWrapper wrapper) {
         this.jaxbExperimentalInteractorWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBHostOrganismWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBHostOrganismWrapper} object.
+     */
     @XmlElement(name="hostOrganismList")
     public void setJAXBHostOrganismWrapper(JAXBHostOrganismWrapper wrapper) {
         this.jaxbHostOrganismWrapper = wrapper;
@@ -322,33 +451,51 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         }
     }
 
+    /**
+     * <p>setJAXBParameterWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBParameterWrapper} object.
+     */
     @XmlElement(name="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
         this.jaxbParameterWrapper = wrapper;
     }
 
+    /**
+     * <p>setJAXBConfidenceWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBConfidenceWrapper} object.
+     */
     @XmlElement(name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
         this.jaxbConfidenceWrapper = wrapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="stoichiometry", namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBStoichiometry(psidev.psi.mi.jami.xml.model.extension.xml300.XmlStoichiometry stoichiometry) {
         super.setJAXBStoichiometry(stoichiometry);
     }
 
+    /**
+     * <p>setJAXBInteractorCandidates.</p>
+     *
+     * @param pool a {@link psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence.JAXBInteractorCandidatesWrapper} object.
+     */
     @XmlElement(name="interactorCandidateList", namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBInteractorCandidates(JAXBInteractorCandidatesWrapper pool) {
         super.setJAXBInteractorCandidates(pool);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="stoichiometryRange", namespace = "http://psi.hupo.org/mi/mif300")
     public void setJAXBStoichiometryRange(XmlStoichiometryRange stoichiometry) {
         super.setJAXBStoichiometryRange(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -357,20 +504,32 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
         return super.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processAddedFeature(FeatureEvidence feature) {
         ((XmlFeatureEvidence)feature).setOriginalParticipant(this);
     }
 
+    /**
+     * <p>setOriginalXmlInteraction.</p>
+     *
+     * @param i a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
+     */
     protected void setOriginalXmlInteraction(ExtendedPsiXmlInteractionEvidence i){
         this.originalInteraction = i;
         setInteraction(i);
     }
 
+    /**
+     * <p>Getter for the field <code>originalInteraction</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
+     */
     protected ExtendedPsiXmlInteractionEvidence getOriginalInteraction() {
         return originalInteraction;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFeatureWrapper() {
         super.setFeatureWrapper(new JAXBFeatureWrapper());

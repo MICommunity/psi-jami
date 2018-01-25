@@ -7,6 +7,5 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public interface Preassembly extends CooperativeEffect{
 }

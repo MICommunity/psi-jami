@@ -19,6 +19,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Xml300EntrySet extends AbstractEntrySet<Entry> {
 
+    /**
+     * <p>getEntries.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     @XmlElement(type=Entry.class, name="entry", required = true)
     public List<Entry> getEntries() {
         return super.getEntries();

@@ -17,29 +17,38 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryInteraction, Participant> {
 
+    /**
+     * <p>Constructor for DefaultMitabColumnFeeder.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public DefaultMitabColumnFeeder(Writer writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionDetectionMethod(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeFirstAuthor(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writePublicationIdentifiers(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeSource(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionIdentifiers(BinaryInteraction interaction) throws IOException {
         // get imex id
         Collection<Xref> imexId = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(interaction.getXrefs(), Xref.IMEX_MI, Xref.IMEX, Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY);
@@ -77,36 +86,44 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
         }
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionConfidences(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeAlias(Participant participant, Alias alias) throws IOException {
         writeAlias(alias);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeConfidence(Confidence conf) throws IOException {
         // writes nothing
     }
 
+    /** {@inheritDoc} */
     @Override
     public void writeParameter(Parameter parameter) throws IOException {
         // write nothing
     }
 
+    /** {@inheritDoc} */
     public void writeNegativeProperty(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeHostOrganism(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionParameters(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionAnnotations(BinaryInteraction interaction) throws IOException {
         // writes interaction annotations first
         if (!interaction.getAnnotations().isEmpty()){
@@ -126,6 +143,7 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
         }
     }
 
+    /** {@inheritDoc} */
     public void writeInteractionXrefs(BinaryInteraction interaction) throws IOException {
         // write interaction ref
         if (!interaction.getXrefs().isEmpty()){
@@ -160,10 +178,12 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
         }
     }
 
+    /** {@inheritDoc} */
     public void writeExperimentalRole(Participant participant) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
+    /** {@inheritDoc} */
     public void writeParticipantIdentificationMethod(Participant participant) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }

@@ -26,29 +26,57 @@ public class Diff extends diff_match_patch.Diff {
     private int indexInString1;
     private int indexInString2;
 
+    /**
+     * <p>Constructor for Diff.</p>
+     *
+     * @param diff a {@link psidev.psi.mi.jami.enricher.util.diff.diff_match_patch.Diff} object.
+     * @param indexInString1 a int.
+     * @param indexInString2 a int.
+     */
     protected Diff(diff_match_patch.Diff diff, int indexInString1, int indexInString2) {
         super(diff.operation, diff.text);
         this.indexInString1 = indexInString1;
         this.indexInString2 = indexInString2;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "["+operation+"] '"+text+"'"+" idxA:"+ indexInString1 +", idxB:"+ indexInString2;
     }
 
+    /**
+     * <p>getOperation.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.util.diff.Operation} object.
+     */
     public Operation getOperation() {
         return Operation.valueOfDiffOperation(operation);
     }
 
+    /**
+     * <p>getText.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * <p>Getter for the field <code>indexInString1</code>.</p>
+     *
+     * @return a int.
+     */
     public int getIndexInString1() {
         return indexInString1;
     }
 
+    /**
+     * <p>Getter for the field <code>indexInString2</code>.</p>
+     *
+     * @return a int.
+     */
     public int getIndexInString2() {
         return indexInString2;
     }

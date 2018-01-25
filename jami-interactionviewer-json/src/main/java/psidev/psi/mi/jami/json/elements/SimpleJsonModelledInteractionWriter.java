@@ -16,24 +16,46 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> extends SimpleJsonInteractionWriter<I>{
 
     private JsonElementWriter<Organism> organismWriter;
     private JsonElementWriter<Confidence> confidenceWriter;
     private JsonElementWriter<Parameter> parameterWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonModelledInteractionWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonModelledInteractionWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                                Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants) {
         super(writer, processedFeatures, processedInteractors, processedParticipants);
     }
 
+    /**
+     * <p>Constructor for SimpleJsonModelledInteractionWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public SimpleJsonModelledInteractionWriter(Writer writer, Map<Feature, Integer> processedFeatures,
                                                Map<String, String> processedInteractors, Map<Entity, Integer> processedParticipants,
                                                IncrementalIdGenerator idGenerator) {
         super(writer, processedFeatures, processedInteractors, processedParticipants, idGenerator);
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a I object.
+     * @throws java.io.IOException if any.
+     */
     protected void writeOtherProperties(I object) throws IOException {
 
         if (object instanceof Complex) {
@@ -89,12 +111,20 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
         }
     }
 
+    /**
+     * <p>initialiseDefaultParticipantWriter.</p>
+     */
     protected void initialiseDefaultParticipantWriter() {
         super.setParticipantWriter(new SimpleJsonModelledParticipantWriter(getWriter(), getProcessedFeatures(), getProcessedInteractors(),
                 getProcessedParticipants(), getIdGenerator(), getFetcher()));
         ((SimpleJsonModelledParticipantWriter)getParticipantWriter()).setCvWriter(getCvWriter());
     }
 
+    /**
+     * <p>Getter for the field <code>organismWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Organism> getOrganismWriter() {
         if (this.organismWriter == null){
            this.organismWriter = new SimpleJsonOrganismWriter(getWriter());
@@ -102,10 +132,20 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
         return organismWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>organismWriter</code>.</p>
+     *
+     * @param organismWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setOrganismWriter(JsonElementWriter<Organism> organismWriter) {
         this.organismWriter = organismWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Confidence> getConfidenceWriter() {
         if (this.confidenceWriter == null){
             this.confidenceWriter = new SimpleJsonConfidenceWriter(getWriter());
@@ -113,10 +153,20 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
         return confidenceWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setConfidenceWriter(JsonElementWriter<Confidence> confidenceWriter) {
         this.confidenceWriter = confidenceWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>parameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Parameter> getParameterWriter() {
         if (this.parameterWriter == null){
             this.parameterWriter = new SimpleJsonParameterWriter(getWriter());
@@ -124,6 +174,11 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
         return parameterWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>parameterWriter</code>.</p>
+     *
+     * @param parameterWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setParameterWriter(JsonElementWriter<Parameter> parameterWriter) {
         this.parameterWriter = parameterWriter;
     }

@@ -16,11 +16,11 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>24/01/13</pre>
  */
-
 public class ChecksumUtils {
 
     /**
      * To check if a checksum does have a specific method
+     *
      * @param checksum the checksum
      * @param methodId the checksum MI identifier
      * @param methodName the checksum method name
@@ -48,6 +48,7 @@ public class ChecksumUtils {
 
     /**
      * Collect all checksum having a specific method
+     *
      * @param checksums the checksums
      * @param methodId the checksum MI identifier
      * @param methodName the checksum method name
@@ -72,6 +73,7 @@ public class ChecksumUtils {
     /**
      * This method will return the first Checksum having this methodId/method name
      * It will return null if there are no Checksums with this method id/name
+     *
      * @param checksums : the collection of Checksum
      * @param methodId : the method id to look for
      * @param methodName : the method name to look for
@@ -94,6 +96,7 @@ public class ChecksumUtils {
 
     /**
      * Remove all Checksum having this method name/method id from the collection of checksums
+     *
      * @param checksums : the collection of Checksum
      * @param methodId : the method id to look for
      * @param methodName : the method name to look for
@@ -113,6 +116,7 @@ public class ChecksumUtils {
 
     /**
      * To check if a checksum does have a specific method
+     *
      * @param checksum the checksum
      * @param methodId the checksum MI identifier
      * @param methodName the checksum method name
@@ -151,11 +155,12 @@ public class ChecksumUtils {
 
     /**
      * Collect all checksum having a specific method
+     *
      * @param checksums the checksums
      * @param methodId  the checksum MI identifier
      * @param methodName  the checksum method name
      * @param value : the checksum value
-     * @return
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Checksum> collectAllChecksumsHavingMethodAndValue(Collection<? extends Checksum> checksums, String methodId, String methodName, String value){
 
@@ -176,6 +181,7 @@ public class ChecksumUtils {
     /**
      * This method will return the first Checksum having this methodId/method name
      * It will return null if there are no Checksums with this method id/name
+     *
      * @param checksums : the collection of Checksum
      * @param methodId : the method id to look for
      * @param methodName : the method name to look for
@@ -199,6 +205,7 @@ public class ChecksumUtils {
 
     /**
      * Remove all Checksum having this method name/method id from the collection of checksums
+     *
      * @param checksums : the collection of Checksum
      * @param methodId : the method id to look for
      * @param methodName : the method name to look for
@@ -217,30 +224,75 @@ public class ChecksumUtils {
         }
     }
 
+    /**
+     * <p>createChecksum</p>
+     *
+     * @param methodName a {@link java.lang.String} object.
+     * @param methodMi a {@link java.lang.String} object.
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createChecksum(String methodName, String methodMi, String checksum){
         return new DefaultChecksum(CvTermUtils.createMICvTerm(methodName, methodMi), checksum);
     }
 
+    /**
+     * <p>createChecksum</p>
+     *
+     * @param methodName a {@link java.lang.String} object.
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createChecksum(String methodName, String checksum){
         return new DefaultChecksum(CvTermUtils.createMICvTerm(methodName, null), checksum);
     }
 
+    /**
+     * <p>createRogid</p>
+     *
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createRogid(String checksum){
         return new DefaultChecksum(CvTermUtils.createRogid(), checksum);
     }
 
+    /**
+     * <p>createRigid</p>
+     *
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createRigid(String checksum){
         return new DefaultChecksum(CvTermUtils.createRigid(), checksum);
     }
 
+    /**
+     * <p>createStandardInchiKey</p>
+     *
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createStandardInchiKey(String checksum){
         return new DefaultChecksum(CvTermUtils.createStandardInchiKey(), checksum);
     }
 
+    /**
+     * <p>createStandardInchi</p>
+     *
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createStandardInchi(String checksum){
         return new DefaultChecksum(CvTermUtils.createStandardInchi(), checksum);
     }
 
+    /**
+     * <p>createSmile</p>
+     *
+     * @param checksum a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Checksum} object.
+     */
     public static Checksum createSmile(String checksum){
         return new DefaultChecksum(CvTermUtils.createSmile(), checksum);
     }

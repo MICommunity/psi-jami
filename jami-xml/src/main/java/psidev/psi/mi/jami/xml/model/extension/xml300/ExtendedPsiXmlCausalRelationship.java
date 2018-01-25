@@ -12,10 +12,10 @@ import psidev.psi.mi.jami.model.Entity;
  * @version $Id$
  * @since <pre>30/05/14</pre>
  */
-
 public interface ExtendedPsiXmlCausalRelationship extends CausalRelationship{
 
     /**
+     * <p>getSource.</p>
      *
      * @return  the participant source which cannot be null
      */

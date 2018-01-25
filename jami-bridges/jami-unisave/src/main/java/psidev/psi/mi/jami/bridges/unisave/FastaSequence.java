@@ -18,24 +18,42 @@ package psidev.psi.mi.jami.bridges.unisave;
 /**
  * Fasta sequence
  *
+
  */
 public class FastaSequence {
     private String header;
     private String sequence;
 
+    /**
+     * <p>Constructor for FastaSequence.</p>
+     *
+     * @param header a {@link java.lang.String} object.
+     * @param sequence a {@link java.lang.String} object.
+     */
     public FastaSequence( String header, String sequence ) {
         this.header = header;
         this.sequence = sequence;
     }
 
+    /**
+     * <p>Getter for the field <code>header</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getHeader() {
         return header;
     }
 
+    /**
+     * <p>Getter for the field <code>sequence</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getSequence() {
         return sequence;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder(128);

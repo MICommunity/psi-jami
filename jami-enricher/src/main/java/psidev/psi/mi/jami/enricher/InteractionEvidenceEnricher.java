@@ -10,16 +10,23 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 24/07/13
+
  */
 public interface InteractionEvidenceEnricher
         extends InteractionEnricher<InteractionEvidence> {
 
     /**
      * The experimentEnricher which is currently being used for the enriching or updating of experiments.
+     *
      * @return The experiment enricher. Can be null.
      */
     public ExperimentEnricher getExperimentEnricher();
 
+    /**
+     * <p>setExperimentEnricher.</p>
+     *
+     * @param enricher a {@link psidev.psi.mi.jami.enricher.ExperimentEnricher} object.
+     */
     public void setExperimentEnricher(ExperimentEnricher enricher);
 
 }

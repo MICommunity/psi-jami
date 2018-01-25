@@ -22,34 +22,62 @@ import java.util.*;
  * @version $Id$
  * @since <pre>20/11/13</pre>
  */
-
 public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M extends ModelledInteraction, E extends InteractionEvidence> extends AbstractCompactXmlWriter<I> {
 
     private AbstractCompactXmlWriter<E> evidenceWriter;
     private AbstractCompactXmlWriter<M> modelledWriter;
     private AbstractCompactXmlWriter<I> lightWriter;
 
+    /**
+     * <p>Constructor for AbstractCompactXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     */
     public AbstractCompactXmlMixWriter(Class<I> type) {
         super(type);
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlMixWriter(Class<I> type, File file) throws IOException, XMLStreamException {
         super(type,file);
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlMixWriter(Class<I> type, OutputStream output) throws XMLStreamException {
         super(type,output);
     }
 
+    /**
+     * <p>Constructor for AbstractCompactXmlMixWriter.</p>
+     *
+     * @param type a {@link java.lang.Class} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public AbstractCompactXmlMixWriter(Class<I> type, Writer writer) throws XMLStreamException {
         super(type,writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         initialiseDelegateWriters();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
         super.close();
@@ -58,6 +86,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         this.lightWriter = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException {
         super.reset();
@@ -66,11 +95,13 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         this.lightWriter = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void setAvailabilityWriter(PsiXmlElementWriter<String> availabilityWriter) {
         this.evidenceWriter.setAvailabilityWriter(availabilityWriter);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void setExperimentWriter(PsiXmlExperimentWriter experimentWriter) {
         super.setExperimentWriter(experimentWriter);
@@ -85,6 +116,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void setInteractorWriter(PsiXmlElementWriter<Interactor> interactorWriter) {
         super.setInteractorWriter(interactorWriter);
@@ -99,6 +131,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setExperimentSet(Set<Experiment> experiments) {
         super.setExperimentSet(experiments);
@@ -113,6 +146,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setAvailabilitySet(Set<String> availabilities) {
         super.setAvailabilitySet(availabilities);
@@ -127,6 +161,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setVersion(PsiXmlVersion version) {
         super.setVersion(version);
@@ -141,6 +176,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorSet(Set<Interactor> interactors) {
         super.setInteractorSet(interactors);
@@ -155,6 +191,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionSet(Set<Interaction> processedInteractions) {
         super.setInteractionSet(processedInteractions);
@@ -169,6 +206,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultSource(Source defaultSource) {
         super.setDefaultSource(defaultSource);
@@ -182,6 +220,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
             this.lightWriter.setDefaultSource(defaultSource);
         }    }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultReleaseDate(XMLGregorianCalendar defaultReleaseDate) {
         super.setDefaultReleaseDate(defaultReleaseDate);
@@ -196,6 +235,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void flush() throws MIIOException {
         super.flush();
@@ -204,6 +244,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         this.lightWriter.flush();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setWriteComplexesAsInteractors(boolean writeComplexesAsInteractors) {
         super.setWriteComplexesAsInteractors(writeComplexesAsInteractors);
@@ -218,16 +259,19 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerExperiment(I interaction) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerAvailabilities(I interaction) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Iterator<? extends I> interactions) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
@@ -295,11 +339,13 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         while (interaction != null);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Collection<? extends I> interactions) throws MIIOException {
         write(interactions.iterator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(I interaction) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
@@ -316,6 +362,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceWriter(PsiXmlSourceWriter sourceWriter) {
         super.setSourceWriter(sourceWriter);
@@ -330,6 +377,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setComplexWriter(PsiXmlInteractionWriter<ModelledInteraction> complexWriter) {
         super.setComplexWriter(complexWriter);
@@ -345,6 +393,7 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setElementCache(PsiXmlObjectCache elementCache) {
         super.setElementCache(elementCache);
@@ -359,20 +408,38 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
         }
     }
 
+    /**
+     * <p>Setter for the field <code>evidenceWriter</code>.</p>
+     *
+     * @param evidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter} object.
+     */
     protected void setEvidenceWriter(AbstractCompactXmlWriter<E> evidenceWriter) {
         this.evidenceWriter = evidenceWriter;
         this.evidenceWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>Setter for the field <code>modelledWriter</code>.</p>
+     *
+     * @param modelledWriter a {@link psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter} object.
+     */
     protected void setModelledWriter(AbstractCompactXmlWriter<M> modelledWriter) {
         this.modelledWriter = modelledWriter;
         this.modelledWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>Setter for the field <code>lightWriter</code>.</p>
+     *
+     * @param lightWriter a {@link psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter} object.
+     */
     protected void setLightWriter(AbstractCompactXmlWriter<I> lightWriter) {
         this.lightWriter = lightWriter;
         this.lightWriter.setElementCache(getElementCache());
     }
 
+    /**
+     * <p>initialiseDelegateWriters.</p>
+     */
     protected abstract void initialiseDelegateWriters();
 }

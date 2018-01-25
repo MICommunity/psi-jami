@@ -11,6 +11,7 @@ import psidev.psi.mi.jami.model.InteractorPool;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  11/06/13
+
  */
 public class InteractorPoolEnricherLogger
         extends InteractorPoolChangeLogger
@@ -18,11 +19,13 @@ public class InteractorPoolEnricherLogger
 
     private static final org.slf4j.Logger proteinChangeLogger = LoggerFactory.getLogger(InteractorPoolEnricherLogger.class);
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(InteractorPool protein, EnrichmentStatus status, String message) {
         proteinChangeLogger.info(protein.toString() + " enrichment complete. " +
                 "The status was: " + status + ". The message reads: " + message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(InteractorPool object, String message, Exception e) {
         proteinChangeLogger.error(object.toString() + " enrichment error. " +
                 "The message reads: " + message, e);

@@ -20,12 +20,16 @@ import java.util.*;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class PublicationComparator implements Comparator<Publication>{
 
     private CollectionComparator<Xref> identifierCollectionComparator;
     private Comparator<Xref> identifierComparator;
 
+    /**
+     * <p>Constructor for PublicationComparator.</p>
+     *
+     * @param identifierComparator a {@link java.util.Comparator} object.
+     */
     public PublicationComparator(Comparator<Xref> identifierComparator) {
         if (identifierComparator == null){
             throw new IllegalArgumentException("The identifier comparator cannot be null in a publication comparator");
@@ -34,6 +38,11 @@ public class PublicationComparator implements Comparator<Publication>{
         this.identifierCollectionComparator = new XrefsCollectionComparator(identifierComparator);
     }
 
+    /**
+     * <p>Constructor for PublicationComparator.</p>
+     *
+     * @param identifiersComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public PublicationComparator(CollectionComparator<Xref> identifiersComparator) {
         if (identifiersComparator == null){
             throw new IllegalArgumentException("The identifiers comparator cannot be null in a publication comparator");
@@ -42,10 +51,20 @@ public class PublicationComparator implements Comparator<Publication>{
         this.identifierComparator = this.identifierCollectionComparator.getObjectComparator();
     }
 
+    /**
+     * <p>Getter for the field <code>identifierComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Xref> getIdentifierComparator() {
         return identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Xref> getIdentifierCollectionComparator() {
         return identifierCollectionComparator;
     }
@@ -57,6 +76,10 @@ public class PublicationComparator implements Comparator<Publication>{
      * then the authors (order is taken into account), then the journal (case insensitive) and finally the publication date.
      * - Two publications which are null are equals
      * - The publication which is not null is before null.
+     *
+     * @param publication1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param publication2 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @return a int.
      */
     public int compare(Publication publication1, Publication publication2) {
         int EQUAL = 0;

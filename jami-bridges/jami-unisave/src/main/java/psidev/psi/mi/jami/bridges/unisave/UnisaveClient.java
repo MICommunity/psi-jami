@@ -28,7 +28,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>30/09/13</pre>
  */
-
 public class UnisaveClient implements SequenceVersionFetcher{
 
     private static final Log log = LogFactory.getLog(UnisaveClient.class);
@@ -38,6 +37,9 @@ public class UnisaveClient implements SequenceVersionFetcher{
     private int connectionTimeOut = 20;
     private int socketTimeout = 20;
 
+    /**
+     * <p>Constructor for UnisaveClient.</p>
+     */
     public UnisaveClient() {
 
     }
@@ -132,6 +134,14 @@ public class UnisaveClient implements SequenceVersionFetcher{
         return null;
     }
 
+    /**
+     * <p>getSequenceFor.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param sequence_version a int.
+     * @return a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public String getSequenceFor(String identifier, int sequence_version) throws BridgeFailedException{
         String content = getContentForSequenceVersion(identifier, sequence_version);
         if (content != null) return getSequence(content);
@@ -142,10 +152,8 @@ public class UnisaveClient implements SequenceVersionFetcher{
      * Searches for all entry version given its identifier.
      *
      * @param identifier  the identifier of the entry we are interested in.
-     *
      * @return list of all versions of the given entry from the most recent to the oldest.
-     *
-     * @throws BridgeFailedException if the identifier cannot be found in UniSave.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if the identifier cannot be found in UniSave.
      */
     public List<Integer> getVersions( String identifier ) throws BridgeFailedException {
         JSONArray array = (JSONArray) getDataFromWebService(buildQuery(Type.ENTRIES_INFO, identifier, null));
@@ -162,6 +170,14 @@ public class UnisaveClient implements SequenceVersionFetcher{
         return list;
     }
 
+    /**
+     * <p>getLastSequenceAtTheDate.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param date a {@link java.util.Date} object.
+     * @return a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public String getLastSequenceAtTheDate(String identifier, Date date) throws BridgeFailedException {
 
         if (date == null){
@@ -188,10 +204,11 @@ public class UnisaveClient implements SequenceVersionFetcher{
 
     /**
      * Get the map of sequences (and their sequence version in uniprot) existing in unisave before this date
-     * @param identifier
-     * @param date
-     * @return
-     * @throws BridgeFailedException
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param date a {@link java.util.Date} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     * @return a {@link java.util.Map} object.
      */
     public Map<Integer, String> getAllSequencesBeforeDate(String identifier, Date date) throws BridgeFailedException {
 
@@ -225,7 +242,8 @@ public class UnisaveClient implements SequenceVersionFetcher{
      *
      * @param version the version for which we want the sequence
      * @return a fasta sequence.
-     * @throws BridgeFailedException if the version given doesn't have an entryId that can be found in UniSave.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if the version given doesn't have an entryId that can be found in UniSave.
+     * @param identifier a {@link java.lang.String} object.
      */
     public FastaSequence getFastaSequence( String identifier, int version ) throws BridgeFailedException {
         String content = getContentForSequenceVersion(identifier, version);
@@ -237,10 +255,11 @@ public class UnisaveClient implements SequenceVersionFetcher{
     /**
      * Returns the sequence version of a sequence for a certain uniprot ac.
      * Returns -1 if the sequence cannot be found for this uniprot ac
-     * @param identifier
-     * @param sequence
-     * @return
-     * @throws BridgeFailedException
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param sequence a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     * @return a int.
      */
     public int getSequenceVersion(String identifier, String sequence) throws BridgeFailedException{
         JSONArray array = (JSONArray) getDataFromWebService(buildQuery(Type.ENTRIES, identifier, null));
@@ -270,8 +289,7 @@ public class UnisaveClient implements SequenceVersionFetcher{
      *         If we fail to find a match for the given sequence in UniSave, the list would contain all existing
      *         sequence update available.
      *         The list of ordered from the oldest to the most recent sequence.
-     *
-     * @throws BridgeFailedException if the identifier cannot be found in UniSave.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if the identifier cannot be found in UniSave.
      */
     public List<SequenceVersion> getAvailableSequenceUpdate( String identifier, String sequence ) throws BridgeFailedException {
 
@@ -314,26 +332,48 @@ public class UnisaveClient implements SequenceVersionFetcher{
 
     }
 
+    /** {@inheritDoc} */
     public String fetchSequenceFromVersion(String id, int version) throws BridgeFailedException{
         return getSequenceFor(id, version);
     }
 
+    /** {@inheritDoc} */
     public int fetchVersionFromSequence(String id, String sequence) throws BridgeFailedException{
         return getSequenceVersion(id, sequence);
     }
 
+    /**
+     * <p>Getter for the field <code>socketTimeout</code>.</p>
+     *
+     * @return a int.
+     */
     public int getSocketTimeout() {
         return socketTimeout;
     }
 
+    /**
+     * <p>Setter for the field <code>socketTimeout</code>.</p>
+     *
+     * @param socketTimeout a int.
+     */
     public void setSocketTimeout(int socketTimeout) {
         this.socketTimeout = socketTimeout;
     }
 
+    /**
+     * <p>Getter for the field <code>connectionTimeOut</code>.</p>
+     *
+     * @return a int.
+     */
     public int getConnectionTimeOut() {
         return connectionTimeOut;
     }
 
+    /**
+     * <p>Setter for the field <code>connectionTimeOut</code>.</p>
+     *
+     * @param connectionTimeOut a int.
+     */
     public void setConnectionTimeOut(int connectionTimeOut) {
         this.connectionTimeOut = connectionTimeOut;
     }

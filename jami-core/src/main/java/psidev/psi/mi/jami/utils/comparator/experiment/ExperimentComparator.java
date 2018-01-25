@@ -9,7 +9,7 @@ import java.util.Comparator;
 
 /**
  * Basic experiment comparator.
- * It will look first at the publications using a Comparator<Publication>. If the publications are the same, it will look at the
+ * It will look first at the publications using a {@link java.util.Comparator} of type {@link Publication}. If the publications are the same, it will look at the
  * interaction detection methods using AbstractCvTermComparator. If the interaction detection methods are the same, it will look at
  * the host organisms using OrganismComparator.
  * If the host organisms are the same, it will look at the variableParameters using VariableParameterComparator.
@@ -20,7 +20,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class ExperimentComparator implements Comparator<Experiment>{
 
     private Comparator<Publication> publicationComparator;
@@ -29,8 +28,9 @@ public class ExperimentComparator implements Comparator<Experiment>{
     private CollectionComparator<VariableParameter> variableParameterCollectionComparator;
 
     /**
-     * Creates a new ExperimentComparator. It needs a Comparator<Publication> to compare publications, a OrganismComparator to compare host organisms
+     * Creates a new ExperimentComparator. It needs a {@link java.util.Comparator} of type {@link Publication} to compare publications, a OrganismComparator to compare host organisms
      * and a AbstractCvTermComparator to compare interaction detection methods.
+     *
      * @param publicationComparator : comparator for the publication which is required
      * @param organismComparator : comparator for the host organism which is required
      */
@@ -47,6 +47,13 @@ public class ExperimentComparator implements Comparator<Experiment>{
         this.variableParameterCollectionComparator = new VariableParameterCollectionComparator(new VariableParameterComparator(this.cvTermComparator));
     }
 
+    /**
+     * <p>Constructor for ExperimentComparator.</p>
+     *
+     * @param publicationComparator a {@link java.util.Comparator} object.
+     * @param organismComparator a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismComparator} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public ExperimentComparator(Comparator<Publication> publicationComparator, OrganismComparator organismComparator, CollectionComparator<VariableParameter> variableParameter){
         if (publicationComparator == null){
             throw new IllegalArgumentException("The publication comparator is required to compare the publications where the experiments have been published. It cannot be null");
@@ -70,9 +77,10 @@ public class ExperimentComparator implements Comparator<Experiment>{
      * If the host organisms are the same, it will look at the variableParameters using VariableParameterComparator.
      *
      * This comparator will ignore all the other properties of an experiment.
-     * @param experiment1
-     * @param experiment2
-     * @return
+     *
+     * @param experiment1 a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param experiment2 a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @return a int.
      */
     public int compare(Experiment experiment1, Experiment experiment2) {
         int EQUAL = 0;
@@ -123,18 +131,38 @@ public class ExperimentComparator implements Comparator<Experiment>{
         }
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Publication> getPublicationComparator() {
         return publicationComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>organismComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.organism.OrganismComparator} object.
+     */
     public OrganismComparator getOrganismComparator() {
         return organismComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<VariableParameter> getVariableParameterCollectionComparator() {
         return variableParameterCollectionComparator;
     }

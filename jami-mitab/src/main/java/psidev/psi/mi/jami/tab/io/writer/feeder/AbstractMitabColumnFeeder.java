@@ -20,11 +20,15 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P extends Participant> implements MitabColumnFeeder<T, P> {
 
     private Writer writer;
 
+    /**
+     * <p>Constructor for AbstractMitabColumnFeeder.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public AbstractMitabColumnFeeder(Writer writer){
         if (writer == null){
             throw  new IllegalArgumentException("The Mitab column feeder needs a Writer.");
@@ -32,6 +36,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         this.writer = writer;
     }
 
+    /**
+     * <p>writeUniqueIdentifier.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeUniqueIdentifier(P participant) throws IOException {
         if (participant == null){
             writer.write(MitabUtils.EMPTY_COLUMN);
@@ -48,6 +58,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeAlternativeIdentifiers.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeAlternativeIdentifiers(P participant) throws IOException {
         if (participant == null){
             writer.write(MitabUtils.EMPTY_COLUMN);
@@ -88,6 +104,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeAliases.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeAliases(P participant) throws IOException {
         if (participant == null){
             writer.write(MitabUtils.EMPTY_COLUMN);
@@ -137,6 +159,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeInteractorOrganism.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractorOrganism(P participant) throws IOException {
         if (participant != null){
             Interactor interactor = participant.getInteractor();
@@ -148,10 +176,17 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeInteractionType.</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionType(T interaction) throws IOException {
         writeCvTerm(interaction.getInteractionType());
     }
 
+    /** {@inheritDoc} */
     public void writeConfidence(Confidence conf) throws IOException {
         if (conf != null){
             // write confidence type first
@@ -168,6 +203,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeParameter(Parameter parameter) throws IOException {
         if (parameter != null){
             // first parameter type
@@ -184,6 +220,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeOrganism(Organism organism) throws IOException {
         if (organism != null){
 
@@ -220,6 +257,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeCvTerm(CvTerm cv) throws IOException {
         if (cv != null){
             // write MI xref first
@@ -287,6 +325,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAlias(Alias alias) throws IOException {
         if (alias != null){
             // write db first
@@ -304,6 +343,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeIdentifier(Xref identifier) throws IOException {
         if (identifier != null){
             // write db first
@@ -319,6 +359,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void escapeAndWriteString(String stringToEscape) throws IOException {
         // replace first tabs and break line with a space and escape double quote
         String replaced = stringToEscape.replaceAll(MitabUtils.LINE_BREAK+"|"+ MitabUtils.COLUMN_SEPARATOR, " ");
@@ -337,6 +378,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         writer.write(replaced);
     }
 
+    /**
+     * <p>writeComplexExpansion.</p>
+     *
+     * @param binary a T object.
+     * @throws java.io.IOException if any.
+     */
     public void writeComplexExpansion(T binary) throws IOException {
         if (binary.getComplexExpansion() != null){
             writeCvTerm(binary.getComplexExpansion());
@@ -346,6 +393,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeBiologicalRole.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeBiologicalRole(P participant) throws IOException {
         if (participant != null){
             writeCvTerm(participant.getBiologicalRole());
@@ -355,6 +408,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeInteractorType.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractorType(P participant) throws IOException {
         if (participant != null){
             writeCvTerm(participant.getInteractor().getInteractorType());
@@ -364,6 +423,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeParticipantXrefs.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantXrefs(P participant) throws IOException {
         if (participant != null){
 
@@ -467,6 +532,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeParticipantAnnotations.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantAnnotations(P participant) throws IOException {
         if (participant != null){
             // writes interactor annotations first
@@ -518,6 +589,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeDate(Date date) throws IOException {
         if (date != null){
             getWriter().write(MitabUtils.DATE_FORMAT.format(date));
@@ -527,6 +599,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeParticipantChecksums.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantChecksums(P participant) throws IOException {
         if (participant != null){
 
@@ -549,6 +627,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeInteractionChecksums.</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
     public void writeInteractionChecksums(T interaction) throws IOException {
         if (!interaction.getChecksums().isEmpty()){
 
@@ -565,6 +649,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeChecksum(Checksum checksum) throws IOException {
         if (checksum != null){
             // first method
@@ -575,6 +660,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeAnnotation(Annotation annotation) throws IOException {
         if (annotation != null){
 
@@ -589,6 +675,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeXref(Xref xref) throws IOException {
         if (xref != null){
             // write identifier first
@@ -603,6 +690,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeParticipantFeatures.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantFeatures(P participant) throws IOException {
         if (participant != null){
 
@@ -626,6 +719,12 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>writeParticipantStoichiometry.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
     public void writeParticipantStoichiometry(P participant) throws IOException {
         if (participant != null){
 
@@ -650,6 +749,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /** {@inheritDoc} */
     public void writeFeature(Feature feature) throws IOException {
         if (feature != null){
             // first write interactor type
@@ -684,14 +784,20 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }
 
     /**
      * Write full name if not null, otherwise write shortname
-     * @param cv
-     * @throws IOException
+     *
+     * @param cv a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws java.io.IOException if any.
      */
     protected void writeCvTermName(CvTerm cv) throws IOException {
         if (cv != null){

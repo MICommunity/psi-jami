@@ -20,16 +20,26 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInteraction> extends AbstractXmlInteractionWriter<I, ModelledParticipant> {
     private PsiXmlElementWriter<Confidence> confidenceWriter;
     private PsiXmlParameterWriter parameterWriter;
     private PsiXmlElementWriter<Alias> aliasWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlModelledInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /**
+     * <p>Getter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Confidence> getConfidenceWriter() {
         if (this.confidenceWriter == null){
             initialiseConfidenceWriter();
@@ -37,8 +47,16 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return confidenceWriter;
     }
 
+    /**
+     * <p>initialiseConfidenceWriter.</p>
+     */
     protected abstract void initialiseConfidenceWriter();
 
+    /**
+     * <p>Getter for the field <code>aliasWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Alias> getAliasWriter() {
         if (this.aliasWriter == null){
             this.aliasWriter =  new XmlAliasWriter(getStreamWriter());
@@ -46,14 +64,29 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>aliasWriter</code>.</p>
+     *
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAliasWriter(PsiXmlElementWriter<Alias> aliasWriter) {
         this.aliasWriter = aliasWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>confidenceWriter</code>.</p>
+     *
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setConfidenceWriter(PsiXmlElementWriter<Confidence> confidenceWriter) {
         this.confidenceWriter = confidenceWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>parameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     */
     public PsiXmlParameterWriter getParameterWriter() {
         if (this.parameterWriter == null){
             initialiseParameterWriter();
@@ -61,38 +94,52 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return parameterWriter;
     }
 
+    /**
+     * <p>initialiseParameterWriter.</p>
+     */
     protected abstract void initialiseParameterWriter();
 
+    /**
+     * <p>Setter for the field <code>parameterWriter</code>.</p>
+     *
+     * @param parameterWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     */
     public void setParameterWriter(PsiXmlParameterWriter parameterWriter) {
         this.parameterWriter = parameterWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultExperiment() {
         Experiment defaultExperiment = new XmlExperiment(new BibRef("Mock publication and experiment for abstract interactions that are not interaction evidences.",(String)null,(Date)null));
         setDefaultExperiment(defaultExperiment);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultExperiment(Experiment defaultExperiment) {
         super.setDefaultExperiment(defaultExperiment);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAvailability(I object) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherAttributes(I object) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeModelled(I object) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeParameters(I object) throws XMLStreamException {
         // write parameters
@@ -107,6 +154,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeConfidences(I object) throws XMLStreamException {
         // write confidences
@@ -121,6 +169,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAttributes(I object) throws XMLStreamException {
         // write attributes
@@ -163,13 +212,22 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         }
     }
 
+    /**
+     * <p>writeCooperativeEffect.</p>
+     *
+     * @param object a I object.
+     * @param startAttributeList a boolean.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeCooperativeEffect(I object, boolean startAttributeList) throws XMLStreamException;
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNegative(I object) {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(I object) throws XMLStreamException {
         // write experimental evidences
@@ -188,6 +246,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeNames(I object) throws XMLStreamException {
         if (object instanceof NamedInteraction){

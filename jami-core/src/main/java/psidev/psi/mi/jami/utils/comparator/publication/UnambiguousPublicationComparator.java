@@ -21,7 +21,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class UnambiguousPublicationComparator extends PublicationComparator{
 
     private static UnambiguousPublicationComparator unambiguousPublicationComparator;
@@ -33,14 +32,20 @@ public class UnambiguousPublicationComparator extends PublicationComparator{
         super(new UnambiguousExternalIdentifierComparator());
     }
 
+    /**
+     * <p>getIdentifierComparator</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.xref.UnambiguousExternalIdentifierComparator} object.
+     */
     public UnambiguousExternalIdentifierComparator getIdentifierComparator() {
         return (UnambiguousExternalIdentifierComparator)super.getIdentifierComparator();
     }
 
     /**
      * Use UnambiguousPublicationComparator to know if two publications are equals.
-     * @param pub1
-     * @param pub2
+     *
+     * @param pub1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param pub2 a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return true if the two publications are equal
      */
     public static boolean areEquals(Publication pub1, Publication pub2){
@@ -52,8 +57,9 @@ public class UnambiguousPublicationComparator extends PublicationComparator{
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param pub
+     * @param pub a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Publication pub){

@@ -15,6 +15,7 @@ import java.io.IOException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class FeatureEvidenceEnricherStatisticsWriter
         extends FeatureEnricherStatisticsWriter<FeatureEvidence>
@@ -24,6 +25,7 @@ public class FeatureEvidenceEnricherStatisticsWriter
     private static final String FILE_NAME = "feature";
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
+     *
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public FeatureEvidenceEnricherStatisticsWriter() throws IOException {
@@ -32,6 +34,7 @@ public class FeatureEvidenceEnricherStatisticsWriter
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
@@ -41,6 +44,7 @@ public class FeatureEvidenceEnricherStatisticsWriter
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -51,6 +55,7 @@ public class FeatureEvidenceEnricherStatisticsWriter
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -59,21 +64,25 @@ public class FeatureEvidenceEnricherStatisticsWriter
         super(successFile, failureFile);
     }
 
+    /** {@inheritDoc} */
     public void onAddedDetectionMethod(FeatureEvidence feature, CvTerm added) {
         checkObject(feature);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedDetectionMethod(FeatureEvidence feature, CvTerm removed) {
         checkObject(feature);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedParameter(FeatureEvidence o, Parameter added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParameter(FeatureEvidence o, Parameter removed) {
         checkObject(o);
         incrementRemovedCount();

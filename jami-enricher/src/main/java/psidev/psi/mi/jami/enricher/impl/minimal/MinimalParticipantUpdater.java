@@ -17,10 +17,12 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComp
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class MinimalParticipantUpdater<P extends Participant, F extends Feature>
         extends MinimalParticipantEnricher<P,F>  {
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultExactInteractorComparator.areEquals(objectToEnrich.getInteractor(), objectSource.getInteractor())){
@@ -38,6 +40,7 @@ public class MinimalParticipantUpdater<P extends Participant, F extends Feature>
         processInteractor(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeFeatures(objectToEnrich, objectToEnrich.getFeatures(), objectSource.getFeatures(), true, getParticipantEnricherListener(),
@@ -45,6 +48,7 @@ public class MinimalParticipantUpdater<P extends Participant, F extends Feature>
         processFeatures(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processBiologicalRole(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(objectToEnrich.getBiologicalRole(), objectSource.getBiologicalRole())){
@@ -62,6 +66,7 @@ public class MinimalParticipantUpdater<P extends Participant, F extends Feature>
         processBiologicalRole(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAliases(P objectToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeAliases(objectToEnrich, objectToEnrich.getAliases(), objectSource.getAliases(), true,

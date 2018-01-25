@@ -19,15 +19,18 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComp
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class FullParticipantUpdater<P extends Participant, F extends Feature>
         extends FullParticipantEnricher<P,F>  {
 
+    /** {@inheritDoc} */
     @Override
     protected void processCausalRelationships(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeCausalRelationships(objectToEnrich, objectToEnrich.getCausalRelationships(), objectSource.getCausalRelationships(), true, getParticipantEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(P objectToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getXrefs(), objectSource.getXrefs(), true, false,
@@ -35,6 +38,7 @@ public class FullParticipantUpdater<P extends Participant, F extends Feature>
                 null);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(P objectToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeAnnotations(objectToEnrich, objectToEnrich.getAnnotations(), objectSource.getAnnotations(),
@@ -42,6 +46,7 @@ public class FullParticipantUpdater<P extends Participant, F extends Feature>
                 getParticipantEnricherListener() instanceof AnnotationsChangeListener ? (AnnotationsChangeListener)getParticipantEnricherListener():null);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultExactInteractorComparator.areEquals(objectToEnrich.getInteractor(), objectSource.getInteractor())){
@@ -59,6 +64,7 @@ public class FullParticipantUpdater<P extends Participant, F extends Feature>
         processInteractor(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeFeatures(objectToEnrich, objectToEnrich.getFeatures(), objectSource.getFeatures(), true, getParticipantEnricherListener(),
@@ -66,6 +72,7 @@ public class FullParticipantUpdater<P extends Participant, F extends Feature>
         processFeatures(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processBiologicalRole(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultCvTermComparator.areEquals(objectToEnrich.getBiologicalRole(), objectSource.getBiologicalRole())){
@@ -83,6 +90,7 @@ public class FullParticipantUpdater<P extends Participant, F extends Feature>
         processBiologicalRole(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAliases(P objectToEnrich, P objectSource) throws EnricherException{
         EnricherUtils.mergeAliases(objectToEnrich, objectToEnrich.getAliases(), objectSource.getAliases(), true,

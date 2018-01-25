@@ -19,60 +19,81 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>24/07/13</pre>
  */
-
 public class XmlInteractorFactory extends DefaultInteractorFactory{
 
     private InteractorFactory delegate;
 
+    /**
+     * <p>Constructor for XmlInteractorFactory.</p>
+     */
     public XmlInteractorFactory() {
         super();
     }
 
+    /**
+     * <p>Constructor for XmlInteractorFactory.</p>
+     *
+     * @param delegate a {@link psidev.psi.mi.jami.factory.InteractorFactory} object.
+     */
     public XmlInteractorFactory(InteractorFactory delegate) {
         super();
         this.delegate = delegate;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Protein createProtein(String name, CvTerm type) {
         return delegate != null ? delegate.createProtein(name, type) : new XmlProtein(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public NucleicAcid createNucleicAcid(String name, CvTerm type) {
         return delegate != null ? delegate.createNucleicAcid(name, type) : new XmlNucleicAcid(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Gene createGene(String name) {
         return delegate != null ? delegate.createGene(name) : new XmlGene(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Complex createComplex(String name, CvTerm type) {
         return delegate != null ? delegate.createComplex(name, type) : new XmlComplex(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public BioactiveEntity createBioactiveEntity(String name, CvTerm type) {
         return delegate != null ? delegate.createBioactiveEntity(name, type) : new XmlBioactiveEntity(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Polymer createPolymer(String name, CvTerm type) {
         return delegate != null ? delegate.createPolymer(name, type) : new XmlPolymer(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interactor createInteractor(String name, CvTerm type) {
         return delegate != null ? delegate.createInteractor(name, type) : new XmlInteractor(name, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractorPool createInteractorSet(String name, CvTerm type) {
         return delegate != null ? delegate.createInteractorSet(name, type) : new XmlInteractorPool(name, type);
     }
 
+    /**
+     * <p>createInteractorFromXmlInteractorInstance.</p>
+     *
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractor} object.
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
+     */
     public Interactor createInteractorFromXmlInteractorInstance(AbstractXmlInteractor source){
         Interactor reloadedInteractorDependingOnType = createInteractorFromInteractorType(source.getInteractorType(), source.getShortName());
         if (reloadedInteractorDependingOnType == null){

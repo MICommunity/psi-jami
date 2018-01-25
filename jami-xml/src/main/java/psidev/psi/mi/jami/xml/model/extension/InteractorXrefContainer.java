@@ -23,6 +23,7 @@ public class InteractorXrefContainer extends XrefContainer {
 
     private List<Xref> identifiers;
 
+    /** {@inheritDoc} */
     @Override
     protected void processAddedPrimaryRef(Xref added) {
         if (XrefUtils.isXrefAnIdentifier(added)){
@@ -33,6 +34,11 @@ public class InteractorXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
             initialiseIdentifiers();
@@ -40,14 +46,23 @@ public class InteractorXrefContainer extends XrefContainer {
         return identifiers;
     }
 
+    /**
+     * <p>getPreferredIdentifier.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public Xref getPreferredIdentifier() {
         return !getIdentifiers().isEmpty() ? identifiers.iterator().next() : null;
     }
 
+    /**
+     * <p>initialiseIdentifiers.</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new ArrayList<Xref>();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSecondaryRefs() {
         super.initialiseSecondaryResWith(new JAXBSecondaryXrefList());

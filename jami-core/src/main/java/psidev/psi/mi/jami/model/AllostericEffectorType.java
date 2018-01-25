@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>23/05/13</pre>
  */
-
 public enum AllostericEffectorType {
 
     molecule, feature_modification, other

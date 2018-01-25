@@ -13,15 +13,15 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>21/05/13</pre>
  */
-
 public class StoichiometryComparator implements Comparator<Stoichiometry> {
 
     private static StoichiometryComparator stoichiometryComparator;
     /**
      * It will first compare the minValue. If both minValues are the same, it will compare maxValues.
-     * @param stoichiometry1
-     * @param stoichiometry2
-     * @return
+     *
+     * @param stoichiometry1 a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @param stoichiometry2 a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @return a int.
      */
     public int compare(Stoichiometry stoichiometry1, Stoichiometry stoichiometry2) {
         int EQUAL = 0;
@@ -69,8 +69,9 @@ public class StoichiometryComparator implements Comparator<Stoichiometry> {
 
     /**
      * Use StoichiometryComparator to know if two stoichiometry are equals.
-     * @param stc1
-     * @param stc2
+     *
+     * @param stc1 a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @param stc2 a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      * @return true if the two stoichiometry are equal
      */
     public static boolean areEquals(Stoichiometry stc1, Stoichiometry stc2){
@@ -82,8 +83,9 @@ public class StoichiometryComparator implements Comparator<Stoichiometry> {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param stc
+     * @param stc a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Stoichiometry stc){

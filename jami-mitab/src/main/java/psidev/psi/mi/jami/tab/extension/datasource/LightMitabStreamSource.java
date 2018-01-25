@@ -14,29 +14,49 @@ import java.util.Iterator;
 /**
  * A mitab datasource that loads very basic interactions and ignore experimental details, source, confidence and experimental details
  * It will only provide an iterator of interactions.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class LightMitabStreamSource extends AbstractMitabStreamSource<Interaction, Participant, Feature> {
 
+    /**
+     * <p>Constructor for LightMitabStreamSource.</p>
+     */
     public LightMitabStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for LightMitabStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public LightMitabStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for LightMitabStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public LightMitabStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for LightMitabStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public LightMitabStreamSource(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(Reader reader) {
         if (reader == null){
@@ -46,6 +66,7 @@ public class LightMitabStreamSource extends AbstractMitabStreamSource<Interactio
         setLineParser(new InteractionLineParser(reader));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(File file) {
         if (file == null){
@@ -63,12 +84,14 @@ public class LightMitabStreamSource extends AbstractMitabStreamSource<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(InputStream input) {
         setOriginalStream(input);
         setLineParser(new InteractionLineParser(input));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(URL url) {
         if (url == null){
@@ -83,6 +106,7 @@ public class LightMitabStreamSource extends AbstractMitabStreamSource<Interactio
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<Interaction> createMitabIterator() throws MIIOException{
         return new MitabInteractionIterator(getLineParser());

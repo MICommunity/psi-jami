@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.13-SNAPSHOT</version>
+        <version>3.0.14</version>
     </parent>
 
     <artifactId>jami-obo</artifactId>
-    <name>PSI :: JAMI - OBO</name>
+    <name>PSI :: JAMI - Bridges - OBO</name>
     <description>JAMI-OBO bridge</description>
 
     <dependencies>

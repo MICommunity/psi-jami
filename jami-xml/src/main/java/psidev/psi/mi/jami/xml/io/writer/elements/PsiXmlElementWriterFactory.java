@@ -20,7 +20,6 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>23/04/14</pre>
  */
-
 public class PsiXmlElementWriterFactory {
 
     private static final PsiXmlElementWriterFactory instance = new PsiXmlElementWriterFactory();
@@ -29,10 +28,39 @@ public class PsiXmlElementWriterFactory {
         // nothing to do here
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriterFactory} object.
+     */
     public static PsiXmlElementWriterFactory getInstance() {
         return instance;
     }
 
+    /**
+     * <p>createInteractionWritersFor.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param extended a boolean.
+     * @param named a boolean.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param confidenceWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactionTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} objects.
+     */
     public static PsiXmlInteractionWriter[] createInteractionWritersFor(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                         PsiXmlType xmlType, InteractionCategory interactionCategory,
                                                                         ComplexType complexType, boolean extended, boolean named,
@@ -71,6 +99,30 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createDefaultPsiXmlInteractionWriters.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param confidenceWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactionTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param parameterWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} objects.
+     * @param participantWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} objects.
+     * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} objects.
+     */
     public static PsiXmlInteractionWriter[] createDefaultPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
                                                                                   PsiXmlVersion version, PsiXmlType xmlType,
                                                                                   InteractionCategory interactionCategory, ComplexType complexType,
@@ -505,6 +557,30 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createNamedPsiXmlInteractionWriters.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param confidenceWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactionTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param parameterWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} objects.
+     * @param participantWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} objects.
+     * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} objects.
+     */
     public static PsiXmlInteractionWriter[] createNamedPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
                                                                                 PsiXmlVersion version, PsiXmlType xmlType,
                                                                                 InteractionCategory interactionCategory, ComplexType complexType,
@@ -939,6 +1015,30 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createExtendedPsiXmlInteractionWriters.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param interactionCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param complexType a {@link psidev.psi.mi.jami.model.ComplexType} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param confidenceWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactionTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     * @param availabilityWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param parameterWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} objects.
+     * @param participantWriters an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} objects.
+     * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlInteractionWriter} objects.
+     */
     public static PsiXmlInteractionWriter[] createExtendedPsiXmlInteractionWriters(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex,
                                                                                    PsiXmlVersion version, PsiXmlType xmlType,
                                                                                    InteractionCategory interactionCategory, ComplexType complexType,
@@ -1392,14 +1492,34 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createAliasWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Alias> createAliasWriter(XMLStreamWriter streamWriter) {
         return new XmlAliasWriter(streamWriter);
     }
 
+    /**
+     * <p>createAnnotationWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Annotation> createAnnotationWriter(XMLStreamWriter streamWriter) {
         return new XmlAnnotationWriter(streamWriter);
     }
 
+    /**
+     * <p>createXrefWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param annotationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public static PsiXmlXrefWriter createXrefWriter(XMLStreamWriter streamWriter, boolean extended,
                                                     PsiXmlElementWriter<Annotation> annotationWriter) {
         PsiXmlXrefWriter writer;
@@ -1412,6 +1532,16 @@ public class PsiXmlElementWriterFactory {
         return writer;
     }
 
+    /**
+     * <p>createPublicationWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     */
     public static PsiXmlPublicationWriter createPublicationWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                   PsiXmlElementWriter<Annotation> attributeWriter, PsiXmlXrefWriter primaryRefWriter,
                                                                   PsiXmlVersion version) {
@@ -1454,6 +1584,16 @@ public class PsiXmlElementWriterFactory {
         return publicationWriter;
     }
 
+    /**
+     * <p>createOpenCvWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public static PsiXmlVariableNameWriter<CvTerm> createOpenCvWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                       PsiXmlElementWriter<Alias> aliasWriter, PsiXmlElementWriter<Annotation> attributeWriter,
                                                                       PsiXmlXrefWriter primaryRefWriter) {
@@ -1473,6 +1613,16 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createExperimentalCvWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public static PsiXmlVariableNameWriter<CvTerm> createExperimentalCvWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                               PsiXmlObjectCache objectIndex,
                                                                               PsiXmlElementWriter<Alias> aliasWriter,
@@ -1491,6 +1641,15 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createCvWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public static PsiXmlVariableNameWriter<CvTerm> createCvWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                   PsiXmlElementWriter<Alias> aliasWriter, PsiXmlXrefWriter primaryRefWriter) {
         if (extended) {
@@ -1507,6 +1666,18 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createHostOrganismWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param annotationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Organism> createHostOrganismWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                          PsiXmlObjectCache objectIndex, PsiXmlElementWriter<Alias> aliasWriter,
                                                                          PsiXmlElementWriter<Annotation> annotationWriter,
@@ -1527,6 +1698,17 @@ public class PsiXmlElementWriterFactory {
     }
 
     //TODO check if the organism can be extended, becasue for schema definition looks like it is not
+    /**
+     * <p>createOrganismWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param annotationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Organism> createOrganismWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                      PsiXmlElementWriter<Alias> aliasWriter,
                                                                      PsiXmlElementWriter<Annotation> annotationWriter,
@@ -1547,10 +1729,27 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createChecksumWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Checksum> createChecksumWriter(XMLStreamWriter streamWriter) {
         return new XmlChecksumWriter(streamWriter);
     }
 
+    /**
+     * <p>createConfidenceWriters.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param confidenceTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     */
     public static PsiXmlElementWriter<Confidence>[] createConfidenceWriters(XMLStreamWriter streamWriter, boolean extended,
                                                                             PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                             PsiXmlVariableNameWriter<CvTerm> confidenceTypeWriter,
@@ -1584,6 +1783,14 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createResultingSequenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param refWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<ResultingSequence> createResultingSequenceWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                        PsiXmlXrefWriter refWriter) {
         if (extended) {
@@ -1598,6 +1805,15 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createCooperativityEvidenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param expanded a boolean.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<CooperativityEvidence> createCooperativityEvidenceWriter(XMLStreamWriter streamWriter, boolean expanded,
                                                                                                PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                                                PsiXmlPublicationWriter publicationWriter) {
@@ -1616,6 +1832,17 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createAllosteryWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param expanded a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Allostery> createAllosteryWriter(XMLStreamWriter streamWriter, boolean expanded,
                                                                        PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                        PsiXmlElementWriter<Annotation> attributeWriter,
@@ -1636,6 +1863,17 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createPreassemblyWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Preassembly> createPreassemblyWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                            PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter,
                                                                            PsiXmlElementWriter<Annotation> attributeWriter,
@@ -1656,6 +1894,15 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createCausalRelationshipWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter} object.
+     */
     public static PsiXmlCausalRelationshipWriter createCausalRelationshipWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                 PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter) {
         if (extended) {
@@ -1670,16 +1917,39 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createVariableParameterValueSetWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<VariableParameterValueSet> createVariableParameterValueSetWriter(XMLStreamWriter streamWriter,
                                                                                                        PsiXmlObjectCache objectIndex) {
         return new XmlVariableParameterValueSetWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createVariableParameterValueWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<VariableParameterValue> createVariableParameterValueWriter(XMLStreamWriter streamWriter,
                                                                                                  PsiXmlObjectCache objectIndex) {
         return new XmlVariableParameterValueWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createVariableParameterWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<VariableParameter> createVariableParameterWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                        PsiXmlObjectCache objectIndex, PsiXmlVariableNameWriter<CvTerm> cvWriter) {
         if (extended) {
@@ -1696,6 +1966,14 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createPositionsWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param statusWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     */
     public static PsiXmlElementWriter<Position>[] createPositionsWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                         PsiXmlVariableNameWriter<CvTerm> statusWriter) {
         if (extended) {
@@ -1715,6 +1993,17 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createRangeWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param refWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param statusWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Range> createRangeWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                PsiXmlXrefWriter refWriter, PsiXmlVariableNameWriter<CvTerm> statusWriter) {
@@ -1755,6 +2044,16 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createParameterWriters.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} objects.
+     */
     public static PsiXmlParameterWriter[] createParameterWriters(XMLStreamWriter streamWriter, boolean extended,
                                                                  PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                  PsiXmlPublicationWriter publicationWriter) {
@@ -1787,22 +2086,58 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createAvailabilityWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<String> createAvailabilityWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex) {
         return new XmlAvailabilityWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createInferredInteractionWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Set<Feature>> createInferredInteractionWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex) {
         return new XmlInferredInteractionWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createExtendedInferredInteractionWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<InferredInteraction> createExtendedInferredInteractionWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex) {
         return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInferredInteractionWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createBindingFeaturesWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Set<Feature>> createBindingFeaturesWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache objectIndex) {
         return new XmlBindingFeaturesWriter(streamWriter, objectIndex);
     }
 
+    /**
+     * <p>createExperimentalInteractorWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<ExperimentalInteractor> createExperimentalInteractorWriter(XMLStreamWriter streamWriter,
                                                                                                  PsiXmlObjectCache objectIndex,
                                                                                                  PsiXmlType xmlType) {
@@ -1814,6 +2149,18 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createSourceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlSourceWriter} object.
+     */
     public static PsiXmlSourceWriter createSourceWriter(XMLStreamWriter streamWriter, boolean extended,
                                                         PsiXmlVersion version,
                                                         PsiXmlElementWriter<Alias> aliasWriter, PsiXmlElementWriter<Annotation> attributeWriter,
@@ -1861,6 +2208,23 @@ public class PsiXmlElementWriterFactory {
 
     }
 
+    /**
+     * <p>createExperimentWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param named a boolean.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     * @param nonExperimentalHostOrganismWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param detectionMethodWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     */
     public static PsiXmlExperimentWriter createExperimentWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                 PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                 boolean named, PsiXmlElementWriter<Alias> aliasWriter,
@@ -1946,6 +2310,20 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createInteractorWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param interactorTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param organismWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public static PsiXmlElementWriter<Interactor> createInteractorWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                          PsiXmlObjectCache objectIndex, PsiXmlElementWriter<Alias> aliasWriter,
                                                                          PsiXmlElementWriter<Annotation> attributeWriter,
@@ -1975,6 +2353,22 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createFeatureWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param featureTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param parameterWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     * @param <F> a F object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     */
     public static <F extends Feature> PsiXmlElementWriter<F>[] createFeatureWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                    PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                                    InteractionCategory category, PsiXmlElementWriter<Alias> aliasWriter,
@@ -2110,6 +2504,26 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createParticipantWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param primaryRefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     * @param confidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param cvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param openCvWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     * @param parameterWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter} object.
+     * @param <P> a P object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} objects.
+     */
     public static <P extends Participant> PsiXmlParticipantWriter<P>[] createParticipantWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                                PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                                                PsiXmlType xmlType,
@@ -2455,6 +2869,21 @@ public class PsiXmlElementWriterFactory {
         }
     }
 
+    /**
+     * <p>createParticipantCandidateWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param extended a boolean.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @param interactorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param modelledFeatureWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param featureEvidenceWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     * @param <P> a P object.
+     * @return an array of {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} objects.
+     */
     public static <P extends ParticipantCandidate> PsiXmlElementWriter<P>[] createParticipantCandidateWriter(XMLStreamWriter streamWriter, boolean extended,
                                                                                                              PsiXmlObjectCache objectIndex, PsiXmlVersion version,
                                                                                                              PsiXmlType xmlType,

@@ -12,12 +12,24 @@ import psidev.psi.mi.jami.utils.comparator.MIComparator;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class BindingPair<F extends Feature> extends AbstractMIEdge<F>{
+    /**
+     * <p>Constructor for BindingPair.</p>
+     *
+     * @param nodeA a F object.
+     * @param nodeB a F object.
+     */
     public BindingPair(F nodeA, F nodeB) {
         super(nodeA, nodeB, new IdentityHashComparator<F>());
     }
 
+    /**
+     * <p>Constructor for BindingPair.</p>
+     *
+     * @param nodeA a F object.
+     * @param nodeB a F object.
+     * @param nodeComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public BindingPair(F nodeA, F nodeB, MIComparator<F> nodeComparator) {
         super(nodeA, nodeB, nodeComparator);
     }

@@ -14,12 +14,13 @@ import psidev.psi.mi.jami.model.ParticipantEvidence;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class UnambiguousParticipantEvidenceComparator extends ParticipantEvidenceComparator {
 
     private static UnambiguousParticipantEvidenceComparator unambiguousExperimentalParticipantComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousParticipantEvidenceComparator. It will use a UnambiguousParticipantBaseComparator to compare
      * the basic properties of a participant, a UnambiguousCvTermComparator to compare experimental roles, preparations and identification methods
      * and a UnambiguousOrganismComparator to compare expressed in organisms
@@ -32,7 +33,6 @@ public class UnambiguousParticipantEvidenceComparator extends ParticipantEvidenc
     public UnambiguousExperimentalParticipantPoolComparator getParticipantPoolComparator() {
         return (UnambiguousExperimentalParticipantPoolComparator) super.getParticipantPoolComparator();
     }
-
     @Override
     /**
      * It will first compares experimental roles using UnambiguousCvTermComparator. If both experimental roles are equals, it
@@ -46,8 +46,9 @@ public class UnambiguousParticipantEvidenceComparator extends ParticipantEvidenc
 
     /**
      * Use UnambiguousParticipantEvidenceComparator to know if two experimental participants are equals.
-     * @param experimentalParticipant1
-     * @param component2
+     *
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @return true if the two experimental participants are equal
      */
     public static boolean areEquals(ParticipantEvidence experimentalParticipant1, ParticipantEvidence component2){

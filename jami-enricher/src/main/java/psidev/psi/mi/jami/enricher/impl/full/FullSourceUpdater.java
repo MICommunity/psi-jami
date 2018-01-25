@@ -16,12 +16,21 @@ import psidev.psi.mi.jami.model.Source;
  * @version $Id$
  * @since <pre>29/01/14</pre>
  */
-
 public class FullSourceUpdater extends MinimalSourceUpdater {
+    /**
+     * <p>Constructor for FullSourceUpdater.</p>
+     *
+     * @param cvTermFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.SourceFetcher} object.
+     */
     public FullSourceUpdater(SourceFetcher cvTermFetcher) {
         super(new FullCvTermUpdater<Source>(cvTermFetcher));
     }
 
+    /**
+     * <p>Constructor for FullSourceUpdater.</p>
+     *
+     * @param cvTermUpdater a {@link psidev.psi.mi.jami.enricher.impl.full.FullCvTermUpdater} object.
+     */
     protected FullSourceUpdater(FullCvTermUpdater<Source> cvTermUpdater) {
         super(cvTermUpdater);
     }

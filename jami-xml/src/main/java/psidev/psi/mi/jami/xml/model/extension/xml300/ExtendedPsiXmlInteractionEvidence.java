@@ -9,8 +9,12 @@ import java.util.List;
  * @version $Id$
  * @since <pre>29/10/13</pre>
  */
-
 public interface ExtendedPsiXmlInteractionEvidence extends psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence{
 
+    /**
+     * <p>getCausalRelationships.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<ExtendedPsiXmlCausalRelationship> getCausalRelationships();
 }

@@ -14,6 +14,7 @@ import psidev.psi.mi.jami.model.Source;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public class SourceEnricherListenerManager
     extends CvTermEnricherListenerManager<Source>
@@ -26,6 +27,7 @@ public class SourceEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public SourceEnricherListenerManager(SourceEnricherListener... listeners){
@@ -34,6 +36,7 @@ public class SourceEnricherListenerManager
 
     //=============================================================================================================
 
+    /** {@inheritDoc} */
     public void onUrlUpdate(Source cv, String oldUrl) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof SourceEnricherListener){
@@ -42,6 +45,7 @@ public class SourceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPostalAddressUpdate(Source cv, String oldPostalAddress) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof SourceEnricherListener){
@@ -50,6 +54,7 @@ public class SourceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationUpdate(Source cv, Publication oldPublication) {
         for(CvTermEnricherListener listener : getListenersList()){
             if (listener instanceof SourceEnricherListener){

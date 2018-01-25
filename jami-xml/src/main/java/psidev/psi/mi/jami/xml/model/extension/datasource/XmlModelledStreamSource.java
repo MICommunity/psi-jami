@@ -21,28 +21,51 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlModelledStreamSource extends AbstractPsiXmlStream<ModelledInteraction> implements ModelledInteractionStream<ModelledInteraction>{
 
+    /**
+     * <p>Constructor for XmlModelledStreamSource.</p>
+     */
     public XmlModelledStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlModelledStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlModelledStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlModelledStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlModelledStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlModelledStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlModelledStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlModelledStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlModelledStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         XmlModelledParser parser = new XmlModelledParser(reader);
@@ -51,6 +74,7 @@ public class XmlModelledStreamSource extends AbstractPsiXmlStream<ModelledIntera
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         XmlModelledParser parser = new XmlModelledParser(file);
@@ -59,6 +83,7 @@ public class XmlModelledStreamSource extends AbstractPsiXmlStream<ModelledIntera
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         XmlModelledParser parser = new XmlModelledParser(input);
@@ -67,6 +92,7 @@ public class XmlModelledStreamSource extends AbstractPsiXmlStream<ModelledIntera
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         XmlModelledParser parser = new XmlModelledParser(url);
@@ -75,11 +101,13 @@ public class XmlModelledStreamSource extends AbstractPsiXmlStream<ModelledIntera
         setParser(parser);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod) {
         // nothing to do as we don't expand
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<ModelledInteraction> createXmlIterator() {
         return new XmlModelledInteractionIterator(getParser());

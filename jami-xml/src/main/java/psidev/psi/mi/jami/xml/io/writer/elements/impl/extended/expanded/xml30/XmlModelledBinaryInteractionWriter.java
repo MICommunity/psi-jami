@@ -14,23 +14,31 @@ import javax.xml.stream.XMLStreamWriter;
  * Expanded XML 3.0 writer for an expanded modelled binary interaction (ignore experimental details).
  * It will write cooperative effects as attributes
  * It will write intra-molecular property, names, interaction types and experiments
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlModelledBinaryInteractionWriter extends AbstractXmlModelledInteractionWriter<ModelledBinaryInteraction>
         implements ExpandedPsiXmlElementWriter<ModelledBinaryInteraction> {
 
+    /**
+     * <p>Constructor for XmlModelledBinaryInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlModelledBinaryInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(ModelledBinaryInteraction object) throws XMLStreamException {
         // write evidence type
@@ -41,6 +49,7 @@ public class XmlModelledBinaryInteractionWriter extends AbstractXmlModelledInter
         writeCausalRelationships(object);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAttributes(ModelledBinaryInteraction object) throws XMLStreamException {
         // write attributes

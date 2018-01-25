@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>23/11/12</pre>
  */
-
 public interface ModelledFeature extends Feature<ModelledEntity, ModelledFeature>{
 
 }

@@ -11,10 +11,16 @@ import javax.xml.stream.XMLStreamWriter;
  */
 public class XmlCvTermWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter {
 
+    /**
+     * <p>Constructor for XmlCvTermWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlCvTermWriter(XMLStreamWriter writer){
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));

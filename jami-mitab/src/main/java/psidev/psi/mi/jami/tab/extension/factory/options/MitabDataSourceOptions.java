@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
  * @version $Id$
  * @since <pre>02/05/14</pre>
  */
-
 public class MitabDataSourceOptions extends MIFileDataSourceOptions{
 
     /*

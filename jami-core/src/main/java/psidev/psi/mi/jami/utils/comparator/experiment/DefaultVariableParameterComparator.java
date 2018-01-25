@@ -18,13 +18,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultVariableParameterComparator {
 
     /**
      * Use DefaultVariableParameterComparator to know if two variableParameter are equals.
-     * @param variableParameter1
-     * @param variableParameter2
+     *
+     * @param variableParameter1 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param variableParameter2 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      * @return true if the two variableParameters are equal
      */
     public static boolean areEquals(VariableParameter variableParameter1, VariableParameter variableParameter2){

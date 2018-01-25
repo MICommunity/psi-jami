@@ -23,13 +23,18 @@ import psidev.psi.mi.jami.utils.comparator.publication.DefaultCuratedPublication
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalExperimentUpdater extends MinimalExperimentEnricher{
 
+    /**
+     * <p>Constructor for MinimalExperimentUpdater.</p>
+     */
     public MinimalExperimentUpdater(){
        super();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processInteractionDetectionMethod(Experiment experimentToEnrich, Experiment objectSource) throws EnricherException {
 
@@ -47,6 +52,7 @@ public class MinimalExperimentUpdater extends MinimalExperimentEnricher{
         processInteractionDetectionMethod(experimentToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublication(Experiment experimentToEnrich, Experiment objectSource) throws EnricherException {
         if (!DefaultCuratedPublicationComparator.areEquals(experimentToEnrich.getPublication(), objectSource.getPublication())){
@@ -63,6 +69,7 @@ public class MinimalExperimentUpdater extends MinimalExperimentEnricher{
         processPublication(experimentToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOrganism(Experiment experimentToEnrich, Experiment objectSource) throws EnricherException {
         if (!DefaultOrganismComparator.areEquals(experimentToEnrich.getHostOrganism(), objectSource.getHostOrganism())){

@@ -19,18 +19,26 @@ import psidev.psi.mi.jami.model.Protein;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 20/05/13
+
  */
 public class FullProteinUpdater extends MinimalProteinUpdater {
 
+    /**
+     * <p>Constructor for FullProteinUpdater.</p>
+     *
+     * @param proteinFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.ProteinFetcher} object.
+     */
     public FullProteinUpdater(ProteinFetcher proteinFetcher) {
         super(proteinFetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Protein proteinToEnrich, Protein fetched) {
 

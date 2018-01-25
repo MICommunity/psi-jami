@@ -13,16 +13,19 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComp
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class FullEntityUpdater<P extends Entity, F extends Feature>
         extends FullEntityEnricher<P,F>  {
 
+    /** {@inheritDoc} */
     @Override
     protected void processCausalRelationships(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeCausalRelationships(objectToEnrich, objectToEnrich.getCausalRelationships(), objectSource.getCausalRelationships(),
                 true, getParticipantEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultExactInteractorComparator.areEquals(objectToEnrich.getInteractor(), objectSource.getInteractor())){
@@ -40,6 +43,7 @@ public class FullEntityUpdater<P extends Entity, F extends Feature>
         processInteractor(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeFeatures(objectToEnrich, objectToEnrich.getFeatures(), objectSource.getFeatures(), true, getParticipantEnricherListener(),

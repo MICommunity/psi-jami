@@ -7,10 +7,12 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+ * @version $Id: $
  */
 public interface ExperimentChangeListener extends XrefsChangeListener<Experiment>, AnnotationsChangeListener<Experiment>, ConfidencesChangeListener<Experiment> {
 
     /**
+     * <p>onPublicationUpdate</p>
      *
      * @param experiment : updated experiment
      * @param oldPublication : old publication
@@ -18,6 +20,7 @@ public interface ExperimentChangeListener extends XrefsChangeListener<Experiment
     public void onPublicationUpdate(Experiment experiment, Publication oldPublication);
 
     /**
+     * <p>onInteractionDetectionMethodUpdate</p>
      *
      * @param experiment : updated experiment
      * @param oldCv : old cv
@@ -25,6 +28,7 @@ public interface ExperimentChangeListener extends XrefsChangeListener<Experiment
     public void onInteractionDetectionMethodUpdate(Experiment experiment, CvTerm oldCv);
 
     /**
+     * <p>onHostOrganismUpdate</p>
      *
      * @param experiment : updated experiment
      * @param oldOrganism : old organism
@@ -33,6 +37,7 @@ public interface ExperimentChangeListener extends XrefsChangeListener<Experiment
 
     /**
      * Listen to the event where a parameter has been added to the object parameters.
+     *
      * @param o        The object which has changed.
      * @param added             The added parameter.
      */
@@ -40,6 +45,7 @@ public interface ExperimentChangeListener extends XrefsChangeListener<Experiment
 
     /**
      * Listen to the event where a parameter has been removed from the object parameters.
+     *
      * @param o        The object which has changed.
      * @param removed           The removed parameter.
      */

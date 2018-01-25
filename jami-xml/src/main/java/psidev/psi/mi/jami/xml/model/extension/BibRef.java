@@ -41,9 +41,17 @@ public class BibRef
 
     private JAXBAttributeWrapper jaxbAttributeWrapper;
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     */
     public BibRef(){
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public BibRef(Xref identifier){
         this();
 
@@ -52,6 +60,13 @@ public class BibRef
         }
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(Xref identifier, CurationDepth curationDepth, Source source){
         this(identifier);
         if (curationDepth != null){
@@ -60,11 +75,23 @@ public class BibRef
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(Xref identifier, String imexId, Source source){
         this(identifier, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     */
     public BibRef(String pubmed){
 
         if (pubmed != null){
@@ -72,6 +99,13 @@ public class BibRef
         }
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(String pubmed, CurationDepth curationDepth, Source source){
         this(pubmed);
         if (curationDepth != null){
@@ -80,32 +114,70 @@ public class BibRef
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(String pubmed, String imexId, Source source){
         this(pubmed, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     */
     public BibRef(String title, String journal, Date publicationDate){
         setTitle(title);
         setJournal(journal);
         setPublicationDate(publicationDate);
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(String title, String journal, Date publicationDate, CurationDepth curationDepth, Source source){
         this(title, journal, publicationDate);
         setCurationDepth(curationDepth);
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for BibRef.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public BibRef(String title, String journal, Date publicationDate, String imexId, Source source){
         this(title, journal, publicationDate, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>getPubmedId.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPubmedId() {
         return xrefContainer != null ? xrefContainer.getPubmedId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setPubmedId(String pubmedId) {
         if (xrefContainer == null && pubmedId != null){
             xrefContainer = new PublicationXrefContainer();
@@ -113,10 +185,16 @@ public class BibRef
         xrefContainer.setPubmedId(pubmedId);
     }
 
+    /**
+     * <p>getDoi.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDoi() {
         return xrefContainer != null ? xrefContainer.getDoi() : null;
     }
 
+    /** {@inheritDoc} */
     public void setDoi(String doi) {
         if (xrefContainer == null && doi != null){
             xrefContainer = new PublicationXrefContainer();
@@ -124,6 +202,11 @@ public class BibRef
         xrefContainer.setDoi(doi);
     }
 
+    /**
+     * <p>getIdentifiers.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (xrefContainer == null){
             xrefContainer = new PublicationXrefContainer();
@@ -131,10 +214,16 @@ public class BibRef
         return xrefContainer.getIdentifiers();
     }
 
+    /**
+     * <p>getImexId.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getImexId() {
         return this.xrefContainer != null ? this.xrefContainer.getImexId() : null;
     }
 
+    /** {@inheritDoc} */
     public void assignImexId(String identifier) {
         if (xrefContainer == null && identifier != null){
             xrefContainer = new PublicationXrefContainer();
@@ -143,10 +232,16 @@ public class BibRef
         this.xrefContainer.assignImexId(identifier);
     }
 
+    /**
+     * <p>getTitle.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getTitle() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.title : null;
     }
 
+    /** {@inheritDoc} */
     public void setTitle(String title) {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -154,10 +249,16 @@ public class BibRef
         this.jaxbAttributeWrapper.title = title;
     }
 
+    /**
+     * <p>getJournal.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getJournal() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.journal : null;
     }
 
+    /** {@inheritDoc} */
     public void setJournal(String journal) {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -165,10 +266,16 @@ public class BibRef
         this.jaxbAttributeWrapper.journal = journal;
     }
 
+    /**
+     * <p>getPublicationDate.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getPublicationDate() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.publicationDate : null;
     }
 
+    /** {@inheritDoc} */
     public void setPublicationDate(Date date) {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -176,6 +283,11 @@ public class BibRef
         this.jaxbAttributeWrapper.publicationDate = date;
     }
 
+    /**
+     * <p>getAuthors.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<String> getAuthors() {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -183,6 +295,11 @@ public class BibRef
         return this.jaxbAttributeWrapper.authors;
     }
 
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
             xrefContainer = new PublicationXrefContainer();
@@ -190,6 +307,11 @@ public class BibRef
         return xrefContainer.getXrefs();
     }
 
+    /**
+     * <p>getAnnotations.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (jaxbAttributeWrapper == null){
             initialiseAnnotationWrapper();
@@ -197,6 +319,11 @@ public class BibRef
         return this.jaxbAttributeWrapper.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>experiments</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (experiments == null){
             initialiseExperiments();
@@ -204,10 +331,16 @@ public class BibRef
         return this.experiments;
     }
 
+    /**
+     * <p>getCurationDepth.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     */
     public CurationDepth getCurationDepth() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.curationDepth : CurationDepth.undefined;
     }
 
+    /** {@inheritDoc} */
     public void setCurationDepth(CurationDepth curationDepth) {
 
         if (getImexId() != null && curationDepth != null && !curationDepth.equals(CurationDepth.IMEx)){
@@ -227,22 +360,35 @@ public class BibRef
         }
     }
 
+    /**
+     * <p>Getter for the field <code>releasedDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getReleasedDate() {
         return this.releasedDate;
     }
 
+    /** {@inheritDoc} */
     public void setReleasedDate(Date released) {
         this.releasedDate = released;
     }
 
+    /**
+     * <p>Getter for the field <code>source</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public Source getSource() {
         return this.source;
     }
 
+    /** {@inheritDoc} */
     public void setSource(Source source) {
         this.source = source;
     }
 
+    /** {@inheritDoc} */
     public boolean addExperiment(Experiment exp) {
         if (exp == null){
             return false;
@@ -256,6 +402,7 @@ public class BibRef
         }
     }
 
+    /** {@inheritDoc} */
     public boolean removeExperiment(Experiment exp) {
         if (exp == null){
             return false;
@@ -269,6 +416,7 @@ public class BibRef
         }
     }
 
+    /** {@inheritDoc} */
     public boolean addAllExperiments(Collection<? extends Experiment> exps) {
         if (exps == null){
             return false;
@@ -285,6 +433,7 @@ public class BibRef
         }
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllExperiments(Collection<? extends Experiment> exps) {
         if (exps == null){
             return false;
@@ -301,21 +450,37 @@ public class BibRef
         }
     }
 
+    /**
+     * <p>setJAXBXref.</p>
+     *
+     * @param xrefContainer a {@link psidev.psi.mi.jami.xml.model.extension.PublicationXrefContainer} object.
+     */
     @XmlElement(name = "xref")
     public void setJAXBXref(PublicationXrefContainer xrefContainer) {
         this.xrefContainer = xrefContainer;
     }
 
+    /**
+     * <p>setJAXBAttributeWrapper.</p>
+     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.BibRef.JAXBAttributeWrapper} object.
+     */
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -323,6 +488,7 @@ public class BibRef
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -335,15 +501,22 @@ public class BibRef
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Bibref: "+getSourceLocator().toString():super.toString());
     }
 
+    /**
+     * <p>initialiseAnnotationWrapper.</p>
+     */
     protected void initialiseAnnotationWrapper(){
         this.jaxbAttributeWrapper = new JAXBAttributeWrapper();
     }
 
+    /**
+     * <p>initialiseExperiments.</p>
+     */
     protected void initialiseExperiments(){
         this.experiments = new ArrayList<Experiment>();
     }

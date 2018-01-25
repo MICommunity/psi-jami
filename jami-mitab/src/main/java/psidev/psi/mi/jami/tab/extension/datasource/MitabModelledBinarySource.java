@@ -13,24 +13,43 @@ import java.io.Reader;
 /**
  * A mitab datasource that loads modelled binary interactions and ignore experimental details.
  * It will load the full interaction dataset
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class MitabModelledBinarySource  extends AbstractMitabSource<ModelledBinaryInteraction, ModelledParticipant, ModelledFeature> implements ModelledBinaryInteractionStream {
+    /**
+     * <p>Constructor for MitabModelledBinarySource.</p>
+     */
     public MitabModelledBinarySource() {
         super(new MitabModelledBinaryStreamSource());
     }
 
+    /**
+     * <p>Constructor for MitabModelledBinarySource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MitabModelledBinarySource(File file) throws IOException {
         super(new MitabModelledBinaryStreamSource(file));
     }
 
+    /**
+     * <p>Constructor for MitabModelledBinarySource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public MitabModelledBinarySource(InputStream input) {
         super(new MitabModelledBinaryStreamSource(input));
     }
 
+    /**
+     * <p>Constructor for MitabModelledBinarySource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public MitabModelledBinarySource(Reader reader) {
         super(new MitabModelledBinaryStreamSource(reader));
     }

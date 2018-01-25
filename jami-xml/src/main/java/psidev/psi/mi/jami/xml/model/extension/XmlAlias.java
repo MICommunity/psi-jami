@@ -34,9 +34,18 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     @XmlTransient
     private Locator locator;
 
+    /**
+     * <p>Constructor for XmlAlias.</p>
+     */
     public XmlAlias() {
     }
 
+    /**
+     * <p>Constructor for XmlAlias.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlAlias(String name, CvTerm type) {
         if (name == null){
             throw new IllegalArgumentException("The alias name cannot be null.");
@@ -45,6 +54,11 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         this.type = type;
     }
 
+    /**
+     * <p>Constructor for XmlAlias.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public XmlAlias(String name) {
         if (name == null){
             throw new IllegalArgumentException("The alias name cannot be null.");
@@ -52,10 +66,20 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         this.name = name;
     }
 
+    /**
+     * <p>Getter for the field <code>type</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getType() {
         return this.type;
     }
 
+    /**
+     * <p>Getter for the field <code>name</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getName() {
         if (name == null){
             name = PsiXmlUtils.UNSPECIFIED;
@@ -63,6 +87,11 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         return name;
     }
 
+    /**
+     * <p>setJAXBName.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     @XmlValue
     public void setJAXBName(String name) {
         this.name = name;
@@ -79,8 +108,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "typeAc")
     public void setJAXBTypeAc(String value) {
@@ -102,8 +130,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link String }
-     *
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "type")
     public void setJAXBTypeName(String value) {
@@ -120,11 +147,17 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Locator sourceLocation() {
         return (Locator)getSourceLocator();
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
             sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
@@ -132,6 +165,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -144,6 +178,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o){
@@ -157,11 +192,13 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
         return UnambiguousAliasComparator.areEquals(this, (Alias) o);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return UnambiguousAliasComparator.hashCode(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Xml Alias: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

@@ -18,23 +18,27 @@ import java.util.List;
  * @version $Id$
  * @since <pre>05/09/13</pre>
  */
-
 public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher implements CvTermFetcher<T>, CachedFetcher {
 
     private CvTermFetcher<T> delegateFetcher;
 
 
+    /**
+     * <p>Constructor for CachedOlsFetcher.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object.
+     * @param delegateFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public CachedOlsFetcher(String cacheName, CvTermFetcher<T> delegateFetcher) throws BridgeFailedException {
         super(cacheName);
         this.delegateFetcher = delegateFetcher;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Uses the identifier and the name of the database to search for a complete form of the cvTerm.
-     * @param termIdentifier    The identifier for the CvTerm to fetch.
-     * @param miOntologyName  The name of the ontology to search for. Eg, psi-mi, psi-mod, go. Must not be Null.
-     * @return  A full cvTerm which matches the search term or null if one cannot be found.
-     * @throws BridgeFailedException
      */
     public T fetchByIdentifier(String termIdentifier, String miOntologyName)
             throws BridgeFailedException{
@@ -53,10 +57,11 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
 
     /**
      * Uses the identifier and a cvTerm denoting the database to search to fetch a complete from of the term.
+     *
      * @param termIdentifier     The identifier for the CvTerm to fetch
      * @param ontologyDatabase  The cvTerm of the ontology to search for.
      * @return  A fully enriched cvTerm which matches the search term or null if one cannot be found.
-     * @throws BridgeFailedException
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public T fetchByIdentifier(String termIdentifier, CvTerm ontologyDatabase)
             throws BridgeFailedException{
@@ -74,11 +79,9 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Uses the name of the term and the name of the database to search for a complete form of the term.
-     * @param searchName    A full or short name for the term to be searched for.
-     * @param miOntologyName  The ontology to search for the term in.
-     * @return  A fully enriched cvTerm which matches the search term or null if one cannot be found.
-     * @throws BridgeFailedException
      */
     public T fetchByName(String searchName, String miOntologyName)
             throws BridgeFailedException{
@@ -96,13 +99,11 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Uses the name of the term and the name of the database to search for a complete form of the term.
      * <p>
      * If the term can not be resolved to a database, then this method may return null.
-     *
-     * @param searchName    A full or short name for the term to be searched for.
-     * @return  A fully enriched cvTerm which matches the search term or null if one cannot be found.
-     * @throws BridgeFailedException
      */
     public Collection<T> fetchByName(String searchName)
             throws BridgeFailedException{
@@ -118,6 +119,14 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
         return (Collection<T>)data;
     }
 
+    /**
+     * <p>fetchByIdentifiers.</p>
+     *
+     * @param termIdentifiers a {@link java.util.Collection} object.
+     * @param miOntologyName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, String miOntologyName) throws BridgeFailedException {
         if(termIdentifiers == null) throw new IllegalArgumentException("Provided identifiers are null.");
         if(miOntologyName == null) throw new IllegalArgumentException("Provided OntologyTerm has no ontology names.");
@@ -138,6 +147,7 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
         return (Collection<T>)data;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByIdentifiers(Collection<String> termIdentifiers, CvTerm ontologyDatabase) throws BridgeFailedException {
         if(termIdentifiers == null) throw new IllegalArgumentException("Provided identifiers are null.");
         if(ontologyDatabase == null) throw new IllegalArgumentException("Provided OntologyTerm has no ontology names.");
@@ -158,6 +168,7 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
         return (Collection<T>)data;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames, String miOntologyName) throws BridgeFailedException {
         if(searchNames == null) throw new IllegalArgumentException("Provided names are null.");
         if(miOntologyName == null) throw new IllegalArgumentException("Provided OntologyTerm has no ontology names.");
@@ -178,6 +189,7 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
         return (Collection<T>)data;
     }
 
+    /** {@inheritDoc} */
     public Collection<T> fetchByNames(Collection<String> searchNames) throws BridgeFailedException {
         if(searchNames == null) throw new IllegalArgumentException("Provided names are null.");
 
@@ -197,6 +209,11 @@ public class CachedOlsFetcher<T extends CvTerm> extends AbstractCachedFetcher im
         return (Collection<T>)data;
     }
 
+    /**
+     * <p>Getter for the field <code>delegateFetcher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher} object.
+     */
     protected CvTermFetcher<T> getDelegateFetcher() {
         return delegateFetcher;
     }

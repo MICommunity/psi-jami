@@ -14,8 +14,18 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public interface PsiXmlPublicationWriter extends PsiXmlElementWriter<Publication> {
+    /**
+     * <p>writeAllPublicationAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param attributesToFilter a {@link java.util.Collection} object.
+     */
     public void writeAllPublicationAttributes(Publication object, Collection<Annotation> attributesToFilter);
+    /**
+     * <p>writeAllPublicationAttributes.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public void writeAllPublicationAttributes(Publication object);
 }

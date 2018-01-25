@@ -16,7 +16,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class ParameterValueComparator implements Comparator<ParameterValue>{
 
     private static ParameterValueComparator parameterValueComparator;
@@ -25,9 +24,10 @@ public class ParameterValueComparator implements Comparator<ParameterValue>{
      * It compares the BigDecimal value of factor.multiply(BigDecimal.valueOf(base^exponent))
      * If both values are null, they are equals.
      * The value that is not null comes before the one that is null.
-     * @param value1
-     * @param value2
-     * @return
+     *
+     * @param value1 a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param value2 a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @return a int.
      */
     public int compare(ParameterValue value1, ParameterValue value2) {
         int EQUAL = 0;
@@ -50,8 +50,9 @@ public class ParameterValueComparator implements Comparator<ParameterValue>{
 
     /**
      * Use ParameterValueComparator to know if two ParameterValue are equals.
-     * @param value1
-     * @param value2
+     *
+     * @param value1 a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param value2 a {@link psidev.psi.mi.jami.model.ParameterValue} object.
      * @return true if the two parameter values are equal
      */
     public static boolean areEquals(ParameterValue value1, ParameterValue value2){
@@ -63,8 +64,9 @@ public class ParameterValueComparator implements Comparator<ParameterValue>{
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param param
+     * @param param a {@link psidev.psi.mi.jami.model.ParameterValue} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(ParameterValue param){

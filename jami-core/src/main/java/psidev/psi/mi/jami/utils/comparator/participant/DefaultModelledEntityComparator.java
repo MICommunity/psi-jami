@@ -18,14 +18,15 @@ import java.util.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultModelledEntityComparator {
 
     /**
      * Use DefaultModelledEntityComparator to know if two biological entities are equals.
-     * @param bioParticipant1
-     * @param bioParticipant2
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      * @return true if the two biological entities are equal
+     * @param checkComplexesAsInteractors a boolean.
      */
     public static boolean areEquals(ModelledEntity bioParticipant1, ModelledEntity bioParticipant2, boolean checkComplexesAsInteractors){
         Map<Complex, Set<Interactor>> processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();

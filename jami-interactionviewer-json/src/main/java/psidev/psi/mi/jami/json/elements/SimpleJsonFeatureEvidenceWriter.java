@@ -17,16 +17,33 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonFeatureEvidenceWriter extends SimpleJsonFeatureWriter<FeatureEvidence>{
 
     private JsonElementWriter<Parameter> parameterWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonFeatureEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     */
     public SimpleJsonFeatureEvidenceWriter(Writer writer, Map<Feature, Integer> processedFeatures, Map<String, String> processedInteractors,
                                            Map<Entity, Integer> processedParticipants) {
         super(writer, processedFeatures, processedInteractors, processedParticipants);
     }
 
+    /**
+     * <p>Constructor for SimpleJsonFeatureEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedFeatures a {@link java.util.Map} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param processedParticipants a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public SimpleJsonFeatureEvidenceWriter(Writer writer, Map<Feature, Integer> processedFeatures, Map<String, String> processedInteractors,
                                            Map<Entity, Integer> processedParticipants, IncrementalIdGenerator idGenerator,
                                            OntologyTermFetcher fetcher) {
@@ -34,6 +51,7 @@ public class SimpleJsonFeatureEvidenceWriter extends SimpleJsonFeatureWriter<Fea
                 fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(FeatureEvidence object) throws IOException {
         // detection methods
@@ -71,6 +89,11 @@ public class SimpleJsonFeatureEvidenceWriter extends SimpleJsonFeatureWriter<Fea
         }
     }
 
+    /**
+     * <p>Getter for the field <code>parameterWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Parameter> getParameterWriter() {
         if (this.parameterWriter == null){
            this.parameterWriter = new SimpleJsonParameterWriter(getWriter());
@@ -78,6 +101,11 @@ public class SimpleJsonFeatureEvidenceWriter extends SimpleJsonFeatureWriter<Fea
         return parameterWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>parameterWriter</code>.</p>
+     *
+     * @param parameterWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setParameterWriter(JsonElementWriter<Parameter> parameterWriter) {
         this.parameterWriter = parameterWriter;
     }

@@ -22,22 +22,30 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public class FullModelledInteractionEnricher<I extends ModelledInteraction> extends MinimalModelledInteractionEnricher<I> {
 
     private FullInteractionEnricher<I> interactionEnricher;
     private InteractionEvidenceEnricher evidenceEnricher;
 
+    /**
+     * <p>Constructor for FullModelledInteractionEnricher.</p>
+     */
     public FullModelledInteractionEnricher() {
         super();
         this.interactionEnricher = new FullInteractionEnricher<I>();
     }
 
+    /**
+     * <p>Constructor for FullModelledInteractionEnricher.</p>
+     *
+     * @param interactionEnricher a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractionEnricher} object.
+     */
     protected FullModelledInteractionEnricher(FullInteractionEnricher<I> interactionEnricher) {
         super();
         this.interactionEnricher = interactionEnricher != null ? interactionEnricher : new FullInteractionEnricher<I>();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(I interactionToEnrich) throws EnricherException {
         super.processOtherProperties(interactionToEnrich);
@@ -53,6 +61,12 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
 
     }
 
+    /**
+     * <p>processEvidenceType.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processEvidenceType(I interactionToEnrich) throws EnricherException {
 
         if (interactionToEnrich.getEvidenceType() != null && getCvTermEnricher() != null){
@@ -60,6 +74,7 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(I objectToEnrich, I objectSource) throws EnricherException {
         super.processOtherProperties(objectToEnrich, objectSource);
@@ -78,6 +93,13 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
         processInteractionEvidences(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>processEvidenceType.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processEvidenceType(I objectToEnrich, I objectSource) throws EnricherException {
 
         if (objectSource.getEvidenceType() != null && objectToEnrich.getEvidenceType() == null){
@@ -89,51 +111,82 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
         processEvidenceType(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return this.interactionEnricher.getCvTermEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public ParticipantEnricher getParticipantEnricher() {
         return this.interactionEnricher.getParticipantEnricher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public InteractionEnricherListener<I> getInteractionEnricherListener() {
         return this.interactionEnricher.getInteractionEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setCvTermEnricher(CvTermEnricher cvTermEnricher) {
         this.interactionEnricher.setCvTermEnricher(cvTermEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setParticipantEnricher(ParticipantEnricher participantEnricher) {
         this.interactionEnricher.setParticipantEnricher(participantEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionEnricherListener(InteractionEnricherListener<I> listener) {
         this.interactionEnricher.setInteractionEnricherListener(listener);
     }
 
+    /**
+     * <p>processConfidences.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     */
     protected void processConfidences(I objectToEnrich, I objectSource) {
         EnricherUtils.mergeConfidences(objectToEnrich, objectToEnrich.getModelledConfidences(), objectSource.getModelledConfidences(), false,
                 (getInteractionEnricherListener() instanceof ModelledInteractionEnricherListener ? (ModelledInteractionEnricherListener) getInteractionEnricherListener() : null));
     }
 
+    /**
+     * <p>processParameters.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     */
     protected void processParameters(I objectToEnrich, I objectSource) {
 
         EnricherUtils.mergeParameters(objectToEnrich, objectToEnrich.getModelledParameters(), objectSource.getModelledParameters(), false,
                 (getInteractionEnricherListener() instanceof ModelledInteractionEnricherListener ? (ModelledInteractionEnricherListener)getInteractionEnricherListener():null));
     }
 
+    /**
+     * <p>processCooperativeEffects.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     */
     protected void processCooperativeEffects(I objectToEnrich, I objectSource) {
         mergeCooperativeEffects(objectToEnrich, objectSource, false);
     }
 
+    /**
+     * <p>mergeCooperativeEffects.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @param objectSource a I object.
+     * @param remove a boolean.
+     */
     protected void mergeCooperativeEffects(I interactionToEnrich, I objectSource, boolean remove){
         Iterator<CooperativeEffect> effectIterator = interactionToEnrich.getCooperativeEffects().iterator();
         if (remove){
@@ -178,18 +231,39 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
         }
     }
 
+    /**
+     * <p>processInteractionEvidences.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractionEvidences(I objectToEnrich) throws EnricherException {
         if (getEvidenceEnricher() != null){
            getEvidenceEnricher().enrich(objectToEnrich.getInteractionEvidences());
         }
     }
 
+    /**
+     * <p>processInteractionEvidences.</p>
+     *
+     * @param objectToEnrich a I object.
+     * @param objectSource a I object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractionEvidences(I objectToEnrich, I objectSource) throws EnricherException {
         mergeInteractionEvidences(objectToEnrich, objectSource, false);
 
         processInteractionEvidences(objectToEnrich);
     }
 
+    /**
+     * <p>mergeInteractionEvidences.</p>
+     *
+     * @param interactionToEnrich a I object.
+     * @param objectSource a I object.
+     * @param remove a boolean.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void mergeInteractionEvidences(I interactionToEnrich, I objectSource, boolean remove) throws EnricherException {
         Iterator<InteractionEvidence> evidenceIterator = interactionToEnrich.getInteractionEvidences().iterator();
         if (remove){
@@ -237,14 +311,29 @@ public class FullModelledInteractionEnricher<I extends ModelledInteraction> exte
         }
     }
 
+    /**
+     * <p>Getter for the field <code>evidenceEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.InteractionEvidenceEnricher} object.
+     */
     public InteractionEvidenceEnricher getEvidenceEnricher() {
         return evidenceEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>evidenceEnricher</code>.</p>
+     *
+     * @param evidenceEnricher a {@link psidev.psi.mi.jami.enricher.InteractionEvidenceEnricher} object.
+     */
     public void setEvidenceEnricher(InteractionEvidenceEnricher evidenceEnricher) {
         this.evidenceEnricher = evidenceEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.full.FullInteractionEnricher} object.
+     */
     protected FullInteractionEnricher<I> getInteractionEnricher() {
         return interactionEnricher;
     }

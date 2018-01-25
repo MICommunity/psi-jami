@@ -11,6 +11,5 @@ import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public interface ModelledBinaryInteractionSource extends ModelledInteractionStream<ModelledBinaryInteraction>, ModelledInteractionSource<ModelledBinaryInteraction> {
 }

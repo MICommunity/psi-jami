@@ -16,11 +16,11 @@ import java.util.Comparator;
  * - If the two external identifiers are set, use UnambiguousExternalIdentifier comparator
  * - The CvTerm without an external identifier is after the CvTerm with an identifier (do not compare short names if we have one external identifier)
  * - When both CvTerms do not have an external identifier, it compares the short names (case insensitive) which cannot be null
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class CvTermComparator implements Comparator<CvTerm> {
 
     private Comparator<Xref> identifierComparator;
@@ -29,6 +29,7 @@ public class CvTermComparator implements Comparator<CvTerm> {
     /**
      * Creates a new CvTermComparator with UnambiguousExternalIdentifierComparator
      *
+     * @param identifierComparator a {@link java.util.Comparator} object.
      */
     public CvTermComparator(Comparator<Xref> identifierComparator) {
         if (identifierComparator == null){
@@ -38,6 +39,11 @@ public class CvTermComparator implements Comparator<CvTerm> {
         this.identifierCollectionComparator = new CollectionComparator<Xref>(identifierComparator);
     }
 
+    /**
+     * <p>Constructor for CvTermComparator.</p>
+     *
+     * @param identifierComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CvTermComparator(CollectionComparator<Xref> identifierComparator) {
         if (identifierComparator == null){
             throw new IllegalArgumentException("The identifier comparator cannot be null");
@@ -46,10 +52,20 @@ public class CvTermComparator implements Comparator<CvTerm> {
         this.identifierCollectionComparator = identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Xref> getIdentifierComparator() {
         return identifierComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<Xref> getIdentifierCollectionComparator() {
         return identifierCollectionComparator;
     }
@@ -63,9 +79,10 @@ public class CvTermComparator implements Comparator<CvTerm> {
      * - If the two external identifiers are set, use UnambiguousExternalIdentifier comparator
      * - The CvTerm without an external identifier is after the CvTerm with an identifier (do not compare short names if we have one external identifier)
      * - When both CvTerms do not have an external identifier, it compares the short names (case insensitive) which cannot be null
-     * @param cvTerm1
-     * @param cvTerm2
-     * @return
+     *
+     * @param cvTerm1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param cvTerm2 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a int.
      */
     public int compare(CvTerm cvTerm1, CvTerm cvTerm2) {
         int EQUAL = 0;

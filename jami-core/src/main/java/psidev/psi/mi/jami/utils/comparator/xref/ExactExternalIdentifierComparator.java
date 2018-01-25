@@ -12,15 +12,18 @@ import psidev.psi.mi.jami.model.Xref;
  * - If the two external identifiers are set :
  *     - compare the databases. If both databases are equal, compare the ids (is case sensitive)
  *     - if both ids are the same, compares the versions.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class ExactExternalIdentifierComparator extends UnambiguousExternalIdentifierComparator {
 
     private static ExactExternalIdentifierComparator exactIdentifierComparator;
 
+    /**
+     * <p>Constructor for ExactExternalIdentifierComparator.</p>
+     */
     public ExactExternalIdentifierComparator() {
         super();
     }
@@ -33,9 +36,10 @@ public class ExactExternalIdentifierComparator extends UnambiguousExternalIdenti
      * - If the two external identifiers are set :
      *     - compare the databases. If both databases are equal, compare the ids (is case sensitive)
      *     - if both ids are the same, compares the versions.
-     * @param externalIdentifier1
-     * @param externalIdentifier2
-     * @return
+     *
+     * @param externalIdentifier1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param externalIdentifier2 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a int.
      */
     public int compare(Xref externalIdentifier1, Xref externalIdentifier2) {
         int EQUAL = 0;
@@ -78,10 +82,9 @@ public class ExactExternalIdentifierComparator extends UnambiguousExternalIdenti
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Use ExactExternalIdentifierComparator to know if two external identifiers are equals.
-     * @param externalIdentifier1
-     * @param externalIdentifier2
-     * @return true if the two external identifiers are equal
      */
     public static boolean areEquals(Xref externalIdentifier1, Xref externalIdentifier2){
         if (exactIdentifierComparator == null){
@@ -91,11 +94,7 @@ public class ExactExternalIdentifierComparator extends UnambiguousExternalIdenti
         return exactIdentifierComparator.compare(externalIdentifier1, externalIdentifier2) == 0;
     }
 
-    /**
-     *
-     * @param externalIdentifier1
-     * @return the hashcode consistent with the equals method for this comparator
-     */
+    /** {@inheritDoc} */
     public static int hashCode(Xref externalIdentifier1){
         if (exactIdentifierComparator == null){
             exactIdentifierComparator = new ExactExternalIdentifierComparator();

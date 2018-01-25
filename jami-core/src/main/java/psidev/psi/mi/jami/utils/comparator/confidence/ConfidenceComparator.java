@@ -16,13 +16,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class ConfidenceComparator implements Comparator<Confidence>{
 
     private Comparator<CvTerm> cvTermComparator;
 
     /**
      * Creates a new ConfidenceComparator.
+     *
      * @param termComparator: CvTerm comparator for the types and units. It is required
      */
     public ConfidenceComparator(Comparator<CvTerm> termComparator){
@@ -34,6 +34,11 @@ public class ConfidenceComparator implements Comparator<Confidence>{
         this.cvTermComparator = termComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getCvTermComparator() {
         return cvTermComparator;
     }
@@ -43,9 +48,10 @@ public class ConfidenceComparator implements Comparator<Confidence>{
      *
      * - Two confidences which are null are equals
      * - The confidence which is not null is before null.
-     * @param confidence1
-     * @param confidence2
-     * @return
+     *
+     * @param confidence1 a {@link psidev.psi.mi.jami.model.Confidence} object.
+     * @param confidence2 a {@link psidev.psi.mi.jami.model.Confidence} object.
+     * @return a int.
      */
     public int compare(Confidence confidence1, Confidence confidence2) {
         int EQUAL = 0;

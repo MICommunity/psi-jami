@@ -15,13 +15,19 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-
 public class InteractionComparator implements Comparator<Interaction> {
 
     private Comparator<Interaction> interactionBaseComparator;
     private InteractionEvidenceComparator experimentalInteractionComparator;
     private ModelledInteractionComparator modelledInteractionComparator;
 
+    /**
+     * <p>Constructor for InteractionComparator.</p>
+     *
+     * @param interactionBaseComparator a {@link java.util.Comparator} object.
+     * @param modelledInteractionComparator a {@link psidev.psi.mi.jami.utils.comparator.interaction.ModelledInteractionComparator} object.
+     * @param experimentalInteractionComparator a {@link psidev.psi.mi.jami.utils.comparator.interaction.InteractionEvidenceComparator} object.
+     */
     public InteractionComparator(Comparator<Interaction> interactionBaseComparator, ModelledInteractionComparator modelledInteractionComparator, InteractionEvidenceComparator experimentalInteractionComparator){
         if (interactionBaseComparator == null){
             throw new IllegalArgumentException("The interactionBaseComparator is required to create more specific interaction comparators and compares basic interaction properties. It cannot be null");
@@ -37,14 +43,29 @@ public class InteractionComparator implements Comparator<Interaction> {
         this.modelledInteractionComparator = modelledInteractionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionBaseComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interaction> getInteractionBaseComparator() {
         return interactionBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalInteractionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interaction.InteractionEvidenceComparator} object.
+     */
     public InteractionEvidenceComparator getExperimentalInteractionComparator() {
         return experimentalInteractionComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledInteractionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.interaction.ModelledInteractionComparator} object.
+     */
     public ModelledInteractionComparator getModelledInteractionComparator() {
         return modelledInteractionComparator;
     }
@@ -54,9 +75,10 @@ public class InteractionComparator implements Comparator<Interaction> {
      * - It uses InteractionEvidenceComparator to compare experimental interactions
      * - It uses ModelledInteractionComparator to compare modelled interactions
      * - It uses AbstractInteractionBaseComparator to compare basic interaction properties
-     * @param interaction1
-     * @param interaction2
-     * @return
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @return a int.
      */
     public int compare(Interaction interaction1, Interaction interaction2) {
         int EQUAL = 0;

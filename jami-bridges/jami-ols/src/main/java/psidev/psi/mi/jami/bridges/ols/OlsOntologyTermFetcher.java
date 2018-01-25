@@ -21,18 +21,26 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 03/07/13
+
  */
 public class OlsOntologyTermFetcher extends AbstractOlsFetcher<OntologyTerm> implements OntologyTermFetcher{
 
+    /**
+     * <p>Constructor for OlsOntologyTermFetcher.</p>
+     *
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public OlsOntologyTermFetcher() throws BridgeFailedException {
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected OntologyTerm instantiateCvTerm(String termName, Xref identity, String ontologyName) {
         return new LazyOntologyTerm(olsClient, termName, identity, ontologyName);
     }
 
+    /** {@inheritDoc} */
     public Set<OntologyTerm> fetchRootTerms(String databaseName) throws BridgeFailedException{
         if(databaseName == null || databaseName.isEmpty())
             throw new IllegalArgumentException("Can not search for a root term of an ontology without its ontology name.");
@@ -54,6 +62,13 @@ public class OlsOntologyTermFetcher extends AbstractOlsFetcher<OntologyTerm> imp
         return rootTerms;
     }
 
+    /**
+     * <p>fetchRootTerms.</p>
+     *
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a {@link java.util.Set} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Set<OntologyTerm> fetchRootTerms(CvTerm database) throws BridgeFailedException {
         if(database == null || database.getShortName().isEmpty())
             throw new IllegalArgumentException("Can not search for a root term of an ontology without its ontology name.");

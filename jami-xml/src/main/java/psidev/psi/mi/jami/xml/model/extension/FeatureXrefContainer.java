@@ -27,6 +27,12 @@ public class FeatureXrefContainer extends XrefContainer {
     private Xref interpro;
     private List<Xref> identifiers;
 
+    /**
+     * <p>isAnIdentifier.</p>
+     *
+     * @param ref a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @return a boolean.
+     */
     protected boolean isAnIdentifier(Xref ref){
         if (XrefUtils.isXrefAnIdentifier(ref)){
             return true;
@@ -37,6 +43,7 @@ public class FeatureXrefContainer extends XrefContainer {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAddedPrimaryRef(Xref added) {
         if (isAnIdentifier(added)){
@@ -47,6 +54,11 @@ public class FeatureXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     @XmlTransient
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
@@ -55,11 +67,21 @@ public class FeatureXrefContainer extends XrefContainer {
         return identifiers;
     }
 
+    /**
+     * <p>Getter for the field <code>interpro</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     @XmlTransient
     public String getInterpro() {
         return this.interpro != null ? this.interpro.getId() : null;
     }
 
+    /**
+     * <p>Setter for the field <code>interpro</code>.</p>
+     *
+     * @param interpro a {@link java.lang.String} object.
+     */
     public void setInterpro(String interpro) {
         FullIdentifierList featureIdentifiers = (FullIdentifierList) getIdentifiers();
 
@@ -82,6 +104,11 @@ public class FeatureXrefContainer extends XrefContainer {
     }
 
 
+    /**
+     * <p>processAddedIdentifierEvent.</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
         // the added identifier is interpro and it is not the current interpro identifier
         if (interpro != added && XrefUtils.isXrefFromDatabase(added, Xref.INTERPRO_MI, Xref.INTERPRO)){
@@ -106,20 +133,32 @@ public class FeatureXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent.</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         if (interpro != null && interpro.equals(removed)){
             interpro = XrefUtils.collectFirstIdentifierWithDatabase(getIdentifiers(), Xref.INTERPRO_MI, Xref.INTERPRO);
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers.</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         interpro = null;
     }
 
+    /**
+     * <p>initialiseIdentifiers.</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new FullIdentifierList();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSecondaryRefs() {
         super.initialiseSecondaryResWith(new JAXBSecondaryXrefList());

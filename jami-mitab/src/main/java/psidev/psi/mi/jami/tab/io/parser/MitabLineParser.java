@@ -16,6 +16,11 @@ import psidev.psi.mi.jami.exception.IllegalParameterException;
 import psidev.psi.mi.jami.exception.IllegalRangeException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
 
+/**
+ * <p>Abstract MitabLineParser class.</p>
+ *
+
+ */
 public abstract class MitabLineParser<T extends Interaction, P extends Participant, F extends Feature> implements MitabLineParserConstants {
 
         void processSyntaxError(int lineNumber, int columnNumber, int mitabColumn, Exception e) {
@@ -30,14 +35,29 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         processSyntaxError(lineNumber, columnNumber, mitabColumn, e2);
     }
 
+        /**
+         * <p>getParserListener.</p>
+         *
+         * @return a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
+         */
         public abstract MitabParserListener getParserListener();
 
+        /**
+         * <p>setParserListener.</p>
+         *
+         * @param listener a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
+         */
         public abstract void setParserListener(MitabParserListener listener);
 
     abstract void fireOnInvalidSyntax(int lineNumber, int columnNumber, int mitabColumn, Exception e);
 
     abstract void reachEndOfFile();
 
+    /**
+     * <p>hasFinished.</p>
+     *
+     * @return a boolean.
+     */
     public abstract boolean hasFinished();
 
     abstract java.lang.StringBuilder resetStringBuilder();
@@ -56,6 +76,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                                                Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
                                                Collection<MitabChecksum> checksumI, boolean isNegative, int line);
 
+  /**
+   * <p>MitabLine.</p>
+   *
+   * @return a T object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public T MitabLine() throws ParseException {
   Collection<MitabXref> uniqueIdA = Collections.EMPTY_LIST;
   Collection<MitabXref> uniqueIdB = Collections.EMPTY_LIST;
@@ -811,6 +837,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>ids.</p>
+   *
+   * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
+   * @param recognizeImex a boolean.
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabXref> ids(CvTerm qualifier, boolean recognizeImex, int column) throws ParseException {
   Collection<MitabXref> xrefs;
   MitabXref var;
@@ -834,6 +869,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>aliases.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabAlias> aliases(int column) throws ParseException {
   Collection<MitabAlias> aliases;
   MitabAlias var;
@@ -857,6 +899,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>cvTerms.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabCvTerm> cvTerms(int columnNumber) throws ParseException {
   Collection<MitabCvTerm> methods;
   MitabCvTerm var;
@@ -880,6 +929,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>firstAuthors.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabAuthor> firstAuthors() throws ParseException {
   Collection<MitabAuthor> authors;
   MitabAuthor var;
@@ -903,6 +958,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>taxId.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabOrganism> taxId(int column) throws ParseException {
   Collection<MitabOrganism> organisms;
   MitabOrganism var;
@@ -926,6 +988,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>sourceDbs.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabSource> sourceDbs() throws ParseException {
   Collection<MitabSource> sources;
   MitabSource var;
@@ -949,6 +1017,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>confidences.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabConfidence> confidences() throws ParseException {
   Collection<MitabConfidence> confs;
   MitabConfidence var;
@@ -972,6 +1046,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>complexExpansion.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabCvTerm> complexExpansion() throws ParseException {
   Collection<MitabCvTerm> expansions;
   MitabCvTerm var;
@@ -995,6 +1075,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>annotations.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabAnnotation> annotations(int column) throws ParseException {
   Collection<MitabAnnotation> annots;
   MitabAnnotation var;
@@ -1018,6 +1105,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>parameters.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabParameter> parameters() throws ParseException {
   Collection<MitabParameter> params;
   MitabParameter var;
@@ -1041,6 +1134,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>dates.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabDate> dates(int column) throws ParseException {
   Collection<MitabDate> dates;
   MitabDate var;
@@ -1064,6 +1164,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>checksums.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabChecksum> checksums(int column) throws ParseException {
   Collection<MitabChecksum> checksums;
   MitabChecksum var;
@@ -1087,6 +1194,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>features.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<F> features(int column) throws ParseException {
   Collection<F> features;
   F var;
@@ -1110,6 +1224,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>stoichiometryList.</p>
+   *
+   * @param column a int.
+   * @return a {@link java.util.Collection} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public Collection<MitabStoichiometry> stoichiometryList(int column) throws ParseException {
   Collection<MitabStoichiometry> stc;
   MitabStoichiometry var;
@@ -1133,6 +1254,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>stoichiometry.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabStoichiometry} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabStoichiometry stoichiometry(int columnNumber) throws ParseException {
   int min;
   int max = 0;
@@ -1191,6 +1319,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>feature.</p>
+   *
+   * @param columnNumber a int.
+   * @return a F object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public F feature(int columnNumber) throws ParseException {
   java.lang.String type;
   Collection<Range> ranges;
@@ -1245,6 +1380,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>range.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabRange} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabRange range(int columnNumber) throws ParseException {
   Position start;
   Position end;
@@ -1297,6 +1439,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>negative.</p>
+   *
+   * @return a boolean.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public boolean negative() throws ParseException {
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
   java.lang.String value;
@@ -1312,6 +1460,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>checksum.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabChecksum} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabChecksum checksum(int columnNumber) throws ParseException {
   java.lang.String method;
   java.lang.String value;
@@ -1338,6 +1493,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>date.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabDate} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabDate date(int columnNumber) throws ParseException {
   java.lang.String date;
   MitabDate mitabDate;
@@ -1361,6 +1523,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>parameter.</p>
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabParameter} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabParameter parameter() throws ParseException {
   java.lang.String type;
   java.lang.String value;
@@ -1401,6 +1569,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>annotation.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAnnotation} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabAnnotation annotation(int columnNumber) throws ParseException {
   java.lang.String topic;
   java.lang.String value = null;
@@ -1433,6 +1608,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>expansion.</p>
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabCvTerm} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabCvTerm expansion() throws ParseException {
   java.lang.String db = null;
   java.lang.String id = null;
@@ -1471,6 +1652,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>confidence.</p>
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabConfidence} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabConfidence confidence() throws ParseException {
  java.lang.String type;
  java.lang.String value;
@@ -1508,6 +1695,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>source.</p>
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabSource} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabSource source() throws ParseException {
   java.lang.String db;
   java.lang.String id;
@@ -1543,6 +1736,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>organism.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabOrganism} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabOrganism organism(int columnNumber) throws ParseException {
   java.lang.String id;
   java.lang.String name = null;
@@ -1590,6 +1790,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>author.</p>
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAuthor} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabAuthor author() throws ParseException {
  MitabAuthor auth;
  java.lang.String first=null;
@@ -1610,6 +1816,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>cvTerm.</p>
+   *
+   * @param column a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabCvTerm} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabCvTerm cvTerm(int column) throws ParseException {
   java.lang.String db;
   java.lang.String id = null;
@@ -1644,6 +1857,13 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>alias.</p>
+   *
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAlias} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabAlias alias(int columnNumber) throws ParseException {
   java.lang.String db;
   java.lang.String name;
@@ -1680,6 +1900,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>id.</p>
+   *
+   * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
+   * @param recognizeImexPrimary a boolean.
+   * @param columnNumber a int.
+   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabXref} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public MitabXref id(CvTerm qualifier, boolean recognizeImexPrimary, int columnNumber) throws ParseException {
   java.lang.String db;
   java.lang.String id;
@@ -1735,6 +1964,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>safeString.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public java.lang.String safeString() throws ParseException {
   java.lang.String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.FIELD_SEPARATOR, TokenKind.COLON, TokenKind.OPEN_PAREN, TokenKind.CLOSE_PAREN, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
@@ -1751,6 +1986,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>safeFreeText.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public java.lang.String safeFreeText() throws ParseException {
   java.lang.String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.FIELD_SEPARATOR, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
@@ -1767,6 +2008,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>safePosition.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public java.lang.String safePosition() throws ParseException {
   java.lang.String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.DASH, TokenKind.RANGE_SEPARATOR, TokenKind.FIELD_SEPARATOR, TokenKind.OPEN_PAREN, TokenKind.CLOSE_PAREN, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
@@ -1783,6 +2030,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
+  /**
+   * <p>safeStoichiometry.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
+   */
   final public java.lang.String safeStoichiometry() throws ParseException {
   java.lang.String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.DASH, TokenKind.FIELD_SEPARATOR, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
@@ -1889,11 +2142,20 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   private boolean jj_rescan = false;
   private int jj_gc = 0;
 
-  /** Constructor with InputStream. */
+  /**
+   * Constructor with InputStream.
+   *
+   * @param stream a {@link java.io.InputStream} object.
+   */
   public MitabLineParser(java.io.InputStream stream) {
      this(stream, null);
   }
-  /** Constructor with InputStream and supplied encoding */
+  /**
+   * Constructor with InputStream and supplied encoding
+   *
+   * @param stream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   */
   public MitabLineParser(java.io.InputStream stream, String encoding) {
     try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source = new MitabLineParserTokenManager(jj_input_stream);
@@ -1904,11 +2166,20 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param stream a {@link java.io.InputStream} object.
+   */
   public void ReInit(java.io.InputStream stream) {
      ReInit(stream, null);
   }
-  /** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param stream a {@link java.io.InputStream} object.
+   * @param encoding a {@link java.lang.String} object.
+   */
   public void ReInit(java.io.InputStream stream, String encoding) {
     try { jj_input_stream.ReInit(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source.ReInit(jj_input_stream);
@@ -1919,7 +2190,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /** Constructor. */
+  /**
+   * Constructor.
+   *
+   * @param stream a {@link java.io.Reader} object.
+   */
   public MitabLineParser(java.io.Reader stream) {
     jj_input_stream = new JavaCharStream(stream, 1, 1);
     token_source = new MitabLineParserTokenManager(jj_input_stream);
@@ -1930,7 +2205,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param stream a {@link java.io.Reader} object.
+   */
   public void ReInit(java.io.Reader stream) {
     jj_input_stream.ReInit(stream, 1, 1);
     token_source.ReInit(jj_input_stream);
@@ -1941,7 +2220,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /** Constructor with generated Token Manager. */
+  /**
+   * Constructor with generated Token Manager.
+   *
+   * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+   */
   public MitabLineParser(MitabLineParserTokenManager tm) {
     token_source = tm;
     token = new Token();
@@ -1951,7 +2234,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /** Reinitialise. */
+  /**
+   * Reinitialise.
+   *
+   * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+   */
   public void ReInit(MitabLineParserTokenManager tm) {
     token_source = tm;
     token = new Token();
@@ -2009,7 +2296,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   }
 
 
-/** Get the next Token. */
+  /**
+   * Get the next Token.
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
+   */
   final public Token getNextToken() {
     if (token.next != null) token = token.next;
     else token = token.next = token_source.getNextToken();
@@ -2018,7 +2309,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     return token;
   }
 
-/** Get the specific Token. */
+  /**
+   * Get the specific Token.
+   *
+   * @param index a int.
+   * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
+   */
   final public Token getToken(int index) {
     Token t = token;
     for (int i = 0; i < index; i++) {
@@ -2069,7 +2365,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     }
   }
 
-  /** Generate ParseException. */
+  /**
+   * Generate ParseException.
+   *
+   * @return a {@link psidev.psi.mi.jami.tab.io.parser.ParseException} object.
+   */
   public ParseException generateParseException() {
     jj_expentries.clear();
     boolean[] la1tokens = new boolean[14];
@@ -2103,11 +2403,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     return new ParseException(token, exptokseq, tokenImage);
   }
 
-  /** Enable tracing. */
+  /**
+   * Enable tracing.
+   */
   final public void enable_tracing() {
   }
 
-  /** Disable tracing. */
+  /**
+   * Disable tracing.
+   */
   final public void disable_tracing() {
   }
 

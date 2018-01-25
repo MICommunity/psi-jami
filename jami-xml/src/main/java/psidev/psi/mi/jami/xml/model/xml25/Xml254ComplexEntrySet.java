@@ -21,6 +21,11 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Xml254ComplexEntrySet extends AbstractEntrySet<ComplexEntry> {
 
+    /**
+     * <p>getEntries.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     @XmlElement(type=ComplexEntry.class, name="entry", required = true)
     public List<ComplexEntry> getEntries() {
         return super.getEntries();

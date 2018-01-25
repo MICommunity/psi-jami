@@ -12,12 +12,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public interface ExperimentStream extends MIDataSource {
 
     /**
      * The experiments iterator for this datasource.
+     *
      * @return iterator of experiments for a given datasource
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public Iterator<Experiment> getExperimentsIterator() throws MIIOException;
 }

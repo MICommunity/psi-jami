@@ -19,20 +19,38 @@ import java.io.Reader;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class LightMitabBinarySource extends AbstractMitabSource<BinaryInteraction, Participant, Feature> implements BinaryInteractionSource<BinaryInteraction>{
+    /**
+     * <p>Constructor for LightMitabBinarySource.</p>
+     */
     public LightMitabBinarySource() {
         super(new LightMitabBinaryStreamSource());
     }
 
+    /**
+     * <p>Constructor for LightMitabBinarySource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public LightMitabBinarySource(File file) throws IOException {
         super(new LightMitabBinaryStreamSource(file));
     }
 
+    /**
+     * <p>Constructor for LightMitabBinarySource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public LightMitabBinarySource(InputStream input) {
         super(new LightMitabBinaryStreamSource(input));
     }
 
+    /**
+     * <p>Constructor for LightMitabBinarySource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public LightMitabBinarySource(Reader reader) {
         super(new LightMitabBinaryStreamSource(reader));
     }

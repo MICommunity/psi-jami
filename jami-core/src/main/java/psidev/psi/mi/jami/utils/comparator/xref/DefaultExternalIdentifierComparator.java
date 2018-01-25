@@ -17,13 +17,13 @@ import psidev.psi.mi.jami.model.Xref;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultExternalIdentifierComparator {
 
     /**
      * Use DefaultIdentifierComparator to know if two external identifiers are equals.
-     * @param externalIdentifier1
-     * @param externalIdentifier2
+     *
+     * @param externalIdentifier1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param externalIdentifier2 a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return true if the two external identifiers are equal
      */
     public static boolean areEquals(Xref externalIdentifier1, Xref externalIdentifier2){

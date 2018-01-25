@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.factory;
  * @version $Id$
  * @since <pre>02/07/13</pre>
  */
-
 public enum InteractorCategory {
     protein, nucleic_acid, gene, bioactive_entity, polymer, complex, interactor_set, other
 }

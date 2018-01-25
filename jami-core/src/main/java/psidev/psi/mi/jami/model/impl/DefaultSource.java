@@ -14,25 +14,50 @@ import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultSource extends DefaultCvTerm implements Source {
 
     private Annotation url;
     private Annotation postalAddress;
     private Publication bibRef;
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public DefaultSource(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultSource(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultSource(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultSource(String shortName, String url, String address, Publication bibRef) {
         super(shortName);
         setUrl(url);
@@ -40,6 +65,15 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultSource(String shortName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, ontologyId);
         setUrl(url);
@@ -47,6 +81,16 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultSource(String shortName, String fullName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, fullName, ontologyId);
         setUrl(url);
@@ -54,14 +98,36 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public DefaultSource(String shortName, String miId) {
         super(shortName, miId);
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     */
     public DefaultSource(String shortName, String fullName, String miId) {
         super(shortName, fullName, miId);
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultSource(String shortName, String miId, String url, String address, Publication bibRef) {
         super(shortName, miId);
         setUrl(url);
@@ -69,6 +135,16 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         this.bibRef = bibRef;
     }
 
+    /**
+     * <p>Constructor for DefaultSource.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public DefaultSource(String shortName, String fullName, String miId, String url, String address, Publication bibRef) {
         super(shortName, fullName, miId);
         setUrl(url);
@@ -76,15 +152,22 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         this.bibRef = bibRef;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseAnnotations() {
         initialiseAnnotationsWith(new SourceAnnotationList());
     }
 
+    /**
+     * <p>Getter for the field <code>url</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getUrl() {
         return this.url != null ? this.url.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setUrl(String url) {
         SourceAnnotationList sourceAnnotationList = (SourceAnnotationList)getAnnotations();
 
@@ -105,10 +188,16 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>postalAddress</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPostalAddress() {
         return this.postalAddress != null ? this.postalAddress.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setPostalAddress(String address) {
         SourceAnnotationList sourceAnnotationList = (SourceAnnotationList)getAnnotations();
 
@@ -129,14 +218,25 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>getPublication</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     */
     public Publication getPublication() {
         return this.bibRef;
     }
 
+    /** {@inheritDoc} */
     public void setPublication(Publication ref) {
         this.bibRef = ref;
     }
 
+    /**
+     * <p>processAddedAnnotationEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     protected void processAddedAnnotationEvent(Annotation added) {
         if (url == null && AnnotationUtils.doesAnnotationHaveTopic(added, Annotation.URL_MI, Annotation.URL)){
             url = added;
@@ -146,6 +246,11 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>processRemovedAnnotationEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Annotation} object.
+     */
     protected void processRemovedAnnotationEvent(Annotation removed) {
         if (url != null && url.equals(removed)){
             url = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.URL_MI, Annotation.URL);
@@ -155,6 +260,9 @@ public class DefaultSource extends DefaultCvTerm implements Source {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToAnnotations</p>
+     */
     protected void clearPropertiesLinkedToAnnotations() {
         url = null;
         postalAddress = null;

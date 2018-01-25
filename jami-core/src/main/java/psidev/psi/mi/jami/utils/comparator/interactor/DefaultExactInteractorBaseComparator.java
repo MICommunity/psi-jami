@@ -15,13 +15,13 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-
 public class DefaultExactInteractorBaseComparator {
 
     /**
      * Use DefaulExacttInteractorBaseComparator to know if two interactors are equals.
-     * @param interactor1
-     * @param interactor2
+     *
+     * @param interactor1 a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param interactor2 a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return true if the two interactors are equal
      */
     public static boolean areEquals(Interactor interactor1, Interactor interactor2){

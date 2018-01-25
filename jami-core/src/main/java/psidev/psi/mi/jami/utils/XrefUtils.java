@@ -16,12 +16,12 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>24/01/13</pre>
  */
-
 public class XrefUtils {
 
     /**
      * Method to know if a Xref is a potential identifier.
      * It can be an identity xref or a secondary xref.
+     *
      * @param ref : the Xref
      * @return true if the Xref has a qualifier identity or secondary-ac
      */
@@ -44,6 +44,7 @@ public class XrefUtils {
 
     /**
      * Method to know if a Xref is from the same database (dbId is the MI identifier and dbName is the database shortname)
+     *
      * @param ref : the Xref
      * @param dbId : the database MI identifier
      * @param dbName : the database shortname
@@ -71,6 +72,7 @@ public class XrefUtils {
 
     /**
      * Method to know if a Xref has the same qualifier (qualifierId is the MI identifier and qualifierName is the qualifier shortname)
+     *
      * @param ref : the Xref
      * @param qualifierId : the qualifier MI identifier
      * @param qualifierName : the qualifier shortname
@@ -101,6 +103,7 @@ public class XrefUtils {
 
     /**
      * Method to know if a Xref is from the same database (dbId is the MI identifier and dbName is the database shortname)
+     *
      * @param ref : the Xref
      * @param dbId : the database MI identifier
      * @param dbName : the database shortname
@@ -139,6 +142,7 @@ public class XrefUtils {
 
     /**
      * Method to know if a Xref has the same qualifier (qualifierId is the MI identifier and qualifierName is the qualifier shortname)
+     *
      * @param ref : the Xref
      * @param qualifierId : the qualifier MI identifier
      * @param qualifierName : the qualifier shortname
@@ -180,7 +184,8 @@ public class XrefUtils {
 
     /**
      * Method to return a sub collection of identifiers (qualifier identity or secondary) in a list of Xrefs
-     * @param refs
+     *
+     * @param refs a {@link java.util.Collection} object.
      * @return the sublist of identifiers (qualifier identity or secondary) from the list of Xrefs
      */
     public static Collection<Xref> collectAllIdentifiersFrom(Collection<? extends Xref> refs){
@@ -201,10 +206,11 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific qualifier
-     * @param refs
-     * @param qualifierId
-     * @param qualifierName
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param qualifierId a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingQualifier(Collection<? extends Xref> refs, String qualifierId, String qualifierName){
 
@@ -224,10 +230,11 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific database
-     * @param refs
-     * @param dbId
-     * @param dbName
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param dbId a {@link java.lang.String} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingDatabase(Collection<? extends Xref> refs, String dbId, String dbName){
 
@@ -247,12 +254,13 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific database and qualifier
-     * @param refs
-     * @param dbId
-     * @param dbName
-     * @param qualifierId
-     * @param qualifierName
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param dbId a {@link java.lang.String} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param qualifierId a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingDatabaseAndQualifier(Collection<? extends Xref> refs, String dbId, String dbName, String qualifierId, String qualifierName){
 
@@ -272,11 +280,12 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific qualifier
-     * @param refs
-     * @param qualifierId
-     * @param qualifierName
-     * @param id
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param qualifierId a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingQualifierAndId(Collection<? extends Xref> refs, String qualifierId, String qualifierName, String id){
 
@@ -296,11 +305,12 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific database
-     * @param refs
-     * @param dbId
-     * @param dbName
-     * @param id
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param dbId a {@link java.lang.String} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingDatabaseAndId(Collection<? extends Xref> refs, String dbId, String dbName, String id){
 
@@ -320,13 +330,14 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having a specific database and qualifier
-     * @param refs
-     * @param dbId
-     * @param dbName
-     * @param qualifierId
-     * @param qualifierName
-     * @param id
-     * @return
+     *
+     * @param refs a {@link java.util.Collection} object.
+     * @param dbId a {@link java.lang.String} object.
+     * @param dbName a {@link java.lang.String} object.
+     * @param qualifierId a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> collectAllXrefsHavingDatabaseQualifierAndId(Collection<? extends Xref> refs, String dbId, String dbName, String id, String qualifierId, String qualifierName){
 
@@ -346,12 +357,13 @@ public class XrefUtils {
 
     /**
      * Collect all cross references having specific databases and qualifiers
-     * @param xrefs
-     * @param dbMiRefs
-     * @param dbRefs
-     * @param typeMiRefs
-     * @param typeRefs
-     * @return
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     * @param dbMiRefs a {@link java.util.Collection} object.
+     * @param dbRefs a {@link java.util.Collection} object.
+     * @param typeMiRefs a {@link java.util.Collection} object.
+     * @param typeRefs a {@link java.util.Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> searchAllXrefsHavingDatabaseAndQualifier( Collection<Xref> xrefs,
                                                                              Collection<String> dbMiRefs,
@@ -393,10 +405,11 @@ public class XrefUtils {
 
     /**
      * Collect all Xrefs having specific databases
-     * @param xrefs
-     * @param dbMiRefs
-     * @param dbRefs
-     * @return
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     * @param dbMiRefs a {@link java.util.Collection} object.
+     * @param dbRefs a {@link java.util.Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Xref> searchAllXrefsHavingDatabases(Collection<Xref> xrefs, Collection<String> dbMiRefs, Collection<String> dbRefs) {
 
@@ -426,6 +439,7 @@ public class XrefUtils {
      * - secondary identifier if no identity qualifier
      * - first Xref from this database if no identity or secondary qualifier
      * It will return null if there are no Xrefs with this database id/name
+     *
      * @param refs : the collection of Xrefs
      * @param dbId : the database id to look for
      * @param dbName : the database name to look for
@@ -448,6 +462,7 @@ public class XrefUtils {
 
     /**
      * Remove all Xrefs having this database name/database id from the collection of xrefs
+     *
      * @param refs : the collection of Xrefs
      * @param dbId : the database id to look for
      * @param dbName : the database name to look for
@@ -471,10 +486,11 @@ public class XrefUtils {
      * - secondary identifier if no identity qualifier
      * - first Xref from this database if no identity or secondary qualifier
      * It will return null if there are no Xrefs with this database id/name
+     *
      * @param refs : the collection of Xrefs
      * @param dbId : the database id to look for
      * @param dbName : the database name to look for
-     * @param id
+     * @param id a {@link java.lang.String} object.
      * @return the first identifier having this database name/id, null if no Xrefs with this database name/id
      */
     public static Xref collectFirstIdentifierWithDatabaseAndId(Collection<? extends Xref> refs, String dbId, String dbName, String id){
@@ -494,10 +510,11 @@ public class XrefUtils {
 
     /**
      * Remove all Xrefs having this database name/database id from the collection of xrefs
+     *
      * @param refs : the collection of Xrefs
      * @param dbId : the database id to look for
      * @param dbName : the database name to look for
-     * @param id
+     * @param id a {@link java.lang.String} object.
      */
     public static void removeAllXrefsWithDatabaseAndId(Collection<? extends Xref> refs, String dbId, String dbName, String id){
 
@@ -512,122 +529,320 @@ public class XrefUtils {
         }
     }
 
+    /**
+     * <p>createXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createXref(String databaseName, String databaseMi, String id){
         return new DefaultXref(CvTermUtils.createMICvTerm(databaseName, databaseMi), id);
     }
 
+    /**
+     * <p>createXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createXref(String databaseName, String id){
         return new DefaultXref(CvTermUtils.createMICvTerm(databaseName, null), id);
     }
 
+    /**
+     * <p>createXrefWithQualifier</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @param qualifierMi a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createXrefWithQualifier(String databaseName, String databaseMi, String id, String qualifierName, String qualifierMi){
         return new DefaultXref(CvTermUtils.createMICvTerm(databaseName, databaseMi), id, CvTermUtils.createMICvTerm(qualifierName, qualifierMi));
     }
 
+    /**
+     * <p>createXrefWithQualifier</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createXrefWithQualifier(String databaseName, String id, String qualifierName){
         return new DefaultXref(CvTermUtils.createMICvTerm(databaseName, null), id, CvTermUtils.createMICvTerm(qualifierName, null));
     }
 
+    /**
+     * <p>createIdentityXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createIdentityXref(String databaseName, String databaseMi, String id){
         return createXrefWithQualifier(databaseName, databaseMi, id, Xref.IDENTITY, Xref.IDENTITY_MI);
     }
 
+    /**
+     * <p>createIdentityXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createIdentityXref(String databaseName, String id){
         return createXrefWithQualifier(databaseName, null, id, Xref.IDENTITY, Xref.IDENTITY_MI);
     }
 
+    /**
+     * <p>createSecondaryXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createSecondaryXref(String databaseName, String databaseMi, String id){
         return createXrefWithQualifier(databaseName, databaseMi, id, Xref.SECONDARY, Xref.SECONDARY_MI);
     }
 
+    /**
+     * <p>createSecondaryXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createSecondaryXref(String databaseName, String id){
         return createXrefWithQualifier(databaseName, null, id, Xref.SECONDARY, Xref.SECONDARY_MI);
     }
 
+    /**
+     * <p>createPrimaryXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPrimaryXref(String databaseName, String databaseMi, String id){
         return createXrefWithQualifier(databaseName, databaseMi, id, Xref.PRIMARY, Xref.PRIMARY_MI);
     }
 
+    /**
+     * <p>createPrimaryXref</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPrimaryXref(String databaseName, String id){
         return createXrefWithQualifier(databaseName, null, id, Xref.PRIMARY, Xref.PRIMARY_MI);
     }
 
+    /**
+     * <p>createUniprotIdentity</p>
+     *
+     * @param uniprot a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createUniprotIdentity(String uniprot){
         return createIdentityXref(Xref.UNIPROTKB, Xref.UNIPROTKB_MI, uniprot);
     }
 
+    /**
+     * <p>createRefseqIdentity</p>
+     *
+     * @param refseq a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createRefseqIdentity(String refseq){
         return createIdentityXref(Xref.REFSEQ, Xref.REFSEQ_MI, refseq);
     }
 
+    /**
+     * <p>createEnsemblIdentity</p>
+     *
+     * @param ensembl a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEnsemblIdentity(String ensembl){
         return createIdentityXref(Xref.ENSEMBL, Xref.ENSEMBL_MI, ensembl);
     }
 
+    /**
+     * <p>createEnsemblGenomesIdentity</p>
+     *
+     * @param ensembl a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEnsemblGenomesIdentity(String ensembl){
         return createIdentityXref(Xref.ENSEMBL_GENOMES, Xref.ENSEMBL_GENOMES_MI, ensembl);
     }
 
+    /**
+     * <p>createEntrezGeneIdIdentity</p>
+     *
+     * @param geneId a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEntrezGeneIdIdentity(String geneId){
         return createIdentityXref(Xref.ENTREZ_GENE, Xref.ENTREZ_GENE_MI, geneId);
     }
 
+    /**
+     * <p>createDdbjEmblGenbankIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createDdbjEmblGenbankIdentity(String id){
         return createIdentityXref(Xref.DDBJ_EMBL_GENBANK, Xref.DDBJ_EMBL_GENBANK_MI, id);
     }
 
+    /**
+     * <p>createChebiIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createChebiIdentity(String id){
         return createIdentityXref(Xref.CHEBI, Xref.CHEBI_MI, id);
     }
 
+    /**
+     * <p>createPubmedIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPubmedIdentity(String id){
         return createIdentityXref(Xref.PUBMED, Xref.PUBMED_MI, id);
     }
 
+    /**
+     * <p>createDoiIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createDoiIdentity(String id){
         return createIdentityXref(Xref.DOI, Xref.DOI_MI, id);
     }
 
+    /**
+     * <p>createPsiMiIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPsiMiIdentity(String id){
         return createIdentityXref(CvTerm.PSI_MI, CvTerm.PSI_MI_MI, id);
     }
 
+    /**
+     * <p>createPsiModIdentity</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPsiModIdentity(String id){
         return createSecondaryXref(CvTerm.PSI_MOD, CvTerm.PSI_MOD_MI, id);
     }
 
+    /**
+     * <p>createUniprotSecondary</p>
+     *
+     * @param uniprot a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createUniprotSecondary(String uniprot){
         return createSecondaryXref(Xref.UNIPROTKB, Xref.UNIPROTKB_MI, uniprot);
     }
 
+    /**
+     * <p>createRefseqSecondary</p>
+     *
+     * @param refseq a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createRefseqSecondary(String refseq){
         return createSecondaryXref(Xref.REFSEQ, Xref.REFSEQ_MI, refseq);
     }
 
+    /**
+     * <p>createEnsemblSecondary</p>
+     *
+     * @param ensembl a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEnsemblSecondary(String ensembl){
         return createSecondaryXref(Xref.ENSEMBL, Xref.ENSEMBL_MI, ensembl);
     }
 
+    /**
+     * <p>createEnsemblGenomesSecondary</p>
+     *
+     * @param ensembl a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEnsemblGenomesSecondary(String ensembl){
         return createSecondaryXref(Xref.ENSEMBL_GENOMES, Xref.ENSEMBL_GENOMES_MI, ensembl);
     }
 
+    /**
+     * <p>createEntrezGeneIdSecondary</p>
+     *
+     * @param geneId a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createEntrezGeneIdSecondary(String geneId){
         return createSecondaryXref(Xref.ENTREZ_GENE, Xref.ENTREZ_GENE_MI, geneId);
     }
 
+    /**
+     * <p>createDdbjEmblGenbankSecondary</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createDdbjEmblGenbankSecondary(String id){
         return createSecondaryXref(Xref.DDBJ_EMBL_GENBANK, Xref.DDBJ_EMBL_GENBANK_MI, id);
     }
 
+    /**
+     * <p>createChebiSecondary</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createChebiSecondary(String id){
         return createSecondaryXref(Xref.CHEBI, Xref.CHEBI_MI, id);
     }
 
+    /**
+     * <p>createPsiMiSecondary</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPsiMiSecondary(String id){
         return createSecondaryXref(CvTerm.PSI_MI, CvTerm.PSI_MI_MI, id);
     }
 
+    /**
+     * <p>createPsiModSecondary</p>
+     *
+     * @param id a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public static Xref createPsiModSecondary(String id){
         return createSecondaryXref(CvTerm.PSI_MOD, CvTerm.PSI_MOD_MI, id);
     }

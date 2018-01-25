@@ -23,7 +23,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>22/01/13</pre>
  */
-
 public class DefaultPublication implements Publication {
 
     private String title;
@@ -42,10 +41,18 @@ public class DefaultPublication implements Publication {
     private Xref doi;
     private Xref imexId;
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     */
     public DefaultPublication(){
         this.curationDepth = CurationDepth.undefined;
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public DefaultPublication(Xref identifier){
         this();
 
@@ -54,6 +61,13 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(Xref identifier, CurationDepth curationDepth, Source source){
         this(identifier);
         if (curationDepth != null){
@@ -62,11 +76,23 @@ public class DefaultPublication implements Publication {
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(Xref identifier, String imexId, Source source){
         this(identifier, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     */
     public DefaultPublication(String pubmed){
         this.curationDepth = CurationDepth.undefined;
 
@@ -75,6 +101,13 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(String pubmed, CurationDepth curationDepth, Source source){
         this(pubmed);
         if (curationDepth != null){
@@ -83,11 +116,25 @@ public class DefaultPublication implements Publication {
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param pubmed a {@link java.lang.String} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(String pubmed, String imexId, Source source){
         this(pubmed, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     */
     public DefaultPublication(String title, String journal, Date publicationDate){
         this.title = title;
         this.journal = journal;
@@ -95,6 +142,15 @@ public class DefaultPublication implements Publication {
         this.curationDepth = CurationDepth.undefined;
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(String title, String journal, Date publicationDate, CurationDepth curationDepth, Source source){
         this(title, journal, publicationDate);
         if (curationDepth != null){
@@ -103,31 +159,60 @@ public class DefaultPublication implements Publication {
         this.source = source;
     }
 
+    /**
+     * <p>Constructor for DefaultPublication.</p>
+     *
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public DefaultPublication(String title, String journal, Date publicationDate, String imexId, Source source){
         this(title, journal, publicationDate, CurationDepth.IMEx, source);
         assignImexId(imexId);
     }
 
+    /**
+     * <p>initialiseAuthors</p>
+     */
     protected void initialiseAuthors(){
         this.authors = new ArrayList<String>();
     }
 
+    /**
+     * <p>initialiseXrefs</p>
+     */
     protected void initialiseXrefs(){
         this.xrefs = new PublicationXrefList();
     }
 
+    /**
+     * <p>initialiseAnnotations</p>
+     */
     protected void initialiseAnnotations(){
         this.annotations = new ArrayList<Annotation>();
     }
 
+    /**
+     * <p>initialiseExperiments</p>
+     */
     protected void initialiseExperiments(){
         this.experiments = new ArrayList<Experiment>();
     }
 
+    /**
+     * <p>initialiseIdentifiers</p>
+     */
     protected void initialiseIdentifiers(){
         this.identifiers = new PublicationIdentifierList();
     }
 
+    /**
+     * <p>initialiseAuthorsWith</p>
+     *
+     * @param authors a {@link java.util.List} object.
+     */
     protected void initialiseAuthorsWith(List<String> authors){
         if (authors == null){
             this.authors = Collections.EMPTY_LIST;
@@ -137,6 +222,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>initialiseXrefsWith</p>
+     *
+     * @param xrefs a {@link java.util.Collection} object.
+     */
     protected void initialiseXrefsWith(Collection<Xref> xrefs){
         if (xrefs == null){
             this.xrefs = Collections.EMPTY_LIST;
@@ -146,6 +236,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>initialiseAnnotationsWith</p>
+     *
+     * @param annotations a {@link java.util.Collection} object.
+     */
     protected void initialiseAnnotationsWith(Collection<Annotation> annotations){
         if (annotations == null){
             this.annotations = Collections.EMPTY_LIST;
@@ -155,6 +250,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>initialiseExperimentsWith</p>
+     *
+     * @param experiments a {@link java.util.Collection} object.
+     */
     protected void initialiseExperimentsWith(Collection<Experiment> experiments){
         if (experiments == null){
             this.experiments = Collections.EMPTY_LIST;
@@ -164,6 +264,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>initialiseIdentifiersWith</p>
+     *
+     * @param identifiers a {@link java.util.Collection} object.
+     */
     protected void initialiseIdentifiersWith(Collection<Xref> identifiers){
         if (identifiers == null){
             this.identifiers = Collections.EMPTY_LIST;
@@ -173,10 +278,16 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>pubmedId</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getPubmedId() {
         return this.pubmedId != null ? this.pubmedId.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setPubmedId(String pubmedId) {
         PublicationIdentifierList identifiers = (PublicationIdentifierList)getIdentifiers();
 
@@ -198,10 +309,16 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>doi</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDoi() {
         return this.doi != null ? this.doi.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void setDoi(String doi) {
         PublicationIdentifierList identifiers = (PublicationIdentifierList)getIdentifiers();
         // add new doi if not null
@@ -222,6 +339,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>identifiers</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
             initialiseIdentifiers();
@@ -229,10 +351,16 @@ public class DefaultPublication implements Publication {
         return this.identifiers;
     }
 
+    /**
+     * <p>Getter for the field <code>imexId</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getImexId() {
         return this.imexId != null ? this.imexId.getId() : null;
     }
 
+    /** {@inheritDoc} */
     public void assignImexId(String identifier) {
         PublicationXrefList xrefs = (PublicationXrefList)getXrefs();
         // add new imex if not null
@@ -253,30 +381,53 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>title</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /** {@inheritDoc} */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * <p>Getter for the field <code>journal</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getJournal() {
         return this.journal;
     }
 
+    /** {@inheritDoc} */
     public void setJournal(String journal) {
         this.journal = journal;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getPublicationDate() {
         return this.publicationDate;
     }
 
+    /** {@inheritDoc} */
     public void setPublicationDate(Date date) {
         this.publicationDate = date;
     }
 
+    /**
+     * <p>Getter for the field <code>authors</code>.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<String> getAuthors() {
         if (authors == null){
            initialiseAuthors();
@@ -284,6 +435,11 @@ public class DefaultPublication implements Publication {
         return this.authors;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefs</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Xref> getXrefs() {
         if (xrefs == null){
            initialiseXrefs();
@@ -291,6 +447,11 @@ public class DefaultPublication implements Publication {
         return this.xrefs;
     }
 
+    /**
+     * <p>Getter for the field <code>annotations</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Annotation> getAnnotations() {
         if (annotations == null){
             initialiseAnnotations();
@@ -298,6 +459,11 @@ public class DefaultPublication implements Publication {
         return this.annotations;
     }
 
+    /**
+     * <p>Getter for the field <code>experiments</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Experiment> getExperiments() {
         if (experiments == null){
             initialiseExperiments();
@@ -305,10 +471,16 @@ public class DefaultPublication implements Publication {
         return this.experiments;
     }
 
+    /**
+     * <p>Getter for the field <code>curationDepth</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     */
     public CurationDepth getCurationDepth() {
         return this.curationDepth;
     }
 
+    /** {@inheritDoc} */
     public void setCurationDepth(CurationDepth curationDepth) {
 
         if (imexId != null && curationDepth != null && !curationDepth.equals(CurationDepth.IMEx)){
@@ -326,22 +498,35 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>releasedDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getReleasedDate() {
         return this.releasedDate;
     }
 
+    /** {@inheritDoc} */
     public void setReleasedDate(Date released) {
         this.releasedDate = released;
     }
 
+    /**
+     * <p>Getter for the field <code>source</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public Source getSource() {
         return this.source;
     }
 
+    /** {@inheritDoc} */
     public void setSource(Source source) {
         this.source = source;
     }
 
+    /** {@inheritDoc} */
     public boolean addExperiment(Experiment exp) {
         if (exp == null){
             return false;
@@ -355,6 +540,7 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /** {@inheritDoc} */
     public boolean removeExperiment(Experiment exp) {
         if (exp == null){
             return false;
@@ -368,6 +554,7 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /** {@inheritDoc} */
     public boolean addAllExperiments(Collection<? extends Experiment> exps) {
         if (exps == null){
             return false;
@@ -384,6 +571,7 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllExperiments(Collection<? extends Experiment> exps) {
         if (exps == null){
             return false;
@@ -400,6 +588,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>processAddedIdentifierEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedIdentifierEvent(Xref added) {
 
         // the added identifier is pubmed and it is not the current pubmed identifier
@@ -440,6 +633,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>processRemovedIdentifierEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is pubmed
         if (pubmedId != null && pubmedId.equals(removed)){
@@ -451,11 +649,19 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToIdentifiers</p>
+     */
     protected void clearPropertiesLinkedToIdentifiers() {
         pubmedId = null;
         doi = null;
     }
 
+    /**
+     * <p>processAddedXrefEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedXrefEvent(Xref added) {
 
         // the added identifier is imex and the current imex is not set
@@ -467,6 +673,11 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>processRemovedXrefEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedXrefEvent(Xref removed) {
         // the removed identifier is pubmed
         if (imexId != null && imexId.equals(removed)){
@@ -477,10 +688,14 @@ public class DefaultPublication implements Publication {
         }
     }
 
+    /**
+     * <p>clearPropertiesLinkedToXrefs</p>
+     */
     protected void clearPropertiesLinkedToXrefs() {
         imexId = null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Publication: "+

@@ -25,7 +25,6 @@ import java.util.Set;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public abstract class AbstractXmlInteractionWriter<T extends Interaction, P extends Participant> implements PsiXmlInteractionWriter<T> {
 
     private XMLStreamWriter streamWriter;
@@ -39,6 +38,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
     private PsiXmlExperimentWriter experimentWriter;
     private PsiXmlElementWriter<Checksum> checksumWriter;
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public AbstractXmlInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlInteractionWriter");
@@ -51,6 +56,11 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         this.objectIndex = objectIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>participantWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} object.
+     */
     public PsiXmlParticipantWriter<P> getParticipantWriter() {
         if (this.participantWriter == null){
             initialiseParticipantWriter();
@@ -58,12 +68,25 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return participantWriter;
     }
 
+    /**
+     * <p>initialiseParticipantWriter.</p>
+     */
     protected abstract void initialiseParticipantWriter();
 
+    /**
+     * <p>Setter for the field <code>participantWriter</code>.</p>
+     *
+     * @param participantWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter} object.
+     */
     public void setParticipantWriter(PsiXmlParticipantWriter<P> participantWriter) {
         this.participantWriter = participantWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>xrefWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public PsiXmlXrefWriter getXrefWriter() {
         if (this.xrefWriter == null){
             initialiseXrefWriter();
@@ -71,20 +94,43 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return xrefWriter;
     }
 
+    /**
+     * <p>initialiseXrefWriter.</p>
+     */
     protected abstract void initialiseXrefWriter();
 
+    /**
+     * <p>Setter for the field <code>xrefWriter</code>.</p>
+     *
+     * @param xrefWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter} object.
+     */
     public void setXrefWriter(PsiXmlXrefWriter xrefWriter) {
         this.xrefWriter = xrefWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>interactionTypeWriter</code>.</p>
+     *
+     * @param interactionTypeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public void setInteractionTypeWriter(PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter) {
         this.interactionTypeWriter = interactionTypeWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>attributeWriter</code>.</p>
+     *
+     * @param attributeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAttributeWriter(PsiXmlElementWriter<Annotation> attributeWriter) {
         this.attributeWriter = attributeWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>inferredInteractionWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Set<Feature>> getInferredInteractionWriter() {
         if (this.inferredInteractionWriter == null){
             initialiseInferredInteractionWriter();
@@ -92,20 +138,43 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return inferredInteractionWriter;
     }
 
+    /**
+     * <p>initialiseInferredInteractionWriter.</p>
+     */
     protected abstract void initialiseInferredInteractionWriter();
 
+    /**
+     * <p>Setter for the field <code>inferredInteractionWriter</code>.</p>
+     *
+     * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setInferredInteractionWriter(PsiXmlElementWriter<Set<Feature>> inferredInteractionWriter) {
         this.inferredInteractionWriter = inferredInteractionWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>experimentWriter</code>.</p>
+     *
+     * @param experimentWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     */
     public void setExperimentWriter(PsiXmlExperimentWriter experimentWriter) {
         this.experimentWriter = experimentWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>checksumWriter</code>.</p>
+     *
+     * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setChecksumWriter(PsiXmlElementWriter<Checksum> checksumWriter) {
         this.checksumWriter = checksumWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>experimentWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExperimentWriter} object.
+     */
     public PsiXmlExperimentWriter getExperimentWriter() {
         if (this.experimentWriter == null){
             initialiseExperimentWriter();
@@ -113,8 +182,16 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return experimentWriter;
     }
 
+    /**
+     * <p>initialiseExperimentWriter.</p>
+     */
     protected abstract void initialiseExperimentWriter();
 
+    /**
+     * <p>Getter for the field <code>checksumWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Checksum> getChecksumWriter() {
         if (this.checksumWriter == null){
             this.checksumWriter = new XmlChecksumWriter(streamWriter);
@@ -122,6 +199,11 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return checksumWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>interactionTypeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
+     */
     public PsiXmlVariableNameWriter<CvTerm> getInteractionTypeWriter() {
         if (this.interactionTypeWriter == null){
             initialiseInteractionTypeWriter();
@@ -129,8 +211,16 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return interactionTypeWriter;
     }
 
+    /**
+     * <p>initialiseInteractionTypeWriter.</p>
+     */
     protected abstract void initialiseInteractionTypeWriter();
 
+    /**
+     * <p>Getter for the field <code>attributeWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAttributeWriter() {
         if (this.attributeWriter == null){
             this.attributeWriter = new XmlAnnotationWriter(streamWriter);
@@ -138,6 +228,7 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return attributeWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(T object) throws MIIOException {
         try {
@@ -185,10 +276,26 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherProperties(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeStartInteraction.</p>
+     *
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeStartInteraction() throws XMLStreamException;
 
+    /**
+     * <p>Getter for the field <code>defaultExperiment</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public Experiment getDefaultExperiment() {
         if (this.defaultExperiment == null){
             initialiseDefaultExperiment();
@@ -196,25 +303,35 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return defaultExperiment;
     }
 
+    /** {@inheritDoc} */
     public void setDefaultExperiment(Experiment defaultExperiment) {
         this.defaultExperiment = defaultExperiment;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(T interaction) {
         return getDefaultExperiment();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean writeComplexAsInteractor() {
         return this.participantWriter.writeComplexAsInteractor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setComplexAsInteractor(boolean complexAsInteractor) {
         getParticipantWriter().setComplexAsInteractor(complexAsInteractor);
     }
 
+    /**
+     * <p>writeAttributes.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttributes(T object) throws XMLStreamException {
         // write attributes
         if (!object.getAnnotations().isEmpty()){
@@ -241,14 +358,33 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         }
     }
 
+    /**
+     * <p>writeInteractionType.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeInteractionType(T object) throws XMLStreamException {
         if (object.getInteractionType() != null){
             getInteractionTypeWriter().write(object.getInteractionType(),"interactionType");
         }
     }
 
+    /**
+     * <p>writeInferredInteractions.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeInferredInteractions(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeParticipants.</p>
+     *
+     * @param object a T object.
+     * @param method a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeParticipants(T object, CvTerm method) throws XMLStreamException {
         if (!object.getParticipants().isEmpty()){
             this.streamWriter.writeStartElement("participantList");
@@ -259,6 +395,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         }
     }
 
+    /**
+     * <p>writeNames.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeNames(T object) throws XMLStreamException {
         boolean hasShortLabel = object.getShortName() != null;
         if (hasShortLabel){
@@ -272,9 +414,34 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         }
     }
 
+    /**
+     * <p>writeAvailability.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeAvailability(T object) throws XMLStreamException;
+    /**
+     * <p>writeExperiments.</p>
+     *
+     * @param object a T object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract CvTerm writeExperiments(T object) throws XMLStreamException;
+    /**
+     * <p>writeOtherAttributes.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeOtherAttributes(T object) throws XMLStreamException;
+    /**
+     * <p>writeIntraMolecular.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeIntraMolecular(T object) throws XMLStreamException{
         ComplexType type = InteractionUtils.findInteractionCategoryOf(object,true);
         if (type != null && type == ComplexType.self_intra_molecular){
@@ -284,8 +451,20 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
             getStreamWriter().writeEndElement();
         }
     }
+    /**
+     * <p>writeModelled.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeModelled(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeXref.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXref(T object) throws XMLStreamException {
         if (!object.getIdentifiers().isEmpty()){
             writeXrefFromInteractionIdentifiers(object);
@@ -295,6 +474,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         }
     }
 
+    /**
+     * <p>writeXrefFromInteractionXrefs.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromInteractionXrefs(T object) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -322,6 +507,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>writeXrefFromInteractionIdentifiers.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeXrefFromInteractionIdentifiers(T object) throws XMLStreamException {
         // write start xref
         this.streamWriter.writeStartElement("xref");
@@ -358,20 +549,54 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>objectIndex</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
     }
 
+    /**
+     * <p>writeParameters.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeParameters(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeConfidences.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeConfidences(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeNegative.</p>
+     *
+     * @param object a T object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected abstract void writeNegative(T object) throws XMLStreamException;
 
+    /**
+     * <p>writeExperimentRef.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected CvTerm writeExperimentRef() throws XMLStreamException {
         getStreamWriter().writeStartElement("experimentList");
         getStreamWriter().writeStartElement("experimentRef");
@@ -382,6 +607,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return getExperimentWriter().extractDefaultParticipantIdentificationMethod(getDefaultExperiment());
     }
 
+    /**
+     * <p>writeExperimentDescription.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected CvTerm writeExperimentDescription() throws XMLStreamException {
         getStreamWriter().writeStartElement("experimentList");
         CvTerm det = getExperimentWriter().writeExperiment(getDefaultExperiment());
@@ -389,10 +620,20 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         return det;
     }
 
+    /**
+     * <p>initialiseDefaultExperiment.</p>
+     */
     protected void initialiseDefaultExperiment(){
         this.defaultExperiment = new XmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null));
     }
 
+    /**
+     * <p>writeAttribute.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param nameAc a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeAttribute(String name, String nameAc) throws XMLStreamException {
         // write start
         this.streamWriter.writeStartElement("attribute");
@@ -405,6 +646,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
         this.streamWriter.writeEndElement();
     }
 
+    /**
+     * <p>collectInferredInteractionsFrom.</p>
+     *
+     * @param object a T object.
+     * @return a {@link java.util.Collection} object.
+     */
     protected Collection<Set<Feature>> collectInferredInteractionsFrom(T object){
         BindingSiteCliqueFinder<T,Feature> cliqueFinder = new BindingSiteCliqueFinder<T, Feature>(object);
         return cliqueFinder.getAllMaximalCliques();

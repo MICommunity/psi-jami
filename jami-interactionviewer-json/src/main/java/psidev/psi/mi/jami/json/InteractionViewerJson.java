@@ -40,7 +40,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>19/11/14</pre>
  */
-
 public class InteractionViewerJson {
 
     /**

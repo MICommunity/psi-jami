@@ -14,29 +14,27 @@ import java.util.List;
  * If one publication identifier is not set, it will look at first publication title (case insensitive),
  * then the authors (order is taken into account), then the journal (case insensitive) and finally the publication date.
  * - Two publications which are null are equals
- * @author Marine Dumousseau (marine@ebi.ac.uk)
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class DefaultPublicationComparator {
 
     /**
      * Use DefaultPublicationComparator to know if two publications are equals.
-     * @param publication1
-     * @param publication2
+     *
+     * @param publication1 a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param publication2 a {@link psidev.psi.mi.jami.model.Publication} object.
      * @return true if the two publications are equal
      */
-    public static boolean areEquals(Publication publication1, Publication publication2){
+    public static boolean areEquals(Publication publication1, Publication publication2) {
 
-        if (publication1 == publication2){
+        if (publication1 == publication2) {
             return true;
-        }
-        else if (publication1 == null || publication2 == null){
+        } else if (publication1 == null || publication2 == null) {
             return false;
-        }
-        else {
+        } else {
 
             String imexId1 = publication1.getImexId();
             String imexId2 = publication2.getImexId();
@@ -45,7 +43,7 @@ public class DefaultPublicationComparator {
             boolean hasImexId2 = imexId2 != null;
 
             // when both imex ids are not null, can compare only the imex ids
-            if (hasImexId1 && hasImexId2){
+            if (hasImexId1 && hasImexId2) {
                 return imexId1.equals(imexId2);
             }
             // if one of the imex ids is null (or both), we need to compare the publication identifier.
@@ -57,7 +55,7 @@ public class DefaultPublicationComparator {
                 boolean hasPubmedId2 = pubmed2 != null;
 
                 // both pubmeds are set, we should only compare pubmeds
-                if (hasPubmedId1 && hasPubmedId2){
+                if (hasPubmedId1 && hasPubmedId2) {
                     return pubmed1.equals(pubmed2);
                 }
                 // compare doi
@@ -68,11 +66,11 @@ public class DefaultPublicationComparator {
                     boolean hasDoiId2 = doi2 != null;
 
                     // both doi are set, we should only compare dois
-                    if (hasDoiId1 && hasDoiId2){
+                    if (hasDoiId1 && hasDoiId2) {
                         return doi1.equals(doi2);
                     }
                     // compare other identifier
-                    else if (!publication1.getIdentifiers().isEmpty() && !publication2.getIdentifiers().isEmpty()){
+                    else if (!publication1.getIdentifiers().isEmpty() && !publication2.getIdentifiers().isEmpty()) {
                         return ComparatorUtils.findAtLeastOneMatchingIdentifier(publication1.getIdentifiers(), publication2.getIdentifiers());
                     }
                     // use journal, publication date, publication authors and publication title to compare publications
@@ -82,13 +80,11 @@ public class DefaultPublicationComparator {
                         String title2 = publication2.getTitle();
 
                         boolean comp;
-                        if (title1 == null && title2 != null){
+                        if (title1 == null && title2 != null) {
                             return false;
-                        }
-                        else if (title1 != null && title2 == null){
+                        } else if (title1 != null && title2 == null) {
                             return false;
-                        }
-                        else if (title1 != null && title2 != null){
+                        } else if (title1 != null && title2 != null) {
                             comp = title1.equalsIgnoreCase(title2);
                         }
                         // if both titles are null, compares the authors
@@ -96,7 +92,7 @@ public class DefaultPublicationComparator {
                             comp = true;
                         }
 
-                        if (!comp){
+                        if (!comp) {
                             return comp;
                         }
 
@@ -104,36 +100,31 @@ public class DefaultPublicationComparator {
                         List<String> authors1 = publication1.getAuthors();
                         List<String> authors2 = publication2.getAuthors();
 
-                        if (authors1.size() != authors2.size()){
+                        if (authors1.size() != authors2.size()) {
                             return false;
-                        }
-                        else {
+                        } else {
                             Iterator<String> iterator1 = authors1.iterator();
                             Iterator<String> iterator2 = authors2.iterator();
                             boolean comp2 = true;
-                            while (comp2 && iterator1.hasNext() && iterator2.hasNext()){
+                            while (comp2 && iterator1.hasNext() && iterator2.hasNext()) {
                                 comp2 = iterator1.next().equalsIgnoreCase(iterator2.next());
                             }
 
-                            if (!comp2){
+                            if (!comp2) {
                                 return comp2;
-                            }
-                            else if (iterator1.hasNext() || iterator2.hasNext()){
+                            } else if (iterator1.hasNext() || iterator2.hasNext()) {
                                 return false;
-                            }
-                            else {
+                            } else {
                                 // compares journal
                                 String journal1 = publication1.getJournal();
                                 String journal2 = publication2.getJournal();
 
                                 boolean comp3;
-                                if (journal1 == null && journal2 != null){
+                                if (journal1 == null && journal2 != null) {
                                     return false;
-                                }
-                                else if (journal1 != null && journal2 == null){
+                                } else if (journal1 != null && journal2 == null) {
                                     return false;
-                                }
-                                else if (journal2 != null && journal1 != null){
+                                } else if (journal2 != null && journal1 != null) {
                                     comp3 = journal1.equalsIgnoreCase(journal2);
                                 }
                                 // if both journals are null, compares the publication dates
@@ -141,40 +132,38 @@ public class DefaultPublicationComparator {
                                     comp3 = true;
                                 }
 
-                                if (!comp3){
+                                if (!comp3) {
                                     return comp3;
                                 }
                                 // compares publication dates
                                 Date date1 = publication1.getPublicationDate();
                                 Date date2 = publication2.getPublicationDate();
 
-                                if (date1 == null && date2 == null){
-                                }
-                                else if (date1 == null || date2 == null){
+                                if (date1 == null && date2 == null) {
+                                } else if (date1 == null || date2 == null) {
                                     return false;
-                                }
-                                else if (!date1.equals(date2)){
+                                } else if (!date1.equals(date2)) {
                                     return false;
                                 }
 
                                 // if we had one imex id
-                                if (hasImexId1 || hasImexId2){
+                                if (hasImexId1 || hasImexId2) {
                                     return false;
                                 }
                                 // we had one pubmed id
-                                else if (hasPubmedId1 || hasPubmedId2){
+                                else if (hasPubmedId1 || hasPubmedId2) {
                                     return false;
                                 }
                                 // we had one doi id
-                                else if (hasDoiId1 || hasDoiId2){
+                                else if (hasDoiId1 || hasDoiId2) {
                                     return false;
                                 }
                                 // we had publication with identifiers
-                                else if (!publication1.getIdentifiers().isEmpty() || !publication2.getIdentifiers().isEmpty()){
+                                else if (!publication1.getIdentifiers().isEmpty() || !publication2.getIdentifiers().isEmpty()) {
                                     return false;
                                 }
                                 // the publications are the same
-                                else{
+                                else {
                                     return true;
                                 }
                             }

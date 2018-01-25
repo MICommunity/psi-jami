@@ -19,19 +19,28 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public class DefaultPsiXmlSource extends DefaultPsiXmlStreamSource implements PsiXmlSource {
 
+    /**
+     * <p>Constructor for DefaultPsiXmlSource.</p>
+     */
     public DefaultPsiXmlSource(){
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDelegate(Map<String, Object> options, PsiXmlDataSourceFactory factory, InteractionCategory category, ComplexType type) {
         super.setDelegate(factory.createPsiXmlDataSource(category, type, false));
         getDelegate().initialiseContext(options);
     }
 
+    /**
+     * <p>getInteractions.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public Collection<Interaction> getInteractions() throws MIIOException {
         if (getDelegate() == null){
             throw new IllegalStateException("The PSI-XML interaction datasource has not been initialised. The options for the Mitab interaction datasource " +
@@ -40,6 +49,11 @@ public class DefaultPsiXmlSource extends DefaultPsiXmlStreamSource implements Ps
         return getDelegate().getInteractions();
     }
 
+    /**
+     * <p>getNumberOfInteractions.</p>
+     *
+     * @return a long.
+     */
     public long getNumberOfInteractions() {
         if (getDelegate() == null){
             throw new IllegalStateException("The PSI-XML interaction datasource has not been initialised. The options for the Mitab interaction datasource " +
@@ -48,6 +62,7 @@ public class DefaultPsiXmlSource extends DefaultPsiXmlStreamSource implements Ps
         return getDelegate().getNumberOfInteractions();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected PsiXmlSource getDelegate() {
         return (PsiXmlSource)super.getDelegate();

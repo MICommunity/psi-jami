@@ -15,20 +15,22 @@ import java.util.List;
  *
  * It will first compare the publications using UnambiguousPublicationComparator and then the evidenceMethods using UnambiguousCvTermComparator
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class UnambiguousCooperativityEvidenceComparator extends CooperativityEvidenceComparator {
 
     private static UnambiguousCooperativityEvidenceComparator unambiguousCooperativityEvidenceComparator;
 
+    /**
+     * <p>Constructor for UnambiguousCooperativityEvidenceComparator.</p>
+     */
     public UnambiguousCooperativityEvidenceComparator() {
         super(new UnambiguousCvTermComparator(), new UnambiguousPublicationComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousPublicationComparator getPublicationComparator() {
         return (UnambiguousPublicationComparator) super.getPublicationComparator();
@@ -36,9 +38,10 @@ public class UnambiguousCooperativityEvidenceComparator extends CooperativityEvi
 
     /**
      * It will first compare the publications using DefaultPublicationComparator and then the evidenceMethods using DefaultCvTermComparator
-     * @param evidence1
-     * @param evidence2
-     * @return
+     *
+     * @param evidence1 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @param evidence2 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @return a int.
      */
     public int compare(CooperativityEvidence evidence1, CooperativityEvidence evidence2) {
         return super.compare(evidence1, evidence2);
@@ -46,8 +49,9 @@ public class UnambiguousCooperativityEvidenceComparator extends CooperativityEvi
 
     /**
      * Use UnambiguousCooperativityEvidenceComparator to know if two cooperativityEvidences are equals.
-     * @param evidence1
-     * @param evidence2
+     *
+     * @param evidence1 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
+     * @param evidence2 a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
      * @return true if the two cooperativityEvidences are equal
      */
     public static boolean areEquals(CooperativityEvidence evidence1, CooperativityEvidence evidence2){
@@ -59,8 +63,9 @@ public class UnambiguousCooperativityEvidenceComparator extends CooperativityEvi
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param evidence
+     * @param evidence a {@link psidev.psi.mi.jami.model.CooperativityEvidence} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(CooperativityEvidence evidence){

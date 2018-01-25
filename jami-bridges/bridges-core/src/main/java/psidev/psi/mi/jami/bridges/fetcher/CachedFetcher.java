@@ -6,6 +6,7 @@ package psidev.psi.mi.jami.bridges.fetcher;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/07/13
+
  */
 public interface CachedFetcher {
 
@@ -33,15 +34,17 @@ public interface CachedFetcher {
 
     /**
      * Fetch an element from the cache with a given key
-     * @param key
-     * @return
+     *
+     * @param key a {@link java.lang.String} object.
+     * @return a {@link java.lang.Object} object.
      */
     public Object getFromCache( String key );
 
     /**
      * Stores a given object in the cache with a key
-     * @param key
-     * @param data
+     *
+     * @param key a {@link java.lang.String} object.
+     * @param data a {@link java.lang.Object} object.
      */
     public void storeInCache( String key, Object data );
 }

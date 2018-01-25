@@ -21,9 +21,15 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 04/09/13
+
  */
 public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
 
+    /**
+     * <p>Constructor for MinimalGeneEnricher.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.GeneFetcher} object.
+     */
     public MinimalGeneEnricher(GeneFetcher fetcher) {
         super(fetcher);
         if (fetcher == null){
@@ -31,6 +37,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Gene find(Gene geneToEnrich) throws EnricherException {
         int taxid = -3;
@@ -52,11 +59,13 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
         return geneFetched;
     }
 
+    /** {@inheritDoc} */
     @Override
     public GeneFetcher getInteractorFetcher() {
         return (GeneFetcher)super.getInteractorFetcher();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Gene objectToEnrich) throws EnricherException{
         getListener().onEnrichmentComplete(
@@ -64,11 +73,13 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
                 "Could not fetch a gene with the provided identifier.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onCompletedEnrichment(Gene objectToEnrich) {
         if(getListener() != null)
@@ -76,6 +87,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
                     objectToEnrich , EnrichmentStatus.SUCCESS , "The gene has been successfully enriched.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onInteractorCheckFailure(Gene objectToEnrich, Gene fetchedObject) throws EnricherException{
         if(getListener() != null)
@@ -83,6 +95,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
                     objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the gene because the interactor type is not a gene type or we have a mismatch between the gene taxid to enrich and the fetched gene taxid.");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected boolean canEnrichInteractor(Gene entityToEnrich, Gene fetchedEntity) throws EnricherException{
         if (fetchedEntity == null){

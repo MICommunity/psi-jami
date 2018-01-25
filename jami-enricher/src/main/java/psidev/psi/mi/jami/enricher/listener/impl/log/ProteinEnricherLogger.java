@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.Protein;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  11/06/13
+
  */
 public class ProteinEnricherLogger
         extends PolymerEnricherLogger<Protein>

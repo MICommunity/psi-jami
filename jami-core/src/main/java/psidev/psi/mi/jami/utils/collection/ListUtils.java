@@ -10,7 +10,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>09/09/13</pre>
  */
-
 public class ListUtils {
 
     // It chops a list into view sublists of length L using sublist
@@ -20,6 +19,14 @@ public class ListUtils {
     // in this list, and vice-versa. The returned list supports all of the optional
     // list operations supported by this list.
     // In this case as we are not going to modify the lists is more efficient to use sublist
+    /**
+     * <p>splitter</p>
+     *
+     * @param list a {@link java.util.List} object.
+     * @param L a int.
+     * @param <T> a T object.
+     * @return a {@link java.util.List} object.
+     */
     public static <T> List<List<T>> splitter(List<T> list, final int L) {
         List<List<T>> parts = new ArrayList<List<T>>();
         final int N = list.size();

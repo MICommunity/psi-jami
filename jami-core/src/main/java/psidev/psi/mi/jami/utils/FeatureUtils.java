@@ -14,9 +14,16 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/12/13</pre>
  */
-
 public class FeatureUtils {
 
+    /**
+     * <p>createDefaultFeature</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link psidev.psi.mi.jami.model.Feature} object.
+     */
     public static Feature createDefaultFeature(String name, CvTerm featureType, Range range) {
 
         Feature feature = new DefaultFeature(name, null, featureType);
@@ -26,6 +33,14 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createDefaultFeature</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ranges a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.Feature} object.
+     */
     public static Feature createDefaultFeature(String name, CvTerm featureType, Collection<Range> ranges) {
 
         Feature feature = new DefaultFeature(name, null, featureType);
@@ -35,6 +50,14 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createModelledFeature</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     */
     public static ModelledFeature createModelledFeature(String name, CvTerm featureType, Range range) {
 
         ModelledFeature feature = new DefaultModelledFeature(name, null, featureType);
@@ -44,6 +67,14 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createModelledFeature</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ranges a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
+     */
     public static ModelledFeature createModelledFeature(String name, CvTerm featureType, Collection<Range> ranges) {
 
         ModelledFeature feature = new DefaultModelledFeature(name, null, featureType);
@@ -53,6 +84,14 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, Range range) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -62,6 +101,14 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ranges a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, Collection<Range> ranges) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -71,6 +118,15 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param detectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, CvTerm detectionMethod, Range range) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -83,6 +139,15 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param detectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ranges a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, CvTerm detectionMethod, Collection<Range> ranges) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -95,6 +160,15 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param detectionMethods a {@link java.util.Collection} object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, Collection<CvTerm> detectionMethods, Range range) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -107,6 +181,15 @@ public class FeatureUtils {
         return feature;
     }
 
+    /**
+     * <p>createFeatureEvidence</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param featureType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param detectionMethods a {@link java.util.Collection} object.
+     * @param ranges a {@link java.util.Collection} object.
+     * @return a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     */
     public static FeatureEvidence createFeatureEvidence(String name, CvTerm featureType, Collection<CvTerm> detectionMethods, Collection<Range> ranges) {
 
         FeatureEvidence feature = new DefaultFeatureEvidence(name, null, featureType);
@@ -120,8 +203,9 @@ public class FeatureUtils {
     }
 
     /**
+     * <p>isFeatureRole</p>
      *
-     * @param annotation
+     * @param annotation a {@link psidev.psi.mi.jami.model.Annotation} object.
      * @return true if the annotation is used to describe the role of a feature in an interaction
      */
     public static boolean isFeatureRole(Annotation annotation) {

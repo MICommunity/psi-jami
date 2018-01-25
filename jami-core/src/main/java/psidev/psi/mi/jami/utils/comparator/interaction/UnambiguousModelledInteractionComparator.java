@@ -13,19 +13,19 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousModelledPartic
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class UnambiguousModelledInteractionComparator extends ModelledInteractionComparator{
 
     private static UnambiguousModelledInteractionComparator unambiguousModelledInteractionComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousModelledInteractionComparator. It will use a UnambiguousInteractionBaseComparator to
      * compare basic interaction properties
      */
     public UnambiguousModelledInteractionComparator() {
         super(new UnambiguousModelledParticipantComparator(), new UnambiguousInteractionBaseComparator());
     }
-
     @Override
     /**
      * It will use a UnambiguousInteractionBaseComparator to compare basic interaction properties.
@@ -37,8 +37,9 @@ public class UnambiguousModelledInteractionComparator extends ModelledInteractio
 
     /**
      * Use UnambiguousModelledInteractionComparator to know if two modelled interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @return true if the two modelled interactions are equal
      */
     public static boolean areEquals(ModelledInteraction interaction1, ModelledInteraction interaction2){

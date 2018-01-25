@@ -15,29 +15,49 @@ import java.util.Iterator;
 /**
  * A mitab datasource that loads very basic binary interactions and ignore experimental details, source, confidence and experimental details
  * It only provides an iterator of binary interactions
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public class LightMitabBinaryStreamSource extends AbstractMitabStreamSource<BinaryInteraction, Participant, Feature> implements BinaryInteractionStream<BinaryInteraction>{
 
+    /**
+     * <p>Constructor for LightMitabBinaryStreamSource.</p>
+     */
     public LightMitabBinaryStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for LightMitabBinaryStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public LightMitabBinaryStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for LightMitabBinaryStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public LightMitabBinaryStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for LightMitabBinaryStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public LightMitabBinaryStreamSource(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(Reader reader) {
         if (reader == null){
@@ -47,6 +67,7 @@ public class LightMitabBinaryStreamSource extends AbstractMitabStreamSource<Bina
         setLineParser(new BinaryLineParser(reader));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(File file) throws MIIOException{
         if (file == null){
@@ -64,12 +85,14 @@ public class LightMitabBinaryStreamSource extends AbstractMitabStreamSource<Bina
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(InputStream input) {
         setOriginalStream(input);
         setLineParser(new BinaryLineParser(input));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(URL url) throws MIIOException{
         if (url == null){
@@ -84,6 +107,7 @@ public class LightMitabBinaryStreamSource extends AbstractMitabStreamSource<Bina
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<BinaryInteraction> createMitabIterator() throws MIIOException {
         return new MitabBinaryIterator(getLineParser());

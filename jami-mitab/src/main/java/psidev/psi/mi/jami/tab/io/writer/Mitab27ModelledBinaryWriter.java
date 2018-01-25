@@ -16,25 +16,44 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class Mitab27ModelledBinaryWriter extends AbstractMitab27BinaryWriter<ModelledBinaryInteraction, ModelledParticipant> {
 
+    /**
+     * <p>Constructor for Mitab27ModelledBinaryWriter.</p>
+     */
     public Mitab27ModelledBinaryWriter() {
         super();
     }
 
+    /**
+     * <p>Constructor for Mitab27ModelledBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public Mitab27ModelledBinaryWriter(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for Mitab27ModelledBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public Mitab27ModelledBinaryWriter(OutputStream output) {
         super(output);
     }
 
+    /**
+     * <p>Constructor for Mitab27ModelledBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public Mitab27ModelledBinaryWriter(Writer writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseColumnFeeder() {
         setColumnFeeder(new MitabModelledInteractionFeeder(getWriter()));

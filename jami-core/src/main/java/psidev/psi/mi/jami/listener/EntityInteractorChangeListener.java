@@ -12,13 +12,13 @@ import java.util.EventListener;
  * @version $Id$
  * @since <pre>07/10/13</pre>
  */
-
 public interface EntityInteractorChangeListener extends EventListener{
 
-    /**
-     *
-     * @param entity : updated entity
-     * @param oldInteractor : old interactor
-     */
+   /**
+    * <p>onInteractorUpdate</p>
+    *
+    * @param entity : updated entity
+    * @param oldInteractor : old interactor
+    */
    public void onInteractorUpdate(Entity entity, Interactor oldInteractor);
 }

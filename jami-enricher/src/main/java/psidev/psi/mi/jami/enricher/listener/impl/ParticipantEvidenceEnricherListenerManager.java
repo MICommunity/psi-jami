@@ -14,6 +14,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 10/07/13
+
  */
 public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvidence>
         extends ParticipantEnricherListenerManager<P>
@@ -26,12 +27,14 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public ParticipantEvidenceEnricherListenerManager(ParticipantEvidenceEnricherListener<P>... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onExperimentalRoleUpdate(P participant, CvTerm oldType) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -40,6 +43,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onExpressedInUpdate(P participant, Organism oldOrganism) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -48,6 +52,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentificationMethod(P participant, CvTerm added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -56,6 +61,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentificationMethod(P participant, CvTerm removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -64,6 +70,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedExperimentalPreparation(P participant, CvTerm added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -72,6 +79,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedExperimentalPreparation(P participant, CvTerm removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -80,6 +88,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedConfidence(P o, Confidence added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -88,6 +97,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedConfidence(P o, Confidence removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -96,6 +106,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedParameter(P o, Parameter added) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){
@@ -104,6 +115,7 @@ public class ParticipantEvidenceEnricherListenerManager<P extends ParticipantEvi
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParameter(P o, Parameter removed) {
         for(EntityEnricherListener listener : getListenersList()){
             if (listener instanceof ParticipantEvidenceEnricherListener){

@@ -20,12 +20,17 @@ import psidev.psi.mi.jami.model.Participant;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class DefaultCausalRelationship implements CausalRelationship {
 
     private CvTerm relationType;
     private Entity target;
 
+    /**
+     * <p>Constructor for DefaultCausalRelationship.</p>
+     *
+     * @param relationType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Participant} object.
+     */
     public DefaultCausalRelationship(CvTerm relationType, Participant target){
         if (relationType == null){
             throw new IllegalArgumentException("The relationType in a CausalRelationship cannot be null");
@@ -38,14 +43,25 @@ public class DefaultCausalRelationship implements CausalRelationship {
         this.target = target;
     }
 
+    /**
+     * <p>Getter for the field <code>relationType</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getRelationType() {
         return relationType;
     }
 
+    /**
+     * <p>Getter for the field <code>target</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Entity} object.
+     */
     public Entity getTarget() {
         return target;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return getRelationType().toString() + ": " + getTarget().toString();

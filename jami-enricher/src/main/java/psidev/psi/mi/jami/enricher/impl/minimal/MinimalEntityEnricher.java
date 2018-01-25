@@ -18,6 +18,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class MinimalEntityEnricher<P extends Entity, F extends Feature>
         implements EntityEnricher<P,F> {
@@ -26,6 +27,12 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
     private FeatureEnricher<F> featureEnricher;
     private EntityEnricherListener<P> listener;
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param participantsToEnrich a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<P> participantsToEnrich) throws EnricherException {
         if(participantsToEnrich == null) throw new IllegalArgumentException("Cannot enrich a null collection of participants.");
 
@@ -34,6 +41,13 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(P objectToEnrich, P objectSource) throws EnricherException {
         if (objectSource == null){
             enrich(objectToEnrich);
@@ -54,6 +68,12 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param participantToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(P participantToEnrich) throws EnricherException{
 
         if(participantToEnrich == null) throw new IllegalArgumentException("Attempted to enrich a null participant.");
@@ -74,26 +94,59 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
             getParticipantEnricherListener().onEnrichmentComplete(participantToEnrich , EnrichmentStatus.SUCCESS , null);
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processOtherProperties(P objectToEnrich, P objectSource) throws EnricherException {
         // nothing to do here
         processOtherProperties(objectToEnrich);
     }
 
+    /**
+     * <p>processInteractor.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         // nothing to do here
         processInteractor(objectToEnrich);
     }
 
+    /**
+     * <p>processFeatures.</p>
+     *
+     * @param objectToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeFeatures(objectToEnrich, objectToEnrich.getFeatures(), objectSource.getFeatures(), false, getParticipantEnricherListener(),
                 getFeatureEnricher());
         processFeatures(objectToEnrich);
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param participantToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processOtherProperties(P participantToEnrich) throws EnricherException {
         // do nothing
     }
 
+    /**
+     * <p>processFeatures.</p>
+     *
+     * @param participantToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processFeatures(P participantToEnrich) throws EnricherException {
         if( getFeatureEnricher() != null ) {
             getFeatureEnricher().setFeaturesWithRangesToUpdate((Collection<F>)participantToEnrich.getFeatures());
@@ -102,6 +155,12 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
 
     }
 
+    /**
+     * <p>processInteractor.</p>
+     *
+     * @param participantToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processInteractor(P participantToEnrich) throws EnricherException {
         // we can enrich interactors
         if (getInteractorEnricher() != null){
@@ -110,8 +169,9 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the listener for Participant events. If null, events will not be reported.
-     * @param listener  The listener to use. Can be null.
      */
     public void setParticipantEnricherListener(EntityEnricherListener listener) {
         this.listener = listener;
@@ -120,6 +180,7 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
     /**
      * The current listener that participant changes are reported to.
      * If null, events are not being reported.
+     *
      * @return  TThe current listener. Can be null.
      */
     public EntityEnricherListener getParticipantEnricherListener() {
@@ -127,9 +188,10 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Will attempt to add the featureEnricher as a proteinListener if this is valid.
      * If the proteinEnricher already has a listener, this will be preserved using a listener manager.
-     * @param featureEnricher   The enricher to use for features. Can be null.
      */
     public void setFeatureEnricher(FeatureEnricher<F> featureEnricher){
         this.featureEnricher = featureEnricher;
@@ -137,16 +199,23 @@ public class MinimalEntityEnricher<P extends Entity, F extends Feature>
 
     /**
      * The current enricher used for features. If null, features are not currently being enriched.
+     *
      * @return  The current enricher. May be null.
      */
     public FeatureEnricher<F> getFeatureEnricher(){
         return featureEnricher;
     }
 
+    /** {@inheritDoc} */
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher) {
         this.interactorEnricher = interactorEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public CompositeInteractorEnricher getInteractorEnricher() {
         return this.interactorEnricher;
     }

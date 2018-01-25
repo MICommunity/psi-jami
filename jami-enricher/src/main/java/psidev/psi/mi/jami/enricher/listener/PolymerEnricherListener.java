@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.Polymer;
  * @version $Id$
  * @since <pre>01/10/13</pre>
  */
-
 public interface PolymerEnricherListener<T extends Polymer> extends PolymerChangeListener<T>, EnricherListener<T> {
 }

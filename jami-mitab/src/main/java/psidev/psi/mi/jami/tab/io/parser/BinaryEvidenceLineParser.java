@@ -15,29 +15,51 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public class BinaryEvidenceLineParser extends AbstractInteractionEvidenceLineParser<BinaryInteractionEvidence>{
+    /**
+     * <p>Constructor for BinaryEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public BinaryEvidenceLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for BinaryEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public BinaryEvidenceLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for BinaryEvidenceLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public BinaryEvidenceLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for BinaryEvidenceLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public BinaryEvidenceLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected MitabBinaryInteractionEvidence createInteraction() {
         return new MitabBinaryInteractionEvidence();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(Collection<MitabCvTerm> expansion, BinaryInteractionEvidence interaction) {
         if (expansion.size() > 1){

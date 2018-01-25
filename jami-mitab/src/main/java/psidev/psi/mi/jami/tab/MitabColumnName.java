@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.tab;
  * @version $Id$
  * @since <pre>10/06/13</pre>
  */
-
 public enum MitabColumnName {
 
     //MITAB 2.5
@@ -71,6 +70,7 @@ public enum MitabColumnName {
     /////////////////////////////////
     // Object's overload.
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return name;

@@ -17,25 +17,47 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class CompactXmlNamedBinaryWriter extends AbstractCompactXmlMixWriter<BinaryInteraction, ModelledBinaryInteraction, BinaryInteractionEvidence> {
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryWriter.</p>
+     */
     public CompactXmlNamedBinaryWriter() {
         super(BinaryInteraction.class);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryWriter(File file) throws IOException, XMLStreamException {
         super(BinaryInteraction.class, file);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryWriter(OutputStream output) throws XMLStreamException {
         super(BinaryInteraction.class, output);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryWriter(Writer writer) throws XMLStreamException {
         super(BinaryInteraction.class, writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
         setModelledWriter(new CompactXmlNamedModelledBinaryWriter(getStreamWriter(), getElementCache()));

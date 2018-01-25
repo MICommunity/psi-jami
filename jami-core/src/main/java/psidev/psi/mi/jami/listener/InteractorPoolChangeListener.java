@@ -10,11 +10,11 @@ import psidev.psi.mi.jami.model.InteractorPool;
  * @version $Id$
  * @since <pre>30/01/14</pre>
  */
-
 public interface InteractorPoolChangeListener extends InteractorChangeListener<InteractorPool> {
 
     /**
      * Listen to the event where an interactor has been added to the pool
+     *
      * @param interactor        The interactor which has changed.
      * @param added  : added interactor
      */
@@ -22,6 +22,7 @@ public interface InteractorPoolChangeListener extends InteractorChangeListener<I
 
     /**
      * Listen to the event where an interactor has been added to the pool
+     *
      * @param interactor        The interactor which has changed.
      * @param removed  : removed interactor
      */

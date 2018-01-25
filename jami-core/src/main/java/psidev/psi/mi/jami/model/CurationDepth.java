@@ -11,7 +11,6 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>26/11/12</pre>
  */
-
 public enum CurationDepth {
 
     IMEx, MIMIx, rapid_curation, undefined

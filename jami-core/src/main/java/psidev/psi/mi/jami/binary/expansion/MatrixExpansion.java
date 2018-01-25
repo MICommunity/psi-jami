@@ -21,18 +21,21 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/06/13</pre>
  */
-
 public class MatrixExpansion extends AbstractMatrixExpansion<Interaction, BinaryInteraction> {
 
     private InteractionEvidenceMatrixExpansion interactionEvidenceExpansion;
     private ModelledInteractionMatrixExpansion modelledInteractionExpansion;
 
+    /**
+     * <p>Constructor for MatrixExpansion.</p>
+     */
     public MatrixExpansion(){
         super();
         this.interactionEvidenceExpansion = new InteractionEvidenceMatrixExpansion();
         this.modelledInteractionExpansion = new ModelledInteractionMatrixExpansion();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<BinaryInteraction> expand(Interaction interaction) throws ComplexExpansionException {
 
@@ -51,16 +54,19 @@ public class MatrixExpansion extends AbstractMatrixExpansion<Interaction, Binary
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected <P extends Participant> BinaryInteraction createBinaryInteraction(Interaction interaction, P c1, P c2) {
         return getBinaryInteractionFactory().createBasicBinaryInteractionFrom(interaction, c1, c2, getMethod());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Participant[] createParticipantsArray(Interaction interaction) {
         return (Participant[]) interaction.getParticipants().toArray(new DefaultParticipant[]{});
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setBinaryInteractionFactory(BinaryInteractionFactory factory) {
         super.setBinaryInteractionFactory(factory);

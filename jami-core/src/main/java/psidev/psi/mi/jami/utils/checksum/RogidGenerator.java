@@ -10,9 +10,11 @@ import java.security.NoSuchAlgorithmException;
  * @version $Id$
  * @since <pre>10/09/13</pre>
  */
-
 public class RogidGenerator {
 
+    /**
+     * <p>Constructor for RogidGenerator.</p>
+     */
     public RogidGenerator() {
     }
 
@@ -21,7 +23,7 @@ public class RogidGenerator {
      *
      * @param sequence rogid sequence
      * @return Seguid
-     * @throws SeguidException handled by  SeguidException class
+     * @throws psidev.psi.mi.jami.utils.checksum.SeguidException handled by  psidev.psi.mi.jami.utils.checksum.SeguidException class
      */
     public String calculateSeguid( String sequence ) throws SeguidException {
 
@@ -64,7 +66,7 @@ public class RogidGenerator {
      * @param sequence protein sequence
      * @param taxid    taxonomy id
      * @return Rogid
-     * @throws SeguidException handled by  SeguidException class
+     * @throws psidev.psi.mi.jami.utils.checksum.SeguidException handled by  psidev.psi.mi.jami.utils.checksum.SeguidException class
      */
     public String computeRogidFrom( String sequence, String taxid ) throws SeguidException {
         if ( sequence == null ) {

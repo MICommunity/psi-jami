@@ -16,11 +16,15 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class CooperativeEffectComparator implements Comparator<CooperativeEffect>{
 
     private AllosteryComparator allosteryComparator;
 
+    /**
+     * <p>Constructor for CooperativeEffectComparator.</p>
+     *
+     * @param allosteryComparator a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.AllosteryComparator} object.
+     */
     public CooperativeEffectComparator(AllosteryComparator allosteryComparator){
 
         if (allosteryComparator == null){
@@ -29,6 +33,11 @@ public class CooperativeEffectComparator implements Comparator<CooperativeEffect
         this.allosteryComparator = allosteryComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>allosteryComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.cooperativity.AllosteryComparator} object.
+     */
     public AllosteryComparator getAllosteryComparator() {
         return allosteryComparator;
     }
@@ -38,9 +47,10 @@ public class CooperativeEffectComparator implements Comparator<CooperativeEffect
      *
      * - It will use AllosteryComparator to compare allostery
      * - It will use CooperativeEffectBaseComparator to compare basic cooperative effects
-     * @param cooperativeEffect1
-     * @param cooperativeEffect2
-     * @return
+     *
+     * @param cooperativeEffect1 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @param cooperativeEffect2 a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
+     * @return a int.
      */
     public int compare(CooperativeEffect cooperativeEffect1, CooperativeEffect cooperativeEffect2) {
         int EQUAL = 0;

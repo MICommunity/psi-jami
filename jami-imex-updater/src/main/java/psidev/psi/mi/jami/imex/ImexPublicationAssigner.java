@@ -23,17 +23,22 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>29/10/14</pre>
  */
-
 public class ImexPublicationAssigner extends FullPublicationEnricher{
 
     private ImexAssigner imexAssigner;
     private ImexCentralPublicationRegister publicationRegister;
     private ImexPublicationUpdater publicationUpdater;
 
+    /**
+     * <p>Constructor for ImexPublicationAssigner.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexPublicationAssigner(ImexCentralClient fetcher) {
         super(fetcher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processCurationDepth(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -41,6 +46,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processReleasedDate(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -48,6 +54,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -55,6 +62,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -62,6 +70,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processJournal(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -69,6 +78,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationTitle(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -76,6 +86,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationDate(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -83,6 +94,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAuthors(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -90,6 +102,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processIdentifiers(Publication publicationToEnrich, Publication fetched) {
         if (getPublicationUpdater() != null){
@@ -98,6 +111,7 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public ImexPublication find(Publication publicationToEnrich) throws EnricherException {
         String pubId = publicationToEnrich.getPubmedId() != null ? publicationToEnrich.getPubmedId() : publicationToEnrich.getDoi();
@@ -176,6 +190,14 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         return null;
     }
 
+    /**
+     * <p>isEntitledToAssignImexId.</p>
+     *
+     * @param publicationToEnrich a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param imexPublication a {@link psidev.psi.mi.jami.bridges.imex.extension.ImexPublication} object.
+     * @return a boolean.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected boolean isEntitledToAssignImexId(Publication publicationToEnrich, ImexPublication imexPublication) throws EnricherException {
 
         Source source = publicationToEnrich.getSource();
@@ -186,26 +208,56 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
         return source != null && DefaultCvTermComparator.areEquals(source, source2);
     }
 
+    /**
+     * <p>Getter for the field <code>imexAssigner</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.ImexAssigner} object.
+     */
     public ImexAssigner getImexAssigner() {
         return imexAssigner;
     }
 
+    /**
+     * <p>Setter for the field <code>imexAssigner</code>.</p>
+     *
+     * @param imexAssigner a {@link psidev.psi.mi.jami.imex.actions.ImexAssigner} object.
+     */
     public void setImexAssigner(ImexAssigner imexAssigner) {
         this.imexAssigner = imexAssigner;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationRegister</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.actions.ImexCentralPublicationRegister} object.
+     */
     public ImexCentralPublicationRegister getPublicationRegister() {
         return publicationRegister;
     }
 
+    /**
+     * <p>Setter for the field <code>publicationRegister</code>.</p>
+     *
+     * @param publicationRegister a {@link psidev.psi.mi.jami.imex.actions.ImexCentralPublicationRegister} object.
+     */
     public void setPublicationRegister(ImexCentralPublicationRegister publicationRegister) {
         this.publicationRegister = publicationRegister;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationUpdater</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.imex.ImexPublicationUpdater} object.
+     */
     public ImexPublicationUpdater getPublicationUpdater() {
         return publicationUpdater;
     }
 
+    /**
+     * <p>Setter for the field <code>publicationUpdater</code>.</p>
+     *
+     * @param publicationUpdater a {@link psidev.psi.mi.jami.imex.ImexPublicationUpdater} object.
+     */
     public void setPublicationUpdater(ImexPublicationUpdater publicationUpdater) {
         this.publicationUpdater = publicationUpdater;
     }

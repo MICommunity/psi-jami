@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/07/13
+
  */
 public class FeatureEnricherLogger<T extends Feature> extends FeatureChangeLogger<T>
         implements FeatureEnricherListener<T> {
@@ -19,10 +20,12 @@ public class FeatureEnricherLogger<T extends Feature> extends FeatureChangeLogge
 
     private static final Logger log = LoggerFactory.getLogger(FeatureEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(T feature, EnrichmentStatus status, String message) {
         log.info(feature.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(T object, String message, Exception e) {
         log.error(object.toString()+" enrichment error, message: "+message, e);
     }

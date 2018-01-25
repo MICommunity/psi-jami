@@ -24,6 +24,7 @@ import java.util.Collections;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class UniprotTaxonomyFetcher implements OrganismFetcher {
 
@@ -32,6 +33,7 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
     private static final String UNIPROT_NS = "http://purl.uniprot.org/core/";
     private static final String UNIPROT_TAXONOMY_NS = "http://purl.uniprot.org/taxonomy/";
 
+    /** {@inheritDoc} */
     public Organism fetchByTaxID(int taxID) throws BridgeFailedException {
         Organism organism = OrganismUtils.createSpecialistOrganism(taxID);
         if ( organism == null ) {
@@ -40,6 +42,7 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
         return organism;
     }
 
+    /** {@inheritDoc} */
     public Collection<Organism> fetchByTaxIDs(Collection<Integer> taxIDs) throws BridgeFailedException {
 
         if (taxIDs == null){

@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
  * @version $Id$
  * @since <pre>05/12/13</pre>
  */
-
 public class PsiXmlDataSourceOptions extends MIFileDataSourceOptions{
 
     /**

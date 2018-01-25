@@ -21,12 +21,16 @@ import java.util.List;
  * @version $Id$
  * @since <pre>28/03/12</pre>
  */
-
 public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGroupSynchronizer{
 
     private static final Log log = LogFactory.getLog(PublicationAdminGroupSynchronizerImpl.class);
     private ImexCentralClient imexCentral;
 
+    /**
+     * <p>Constructor for PublicationAdminGroupSynchronizerImpl.</p>
+     *
+     * @param client a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public PublicationAdminGroupSynchronizerImpl(ImexCentralClient client){
         if (client == null){
             throw new IllegalArgumentException("The IMEx central client cannot be null");
@@ -34,6 +38,7 @@ public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGr
         this.imexCentral = client;
     }
 
+    /** {@inheritDoc} */
     public void synchronizePublicationAdminGroup(Publication publication, ImexPublication imexPublication) throws BridgeFailedException {
 
         List<Source> sources = imexPublication.getSources();
@@ -65,6 +70,13 @@ public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGr
         }
     }
 
+    /**
+     * <p>containsAdminGroup.</p>
+     *
+     * @param adminGroupList a {@link java.util.List} object.
+     * @param group a {@link psidev.psi.mi.jami.model.Source} object.
+     * @return a boolean.
+     */
     protected boolean containsAdminGroup(List<Source> adminGroupList, Source group){
 
         if (!adminGroupList.isEmpty()){
@@ -78,6 +90,11 @@ public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGr
         return false;
     }
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient() {
         return imexCentral;
     }

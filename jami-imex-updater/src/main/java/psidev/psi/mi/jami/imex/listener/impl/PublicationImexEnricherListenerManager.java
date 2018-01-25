@@ -19,6 +19,7 @@ import java.util.Collection;
  * which will then fire the corresponding method in each entry of the listener list.
  * No promise can be given to the order in which the listeners are fired.
  *
+
  */
 public class PublicationImexEnricherListenerManager
         extends PublicationEnricherListenerManager
@@ -31,6 +32,7 @@ public class PublicationImexEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public PublicationImexEnricherListenerManager(PublicationImexEnricherListener... listeners){
@@ -39,6 +41,7 @@ public class PublicationImexEnricherListenerManager
 
     //============================================================================================
 
+    /** {@inheritDoc} */
     public void onImexIdConflicts(Publication originalPublication, Collection<Xref> conflictingXrefs) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -47,6 +50,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onMissingImexId(Publication publication) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -55,6 +59,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onCurationDepthUpdated(Publication publication, CurationDepth oldDepth) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -63,6 +68,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexAdminGroupUpdated(Publication publication, Source oldSource) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -71,6 +77,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexStatusUpdated(Publication publication, PublicationStatus oldStatus) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -79,6 +86,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexPublicationIdentifierSynchronized(Publication publication) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -87,6 +95,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationAlreadyRegisteredInImexCentral(Publication publication, String imex) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -95,6 +104,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationRegisteredInImexCentral(Publication publication) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -103,6 +113,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationWhichCannotBeRegistered(Publication publication) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -111,6 +122,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationNotEligibleForImex(Publication publication) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -119,6 +131,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexIdAssigned(Publication publication, String imex) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){
@@ -127,6 +140,7 @@ public class PublicationImexEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onImexIdNotRecognized(Publication publication, String imex) {
         for(PublicationEnricherListener listener : getListenersList()){
             if (listener instanceof PublicationImexEnricherListener){

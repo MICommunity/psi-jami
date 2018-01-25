@@ -27,6 +27,7 @@ import java.util.Map;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 08/05/13
+
  */
 public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm> implements CvTermEnricher<OntologyTerm>{
 
@@ -36,6 +37,7 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
 
     /**
      * A constructor matching super.
+     *
      * @param cvTermFetcher The fetcher to initiate the enricher with.
      *                      If null, an illegal state exception will be thrown at the next enrichment.
      */
@@ -44,6 +46,11 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         this.processedTerms = new IdentityMap();
     }
 
+    /**
+     * <p>Constructor for MinimalOntologyTermEnricher.</p>
+     *
+     * @param cvEnricher a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCvTermEnricher} object.
+     */
     protected MinimalOntologyTermEnricher(MinimalCvTermEnricher<OntologyTerm> cvEnricher) {
         if (cvEnricher == null){
            throw new IllegalArgumentException("The cv term enricher cannot be null in ontology term enricher");
@@ -52,6 +59,7 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         this.processedTerms = new IdentityMap();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(OntologyTerm objectToEnrich) throws EnricherException {
         this.processedTerms.clear();
@@ -62,7 +70,10 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
 
     /**
      * A method that can be overridden to add to or change the behaviour of enrichment without effecting fetching.
+     *
      * @param cvTermToEnrich the CvTerm to enrich
+     * @param cvTermFetched a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected void processOntologyTerm(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException {
         // process definition
@@ -71,6 +82,13 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         processChildren(cvTermToEnrich, cvTermFetched);
     }
 
+    /**
+     * <p>processDefinition.</p>
+     *
+     * @param cvTermToEnrich a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @param cvTermFetched a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processDefinition(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException{
         if (cvTermToEnrich.getDefinition() == null && cvTermFetched.getDefinition() != null){
             String oldDef = cvTermToEnrich.getDefinition();
@@ -81,17 +99,36 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         }
     }
 
+    /**
+     * <p>processChildren.</p>
+     *
+     * @param cvTermToEnrich a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @param cvTermFetched a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processChildren(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException {
         mergeOntologyTerms(cvTermToEnrich, cvTermToEnrich.getChildren(), cvTermFetched.getChildren(), false);
         enrichRelatedTerms(cvTermToEnrich.getChildren());
     }
 
+    /**
+     * <p>enrichRelatedTerms.</p>
+     *
+     * @param cvTermToEnrich a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void enrichRelatedTerms(Collection<OntologyTerm> cvTermToEnrich) throws EnricherException {
         for (OntologyTerm child : cvTermToEnrich){
             enrichChild(child);
         }
     }
 
+    /**
+     * <p>enrichChild.</p>
+     *
+     * @param objectToEnrich a {@link psidev.psi.mi.jami.model.OntologyTerm} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void enrichChild(OntologyTerm objectToEnrich) throws EnricherException {
         // fetch the object
         OntologyTerm enrichedObject = find(objectToEnrich);
@@ -106,12 +143,14 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(OntologyTerm cvTermToEnrich) throws EnricherException {
         if(getCvTermEnricherListener() != null)
             getCvTermEnricherListener().onEnrichmentComplete(cvTermToEnrich, EnrichmentStatus.FAILED, "The ontology term does not exist.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException {
         this.cvEnricher.enrich(cvTermToEnrich, cvTermFetched);
@@ -119,6 +158,7 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         if(getCvTermEnricherListener() != null) getCvTermEnricherListener().onEnrichmentComplete(cvTermToEnrich, EnrichmentStatus.SUCCESS, "Ontology term enriched successfully.");
     }
 
+    /** {@inheritDoc} */
     @Override
     public OntologyTerm find(OntologyTerm objectToEnrich) throws EnricherException {
         return ((AbstractMIEnricher<OntologyTerm>)this.cvEnricher).find(objectToEnrich);
@@ -130,10 +170,11 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
      * It will add in toEnrichTerms all xref from fetchedTerms that are not there. It will also remove extra identifiers from toEnrichTerms
      * if remove boolean is true.
      *
-     *
      * @param termToEnrich     The object to enrich
      * @param fetchedTerms      The new terms to be added.
      * @param remove: if true, we remove terms that are not in enriched list
+     * @param toEnrichTerms a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     protected void mergeOntologyTerms(OntologyTerm termToEnrich, Collection<OntologyTerm> toEnrichTerms, Collection<OntologyTerm> fetchedTerms , boolean remove) throws EnricherException {
 
@@ -187,18 +228,34 @@ public class MinimalOntologyTermEnricher extends AbstractMIEnricher<OntologyTerm
         }
     }
 
+    /**
+     * <p>getCvTermFetcher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher} object.
+     */
     public CvTermFetcher<OntologyTerm> getCvTermFetcher() {
         return this.cvEnricher.getCvTermFetcher();
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricherListener(CvTermEnricherListener<OntologyTerm> listener) {
         this.cvEnricher.setCvTermEnricherListener(listener);
     }
 
+    /**
+     * <p>getCvTermEnricherListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.CvTermEnricherListener} object.
+     */
     public CvTermEnricherListener<OntologyTerm> getCvTermEnricherListener() {
         return this.cvEnricher.getCvTermEnricherListener();
     }
 
+    /**
+     * <p>Getter for the field <code>cvEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCvTermEnricher} object.
+     */
     protected MinimalCvTermEnricher<OntologyTerm> getCvEnricher() {
         return cvEnricher;
     }

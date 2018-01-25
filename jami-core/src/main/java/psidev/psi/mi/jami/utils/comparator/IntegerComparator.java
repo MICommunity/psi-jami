@@ -11,10 +11,17 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>30/01/14</pre>
  */
-
 public class IntegerComparator implements Comparator<Integer>{
     private boolean ascending = true;
 
+    /**
+     * <p>compare</p>
+     *
+     * @param integer a {@link java.lang.Integer} object.
+     * @param integer2 a {@link java.lang.Integer} object.
+     * @param integer2 a {@link java.lang.Integer} object.
+     * @return a int.
+     */
     public int compare(Integer integer, Integer integer2) {
         int EQUAL = 0;
         int BEFORE = -1;
@@ -35,10 +42,20 @@ public class IntegerComparator implements Comparator<Integer>{
         }
     }
 
+    /**
+     * <p>isAscending</p>
+     *
+     * @return a boolean.
+     */
     public boolean isAscending() {
         return ascending;
     }
 
+    /**
+     * <p>Setter for the field <code>ascending</code>.</p>
+     *
+     * @param ascending a boolean.
+     */
     public void setAscending(boolean ascending) {
         this.ascending = ascending;
     }

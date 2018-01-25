@@ -6,18 +6,17 @@ import java.util.Comparator;
 
 /**
  * Comparator for CvTerms that only takes into consideration the shortName of ths cv term
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class CvTermNameComparator implements Comparator<CvTerm> {
 
     private static CvTermNameComparator cvTermNameComparator;
 
     /**
      * Creates a new CvTermComparator with UnambiguousExternalIdentifierComparator
-     *
      */
     public CvTermNameComparator() {
     }
@@ -25,9 +24,10 @@ public class CvTermNameComparator implements Comparator<CvTerm> {
 
     /**
      * Only compares the shortname of two cv terms. The comparison is case insensitive
-     * @param cvTerm1
-     * @param cvTerm2
-     * @return
+     *
+     * @param cvTerm1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param cvTerm2 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @return a int.
      */
     public int compare(CvTerm cvTerm1, CvTerm cvTerm2) {
         int EQUAL = 0;
@@ -54,8 +54,9 @@ public class CvTermNameComparator implements Comparator<CvTerm> {
 
     /**
      * Use UnambiguousCvTermComparator to know if two CvTerms are equals.
-     * @param cv1
-     * @param cv2
+     *
+     * @param cv1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param cv2 a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @return true if the two CvTerms are equal
      */
     public static boolean areEquals(CvTerm cv1, CvTerm cv2){
@@ -67,8 +68,9 @@ public class CvTermNameComparator implements Comparator<CvTerm> {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param cv1
+     * @param cv1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(CvTerm cv1){

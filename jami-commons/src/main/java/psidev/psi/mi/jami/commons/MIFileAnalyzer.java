@@ -11,22 +11,27 @@ import java.io.*;
  * @version $Id$
  * @since <pre>01/03/13</pre>
  */
-
 public class MIFileAnalyzer {
 
+    /** Constant <code>XML_EXTENSION=".xml"</code> */
     public static String XML_EXTENSION=".xml";
+    /** Constant <code>TXT_EXTENSION=".txt"</code> */
     public static String TXT_EXTENSION=".txt";
+    /** Constant <code>CSV_EXTENSION=".csv"</code> */
     public static String CSV_EXTENSION=".csv";
+    /** Constant <code>TSV_EXTENSION=".tsv"</code> */
     public static String TSV_EXTENSION=".tsv";
 
+    /** Constant <code>MITAB_25_TITLE="#ID(s) interactor A\tID(s) interactor B"{trunked}</code> */
     public static final String MITAB_25_TITLE="#ID(s) interactor A\tID(s) interactor B\tAlt. ID(s) interactor A\tAlt. ID(s) interactor B\tAlias(es) interactor A\tAlias(es) interactor B\tInteraction detection method(s)\tPublication 1st author(s)\tPublication Identifier(s)\tTaxid interactor A\tTaxid interactor B\tInteraction type(s)\tSource database(s)\tInteraction identifier(s)\tConfidence value(s)";
 
     /**
      * Recognize the MIFileDataSource from the file signature and first line.
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return  MIFileType.other
+     *
      * @param file : the file to analyze
      * @return the MIFileType that matches the file
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
      */
     public MIFileType identifyMIFileTypeFor(File file) throws IOException {
 
@@ -154,6 +159,13 @@ public class MIFileAnalyzer {
         }
     }
 
+    /**
+     * <p>isFileSignature.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param signature a {@link java.lang.String} object.
+     * @return a boolean.
+     */
     public boolean isFileSignature(File file, String signature){
         if (file == null || signature == null){
             return false;
@@ -173,8 +185,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return an OpenedInputStream MIFileType.other
      *
      * @param stream : the stream to recognize
-     * @return
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
+     * @return a {@link psidev.psi.mi.jami.commons.OpenedInputStream} object.
      */
     public OpenedInputStream extractMIFileTypeFrom(InputStream stream) throws IOException {
         if (stream == null){
@@ -194,8 +206,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return an OpenedInputStream MIFileType.other
      *
      * @param reader : the reader for the source to recognize
-     * @return
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
+     * @return a {@link psidev.psi.mi.jami.commons.OpenedInputStream} object.
      */
     public OpenedInputStream extractMIFileTypeAndCopiedInputStream(Reader reader) throws IOException {
 
@@ -216,8 +228,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return a MIFileType.other
      *
      * @param stream : the stream to recognize
-     * @return
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
+     * @return a {@link psidev.psi.mi.jami.commons.MIFileType} object.
      */
     public MIFileType identifyMIFileTypeFor(InputStream stream) throws IOException {
 
@@ -243,9 +255,10 @@ public class MIFileAnalyzer {
      * Because it needs to read the first line to analyze its content, it will consume the provided reader.
      * It does not need a BufferedReader as it creates a new BufferedReader from this reader
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return a MIFileType.other
+     *
      * @param reader : the reader for the source to recognize
-     * @return
-     * @throws java.io.IOException
+     * @throws java.io.IOException if any.
+     * @return a {@link psidev.psi.mi.jami.commons.MIFileType} object.
      */
     public MIFileType identifyMIFileTypeFor(Reader reader) throws IOException {
 

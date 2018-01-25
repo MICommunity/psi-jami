@@ -19,13 +19,13 @@ import java.util.*;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultCvTermComparator {
 
     /**
      * Use DefaultCvTermComparator to know if two CvTerms are equals.
-     * @param cvTerm1
-     * @param cvTerm2
+     *
+     * @param cvTerm1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param cvTerm2 a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @return true if the two CvTerms are equal
      */
     public static boolean areEquals(CvTerm cvTerm1, CvTerm cvTerm2){

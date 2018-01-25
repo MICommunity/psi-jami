@@ -20,7 +20,6 @@ import java.util.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class ModelledParticipantPoolComparator implements Comparator<ModelledParticipantPool> {
 
     private ParticipantBaseComparator participantBaseComparator;
@@ -30,6 +29,10 @@ public class ModelledParticipantPoolComparator implements Comparator<ModelledPar
 
     /**
      * Creates a new ComponentComparator
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.feature.ModelledFeatureComparator} object.
+     * @param entityComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledEntityComparator} object.
      */
     public ModelledParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator,
                                              ModelledFeatureComparator featureComparator,
@@ -51,6 +54,10 @@ public class ModelledParticipantPoolComparator implements Comparator<ModelledPar
 
     /**
      * Creates a new ComponentComparator
+     *
+     * @param participantBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     * @param featureComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     * @param entityComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
      */
     public ModelledParticipantPoolComparator(ParticipantBaseComparator participantBaseComparator,
                                              CollectionComparator<ModelledFeature> featureComparator,
@@ -71,14 +78,29 @@ public class ModelledParticipantPoolComparator implements Comparator<ModelledPar
 
     }
 
+    /**
+     * <p>Getter for the field <code>modelledEntityComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<ModelledEntity> getModelledEntityComparator() {
         return modelledEntityComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>participantBaseComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.participant.ParticipantBaseComparator} object.
+     */
     public ParticipantBaseComparator getParticipantBaseComparator() {
         return participantBaseComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<ModelledFeature> getFeatureCollectionComparator() {
         return featureCollectionComparator;
     }
@@ -90,9 +112,10 @@ public class ModelledParticipantPoolComparator implements Comparator<ModelledPar
      * All the participant candidates will be compared using ModelledEntityComparator
      *
      * This comparator will ignore all the other properties of a biological participant.
-     * @param bioParticipant1
-     * @param bioParticipant2
-     * @return
+     *
+     * @param bioParticipant1 a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
+     * @param bioParticipant2 a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
+     * @return a int.
      */
     public int compare(ModelledParticipantPool bioParticipant1, ModelledParticipantPool bioParticipant2) {
         if (participantBaseComparator == null || this.modelledEntityComparator == null){

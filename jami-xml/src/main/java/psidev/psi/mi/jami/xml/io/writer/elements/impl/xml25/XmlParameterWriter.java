@@ -18,13 +18,19 @@ import java.util.Date;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlParameterWriter extends AbstractXmlParameterWriter {
 
+    /**
+     * <p>Constructor for XmlParameterWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlParameterWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment getDefaultExperiment() {
         if (super.getDefaultExperiment() == null){
@@ -33,10 +39,14 @@ public class XmlParameterWriter extends AbstractXmlParameterWriter {
         return super.getDefaultExperiment();
     }
 
+    /**
+     * <p>initialiseDefaultExperiment.</p>
+     */
     protected void initialiseDefaultExperiment(){
         super.setDefaultExperiment(new DefaultExperiment(new DefaultPublication("Mock publication for abstract interactions that are not interaction evidences.",(String)null,(Date)null)));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Parameter object) throws XMLStreamException {
         // write experiment Ref

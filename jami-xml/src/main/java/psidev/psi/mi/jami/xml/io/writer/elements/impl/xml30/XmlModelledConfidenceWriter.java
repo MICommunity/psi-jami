@@ -17,14 +17,23 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlModelledConfidenceWriter extends XmlConfidenceWriter {
     private PsiXmlPublicationWriter publicationWriter;
 
+    /**
+     * <p>Constructor for XmlModelledConfidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlModelledConfidenceWriter(XMLStreamWriter writer){
         super(writer);
     }
 
+    /**
+     * <p>Getter for the field <code>publicationWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     */
     public PsiXmlPublicationWriter getPublicationWriter() {
         if (this.publicationWriter == null){
             initialisePublicationWriter();
@@ -32,14 +41,23 @@ public class XmlModelledConfidenceWriter extends XmlConfidenceWriter {
         return publicationWriter;
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         this.publicationWriter = new XmlPublicationWriter(getStreamWriter());
     }
 
+    /**
+     * <p>Setter for the field <code>publicationWriter</code>.</p>
+     *
+     * @param publicationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlPublicationWriter} object.
+     */
     public void setPublicationWriter(PsiXmlPublicationWriter publicationWriter) {
         this.publicationWriter = publicationWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Confidence object) throws MIIOException {
         if (object != null){
@@ -66,6 +84,7 @@ public class XmlModelledConfidenceWriter extends XmlConfidenceWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Confidence object) {
         // write publication if not done yet

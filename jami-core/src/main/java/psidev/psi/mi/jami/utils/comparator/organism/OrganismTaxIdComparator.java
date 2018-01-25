@@ -8,11 +8,11 @@ import java.util.Comparator;
  * Simple organism comparator based on the taxIds.
  * - Two organisms which are null are equals
  * - The organism which is not null is before null.
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/12/12</pre>
  */
-
 public class OrganismTaxIdComparator implements Comparator<Organism>{
 
     private static OrganismTaxIdComparator organismTaxIdComparator;
@@ -27,9 +27,10 @@ public class OrganismTaxIdComparator implements Comparator<Organism>{
      * Comparison is based on taxIds only.
      * - Two organisms which are null are equals
      * - The organism which is not null is before null.
-     * @param organism1
-     * @param organism2
-     * @return
+     *
+     * @param organism1 a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organism2 a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @return a int.
      */
     public int compare(Organism organism1, Organism organism2) {
 
@@ -64,8 +65,9 @@ public class OrganismTaxIdComparator implements Comparator<Organism>{
 
     /**
      * Use OrganismTaxIdComparator to know if two organisms are equals.
-     * @param organism1
-     * @param organism2
+     *
+     * @param organism1 a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organism2 a {@link psidev.psi.mi.jami.model.Organism} object.
      * @return true if the two organisms are equal
      */
     public static boolean areEquals(Organism organism1, Organism organism2){
@@ -77,8 +79,9 @@ public class OrganismTaxIdComparator implements Comparator<Organism>{
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param organism
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Organism organism){

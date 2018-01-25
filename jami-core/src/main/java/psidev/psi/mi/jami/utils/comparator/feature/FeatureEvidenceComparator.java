@@ -20,7 +20,6 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>16/01/13</pre>
  */
-
 public class FeatureEvidenceComparator implements Comparator<FeatureEvidence>{
 
     private Comparator<Feature> featureComparator;
@@ -28,7 +27,9 @@ public class FeatureEvidenceComparator implements Comparator<FeatureEvidence>{
 
     /**
      * Creates a new FeatureEvidenceComparator.
+     *
      * @param featureComparator : feature comparator required for comparing basic feature properties
+     * @param cvTermComparator a {@link java.util.Comparator} object.
      */
     public FeatureEvidenceComparator(Comparator<Feature> featureComparator, Comparator<CvTerm> cvTermComparator){
         if (featureComparator == null){
@@ -41,6 +42,12 @@ public class FeatureEvidenceComparator implements Comparator<FeatureEvidence>{
         this.cvTermCollectionComparators = new CvTermsCollectionComparator(cvTermComparator);
     }
 
+    /**
+     * <p>Constructor for FeatureEvidenceComparator.</p>
+     *
+     * @param featureComparator a {@link java.util.Comparator} object.
+     * @param cvTermComparator a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public FeatureEvidenceComparator(Comparator<Feature> featureComparator, CollectionComparator<CvTerm> cvTermComparator){
         if (featureComparator == null){
             throw new IllegalArgumentException("The Feature comparator is required to compare general feature properties. It cannot be null");
@@ -52,10 +59,20 @@ public class FeatureEvidenceComparator implements Comparator<FeatureEvidence>{
         this.cvTermCollectionComparators = cvTermComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>featureComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Feature> getFeatureComparator() {
         return featureComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>cvTermCollectionComparators</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.CollectionComparator} object.
+     */
     public CollectionComparator<CvTerm> getCvTermCollectionComparators() {
         return cvTermCollectionComparators;
     }
@@ -65,9 +82,9 @@ public class FeatureEvidenceComparator implements Comparator<FeatureEvidence>{
      * If the basic feature properties are the same, it will then compare feature detection methods using AbstractCvTermComparator.
      * This comparator will ignore all the other properties of an experimental feature.
      *
-     * @param experimentalFeature1
-     * @param experimentalFeature2
-     * @return
+     * @param experimentalFeature1 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @param experimentalFeature2 a {@link psidev.psi.mi.jami.model.FeatureEvidence} object.
+     * @return a int.
      */
     public int compare(FeatureEvidence experimentalFeature1, FeatureEvidence experimentalFeature2) {
         int EQUAL = 0;

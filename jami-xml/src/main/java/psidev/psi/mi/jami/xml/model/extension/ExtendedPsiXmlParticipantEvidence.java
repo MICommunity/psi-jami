@@ -11,9 +11,23 @@ import java.util.List;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public interface ExtendedPsiXmlParticipantEvidence extends ExtendedPsiXmlParticipant<InteractionEvidence, FeatureEvidence>,ParticipantEvidence {
+    /**
+     * <p>getHostOrganisms.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Organism> getHostOrganisms();
+    /**
+     * <p>getExperimentalInteractors.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<ExperimentalInteractor> getExperimentalInteractors();
+    /**
+     * <p>getExperimentalRoles.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<CvTerm> getExperimentalRoles();
 }

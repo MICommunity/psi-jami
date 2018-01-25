@@ -17,20 +17,28 @@ import java.util.Iterator;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 28/06/13
+
  */
 public class MinimalParticipantEvidenceEnricher<P extends ParticipantEvidence> extends MinimalParticipantEnricher<P, FeatureEvidence>
 implements ParticipantEvidenceEnricher<P>{
     private OrganismEnricher organismEnricher;
 
 
+    /**
+     * <p>Getter for the field <code>organismEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.OrganismEnricher} object.
+     */
     public OrganismEnricher getOrganismEnricher() {
         return organismEnricher;
     }
 
+    /** {@inheritDoc} */
     public void setOrganismEnricher(OrganismEnricher organismEnricher) {
         this.organismEnricher = organismEnricher;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processOtherProperties(P participantEvidenceToEnrich)
             throws EnricherException {
@@ -43,24 +51,43 @@ implements ParticipantEvidenceEnricher<P>{
         processExpressedInOrganism(participantEvidenceToEnrich);
     }
 
+    /**
+     * <p>processExpressedInOrganism.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processExpressedInOrganism(P participantEvidenceToEnrich) throws EnricherException {
         if (getOrganismEnricher() != null && participantEvidenceToEnrich.getExpressedInOrganism() != null){
             getOrganismEnricher().enrich(participantEvidenceToEnrich.getExpressedInOrganism());
         }
     }
 
+    /**
+     * <p>processIdentificationMethods.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentificationMethods(P participantEvidenceToEnrich) throws EnricherException {
         if (!participantEvidenceToEnrich.getIdentificationMethods().isEmpty()){
             getCvTermEnricher().enrich(participantEvidenceToEnrich.getIdentificationMethods());
         }
     }
 
+    /**
+     * <p>processExperimentalRole.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processExperimentalRole(P participantEvidenceToEnrich) throws EnricherException {
         if (participantEvidenceToEnrich.getExperimentalRole() != null){
             getCvTermEnricher().enrich(participantEvidenceToEnrich.getExperimentalRole());
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processOtherProperties(P participantEvidenceToEnrich, P objectSource)
             throws EnricherException {
@@ -75,6 +102,13 @@ implements ParticipantEvidenceEnricher<P>{
         processOtherProperties(participantEvidenceToEnrich);
     }
 
+    /**
+     * <p>processExpressedInOrganism.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processExpressedInOrganism(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         if (participantEvidenceToEnrich.getExpressedInOrganism() == null && objectSource.getExpressedInOrganism() != null){
             participantEvidenceToEnrich.setExpressedInOrganism(objectSource.getExpressedInOrganism());
@@ -84,18 +118,41 @@ implements ParticipantEvidenceEnricher<P>{
         }
     }
 
+    /**
+     * <p>processIdentificationMethods.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processIdentificationMethods(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         mergeIdentificationMethods(participantEvidenceToEnrich, participantEvidenceToEnrich.getIdentificationMethods(), objectSource.getIdentificationMethods(), false);
 
         processIdentificationMethods(participantEvidenceToEnrich);
     }
 
+    /**
+     * <p>processExperimentalRole.</p>
+     *
+     * @param participantEvidenceToEnrich a P object.
+     * @param objectSource a P object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processExperimentalRole(P participantEvidenceToEnrich, P objectSource) throws EnricherException {
         // nothing to do
 
         processExperimentalRole(participantEvidenceToEnrich);
     }
 
+    /**
+     * <p>mergeIdentificationMethods.</p>
+     *
+     * @param termToEnrich a P object.
+     * @param toEnrichTerms a {@link java.util.Collection} object.
+     * @param fetchedTerms a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void mergeIdentificationMethods(P termToEnrich, Collection<CvTerm> toEnrichTerms, Collection<CvTerm> fetchedTerms , boolean remove) throws EnricherException {
 
         Iterator<CvTerm> termIterator = toEnrichTerms.iterator();

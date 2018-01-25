@@ -7,7 +7,6 @@ package psidev.psi.mi.jami.datasource;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public enum SourceCategory {
     file, file_URI, URL
 }

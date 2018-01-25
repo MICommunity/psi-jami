@@ -12,12 +12,13 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public interface PublicationStream extends MIDataSource {
 
-    /**
-     * The publications iterator for this datasource.
-     * @return iterator of publications for a given datasource
-     */
+     /**
+      * The publications iterator for this datasource.
+      *
+      * @return iterator of publications for a given datasource
+      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+      */
      public Iterator<Publication> getPublicationsIterator() throws MIIOException;
 }

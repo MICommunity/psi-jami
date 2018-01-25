@@ -15,13 +15,13 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class DefaultChecksumComparator {
 
     /**
      * Use DefaultChecksumComparator to know if two checksum are equals.
-     * @param checksum1
-     * @param checksum2
+     *
+     * @param checksum1 a {@link psidev.psi.mi.jami.model.Checksum} object.
+     * @param checksum2 a {@link psidev.psi.mi.jami.model.Checksum} object.
      * @return true if the two checksum are equal
      */
     public static boolean areEquals(Checksum checksum1, Checksum checksum2){

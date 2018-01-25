@@ -16,14 +16,23 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlDbXrefWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter {
     private PsiXmlElementWriter<Annotation> annotationWriter;
 
+    /**
+     * <p>Constructor for XmlDbXrefWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlDbXrefWriter(XMLStreamWriter writer) {
         super(writer);
     }
 
+    /**
+     * <p>Getter for the field <code>annotationWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public PsiXmlElementWriter<Annotation> getAnnotationWriter() {
         if (this.annotationWriter == null){
             this.annotationWriter = new XmlAnnotationWriter(getStreamWriter());
@@ -31,10 +40,16 @@ public class XmlDbXrefWriter extends psidev.psi.mi.jami.xml.io.writer.elements.i
         return annotationWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>annotationWriter</code>.</p>
+     *
+     * @param annotationWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
+     */
     public void setAnnotationWriter(PsiXmlElementWriter<Annotation> annotationWriter) {
         this.annotationWriter = annotationWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Xref object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlXref){

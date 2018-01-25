@@ -15,29 +15,39 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/06/13</pre>
  */
-
 public interface ComplexExpansionMethod<T extends Interaction, B extends BinaryInteraction> {
 
+    /** Constant <code>BIPARTITE_EXPANSION_MI="MI:1062"</code> */
     public static final String BIPARTITE_EXPANSION_MI = "MI:1062";
+    /** Constant <code>BIPARTITE_EXPANSION="bipartite expansion"</code> */
     public static final String BIPARTITE_EXPANSION = "bipartite expansion";
+    /** Constant <code>BIPARTITE="bipartite"</code> */
     public static final String BIPARTITE = "bipartite";
+    /** Constant <code>SPOKE_EXPANSION_MI="MI:1060"</code> */
     public static final String SPOKE_EXPANSION_MI = "MI:1060";
+    /** Constant <code>SPOKE_EXPANSION="spoke expansion"</code> */
     public static final String SPOKE_EXPANSION = "spoke expansion";
+    /** Constant <code>SPOKE="spoke"</code> */
     public static final String SPOKE = "spoke";
+    /** Constant <code>MATRIX_EXPANSION_MI="MI:1061"</code> */
     public static final String MATRIX_EXPANSION_MI = "MI:1061";
+    /** Constant <code>MATRIX_EXPANSION="matrix expansion"</code> */
     public static final String MATRIX_EXPANSION = "matrix expansion";
+    /** Constant <code>MATRIX="matrix expansion"</code> */
     public static final String MATRIX = "matrix expansion";
 
     /**
      * The method represented by the ComplexExpansionMethod object.
      * It is a controlled vocabulary term and cannot be null.
+     *
      * @return the complex expansion method
      */
     public CvTerm getMethod();
 
     /**
      * Method to know if this ComplexExpansionMethod can expand the given Interaction
-     * @param interaction
+     *
+     * @param interaction a T object.
      * @return true if this interaction can be expanded with this ComplexExpansionMethod
      */
     public boolean isInteractionExpandable(T interaction);
@@ -45,13 +55,15 @@ public interface ComplexExpansionMethod<T extends Interaction, B extends BinaryI
     /**
      * Expand the interaction in a collection of BinaryInteraction.
      * The collection cannot be null.
-     * @param interaction
+     *
+     * @param interaction a T object.
      * @return collection of binary interactions expanded from the original interaction object
      * @throws psidev.psi.mi.jami.exception.ComplexExpansionException if the interaction cannot be expanded with this method
      */
     public Collection<B> expand(T interaction) throws ComplexExpansionException;
 
     /**
+     * <p>getBinaryInteractionFactory</p>
      *
      * @return the factory used to create new BinaryInteractions
      */
@@ -59,7 +71,8 @@ public interface ComplexExpansionMethod<T extends Interaction, B extends BinaryI
 
     /**
      * Sets the binary interaction factory
-     * @param factory
+     *
+     * @param factory a {@link psidev.psi.mi.jami.factory.BinaryInteractionFactory} object.
      */
     public void setBinaryInteractionFactory(BinaryInteractionFactory factory);
 }

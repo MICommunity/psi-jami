@@ -18,21 +18,38 @@ package psidev.psi.mi.jami.bridges.unisave;
 /**
  * Represent a sequence version: fasta + sequence version number.
  *
+
  */
 public class SequenceVersion {
     
     private FastaSequence sequence;
     private int version;
 
+    /**
+     * <p>Constructor for SequenceVersion.</p>
+     *
+     * @param sequence a {@link psidev.psi.mi.jami.bridges.unisave.FastaSequence} object.
+     * @param version a int.
+     */
     public SequenceVersion( FastaSequence sequence, int version ) {
         this.sequence = sequence;
         this.version = version;
     }
 
+    /**
+     * <p>Getter for the field <code>sequence</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.unisave.FastaSequence} object.
+     */
     public FastaSequence getSequence() {
         return sequence;
     }
 
+    /**
+     * <p>Getter for the field <code>version</code>.</p>
+     *
+     * @return a int.
+     */
     public int getVersion() {
         return version;
     }

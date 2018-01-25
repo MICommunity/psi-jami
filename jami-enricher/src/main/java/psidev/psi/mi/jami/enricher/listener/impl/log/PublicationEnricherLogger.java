@@ -12,15 +12,18 @@ import psidev.psi.mi.jami.model.Publication;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 31/07/13
+
  */
 public class PublicationEnricherLogger extends PublicationChangeLogger implements PublicationEnricherListener {
 
     private static final Logger log = LoggerFactory.getLogger(PublicationEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(Publication publication, EnrichmentStatus status, String message) {
         log.info(publication.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(Publication object, String message, Exception e) {
         log.error(object.toString() + " enrichment error, message: " + message, e);    }
 }

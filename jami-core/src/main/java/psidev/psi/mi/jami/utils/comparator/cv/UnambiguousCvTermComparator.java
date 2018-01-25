@@ -18,23 +18,23 @@ import java.util.List;
  * - If the two external identifiers are set, use UnambiguousExternalIdentifier comparator
  * - The CvTerm without an external identifier is after the CvTerm with an identifier (do not compare short names if we have one external identifier)
  * - When both CvTerms do not have an external identifier, it compares the short names (case insensitive) which cannot be null
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>18/12/12</pre>
  */
-
 public class UnambiguousCvTermComparator extends CvTermComparator {
 
     private static UnambiguousCvTermComparator unambiguousCvTermComparator;
 
     /**
      * Creates a new CvTermComparator with UnambiguousExternalIdentifierComparator
-     *
      */
     public UnambiguousCvTermComparator() {
         super(new UnambiguousExternalIdentifierComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExternalIdentifierComparator getIdentifierComparator() {
         return (UnambiguousExternalIdentifierComparator)super.getIdentifierComparator();
@@ -42,8 +42,9 @@ public class UnambiguousCvTermComparator extends CvTermComparator {
 
     /**
      * Use UnambiguousCvTermComparator to know if two CvTerms are equals.
-     * @param cv1
-     * @param cv2
+     *
+     * @param cv1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param cv2 a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @return true if the two CvTerms are equal
      */
     public static boolean areEquals(CvTerm cv1, CvTerm cv2){
@@ -55,8 +56,9 @@ public class UnambiguousCvTermComparator extends CvTermComparator {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param cv1
+     * @param cv1 a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(CvTerm cv1){

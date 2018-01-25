@@ -13,15 +13,20 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>09/09/13</pre>
  */
-
 public abstract class AbstractCachedFetcher implements CachedFetcher{
 
     private Cache cache;
     private static CacheManager cacheManager;
 
+    /** Constant <code>EHCACHE_CONFIG_FILE="/service.ehcache.xml"</code> */
     public static final String EHCACHE_CONFIG_FILE = "/service.ehcache.xml";
     private String cacheName;
 
+    /**
+     * <p>Constructor for AbstractCachedFetcher.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object.
+     */
     public AbstractCachedFetcher(String cacheName) {
         if (cacheName == null){
             throw new IllegalArgumentException("The name of the cache is mandatory");
@@ -33,10 +38,14 @@ public abstract class AbstractCachedFetcher implements CachedFetcher{
     /////////////////////////
     // EH CACHE utilities
 
+    /**
+     * <p>initialiseCache.</p>
+     */
     public void initialiseCache() {
         initialiseCache( EHCACHE_CONFIG_FILE );
     }
 
+    /** {@inheritDoc} */
     public void initialiseCache(String settingsFile) {
         URL url = getClass().getResource( settingsFile );
         cacheManager =  CacheManager.create( url );
@@ -47,6 +56,7 @@ public abstract class AbstractCachedFetcher implements CachedFetcher{
     }
 
 
+    /** {@inheritDoc} */
     public Object getFromCache( String key ) {
         Object data = null;
         Element element = cache.get( key );
@@ -57,16 +67,23 @@ public abstract class AbstractCachedFetcher implements CachedFetcher{
         return data;
     }
 
+    /** {@inheritDoc} */
     public void storeInCache( String key, Object data ) {
         //if( log.isTraceEnabled() ) log.trace("storing key: "+key);
         Element element = new Element( key, data );
         cache.put( element );
     }
 
+    /**
+     * <p>clearCache.</p>
+     */
     public void clearCache() {
         cacheManager.clearAll();
     }
 
+    /**
+     * <p>shutDownCache.</p>
+     */
     public void shutDownCache() {
         cacheManager.shutdown();
     }

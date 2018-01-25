@@ -21,17 +21,21 @@ import java.util.Map;
  * - enrich annotations
  * - enrich linked features
  *
- *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class FullFeatureEnricher<F extends Feature> extends MinimalFeatureEnricher<F> {
     private Map<F, F> processedFeatures;
 
+    /**
+     * <p>Constructor for FullFeatureEnricher.</p>
+     */
     public FullFeatureEnricher(){
         this.processedFeatures = new IdentityMap();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void enrich(F objectToEnrich) throws EnricherException {
         this.processedFeatures.clear();
@@ -39,6 +43,7 @@ public class FullFeatureEnricher<F extends Feature> extends MinimalFeatureEnrich
         super.enrich(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(F featureToEnrich, F objectSource) throws EnricherException {
         processRole(featureToEnrich, objectSource);
@@ -56,10 +61,18 @@ public class FullFeatureEnricher<F extends Feature> extends MinimalFeatureEnrich
         processLinkedFeatures(featureToEnrich, objectSource);
     }
 
+    /**
+     * <p>processLinkedFeatures.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processLinkedFeatures(F featureToEnrich, F objectSource) throws EnricherException {
         mergeLinkedFeatures(featureToEnrich, (Collection<F>)featureToEnrich.getLinkedFeatures(), (Collection<F>)objectSource.getLinkedFeatures(), false);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(F featureToEnrich) throws EnricherException {
         // process interaction dependency
@@ -67,12 +80,25 @@ public class FullFeatureEnricher<F extends Feature> extends MinimalFeatureEnrich
 
     }
 
+    /**
+     * <p>processRole.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRole(F featureToEnrich) throws EnricherException {
         if(getCvTermEnricher() != null && featureToEnrich.getRole() != null) {
             getCvTermEnricher().enrich( featureToEnrich.getRole() );
         }
     }
 
+    /**
+     * <p>processRole.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRole(F featureToEnrich, F objectSource) throws EnricherException {
         if (objectSource.getRole() != null && featureToEnrich.getRole() == null){
             featureToEnrich.setRole(objectSource.getRole());
@@ -83,20 +109,50 @@ public class FullFeatureEnricher<F extends Feature> extends MinimalFeatureEnrich
         processRole(featureToEnrich);
     }
 
+    /**
+     * <p>processXrefs.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param cvTermFetched a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processXrefs(F objectToEnrich, F cvTermFetched) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getXrefs(), cvTermFetched.getXrefs(), false, false,
                 getFeatureEnricherListener(), getFeatureEnricherListener());
     }
 
+    /**
+     * <p>processAnnotations.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param fetchedObject a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAnnotations(F objectToEnrich, F fetchedObject) throws EnricherException{
         EnricherUtils.mergeAnnotations(objectToEnrich, objectToEnrich.getAnnotations(), fetchedObject.getAnnotations(), false,
                 getFeatureEnricherListener());
     }
 
+    /**
+     * <p>processAliases.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param termFetched a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processAliases(F objectToEnrich, F termFetched) throws EnricherException{
         EnricherUtils.mergeAliases(objectToEnrich, objectToEnrich.getAliases(), termFetched.getAliases(), false, getFeatureEnricherListener());
     }
 
+    /**
+     * <p>mergeLinkedFeatures.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param linkedFeaturesToEnrich a {@link java.util.Collection} object.
+     * @param fetchedFeatures a {@link java.util.Collection} object.
+     * @param remove a boolean.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void mergeLinkedFeatures(F objectToEnrich, Collection<F> linkedFeaturesToEnrich, Collection<F> fetchedFeatures, boolean remove) throws EnricherException {
 
         Iterator<F> featureIterator = linkedFeaturesToEnrich.iterator();

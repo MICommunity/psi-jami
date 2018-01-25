@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.FeatureEvidence;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  13/06/13
+
  */
 public interface FeatureEvidenceEnricherListener
         extends FeatureEnricherListener<FeatureEvidence>, FeatureEvidenceChangeListener {

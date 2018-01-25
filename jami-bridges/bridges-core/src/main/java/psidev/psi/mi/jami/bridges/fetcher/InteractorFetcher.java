@@ -10,6 +10,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/05/13
+
  */
 public interface InteractorFetcher<I extends Interactor> {
 
@@ -30,7 +31,7 @@ public interface InteractorFetcher<I extends Interactor> {
      *
      * @param identifiers   The identifiers to search for.
      * @return              The proteins which match the search term. Empty if no matches.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public Collection<I> fetchByIdentifiers(Collection<String> identifiers)
             throws BridgeFailedException;

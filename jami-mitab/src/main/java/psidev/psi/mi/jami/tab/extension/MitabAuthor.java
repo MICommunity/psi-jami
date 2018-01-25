@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>14/06/13</pre>
  */
-
 public class MitabAuthor implements FileSourceContext{
 
     private String firstAuthor;
@@ -24,6 +23,11 @@ public class MitabAuthor implements FileSourceContext{
     private FileSourceLocator sourceLocator;
     private Pattern year = Pattern.compile("[0-9]{4}");
 
+    /**
+     * <p>Constructor for MitabAuthor.</p>
+     *
+     * @param firstAuthor a {@link java.lang.String} object.
+     */
     public MitabAuthor(String firstAuthor){
         if (firstAuthor != null){
             Matcher matcher = year.matcher(firstAuthor);
@@ -56,6 +60,12 @@ public class MitabAuthor implements FileSourceContext{
         }
     }
 
+    /**
+     * <p>Constructor for MitabAuthor.</p>
+     *
+     * @param firstAuthor a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.lang.String} object.
+     */
     public MitabAuthor(String firstAuthor, String publicationDate){
         this.firstAuthor = firstAuthor != null ? firstAuthor.replaceAll("et al.","").trim() : null;
         try {
@@ -71,22 +81,39 @@ public class MitabAuthor implements FileSourceContext{
         }
     }
 
+    /**
+     * <p>Getter for the field <code>firstAuthor</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getFirstAuthor() {
         return firstAuthor;
     }
 
+    /**
+     * <p>Getter for the field <code>publicationDate</code>.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getPublicationDate() {
         return publicationDate;
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "First Author: "+(getSourceLocator() != null ? getSourceLocator().toString():"-");

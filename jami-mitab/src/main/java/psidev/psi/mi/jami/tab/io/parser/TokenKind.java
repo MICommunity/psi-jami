@@ -7,11 +7,16 @@ package psidev.psi.mi.jami.tab.io.parser;
  * @version $Id$
  * @since <pre>18/06/13</pre>
  */
-
 public enum TokenKind {
     EOF, QUOTED_STRING, DASH, COMMENT, FIELD_SEPARATOR, COLUMN_SEPARATOR, LINE_SEPARATOR, RANGE_SEPARATOR,
     OPEN_PAREN, CLOSE_PAREN, COLON;
 
+    /**
+     * <p>getFromTokenKind.</p>
+     *
+     * @param kind a int.
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.TokenKind} object.
+     */
     static TokenKind getFromTokenKind(int kind) {
         switch (kind) {
             case MitabLineParserConstants.EOF: return EOF;

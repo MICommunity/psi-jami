@@ -18,24 +18,28 @@ import java.util.List;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class UnambiguousVariableParameterComparator extends VariableParameterComparator {
 
     private static UnambiguousVariableParameterComparator unambiguousVariableParameterComparator;
 
+    /**
+     * <p>Constructor for UnambiguousVariableParameterComparator.</p>
+     */
     public UnambiguousVariableParameterComparator() {
         super(new UnambiguousCvTermComparator());
     }
-
-    @Override
     /**
+     * {@inheritDoc}
+     *
      * It will first compare the description (case insensitive). Then it will compare the unit using DefaultCvTermComparator.
      * Then it will compare the collection of VariableParameterValue using the VariableParameterValueComparator.
      */
+    @Override
     public int compare(VariableParameter param1, VariableParameter param2) {
         return super.compare(param1, param2);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
@@ -43,8 +47,9 @@ public class UnambiguousVariableParameterComparator extends VariableParameterCom
 
     /**
      * Use UnambiguousVariableParameterComparator to know if two variableParameter are equals.
-     * @param param1
-     * @param param2
+     *
+     * @param param1 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param param2 a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      * @return true if the two variableParameters are equal
      */
     public static boolean areEquals(VariableParameter param1, VariableParameter param2){
@@ -56,8 +61,9 @@ public class UnambiguousVariableParameterComparator extends VariableParameterCom
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param param
+     * @param param a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(VariableParameter param){

@@ -18,22 +18,33 @@ import psidev.psi.mi.jami.model.OntologyTerm;
  * @version $Id$
  * @since <pre>29/01/14</pre>
  */
-
 public class MinimalOntologyTermUpdater extends MinimalOntologyTermEnricher{
+    /**
+     * <p>Constructor for MinimalOntologyTermUpdater.</p>
+     *
+     * @param cvTermFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public MinimalOntologyTermUpdater(OntologyTermFetcher cvTermFetcher) {
         super(new MinimalCvTermUpdater<OntologyTerm>(cvTermFetcher));
     }
 
+    /**
+     * <p>Constructor for MinimalOntologyTermUpdater.</p>
+     *
+     * @param cvEnricher a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalCvTermEnricher} object.
+     */
     protected MinimalOntologyTermUpdater(MinimalCvTermEnricher<OntologyTerm> cvEnricher) {
         super(cvEnricher);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processChildren(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException {
         mergeOntologyTerms(cvTermToEnrich, cvTermToEnrich.getParents(), cvTermFetched.getParents(), true);
         enrichRelatedTerms(cvTermToEnrich.getParents());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processDefinition(OntologyTerm cvTermToEnrich, OntologyTerm cvTermFetched) throws EnricherException{
         if ((cvTermFetched.getDefinition() != null && !cvTermFetched.getDefinition().equalsIgnoreCase(cvTermToEnrich.getDefinition())

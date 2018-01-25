@@ -13,10 +13,12 @@ import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComp
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/06/13
+
  */
 public class MinimalEntityUpdater<P extends Entity, F extends Feature>
         extends MinimalEntityEnricher<P,F>  {
 
+    /** {@inheritDoc} */
     @Override
     public void processInteractor(P objectToEnrich, P objectSource) throws EnricherException {
         if (!DefaultExactInteractorComparator.areEquals(objectToEnrich.getInteractor(), objectSource.getInteractor())){
@@ -34,6 +36,7 @@ public class MinimalEntityUpdater<P extends Entity, F extends Feature>
         processInteractor(objectToEnrich);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processFeatures(P objectToEnrich, P objectSource) throws EnricherException {
         EnricherUtils.mergeFeatures(objectToEnrich, objectToEnrich.getFeatures(), objectSource.getFeatures(), true, getParticipantEnricherListener(),

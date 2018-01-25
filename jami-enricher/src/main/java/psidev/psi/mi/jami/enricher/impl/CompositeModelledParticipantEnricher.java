@@ -20,12 +20,16 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/02/14</pre>
  */
-
 public class CompositeModelledParticipantEnricher implements ParticipantEnricher<ModelledParticipant, ModelledFeature>{
 
     private ParticipantEnricher<ModelledParticipant,ModelledFeature> entityBaseEnricher;
     private ParticipantPoolEnricher<ModelledParticipantPool,ModelledFeature> poolEntityEnricher;
 
+    /**
+     * <p>Constructor for CompositeModelledParticipantEnricher.</p>
+     *
+     * @param entityBaseEnricher a {@link psidev.psi.mi.jami.enricher.ParticipantEnricher} object.
+     */
     public CompositeModelledParticipantEnricher(ParticipantEnricher<ModelledParticipant, ModelledFeature> entityBaseEnricher){
         super();
         if (entityBaseEnricher == null){
@@ -34,14 +38,30 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         this.entityBaseEnricher = entityBaseEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>poolEntityEnricher</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.ParticipantPoolEnricher} object.
+     */
     public ParticipantPoolEnricher<ModelledParticipantPool, ModelledFeature> getPoolEntityEnricher() {
         return poolEntityEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>poolEntityEnricher</code>.</p>
+     *
+     * @param poolEntityEnricher a {@link psidev.psi.mi.jami.enricher.ParticipantPoolEnricher} object.
+     */
     public void setPoolEntityEnricher(ParticipantPoolEnricher<ModelledParticipantPool, ModelledFeature> poolEntityEnricher) {
         this.poolEntityEnricher = poolEntityEnricher;
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(ModelledParticipant object) throws EnricherException {
         if(object == null)
             throw new IllegalArgumentException("Cannot enrich a null entity.");
@@ -58,6 +78,12 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<ModelledParticipant> objects) throws EnricherException {
         if(objects == null)
             throw new IllegalArgumentException("Cannot enrich a null collection of interactors.");
@@ -67,6 +93,13 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param objectSource a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(ModelledParticipant object, ModelledParticipant objectSource) throws EnricherException {
         if (object instanceof ModelledParticipantPool && objectSource instanceof ModelledParticipantPool){
             if (this.poolEntityEnricher != null){
@@ -81,14 +114,25 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /**
+     * <p>getInteractorEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public CompositeInteractorEnricher getInteractorEnricher() {
         return this.entityBaseEnricher.getInteractorEnricher();
     }
 
+    /**
+     * <p>getCvTermEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public CvTermEnricher<CvTerm> getCvTermEnricher() {
         return this.entityBaseEnricher.getCvTermEnricher();
     }
 
+    /** {@inheritDoc} */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher) {
         this.entityBaseEnricher.setCvTermEnricher(enricher);
         if (poolEntityEnricher != null){
@@ -96,14 +140,25 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /**
+     * <p>getFeatureEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.FeatureEnricher} object.
+     */
     public FeatureEnricher getFeatureEnricher() {
         return this.entityBaseEnricher.getFeatureEnricher();
     }
 
+    /**
+     * <p>getParticipantEnricherListener.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.listener.EntityEnricherListener} object.
+     */
     public EntityEnricherListener getParticipantEnricherListener() {
         return this.entityBaseEnricher.getParticipantEnricherListener();
     }
 
+    /** {@inheritDoc} */
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher) {
         this.entityBaseEnricher.setInteractorEnricher(interactorEnricher);
         if (poolEntityEnricher != null){
@@ -111,6 +166,7 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /** {@inheritDoc} */
     public void setFeatureEnricher(FeatureEnricher<ModelledFeature> enricher) {
         this.entityBaseEnricher.setFeatureEnricher(enricher);
         if (poolEntityEnricher != null){
@@ -118,6 +174,7 @@ public class CompositeModelledParticipantEnricher implements ParticipantEnricher
         }
     }
 
+    /** {@inheritDoc} */
     public void setParticipantEnricherListener(EntityEnricherListener listener) {
         this.entityBaseEnricher.setParticipantEnricherListener(listener);
         if (poolEntityEnricher != null){

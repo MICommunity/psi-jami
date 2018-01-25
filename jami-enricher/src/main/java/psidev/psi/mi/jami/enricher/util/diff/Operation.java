@@ -15,11 +15,13 @@
  */
 package psidev.psi.mi.jami.enricher.util.diff;
 
-/**-
+  /**
+   *-
    * The data structure representing a diff is a Linked list of Diff objects:
    * {Diff(Operation.DELETE, "Hello"), Diff(Operation.INSERT, "Goodbye"),
    *  Diff(Operation.EQUAL, " world.")}
    * which means: delete "Hello", add "Goodbye" and keep " world."
+   *
    */
   public enum Operation {
     DELETE(diff_match_patch.Operation.DELETE),
@@ -32,6 +34,11 @@ package psidev.psi.mi.jami.enricher.util.diff;
         this.diffOperation = operation;
     }
 
+    /**
+     * <p>Getter for the field <code>diffOperation</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.util.diff.diff_match_patch.Operation} object.
+     */
     public diff_match_patch.Operation getDiffOperation() {
         return diffOperation;
     }

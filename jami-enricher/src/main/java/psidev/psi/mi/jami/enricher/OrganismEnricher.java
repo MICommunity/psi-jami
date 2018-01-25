@@ -11,25 +11,43 @@ import psidev.psi.mi.jami.model.Organism;
  *
  * @author  Gabriel Aldam (galdam@ebi.ac.uk)
  * @since   22/05/13
+
  */
 public interface OrganismEnricher extends MIEnricher<Organism>{
 
     /**
      * The fetcher service to retrieve the organism by.
      * If this has not been set, null will be returned.
+     *
      * @return  The service being used when fetching an enrichedOrganism. Null if it has not been set.
      */
     public OrganismFetcher getOrganismFetcher();
 
     /**
      * The listener which is currently being used.
+     *
      * @return  The listener currently in use.
      */
     public OrganismEnricherListener getOrganismEnricherListener();
 
+    /**
+     * <p>getCvTermEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public CvTermEnricher<CvTerm> getCvTermEnricher();
 
+    /**
+     * <p>setOrganismEnricherListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.enricher.listener.OrganismEnricherListener} object.
+     */
     public void setOrganismEnricherListener(OrganismEnricherListener listener);
 
+    /**
+     * <p>setCvTermEnricher.</p>
+     *
+     * @param enricher a {@link psidev.psi.mi.jami.enricher.CvTermEnricher} object.
+     */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher);
 }

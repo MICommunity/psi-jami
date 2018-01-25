@@ -17,6 +17,7 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 14/05/13
+
  */
 public class CachedUniprotGeneFetcher
         extends UniprotGeneFetcher
@@ -27,15 +28,27 @@ public class CachedUniprotGeneFetcher
     private Cache cache;
     private static CacheManager cacheManager;
 
+    /** Constant <code>EHCACHE_CONFIG_FILE="/service.ehcache.xml"</code> */
     public static final String EHCACHE_CONFIG_FILE = "/service.ehcache.xml";
+    /** Constant <code>CACHE_NAME="uniprot-gene-service-cache"</code> */
     public static final String CACHE_NAME = "uniprot-gene-service-cache";
 
+    /**
+     * <p>Constructor for CachedUniprotGeneFetcher.</p>
+     */
     public CachedUniprotGeneFetcher() {
         super();
         initialiseCache();
     }
 
 
+    /**
+     * <p>getByIdentifier.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<Gene> getByIdentifier(String identifier)
             throws BridgeFailedException{
 
@@ -48,6 +61,14 @@ public class CachedUniprotGeneFetcher
         return (Collection<Gene> )data;
     }
 
+    /**
+     * <p>getByIdentifier.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     * @param taxID a int.
+     * @return a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
+     */
     public Collection<Gene> getByIdentifier(String identifier , int taxID)
             throws BridgeFailedException{
 
@@ -63,6 +84,7 @@ public class CachedUniprotGeneFetcher
     /////////////////////////
     // EH CACHE utilities
 
+    /** {@inheritDoc} */
     public Object getFromCache( String key ) {
         Object data = null;
         Element element = cache.get( key );
@@ -72,15 +94,20 @@ public class CachedUniprotGeneFetcher
         return data;
     }
 
+    /** {@inheritDoc} */
     public void storeInCache( String key, Object data ) {
         Element element = new Element( key, data );
         cache.put( element );
     }
 
+    /**
+     * <p>initialiseCache.</p>
+     */
     public void initialiseCache() {
         initialiseCache( EHCACHE_CONFIG_FILE );
     }
 
+    /** {@inheritDoc} */
     public void initialiseCache(String settingsFile) {
         URL url = getClass().getResource( settingsFile );
         cacheManager =  CacheManager.create( url );
@@ -90,10 +117,16 @@ public class CachedUniprotGeneFetcher
         if( cache == null ) throw new IllegalStateException( "Could not load cache" );
     }
 
+    /**
+     * <p>clearCache.</p>
+     */
     public void clearCache() {
        cacheManager.clearAll();
     }
 
+    /**
+     * <p>shutDownCache.</p>
+     */
     public void shutDownCache() {
         cacheManager.shutdown();
     }

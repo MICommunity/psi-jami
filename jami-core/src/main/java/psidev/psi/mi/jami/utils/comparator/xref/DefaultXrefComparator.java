@@ -19,13 +19,13 @@ import psidev.psi.mi.jami.model.Xref;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class DefaultXrefComparator{
 
     /**
      * Use DefaultXrefComparator to know if two xrefs are equals.
-     * @param xref1
-     * @param xref2
+     *
+     * @param xref1 a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param xref2 a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return true if the two xrefs are equal
      */
     public static boolean areEquals(Xref xref1, Xref xref2){

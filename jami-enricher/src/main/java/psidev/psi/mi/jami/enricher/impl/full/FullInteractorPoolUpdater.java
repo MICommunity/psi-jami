@@ -17,32 +17,53 @@ import java.util.*;
  * - update all interactors in existing pool using a composite interactor enricher if it is not null.
  * It will add missing interactors in the pool and remove any interactors that are not in the fetched interactor pool
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>30/01/14</pre>
  */
-
 public class FullInteractorPoolUpdater extends FullInteractorBaseUpdater<InteractorPool> {
     private CompositeInteractorEnricher interactorEnricher;
     private Comparator<Interactor> interactorComparator;
 
+    /**
+     * <p>Constructor for FullInteractorPoolUpdater.</p>
+     */
     public FullInteractorPoolUpdater() {
         super();
     }
 
+    /**
+     * <p>Constructor for FullInteractorPoolUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.InteractorFetcher} object.
+     */
     public FullInteractorPoolUpdater(InteractorFetcher<InteractorPool> fetcher) {
         super(fetcher);
     }
 
+    /**
+     * <p>getInteractorMemberEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public CompositeInteractorEnricher getInteractorMemberEnricher() {
         return interactorEnricher;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorEnricher</code>.</p>
+     *
+     * @param interactorEnricher a {@link psidev.psi.mi.jami.enricher.impl.CompositeInteractorEnricher} object.
+     */
     public void setInteractorEnricher(CompositeInteractorEnricher interactorEnricher) {
         this.interactorEnricher = interactorEnricher;
     }
 
+    /**
+     * <p>Getter for the field <code>interactorComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorComparator() {
         if (interactorComparator == null){
             interactorComparator = new UnambiguousExactInteractorComparator();
@@ -50,19 +71,37 @@ public class FullInteractorPoolUpdater extends FullInteractorBaseUpdater<Interac
         return interactorComparator;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorComparator</code>.</p>
+     *
+     * @param interactorComparator a {@link java.util.Comparator} object.
+     */
     public void setInteractorComparator(Comparator<Interactor> interactorComparator) {
         this.interactorComparator = interactorComparator;
     }
 
+    /**
+     * <p>isFullEnrichment.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean isFullEnrichment() {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(InteractorPool poolToEnrich, InteractorPool fetched) throws EnricherException {
         processMembers(poolToEnrich, fetched);
     }
 
+    /**
+     * <p>processMembers.</p>
+     *
+     * @param poolToEnrich a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @param fetched a {@link psidev.psi.mi.jami.model.InteractorPool} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processMembers(InteractorPool poolToEnrich, InteractorPool fetched) throws EnricherException {
         if (fetched != null){
             TreeSet<Interactor> set1 = new TreeSet<Interactor>(getInteractorComparator());

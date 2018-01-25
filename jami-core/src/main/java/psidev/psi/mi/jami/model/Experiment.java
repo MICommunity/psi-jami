@@ -9,24 +9,29 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>23/11/12</pre>
  */
-
 public interface Experiment {
 
+    /** Constant <code>UNSPECIFIED_METHOD="unspecified method"</code> */
     public static final String UNSPECIFIED_METHOD = "unspecified method";
+    /** Constant <code>UNSPECIFIED_METHOD_MI="MI:0686"</code> */
     public static final String UNSPECIFIED_METHOD_MI = "MI:0686";
+    /** Constant <code>INFERRED_BY_CURATOR="inferred by curator"</code> */
     public static final String INFERRED_BY_CURATOR = "inferred by curator";
+    /** Constant <code>INFERRED_BY_CURATOR_MI="MI:0364"</code> */
     public static final String INFERRED_BY_CURATOR_MI = "MI:0364";
 
     /**
      * The publication where the experiment has been described.
      * It can be null if the experiment is not attached to any publications.
      * This can happen when an experiment has been removed from a publication and is not valid anymore.
+     *
      * @return the publication
      */
     public Publication getPublication();
 
     /**
      * Set the publication where the experiment has been described.
+     *
      * @param publication : the publication
      */
     public void setPublication(Publication publication);
@@ -34,6 +39,7 @@ public interface Experiment {
     /**
      * Set the publication where the experiment has been described and add the experiment to the list of experiments for this publication
      * If publication is null, it will remove this experiment from the previous publication attached to this experiment
+     *
      * @param publication : the publication
      */
     public void setPublicationAndAddExperiment(Publication publication);
@@ -42,7 +48,9 @@ public interface Experiment {
      * Collection of cross references for an experiment which can give more information about the experiment.
      * It cannot be null and if the experiment does not have any xrefs, the method should return an empty Collection.
      * Ex: PRIDE experiment/project xrefs
+     *
      * @return the xrefs
+     * @param <X> a X object.
      */
     public <X extends Xref> Collection<X> getXrefs();
 
@@ -50,20 +58,25 @@ public interface Experiment {
      * Collection of annotations for an experiment.
      * It cannot be null. If the experiment does not have any annotations, the method should return an empty Collection.
      * Ex: data-processing, comments, cautions, confidence-mapping annotations
+     *
      * @return the annotations
+     * @param <A> a A object.
      */
     public <A extends Annotation> Collection<A> getAnnotations();
 
     /**
      * Collection of confidences for a specific experiment. It can happen that an authors give different confidences to the same experiment depending on the environment.
      * It cannot be null. If the experiment does not have any confidences, the method should return an empty Collection.
+     *
      * @return the confidences for this experiment
+     * @param <C> a C object.
      */
     public <C extends Confidence> Collection<C> getConfidences();
 
     /**
      * The experimental method to determine the interaction. It is a controlled vocabulary term and cannot not be null.
      * Ex: pull down, coip, ...
+     *
      * @return the interaction detection method
      */
     public CvTerm getInteractionDetectionMethod();
@@ -71,6 +84,7 @@ public interface Experiment {
     /**
      * Set the interaction detection method for this experiment
      * If term is null, this method will set the interaction detection method to 'unspecified method' (MI:0686).
+     *
      * @param term : the detection method
      */
     public void setInteractionDetectionMethod(CvTerm term);
@@ -79,12 +93,14 @@ public interface Experiment {
      * The host organism where the interaction took place in this experiment.
      * It can be null.
      * Ex: in vitro, human-hela cells
+     *
      * @return the host organism
      */
     public Organism getHostOrganism();
 
     /**
      * Sets the host organism of an experiment
+     *
      * @param organism : host organism
      */
     public void setHostOrganism(Organism organism);
@@ -92,12 +108,15 @@ public interface Experiment {
     /**
      * The interactions determined in this experiment.
      * The collection cannot be null. If the experiment did not show any interactions, the method should return an empty collection
+     *
      * @return the interactions
+     * @param <I> a I object.
      */
     public <I extends InteractionEvidence> Collection<I> getInteractionEvidences();
 
     /**
      * This method will add the interaction evidence and set the experiment of the new interaction evidence to this current experiment
+     *
      * @param evidence : evidence to add
      * @return true if interaction evidence is added to the list of interactions
      */
@@ -105,6 +124,7 @@ public interface Experiment {
 
     /**
      * This method will remove the interaction evidence and set the experiment of the new interaction evidence to null
+     *
      * @param evidence : evidence to remove
      * @return true if interaction evidence is removed from the list of interactions
      */
@@ -112,6 +132,7 @@ public interface Experiment {
 
     /**
      * This method will add all the interaction evidences and set the experiment of the new interaction evidences to this current experiment
+     *
      * @param evidences : evidences to add
      * @return true if interaction evidences are added to the list of interaction evidences
      */
@@ -119,6 +140,7 @@ public interface Experiment {
 
     /**
      * This method will remove the interaction evidences and set the experiment of the removed interaction evidences to null.
+     *
      * @param evidences : evidences to remove
      * @return true if interaction evidences are removed from the list of interactions
      */
@@ -128,12 +150,15 @@ public interface Experiment {
      * The collection of variableParameters and their values used in this experiment.
      * The collection cannot be null. If the experiment does not have any variableParameters,
      * this method should return an empty collection.
+     *
      * @return the collection of variableParameters and their values used in this experiment
+     * @param <V> a V object.
      */
     public <V extends VariableParameter> Collection<V> getVariableParameters();
 
     /**
      * This method will add the variableParameter and set the experiment of the new variableParameter to this current experiment
+     *
      * @param variableParameter : parameter to add
      * @return true if variableParameter is added to the list of variableParameters
      */
@@ -141,6 +166,7 @@ public interface Experiment {
 
     /**
      * This method will remove the variableParameter and set the experiment of the removed variableParameter to null.
+     *
      * @param variableParameter : parameter to remove
      * @return true if variableParameter is removed from the list of variableParameters
      */
@@ -148,6 +174,7 @@ public interface Experiment {
 
     /**
      * This method will add all variableParameters and set the experiment of the new variableParameters to this current experiment
+     *
      * @param variableParameters : parameters to add
      * @return true if variableParameters are added to the list of variableParameters
      */
@@ -155,6 +182,7 @@ public interface Experiment {
 
     /**
      * This method will remove all the variableParameters and set the experiment of the removed variableParameters to null.
+     *
      * @param variableParameters : parameters to remove
      * @return true if variableParameters are removed from the list of variableParameters
      */

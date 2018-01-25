@@ -13,12 +13,13 @@ import psidev.psi.mi.jami.utils.comparator.feature.UnambiguousModelledFeaturecom
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class UnambiguousExactModelledEntityComparator extends ModelledEntityComparator {
 
     private static UnambiguousExactModelledEntityComparator defaultParticipantComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousExactModelledParticipantComparator. It will use a UnambiguousExactParticipantBaseComparator to compare
      * the basic properties of a participant.
      */
@@ -26,6 +27,11 @@ public class UnambiguousExactModelledEntityComparator extends ModelledEntityComp
         super(new UnambiguousExactEntityBaseComparator(), new UnambiguousModelledFeaturecomparator());
     }
 
+    /**
+     * <p>Constructor for UnambiguousExactModelledEntityComparator.</p>
+     *
+     * @param entityBaseComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.UnambiguousExactEntityBaseComparator} object.
+     */
     public UnambiguousExactModelledEntityComparator(UnambiguousExactEntityBaseComparator entityBaseComparator) {
         super(entityBaseComparator != null ? entityBaseComparator :
                 new UnambiguousExactEntityBaseComparator(), new UnambiguousModelledFeaturecomparator());
@@ -36,20 +42,21 @@ public class UnambiguousExactModelledEntityComparator extends ModelledEntityComp
         return (UnambiguousExactEntityBaseComparator) super.getEntityBaseComparator();
     }
 
-    @Override
     /**
      * It will compare the basic properties of a component using UnambiguousExactParticipantBaseComparator.
      *
      * This comparator will ignore all the other properties of a component.
      */
+    @Override
     public int compare(ModelledEntity component1, ModelledEntity component2) {
         return super.compare(component1, component2);
     }
 
     /**
      * Use UnambiguousExactModelledParticipantComparator to know if two biological participant are equals.
-     * @param component1
-     * @param component2
+     *
+     * @param component1 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      * @return true if the two biological participant are equal
      */
     public static boolean areEquals(ModelledEntity component1, ModelledEntity component2){

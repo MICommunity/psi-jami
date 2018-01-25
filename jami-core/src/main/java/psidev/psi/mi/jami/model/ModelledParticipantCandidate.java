@@ -7,6 +7,5 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>24/07/14</pre>
  */
-
 public interface ModelledParticipantCandidate extends ParticipantCandidate<ModelledParticipantPool, ModelledFeature>, ModelledEntity {
 }

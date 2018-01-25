@@ -24,27 +24,30 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
+
  */
 public class ChebiFetcher
         implements BioactiveEntityFetcher {
 
     private ChebiWebServiceClient client;
     private static final int MAX_SIZE_CHEBI_IDS = 50;
+    /** Constant <code>CHEBI_POLYSACCHARYDE_PARENT="CHEBI:18154"</code> */
     public final static String CHEBI_POLYSACCHARYDE_PARENT="CHEBI:18154";
 
+    /**
+     * <p>Constructor for ChebiFetcher.</p>
+     */
     public ChebiFetcher(){
         client = new ChebiWebServiceClient();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Searches Chebi for an entry matching the identifier.
      * If it's found, the record is used to create a bioactiveEntity with:
      * ChebiAsciiName = Full name, Short name
      * with Inchi, InchiKey, Smile, ChebiId matched to the corresponding fields.
-     *
-     * @param identifier    The identifier of the CHEBI entry to find.
-     * @return              A completed bioactiveEntity for the given identifier. May be null.
-     * @throws BridgeFailedException    Thrown if the fetcher encounters a problem.
      */
     public Collection<BioactiveEntity> fetchByIdentifier (String identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException("Can not fetch on null identifier");
@@ -127,6 +130,7 @@ public class ChebiFetcher
         return entityType;
     }
 
+    /** {@inheritDoc} */
     public Collection<BioactiveEntity> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
 
         if (identifiers == null) {

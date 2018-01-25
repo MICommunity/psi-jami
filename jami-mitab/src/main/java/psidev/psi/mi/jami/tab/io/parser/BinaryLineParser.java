@@ -14,34 +14,55 @@ import java.util.Collection;
  *
  * It ignore properties of BinaryInteractionEvidence and ModelledBinaryInteraction
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public class BinaryLineParser extends AbstractLightInteractionLineParser<BinaryInteraction>{
+    /**
+     * <p>Constructor for BinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public BinaryLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for BinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public BinaryLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for BinaryLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public BinaryLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for BinaryLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public BinaryLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected MitabBinaryInteraction createInteraction() {
         return new MitabBinaryInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseExpansionMethod(Collection<MitabCvTerm> expansion, BinaryInteraction interaction) {
         if (expansion.size() > 1){
@@ -55,6 +76,7 @@ public class BinaryLineParser extends AbstractLightInteractionLineParser<BinaryI
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void addParticipant(Participant participant, BinaryInteraction interaction) {
         if (interaction.getParticipantA() != null){

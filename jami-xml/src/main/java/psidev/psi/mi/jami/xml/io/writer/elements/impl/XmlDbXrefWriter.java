@@ -16,13 +16,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public class XmlDbXrefWriter implements PsiXmlXrefWriter {
 
     private XMLStreamWriter streamWriter;
     private String defaultRefTypeAc = null;
     private String defaultRefType=null;
 
+    /**
+     * <p>Constructor for XmlDbXrefWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlDbXrefWriter(XMLStreamWriter writer){
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlDbXrefWriter");
@@ -30,6 +34,7 @@ public class XmlDbXrefWriter implements PsiXmlXrefWriter {
         this.streamWriter = writer;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(Xref object, String nodeName) throws MIIOException {
         if (object != null){
@@ -75,24 +80,43 @@ public class XmlDbXrefWriter implements PsiXmlXrefWriter {
         }
     }
 
+    /**
+     * <p>writeOtherProperties.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeOtherProperties(Xref object) throws XMLStreamException{
         // nothing to write by default
     }
 
+    /**
+     * <p>Getter for the field <code>streamWriter</code>.</p>
+     *
+     * @return a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     protected XMLStreamWriter getStreamWriter() {
         return streamWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultRefType(String defaultType) {
         this.defaultRefType = defaultType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDefaultRefTypeAc(String defaultTypeAc) {
         this.defaultRefTypeAc = defaultTypeAc;
     }
 
+    /**
+     * <p>writeStartDbRef.</p>
+     *
+     * @param nodeName a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeStartDbRef(String nodeName) throws XMLStreamException{
         getStreamWriter().writeStartElement(nodeName);
     }}

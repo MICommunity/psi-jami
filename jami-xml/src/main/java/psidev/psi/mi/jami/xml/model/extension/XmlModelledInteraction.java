@@ -17,13 +17,27 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlModelledInteraction extends AbstractXmlModelledInteraction  {
 
+    /**
+     * <p>Constructor for XmlModelledInteraction.</p>
+     */
     public XmlModelledInteraction() {
     }
 
+    /**
+     * <p>Constructor for XmlModelledInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlModelledInteraction(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlModelledInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlModelledInteraction(String shortName, CvTerm type) {
         super(shortName, type);
     }

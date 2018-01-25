@@ -39,7 +39,6 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public abstract class AbstractPsiXmlStream<T extends Interaction> implements PsiXmlStreamSource<T> {
 
     private static final Logger logger = Logger.getLogger("AbstractPsiXmlStream");
@@ -57,36 +56,62 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
     private Boolean isValid = null;
     private PsiXmlIdCache elementCache;
 
+    /** Constant <code>VALIDATION_FEATURE="http://xml.org/sax/features/validation"</code> */
     public static final String VALIDATION_FEATURE = "http://xml.org/sax/features/validation";
+    /** Constant <code>SCHEMA_FEATURE="http://apache.org/xml/features/validati"{trunked}</code> */
     public static final String SCHEMA_FEATURE = "http://apache.org/xml/features/validation/schema";
 
+    /**
+     * <p>Constructor for AbstractPsiXmlStream.</p>
+     */
     public AbstractPsiXmlStream(){
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlStream.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public AbstractPsiXmlStream(File file) {
 
         initialiseFile(file);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlStream.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public AbstractPsiXmlStream(InputStream input) {
 
         initialiseInputStream(input);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlStream.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public AbstractPsiXmlStream(Reader reader) {
 
         initialiseReader(reader);
         isInitialised = true;
     }
 
+    /**
+     * <p>Constructor for AbstractPsiXmlStream.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public AbstractPsiXmlStream(URL url) {
 
         initialiseURL(url);
         isInitialised = true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Iterator<T> getInteractionsIterator() throws MIIOException {
         if (!isInitialised){
@@ -108,11 +133,13 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         return createXmlIterator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public MIFileParserListener getFileParserListener() {
         return this.defaultParserListener;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFileParserListener(MIFileParserListener listener) {
         this.defaultParserListener = listener;
@@ -121,6 +148,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean validateSyntax() throws MIIOException {
         if (!isInitialised){
@@ -179,16 +207,27 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         return isValid;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean validateSyntax(MIFileParserListener listener) throws MIIOException {
         setMIFileParserListener(listener);
         return validateSyntax();
     }
 
+    /**
+     * <p>Getter for the field <code>interactorFactory</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public XmlInteractorFactory getInteractorFactory() {
         return interactorFactory;
     }
 
+    /**
+     * <p>Setter for the field <code>interactorFactory</code>.</p>
+     *
+     * @param interactorFactory a {@link psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory} object.
+     */
     public void setInteractorFactory(XmlInteractorFactory interactorFactory) {
         this.interactorFactory = interactorFactory;
         if (this.parser != null){
@@ -196,6 +235,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void initialiseContext(Map<String, Object> options) {
         File sourceFile = null;
@@ -291,6 +331,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         isInitialised = true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException{
         if (isInitialised){
@@ -306,6 +347,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException{
         if (isInitialised){
@@ -319,6 +361,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onUnresolvedReference(XmlIdReference ref, String message) {
         if (parserListener != null){
@@ -329,6 +372,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralHostOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         if (parserListener != null){
@@ -339,6 +383,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExpressedInOrganismFound(Collection<Organism> organisms, FileSourceLocator locator) {
         if (parserListener != null){
@@ -349,6 +394,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentalRolesFound(Collection<CvTerm> roles, FileSourceLocator locator) {
         if (parserListener != null){
@@ -359,6 +405,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSeveralExperimentsFound(Collection<Experiment> experiments, FileSourceLocator locator) {
         if (parserListener != null){
@@ -369,6 +416,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInvalidSyntax(FileSourceContext context, Exception e) {
         if (defaultParserListener != null){
@@ -376,6 +424,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onSyntaxWarning(FileSourceContext context, String message) {
         if (defaultParserListener != null){
@@ -383,6 +432,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingCvTermName(CvTerm term, FileSourceContext context, String message) {
         if (defaultParserListener != null){
@@ -390,6 +440,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingInteractorName(Interactor interactor, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -397,6 +448,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onParticipantWithoutInteractor(Participant participant, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -404,6 +456,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInteractionWithoutParticipants(Interaction interaction, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -411,6 +464,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void warning(SAXParseException exception) throws SAXException {
         isValid = false;
@@ -419,6 +473,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void error(SAXParseException exception) throws SAXException {
         isValid = false;
@@ -427,6 +482,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void fatalError(SAXParseException exception) throws SAXException {
         isValid = false;
@@ -435,6 +491,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInvalidOrganismTaxid(String taxid, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -442,6 +499,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingParameterValue(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -449,6 +507,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingParameterType(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -456,6 +515,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingConfidenceValue(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -463,6 +523,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingConfidenceType(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -470,6 +531,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingChecksumValue(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -477,6 +539,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onMissingChecksumMethod(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -484,6 +547,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInvalidPosition(String message, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -491,6 +555,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInvalidRange(String message, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -498,6 +563,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onInvalidStoichiometry(String message, FileSourceContext context) {
         if (defaultParserListener != null){
@@ -505,6 +571,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onXrefWithoutDatabase(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -512,6 +579,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onXrefWithoutId(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -519,6 +587,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onAnnotationWithoutTopic(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -526,6 +595,7 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void onAliasWithoutName(FileSourceContext context) {
         if (defaultParserListener != null){
@@ -533,19 +603,49 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>initialiseXmlParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     protected abstract void initialiseXmlParser(Reader reader);
 
+    /**
+     * <p>initialiseXmlParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     protected abstract void initialiseXmlParser(File file);
 
+    /**
+     * <p>initialiseXmlParser.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     protected abstract void initialiseXmlParser(InputStream input);
 
+    /**
+     * <p>initialiseXmlParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     protected abstract void initialiseXmlParser(URL url);
 
+    /**
+     * <p>setXmlFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
+     */
     protected void setXmlFileParserListener(PsiXmlParserListener listener) {
         this.parserListener = listener;
         this.defaultParserListener = listener;
     }
 
+    /**
+     * <p>setMIFileParserListener.</p>
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
+     */
     protected void setMIFileParserListener(MIFileParserListener listener) {
         if (listener instanceof PsiXmlParserListener){
             setXmlFileParserListener((PsiXmlParserListener) listener);
@@ -556,6 +656,11 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>reInit.</p>
+     *
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     protected void reInit() throws MIIOException{
         if (this.elementCache != null){
             this.elementCache.clear();
@@ -632,23 +737,53 @@ public abstract class AbstractPsiXmlStream<T extends Interaction> implements Psi
         }
     }
 
+    /**
+     * <p>initialiseExpansionMethod.</p>
+     *
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
+     */
     protected abstract void initialiseExpansionMethod(ComplexExpansionMethod<? extends Interaction, ? extends BinaryInteraction> expansionMethod);
 
+    /**
+     * <p>createXmlIterator.</p>
+     *
+     * @return a {@link java.util.Iterator} object.
+     */
     protected abstract Iterator<T> createXmlIterator();
 
+    /**
+     * <p>Getter for the field <code>parser</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     */
     protected PsiXmlParser<T> getParser() {
         return parser;
     }
 
+    /**
+     * <p>Setter for the field <code>parser</code>.</p>
+     *
+     * @param parser a {@link psidev.psi.mi.jami.xml.io.parser.PsiXmlParser} object.
+     */
     protected void setParser(PsiXmlParser<T> parser) {
         this.parser = parser;
         this.parser.setInteractorFactory(getInteractorFactory());
     }
 
+    /**
+     * <p>isInitialised.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean isInitialised() {
         return isInitialised;
     }
 
+    /**
+     * <p>Getter for the field <code>elementCache</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.cache.PsiXmlIdCache} object.
+     */
     protected PsiXmlIdCache getElementCache() {
         return elementCache;
     }

@@ -10,10 +10,12 @@ import psidev.psi.mi.jami.model.Range;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 19/07/13
+ * @version $Id: $
  */
 public interface FeatureChangeListener<F extends Feature> extends AnnotationsChangeListener<F>, XrefsChangeListener<F>, IdentifiersChangeListener<F>, AliasesChangeListener<F> {
 
     /**
+     * <p>onShortNameUpdate</p>
      *
      * @param feature : updated feature
      * @param oldShortName : old shortName
@@ -21,6 +23,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onShortNameUpdate(F feature, String oldShortName);
 
     /**
+     * <p>onFullNameUpdate</p>
      *
      * @param feature : updated feature
      * @param oldFullName : old fllName
@@ -28,6 +31,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onFullNameUpdate(F feature, String oldFullName);
 
     /**
+     * <p>onInterproUpdate</p>
      *
      * @param feature : updated feature
      * @param oldInterpro : old interpro
@@ -35,6 +39,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onInterproUpdate(F feature, String oldInterpro);
 
     /**
+     * <p>onTypeUpdate</p>
      *
      * @param feature : updated feature
      * @param oldType : old type
@@ -42,6 +47,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onTypeUpdate(F feature , CvTerm oldType);
 
     /**
+     * <p>onAddedRange</p>
      *
      * @param feature : updated feature
      * @param added  : added range
@@ -49,6 +55,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onAddedRange(F feature, Range added);
 
     /**
+     * <p>onRemovedRange</p>
      *
      * @param feature : updated feature
      * @param removed : removed range
@@ -56,6 +63,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onRemovedRange(F feature, Range removed);
 
     /**
+     * <p>onUpdatedRangePositions</p>
      *
      * @param feature : updated feature
      * @param range : updated range
@@ -65,6 +73,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onUpdatedRangePositions(F feature, Range range, Position oldStart, Position oldEnd);
 
     /**
+     * <p>onRoleUpdate</p>
      *
      * @param feature : updated feature
      * @param oldRole : old role
@@ -72,6 +81,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onRoleUpdate(F feature, CvTerm oldRole);
 
     /**
+     * <p>onAddedLinkedFeature</p>
      *
      * @param feature : updated feature
      * @param added  : added linked feature
@@ -79,6 +89,7 @@ public interface FeatureChangeListener<F extends Feature> extends AnnotationsCha
     public void onAddedLinkedFeature(F feature, F added);
 
     /**
+     * <p>onRemovedLinkedFeature</p>
      *
      * @param feature : updated feature
      * @param removed : removed linked feature

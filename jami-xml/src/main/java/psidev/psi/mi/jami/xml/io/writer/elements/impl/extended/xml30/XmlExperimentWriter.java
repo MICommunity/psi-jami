@@ -24,13 +24,19 @@ import java.util.List;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public class XmlExperimentWriter extends XmlNamedExperimentWriter {
 
+    /**
+     * <p>Constructor for XmlExperimentWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlExperimentWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeParticipantIdentificationMethod(Experiment object) {
         if (object instanceof ExtendedPsiXmlExperiment){
@@ -49,6 +55,7 @@ public class XmlExperimentWriter extends XmlNamedExperimentWriter {
         return super.writeParticipantIdentificationMethod(object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm extractDefaultParticipantIdentificationMethod(Experiment exp) {
         if (exp instanceof ExtendedPsiXmlExperiment){
@@ -62,6 +69,7 @@ public class XmlExperimentWriter extends XmlNamedExperimentWriter {
         return ExperimentUtils.extractMostCommonParticipantDetectionMethodFrom(exp);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Experiment object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlExperiment){
@@ -75,6 +83,7 @@ public class XmlExperimentWriter extends XmlNamedExperimentWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeHostOrganism(Experiment object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlExperiment){
@@ -99,31 +108,37 @@ public class XmlExperimentWriter extends XmlNamedExperimentWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialisePublicationWriter() {
         super.setPublicationWriter(new XmlPublicationWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseHostOrganismWriter() {
         super.setHostOrganismWriter(new XmlHostOrganismWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter() {
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDetectionMethodWriter() {
         super.setDetectionMethodWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseVariableParameterWriter() {
         super.setVariableParameterWriter(new XmlVariableParameterWriter(getStreamWriter(), getObjectIndex()));

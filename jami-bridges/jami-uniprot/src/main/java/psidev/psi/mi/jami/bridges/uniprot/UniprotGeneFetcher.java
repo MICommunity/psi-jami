@@ -32,23 +32,25 @@ import java.util.Collections;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/08/13
+
  */
 public class UniprotGeneFetcher implements GeneFetcher {
 
 
     private UniProtService uniProtQueryService;
 
+    /**
+     * <p>Constructor for UniprotGeneFetcher.</p>
+     */
     public UniprotGeneFetcher() {
         uniProtQueryService = Client.getServiceFactoryInstance().getUniProtQueryService();
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Finds a gene in uniprot using with the ensembl ID, the refseq ID or the ensemblGenomes ID.
      * The organism is optional, a taxid of 0 or less
-     * @param identifier    An identifier for the gene.
-     * @param taxID         The taxID of the organism.
-     * @return              The matching gene records, or an empty collection if no record was found.
-     * @throws BridgeFailedException
      */
     public Collection<Gene> fetchByIdentifier(String identifier, int taxID)
             throws BridgeFailedException {
@@ -95,10 +97,12 @@ public class UniprotGeneFetcher implements GeneFetcher {
         return genes;
     }
 
+    /** {@inheritDoc} */
     public Collection<Gene> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
         return fetchByIdentifiers(identifiers, -3);
     }
 
+    /** {@inheritDoc} */
     public Collection<Gene> fetchByIdentifiers(Collection<String> identifiers, int taxID) throws BridgeFailedException {
         if(identifiers == null)
             throw new IllegalArgumentException("Could not perform search on null collection of identifiers.");
@@ -114,6 +118,7 @@ public class UniprotGeneFetcher implements GeneFetcher {
         return Collections.EMPTY_LIST;
     }
 
+    /** {@inheritDoc} */
     public Collection<Gene> fetchByIdentifier(String identifier)
             throws BridgeFailedException {
         if(identifier == null)

@@ -17,21 +17,41 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>04/07/13</pre>
  */
-
 public abstract class AbstractModelledInteractionLineParser<T extends ModelledInteraction> extends AbstractInteractionLineParser<T, ModelledParticipant, ModelledFeature>{
 
+    /**
+     * <p>Constructor for AbstractModelledInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     */
     public AbstractModelledInteractionLineParser(InputStream stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractModelledInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.InputStream} object.
+     * @param encoding a {@link java.lang.String} object.
+     */
     public AbstractModelledInteractionLineParser(InputStream stream, String encoding) {
         super(stream, encoding);
     }
 
+    /**
+     * <p>Constructor for AbstractModelledInteractionLineParser.</p>
+     *
+     * @param stream a {@link java.io.Reader} object.
+     */
     public AbstractModelledInteractionLineParser(Reader stream) {
         super(stream);
     }
 
+    /**
+     * <p>Constructor for AbstractModelledInteractionLineParser.</p>
+     *
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
+     */
     public AbstractModelledInteractionLineParser(MitabLineParserTokenManager tm) {
         super(tm);
     }

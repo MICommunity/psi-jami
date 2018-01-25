@@ -8,7 +8,6 @@ package psidev.psi.mi.jami.xml;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public enum PsiXmlType {
     compact, expanded
 }

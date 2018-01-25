@@ -35,7 +35,6 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since <pre>25/06/14</pre>
  */
-
 public class PsiXmlFileIndexCache implements PsiXmlIdCache {
 
     private static final Logger logger = Logger.getLogger("PsiXmlFileIndexCache");
@@ -76,6 +75,14 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
 
     private int numberOfEntries=1;
 
+    /**
+     * <p>Constructor for PsiXmlFileIndexCache.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param unmarshaller a {@link javax.xml.bind.Unmarshaller} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @throws java.io.IOException if any.
+     */
     public PsiXmlFileIndexCache(File file, Unmarshaller unmarshaller, PsiXmlVersion version) throws IOException {
         if (file == null){
             throw new IllegalArgumentException("The file index cache needs the original file containing data.");
@@ -127,6 +134,15 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         buildPositionIndex(this.file);
     }
 
+    /**
+     * <p>Constructor for PsiXmlFileIndexCache.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
+     * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.bind.JAXBException if any.
+     */
     public PsiXmlFileIndexCache(File file, PsiXmlVersion version, InteractionCategory category) throws IOException, JAXBException {
         this(file,
                 JaxbUnmarshallerFactory.getInstance().createUnmarshaller(version != null ? version : PsiXmlVersion.v2_5_4,
@@ -135,21 +151,25 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         );
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerAvailability(int id, AbstractAvailability object) {
         this.mapOfReferencedAvailabilities.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public AbstractAvailability getAvailability(int id) {
         return this.mapOfReferencedAvailabilities.get(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerExperiment(int id, Experiment object) {
         this.experimentWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Experiment getExperiment(int id) {
         if (this.experimentWeakMap.containsKey(id)){
@@ -176,11 +196,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerInteraction(int id, Interaction object) {
         this.interactionWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interaction getInteraction(int id) {
         if (this.interactionWeakMap.containsKey(id)){
@@ -207,11 +229,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerInteractor(int id, Interactor object) {
         this.interactorWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interactor getInteractor(int id) {
         if (this.interactorWeakMap.containsKey(id)){
@@ -239,11 +263,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerParticipant(int id, Entity object) {
         this.participantWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Entity getParticipant(int id) {
         if (this.participantWeakMap.containsKey(id)){
@@ -294,11 +320,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerFeature(int id, Feature object) {
         this.featureWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Feature getFeature(int id) {
         if (this.featureWeakMap.containsKey(id)){
@@ -355,11 +383,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplexParticipant(int id, ModelledEntity object) {
         this.complexParticipantWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledEntity getComplexParticipant(int id) {
         if (this.complexParticipantWeakMap.containsKey(id)){
@@ -432,11 +462,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplexFeature(int id, ModelledFeature object) {
          this.complexFeatureWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledFeature getComplexFeature(int id) {
         if (this.complexFeatureWeakMap.containsKey(id)){
@@ -494,11 +526,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerComplex(int id, Complex object) {
         this.complexWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Complex getComplex(int id) {
         if (this.complexWeakMap.containsKey(id)){
@@ -549,11 +583,13 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void registerVariableParameterValue(int id, VariableParameterValue object) {
         this.variableParameterValueWeakMap.put(id, object);
     }
 
+    /** {@inheritDoc} */
     @Override
     public VariableParameterValue getVariableParameterValue(int id) {
         if (this.variableParameterValueWeakMap.containsKey(id)){
@@ -597,6 +633,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         this.mapOfReferencedAvailabilities.clear();
@@ -615,6 +652,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         this.numberOfEntries++;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() {
         clear();
@@ -638,61 +676,72 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsExperiment(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.experimentWeakMap.containsKey(id) || this.experimentPositions.containsKey(location);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsAvailability(int id) {
         return this.mapOfReferencedAvailabilities.containsKey(id);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsInteraction(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.interactionWeakMap.containsKey(id) || this.interactionPositions.containsKey(location);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsInteractor(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.interactorWeakMap.containsKey(id) || this.interactorPositions.containsKey(location);    }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsParticipant(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.participantWeakMap.containsKey(id) || this.participantPositions.containsKey(location);    }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsFeature(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.featureWeakMap.containsKey(id) || this.featurePositions.containsKey(location);    }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsVariableParameter(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.variableParameterValueWeakMap.containsKey(id) || this.variableParameterValuePositions.containsKey(location);    }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplex(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.complexWeakMap.containsKey(id) || this.complexPositions.containsKey(location);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplexParticipant(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.complexParticipantWeakMap.containsKey(id) || this.complexParticipantPositions.containsKey(location);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean containsComplexFeature(int id) {
         EntryLocation location = new EntryLocation(this.numberOfEntries, id);
         return this.complexFeatureWeakMap.containsKey(id) || this.complexFeaturePositions.containsKey(location);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledFeature registerModelledFeatureLoadedFrom(Feature f) {
         if (f instanceof ExtendedPsiXmlFeature){
@@ -701,6 +750,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledEntity registerModelledParticipantLoadedFrom(Entity f) {
         if (f instanceof ExtendedPsiXmlParticipant){
@@ -709,6 +759,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Complex registerComplexLoadedFrom(Interaction f) {
         if (f instanceof PsiXmlInteraction){
@@ -747,8 +798,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
      * extract one of them.
      *
      * @param f the file to index.
-     * @return a PsimiXmlFileIndex that stores the mapping between object ids and their position.
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public void buildPositionIndex( File f ) throws IOException {
 

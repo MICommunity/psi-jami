@@ -17,15 +17,16 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class InteractionCloner {
 
-    /***
+    /**
+     *
      * This method will copy properties of interaction source in interaction target and will override all the other properties of Target interaction.
      * This method will set the experiment of this interaction evidence but it will not add this interaction to the list of interactionEvidences
      * This method will add all the participant evidences of the source but will not set their interactionEvidence to the target
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param target a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      *                         It will then set the interactionEvidence of the cloned participants to target
      * @param ignoreParticipants If true, this method will clone the interaction properties and ignore the participants of the source
@@ -75,11 +76,13 @@ public class InteractionCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy properties of interaction source in interaction target and will override all the other properties of Target interaction.
      * This method will add all the participant of the source but will not set their modelledInteraction to the target
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param target a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      *                         It will then set the modelledInteraction of the cloned participants to target
      * @param ignoreParticipants If true, this method will clone the interaction properties and ignore the participants of the source
@@ -129,10 +132,12 @@ public class InteractionCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy basic properties of interaction source in interaction target and will override all the other properties of Target interaction.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param target a {@link psidev.psi.mi.jami.model.Interaction} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      * @param ignoreParticipants If true, this method will clone the interaction properties and ignore the participants of the source
      */
@@ -171,14 +176,16 @@ public class InteractionCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy participants of interaction evidence source in binary target.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param target a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      *                         It will then set the interactionEvidence of the cloned participants to target
      * @param self If true, it will only look at the first participant and duplicate this participant with stoichiometry 0
-     * @throws IllegalArgumentException if the number of participants in source is superior to 2 or superior to 1 with self = true
+     * @throws java.lang.IllegalArgumentException if the number of participants in source is superior to 2 or superior to 1 with self = true
      */
     public static void copyAndOverrideParticipantsEvidencesToBinary(InteractionEvidence source, BinaryInteractionEvidence target, boolean createNewParticipant, boolean self){
         if (source != null && target != null){
@@ -248,14 +255,16 @@ public class InteractionCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy participants of modelled interaction source in binary target.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     * @param target a {@link psidev.psi.mi.jami.binary.ModelledBinaryInteraction} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      *                         It will then set the modelledInteraction of the cloned participants to target
      * @param self if true, we only take the first participant and duplicate it in the Binary interaction. We then set the stoichiometry to 0 for the second interactor
-     * @throws IllegalArgumentException if the source has more than two participants or more than one participant when self is true
+     * @throws java.lang.IllegalArgumentException if the source has more than two participants or more than one participant when self is true
      */
     public static void copyAndOverrideModelledParticipantsToBinary(ModelledInteraction source, ModelledBinaryInteraction target, boolean createNewParticipant, boolean self){
         if (source != null && target != null){
@@ -326,13 +335,15 @@ public class InteractionCloner {
         }
     }
 
-    /***
+    /**
+     *
      * This method will copy participants of interaction source in binary target.
-     * @param source
-     * @param target
+     *
+     * @param source a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param target a {@link psidev.psi.mi.jami.binary.BinaryInteraction} object.
      * @param createNewParticipant If true, this method will clone each participant from source instead of reusing the participant instances from source.
      * @param self if true, we only take the first participant and duplicate it in the Binary interaction. We then set the stoichiometry to 0 for the second interactor
-     * @throws IllegalArgumentException if the source has more than two participants or more than one participant when self is true
+     * @throws java.lang.IllegalArgumentException if the source has more than two participants or more than one participant when self is true
      */
     public static void copyAndOverrideBasicParticipantsToBinary(Interaction source, BinaryInteraction target, boolean createNewParticipant, boolean self){
         if (source != null && target != null){

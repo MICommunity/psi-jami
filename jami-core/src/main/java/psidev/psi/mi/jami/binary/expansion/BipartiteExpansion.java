@@ -20,28 +20,33 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>05/06/13</pre>
  */
-
 public class BipartiteExpansion extends AbstractBipartiteExpansion<Interaction, BinaryInteraction> {
 
     private InteractionEvidenceBipartiteExpansion interactionEvidenceExpansion;
     private ModelledInteractionBipartiteExpansion modelledInteractionExpansion;
 
+    /**
+     * <p>Constructor for BipartiteExpansion.</p>
+     */
     public BipartiteExpansion(){
         super();
         this.interactionEvidenceExpansion = new InteractionEvidenceBipartiteExpansion();
         this.modelledInteractionExpansion = new ModelledInteractionBipartiteExpansion();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected BinaryInteraction createBinaryInteraction(Interaction interaction, Participant c1, Participant c2) {
         return getBinaryInteractionFactory().createBasicBinaryInteractionFrom(interaction, c2, c2, getMethod());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Participant createParticipantForComplexEntity(Complex complexEntity) {
         return new DefaultParticipant(complexEntity);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<BinaryInteraction> expand(Interaction interaction) throws ComplexExpansionException {
         if (interaction instanceof InteractionEvidence){
@@ -59,6 +64,7 @@ public class BipartiteExpansion extends AbstractBipartiteExpansion<Interaction, 
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorFactory(InteractorFactory interactorFactory) {
         super.setInteractorFactory(interactorFactory);
@@ -66,6 +72,7 @@ public class BipartiteExpansion extends AbstractBipartiteExpansion<Interaction, 
         this.modelledInteractionExpansion.setInteractorFactory(interactorFactory);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setBinaryInteractionFactory(BinaryInteractionFactory factory) {
         super.setBinaryInteractionFactory(factory);

@@ -13,14 +13,14 @@ import psidev.psi.mi.jami.model.Participant;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-
 public interface PsiXmlCausalRelationshipWriter {
 
     /**
+     * <p>write.</p>
      *
-     * @param object
+     * @param object a {@link psidev.psi.mi.jami.model.CausalRelationship} object.
      * @param source the source of the causal relationship. It cannot be null
-     * @throws MIIOException
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public void write(CausalRelationship object, Participant source) throws MIIOException;
 }

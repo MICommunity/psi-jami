@@ -25,29 +25,50 @@ import java.net.URL;
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class XmlModelledParser extends AbstractPsiXmlParser<ModelledInteraction> {
+    /**
+     * <p>Constructor for XmlModelledParser.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlModelledParser(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlModelledParser.</p>
+     *
+     * @param inputStream a {@link java.io.InputStream} object.
+     */
     public XmlModelledParser(InputStream inputStream){
         super(inputStream);
     }
 
+    /**
+     * <p>Constructor for XmlModelledParser.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlModelledParser(URL url) {
         super(url);
     }
 
+    /**
+     * <p>Constructor for XmlModelledParser.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlModelledParser(Reader reader){
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Unmarshaller createJAXBUnmarshaller() throws JAXBException {
         return JaxbUnmarshallerFactory.getInstance().createUnmarshaller(getVersion(), InteractionCategory.modelled);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void parseAvailabilityList(XmlEntryContext entryContext) throws PsiXmlParserException {
         // read availabilityList

@@ -13,22 +13,29 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlHostOrganismWriter extends AbstractXmlOrganismWriter {
+    /**
+     * <p>Constructor for XmlHostOrganismWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     */
     public XmlHostOrganismWriter(XMLStreamWriter writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Organism object) throws XMLStreamException {
         // nothing to do
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseCvWriter() {
         super.setCvWriter(new XmlOpenCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeStartOrganism() throws XMLStreamException {
         getStreamWriter().writeStartElement("hostOrganism");

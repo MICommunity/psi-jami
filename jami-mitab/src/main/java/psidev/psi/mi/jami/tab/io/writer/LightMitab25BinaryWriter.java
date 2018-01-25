@@ -16,25 +16,44 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/06/13</pre>
  */
-
 public class LightMitab25BinaryWriter extends AbstractMitab25BinaryWriter<BinaryInteraction, Participant>{
 
+    /**
+     * <p>Constructor for LightMitab25BinaryWriter.</p>
+     */
     public LightMitab25BinaryWriter() {
         super();
     }
 
+    /**
+     * <p>Constructor for LightMitab25BinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public LightMitab25BinaryWriter(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for LightMitab25BinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public LightMitab25BinaryWriter(OutputStream output) {
         super(output);
     }
 
+    /**
+     * <p>Constructor for LightMitab25BinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public LightMitab25BinaryWriter(Writer writer) {
         super(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseColumnFeeder() {
         setColumnFeeder(new DefaultMitabColumnFeeder(getWriter()));

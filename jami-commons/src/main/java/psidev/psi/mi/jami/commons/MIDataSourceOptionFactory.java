@@ -27,7 +27,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class MIDataSourceOptionFactory {
 
     private static final MIDataSourceOptionFactory instance = new MIDataSourceOptionFactory();
@@ -37,15 +36,21 @@ public class MIDataSourceOptionFactory {
         this.fileAnalyzer = new MIFileAnalyzer();
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.commons.MIDataSourceOptionFactory} object.
+     */
     public static MIDataSourceOptionFactory getInstance() {
         return instance;
     }
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the file content.
-     * @param file
+     *
+     * @param file a {@link java.io.File} object.
      * @return the default options for the MI datasource corresponding to this file
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(File file) throws IOException {
 
@@ -54,9 +59,10 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Creates a map with the default options to retrieve MI datasource that will read the URL content
-     * @param url
+     *
+     * @param url a {@link java.net.URL} object.
      * @return the default options for the MI datasource corresponding to this url
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(URL url) throws IOException {
         InputStream stream = url.openStream();
@@ -73,9 +79,10 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the inputstream content.
+     *
      * @param streamToAnalyse : stream to be used to analyze the MIFileType
      * @return the default options for the MI datasource corresponding to this source inputstream
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(InputStream streamToAnalyse) throws IOException {
         OpenedInputStream openedStream = fileAnalyzer.extractMIFileTypeFrom(streamToAnalyse);
@@ -84,9 +91,10 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Create a map with the default options to retrieve the default MI datasource that will read the reader content.
+     *
      * @param readerToAnalyze : reader to be used to analyze the MIFileType
      * @return the default options for the MI datasource corresponding to this source reader
-     * @throws IOException
+     * @throws java.io.IOException if any.
      */
     public Map<String, Object> getDefaultOptions(Reader readerToAnalyze) throws IOException {
         OpenedInputStream openedStream = fileAnalyzer.extractMIFileTypeAndCopiedInputStream(readerToAnalyze);
@@ -96,8 +104,10 @@ public class MIDataSourceOptionFactory {
     /**
      * Create a map of default options depending on the provided sourceType.
      * It can recognize mitab, psi-xml and other
-     * @param sourceType
+     *
+     * @param sourceType a {@link psidev.psi.mi.jami.commons.MIFileType} object.
      * @return the map of default options for this sourceType
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getDefaultFileOptions(MIFileType sourceType, Object inputData){
 
@@ -115,7 +125,9 @@ public class MIDataSourceOptionFactory {
      * Create the default options for the MITAB datasource.
      * It will read InteractionEvidence elements in a streaming way.
      * It will use the MitabParserLogger to listen to the MITAB parsing events
+     *
      * @return the default options for the MITAB datasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getDefaultMitabOptions(Object inputData){
         return getMitabOptions(InteractionCategory.evidence, ComplexType.n_ary, true, new MitabParserLogger(), inputData);
@@ -125,9 +137,11 @@ public class MIDataSourceOptionFactory {
      * Create the options for the MITAB datasource using the provided objectCategory.
      * It will read elements from this objectCategory in a streaming way.
      * It will use the MitabParserLogger to listen to the MITAB parsing events
-     * @param objectCategory
+     *
+     * @param objectCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
      * @param complexType: the kind of complex : n-ary or binary
      * @return the options for the MITAB datasource using the provided objectCategory
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getMitabOptions(InteractionCategory objectCategory, psidev.psi.mi.jami.model.ComplexType complexType, Object inputData){
         return getMitabOptions(objectCategory, complexType, true, new MitabParserLogger(), inputData);
@@ -137,8 +151,10 @@ public class MIDataSourceOptionFactory {
      * Create the options for the MITAB datasource and specify if we want a Streaming MIFileDatasource.
      * It will read InteractionEvidence elements.
      * It will use the MitabParserLogger to listen to the MITAB parsing events
+     *
      * @param streaming : tru if we want to read the interactions in a streaming way
      * @return the options for the MITAB datasource and specify if we want a Streaming MIFileDatasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getMitabOptions(boolean streaming, Object inputData){
         return getMitabOptions(InteractionCategory.evidence, ComplexType.n_ary, streaming, new MitabParserLogger(), inputData);
@@ -147,7 +163,8 @@ public class MIDataSourceOptionFactory {
     /**
      * Create the options for the MITAB datasource using the provided MIFileParserListener.
      * It will read InteractionEvidence elements in a streaming way.
-     * @param listener
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
      * @param inputData is the mitab data to read
      * @return the options for the MITAB datasource with the provided listener
      */
@@ -157,11 +174,13 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Create the options for the MITAB datasource.
+     *
      * @param objectCategory : interaction object type to load
      * @param complexType: the kind of complex : n-ary or binary
      * @param streaming : true if we want to load interactions in a streaming way
      * @param listener : the listener to use for listening MITAB parsing events
      * @return the MITAB datasource options
+     * @param input a {@link java.lang.Object} object.
      */
     public Map<String, Object> getMitabOptions(InteractionCategory objectCategory, psidev.psi.mi.jami.model.ComplexType complexType,
                                                boolean streaming, MIFileParserListener listener, Object input){
@@ -173,7 +192,9 @@ public class MIDataSourceOptionFactory {
      * It will read InteractionEvidence elements in a streaming way.
      * It will use the PsiXmlParserLogger to listen to the Psi-XML parsing events
      * It will keep the parsed objects having an id in memory.
+     *
      * @return the default options for the PSI-xml 2.5 datasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getDefaultXmlOptions(Object inputData){
         return getXmlOptions(InteractionCategory.evidence, psidev.psi.mi.jami.model.ComplexType.n_ary, true, new PsiXmlParserLogger(),
@@ -185,9 +206,11 @@ public class MIDataSourceOptionFactory {
      * It will read elements from this objectCategory in a streaming way.
      * It will use the PsiXmlParserLogger to listen to the Psi=XML parsing events
      * It will keep the parsed objects having an id in memory.
-     * @param objectCategory
+     *
+     * @param objectCategory a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
      * @param complexType: the kind of complex : n-ary or binary
      * @return the options for the Psi Xml datasource using the provided objectCategory
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getXmlOptions(InteractionCategory objectCategory, psidev.psi.mi.jami.model.ComplexType complexType, Object inputData){
         return getXmlOptions(objectCategory, complexType, true, new PsiXmlParserLogger(), inputData, null, null);
@@ -198,8 +221,10 @@ public class MIDataSourceOptionFactory {
      * It will read InteractionEvidence elements.
      * It will use the PsiXmlParserLogger to listen to the PSI-XML parsing events
      * It will keep the parsed objects having an id in memory.
+     *
      * @param streaming : tru if we want to read the interactions in a streaming way
      * @return the options for the PSI-XML datasource and specify if we want a Streaming MIFileDatasource
+     * @param inputData a {@link java.lang.Object} object.
      */
     public Map<String, Object> getXmlOptions(boolean streaming, Object inputData){
         return getXmlOptions(null, ComplexType.n_ary, streaming, new PsiXmlParserLogger(), inputData, null, null);
@@ -209,7 +234,8 @@ public class MIDataSourceOptionFactory {
      * Create the options for the Psi-XML datasource using the provided MIFileParserListener.
      * It will read InteractionEvidence elements in a streaming way.
      * It will keep the parsed objects having an id in memory.
-     * @param listener
+     *
+     * @param listener a {@link psidev.psi.mi.jami.listener.MIFileParserListener} object.
      * @param inputData is the mitab data to read
      * @return the options for the PSI-XML datasource with the provided listener
      */
@@ -219,6 +245,7 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Create the options for the PSI-XML datasource.
+     *
      * @param objectCategory : interaction object type to load
      * @param complexType: the kind of complex : n-ary or binary
      * @param streaming : true if we want to load interactions in a streaming way
@@ -243,6 +270,7 @@ public class MIDataSourceOptionFactory {
 
     /**
      * Create a map of options
+     *
      * @param type : MI source type (mitab, xml25, etc.)
      * @param objectCategory : the kind of interactions to be returned by the datasource (interaction evidence, binary, modelled interaction, ...)
      * @param complexType: the kind of complex : n-ary or binary

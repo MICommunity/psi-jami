@@ -12,16 +12,19 @@ import psidev.psi.mi.jami.model.Interaction;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 22/07/13
+
  */
 public class InteractionEnricherLogger<I extends Interaction>
         extends InteractionChangeLogger<I> implements InteractionEnricherListener<I> {
 
     private static final Logger log = LoggerFactory.getLogger(InteractionEnricherLogger.class.getName());
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(I interaction, EnrichmentStatus status, String message) {
         log.info(interaction.toString()+" enrichment complete with status ["+status+"], message: "+message);
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(I object, String message, Exception e) {
         log.error(object.toString() + " enrichment error, message: " + message, e);
     }

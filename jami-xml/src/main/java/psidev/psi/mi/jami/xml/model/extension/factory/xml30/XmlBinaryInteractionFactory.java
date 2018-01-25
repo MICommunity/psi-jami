@@ -21,9 +21,9 @@ import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInter
  * @version $Id$
  * @since <pre>16/10/13</pre>
  */
-
 public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteractionEvidence createSelfBinaryInteractionEvidenceFrom(InteractionEvidence interaction) {
         XmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
@@ -33,6 +33,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteraction createBasicBinaryInteractionFrom(Interaction interaction, Participant p1, Participant p2, CvTerm expansionMethod) {
         BinaryInteraction binary = instantiateNewBinaryInteraction();
@@ -43,6 +44,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteractionEvidence createBinaryInteractionEvidenceFrom(InteractionEvidence interaction, ParticipantEvidence p1, ParticipantEvidence p2, CvTerm expansionMethod) {
         XmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
@@ -53,6 +55,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteraction createSelfBinaryInteractionFrom(Interaction interaction) {
         BinaryInteraction<Participant> binary = instantiateNewBinaryInteraction();
@@ -61,6 +64,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledBinaryInteraction createModelledBinaryInteractionFrom(ModelledInteraction interaction, ModelledParticipant p1, ModelledParticipant p2, CvTerm expansionMethod) {
         XmlModelledBinaryInteraction binary = instantiateNewModelledBinaryInteraction();
@@ -71,6 +75,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledBinaryInteraction createSelfModelledBinaryInteractionFrom(ModelledInteraction interaction) {
         XmlModelledBinaryInteraction binary = instantiateNewModelledBinaryInteraction();
@@ -80,31 +85,37 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
         return binary;
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteraction createBinaryInteractionWrapperFrom(Interaction interaction) {
         return new BinaryInteractionWrapper(interaction);
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteractionEvidence createBinaryInteractionEvidenceWrapperFrom(InteractionEvidence interaction) {
         return new XmlBinaryInteractionEvidenceWrapper((psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence)interaction);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledBinaryInteraction createModelledBinaryInteractionWrapperFrom(ModelledInteraction interaction) {
         return new XmlModelledBinaryInteractionWrapper((ExtendedPsiXmlModelledInteraction)interaction);
     }
 
+    /** {@inheritDoc} */
     @Override
     public BinaryInteraction instantiateNewBinaryInteraction() {
         return new DefaultBinaryInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     public XmlBinaryInteractionEvidence instantiateNewBinaryInteractionEvidence() {
         return new XmlBinaryInteractionEvidence();
     }
 
+    /** {@inheritDoc} */
     @Override
     public XmlModelledBinaryInteraction instantiateNewModelledBinaryInteraction() {
         return new XmlModelledBinaryInteraction();

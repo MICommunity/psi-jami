@@ -7,12 +7,15 @@ package psidev.psi.mi.jami.model;
  * @version $Id$
  * @since <pre>23/11/12</pre>
  */
-
 public interface Protein extends Polymer {
 
+    /** Constant <code>PROTEIN="protein"</code> */
     public static final String PROTEIN="protein";
+    /** Constant <code>PROTEIN_MI="MI:0326"</code> */
     public static final String PROTEIN_MI="MI:0326";
+    /** Constant <code>PEPTIDE="peptide"</code> */
     public static final String PEPTIDE="peptide";
+    /** Constant <code>PEPTIDE_MI="MI:0327"</code> */
     public static final String PEPTIDE_MI="MI:0327";
 
     /**
@@ -20,6 +23,7 @@ public interface Protein extends Polymer {
      * It can be null if the protein is not in the UniprotKb database and the sequence should be provided in such a case.
      * It is a shortcut which should point to the first uniprotkb identifier in the collection of identifiers.
      * Ex: P12345, P12345-1
+     *
      * @return the uniprot AC
      */
     public String getUniprotkb();
@@ -29,6 +33,7 @@ public interface Protein extends Polymer {
      * It will remove the old uniprotkb identifier from the collection of identifiers and replace it
      * with the new uniprokb identifier. If the new uniprotkb identifier is null, all the existing uniprotkb identifiers will be removed from the
      * collection of identifiers
+     *
      * @param ac : the uniprot accession
      */
     public void setUniprotkb(String ac);
@@ -39,6 +44,7 @@ public interface Protein extends Polymer {
      * in the alternative identifiers set for this interactor.
      * It is a shortcut which should point to the first refseq identifier in the collection of identifiers.
      * Ex: NP_001065289.1
+     *
      * @return the refseq identifier
      */
     public String getRefseq();
@@ -48,6 +54,7 @@ public interface Protein extends Polymer {
      * It will remove the old refseq identifier from the collection of identifiers and replace it
      * with the new refseq identifier. If the new refseq identifier is null, all the existing refseq identifiers will be removed from the
      * collection of identifiers
+     *
      * @param ac : refseq identifier
      */
     public void setRefseq(String ac);
@@ -57,6 +64,7 @@ public interface Protein extends Polymer {
      * It can be null if it is not known
      * It is a shortcut which should point to the first gene name in the collection of aliases.
      * Ex: BRCA2
+     *
      * @return the gene name
      */
     public String getGeneName();
@@ -66,6 +74,7 @@ public interface Protein extends Polymer {
      * It will remove the old gene name from the collection of aliases and replace it
      * with the new gene name. If the new gene name is null, all the existing gene names will be removed from the
      * collection of aliases
+     *
      * @param name : gene name
      */
     public void setGeneName(String name);
@@ -75,6 +84,7 @@ public interface Protein extends Polymer {
      * This checksum is based on the sequence and source organism of a protein
      * It is a shortcut which should point to the first rogid identifier in the collection of checksums.
      * Ex: u1FCes02jPb3CGRj1aDkzpbSiuI9606
+     *
      * @return the rogid
      */
     public String getRogid();
@@ -84,6 +94,7 @@ public interface Protein extends Polymer {
      * It will remove the old rogid from the collection of checksums and replace it
      * with the new rogid. If the new rogid is null, all the existing rogid will be removed from the
      * collection of checksums
+     *
      * @param rogid : rogid
      */
     public void setRogid(String rogid);

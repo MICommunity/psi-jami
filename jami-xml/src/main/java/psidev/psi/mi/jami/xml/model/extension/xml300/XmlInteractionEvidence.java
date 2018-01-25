@@ -29,18 +29,33 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
     private JAXBVariableParameterValueSetWrapper jaxbVariableParameterValueSetWrapper;
     private JAXBCausalRelationshipWrapper jaxbCausalRelationshipWrapper;
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     */
     public XmlInteractionEvidence() {
         super();
     }
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public XmlInteractionEvidence(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for XmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlInteractionEvidence(String shortName, CvTerm type) {
         super(shortName, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<VariableParameterValueSet> getVariableParameterValues() {
         if (this.jaxbVariableParameterValueSetWrapper == null){
@@ -49,6 +64,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
         return this.jaxbVariableParameterValueSetWrapper.variableValueSets;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<ExtendedPsiXmlCausalRelationship> getCausalRelationships() {
         if (this.jaxbCausalRelationshipWrapper == null){
@@ -57,11 +73,21 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
         return this.jaxbCausalRelationshipWrapper.causalRelationships;
     }
 
+    /**
+     * <p>setJAXBVariableParameterValueSetWrapper.</p>
+     *
+     * @param jaxbVariableValueList a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidence.JAXBVariableParameterValueSetWrapper} object.
+     */
     @XmlElement(name = "experimentalVariableValueList")
     public void setJAXBVariableParameterValueSetWrapper(JAXBVariableParameterValueSetWrapper jaxbVariableValueList) {
         this.jaxbVariableParameterValueSetWrapper = jaxbVariableValueList;
     }
 
+    /**
+     * <p>setJAXBCausalRelationshipWrapper.</p>
+     *
+     * @param jaxbCausalRelationshipWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidence.JAXBCausalRelationshipWrapper} object.
+     */
     @XmlElement(name="causalRelationshipList")
     public void setJAXBCausalRelationshipWrapper(JAXBCausalRelationshipWrapper jaxbCausalRelationshipWrapper) {
         this.jaxbCausalRelationshipWrapper = jaxbCausalRelationshipWrapper;

@@ -14,6 +14,7 @@ import java.io.IOException;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 18/07/13
+
  */
 public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEvidence>
         extends ParticipantEnricherStatisticsWriter<P>
@@ -24,6 +25,7 @@ public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEv
 
     /**
      * Uses the known name of the JamiObject type as the seed to generate names for the success an failure log files.
+     *
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
     public ParticipantEvidenceEnricherStatisticsWriter() throws IOException {
@@ -32,6 +34,7 @@ public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEv
 
     /**
      * Creates the files from the provided seed file name with 'success' and 'failure' appended.
+     *
      * @param fileName          The seed to base the names of the files on.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
      */
@@ -41,6 +44,7 @@ public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEv
 
     /**
      * Uses the provided names to create the files for successful and failed enrichment logging.
+     *
      * @param successFileName   The exact name for the file to log successful enrichments in
      * @param failureFileName   The exact name for the file to log failed enrichments in
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -51,6 +55,7 @@ public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEv
 
     /**
      * Uses the exact files provided to log successful and failed enrichments.
+     *
      * @param successFile       The file to log successful enrichments in
      * @param failureFile       The file to log failed enrichments in.
      * @throws java.io.IOException      Thrown if a problem is encountered with file location.
@@ -59,50 +64,60 @@ public class ParticipantEvidenceEnricherStatisticsWriter<P extends ParticipantEv
         super(successFile, failureFile);
     }
 
+    /** {@inheritDoc} */
     public void onExperimentalRoleUpdate(P participant, CvTerm oldType) {
         checkObject(participant);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onExpressedInUpdate(P participant, Organism oldOrganism) {
         checkObject(participant);
         incrementUpdateCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentificationMethod(P participant, CvTerm added) {
         checkObject(participant);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentificationMethod(P participant, CvTerm removed) {
 
     }
 
+    /** {@inheritDoc} */
     public void onAddedExperimentalPreparation(P participant, CvTerm added) {
         checkObject(participant);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedExperimentalPreparation(P participant, CvTerm removed) {
         checkObject(participant);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedConfidence(P o, Confidence added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedConfidence(P o, Confidence removed) {
         checkObject(o);
         incrementRemovedCount();
     }
 
+    /** {@inheritDoc} */
     public void onAddedParameter(P o, Parameter added) {
         checkObject(o);
         incrementAdditionCount();
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParameter(P o, Parameter removed) {
         checkObject(o);
         incrementRemovedCount();

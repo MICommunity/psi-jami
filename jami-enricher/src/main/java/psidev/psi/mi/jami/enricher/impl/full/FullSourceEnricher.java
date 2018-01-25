@@ -15,8 +15,12 @@ import psidev.psi.mi.jami.model.Source;
  * @version $Id$
  * @since <pre>29/01/14</pre>
  */
-
 public class FullSourceEnricher extends MinimalSourceEnricher {
+    /**
+     * <p>Constructor for FullSourceEnricher.</p>
+     *
+     * @param cvTermFetcher a {@link psidev.psi.mi.jami.bridges.fetcher.SourceFetcher} object.
+     */
     public FullSourceEnricher(SourceFetcher cvTermFetcher) {
         super(new FullCvTermEnricher<Source>(cvTermFetcher));
     }

@@ -17,13 +17,14 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class GeneComparator implements Comparator<Gene> {
 
     private Comparator<Interactor> interactorBaseComparator;
 
     /**
      * Creates a new UnambiguousGeneComparator. It will uses a UnambiguousInteractorBaseComparator to compare interactor properties
+     *
+     * @param interactorBaseComparator a {@link java.util.Comparator} object.
      */
     public GeneComparator(Comparator<Interactor> interactorBaseComparator){
         if (interactorBaseComparator == null){
@@ -32,6 +33,11 @@ public class GeneComparator implements Comparator<Gene> {
         this.interactorBaseComparator = interactorBaseComparator;
     }
 
+    /**
+     * <p>getInteractorComparator</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<Interactor> getInteractorComparator() {
         return interactorBaseComparator;
     }
@@ -43,6 +49,9 @@ public class GeneComparator implements Comparator<Gene> {
      * it will look at the entrez/gene id (the interactor with non null entrez/gene id will always come first).
      * If the entrez/gene ids are not set, it will look at the refseq identifiers (the interactor with non null refseq identifier will always come first).
      *
+     * @param gene1 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @param gene2 a {@link psidev.psi.mi.jami.model.Gene} object.
+     * @return a int.
      */
     public int compare(Gene gene1, Gene gene2) {
         int EQUAL = 0;

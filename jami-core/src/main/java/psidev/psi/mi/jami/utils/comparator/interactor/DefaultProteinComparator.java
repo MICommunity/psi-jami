@@ -12,13 +12,13 @@ import psidev.psi.mi.jami.model.Protein;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class DefaultProteinComparator {
 
     /**
      * Use DefaultProteinComparator to know if two proteins are equals.
-     * @param protein1
-     * @param protein2
+     *
+     * @param protein1 a {@link psidev.psi.mi.jami.model.Protein} object.
+     * @param protein2 a {@link psidev.psi.mi.jami.model.Protein} object.
      * @return true if the two proteins are equal
      */
     public static boolean areEquals(Protein protein1, Protein protein2){

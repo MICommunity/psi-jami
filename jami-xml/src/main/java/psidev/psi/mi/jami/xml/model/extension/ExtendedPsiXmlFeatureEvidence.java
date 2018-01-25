@@ -13,8 +13,12 @@ import java.util.List;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-
 public interface ExtendedPsiXmlFeatureEvidence extends ExtendedPsiXmlFeature<ExperimentalEntity, FeatureEvidence>,FeatureEvidence{
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Experiment> getExperiments();
 }

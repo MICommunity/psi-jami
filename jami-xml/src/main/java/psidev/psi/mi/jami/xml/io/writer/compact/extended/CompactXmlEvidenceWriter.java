@@ -21,29 +21,57 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<InteractionEvidence> {
 
+    /**
+     * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     */
     public CompactXmlEvidenceWriter() {
         super(InteractionEvidence.class);
     }
 
+    /**
+     * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlEvidenceWriter(File file) throws IOException, XMLStreamException {
         super(InteractionEvidence.class, file);
     }
 
+    /**
+     * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlEvidenceWriter(OutputStream output) throws XMLStreamException {
         super(InteractionEvidence.class, output);
     }
 
+    /**
+     * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlEvidenceWriter(Writer writer) throws XMLStreamException {
         super(InteractionEvidence.class, writer);
     }
 
+    /**
+     * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public CompactXmlEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(InteractionEvidence.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerAvailabilities(InteractionEvidence interaction) {
         if (interaction.getAvailability() != null){
@@ -51,11 +79,13 @@ public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<Interacti
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerExperiment(InteractionEvidence interaction) {
         getExperiments().addAll(((PsiXmlExtendedInteractionWriter) getInteractionWriter()).extractDefaultExperimentsFrom(interaction));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         Experiment exp = getCurrentInteraction().getExperiment();
@@ -65,11 +95,13 @@ public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<Interacti
         return super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(true, true, PsiXmlType.compact, InteractionCategory.evidence, ComplexType.n_ary);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
         setDefaultSource(new XmlSource("Unknown source"));

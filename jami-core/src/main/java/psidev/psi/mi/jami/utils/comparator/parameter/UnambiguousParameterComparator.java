@@ -22,19 +22,27 @@ import java.math.BigDecimal;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class UnambiguousParameterComparator extends ParameterComparator {
 
     private static UnambiguousParameterComparator unambiguousParameterComparator;
 
+    /**
+     * <p>Constructor for UnambiguousParameterComparator.</p>
+     */
     public UnambiguousParameterComparator() {
         super(new UnambiguousCvTermComparator());
     }
 
+    /**
+     * <p>Constructor for UnambiguousParameterComparator.</p>
+     *
+     * @param valueComparator a {@link psidev.psi.mi.jami.utils.comparator.parameter.ParameterValueComparator} object.
+     */
     public UnambiguousParameterComparator(ParameterValueComparator valueComparator) {
         super(new UnambiguousCvTermComparator(), valueComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
@@ -50,9 +58,10 @@ public class UnambiguousParameterComparator extends ParameterComparator {
      * - If the units are not set, compares the values
      * - If both units are set and If they are equals, compares the values (case sensitive)
      * - If both values are equals, compares the uncertainty.
-     * @param parameter1
-     * @param parameter2
-     * @return
+     *
+     * @param parameter1 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @param parameter2 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @return a int.
      */
     public int compare(Parameter parameter1, Parameter parameter2) {
         return super.compare(parameter1, parameter2);
@@ -60,8 +69,9 @@ public class UnambiguousParameterComparator extends ParameterComparator {
 
     /**
      * Use UnabmbiguousComparatorParameter to know if two parameters are equals.
-     * @param param1
-     * @param param2
+     *
+     * @param param1 a {@link psidev.psi.mi.jami.model.Parameter} object.
+     * @param param2 a {@link psidev.psi.mi.jami.model.Parameter} object.
      * @return true if the two parameters are equal
      */
     public static boolean areEquals(Parameter param1, Parameter param2){
@@ -73,8 +83,9 @@ public class UnambiguousParameterComparator extends ParameterComparator {
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param param
+     * @param param a {@link psidev.psi.mi.jami.model.Parameter} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(Parameter param){

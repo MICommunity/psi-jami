@@ -14,15 +14,20 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>08/11/13</pre>
  */
-
 public interface InteractionSource<T extends Interaction> extends InteractionStream<T> {
 
     /**
      * The collection of Interactions for this datasource
+     *
      * @return collection of Interactions for this datasource
-     * @throws psidev.psi.mi.jami.exception.MIIOException
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public Collection<T> getInteractions() throws MIIOException;
 
+    /**
+     * <p>getNumberOfInteractions</p>
+     *
+     * @return a long.
+     */
     public long getNumberOfInteractions();
 }

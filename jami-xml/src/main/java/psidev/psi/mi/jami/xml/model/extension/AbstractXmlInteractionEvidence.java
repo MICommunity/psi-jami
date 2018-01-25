@@ -41,48 +41,72 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     @XmlTransient
     protected Locator locator;
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionEvidence.</p>
+     */
     public AbstractXmlInteractionEvidence() {
         super();
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     */
     public AbstractXmlInteractionEvidence(String shortName) {
         super(shortName);
     }
 
+    /**
+     * <p>Constructor for AbstractXmlInteractionEvidence.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public AbstractXmlInteractionEvidence(String shortName, CvTerm type) {
         super(shortName, type);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
     public void setInteractionNamesContainer(NamesContainer value) {
         super.setInteractionNamesContainer(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
     public void setInteractionXrefContainer(InteractionXrefContainer value) {
         super.setInteractionXrefContainer(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="inferredInteractionList")
     public void setJAXBInferredInteractionWrapper(JAXBInferredInteractionWrapper jaxbInferredWrapper) {
         super.setJAXBInferredInteractionWrapper(jaxbInferredWrapper);
     }
 
+    /** {@inheritDoc} */
     @Override
     @XmlElement(name="interactionType", type = XmlCvTerm.class)
     public List<CvTerm> getInteractionTypes() {
         return super.getInteractionTypes();
     }
 
+    /**
+     * <p>getImexId.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getImexId() {
         String imexId = super.getImexId();
         // If the imexId is not defined in the attributes
@@ -93,6 +117,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return imexId;
     }
 
+    /** {@inheritDoc} */
     public void assignImexId(String identifier) {
         if (getInteractionXrefContainer() == null && identifier != null){
             setInteractionXrefContainer(new InteractionXrefContainer());
@@ -103,6 +128,11 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         }
     }
 
+    /**
+     * <p>getExperiment.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
+     */
     public Experiment getExperiment() {
         if (this.jaxbExperimentWrapper == null || this.jaxbExperimentWrapper.experiments.isEmpty()){
             return null;
@@ -110,6 +140,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.jaxbExperimentWrapper.experiments.iterator().next();
     }
 
+    /** {@inheritDoc} */
     public void setExperiment(Experiment experiment) {
         if (this.jaxbExperimentWrapper == null && experiment != null){
             this.jaxbExperimentWrapper = new JAXBExperimentWrapper();
@@ -128,6 +159,11 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         }
     }
 
+    /**
+     * <p>getExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<Experiment> getExperiments() {
         if (jaxbExperimentWrapper == null){
             jaxbExperimentWrapper = new JAXBExperimentWrapper();
@@ -135,6 +171,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return jaxbExperimentWrapper.experiments;
     }
 
+    /** {@inheritDoc} */
     public void setExperimentAndAddInteractionEvidence(Experiment experiment) {
         Experiment current = getExperiment();
         if (current != null){
@@ -146,6 +183,11 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         }
     }
 
+    /**
+     * <p>getVariableParameterValues.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<VariableParameterValueSet> getVariableParameterValues() {
 
         if (variableParameterValueSets == null){
@@ -154,6 +196,11 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.variableParameterValueSets;
     }
 
+    /**
+     * <p>getConfidences.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Confidence> getConfidences() {
         if (this.jaxbConfidenceWrapper == null){
             initialiseConfidenceWrapper();
@@ -161,10 +208,16 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.jaxbConfidenceWrapper.confidences;
     }
 
+    /**
+     * <p>Getter for the field <code>availability</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getAvailability() {
         return this.availability!= null ? this.availability.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     public void setAvailability(String availability) {
         if (this.availability == null && availability != null){
             this.availability = new Availability();
@@ -175,14 +228,25 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         }
     }
 
+    /**
+     * <p>isNegative.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isNegative() {
         return this.isNegative;
     }
 
+    /** {@inheritDoc} */
     public void setNegative(boolean negative) {
         this.isNegative = negative;
     }
 
+    /**
+     * <p>getParameters.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<Parameter> getParameters() {
         if (jaxbParameterWrapper == null){
             initialiseParameterWrapper();
@@ -190,29 +254,55 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.jaxbParameterWrapper.parameters;
     }
 
+    /**
+     * <p>isInferred.</p>
+     *
+     * @return a boolean.
+     */
     public boolean isInferred() {
         return this.isInferred;
     }
 
+    /** {@inheritDoc} */
     public void setInferred(boolean inferred) {
         this.isInferred = inferred;
     }
 
+    /**
+     * <p>setJAXBIntraMolecular.</p>
+     *
+     * @param intra a {@link java.lang.Boolean} object.
+     */
     @XmlElement(name = "intraMolecular", defaultValue = "false")
     public void setJAXBIntraMolecular(Boolean intra) {
         super.setIntraMolecular(intra);
     }
 
+    /**
+     * <p>setJAXBId.</p>
+     *
+     * @param value a int.
+     */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         super.setId(value);
     }
 
+    /**
+     * <p>setJAXBImexId.</p>
+     *
+     * @param identifier a {@link java.lang.String} object.
+     */
     @XmlAttribute(name = "imexId")
     public void setJAXBImexId(String identifier) {
         super.assignImexId(identifier);
     }
 
+    /**
+     * <p>setJAXBParticipantWrapper.</p>
+     *
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBParticipantWrapper} object.
+     */
     @XmlElement(name="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
         super.setParticipantWrapper(jaxbParticipantWrapper);
@@ -221,10 +311,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Gets the value of the confidenceList property.
      *
-     * @return
-     *     possible object is
-     *     {@link java.util.ArrayList< psidev.psi.mi.jami.model.Confidence> }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
      */
     @XmlElement(name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -234,10 +321,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Gets the value of the parameterList property.
      *
-     * @return
-     *     possible object is
-     *     {@link java.util.ArrayList< psidev.psi.mi.jami.model.ModelledParameter> }
-     *
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
      */
     @XmlElement(name="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -247,10 +331,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the availability property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.Availability }
-     *
+     * @param value allowed object is {@link psidev.psi.mi.jami.xml.model.extension.Availability}
      */
     @XmlElement(name = "availability")
     public void setJAXBAvailability(Availability value) {
@@ -260,10 +341,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the availabilityRef property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *
+     * @param value allowed object is {@link java.lang.Integer}
      */
     @XmlElement(name = "availabilityRef")
     public void setJAXBAvailabilityRef(Integer value) {
@@ -275,10 +353,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the experimentList property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link java.util.ArrayList<  psidev.psi.mi.jami.xml.model.extension.XmlExperiment> }
-     *
+     * @param value allowed object is {@link JAXBExperimentWrapper}
      */
     @XmlElement(name="experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentWrapper value) {
@@ -309,37 +384,38 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Gets the value of the modelled property.
      *
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *
+     * @return a boolean.
      */
     public boolean isModelled() {
         return isInferred();
     }
 
+    /** {@inheritDoc} */
     @Override
     public AbstractAvailability getXmlAvailability() {
         return this.availability;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setXmlAvailability(AbstractAvailability availability) {
         this.availability = availability;
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the value of the modelled property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *
      */
     public void setModelled(boolean value) {
         setInferred(value);
     }
 
+    /**
+     * <p>setJAXBModelled.</p>
+     *
+     * @param value a {@link java.lang.Boolean} object.
+     */
     @XmlElement(name = "modelled", defaultValue = "false", type = Boolean.class)
     public void setJAXBModelled(Boolean value) {
         setModelled(value);
@@ -350,8 +426,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @param value
      *     allowed object is
-     *     {@link Boolean }
-     *
+     *     {@link java.lang.Boolean}
      */
     @XmlElement(name = "negative", defaultValue = "false", type = Boolean.class)
     public void setJAXBNegative(Boolean value) {
@@ -363,40 +438,71 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         }
     }
 
+    /**
+     * <p>getJAXBConfidenceWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
+     */
     public JAXBConfidenceWrapper getJAXBConfidenceWrapper() {
         return jaxbConfidenceWrapper;
     }
 
+    /**
+     * <p>getJAXBParameterWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
+     */
     public JAXBParameterWrapper getJAXBParameterWrapper() {
         return jaxbParameterWrapper;
     }
 
+    /**
+     * <p>getJAXBExperimentWrapper.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBExperimentWrapper} object.
+     */
     public JAXBExperimentWrapper getJAXBExperimentWrapper() {
         return jaxbExperimentWrapper;
     }
 
+    /**
+     * <p>getOriginalExperiments.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<ExtendedPsiXmlExperiment> getOriginalExperiments(){
         return jaxbExperimentWrapper != null ? jaxbExperimentWrapper.jaxbExperiments : Collections.EMPTY_LIST;
     }
 
+    /**
+     * <p>initialiseConfidenceWrapper.</p>
+     */
     protected void initialiseConfidenceWrapper(){
         this.jaxbConfidenceWrapper = new JAXBConfidenceWrapper();
     }
 
 
+    /**
+     * <p>initialiseVariableParameterValueSets.</p>
+     */
     protected void initialiseVariableParameterValueSets(){
         this.variableParameterValueSets = new ArrayList<VariableParameterValueSet>();
     }
 
+    /**
+     * <p>initialiseParameterWrapper.</p>
+     */
     protected void initialiseParameterWrapper(){
         this.jaxbParameterWrapper = new JAXBParameterWrapper();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processAddedParticipant(ParticipantEvidence participant) {
         ((XmlParticipantEvidence)participant).setOriginalXmlInteraction(this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         if (super.getSourceLocator() == null && locator != null){
@@ -412,6 +518,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return sourceLocation();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWrapper() {
         super.setParticipantWrapper(new JAXBParticipantWrapper());

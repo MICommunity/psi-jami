@@ -16,12 +16,16 @@ import psidev.psi.mi.jami.imex.actions.ImexCentralPublicationRegister;
  * @version $Id$
  * @since <pre>28/03/12</pre>
  */
-
 public class ImexCentralPublicationRegisterImpl implements ImexCentralPublicationRegister{
 
     private static final Log log = LogFactory.getLog(ImexCentralPublicationRegisterImpl.class);
     private ImexCentralClient imexCentral;
 
+    /**
+     * <p>Constructor for ImexCentralPublicationRegisterImpl.</p>
+     *
+     * @param client a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralPublicationRegisterImpl(ImexCentralClient client){
         if (client == null){
             throw new IllegalArgumentException("The IMEx central client cannot be null");
@@ -29,12 +33,7 @@ public class ImexCentralPublicationRegisterImpl implements ImexCentralPublicatio
         this.imexCentral = client;
     }
 
-    /**
-     *
-     * @param publicationId : valid pubmed id or doi number or IMEx id or unassigned identifier (internal identifier)
-     * @return the registered publication in IMEx central matching the publication id of the publication. Null if the publication has not been registered
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException
-     */
+    /** {@inheritDoc} */
     public Publication getExistingPublicationInImexCentral(String publicationId, String source) throws BridgeFailedException {
 
         if (publicationId != null && source != null){
@@ -43,11 +42,7 @@ public class ImexCentralPublicationRegisterImpl implements ImexCentralPublicatio
         return null;
     }
 
-    /**
-     * @param publication
-     * @return the record created in IMEx central, null if it could not be created in IMEx central
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException
-     */
+    /** {@inheritDoc} */
     public Publication registerPublicationInImexCentral(Publication publication) throws BridgeFailedException{
         // create a new publication record in IMEx central
         psidev.psi.mi.jami.model.Publication newPublication = null;
@@ -77,6 +72,11 @@ public class ImexCentralPublicationRegisterImpl implements ImexCentralPublicatio
         }
     }
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient() {
         return imexCentral;
     }

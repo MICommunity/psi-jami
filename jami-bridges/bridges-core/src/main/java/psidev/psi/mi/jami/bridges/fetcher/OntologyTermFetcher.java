@@ -14,20 +14,25 @@ import java.util.Set;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 03/07/13
+
  */
 public interface OntologyTermFetcher extends CvTermFetcher<OntologyTerm>{
 
     /**
+     * <p>fetchRootTerms.</p>
      *
      * @param databaseName : ontology database name
      * @return a set of root terms for the ontology matching this database name
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public Set<OntologyTerm> fetchRootTerms(String databaseName) throws BridgeFailedException;
 
     /**
+     * <p>fetchRootTerms.</p>
      *
      * @param database : database term for the ontology
      * @return a set of root terms for the ontology matching this database term
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public Set<OntologyTerm> fetchRootTerms(CvTerm database) throws BridgeFailedException;
 }

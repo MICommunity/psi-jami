@@ -13,13 +13,13 @@ import psidev.psi.mi.jami.utils.comparator.feature.DefaultModelledFeatureCompara
  * @version $Id$
  * @since <pre>30/05/13</pre>
  */
-
 public class DefaultFeatureModificationEffectorComparator {
 
     /**
      * Use DefaultFeatureModificationEffectorComparator to know if two FeatureModificationEffector are equals.
-     * @param featureModificationEffector1
-     * @param featureModificationEffector2
+     *
+     * @param featureModificationEffector1 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
+     * @param featureModificationEffector2 a {@link psidev.psi.mi.jami.model.FeatureModificationEffector} object.
      * @return true if the two FeatureModificationEffector are equal
      */
     public static boolean areEquals(FeatureModificationEffector featureModificationEffector1, FeatureModificationEffector featureModificationEffector2){

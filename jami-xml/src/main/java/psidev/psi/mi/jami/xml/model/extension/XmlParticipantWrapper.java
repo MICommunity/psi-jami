@@ -17,7 +17,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>30/10/13</pre>
  */
-
 public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXmlParticipant<ModelledInteraction, ModelledFeature>,
         FileSourceContext {
 
@@ -25,6 +24,12 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
     private ModelledInteraction parent;
     private SynchronizedFeatureList modelledFeatures;
 
+    /**
+     * <p>Constructor for XmlParticipantWrapper.</p>
+     *
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
+     */
     public XmlParticipantWrapper(ExtendedPsiXmlParticipant part, ModelledInteraction wrapper){
         if (part == null){
             throw new IllegalArgumentException("A participant wrapper needs a non null participant");
@@ -35,51 +40,61 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         XmlEntryContext.getInstance().registerComplexParticipant(participant.getId(), this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
         return (List<Alias>)this.participant.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return this.participant.getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Interactor getInteractor() {
         return this.participant.getInteractor();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractor(Interactor interactor) {
         this.participant.setInteractor(interactor);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<CausalRelationship> getCausalRelationships() {
         return this.participant.getCausalRelationships();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return this.participant.getAnnotations();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Stoichiometry getStoichiometry() {
         return this.participant.getStoichiometry();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Integer stoichiometry) {
         this.participant.setStoichiometry(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setStoichiometry(Stoichiometry stoichiometry) {
         this.participant.setStoichiometry(stoichiometry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<ModelledFeature> getFeatures() {
         if (this.modelledFeatures == null){
@@ -88,11 +103,13 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return this.modelledFeatures;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setChangeListener(EntityInteractorChangeListener listener) {
         this.participant.setChangeListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addFeature(ModelledFeature feature) {
         if (feature == null){
@@ -108,6 +125,7 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeFeature(ModelledFeature feature) {
         if (feature == null){
@@ -123,6 +141,7 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean addAllFeatures(Collection<? extends ModelledFeature> features) {
         if (features == null){
@@ -138,6 +157,7 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean removeAllFeatures(Collection<? extends ModelledFeature> features) {
         if (features == null){
@@ -153,21 +173,27 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return added;
     }
 
+    /** {@inheritDoc} */
     @Override
     public EntityInteractorChangeListener getChangeListener() {
         return this.participant.getChangeListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getBiologicalRole() {
         return this.participant.getBiologicalRole();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setBiologicalRole(CvTerm bioRole) {
         this.participant.setBiologicalRole(bioRole);
     }
 
+    /**
+     * <p>initialiseFeatures.</p>
+     */
     protected void initialiseFeatures(){
         this.modelledFeatures = new SynchronizedFeatureList();
         for (Feature feature : this.participant.getFeatures()){
@@ -175,15 +201,22 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.participant.toString();
     }
 
+    /**
+     * <p>getWrappedParticipant.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant} object.
+     */
     public ExtendedPsiXmlParticipant<Interaction, Feature> getWrappedParticipant(){
         return this.participant;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractionAndAddParticipant(ModelledInteraction interaction) {
         if (this.parent != null){
@@ -195,6 +228,7 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public ModelledInteraction getInteraction() {
         if (this.parent == null && this.participant.getInteraction() instanceof ExtendedPsiXmlInteraction){
@@ -203,26 +237,31 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         return this.parent;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteraction(ModelledInteraction interaction) {
         this.parent = interaction;
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         return ((FileSourceContext)participant).getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator locator) {
         ((FileSourceContext)participant).setSourceLocator(locator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return participant.getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         participant.setId(id);
@@ -230,21 +269,25 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         XmlEntryContext.getInstance().registerComplexParticipant(participant.getId(), this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getShortName() {
         return participant.getShortName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
         participant.setShortName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return participant.getShortName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         participant.setShortName(name);

@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.13-SNAPSHOT</version>
+        <version>3.0.14</version>
     </parent>
 
     <groupId>psidev.psi.mi.jami.bridges</groupId>
@@ -51,6 +51,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
 
             <!--Add it back to avoid a dependency conflict inside of the uniprot-japi.
             Related to the exclusion in jami-uniprot of jackson-core -->

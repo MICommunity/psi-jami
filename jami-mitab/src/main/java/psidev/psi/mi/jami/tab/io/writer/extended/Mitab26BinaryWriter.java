@@ -14,33 +14,53 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-
 public class Mitab26BinaryWriter extends psidev.psi.mi.jami.tab.io.writer.Mitab26BinaryWriter{
 
+    /**
+     * <p>Constructor for Mitab26BinaryWriter.</p>
+     */
     public Mitab26BinaryWriter() {
         super();
     }
 
+    /**
+     * <p>Constructor for Mitab26BinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public Mitab26BinaryWriter(File file) throws IOException {
         super(file);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for Mitab26BinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     */
     public Mitab26BinaryWriter(OutputStream output) {
         super(output);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for Mitab26BinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     public Mitab26BinaryWriter(Writer writer){
         super(writer);
         initialiseSubWritersWith(writer);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseColumnFeeder() {
         setColumnFeeder(new DefaultExtendedMitabColumnFeeder(getWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWritersWith(Writer writer) {
 

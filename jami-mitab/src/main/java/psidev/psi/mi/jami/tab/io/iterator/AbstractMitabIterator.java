@@ -17,12 +17,17 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>21/06/13</pre>
  */
-
 public abstract class AbstractMitabIterator<T extends Interaction, P extends Participant, F extends Feature> implements Iterator<T>{
 
     private MitabLineParser<T,P,F> lineParser;
     private T nextBinary;
 
+    /**
+     * <p>Constructor for AbstractMitabIterator.</p>
+     *
+     * @param lineParser a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParser} object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public AbstractMitabIterator(MitabLineParser<T,P,F> lineParser) throws MIIOException {
         if (lineParser == null){
             throw new IllegalArgumentException("The Mitab iterator needs a non null lineParser.");
@@ -48,16 +53,30 @@ public abstract class AbstractMitabIterator<T extends Interaction, P extends Par
         }
     }
 
+    /**
+     * <p>hasNext.</p>
+     *
+     * @return a boolean.
+     */
     public boolean hasNext() {
         return this.nextBinary != null;
     }
 
+    /**
+     * <p>next.</p>
+     *
+     * @return a T object.
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
     public T next() throws MIIOException{
         T currentBinary = this.nextBinary;
         processNextBinary();
         return currentBinary;
     }
 
+    /**
+     * <p>remove.</p>
+     */
     public void remove() {
         throw new UnsupportedOperationException("A MITAB iterator does not support the remove method");
     }

@@ -18,12 +18,13 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousParticipantEvi
  * @version $Id$
  * @since <pre>31/05/13</pre>
  */
-
 public class UnambiguousCuratedInteractionEvidenceComparator extends InteractionEvidenceComparator {
 
     private static UnambiguousCuratedInteractionEvidenceComparator unambiguousCuratedExperimentalInteractionComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousCuratedInteractionEvidenceComparator. It will use a UnambiguousCuratedInteractionBaseComparator to
      * compare basic interaction properties, UnambiguousParameterComparator to compare parameters, UnambiguousCuratedExperimentComparator to compare experiments
      */
@@ -32,6 +33,7 @@ public class UnambiguousCuratedInteractionEvidenceComparator extends Interaction
                 new UnambiguousCuratedExperimentComparator(), new UnambiguousParameterComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCuratedExperimentComparator getExperimentComparator() {
         return (UnambiguousCuratedExperimentComparator) super.getExperimentComparator();
@@ -42,7 +44,6 @@ public class UnambiguousCuratedInteractionEvidenceComparator extends Interaction
         return (UnambiguousCuratedInteractionBaseComparator) super.getInteractionBaseComparator();
     }
 
-    @Override
     /**
      * It will first compare the basic interaction properties using UnambiguousCuratedInteractionBaseComparator.
      * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
@@ -52,14 +53,16 @@ public class UnambiguousCuratedInteractionEvidenceComparator extends Interaction
      *
      *
      **/
+    @Override
     public int compare(InteractionEvidence interaction1, InteractionEvidence interaction2) {
         return super.compare(interaction1, interaction2);
     }
 
     /**
      * Use UnambiguousCuratedInteractionEvidenceComparator to know if two experimental interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return true if the two experimental interactions are equal
      */
     public static boolean areEquals(InteractionEvidence interaction1, InteractionEvidence interaction2){

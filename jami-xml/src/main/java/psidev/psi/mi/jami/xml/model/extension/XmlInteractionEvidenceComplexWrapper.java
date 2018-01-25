@@ -24,7 +24,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>11/10/13</pre>
  */
-
 public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceContext, ExtendedPsiXmlInteraction<ModelledParticipant> {
     private ExtendedPsiXmlInteractionEvidence interactionEvidence;
     private Organism organism;
@@ -37,6 +36,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     private CvTerm evidenceType;
     private Xref complexAcXref;
 
+    /**
+     * <p>Constructor for XmlInteractionEvidenceComplexWrapper.</p>
+     *
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
+     */
     public XmlInteractionEvidenceComplexWrapper(ExtendedPsiXmlInteractionEvidence interaction){
         if (interaction == null){
             throw new IllegalArgumentException("The complex wrapper needs a non null basic interaction");
@@ -46,30 +50,54 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         XmlEntryContext.getInstance().registerComplex(interaction.getId(), this);
     }
 
+    /**
+     * <p>getUpdatedDate.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getUpdatedDate() {
         return this.interactionEvidence.getUpdatedDate();
     }
 
+    /** {@inheritDoc} */
     public void setUpdatedDate(Date updated) {
         this.interactionEvidence.setUpdatedDate(updated);
     }
 
+    /**
+     * <p>getCreatedDate.</p>
+     *
+     * @return a {@link java.util.Date} object.
+     */
     public Date getCreatedDate() {
         return this.interactionEvidence.getCreatedDate();
     }
 
+    /** {@inheritDoc} */
     public void setCreatedDate(Date created) {
         this.interactionEvidence.setCreatedDate(created);
     }
 
+    /**
+     * <p>getInteractionType.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public CvTerm getInteractionType() {
         return this.interactionEvidence.getInteractionType();
     }
 
+    /** {@inheritDoc} */
     public void setInteractionType(CvTerm term) {
         this.interactionEvidence.setInteractionType(term);
     }
 
+    /**
+     * <p>addParticipant.</p>
+     *
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @return a boolean.
+     */
     public boolean addParticipant(ModelledParticipant part) {
         if (part == null){
             return false;
@@ -84,6 +112,12 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return false;
     }
 
+    /**
+     * <p>removeParticipant.</p>
+     *
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @return a boolean.
+     */
     public boolean removeParticipant(ModelledParticipant part) {
         if (part == null){
             return false;
@@ -98,6 +132,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean addAllParticipants(Collection<? extends ModelledParticipant> participants) {
         if (participants == null){
             return false;
@@ -112,6 +147,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return added;
     }
 
+    /** {@inheritDoc} */
     public boolean removeAllParticipants(Collection<? extends ModelledParticipant> participants) {
         if (participants == null){
             return false;
@@ -126,6 +162,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return removed;
     }
 
+    /**
+     * <p>getParticipants.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledParticipant> getParticipants() {
         if (this.modelledParticipants == null){
             initialiseParticipants();
@@ -133,6 +174,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.modelledParticipants;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (this.interactionEvidences == null){
@@ -141,6 +183,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.interactionEvidences;
     }
 
+    /**
+     * <p>getSource.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
+     */
     public Source getSource() {
         if (this.interactionEvidence.getExperiment() != null){
             Experiment exp =this.interactionEvidence.getExperiment();
@@ -151,6 +198,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return null;
     }
 
+    /** {@inheritDoc} */
     public void setSource(Source source) {
         if (this.interactionEvidence.getExperiment() != null){
             Experiment exp =this.interactionEvidence.getExperiment();
@@ -168,6 +216,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /**
+     * <p>Getter for the field <code>modelledConfidences</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledConfidence> getModelledConfidences() {
         if (this.modelledConfidences == null){
             initialiseModelledConfidences();
@@ -175,6 +228,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.modelledConfidences;
     }
 
+    /**
+     * <p>Getter for the field <code>modelledParameters</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<ModelledParameter> getModelledParameters() {
         if (this.modelledParameters == null){
             initialiseModelledParameters();
@@ -182,6 +240,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.modelledParameters;
     }
 
+    /**
+     * <p>Getter for the field <code>cooperativeEffects</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         if (this.cooperativeEffects == null){
             this.cooperativeEffects = new ArrayList<CooperativeEffect>();
@@ -195,51 +258,61 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.cooperativeEffects;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Annotation> getAnnotations() {
         return this.interactionEvidence.getAnnotations();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Checksum> getChecksums() {
         return this.interactionEvidence.getChecksums();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getXrefs() {
         return this.interactionEvidence.getXrefs();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Xref> getIdentifiers() {
         return this.interactionEvidence.getIdentifiers();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getShortName() {
         return this.interactionEvidence.getShortName() != null ? this.interactionEvidence.getShortName() : PsiXmlUtils.UNSPECIFIED;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
         this.interactionEvidence.setShortName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getFullName() {
         return this.interactionEvidence.getFullName();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
         this.interactionEvidence.setFullName(name);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Xref getPreferredIdentifier() {
         return !this.interactionEvidence.getIdentifiers().isEmpty()?this.interactionEvidence.getIdentifiers().iterator().next():null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Organism getOrganism() {
         if (this.organism == null && !this.interactionEvidence.getExperiments().isEmpty()){
@@ -253,16 +326,19 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return this.organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setOrganism(Organism organism) {
         this.organism = organism;
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getInteractorType() {
         return this.interactorType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setInteractorType(CvTerm type) {
         if (type == null){
@@ -273,16 +349,21 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getRigid() {
         return this.interactionEvidence.getRigid();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setRigid(String rigid) {
         this.interactionEvidence.setRigid(rigid);
     }
 
+    /**
+     * <p>initialiseModelledParameters.</p>
+     */
     protected void initialiseModelledParameters(){
         this.modelledParameters = new ArrayList<ModelledParameter>();
         for (Parameter part : this.interactionEvidence.getParameters()){
@@ -290,6 +371,9 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /**
+     * <p>initialiseModelledConfidences.</p>
+     */
     protected void initialiseModelledConfidences(){
         this.modelledConfidences = new ArrayList<ModelledConfidence>();
         for (Confidence part : this.interactionEvidence.getConfidences()){
@@ -297,6 +381,9 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /**
+     * <p>initialiseParticipants.</p>
+     */
     protected void initialiseParticipants(){
         this.modelledParticipants = new ArrayList<ModelledParticipant>();
         for (ParticipantEvidence part : this.interactionEvidence.getParticipants()){
@@ -304,6 +391,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getComplexAc() {
         Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.interactionEvidence.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
@@ -358,6 +446,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         return properties != null ? properties.getValue() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPhysicalProperties(String properties) {
         Annotation propertiesAnnot = AnnotationUtils.collectFirstAnnotationWithTopic(this.interactionEvidence.getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
@@ -369,12 +458,14 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getRecommendedName() {
         Alias recommendedName = AliasUtils.collectFirstAliasWithType(this.interactionEvidence.getAliases(), Alias.COMPLEX_RECOMMENDED_NAME_MI, Alias.COMPLEX_RECOMMENDED_NAME);
         return recommendedName != null ? recommendedName.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setRecommendedName(String name) {
         AliasUtils.removeAllAliasesWithType(this.interactionEvidence.getAliases(), Alias.COMPLEX_RECOMMENDED_NAME_MI, Alias.COMPLEX_RECOMMENDED_NAME);
@@ -383,12 +474,14 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String getSystematicName() {
         Alias systematicName = AliasUtils.collectFirstAliasWithType(this.interactionEvidence.getAliases(), Alias.COMPLEX_SYSTEMATIC_NAME_MI, Alias.COMPLEX_SYSTEMATIC_NAME);
         return systematicName != null ? systematicName.getName() : null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSystematicName(String name) {
         AliasUtils.removeAllAliasesWithType(this.interactionEvidence.getAliases(), Alias.COMPLEX_SYSTEMATIC_NAME_MI, Alias.COMPLEX_SYSTEMATIC_NAME);
@@ -397,72 +490,86 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Collection<Alias> getAliases() {
         return this.interactionEvidence.getAliases();
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<CvTerm> getInteractionTypes() {
         return this.interactionEvidence.getInteractionTypes();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Entry getEntry() {
         return this.interactionEvidence.getEntry();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setEntry(Entry entry) {
         this.interactionEvidence.setEntry(entry);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<InferredInteraction> getInferredInteractions() {
         return this.interactionEvidence.getInferredInteractions();
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getId() {
         return this.interactionEvidence.getId();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setId(int id) {
         this.interactionEvidence.setId(id);
         XmlEntryContext.getInstance().registerComplex(id, this);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isIntraMolecular() {
         return this.interactionEvidence.isIntraMolecular();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setIntraMolecular(boolean intra) {
         this.setIntraMolecular(intra);
     }
 
+    /** {@inheritDoc} */
     @Override
     public FileSourceLocator getSourceLocator() {
         return this.interactionEvidence.getSourceLocator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setSourceLocator(FileSourceLocator locator) {
         this.interactionEvidence.setSourceLocator(locator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.interactionEvidence.toString();
     }
 
+    /** {@inheritDoc} */
     @Override
     public CvTerm getEvidenceType() {
         return this.evidenceType;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setEvidenceType(CvTerm eco) {
         this.evidenceType = eco;

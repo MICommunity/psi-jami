@@ -13,12 +13,15 @@ import java.util.Collection;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 23/07/13
+
  */
 public class ProteinMappingLogger implements ProteinMapperListener {
 
+    /** Constant <code>log</code> */
     protected static final Logger log = LoggerFactory.getLogger(ProteinMappingLogger.class.getName());
 
 
+    /** {@inheritDoc} */
     public void onSuccessfulMapping(Protein p, Collection<String> report) {
         log.info("Remapping succeeded: ");
         for(String string : report){
@@ -26,6 +29,7 @@ public class ProteinMappingLogger implements ProteinMapperListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onFailedMapping(Protein p, Collection<String> report) {
         log.info("Remapping failed: ");
         for(String string : report){
@@ -33,6 +37,7 @@ public class ProteinMappingLogger implements ProteinMapperListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onToBeReviewedMapping(Protein p, Collection<String> report) {
         log.info("Remapping to be reviewed: ");
         for(String string : report){

@@ -22,18 +22,25 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>12/11/13</pre>
  */
-
 public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
 
+    /**
+     * <p>Constructor for XmlExperimentWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlExperimentWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeVariableParameters(Experiment object) throws XMLStreamException {
         // nothing to do here
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeOtherAttributes(Experiment object, boolean needToWriteAttributeList) throws XMLStreamException {
         // write annotations from publication
@@ -51,6 +58,7 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentXrefs(Experiment object, String imexId) throws XMLStreamException {
         // write xrefs
@@ -68,6 +76,7 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         }
     }
 
+    /** {@inheritDoc} */
     protected void writeXrefFromExperimentXrefs(Experiment object, String imexId) throws XMLStreamException {
         Iterator<Xref> refIterator = object.getXrefs().iterator();
         // default qualifier is null as we are not processing identifiers
@@ -103,6 +112,13 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         }
     }
 
+    /**
+     * <p>writeImexId.</p>
+     *
+     * @param nodeName a {@link java.lang.String} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     protected void writeImexId(String nodeName, String imexId) throws XMLStreamException {
         // write start
         getStreamWriter().writeStartElement(nodeName);
@@ -118,25 +134,32 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
         getStreamWriter().writeEndElement();
     }
 
+    /**
+     * <p>initialisePublicationWriter.</p>
+     */
     protected void initialisePublicationWriter() {
         super.setPublicationWriter(new XmlPublicationWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseHostOrganismWriter() {
         super.setHostOrganismWriter(new XmlHostOrganismWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter() {
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDetectionMethodWriter() {
         super.setDetectionMethodWriter(new XmlCvTermWriter(getStreamWriter()));

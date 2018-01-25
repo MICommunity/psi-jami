@@ -12,14 +12,14 @@ import java.util.*;
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class CollectionComparator<T> implements Comparator<Collection<? extends T>> {
 
     private Comparator<T> objectComparator;
 
     /**
      * Creates a new CollectionComparator. It requires a Comparator for the obejcts in the Collection
-     * @param objectComparator
+     *
+     * @param objectComparator a {@link java.util.Comparator} object.
      */
     public CollectionComparator(Comparator<T> objectComparator){
         if (objectComparator == null){
@@ -28,6 +28,11 @@ public class CollectionComparator<T> implements Comparator<Collection<? extends 
         this.objectComparator = objectComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>objectComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<T> getObjectComparator() {
         return objectComparator;
     }
@@ -35,9 +40,10 @@ public class CollectionComparator<T> implements Comparator<Collection<? extends 
     /**
      * Two collections are equals if they have the same content and the same size.
      * The smallest collection will come before the longest collection.
-     * @param ts1
-     * @param ts2
-     * @return
+     *
+     * @param ts1 a {@link java.util.Collection} object.
+     * @param ts2 a {@link java.util.Collection} object.
+     * @return a int.
      */
     public int compare(Collection<? extends T> ts1, Collection<? extends T> ts2) {
 

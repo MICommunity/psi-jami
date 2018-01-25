@@ -20,28 +20,51 @@ import java.util.Iterator;
  * @version $Id$
  * @since <pre>17/10/13</pre>
  */
-
 public class XmlBinaryEvidenceStreamSource extends AbstractPsiXmlBinaryStream<InteractionEvidence, BinaryInteractionEvidence> implements BinaryInteractionEvidenceStream{
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceStreamSource.</p>
+     */
     public XmlBinaryEvidenceStreamSource() {
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     */
     public XmlBinaryEvidenceStreamSource(File file) {
         super(file);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public XmlBinaryEvidenceStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public XmlBinaryEvidenceStreamSource(Reader reader) {
         super(reader);
     }
 
+    /**
+     * <p>Constructor for XmlBinaryEvidenceStreamSource.</p>
+     *
+     * @param url a {@link java.net.URL} object.
+     */
     public XmlBinaryEvidenceStreamSource(URL url) {
         super(url);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(Reader reader) {
         try {
@@ -57,6 +80,7 @@ public class XmlBinaryEvidenceStreamSource extends AbstractPsiXmlBinaryStream<In
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(File file) {
         try {
@@ -74,6 +98,7 @@ public class XmlBinaryEvidenceStreamSource extends AbstractPsiXmlBinaryStream<In
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(InputStream input) {
         try {
@@ -89,6 +114,7 @@ public class XmlBinaryEvidenceStreamSource extends AbstractPsiXmlBinaryStream<In
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXmlParser(URL url) {
         try {
@@ -106,6 +132,7 @@ public class XmlBinaryEvidenceStreamSource extends AbstractPsiXmlBinaryStream<In
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<BinaryInteractionEvidence> createXmlIterator() {
         return new XmlBinaryInteractionEvidenceIterator(getParser());

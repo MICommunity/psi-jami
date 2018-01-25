@@ -24,38 +24,53 @@ import psidev.psi.mi.jami.model.Publication;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 01/08/13
+
  */
 public class FullPublicationUpdater extends FullPublicationEnricher{
 
     private MinimalPublicationUpdater minimalPublicationUpdater;
 
+    /**
+     * <p>Constructor for FullPublicationUpdater.</p>
+     *
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher} object.
+     */
     public FullPublicationUpdater(PublicationFetcher fetcher) {
         super(fetcher);
         this.minimalPublicationUpdater = new MinimalPublicationUpdater(fetcher);
     }
 
+    /**
+     * <p>Constructor for FullPublicationUpdater.</p>
+     *
+     * @param minimalPublicationUpdater a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalPublicationUpdater} object.
+     */
     protected FullPublicationUpdater(MinimalPublicationUpdater minimalPublicationUpdater) {
         super(minimalPublicationUpdater != null ? minimalPublicationUpdater.getPublicationFetcher() : null);
         this.minimalPublicationUpdater = minimalPublicationUpdater;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void processPublication(Publication publicationToEnrich, Publication fetchedPublication) throws EnricherException {
         this.minimalPublicationUpdater.processPublication(publicationToEnrich, fetchedPublication);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processXrefs(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         EnricherUtils.mergeXrefs(publicationToEnrich, publicationToEnrich.getXrefs(), fetched.getXrefs(), true, false,
                 getPublicationEnricherListener(), getPublicationEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processAnnotations(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         EnricherUtils.mergeAnnotations(publicationToEnrich, publicationToEnrich.getAnnotations(), fetched.getAnnotations(), true,
                 getPublicationEnricherListener());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processJournal(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if((fetched.getJournal() != null && !fetched.getJournal().equals(publicationToEnrich.getJournal()))
@@ -67,6 +82,7 @@ public class FullPublicationUpdater extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processPublicationTitle(Publication publicationToEnrich, Publication fetched) throws EnricherException{
         if((fetched.getTitle() != null && !fetched.getTitle().equals(publicationToEnrich.getTitle()))
@@ -78,26 +94,35 @@ public class FullPublicationUpdater extends FullPublicationEnricher{
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setPublicationEnricherListener(PublicationEnricherListener listener) {
         this.minimalPublicationUpdater.setPublicationEnricherListener(listener);
     }
 
+    /** {@inheritDoc} */
     @Override
     public PublicationFetcher getPublicationFetcher() {
         return this.minimalPublicationUpdater.getPublicationFetcher();
     }
 
+    /** {@inheritDoc} */
     @Override
     public PublicationEnricherListener getPublicationEnricherListener() {
         return this.minimalPublicationUpdater.getPublicationEnricherListener();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Publication find(Publication publicationToEnrich) throws EnricherException {
         return this.minimalPublicationUpdater.find(publicationToEnrich);
     }
 
+    /**
+     * <p>Getter for the field <code>minimalPublicationUpdater</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.impl.minimal.MinimalPublicationUpdater} object.
+     */
     protected MinimalPublicationUpdater getMinimalPublicationUpdater() {
         return minimalPublicationUpdater;
     }

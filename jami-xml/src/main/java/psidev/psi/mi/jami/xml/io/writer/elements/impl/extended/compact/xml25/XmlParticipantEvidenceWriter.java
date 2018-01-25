@@ -22,55 +22,73 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedParticipantEvidenceWriter{
     private CompactPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter;
 
+    /**
+     * <p>Constructor for XmlParticipantEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlParticipantEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
 
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseXrefWriter() {
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseBiologicalRoleWriter() {
         super.setBiologicalRoleWriter(new XmlCvTermWriter(getStreamWriter()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
         super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter() {
         super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseHostOrganismWriter() {
         super.setHostOrganismWriter(new XmlHostOrganismWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter() {
         super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseCvWriter() {
         super.setExperimentalCvWriter(new XmlExperimentalCvTermWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseFeatureWriter() {
         super.setFeatureWriter(new XmlFeatureEvidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /**
+     * <p>Getter for the field <code>experimentalInteractorWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter} object.
+     */
     public CompactPsiXmlElementWriter<ExperimentalInteractor> getExperimentalInteractorWriter() {
         if (this.experimentalInteractorWriter == null){
             this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getStreamWriter(), getObjectIndex());
@@ -78,10 +96,16 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
         return experimentalInteractorWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>experimentalInteractorWriter</code>.</p>
+     *
+     * @param experimentalInteractorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter} object.
+     */
     public void setExperimentalInteractorWriter(CompactPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter) {
         this.experimentalInteractorWriter = experimentalInteractorWriter;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalRoles(ParticipantEvidence object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlParticipantEvidence){
@@ -97,6 +121,7 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeHostOrganisms(ParticipantEvidence object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlParticipantEvidence){
@@ -114,6 +139,7 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeExperimentalInteractor(ParticipantEvidence object) throws XMLStreamException {
         if (object instanceof ExtendedPsiXmlParticipantEvidence){

@@ -14,17 +14,17 @@ import psidev.psi.mi.jami.utils.comparator.participant.UnambiguousParticipantEvi
  * the experiment using UnambiguousExperimentComparator. If the experiments are the same, it will compare the participants using UnambiguousParticipantEvidenceComparator. Then it will compare the parameters using UnambiguousParameterComparator.
  * If the parameters are the same, it will first compare the experimental variableParameters using VariableParameterValueSetComparator and then it will compare the inferred boolean value (Inferred interactions will always come after).
  *
- *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>21/01/13</pre>
  */
-
 public class UnambiguousInteractionEvidenceComparator extends InteractionEvidenceComparator {
 
     private static UnambiguousInteractionEvidenceComparator unambiguousExperimentalInteractionComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousInteractionEvidenceComparator. It will use a UnambiguousInteractionBaseComparator to
      * compare basic interaction properties, UnambiguousParameterComparator to compare parameters, UnambiguousExperimentComparator to compare experiments
      */
@@ -33,6 +33,7 @@ public class UnambiguousInteractionEvidenceComparator extends InteractionEvidenc
                 new UnambiguousExperimentComparator(), new UnambiguousParameterComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousExperimentComparator getExperimentComparator() {
         return (UnambiguousExperimentComparator) super.getExperimentComparator();
@@ -43,7 +44,6 @@ public class UnambiguousInteractionEvidenceComparator extends InteractionEvidenc
         return ( UnambiguousInteractionBaseComparator) super.getInteractionBaseComparator();
     }
 
-    @Override
     /**
      * It will first compare the basic interaction properties using UnambiguousInteractionBaseComparator.
      * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
@@ -53,14 +53,16 @@ public class UnambiguousInteractionEvidenceComparator extends InteractionEvidenc
      *
      *
      **/
+    @Override
     public int compare(InteractionEvidence interaction1, InteractionEvidence interaction2) {
         return super.compare(interaction1, interaction2);
     }
 
     /**
      * Use UnambiguousInteractionEvidenceComparator to know if two experimental interactions are equals.
-     * @param interaction1
-     * @param interaction2
+     *
+     * @param interaction1 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
+     * @param interaction2 a {@link psidev.psi.mi.jami.model.InteractionEvidence} object.
      * @return true if the two experimental interactions are equal
      */
     public static boolean areEquals(InteractionEvidence interaction1, InteractionEvidence interaction2){

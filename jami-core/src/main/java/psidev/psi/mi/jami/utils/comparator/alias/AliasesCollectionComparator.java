@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
  * @version $Id$
  * @since <pre>20/12/12</pre>
  */
-
 public class AliasesCollectionComparator extends CollectionComparator<Alias> {
     /**
      * Creates a new alias CollectionComparator. It requires a Comparator for the aliases in the Collection
@@ -21,6 +20,7 @@ public class AliasesCollectionComparator extends CollectionComparator<Alias> {
         super(aliasComparator);
     }
 
+    /** {@inheritDoc} */
     @Override
     public AliasComparator getObjectComparator() {
         return (AliasComparator) super.getObjectComparator();

@@ -10,7 +10,6 @@ import psidev.psi.mi.jami.factory.options.InteractionWriterOptions;
  * @version $Id$
  * @since <pre>05/12/13</pre>
  */
-
 public class MitabWriterOptions extends InteractionWriterOptions{
 
     /**

@@ -16,40 +16,43 @@ import psidev.psi.mi.jami.utils.comparator.cv.UnambiguousCvTermComparator;
  * @version $Id$
  * @since <pre>15/01/13</pre>
  */
-
 public class UnambiguousOrganismComparator extends OrganismComparator {
 
     private static UnambiguousOrganismComparator unambiguousOrganismComparator;
 
     /**
+     * {@inheritDoc}
+     *
      * Creates a new UnambiguousOrganismComparator. It will use a UnambiguousCvTermComparator to compare tissues, cell types and compartments.
      */
     public UnambiguousOrganismComparator() {
         super(new UnambiguousCvTermComparator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public UnambiguousCvTermComparator getCvTermComparator() {
         return (UnambiguousCvTermComparator) super.getCvTermComparator();
     }
 
-    @Override
     /**
+     * {@inheritDoc}
+     *
      * It will first look at the taxids. If taxIds are the same , it will look at the cell types using UnambiguousOrganismComparator.
      * If the cell types are the same, it will look at the tissues using UnambiguousOrganismComparator. If the tissues are the same,
      * it will look at the compartments using UnambiguousOrganismComparator.
      * - Two organisms which are null are equals
      * - The organism which is not null is before null.
      */
+    @Override
     public int compare(Organism organism1, Organism organism2) {
         return super.compare(organism1, organism2);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Use UnambiguousOrganismComparator to know if two organism are equals.
-     * @param organism1
-     * @param organism2
-     * @return true if the two organisms are equal
      */
     public static boolean areEquals(Organism organism1, Organism organism2){
         if (unambiguousOrganismComparator == null){
@@ -59,11 +62,7 @@ public class UnambiguousOrganismComparator extends OrganismComparator {
         return unambiguousOrganismComparator.compare(organism1, organism2) == 0;
     }
 
-    /**
-     *
-     * @param organism
-     * @return the hashcode consistent with the equals method for this comparator
-     */
+    /** {@inheritDoc} */
     public static int hashCode(Organism organism){
         if (unambiguousOrganismComparator == null){
             unambiguousOrganismComparator = new UnambiguousOrganismComparator();

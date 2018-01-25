@@ -17,7 +17,6 @@ import java.util.List;
  * @version $Id$
  * @since <pre>22/05/13</pre>
  */
-
 public class VariableParameterValueSetComparator implements Comparator<VariableParameterValueSet> {
 
     private static VariableParameterValueSetComparator variableParameterValueSetComparator;
@@ -25,12 +24,16 @@ public class VariableParameterValueSetComparator implements Comparator<VariableP
 
     /**
      * Creates a new variableParameterValue CollectionComparator.
-     *
      */
     public VariableParameterValueSetComparator() {
        this.variableParameterValueCollectionComparator = new VariableParameterValueCollectionComparator() ;
     }
 
+    /**
+     * <p>Getter for the field <code>variableParameterValueCollectionComparator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.utils.comparator.experiment.VariableParameterValueCollectionComparator} object.
+     */
     public VariableParameterValueCollectionComparator getVariableParameterValueCollectionComparator() {
         return variableParameterValueCollectionComparator;
     }
@@ -38,8 +41,9 @@ public class VariableParameterValueSetComparator implements Comparator<VariableP
 
     /**
      * Use VariableParameterValueComparator to know if two variableParameterValueSet are equals.
-     * @param set1
-     * @param set2
+     *
+     * @param set1 a {@link psidev.psi.mi.jami.model.VariableParameterValueSet} object.
+     * @param set2 a {@link psidev.psi.mi.jami.model.VariableParameterValueSet} object.
      * @return true if the two variableParameterValueSet are equal
      */
     public static boolean areEquals(VariableParameterValueSet set1, VariableParameterValueSet set2){
@@ -51,8 +55,9 @@ public class VariableParameterValueSetComparator implements Comparator<VariableP
     }
 
     /**
+     * <p>hashCode</p>
      *
-     * @param set
+     * @param set a {@link psidev.psi.mi.jami.model.VariableParameterValueSet} object.
      * @return the hashcode consistent with the equals method for this comparator
      */
     public static int hashCode(VariableParameterValueSet set){
@@ -74,6 +79,13 @@ public class VariableParameterValueSetComparator implements Comparator<VariableP
         return hashcode;
     }
 
+    /**
+     * <p>compare</p>
+     *
+     * @param variableParameterValues1 a {@link psidev.psi.mi.jami.model.VariableParameterValueSet} object.
+     * @param variableParameterValues2 a {@link psidev.psi.mi.jami.model.VariableParameterValueSet} object.
+     * @return a int.
+     */
     public int compare(VariableParameterValueSet variableParameterValues1, VariableParameterValueSet variableParameterValues2) {
         int EQUAL = 0;
         int BEFORE = -1;

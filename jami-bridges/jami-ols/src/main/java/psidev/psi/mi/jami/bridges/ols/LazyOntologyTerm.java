@@ -17,6 +17,7 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 21/08/13
+
  */
 public class LazyOntologyTerm
         extends LazyCvTerm implements OntologyTerm{
@@ -27,10 +28,23 @@ public class LazyOntologyTerm
     private Collection<OntologyTerm> children;
     private String definition;
 
+    /**
+     * <p>Constructor for LazyOntologyTerm.</p>
+     *
+     * @param olsClient a {@link uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param identityRef a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ontologyName a {@link java.lang.String} object.
+     */
     public LazyOntologyTerm(OLSClient olsClient, String fullName, Xref identityRef, String ontologyName) {
         super(olsClient, fullName, identityRef, ontologyName);
     }
 
+    /**
+     * <p>Getter for the field <code>definition</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDefinition(){
         if (!hasLoadedMetadata()){
             initialiseMetaData( getOriginalXref() );
@@ -38,10 +52,16 @@ public class LazyOntologyTerm
         return this.definition;
     }
 
+    /** {@inheritDoc} */
     public void setDefinition(String def) {
         this.definition = def;
     }
 
+    /**
+     * <p>Getter for the field <code>parents</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<OntologyTerm> getParents() {
         if(parents == null){
             initialiseOlsParents( getOriginalXref() );
@@ -49,6 +69,11 @@ public class LazyOntologyTerm
         return this.parents;
     }
 
+    /**
+     * <p>Getter for the field <code>children</code>.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<OntologyTerm> getChildren() {
         if (children == null){
             initialiseOlsChildren( getOriginalXref() );
@@ -57,11 +82,13 @@ public class LazyOntologyTerm
     }
 
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getMIIdentifier() != null ? getMIIdentifier() : (getMODIdentifier() != null ? getMODIdentifier() : (getPARIdentifier() != null ? getPARIdentifier() : "-"))) + " ("+getFullName()+")";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefinition(String description) {
         if (this.definition == null){

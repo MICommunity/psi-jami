@@ -8,10 +8,21 @@ package psidev.psi.mi.jami.enricher;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since  31/07/13
+
  */
 public interface CuratedPublicationEnricher extends PublicationEnricher{
 
+    /**
+     * <p>getSourceEnricher.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.enricher.SourceEnricher} object.
+     */
     public SourceEnricher getSourceEnricher();
 
+    /**
+     * <p>setSourceEnricher.</p>
+     *
+     * @param enricher a {@link psidev.psi.mi.jami.enricher.SourceEnricher} object.
+     */
     public void setSourceEnricher(SourceEnricher enricher);
 }

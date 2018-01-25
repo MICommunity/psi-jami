@@ -30,6 +30,11 @@ public class ImexAssignerImpl implements ImexAssigner {
     private int currentIndex=1;
     private Pattern interaction_imex_regexp = Pattern.compile("(IM-[1-9][0-9]*)-([1-9][0-9]*)");
 
+    /**
+     * <p>Constructor for ImexAssignerImpl.</p>
+     *
+     * @param client a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexAssignerImpl(ImexCentralClient client){
         if (client == null){
              throw new IllegalArgumentException("The IMEx central client cannot be null");
@@ -37,6 +42,7 @@ public class ImexAssignerImpl implements ImexAssigner {
         this.imexCentral = client;
     }
 
+    /** {@inheritDoc} */
     public Publication assignImexIdentifier(Publication publication, Publication imexPublication) throws BridgeFailedException {
 
         String pubId = publication.getPubmedId() != null ? publication.getPubmedId() : publication.getDoi();
@@ -57,6 +63,7 @@ public class ImexAssignerImpl implements ImexAssigner {
         return imexPublication;
     }
 
+    /** {@inheritDoc} */
     public boolean updateImexIdentifierForExperiment(Experiment experiment, String imexId) throws EnricherException {
 
         if (imexId != null) {
@@ -108,6 +115,7 @@ public class ImexAssignerImpl implements ImexAssigner {
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean updateImexIdentifierForInteraction(InteractionEvidence interaction, String imexId) throws EnricherException{
 
         if (imexId != null){
@@ -183,15 +191,16 @@ public class ImexAssignerImpl implements ImexAssigner {
         }
     }
 
+    /**
+     * <p>getImexCentralClient.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.bridges.imex.ImexCentralClient} object.
+     */
     public ImexCentralClient getImexCentralClient() {
         return imexCentral;
     }
 
-    /**
-     *
-     * @param interaction
-     * @return true if it is a PPI interaction (at least one proteins or peptides) and is not negative, false otherwise
-     */
+    /** {@inheritDoc} */
     public boolean isEntitledToImex( InteractionEvidence interaction ) {
         if (interaction.isNegative()){
             return false;
@@ -209,10 +218,14 @@ public class ImexAssignerImpl implements ImexAssigner {
         return numberOfProteinsPeptides > 0 && (numberOfProteinsPeptides == interaction.getParticipants().size());
     }
 
+    /**
+     * <p>clearInteractionImexContext.</p>
+     */
     public void clearInteractionImexContext() {
         currentIndex = 0;
     }
 
+    /** {@inheritDoc} */
     public int getNextImexChunkNumberAndFilterValidImexIdsFrom(Publication publication){
         int number = 0;
         for (Experiment experiment: publication.getExperiments()){
@@ -239,14 +252,29 @@ public class ImexAssignerImpl implements ImexAssigner {
         return number+1;
     }
 
+    /**
+     * <p>Getter for the field <code>currentIndex</code>.</p>
+     *
+     * @return a int.
+     */
     protected int getCurrentIndex() {
         return currentIndex;
     }
 
+    /**
+     * <p>Getter for the field <code>interaction_imex_regexp</code>.</p>
+     *
+     * @return a {@link java.util.regex.Pattern} object.
+     */
     protected Pattern getInteraction_imex_regexp() {
         return interaction_imex_regexp;
     }
 
+    /**
+     * <p>Setter for the field <code>currentIndex</code>.</p>
+     *
+     * @param currentIndex a int.
+     */
     protected void setCurrentIndex(int currentIndex) {
         this.currentIndex = currentIndex;
     }

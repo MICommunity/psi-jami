@@ -19,12 +19,14 @@ import psidev.psi.mi.jami.model.Protein;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/06/13
+
  */
 public class FullProteinEnricher extends MinimalProteinEnricher {
 
     /**
      * The only constructor which forces the setting of the fetcher
      * If the cvTerm fetcher is null, an illegal state exception will be thrown at the next enrichment.
+     *
      * @param proteinFetcher    The protein fetcher to use.
      */
     public FullProteinEnricher(ProteinFetcher proteinFetcher) {
@@ -32,11 +34,13 @@ public class FullProteinEnricher extends MinimalProteinEnricher {
     }
 
 
+    /** {@inheritDoc} */
     @Override
     protected boolean isFullEnrichment() {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void processOtherProperties(Protein proteinToEnrich, Protein fetched) {
 

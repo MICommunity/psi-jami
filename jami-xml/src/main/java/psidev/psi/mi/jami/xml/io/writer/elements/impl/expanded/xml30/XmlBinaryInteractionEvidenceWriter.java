@@ -17,18 +17,25 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-
 public class XmlBinaryInteractionEvidenceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30.AbstractXmlInteractionEvidenceWriter<BinaryInteractionEvidence>
         implements ExpandedPsiXmlElementWriter<BinaryInteractionEvidence> {
+    /**
+     * <p>Constructor for XmlBinaryInteractionEvidenceWriter.</p>
+     *
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public XmlBinaryInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer, objectIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
         super.setParticipantWriter(new XmlParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAvailability(BinaryInteractionEvidence object) throws XMLStreamException {
         if (object.getAvailability() != null){
@@ -36,12 +43,14 @@ public class XmlBinaryInteractionEvidenceWriter extends psidev.psi.mi.jami.xml.i
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected CvTerm writeExperiments(BinaryInteractionEvidence object) throws XMLStreamException {
         super.writeExperiments(object);
         return writeExperimentDescription();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeAttributes(BinaryInteractionEvidence object) throws XMLStreamException {
         // write attributes

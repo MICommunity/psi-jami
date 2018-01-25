@@ -15,29 +15,49 @@ import java.util.Iterator;
 /**
  * A mitab datasource that loads interaction evidences (full experimental details)
  * It only provides an iterator of the interactions
+ *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>25/06/13</pre>
  */
-
 public class MitabEvidenceStreamSource extends AbstractMitabStreamSource<InteractionEvidence, ParticipantEvidence, FeatureEvidence> implements InteractionEvidenceStream<InteractionEvidence> {
 
+    /**
+     * <p>Constructor for MitabEvidenceStreamSource.</p>
+     */
     public MitabEvidenceStreamSource() {
         super();
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceStreamSource.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     public MitabEvidenceStreamSource(File file) throws IOException {
         super(file);
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceStreamSource.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     */
     public MitabEvidenceStreamSource(InputStream input) {
         super(input);
     }
 
+    /**
+     * <p>Constructor for MitabEvidenceStreamSource.</p>
+     *
+     * @param reader a {@link java.io.Reader} object.
+     */
     public MitabEvidenceStreamSource(Reader reader) {
         super(reader);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(Reader reader) {
         if (reader == null){
@@ -47,6 +67,7 @@ public class MitabEvidenceStreamSource extends AbstractMitabStreamSource<Interac
         setLineParser(new InteractionEvidenceLineParser(reader));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(File file) {
         if (file == null){
@@ -64,17 +85,20 @@ public class MitabEvidenceStreamSource extends AbstractMitabStreamSource<Interac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(InputStream input) {
         setOriginalStream(input);
         setLineParser(new InteractionEvidenceLineParser(input));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Iterator<InteractionEvidence> createMitabIterator() throws MIIOException {
         return new MitabInteractionEvidenceIterator(getLineParser());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseMitabLineParser(URL url) {
         if (url == null){

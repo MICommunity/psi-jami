@@ -18,18 +18,35 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
 
     private PsiXmlLocator sourceLocator;
 
+    /**
+     * <p>Constructor for XmlStoichiometry.</p>
+     *
+     * @param value a int.
+     */
     public XmlStoichiometry(int value) {
         super(value);
     }
 
+    /**
+     * <p>Constructor for XmlStoichiometry.</p>
+     *
+     * @param minValue a int.
+     * @param maxValue a int.
+     */
     public XmlStoichiometry(int minValue, int maxValue) {
         super(minValue, maxValue);
     }
 
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
     }
 
+    /** {@inheritDoc} */
     public void setSourceLocator(FileSourceLocator sourceLocator) {
         if (sourceLocator == null){
             this.sourceLocator = null;
@@ -42,10 +59,16 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
         }
     }
 
+    /**
+     * <p>Setter for the field <code>sourceLocator</code>.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return "Participant Stoichiometry: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());

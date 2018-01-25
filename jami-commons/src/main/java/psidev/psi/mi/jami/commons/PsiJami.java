@@ -28,9 +28,11 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class PsiJami {
 
+    /**
+     * <p>initialiseAllFactories.</p>
+     */
     public static void initialiseAllFactories(){
 
         initialiseAllMIDataSources();
@@ -38,6 +40,9 @@ public class PsiJami {
         initialiseAllInteractionWriters();
     }
 
+    /**
+     * <p>initialiseAllInteractionWriters.</p>
+     */
     public static void initialiseAllInteractionWriters() {
         InteractionWriterFactory writerFactory = InteractionWriterFactory.getInstance();
 
@@ -48,6 +53,9 @@ public class PsiJami {
         writerFactory.registerDataSourceWriter(DefaultXmlWriter.class, supportedOptions4);
     }
 
+    /**
+     * <p>initialiseAllMIDataSources.</p>
+     */
     public static void initialiseAllMIDataSources() {
         MIDataSourceFactory datasourceFactory = MIDataSourceFactory.getInstance();
 

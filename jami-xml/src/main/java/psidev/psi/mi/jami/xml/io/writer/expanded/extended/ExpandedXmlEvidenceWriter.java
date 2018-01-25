@@ -21,29 +21,57 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<InteractionEvidence> {
 
+    /**
+     * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     */
     public ExpandedXmlEvidenceWriter() {
         super(InteractionEvidence.class);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlEvidenceWriter(File file) throws IOException, XMLStreamException {
         super(InteractionEvidence.class, file);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlEvidenceWriter(OutputStream output) throws XMLStreamException {
         super(InteractionEvidence.class, output);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public ExpandedXmlEvidenceWriter(Writer writer) throws XMLStreamException {
         super(InteractionEvidence.class, writer);
     }
 
+    /**
+     * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public ExpandedXmlEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(InteractionEvidence.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         Experiment exp = getCurrentInteraction().getExperiment();
@@ -53,16 +81,19 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
         return super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(true, true, PsiXmlType.expanded, InteractionCategory.evidence, ComplexType.n_ary);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
         setDefaultSource(new XmlSource("Unknown source"));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeInteraction() throws XMLStreamException {
         // write interaction
@@ -73,6 +104,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void writeComplex(ModelledInteraction modelled) {
         super.writeComplex(modelled);

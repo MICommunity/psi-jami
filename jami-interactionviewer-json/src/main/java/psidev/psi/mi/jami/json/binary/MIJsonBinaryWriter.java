@@ -21,34 +21,56 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>03/07/13</pre>
  */
-
 public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInteraction> {
 
     private MIJsonBinaryEvidenceWriter binaryEvidenceWriter;
     private MIJsonModelledBinaryWriter modelledBinaryWriter;
 
+    /**
+     * <p>Constructor for MIJsonBinaryWriter.</p>
+     */
     public MIJsonBinaryWriter(){
         super();
     }
 
+    /**
+     * <p>Constructor for MIJsonBinaryWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     * @throws java.io.IOException if any.
+     */
     public MIJsonBinaryWriter(File file, OntologyTermFetcher fetcher) throws IOException {
 
         super(file, fetcher);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for MIJsonBinaryWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public MIJsonBinaryWriter(OutputStream output, OntologyTermFetcher fetcher) {
 
         super(output, fetcher);
         initialiseSubWritersWith(getWriter());
     }
 
+    /**
+     * <p>Constructor for MIJsonBinaryWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param fetcher a {@link psidev.psi.mi.jami.bridges.fetcher.OntologyTermFetcher} object.
+     */
     public MIJsonBinaryWriter(Writer writer, OntologyTermFetcher fetcher) {
 
         super(writer, fetcher);
         initialiseSubWritersWith(getWriter());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void write(BinaryInteraction interaction) throws MIIOException {
         if (this.binaryEvidenceWriter == null || this.modelledBinaryWriter == null){
@@ -66,6 +88,11 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
         }
     }
 
+    /**
+     * <p>initialiseSubWritersWith.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     */
     protected void initialiseSubWritersWith(Writer writer) {
 
         this.modelledBinaryWriter = new MIJsonModelledBinaryWriter(writer, getFetcher(), getProcessedInteractors(), getProcessedFeatures(), getProcessedParticipants(),
@@ -74,6 +101,7 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
                 getIdGenerator());
     }
 
+    /** {@inheritDoc} */
     @Override
     public void close() throws MIIOException {
         try{
@@ -87,6 +115,7 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset() throws MIIOException {
         try{
@@ -100,6 +129,7 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseInteractionWriter() {
         super.setInteractionWriter(new SimpleJsonBinaryInteractionWriter<BinaryInteraction>(getWriter(), getProcessedFeatures(),
@@ -109,11 +139,13 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void flush() throws MIIOException {
         super.flush();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initExpansionMethodInteractionWriter(Integer expansionId) {
         ((SimpleJsonBinaryInteractionWriter) getInteractionWriter()).setExpansionId(expansionId);
@@ -121,6 +153,7 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
         this.binaryEvidenceWriter.initExpansionMethodInteractionWriter(expansionId);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void initialiseContext(Map<String, Object> options) {
         super.initialiseContext(options);

@@ -13,11 +13,11 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class ExperimentChangeLogger implements ExperimentChangeListener {
 
     private static final Logger experimentChangeLogger = Logger.getLogger("ExperimentChangeLogger");
 
+    /** {@inheritDoc} */
     public void onPublicationUpdate(Experiment experiment, Publication oldPublication) {
         if (oldPublication == null){
             experimentChangeLogger.log(Level.INFO, "The publication has been initialised for the experiment " + experiment.toString());
@@ -30,6 +30,7 @@ public class ExperimentChangeLogger implements ExperimentChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onInteractionDetectionMethodUpdate(Experiment experiment, CvTerm oldCv) {
         if (oldCv == null){
             experimentChangeLogger.log(Level.INFO, "The interaction detection method has been initialised for the experiment " + experiment.toString());
@@ -42,6 +43,7 @@ public class ExperimentChangeLogger implements ExperimentChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onHostOrganismUpdate(Experiment experiment, Organism oldOrganism) {
         if (oldOrganism == null){
             experimentChangeLogger.log(Level.INFO, "The host organism has been initialised for the experiment " + experiment.toString());
@@ -54,36 +56,44 @@ public class ExperimentChangeLogger implements ExperimentChangeListener {
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedVariableParameter(Experiment experiment, VariableParameter addedParameter) {
         experimentChangeLogger.log(Level.INFO, "The variable parameter " + addedParameter + " has been added to the experiment " + experiment.toString());
 
     }
 
+    /** {@inheritDoc} */
     public void onRemovedVariableParameter(Experiment experiment, VariableParameter removedParameter) {
         experimentChangeLogger.log(Level.INFO, "The variable parameter " + removedParameter + " has been removed from the experiment " + experiment.toString());
 
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(Experiment experiment, Xref added) {
         experimentChangeLogger.log(Level.INFO, "The xref " + added.toString() + " has been added to the experiment " + experiment.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(Experiment experiment, Xref removed) {
         experimentChangeLogger.log(Level.INFO, "The xref " + removed.toString() + " has been removed from the experiment " + experiment.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(Experiment experiment, Annotation added) {
         experimentChangeLogger.log(Level.INFO, "The annotation " + added.toString() + " has been added to the experiment " + experiment.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(Experiment experiment, Annotation removed) {
         experimentChangeLogger.log(Level.INFO, "The annotation " + removed.toString() + " has been removed from the experiment " + experiment.toString());
     }
 
+    /** {@inheritDoc} */
     public void onAddedConfidence(Experiment experiment, Confidence added) {
         experimentChangeLogger.log(Level.INFO, "The confidence " + added.toString() + " has been added to the experiment " + experiment.toString());
     }
 
+    /** {@inheritDoc} */
     public void onRemovedConfidence(Experiment experiment, Confidence removed) {
         experimentChangeLogger.log(Level.INFO, "The confidence " + removed.toString() + " has been removed from the experiment " + experiment.toString());
 

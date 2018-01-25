@@ -11,8 +11,8 @@ import psidev.psi.mi.jami.crosslink.extension.CsvSourceLocator;
  * @version $Id$
  * @since <pre>26/08/14</pre>
  */
-
 public class CsvBinaryInteractionEvidenceParser extends AbstractCsvInteractionEvidenceParser<BinaryInteractionEvidence> {
+    /** {@inheritDoc} */
     @Override
     protected BinaryInteractionEvidence instantiateInteractionEvidence(int linePosition, String bait) {
         CsvBinaryInteractionEvidence interaction = new CsvBinaryInteractionEvidence();

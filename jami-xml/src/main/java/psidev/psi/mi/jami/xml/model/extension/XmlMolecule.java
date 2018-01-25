@@ -17,73 +17,189 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlTransient
 public class XmlMolecule extends XmlInteractor implements Molecule {
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     */
     public XmlMolecule() {
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlMolecule(String name, CvTerm type) {
         super(name, type);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
     public XmlMolecule(String name, String fullName, CvTerm type) {
         super(name, fullName, type);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public XmlMolecule(String name, CvTerm type, Organism organism) {
         super(name, type, organism);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public XmlMolecule(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type, organism);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, CvTerm type, Xref uniqueId) {
         super(name, type, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type, organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type, organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     */
     public XmlMolecule(String name) {
         super(name);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     */
     public XmlMolecule(String name, String fullName) {
         super(name, fullName);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public XmlMolecule(String name, Organism organism) {
         super(name, organism);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     */
     public XmlMolecule(String name, String fullName, Organism organism) {
         super(name, fullName, organism);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, Xref uniqueId) {
         super(name, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, String fullName, Xref uniqueId) {
         super(name, fullName, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, Organism organism, Xref uniqueId) {
         super(name, organism, uniqueId);
     }
 
+    /**
+     * <p>Constructor for XmlMolecule.</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     public XmlMolecule(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, organism, uniqueId);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return (getSourceLocator() != null ? "Molecule: "+getSourceLocator().toString():super.toString());

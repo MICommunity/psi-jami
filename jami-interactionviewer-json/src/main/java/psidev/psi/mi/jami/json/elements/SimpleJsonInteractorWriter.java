@@ -17,7 +17,6 @@ import java.util.Map;
  * @version $Id$
  * @since <pre>18/07/14</pre>
  */
-
 public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>{
 
     private Writer writer;
@@ -27,6 +26,12 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
     private IncrementalIdGenerator idGenerator;
     private JsonElementWriter<Organism> organismWriter;
 
+    /**
+     * <p>Constructor for SimpleJsonInteractorWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     */
     public SimpleJsonInteractorWriter(Writer writer,  Map<String, String>processedInteractors) {
         if (writer == null) {
             throw new IllegalArgumentException("The json interactor writer needs a non null Writer");
@@ -38,6 +43,13 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         this.processedInteractors = processedInteractors;
     }
 
+    /**
+     * <p>Constructor for SimpleJsonInteractorWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @param processedInteractors a {@link java.util.Map} object.
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public SimpleJsonInteractorWriter(Writer writer,  Map<String, String>processedInteractors, IncrementalIdGenerator idGenerator) {
         if (writer == null) {
             throw new IllegalArgumentException("The json interactor writer needs a non null Writer");
@@ -50,6 +62,12 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @throws java.io.IOException if any.
+     */
     public void write(Interactor object) throws IOException {
         String[] interactorIds = MIJsonUtils.extractInteractorId(object.getPreferredIdentifier(), object);
         String interactorKey = interactorIds[0]+"_"+interactorIds[1];
@@ -158,6 +176,11 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         MIJsonUtils.writeEndObject(writer);
     }
 
+    /**
+     * <p>Getter for the field <code>cvWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<CvTerm> getCvWriter() {
         if (this.cvWriter == null){
             this.cvWriter = new SimpleJsonCvTermWriter(writer);
@@ -165,10 +188,20 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         return cvWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>cvWriter</code>.</p>
+     *
+     * @param cvWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setCvWriter(JsonElementWriter<CvTerm> cvWriter) {
         this.cvWriter = cvWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>idGenerator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public IncrementalIdGenerator getIdGenerator() {
         if (this.idGenerator == null){
             this.idGenerator = new IncrementalIdGenerator();
@@ -176,10 +209,20 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         return idGenerator;
     }
 
+    /**
+     * <p>Setter for the field <code>idGenerator</code>.</p>
+     *
+     * @param idGenerator a {@link psidev.psi.mi.jami.json.IncrementalIdGenerator} object.
+     */
     public void setIdGenerator(IncrementalIdGenerator idGenerator) {
         this.idGenerator = idGenerator;
     }
 
+    /**
+     * <p>Getter for the field <code>organismWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Organism> getOrganismWriter() {
         if (this.organismWriter == null){
              this.organismWriter = new SimpleJsonOrganismWriter(this.writer);
@@ -187,10 +230,20 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         return organismWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>organismWriter</code>.</p>
+     *
+     * @param organismWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setOrganismWriter(JsonElementWriter<Organism> organismWriter) {
         this.organismWriter = organismWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>identifierWriter</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public JsonElementWriter<Xref> getIdentifierWriter() {
         if (this.identifierWriter == null){
              this.identifierWriter = new SimpleJsonIdentifierWriter(this.writer);
@@ -198,10 +251,20 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
         return identifierWriter;
     }
 
+    /**
+     * <p>Setter for the field <code>identifierWriter</code>.</p>
+     *
+     * @param identifierWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
+     */
     public void setIdentifierWriter(JsonElementWriter<Xref> identifierWriter) {
         this.identifierWriter = identifierWriter;
     }
 
+    /**
+     * <p>Getter for the field <code>writer</code>.</p>
+     *
+     * @return a {@link java.io.Writer} object.
+     */
     protected Writer getWriter() {
         return writer;
     }

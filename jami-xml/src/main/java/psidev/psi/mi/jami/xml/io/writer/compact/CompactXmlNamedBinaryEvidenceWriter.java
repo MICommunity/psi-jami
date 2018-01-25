@@ -23,29 +23,57 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>19/11/13</pre>
  */
-
 public class CompactXmlNamedBinaryEvidenceWriter extends AbstractCompactXmlWriter<BinaryInteractionEvidence> {
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
+     */
     public CompactXmlNamedBinaryEvidenceWriter() {
         super(BinaryInteractionEvidence.class);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryEvidenceWriter(File file) throws IOException, XMLStreamException {
         super(BinaryInteractionEvidence.class, file);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
+     *
+     * @param output a {@link java.io.OutputStream} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryEvidenceWriter(OutputStream output) throws XMLStreamException {
         super(BinaryInteractionEvidence.class, output);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
+     *
+     * @param writer a {@link java.io.Writer} object.
+     * @throws javax.xml.stream.XMLStreamException if any.
+     */
     public CompactXmlNamedBinaryEvidenceWriter(Writer writer) throws XMLStreamException {
         super(BinaryInteractionEvidence.class, writer);
     }
 
+    /**
+     * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
+     *
+     * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
+     */
     public CompactXmlNamedBinaryEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
         super(BinaryInteractionEvidence.class, streamWriter, cache);
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerAvailabilities(BinaryInteractionEvidence interaction) {
         if (interaction.getAvailability() != null){
@@ -53,11 +81,13 @@ public class CompactXmlNamedBinaryEvidenceWriter extends AbstractCompactXmlWrite
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void registerExperiment(BinaryInteractionEvidence interaction) {
         getExperiments().add(getInteractionWriter().extractDefaultExperimentFrom(interaction));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected Source extractSourceFromInteraction() {
         Experiment exp = getCurrentInteraction().getExperiment();
@@ -67,6 +97,7 @@ public class CompactXmlNamedBinaryEvidenceWriter extends AbstractCompactXmlWrite
         return super.extractSourceFromInteraction();
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void initialiseSubWriters() {
         super.initialiseSubWriters(false, true, PsiXmlType.compact, InteractionCategory.evidence, ComplexType.binary);

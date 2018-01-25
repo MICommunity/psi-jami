@@ -12,19 +12,20 @@ import psidev.psi.mi.jami.model.Parameter;
  * @version $Id$
  * @since <pre>15/11/13</pre>
  */
-
 public interface PsiXmlParameterWriter extends PsiXmlElementWriter<Parameter> {
 
     /**
      * The default experiment that will be used to write a valid XML 2.5 file but is not a real experiment attached
      * to the interaction.
-     * @return
+     *
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public Experiment getDefaultExperiment();
 
     /**
      * Sets the default experiment that will be used to write a valid XML 2.5 file even if the interaction does not have any valid experiment
-     * @param exp
+     *
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public void setDefaultExperiment(Experiment exp);
 }

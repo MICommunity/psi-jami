@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  * @version $Id$
  * @since <pre>11/06/13</pre>
  */
-
 public class SourceChangeLogger extends CvTermChangeLogger implements SourceChangeListener {
 
     private static final Logger sourceChangeLogger = Logger.getLogger("SourceChangeLogger");
 
+    /** {@inheritDoc} */
     public void onUrlUpdate(Source cv, String oldUrl) {
         if (oldUrl == null){
             sourceChangeLogger.log(Level.INFO, "The URL " + cv.getUrl() + " has been added to the source " + cv.toString());
@@ -31,6 +31,7 @@ public class SourceChangeLogger extends CvTermChangeLogger implements SourceChan
         }
     }
 
+    /** {@inheritDoc} */
     public void onPostalAddressUpdate(Source cv, String oldPostalAddress) {
         if (oldPostalAddress == null){
             sourceChangeLogger.log(Level.INFO, "The postal address " + cv.getPostalAddress() + " has been added to the source " + cv.toString());
@@ -43,6 +44,7 @@ public class SourceChangeLogger extends CvTermChangeLogger implements SourceChan
         }
     }
 
+    /** {@inheritDoc} */
     public void onPublicationUpdate(Source cv, Publication oldPublication) {
         if (oldPublication == null){
             sourceChangeLogger.log(Level.INFO, "The publication " + cv.getPublication() + " has been added to the source " + cv.toString());

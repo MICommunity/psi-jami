@@ -10,6 +10,5 @@ import psidev.psi.mi.jami.model.ModelledParticipant;
  * @version $Id$
  * @since <pre>04/06/13</pre>
  */
-
 public interface ModelledBinaryInteraction extends BinaryInteraction<ModelledParticipant>, ModelledInteraction {
 }

@@ -18,14 +18,15 @@ import java.util.*;
  * @version $Id$
  * @since <pre>13/02/13</pre>
  */
-
 public class DefaultExperimentalEntityComparator {
 
     /**
      * Use DefaultExperimentalEntityComparator to know if two experimental entities are equals.
-     * @param participant1
-     * @param participant2
+     *
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental entities are equal
+     * @param checkComplexesAsInteractors a boolean.
      */
     public static boolean areEquals(ExperimentalEntity participant1, ExperimentalEntity participant2, boolean checkComplexesAsInteractors){
         Map<Complex, Set<Interactor>> processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();

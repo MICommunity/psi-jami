@@ -18,13 +18,13 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>19/12/12</pre>
  */
-
 public class PositionComparator implements Comparator<Position>{
 
     private Comparator<CvTerm> statusComparator;
 
     /**
      * Creates a new positionComparator
+     *
      * @param statusComparator : the status comparator is required for comparing the position status
      */
     public PositionComparator(Comparator<CvTerm> statusComparator){
@@ -34,6 +34,11 @@ public class PositionComparator implements Comparator<Position>{
         this.statusComparator = statusComparator;
     }
 
+    /**
+     * <p>Getter for the field <code>statusComparator</code>.</p>
+     *
+     * @return a {@link java.util.Comparator} object.
+     */
     public Comparator<CvTerm> getStatusComparator() {
         return statusComparator;
     }
@@ -44,9 +49,10 @@ public class PositionComparator implements Comparator<Position>{
      * - The position which is not null is before null.
      * - An undetermined position always comes after a determined position
      * - Two undetermined positions with same status are equals (no need to look at the positions start and end)
-     * @param position1
-     * @param position2
-     * @return
+     *
+     * @param position1 a {@link psidev.psi.mi.jami.model.Position} object.
+     * @param position2 a {@link psidev.psi.mi.jami.model.Position} object.
+     * @return a int.
      */
     public int compare(Position position1, Position position2) {
 

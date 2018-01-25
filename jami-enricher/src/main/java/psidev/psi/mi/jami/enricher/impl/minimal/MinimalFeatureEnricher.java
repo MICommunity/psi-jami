@@ -33,6 +33,7 @@ import java.util.List;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 13/08/13
+
  */
 public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeningFeatureEnricher<F> {
 
@@ -42,13 +43,17 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
     private CvTermEnricher cvTermEnricher;
     private Collection<F> featuresWithRangesToUpdate = Collections.EMPTY_LIST;
 
+    /**
+     * <p>Constructor for MinimalFeatureEnricher.</p>
+     */
     public MinimalFeatureEnricher(){
     }
 
     /**
      * Enrichment of a single feature.
+     *
      * @param featureToEnrich       The feature which is to be enriched.
-     * @throws EnricherException    Thrown if problems are encountered in the fetcher
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException    Thrown if problems are encountered in the fetcher
      */
     public void enrich(F featureToEnrich) throws EnricherException {
         if(featureToEnrich == null)
@@ -63,6 +68,12 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
             getFeatureEnricherListener().onEnrichmentComplete(featureToEnrich, EnrichmentStatus.SUCCESS, "Feature enriched successfully.");
     }
 
+    /**
+     * <p>processMinimalUpdates.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processMinimalUpdates(F featureToEnrich) throws EnricherException {
         // == TYPE ==================================================================
         processFeatureType(featureToEnrich);
@@ -70,6 +81,12 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         processRanges(featureToEnrich);
     }
 
+    /**
+     * <p>processRanges.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRanges(F featureToEnrich) throws EnricherException {
         for (Object r : featureToEnrich.getRanges()){
             Range range = (Range)r;
@@ -78,12 +95,24 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /**
+     * <p>processRangeStatus.</p>
+     *
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRangeStatus(CvTerm status) throws EnricherException {
         if(getCvTermEnricher() != null && status != null) {
             getCvTermEnricher().enrich( status );
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objects a {@link java.util.Collection} object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(Collection<F> objects) throws EnricherException {
         if( objects == null )
             throw new IllegalArgumentException("Cannot enrich a null collection of features.");
@@ -92,6 +121,13 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /**
+     * <p>enrich.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void enrich(F objectToEnrich, F objectSource) throws EnricherException {
         if (objectSource == null){
             enrich(objectToEnrich);
@@ -107,6 +143,13 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /**
+     * <p>processMinimalUpdates.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     public void processMinimalUpdates(F objectToEnrich, F objectSource) throws EnricherException {
         // check shortlabel
         processShortLabel(objectToEnrich, objectSource);
@@ -120,6 +163,13 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         processRanges(objectToEnrich, objectSource);
     }
 
+    /**
+     * <p>processRanges.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processRanges(F objectToEnrich, F objectSource) throws EnricherException {
         EnricherUtils.mergeRanges(objectToEnrich, objectToEnrich.getRanges(), objectSource.getRanges(), false,
                 getFeatureEnricherListener());
@@ -127,11 +177,25 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         processRanges(objectToEnrich);
     }
 
+    /**
+     * <p>processIdentifiers.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processIdentifiers(F objectToEnrich, F objectSource) throws EnricherException{
         EnricherUtils.mergeXrefs(objectToEnrich, objectToEnrich.getIdentifiers(), objectSource.getIdentifiers(), false, true,
                 getFeatureEnricherListener(), getFeatureEnricherListener());
     }
 
+    /**
+     * <p>processFullName.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processFullName(F objectToEnrich, F objectSource) throws EnricherException{
         if(objectToEnrich.getFullName() == null
                 && objectSource.getFullName() != null){
@@ -142,6 +206,13 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /**
+     * <p>processShortLabel.</p>
+     *
+     * @param objectToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processShortLabel(F objectToEnrich, F objectSource) throws EnricherException{
         if(objectToEnrich.getShortName() == null
                 && objectSource.getShortName() != null){
@@ -152,14 +223,28 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(F featureToEnrich) throws EnricherException {
         // do nothing
     }
 
+    /**
+     * <p>processOtherProperties.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processOtherProperties(F featureToEnrich, F objectSource) throws EnricherException {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void setFeaturesWithRangesToUpdate(Collection<F> features) {
         log.trace("Setting the features");
         if (features == null){
@@ -171,8 +256,9 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the listener of feature changes. Can be null.
-     * @param featureEnricherListener   The listener of feature changes.
      */
     public void setFeatureEnricherListener(FeatureEnricherListener<F> featureEnricherListener) {
         this.listener = featureEnricherListener;
@@ -181,6 +267,7 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
     /**
      * Retrieves the listener of feature changes.
      * May be null if changes are not being listened to.
+     *
      * @return  The current listener of feature changes.
      */
     public FeatureEnricherListener<F> getFeatureEnricherListener() {
@@ -188,8 +275,9 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the subEnricher for CvTerms. Can be null.
-     * @param cvTermEnricher    The CvTerm enricher to be used
      */
     public void setCvTermEnricher(CvTermEnricher cvTermEnricher) {
         this.cvTermEnricher = cvTermEnricher;
@@ -197,12 +285,14 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
 
     /**
      * Gets the subEnricher for CvTerms. Can be null.
+     *
      * @return  The CvTerm enricher which is being used.
      */
     public CvTermEnricher getCvTermEnricher() {
         return cvTermEnricher;
     }
 
+    /** {@inheritDoc} */
     public void onSequenceUpdate(Protein protein, String oldSequence) {
         for (F feature : featuresWithRangesToUpdate){
             for(Object obj : feature.getRanges()){
@@ -251,68 +341,95 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         }
     }
 
+    /** {@inheritDoc} */
     public void onShortNameUpdate(Protein interactor, String oldShortName) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onFullNameUpdate(Protein interactor, String oldFullName) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onOrganismUpdate(Protein interactor, Organism o) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onInteractorTypeUpdate(Protein interactor, CvTerm old) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onAddedAlias(Protein o, Alias added) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAlias(Protein o, Alias removed) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onAddedAnnotation(Protein o, Annotation added) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onRemovedAnnotation(Protein o, Annotation removed) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onAddedChecksum(Protein interactor, Checksum added) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onRemovedChecksum(Protein interactor, Checksum removed) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onAddedIdentifier(Protein o, Xref added) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onRemovedIdentifier(Protein o, Xref removed) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onAddedXref(Protein o, Xref added) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onRemovedXref(Protein o, Xref removed) {
         // do nothing
     }
 
+    /**
+     * <p>processFeatureType.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processFeatureType(F featureToEnrich) throws EnricherException {
         if(getCvTermEnricher() != null && featureToEnrich.getType() != null) {
             getCvTermEnricher().enrich( featureToEnrich.getType() );
         }
     }
 
+    /**
+     * <p>processFeatureType.</p>
+     *
+     * @param featureToEnrich a F object.
+     * @param objectSource a F object.
+     * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
+     */
     protected void processFeatureType(F featureToEnrich, F objectSource) throws EnricherException {
         if (objectSource.getType() != null && featureToEnrich.getType() == null){
             featureToEnrich.setType(objectSource.getType());
@@ -323,6 +440,13 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         processFeatureType(featureToEnrich);
     }
 
+    /**
+     * <p>onInvalidRange.</p>
+     *
+     * @param feature a F object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param errorMessages a {@link java.util.Collection} object.
+     */
     protected void onInvalidRange(F feature, Range range, Collection<String> errorMessages){
         Annotation annotation = AnnotationUtils.createCaution("Invalid range "+range.toString()+": " + StringUtils.join(errorMessages, ", "));
 
@@ -331,6 +455,14 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
             getFeatureEnricherListener().onAddedAnnotation(feature , annotation);
     }
 
+    /**
+     * <p>onOutOfDateRange.</p>
+     *
+     * @param feature a F object.
+     * @param range a {@link psidev.psi.mi.jami.model.Range} object.
+     * @param errorMessages a {@link java.util.Collection} object.
+     * @param oldSequence a {@link java.lang.String} object.
+     */
     protected void onOutOfDateRange(F feature, Range range, Collection<String> errorMessages, String oldSequence){
         Annotation annotation = AnnotationUtils.createCaution("Out of date range "+range.toString()+": " + StringUtils.join(errorMessages, ", "));
 
@@ -339,6 +471,11 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
             getFeatureEnricherListener().onAddedAnnotation(feature , annotation);
     }
 
+    /**
+     * <p>updateRangePositions.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean updateRangePositions(){
         return false;
     }
@@ -634,10 +771,12 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
         return true;
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentComplete(Protein object, EnrichmentStatus status, String message) {
         // do nothing
     }
 
+    /** {@inheritDoc} */
     public void onEnrichmentError(Protein object, String message, Exception e) {
         // do nothing
     }

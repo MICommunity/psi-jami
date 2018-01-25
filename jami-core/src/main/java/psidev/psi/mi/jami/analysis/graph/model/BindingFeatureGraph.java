@@ -18,13 +18,20 @@ import psidev.psi.mi.jami.utils.comparator.MIComparator;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-
 public class BindingFeatureGraph<T extends Feature> extends Pseudograph<T,BindingPair<T>>{
 
+    /**
+     * <p>Constructor for BindingFeatureGraph.</p>
+     */
     public BindingFeatureGraph() {
         super(new BindingPairFactory<T>());
     }
 
+    /**
+     * <p>Constructor for BindingFeatureGraph.</p>
+     *
+     * @param customComparator a {@link psidev.psi.mi.jami.utils.comparator.MIComparator} object.
+     */
     public BindingFeatureGraph(MIComparator<T> customComparator) {
         super(new BindingPairFactory<T>(customComparator));
     }

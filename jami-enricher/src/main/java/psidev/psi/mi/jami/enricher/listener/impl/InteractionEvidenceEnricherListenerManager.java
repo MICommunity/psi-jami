@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 09/07/13
+
  */
 public class InteractionEvidenceEnricherListenerManager
         extends InteractionEnricherListenerManager<InteractionEvidence>
@@ -25,12 +26,14 @@ public class InteractionEvidenceEnricherListenerManager
 
     /**
      * A constructor to initiate a listener manager with as many listeners as required.
+     *
      * @param listeners     The listeners to add.
      */
     public InteractionEvidenceEnricherListenerManager(InteractionEvidenceEnricherListener... listeners){
         super(listeners);
     }
 
+    /** {@inheritDoc} */
     public void onExperimentUpdate(InteractionEvidence interaction, Experiment oldExperiment) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -39,6 +42,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedVariableParameterValues(InteractionEvidence interaction, VariableParameterValueSet added) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -47,6 +51,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedVariableParameterValues(InteractionEvidence interaction, VariableParameterValueSet removed) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -55,6 +60,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onInferredPropertyUpdate(InteractionEvidence interaction, boolean oldInferred) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -63,6 +69,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onNegativePropertyUpdate(InteractionEvidence interaction, boolean negative) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -71,6 +78,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedConfidence(InteractionEvidence o, Confidence added) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -79,6 +87,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedConfidence(InteractionEvidence o, Confidence removed) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -87,6 +96,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onAddedParameter(InteractionEvidence o, Parameter added) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
@@ -95,6 +105,7 @@ public class InteractionEvidenceEnricherListenerManager
         }
     }
 
+    /** {@inheritDoc} */
     public void onRemovedParameter(InteractionEvidence o, Parameter removed) {
         for (InteractionEnricherListener listener : getListenersList()){
             if (listener instanceof InteractionEvidenceEnricherListener){
