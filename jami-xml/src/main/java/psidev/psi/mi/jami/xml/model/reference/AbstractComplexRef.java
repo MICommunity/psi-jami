@@ -61,6 +61,27 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
         return getDelegate().getComplexAc();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexVersion() {
+        logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+            initialiseInteractorDelegate();
+        }
+        return getDelegate().getComplexVersion();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        logger.log(Level.WARNING, "The interaction reference " + ref + " is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null) {
+            initialiseInteractorDelegate();
+        }
+        getDelegate().assignComplexAc(accession, version);
+    }
+
+    /** {@inheritDoc} */
     @Override
     public void assignComplexAc(String accession) {
         logger.log(Level.WARNING, "The interaction reference " + ref + " is not resolved. Some default properties will be initialised by default");

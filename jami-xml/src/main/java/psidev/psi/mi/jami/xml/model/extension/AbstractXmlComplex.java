@@ -276,12 +276,33 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
 
     /** {@inheritDoc} */
     @Override
+    public String getComplexVersion() {
+        String complexVersion = super.getComplexVersion();
+        if (complexVersion == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexVersion() : null;
+        }
+        return complexVersion;
+    }
+
+
+    /** {@inheritDoc} */
+    @Override
     public void assignComplexAc(String accession) {
         // add new complex ac if not null
         if (getInteractionXrefContainer() == null && accession != null){
             setInteractionXrefContainer(new InteractionXrefContainer());
         }
         getInteractionXrefContainer().assignComplexAc(accession);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession, version);
     }
 
     /** {@inheritDoc} */

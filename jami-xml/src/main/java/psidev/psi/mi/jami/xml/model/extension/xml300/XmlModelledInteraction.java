@@ -184,6 +184,23 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     /** {@inheritDoc} */
+    public String getComplexVersion() {
+        String complexVersion = super.getComplexVersion();
+        if (complexVersion == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexVersion() : null;
+        }
+        return complexVersion;
+    }
+
+    /** {@inheritDoc} */
+    public void assignComplexAc(String accession, String version) {
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession, version);
+    }
+
+    /** {@inheritDoc} */
     public void assignComplexAc(String accession) {
         if (getInteractionXrefContainer() == null && accession != null){
             setInteractionXrefContainer(new InteractionXrefContainer());

@@ -37,6 +37,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     private int id;
     private String imexId;
     private String complexAc;
+    private String complexVersion;
     private Date updatedDate;
     private Date createdDate;
     private PsiXmlLocator sourceLocator;
@@ -435,6 +436,14 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         return complexAc;
     }
 
+    /**
+     * Gets the value of the complexVersion property.
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getComplexVersion() {
+        return complexVersion;
+    }
     /**
      * Sets the value of the complexAc property
      *

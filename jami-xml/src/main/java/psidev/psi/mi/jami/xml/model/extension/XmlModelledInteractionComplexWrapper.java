@@ -301,12 +301,44 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
         return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getId() : null;
     }
 
-    //TODO Review
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexVersion() {
+        Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.modelledInteraction.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getVersion() : null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (accession != null) {
+            Collection<Xref> complexXrefList =  getXrefs();
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!accession.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    complexXrefList.remove(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                    complexXrefList.add(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                complexXrefList.add(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+    /** {@inheritDoc} */
     @Override
     public void assignComplexAc(String accession) {
         // add new complex ac if not null
         if (accession != null) {
-            Collection<Xref> complexXrefList = getXrefs();
             String id;
             String version;
 
@@ -323,25 +355,13 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
             } else {
                 throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
             }
+            assignComplexAc(id, version);
 
-            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
-            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
-            // first remove old ac if not null
-            if (this.complexAcXref != null) {
-                if (!id.equals(complexAcXref.getId())) {
-                    // first remove old complexAcXref and creates the new one;
-                    complexXrefList.remove(this.complexAcXref);
-                    this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
-                    complexXrefList.add(this.complexAcXref);
-                }
-            } else {
-                this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
-                complexXrefList.add(this.complexAcXref);
-            }
         } else {
             throw new IllegalArgumentException("The complex ac has to be non null.");
         }
     }
+
 
     @Override
     public String getPhysicalProperties() {
