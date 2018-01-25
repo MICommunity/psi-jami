@@ -49,7 +49,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public DefaultComplex(String name, CvTerm interactorType) {
@@ -59,8 +59,8 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param fullName a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
+     * @param fullName       a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public DefaultComplex(String name, String fullName, CvTerm interactorType) {
@@ -70,9 +70,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organism       a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public DefaultComplex(String name, CvTerm interactorType, Organism organism) {
         super(name, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), organism);
@@ -81,10 +81,10 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param fullName a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
+     * @param fullName       a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param organism       a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public DefaultComplex(String name, String fullName, CvTerm interactorType, Organism organism) {
         super(name, fullName, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), organism);
@@ -93,9 +93,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param uniqueId       a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultComplex(String name, CvTerm interactorType, Xref uniqueId) {
         super(name, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), uniqueId);
@@ -104,10 +104,10 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param fullName a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
+     * @param fullName       a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param uniqueId       a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultComplex(String name, String fullName, CvTerm interactorType, Xref uniqueId) {
         super(name, fullName, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), uniqueId);
@@ -116,10 +116,10 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
-     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param organism       a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId       a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultComplex(String name, CvTerm interactorType, Organism organism, Xref uniqueId) {
         super(name, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), organism, uniqueId);
@@ -128,11 +128,11 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param fullName a {@link java.lang.String} object.
+     * @param name           a {@link java.lang.String} object.
+     * @param fullName       a {@link java.lang.String} object.
      * @param interactorType a {@link psidev.psi.mi.jami.model.CvTerm} object.
-     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
-     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param organism       a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId       a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultComplex(String name, String fullName, CvTerm interactorType, Organism organism, Xref uniqueId) {
         super(name, fullName, interactorType != null ? interactorType : CvTermUtils.createComplexInteractorType(), organism, uniqueId);
@@ -150,7 +150,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
      */
     public DefaultComplex(String name, String fullName) {
@@ -160,7 +160,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public DefaultComplex(String name, Organism organism) {
@@ -170,7 +170,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
@@ -181,7 +181,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultComplex(String name, Xref uniqueId) {
@@ -191,7 +191,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
@@ -202,7 +202,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
@@ -213,7 +213,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>Constructor for DefaultComplex.</p>
      *
-     * @param name a {@link java.lang.String} object.
+     * @param name     a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -222,25 +222,33 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         super(name, fullName, CvTermUtils.createComplexInteractorType(), organism, uniqueId);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void initialiseAnnotations() {
         initialiseAnnotationsWith(new ComplexAnnotationList());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    protected void initialiseChecksums(){
+    protected void initialiseChecksums() {
         initialiseChecksumsWith(new ComplexChecksumList());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void initialiseAliases() {
         initialiseAliasesWith(new ComplexAliasList());
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void initialiseXrefs() {
         initialiseXrefsWith(new ComplexXrefList());
@@ -249,7 +257,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>initialiseInteractionEvidences</p>
      */
-    protected void initialiseInteractionEvidences(){
+    protected void initialiseInteractionEvidences() {
         this.interactionEvidences = new ArrayList<InteractionEvidence>();
     }
 
@@ -309,7 +317,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>initialiseParameters</p>
      */
-    protected void initialiseParameters(){
+    protected void initialiseParameters() {
         this.parameters = new ArrayList<ModelledParameter>();
     }
 
@@ -318,7 +326,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      *
      * @param parameters a {@link java.util.Collection} object.
      */
-    protected void initialiseParametersWith(Collection<ModelledParameter> parameters){
+    protected void initialiseParametersWith(Collection<ModelledParameter> parameters) {
         if (parameters == null) {
             this.parameters = Collections.EMPTY_LIST;
         } else {
@@ -329,7 +337,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     /**
      * <p>initialiseComponents</p>
      */
-    protected void initialiseComponents(){
+    protected void initialiseComponents() {
         this.components = new ArrayList<ModelledParticipant>();
     }
 
@@ -338,7 +346,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      *
      * @param components a {@link java.util.Collection} object.
      */
-    protected void initialiseComponentsWith(Collection<ModelledParticipant> components){
+    protected void initialiseComponentsWith(Collection<ModelledParticipant> components) {
         if (components == null) {
             this.components = Collections.EMPTY_LIST;
         } else {
@@ -350,11 +358,14 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      * <p>Getter for the field <code>source</code>.</p>
      *
      * @return a {@link psidev.psi.mi.jami.model.Source} object.
-     */public Source getSource() {
+     */
+    public Source getSource() {
         return this.source;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSource(Source source) {
         this.source = source;
     }
@@ -408,7 +419,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return false;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean addAllParticipants(Collection<? extends ModelledParticipant> participants) {
         if (participants == null) {
             return false;
@@ -423,7 +436,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return added;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public boolean removeAllParticipants(Collection<? extends ModelledParticipant> participants) {
         if (participants == null) {
             return false;
@@ -444,7 +459,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
-        if (interactionEvidences == null){
+        if (interactionEvidences == null) {
             initialiseInteractionEvidences();
         }
         return this.interactionEvidences;
@@ -486,17 +501,54 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.cooperativeEffects;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getComplexAc() {
         return this.complexAcXref != null ? this.complexAcXref.getId() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    public String getComplexVersion() {
+        return this.complexAcXref != null ? this.complexAcXref.getVersion() : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (accession != null) {
+            ComplexXrefList complexXrefList = (ComplexXrefList) getXrefs();
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!accession.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    complexXrefList.remove(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                    complexXrefList.add(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                complexXrefList.add(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public void assignComplexAc(String accession) {
 
         // add new complex ac if not null
         if (accession != null) {
-            ComplexXrefList complexXrefList = (ComplexXrefList) getXrefs();
             String id;
             String version;
 
@@ -513,21 +565,8 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
             } else {
                 throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
             }
+            assignComplexAc(id, version);
 
-            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
-            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
-            // first remove old ac if not null
-            if (this.complexAcXref != null) {
-                if (!id.equals(complexAcXref.getId())) {
-                    // first remove old complexAcXref and creates the new one;
-                    complexXrefList.remove(this.complexAcXref);
-                    this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
-                    complexXrefList.add(this.complexAcXref);
-                }
-            } else {
-                this.complexAcXref = new DefaultXref(complexPortalDatabase, id, version, complexPortalPrimaryQualifier);
-                complexXrefList.add(this.complexAcXref);
-            }
         } else {
             throw new IllegalArgumentException("The complex ac has to be non null.");
         }
@@ -542,7 +581,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.physicalProperties != null ? this.physicalProperties.getValue() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setPhysicalProperties(String properties) {
         ComplexAnnotationList complexAnnotationList = (ComplexAnnotationList) getAnnotations();
 
@@ -573,7 +614,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.recommendedName != null ? this.recommendedName.getName() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRecommendedName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList) getAliases();
 
@@ -604,7 +647,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.systematicName != null ? this.systematicName.getName() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setSystematicName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList) getAliases();
 
@@ -635,14 +680,16 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.evidenceType;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setEvidenceType(CvTerm eco) {
         this.evidenceType = eco;
     }
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Sets the interactor type for this complex.
      * If the given interactorType is null, it will set the interactor type to 'complex' (MI:0314)
      */
@@ -664,7 +711,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.rigid != null ? this.rigid.getValue() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setRigid(String rigid) {
         Collection<Checksum> checksums = getChecksums();
         if (rigid != null) {
@@ -692,7 +741,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.updatedDate;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setUpdatedDate(Date updated) {
         this.updatedDate = updated;
     }
@@ -706,7 +757,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.createdDate;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCreatedDate(Date created) {
         this.createdDate = created;
     }
@@ -720,7 +773,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return this.interactionType;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInteractionType(CvTerm term) {
         this.interactionType = term;
     }
@@ -770,7 +825,9 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         return super.getAliases();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "Complex: " + super.toString();
@@ -782,7 +839,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      * @param added a {@link psidev.psi.mi.jami.model.Annotation} object.
      */
     protected void processAddedAnnotationEvent(Annotation added) {
-        if (physicalProperties == null && AnnotationUtils.doesAnnotationHaveTopic(added, Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES)){
+        if (physicalProperties == null && AnnotationUtils.doesAnnotationHaveTopic(added, Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES)) {
             physicalProperties = added;
         }
     }
@@ -793,7 +850,7 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
      * @param removed a {@link psidev.psi.mi.jami.model.Annotation} object.
      */
     protected void processRemovedAnnotationEvent(Annotation removed) {
-        if (physicalProperties != null && physicalProperties.equals(removed)){
+        if (physicalProperties != null && physicalProperties.equals(removed)) {
             physicalProperties = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
         }
     }
