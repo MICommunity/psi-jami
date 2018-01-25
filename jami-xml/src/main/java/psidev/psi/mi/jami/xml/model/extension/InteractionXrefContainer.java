@@ -85,10 +85,20 @@ public class InteractionXrefContainer extends XrefContainer {
         }
     }
 
+    /**
+     * <p>Getter for the field <code>complexAc</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getComplexAc() {
         return this.complexAcXref != null ? this.complexAcXref.getId() : null;
     }
 
+    /**
+     * <p>assignComplexAc.</p>
+     *
+     * @param accession a {@link java.lang.String} object.
+     */
     public void assignComplexAc(String accession) {
         // add new complex ac if not null
         if (accession != null) {

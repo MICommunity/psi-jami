@@ -346,7 +346,6 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         }
     }
 
-
     /**
      * <p>Getter for the field <code>source</code>.</p>
      *
@@ -488,12 +487,13 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
     }
 
     /** {@inheritDoc} */
-    @Override
     public String getComplexAc() {
         return this.complexAcXref != null ? this.complexAcXref.getId() : null;
     }
+
     /** {@inheritDoc} */
     public void assignComplexAc(String accession) {
+
         // add new complex ac if not null
         if (accession != null) {
             ComplexXrefList complexXrefList = (ComplexXrefList) getXrefs();
@@ -869,6 +869,11 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         this.systematicName = null;
     }
 
+    /**
+     * <p>processAddedXrefEvent</p>
+     *
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processAddedXrefEvent(Xref added) {
         // the added identifier is a complexAcXref and the current complexAcXref is not set
         if (complexAcXref == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)) {
@@ -879,6 +884,11 @@ public class DefaultComplex extends DefaultInteractor implements Complex {
         }
     }
 
+    /**
+     * <p>processRemovedXrefEvent</p>
+     *
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
     protected void processRemovedXrefEvent(Xref removed) {
         // the removed identifier is pubmed
         if (complexAcXref != null && complexAcXref.equals(removed)) {

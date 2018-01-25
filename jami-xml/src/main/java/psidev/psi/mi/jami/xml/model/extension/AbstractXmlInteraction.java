@@ -341,6 +341,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     protected InteractionXrefContainer getInteractionXrefContainer() {
         return interactionXrefContainer;
     }
+
     /**
      * Sets the value of the interactionXrefContainer property.
      *
@@ -428,6 +429,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Gets the value of the complexAc property.
      *
+     * @return a {@link java.lang.String} object.
      */
     public String getComplexAc() {
         return complexAc;
@@ -436,6 +438,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * Sets the value of the complexAc property
      *
+     * @param value a {@link java.lang.String} object.
      */
     public void assignComplexAc(String value) {
         this.complexAc = value;

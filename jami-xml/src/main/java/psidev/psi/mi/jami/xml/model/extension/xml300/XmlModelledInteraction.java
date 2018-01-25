@@ -174,6 +174,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
         return this.jaxbCooperativeEffectWrapper.cooperativeEffects;
     }
 
+    /** {@inheritDoc} */
     public String getComplexAc() {
         String complexAc = super.getComplexAc();
         if (complexAc == null){
@@ -182,6 +183,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
         return complexAc;
     }
 
+    /** {@inheritDoc} */
     public void assignComplexAc(String accession) {
         if (getInteractionXrefContainer() == null && accession != null){
             setInteractionXrefContainer(new InteractionXrefContainer());
