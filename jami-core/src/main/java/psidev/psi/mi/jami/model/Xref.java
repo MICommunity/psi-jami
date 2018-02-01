@@ -52,6 +52,10 @@ public interface Xref {
     public static final String UNIPROTKB_TREMBL = "trembl";
     /** Constant <code>UNIPROTKB_TREMBL_MI="MI:1099"</code> */
     public static final String UNIPROTKB_TREMBL_MI = "MI:1099";
+    /** Constant <code>COMPLEX_PORTAL="complex portal"</code> */
+    public static final String COMPLEX_PORTAL="complex portal";
+    /** Constant <code>COMPLEX_PORTAL_MI="MI:2279</code> */
+    public static final String COMPLEX_PORTAL_MI="MI:2279";
     /** Constant <code>IMEX="imex"</code> */
     public static final String IMEX = "imex";
     /** Constant <code>IMEX_MI="MI:0670"</code> */
@@ -68,9 +72,11 @@ public interface Xref {
     public static final String INTERPRO = "interpro";
     /** Constant <code>INTERPRO_MI="MI:0449"</code> */
     public static final String INTERPRO_MI = "MI:0449";
-    public static final String COMPLEX_PORTAL="complex portal";
-    public static final String COMPLEX_PORTAL_MI="MI:2279";
 
+    /** Constant <code>COMPLEX_PRIMARY="complex-primary"</code> */
+    public static final String COMPLEX_PRIMARY="complex-primary";
+    /** Constant <code>COMPLEX_PRIMARY_MI="MI:2282"</code> */
+    public static final String COMPLEX_PRIMARY_MI="MI:2282";
     /** Constant <code>IMEX_PRIMARY="imex-primary"</code> */
     public static final String IMEX_PRIMARY = "imex-primary";
     /** Constant <code>IMEX_PRIMARY_MI="MI:0662"</code> */
@@ -121,8 +127,6 @@ public interface Xref {
     /** Constant <code>INTERACTOR_SET_QUALIFIER_MI="MI:1341"</code> */
     public static final String INTERACTOR_SET_QUALIFIER_MI="MI:1341";
 
-    public static final String COMPLEX_PRIMARY="complex-primary";
-    public static final String COMPLEX_PRIMARY_MI="MI:2282";
 
     /**
      * The database is a controlled vocabulary term. It cannot be null.

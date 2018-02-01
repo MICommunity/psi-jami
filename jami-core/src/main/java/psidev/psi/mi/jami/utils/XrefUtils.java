@@ -553,6 +553,21 @@ public class XrefUtils {
     }
 
     /**
+     * <p>createXrefWithQualifierAndVersion</p>
+     *
+     * @param databaseName a {@link java.lang.String} object.
+     * @param databaseMi a {@link java.lang.String} object.
+     * @param id a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
+     * @param qualifierName a {@link java.lang.String} object.
+     * @param qualifierMi a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
+     */
+    public static Xref createXrefWithQualifier(String databaseName, String databaseMi, String id, String version, String qualifierName, String qualifierMi){
+        return new DefaultXref(CvTermUtils.createMICvTerm(databaseName, databaseMi), id, version, CvTermUtils.createMICvTerm(qualifierName, qualifierMi));
+    }
+
+    /**
      * <p>createXrefWithQualifier</p>
      *
      * @param databaseName a {@link java.lang.String} object.
