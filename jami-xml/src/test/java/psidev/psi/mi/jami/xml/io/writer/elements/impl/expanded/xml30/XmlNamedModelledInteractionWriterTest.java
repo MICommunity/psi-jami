@@ -61,7 +61,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
             "    <shortLabel>test complex</shortLabel>\n" +
             "  </names>\n" +
             "  <xref>\n" +
-            "    <primaryRef db=\"complex portal\" dbAc=\"MI:2279\" id=\"CPX-12345\" refType=\"complex-primary\" refTypeAc=\"MI:2282\"/>\n" +
+            "    <primaryRef db=\"complex portal\" dbAc=\"MI:2279\" id=\"CPX-12345\" version=\"1\" refType=\"complex-primary\" refTypeAc=\"MI:2282\"/>\n" +
             "  </xref>\n" +
             "  <participantList>\n" +
             "    <participant id=\"2\">\n" +
