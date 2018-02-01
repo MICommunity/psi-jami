@@ -2,7 +2,7 @@
 
 Master | Develop | Latest release
 --- | --- | ---
-[![Build Status: master][travis-badge-master]][ci]| [![Build Status: dev][travis-badge-dev]][ci] | [![Version](http://img.shields.io/badge/version-3.0.14-blue.svg?style=flat)](https://github.com/MICommunity/psi-jami/tree/psi-jami-3.0.14)
+[![Build Status: master][travis-badge-master]][ci]| [![Build Status: dev][travis-badge-dev]][ci] | [![Version](http://img.shields.io/badge/version-3.0.15-blue.svg?style=flat)](https://github.com/MICommunity/psi-jami/tree/psi-jami-3.0.15)
 
 ###Introduction
 
