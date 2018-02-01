@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>yes-SNAPSHOT</version>
+        <version>3.0.15-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-imex-updater</artifactId>
