@@ -254,6 +254,64 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Sets the value of the id property.
+     */
+    public void setId(int value) {
+        super.setId(value);
+        XmlEntryContext.getInstance().registerComplex(getId(), this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexAc() {
+        String complexAc = super.getComplexAc();
+        if (complexAc == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexAc() : null;
+        }
+        return complexAc;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexVersion() {
+        String complexVersion = super.getComplexVersion();
+        if (complexVersion == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexVersion() : null;
+        }
+        return complexVersion;
+    }
+
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession) {
+        // add new complex ac if not null
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession, version);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getPhysicalProperties() {
+        Annotation physical = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
+        return physical != null ? physical.getValue() : null;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void setPhysicalProperties(String properties) {
@@ -283,22 +341,6 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
         }
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * Sets the value of the id property.
-     */
-    public void setId(int value) {
-        super.setId(value);
-        XmlEntryContext.getInstance().registerComplex(getId(), this);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getPhysicalProperties() {
-        Annotation physical = AnnotationUtils.collectFirstAnnotationWithTopic(getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);
-        return physical != null ? physical.getValue() : null;
-    }
 
     /** {@inheritDoc} */
     @Override
@@ -410,8 +452,8 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
 
     /** {@inheritDoc} */
     @Override
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
         // set evidence type from complex xrefs
         if (value != null){
             Collection<Xref> ecoRefs = XrefUtils.collectAllXrefsHavingDatabase(value.getXrefs(), Complex.ECO_MI, Complex.ECO);

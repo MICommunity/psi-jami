@@ -15,6 +15,44 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     public static final String COMPLEX_MI="MI:0314";
 
     /**
+     * Complex accession if the complex has been curated under the Complex Portal curation rules.
+     * It can be null if the complex is not registered in the Complex Portal.
+     * This complex accession should be a shortcut to the complex-primary Xref in the collection of xrefs.
+     * Ex: CPX-123
+     * @return the complex accession
+     */
+    public String getComplexAc();
+
+    /**
+     * Complex version if the complex has been curated under the Complex Portal curation rules.
+     * It can be null if the complex is not registered in the Complex Portal.
+     * This complex version should be a shortcut to the complex-primary Xref version in the collection of xrefs.
+     * Ex: 1
+     * @return the complex version
+     */
+    public String getComplexVersion();
+
+    /**
+     * Assign a complex accession to a complex.
+     * It will add the new complex-primary ref to the collection of xrefs
+     * @param accession : the complex accession. If the version is added to the accession e.g. CPX-1234.2 the complex will be updated with the corresponding version, if not it is assumed version 1
+     * @throws IllegalArgumentException if
+     * - the accession is null or empty
+     */
+    public void assignComplexAc(String accession);
+
+
+    /**
+     * Assign a complex accession to a complex.
+     * It will add the new complex-primary ref to the collection of xrefs
+     * @param accession : the complex accession
+     * @param version : the version of the complex if it is provided. If version is null it will create the complex with version 1
+     * @throws IllegalArgumentException if
+     * - the accession is null or empty
+     */
+    public void assignComplexAc(String accession, String version);
+
+    /**
      * The physical properties for this complex.
      * It is a shortcut which should point to the first complex-properties annotation in the collection of annotations.
      * Example: Molecular mass = 154 kDa

@@ -517,6 +517,15 @@ public class CvTermUtils {
     }
 
     /**
+     * <p>createComplexPortalDatabase</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public static CvTerm createComplexPortalDatabase() {
+        return createMICvTerm(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI);
+    }
+
+    /**
      * <p>createPubmedDatabase</p>
      *
      * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -864,6 +873,15 @@ public class CvTermUtils {
      */
     public static CvTerm createImexPrimaryQualifier(){
         return createMICvTerm(Xref.IMEX_PRIMARY, Xref.IMEX_PRIMARY_MI);
+    }
+
+    /**
+     * <p>createComplexPortalPrimaryQualifier</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public static CvTerm createComplexPortalPrimaryQualifier(){
+        return createMICvTerm(Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI);
     }
 
     /**

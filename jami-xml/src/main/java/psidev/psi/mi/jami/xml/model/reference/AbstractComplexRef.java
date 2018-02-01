@@ -34,6 +34,15 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
 
     /** {@inheritDoc} */
     @Override
+    public CvTerm getEvidenceType() {
+        logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+            initialiseInteractorDelegate();
+        }
+        return getDelegate().getEvidenceType();
+    }
+
+    @Override
     public void setEvidenceType(CvTerm eco) {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (getDelegate() == null){
@@ -44,12 +53,42 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
 
     /** {@inheritDoc} */
     @Override
-    public CvTerm getEvidenceType() {
+    public String getComplexAc() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
         if (getDelegate() == null){
             initialiseInteractorDelegate();
         }
-        return getDelegate().getEvidenceType();
+        return getDelegate().getComplexAc();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexVersion() {
+        logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+            initialiseInteractorDelegate();
+        }
+        return getDelegate().getComplexVersion();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        logger.log(Level.WARNING, "The interaction reference " + ref + " is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null) {
+            initialiseInteractorDelegate();
+        }
+        getDelegate().assignComplexAc(accession, version);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession) {
+        logger.log(Level.WARNING, "The interaction reference " + ref + " is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null) {
+            initialiseInteractorDelegate();
+        }
+        getDelegate().assignComplexAc(accession);
     }
 
     /**

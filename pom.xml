@@ -63,6 +63,8 @@
             <plugin>
                 <!--To avoid problems run with: -->
                 <!--mvn jgitflow:release-finish -Djava.net.preferIPv4Stack=true -Dgit.user=XXX -Dgit.password=XXX -->
+                <!--mvn jgitflow:feature-finish -Djava.net.preferIPv4Stack=true -Dmaven.test.skip=true -Dgit.user=XXX -Dgit.password=XXX -->
+
                 <groupId>external.atlassian.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
                 <version>1.0-m5.1</version>

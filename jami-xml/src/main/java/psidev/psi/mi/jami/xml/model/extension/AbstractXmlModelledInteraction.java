@@ -170,15 +170,15 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
-    public void setJAXBNames(NamesContainer value) {
-        super.setJAXBNames(value);
+    public void setInteractionNamesContainer(NamesContainer value) {
+        super.setInteractionNamesContainer(value);
     }
 
     /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
     }
 
     /**

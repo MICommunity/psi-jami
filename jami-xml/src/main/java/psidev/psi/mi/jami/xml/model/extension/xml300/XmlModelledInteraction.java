@@ -174,6 +174,40 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
         return this.jaxbCooperativeEffectWrapper.cooperativeEffects;
     }
 
+    /** {@inheritDoc} */
+    public String getComplexAc() {
+        String complexAc = super.getComplexAc();
+        if (complexAc == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexAc() : null;
+        }
+        return complexAc;
+    }
+
+    /** {@inheritDoc} */
+    public String getComplexVersion() {
+        String complexVersion = super.getComplexVersion();
+        if (complexVersion == null){
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getComplexVersion() : null;
+        }
+        return complexVersion;
+    }
+
+    /** {@inheritDoc} */
+    public void assignComplexAc(String accession, String version) {
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession, version);
+    }
+
+    /** {@inheritDoc} */
+    public void assignComplexAc(String accession) {
+        if (getInteractionXrefContainer() == null && accession != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
+        }
+        getInteractionXrefContainer().assignComplexAc(accession);
+    }
+
     /**
      * <p>getPhysicalProperties.</p>
      *
@@ -212,12 +246,12 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      * @return a {@link java.lang.String} object.
      */
     public String getRecommendedName() {
-        return getNamesContainer().getRecommendedName();
+        return getInteractionNamesContainer().getRecommendedName();
     }
 
     /** {@inheritDoc} */
     public void setRecommendedName(String name) {
-        getNamesContainer().setRecommendedName(name);
+        getInteractionNamesContainer().setRecommendedName(name);
     }
 
     /**
@@ -226,12 +260,12 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      * @return a {@link java.lang.String} object.
      */
     public String getSystematicName() {
-        return getNamesContainer().getSystematicName();
+        return getInteractionNamesContainer().getSystematicName();
     }
 
     /** {@inheritDoc} */
     public void setSystematicName(String name) {
-        getNamesContainer().setSystematicName(name);
+        getInteractionNamesContainer().setSystematicName(name);
     }
 
     /** {@inheritDoc} */
@@ -363,14 +397,14 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      */
     @XmlElement(name = "names")
     public void setJAXBNames(ComplexNamesContainer value) {
-        super.setJAXBNames(value);
+        super.setInteractionNamesContainer(value);
     }
 
     /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
     }
 
     /**
@@ -514,13 +548,13 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /** {@inheritDoc} */
     @Override
     protected void initialiseNamesContainer() {
-        super.setJAXBNames(new ComplexNamesContainer());
+        super.setInteractionNamesContainer(new ComplexNamesContainer());
     }
 
     /** {@inheritDoc} */
     @Override
-    protected ComplexNamesContainer getNamesContainer() {
-        return (ComplexNamesContainer) super.getNamesContainer();
+    protected ComplexNamesContainer getInteractionNamesContainer() {
+        return (ComplexNamesContainer) super.getInteractionNamesContainer();
     }
 
     /**
@@ -855,7 +889,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
 
         @Override
         public String toString() {
-            return "Com-lex Attribute List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Complex Attribute List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
         }
     }
 }

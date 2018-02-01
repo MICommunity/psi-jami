@@ -50,6 +50,9 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
             "  <names>\n" +
             "    <shortLabel>test complex</shortLabel>\n" +
             "  </names>\n" +
+            "  <xref>\n" +
+            "    <primaryRef db=\"complex portal\" dbAc=\"MI:2279\" id=\"CPX-12345\" version=\"1\" refType=\"complex-primary\" refTypeAc=\"MI:2282\"/>\n" +
+            "  </xref>\n" +
             "  <participantList>\n" +
             "    <participant id=\"2\">\n" +
             "      <interactorRef>3</interactorRef>\n" +
@@ -593,6 +596,8 @@ public class XmlModelledInteractionWriterTest extends AbstractXmlWriterTest {
     @Test
     public void test_full_complex() throws XMLStreamException, IOException, IllegalRangeException {
         Complex interaction = new DefaultComplex("test complex");
+        interaction.assignComplexAc("CPX-12345");
+
         ModelledParticipant participant = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.setOrganism(new DefaultOrganism(9606,"human"));
