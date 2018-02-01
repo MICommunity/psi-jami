@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.0.15</version>
+        <version>3.0.16-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-chebi</artifactId>
