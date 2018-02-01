@@ -3,9 +3,11 @@ package psidev.psi.mi.jami.xml.model.extension;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.DefaultXref;
 import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.Entry;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
@@ -28,6 +30,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     private ExtendedPsiXmlModelledInteraction modelledInteraction;
     private Organism organism;
     private CvTerm interactorType;
+    private Xref complexAcXref;
 
     /**
      * <p>Constructor for XmlModelledInteractionComplexWrapper.</p>
@@ -292,6 +295,74 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     }
 
     /** {@inheritDoc} */
+    @Override
+    public String getComplexAc() {
+        Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.modelledInteraction.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getId() : null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getComplexVersion() {
+        Collection<Xref> complexAcs = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(this.modelledInteraction.getXrefs(), Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY);
+        return complexAcs != null && !complexAcs.isEmpty() ? complexAcs.iterator().next().getVersion() : null;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (accession != null) {
+            Collection<Xref> complexXrefList =  getXrefs();
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!accession.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    complexXrefList.remove(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                    complexXrefList.add(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                complexXrefList.add(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void assignComplexAc(String accession) {
+        // add new complex ac if not null
+        if (accession != null) {
+            String id;
+            String version;
+
+            //It checks if the accession is valid and split the version if it is provided
+            String[] splittedComplexAc = accession.split("\\.");
+            if (splittedComplexAc.length == 1) {
+                id = splittedComplexAc[0];
+                version = "1";
+            } else if (splittedComplexAc.length == 2) {
+                {
+                    id = splittedComplexAc[0];
+                    version = splittedComplexAc[1];
+                }
+            } else {
+                throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
+            }
+            assignComplexAc(id, version);
+
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+
     @Override
     public String getPhysicalProperties() {
         Annotation properties = AnnotationUtils.collectFirstAnnotationWithTopic(this.modelledInteraction.getAnnotations(), Annotation.COMPLEX_PROPERTIES_MI, Annotation.COMPLEX_PROPERTIES);

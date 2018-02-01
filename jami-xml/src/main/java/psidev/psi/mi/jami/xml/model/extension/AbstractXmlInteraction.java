@@ -31,11 +31,13 @@ import java.util.List;
 @XmlTransient
 public abstract class AbstractXmlInteraction<T extends Participant> implements FileSourceContext, Locatable, NamedInteraction<T>{
 
-    private NamesContainer namesContainer;
-    private InteractionXrefContainer xrefContainer;
+    private NamesContainer interactionNamesContainer;
+    private InteractionXrefContainer interactionXrefContainer;
     private Boolean intraMolecular;
     private int id;
     private String imexId;
+    private String complexAc;
+    private String complexVersion;
     private Date updatedDate;
     private Date createdDate;
     private PsiXmlLocator sourceLocator;
@@ -80,39 +82,39 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      * @return a {@link java.lang.String} object.
      */
     public String getShortName() {
-        return this.namesContainer != null ? this.namesContainer.getShortLabel() : null;
+        return this.interactionNamesContainer != null ? this.interactionNamesContainer.getShortLabel() : null;
     }
 
     /** {@inheritDoc} */
     public void setShortName(String name) {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.interactionNamesContainer == null){
+            this.interactionNamesContainer = new NamesContainer();
         }
-        this.namesContainer.setShortLabel(name);
+        this.interactionNamesContainer.setShortLabel(name);
     }
 
     /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.interactionNamesContainer == null){
+            this.interactionNamesContainer = new NamesContainer();
         }
-        return this.namesContainer.getAliases();
+        return this.interactionNamesContainer.getAliases();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.interactionNamesContainer == null){
+            this.interactionNamesContainer = new NamesContainer();
         }
-        this.namesContainer.setFullName(name);
+        this.interactionNamesContainer.setFullName(name);
     }
 
     /** {@inheritDoc} */
     @Override
     public String getFullName() {
-        return this.namesContainer != null ? this.namesContainer.getFullName() : null;
+        return this.interactionNamesContainer != null ? this.interactionNamesContainer.getFullName() : null;
     }
 
     /**
@@ -153,10 +155,10 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
-        if (xrefContainer == null){
-            xrefContainer = new InteractionXrefContainer();
+        if (interactionXrefContainer == null){
+            interactionXrefContainer = new InteractionXrefContainer();
         }
-        return this.xrefContainer.getIdentifiers();
+        return this.interactionXrefContainer.getIdentifiers();
     }
 
     /**
@@ -165,10 +167,10 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
-        if (xrefContainer == null){
-            xrefContainer = new InteractionXrefContainer();
+        if (interactionXrefContainer == null){
+            interactionXrefContainer = new InteractionXrefContainer();
         }
-        return this.xrefContainer.getXrefs();
+        return this.interactionXrefContainer.getXrefs();
     }
 
     /**
@@ -310,27 +312,52 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     }
 
     /**
+     * <p>Getter for the field <code>interactionNamesContainer</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
+     */
+    protected NamesContainer getInteractionNamesContainer() {
+        if (this.interactionNamesContainer == null){
+            initialiseNamesContainer();
+        }
+        return interactionNamesContainer;
+    }
+
+    /**
      * Sets the value of the names property.
      *
      * @param value
      *     allowed object is
      *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
-    public void setJAXBNames(NamesContainer value) {
-        this.namesContainer = value;
+    public void setInteractionNamesContainer(NamesContainer value) {
+        this.interactionNamesContainer = value;
     }
 
     /**
-     * Sets the value of the xrefContainer property.
+     * <p>getInteractionXrefContainer.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.InteractionXrefContainer} object.
+     */
+    protected InteractionXrefContainer getInteractionXrefContainer() {
+        return interactionXrefContainer;
+    }
+
+    /**
+     * Sets the value of the interactionXrefContainer property.
      *
      * @param value
      *     allowed object is
-     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractorXrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.InteractionXrefContainer}
+     *
      */
-    public void setJAXBXref(InteractionXrefContainer value) {
-        this.xrefContainer = value;
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        this.interactionXrefContainer = value;
         if (value != null && imexId != null){
-            this.xrefContainer.assignImexId(imexId);
+            this.interactionXrefContainer.assignImexId(imexId);
+        }
+        if (value != null && complexAc != null){
+            this.interactionXrefContainer.assignComplexAc(complexAc);
         }
     }
 
@@ -393,13 +420,44 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     public void assignImexId(String value) {
         this.imexId = value;
         if (value != null) {
-            if (this.xrefContainer == null) {
-                this.xrefContainer = new InteractionXrefContainer();
+            if (this.interactionXrefContainer == null) {
+                this.interactionXrefContainer = new InteractionXrefContainer();
             }
-            this.xrefContainer.assignImexId(value);
+            this.interactionXrefContainer.assignImexId(value);
         }
     }
 
+    /**
+     * Gets the value of the complexAc property.
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getComplexAc() {
+        return complexAc;
+    }
+
+    /**
+     * Gets the value of the complexVersion property.
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getComplexVersion() {
+        return complexVersion;
+    }
+    /**
+     * Sets the value of the complexAc property
+     *
+     * @param value a {@link java.lang.String} object.
+     */
+    public void assignComplexAc(String value) {
+        this.complexAc = value;
+        if (value != null) {
+            if (this.interactionXrefContainer == null) {
+                this.interactionXrefContainer = new InteractionXrefContainer();
+            }
+            this.interactionXrefContainer.assignComplexAc(value);
+        }
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -491,14 +549,6 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
         }
     }
 
-    /**
-     * <p>getJAXBXref.</p>
-     *
-     * @return a {@link psidev.psi.mi.jami.xml.model.extension.InteractionXrefContainer} object.
-     */
-    public InteractionXrefContainer getJAXBXref() {
-        return xrefContainer;
-    }
 
     /**
      * <p>processAddedParticipant.</p>
@@ -524,18 +574,6 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     }
 
     /**
-     * <p>Getter for the field <code>namesContainer</code>.</p>
-     *
-     * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
-     */
-    protected NamesContainer getNamesContainer() {
-        if (this.namesContainer == null){
-            initialiseNamesContainer();
-        }
-        return namesContainer;
-    }
-
-    /**
      * <p>getAttributeWrapper.</p>
      *
      * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteraction.JAXBAttributeWrapper} object.
@@ -551,7 +589,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      * <p>initialiseNamesContainer.</p>
      */
     protected void initialiseNamesContainer(){
-        this.namesContainer = new NamesContainer();
+        this.interactionNamesContainer = new NamesContainer();
     }
 
     ////////////////////////////////////////////////////////////////// classes

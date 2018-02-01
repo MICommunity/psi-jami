@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.model.extension;
 
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.model.impl.DefaultXref;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
@@ -24,6 +25,8 @@ import java.util.List;
 @XmlType(name = "interactionXrefContainer")
 public class InteractionXrefContainer extends XrefContainer {
     private Xref imexId;
+    private Xref complexAcXref;
+
     private List<Xref> identifiers;
 
     /** {@inheritDoc} */
@@ -83,6 +86,85 @@ public class InteractionXrefContainer extends XrefContainer {
     }
 
     /**
+     * <p>Getter for the field <code>complexAc</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getComplexAc() {
+        return this.complexAcXref != null ? this.complexAcXref.getId() : null;
+    }
+
+    /**
+     * <p>Getter for the field <code>complexVersion</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getComplexVersion() {
+        return this.complexAcXref != null ? this.complexAcXref.getVersion() : null;
+    }
+
+    /**
+     * <p>assignComplexAc.</p>
+     *
+     * @param accession a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
+     */
+    public void assignComplexAc(String accession, String version) {
+        // add new complex ac if not null
+        if (accession != null) {
+            FullXrefList interactionXrefs = (FullXrefList) getXrefs();
+
+            CvTerm complexPortalDatabase = CvTermUtils.createComplexPortalDatabase();
+            CvTerm complexPortalPrimaryQualifier = CvTermUtils.createComplexPortalPrimaryQualifier();
+            // first remove old ac if not null
+            if (this.complexAcXref != null) {
+                if (!accession.equals(complexAcXref.getId())) {
+                    // first remove old complexAcXref and creates the new one;
+                    interactionXrefs.removeOnly(this.complexAcXref);
+                    this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                    interactionXrefs.addOnly(this.complexAcXref);
+                }
+            } else {
+                this.complexAcXref = new DefaultXref(complexPortalDatabase, accession, version, complexPortalPrimaryQualifier);
+                interactionXrefs.addOnly(this.complexAcXref);
+            }
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+    /**
+     * <p>assignComplexAc.</p>
+     *
+     * @param accession a {@link java.lang.String} object.
+     */
+    public void assignComplexAc(String accession) {
+        // add new complex ac if not null
+        if (accession != null) {
+            String id;
+            String version;
+
+            //It checks if the accession is valid and split the version if it is provided
+            String[] splittedComplexAc = accession.split("\\.");
+            if (splittedComplexAc.length == 1) {
+                id = splittedComplexAc[0];
+                version = "1";
+            } else if (splittedComplexAc.length == 2) {
+                {
+                    id = splittedComplexAc[0];
+                    version = splittedComplexAc[1];
+                }
+            } else {
+                throw new IllegalArgumentException("The complex ac has a non valid format (e.g. CPX-12345.1)");
+            }
+            assignComplexAc(id, version);
+
+        } else {
+            throw new IllegalArgumentException("The complex ac has to be non null.");
+        }
+    }
+
+    /**
      * <p>processAddedPotentialImex.</p>
      *
      * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -115,6 +197,28 @@ public class InteractionXrefContainer extends XrefContainer {
      */
     protected void clearImexId() {
         imexId = null;
+    }
+
+    protected void processAddedPotentialComplexAc(Xref added) {
+
+        // the added identifier is a complex portal accession and the current complex portal accession is not set
+        if (complexAcXref == null && XrefUtils.isXrefFromDatabase(added, Xref.COMPLEX_PORTAL_MI, Xref.COMPLEX_PORTAL)){
+            // the added xrefContainer is complex-primary
+            if (XrefUtils.doesXrefHaveQualifier(added, Xref.COMPLEX_PRIMARY_MI, Xref.COMPLEX_PRIMARY)){
+                complexAcXref = added;
+            }
+        }
+    }
+
+    protected void processRemovedPotentialComplexAc(Xref removed) {
+        // the removed identifier is pubmed
+        if (complexAcXref != null && complexAcXref.equals(removed)){
+            complexAcXref = null;
+        }
+    }
+
+    protected void clearComplexAc() {
+        complexAcXref = null;
     }
 
     /**
@@ -180,16 +284,19 @@ public class InteractionXrefContainer extends XrefContainer {
         @Override
         protected void processAddedObjectEvent(Xref added) {
             processAddedPotentialImex(added);
+            processAddedPotentialComplexAc(added);
         }
 
         @Override
         protected void processRemovedObjectEvent(Xref removed) {
             processRemovedPotentialImex(removed);
+            processRemovedPotentialComplexAc(removed);
         }
 
         @Override
         protected void clearProperties() {
             clearImexId();
+            clearComplexAc();
         }
     }
 }

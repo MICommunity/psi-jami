@@ -32,7 +32,7 @@ public class FullXmlComplexParserTest {
         PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
 
         Complex interaction = parser.parseNextInteraction();
-        Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+        Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
 
         Assert.assertNotNull(interaction);
         Assert.assertEquals("rad53-dbf4", interaction.getShortName());
@@ -115,7 +115,7 @@ public class FullXmlComplexParserTest {
         Assert.assertEquals("Serine/threonine-protein kinase RAD53", p1.getInteractor().getFullName());
         Assert.assertEquals(8, p1.getInteractor().getAliases().size());
         Assert.assertTrue(p1.getInteractor() instanceof Protein);
-        Protein prot = (Protein)p1.getInteractor();
+        Protein prot = (Protein) p1.getInteractor();
         Assert.assertEquals("RAD53", prot.getGeneName());
         Assert.assertEquals(44, prot.getXrefs().size());
         Assert.assertEquals(4, prot.getIdentifiers().size());
@@ -145,7 +145,7 @@ public class FullXmlComplexParserTest {
         PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
 
         Complex interaction = parser.parseNextInteraction();
-        Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+        Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
 
         Assert.assertNotNull(interaction);
         Assert.assertEquals("rad53-dbf4", interaction.getShortName());
@@ -230,7 +230,7 @@ public class FullXmlComplexParserTest {
         Assert.assertEquals("Serine/threonine-protein kinase RAD53", p1.getInteractor().getFullName());
         Assert.assertEquals(8, p1.getInteractor().getAliases().size());
         Assert.assertTrue(p1.getInteractor() instanceof Protein);
-        Protein prot = (Protein)p1.getInteractor();
+        Protein prot = (Protein) p1.getInteractor();
         Assert.assertEquals("RAD53", prot.getGeneName());
         Assert.assertEquals(44, prot.getXrefs().size());
         Assert.assertEquals(4, prot.getIdentifiers().size());
@@ -259,11 +259,11 @@ public class FullXmlComplexParserTest {
 
         PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
         int index = 0;
-        while(!parser.hasFinished()){
+        while (!parser.hasFinished()) {
             Complex interaction = parser.parseNextInteraction();
             Assert.assertNotNull(interaction);
-            Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
-            if (index == 1){
+            Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
+            if (index == 1) {
                 Iterator<ModelledParticipant> pIterator = interaction.getParticipants().iterator();
                 ModelledParticipant p1 = pIterator.next();
                 ModelledFeature f1 = p1.getFeatures().iterator().next();
@@ -287,18 +287,18 @@ public class FullXmlComplexParserTest {
     public void test_read_valid_xml25_2() throws PsiXmlParserException, JAXBException, XMLStreamException, IOException {
         InputStream stream = new URL("ftp://ftp.ebi.ac.uk/pub/databases/intact/current/psi25/pmid/2011/19536198_gong-2009-1_01.xml").openStream();
 
-        System.out.println("Start"+System.currentTimeMillis());
+        System.out.println("Start" + System.currentTimeMillis());
         PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
         int index = 0;
-        while(!parser.hasFinished()){
+        while (!parser.hasFinished()) {
             Complex interaction = parser.parseNextInteraction();
             Assert.assertNotNull(interaction);
-            Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+            Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
             index++;
         }
-        System.out.println("End"+System.currentTimeMillis());
+        System.out.println("End" + System.currentTimeMillis());
 
-        System.out.println("Read "+index+" interactions");
+        System.out.println("Read " + index + " interactions");
 
         parser.close();
     }
@@ -312,7 +312,7 @@ public class FullXmlComplexParserTest {
         Complex interaction = parser.parseNextInteraction();
 
         Assert.assertNotNull(interaction);
-        Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+        Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
         Assert.assertEquals("rad53-dbf4", interaction.getShortName());
 
         // source
@@ -341,7 +341,7 @@ public class FullXmlComplexParserTest {
         Assert.assertEquals("Serine/threonine-protein kinase RAD53", p1.getInteractor().getFullName());
         Assert.assertEquals(8, p1.getInteractor().getAliases().size());
         Assert.assertTrue(p1.getInteractor() instanceof Protein);
-        Protein prot = (Protein)p1.getInteractor();
+        Protein prot = (Protein) p1.getInteractor();
         Assert.assertEquals("RAD53", prot.getGeneName());
         Assert.assertEquals(44, prot.getXrefs().size());
         Assert.assertEquals(4, prot.getIdentifiers().size());
@@ -384,7 +384,7 @@ public class FullXmlComplexParserTest {
         Assert.assertEquals("Transient receptor potential protein", p1.getInteractor().getFullName());
         Assert.assertEquals(2, p1.getInteractor().getAliases().size());
         Assert.assertTrue(p1.getInteractor() instanceof Protein);
-        prot = (Protein)p1.getInteractor();
+        prot = (Protein) p1.getInteractor();
         Assert.assertEquals("trp", prot.getGeneName());
         Assert.assertEquals(23, prot.getXrefs().size());
         Assert.assertEquals(4, prot.getIdentifiers().size());
@@ -394,6 +394,46 @@ public class FullXmlComplexParserTest {
         Assert.assertEquals(7227, prot.getOrganism().getTaxId());
 
         parser.close();
+    }
+
+    @Test
+    public void test_read_valid_xml30_complex_ac() throws PsiXmlParserException, JAXBException, XMLStreamException {
+        InputStream stream = XmlEvidenceParserTest.class.getResourceAsStream("/samples/xml30/gaba_receptor_abstract.xml");
+
+        PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
+
+        Complex interaction = parser.parseNextInteraction();
+        Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
+
+        Assert.assertNotNull(interaction);
+
+        // xrefs
+        Assert.assertEquals(13, interaction.getXrefs().size());
+        Assert.assertEquals("CPX-12345", interaction.getComplexAc());
+
+        Assert.assertTrue(parser.hasFinished());
+        parser.close();
+
+    }
+
+    @Test
+    public void test_read_valid_xml25_complex_ac() throws PsiXmlParserException, JAXBException, XMLStreamException {
+        InputStream stream = XmlEvidenceParserTest.class.getResourceAsStream("/samples/csde1_human_complex_compact.xml");
+
+        PsiXmlParser<Complex> parser = new FullXmlComplexParser(stream);
+
+        Complex interaction = parser.parseNextInteraction();
+        Assert.assertNotNull(((FileSourceContext) interaction).getSourceLocator());
+
+        Assert.assertNotNull(interaction);
+
+        // xrefs
+        Assert.assertEquals(11, interaction.getXrefs().size());
+        Assert.assertEquals("CPX-12345", interaction.getComplexAc());
+
+        Assert.assertTrue(parser.hasFinished());
+        parser.close();
+
     }
 
     @Test(expected = PsiXmlParserException.class)

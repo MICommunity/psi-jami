@@ -70,15 +70,15 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /** {@inheritDoc} */
     @Override
     @XmlElement(name = "names")
-    public void setJAXBNames(NamesContainer value) {
-        super.setJAXBNames(value);
+    public void setInteractionNamesContainer(NamesContainer value) {
+        super.setInteractionNamesContainer(value);
     }
 
     /** {@inheritDoc} */
     @Override
     @XmlElement(name = "xref")
-    public void setJAXBXref(InteractionXrefContainer value) {
-        super.setJAXBXref(value);
+    public void setInteractionXrefContainer(InteractionXrefContainer value) {
+        super.setInteractionXrefContainer(value);
     }
 
     /** {@inheritDoc} */
@@ -112,17 +112,17 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         // If the imexId is not defined in the attributes
         // of the interaction we try to retrieve from the xrefs
         if (imexId == null){
-            return getJAXBXref() != null ? getJAXBXref().getImexId() : null;
+            return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getImexId() : null;
         }
         return imexId;
     }
 
     /** {@inheritDoc} */
     public void assignImexId(String identifier) {
-        if (getJAXBXref() == null && identifier != null){
-            setJAXBXref(new InteractionXrefContainer());
+        if (getInteractionXrefContainer() == null && identifier != null){
+            setInteractionXrefContainer(new InteractionXrefContainer());
         }
-        getJAXBXref().assignImexId(identifier);
+        getInteractionXrefContainer().assignImexId(identifier);
         if (getImexId() == null){
             setJAXBImexId(identifier);
         }

@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.14</version>
+    <version>3.0.15</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -63,6 +63,8 @@
             <plugin>
                 <!--To avoid problems run with: -->
                 <!--mvn jgitflow:release-finish -Djava.net.preferIPv4Stack=true -Dgit.user=XXX -Dgit.password=XXX -->
+                <!--mvn jgitflow:feature-finish -Djava.net.preferIPv4Stack=true -Dmaven.test.skip=true -Dgit.user=XXX -Dgit.password=XXX -->
+
                 <groupId>external.atlassian.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
                 <version>1.0-m5.1</version>

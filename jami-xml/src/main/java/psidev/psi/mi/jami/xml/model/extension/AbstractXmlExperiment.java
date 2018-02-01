@@ -32,8 +32,8 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
 
     private static final Logger logger = Logger.getLogger("AbstractXmlExperiment");
 
-    private NamesContainer namesContainer;
-    private ExperimentXrefContainer xrefContainer;
+    private NamesContainer experimentNamesContainer;
+    private ExperimentXrefContainer experimentXrefContainer;
     private CvTerm participantIdentificationMethod;
     private CvTerm featureDetectionMethod;
     private int id;
@@ -112,10 +112,10 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /** {@inheritDoc} */
     public void setPublication(Publication publication) {
         this.publication = publication;
-        if (this.xrefContainer == null){
-            this.xrefContainer = new ExperimentXrefContainer();
+        if (this.experimentXrefContainer == null){
+            this.experimentXrefContainer = new ExperimentXrefContainer();
         }
-        this.xrefContainer.setPublication(this.publication);
+        this.experimentXrefContainer.setPublication(this.publication);
     }
 
     /** {@inheritDoc} */
@@ -128,10 +128,10 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
             publication.addExperiment(this);
         }
 
-        if (this.xrefContainer == null){
-            this.xrefContainer = new ExperimentXrefContainer();
+        if (this.experimentXrefContainer == null){
+            this.experimentXrefContainer = new ExperimentXrefContainer();
         }
-        this.xrefContainer.setPublication(this.publication);
+        this.experimentXrefContainer.setPublication(this.publication);
     }
 
     /**
@@ -140,11 +140,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
-        if (this.xrefContainer == null){
-            this.xrefContainer = new ExperimentXrefContainer();
-            this.xrefContainer.setPublication(publication);
+        if (this.experimentXrefContainer == null){
+            this.experimentXrefContainer = new ExperimentXrefContainer();
+            this.experimentXrefContainer.setPublication(publication);
         }
-        return this.xrefContainer.getXrefs();
+        return this.experimentXrefContainer.getXrefs();
     }
 
     /**
@@ -359,24 +359,24 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     }
 
     /**
-     * Gets the value of the namesContainer property.
+     * Gets the value of the experimentNamesContainer property.
      *
      * @return a {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer} object.
      */
-    public NamesContainer getNames() {
-        return namesContainer;
+    public NamesContainer getExperimentNamesContainer() {
+        return experimentNamesContainer;
     }
 
     /**
-     * Sets the value of the namesContainer property.
+     * Sets the value of the experimentNamesContainer property.
      *
      * @param value
      *     allowed object is
      *     {@link psidev.psi.mi.jami.xml.model.extension.NamesContainer}
      */
     @XmlElement(name = "names")
-    public void setNames(NamesContainer value) {
-        this.namesContainer = value;
+    public void setExperimentNamesContainer(NamesContainer value) {
+        this.experimentNamesContainer = value;
     }
 
     /**
@@ -415,10 +415,10 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *     {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer}
      */
     @XmlElement(name = "xref")
-    public void setJAXBXref(ExperimentXrefContainer value) {
-        this.xrefContainer = value;
+    public void setExperimentXrefContainer(ExperimentXrefContainer value) {
+        this.experimentXrefContainer = value;
         if (value != null){
-            this.xrefContainer.setPublication(this.publication);
+            this.experimentXrefContainer.setPublication(this.publication);
         }
     }
 
@@ -680,40 +680,40 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /** {@inheritDoc} */
     @Override
     public String getShortName() {
-        return this.namesContainer != null ? this.namesContainer.getShortLabel():null;
+        return this.experimentNamesContainer != null ? this.experimentNamesContainer.getShortLabel():null;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setShortName(String name) {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.experimentNamesContainer == null){
+            this.experimentNamesContainer = new NamesContainer();
         }
-        this.namesContainer.setShortLabel(name);
+        this.experimentNamesContainer.setShortLabel(name);
     }
 
     /** {@inheritDoc} */
     @Override
     public String getFullName() {
-        return this.namesContainer != null ? this.namesContainer.getFullName():null;
+        return this.experimentNamesContainer != null ? this.experimentNamesContainer.getFullName():null;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setFullName(String name) {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.experimentNamesContainer == null){
+            this.experimentNamesContainer = new NamesContainer();
         }
-        this.namesContainer.setFullName(name);
+        this.experimentNamesContainer.setFullName(name);
     }
 
     /** {@inheritDoc} */
     @Override
     public List<Alias> getAliases() {
-        if (this.namesContainer == null){
-            this.namesContainer = new NamesContainer();
+        if (this.experimentNamesContainer == null){
+            this.experimentNamesContainer = new NamesContainer();
         }
-        return this.namesContainer.getAliases();
+        return this.experimentNamesContainer.getAliases();
     }
 
     /** {@inheritDoc} */
