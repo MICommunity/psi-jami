@@ -5,11 +5,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.17-SNAPSHOT</version>
+        <version>3.0.16</version>
     </parent>
 
     <artifactId>jami-core</artifactId>
-    <version>3.0.17-SNAPSHOT</version>
+    <version>3.0.16</version>
     <name>PSI :: JAMI - Core interfaces, default implementations and utility classes</name>
 
     <dependencies>
