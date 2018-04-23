@@ -82,7 +82,15 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
      * @throws java.io.IOException if any.
      */
     public void write(I object) throws IOException {
-        Xref preferredIdentifier = !object.getIdentifiers().isEmpty() ? (Xref)object.getIdentifiers().iterator().next() : null;
+        Xref preferredIdentifier;
+
+        if(object instanceof Complex){
+            preferredIdentifier = ((Complex) object).getPreferredIdentifier();
+        }
+        else {
+            preferredIdentifier = !object.getIdentifiers().isEmpty() ? (Xref)object.getIdentifiers().iterator().next() : null;
+        }
+
         String[] keyValues = generateInteractionIdentifier(object, preferredIdentifier);
         String id = null;
 
