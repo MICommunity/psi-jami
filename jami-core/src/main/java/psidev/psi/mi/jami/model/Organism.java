@@ -18,7 +18,7 @@ public interface Organism {
      * It can be null.
      * Ex: human, mouse, ...
      *
-     * @return the common name/mnemonic
+     * @return the mnemonic, common name if there is no mnemonic, scientific name if no common names/mnemonic
      */
     public String getCommonName();
 
