@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.16</version>
+    <version>3.0.17</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -21,7 +21,7 @@
         <protein.mapping.version>1.0.8</protein.mapping.version>
 
         <ols.client.version>2.11</ols.client.version>
-        <uniprot.japi.version>1.0.15</uniprot.japi.version>
+        <uniprot.japi.version>1.0.19</uniprot.japi.version>
         <chebiws.client.version>2.3.2</chebiws.client.version>
 
         <!--<maven.javadoc.skip>true</maven.javadoc.skip>-->
