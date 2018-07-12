@@ -606,7 +606,7 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
             writeProperty("Name", (organism.getCommonName() != null ? organism.getCommonName() : "unspecified")+(organism.getScientificName() != null ? ": "+organism.getScientificName() : ""));
 
             // write organism taxid
-            writeProperty("TaxId", "<a href=\"http://www.uniprot.org/taxonomy/"+organism.getTaxId()+"\">"+organism.getTaxId()+"</a>");
+            writeProperty("TaxId", "<a href=\"https://www.uniprot.org/taxonomy/"+organism.getTaxId()+"\">"+organism.getTaxId()+"</a>");
 
             // write cell type
             writeCvTerm("Cell Type", organism.getCellType());
