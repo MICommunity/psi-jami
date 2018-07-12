@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.19-SNAPSHOT</version>
+        <version>3.0.18</version>
     </parent>
 
     <artifactId>jami-commons</artifactId>
-    <version>3.0.19-SNAPSHOT</version>
+    <version>3.0.18</version>
     <name>PSI :: JAMI - Commons</name>
     <description>JAMI Commons</description>
 
