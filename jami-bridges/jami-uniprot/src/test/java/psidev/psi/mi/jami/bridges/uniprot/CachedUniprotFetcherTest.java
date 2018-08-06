@@ -2,15 +2,12 @@ package psidev.psi.mi.jami.bridges.uniprot;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.uniprot.util.UniprotUtils;
 import psidev.psi.mi.jami.model.Protein;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -23,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class CachedUniprotFetcherTest {
 
-    private final Logger log = LoggerFactory.getLogger(CachedUniprotFetcherTest.class.getName());
+    private final Logger log = Logger.getLogger(CachedUniprotFetcherTest.class.getName());
     private UniprotProteinFetcher fetcher;
 
     @Before
@@ -106,7 +103,7 @@ public class CachedUniprotFetcherTest {
                 "PRO_0000021449"};
 
         for(String identifier : identifiers){
-            log.warn("testing entry: "+identifier);
+            log.warning("testing entry: "+identifier);
             assertTrue(UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find());
             Collection<Protein> proteins = fetcher.fetchByIdentifier(identifier);
             assertNotNull(proteins);
