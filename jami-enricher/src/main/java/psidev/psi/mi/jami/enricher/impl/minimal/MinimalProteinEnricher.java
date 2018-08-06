@@ -1,8 +1,5 @@
 package psidev.psi.mi.jami.enricher.impl.minimal;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.ProteinFetcher;
 import psidev.psi.mi.jami.bridges.mapper.ProteinMapper;
@@ -18,6 +15,8 @@ import psidev.psi.mi.jami.utils.comparator.organism.OrganismTaxIdComparator;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Enriches a protein to the minimum level. As an enricher, no data will be overwritten in the protein being enriched.
@@ -35,7 +34,7 @@ import java.util.Collections;
 public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> implements ProteinEnricher {
 
     private ProteinMapper proteinMapper = null;
-    private static final Logger log = LoggerFactory.getLogger(MinimalProteinEnricher.class.getName());
+    private static final Logger log = Logger.getLogger(MinimalProteinEnricher.class.getName());
 
     /** Constant <code>CAUTION_MESSAGE="This sequence has been withdrawn from U"{trunked}</code> */
     public static final String CAUTION_MESSAGE = "This sequence has been withdrawn from Uniprot.";
@@ -83,7 +82,9 @@ public class MinimalProteinEnricher extends AbstractInteractorEnricher<Protein> 
     public Protein find(Protein proteinToEnrich) throws EnricherException {
         // If there is no uniprotID - try and remap.
         if(proteinToEnrich.getUniprotkb() == null) {
-            if( log.isTraceEnabled() ) log.trace("Remapping protein without uniprotkb");
+            if( log.isLoggable(Level.FINEST)) {
+                log.finest("Remapping protein without uniprotkb");
+            }
             if(!remapProtein(proteinToEnrich)){
                 return null;
             }

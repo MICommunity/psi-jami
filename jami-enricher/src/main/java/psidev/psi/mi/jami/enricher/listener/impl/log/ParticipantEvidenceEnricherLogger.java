@@ -26,6 +26,6 @@ public class ParticipantEvidenceEnricherLogger<P extends ParticipantEvidence>
 
     /** {@inheritDoc} */
     public void onEnrichmentError(P object, String message, Exception e) {
-        log.info(object.toString()+" enrichment error, message: "+message, e);
+        log.error(object.toString()+" enrichment error, message: "+message, e);
     }
 }

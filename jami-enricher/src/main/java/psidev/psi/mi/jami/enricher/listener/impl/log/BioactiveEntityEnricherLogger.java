@@ -1,9 +1,9 @@
 package psidev.psi.mi.jami.enricher.listener.impl.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.enricher.listener.BioactiveEntityEnricherListener;
 import psidev.psi.mi.jami.model.BioactiveEntity;
+
+import java.util.logging.Logger;
 
 /**
  * A logging listener. It will display a message when each event is fired.
@@ -15,5 +15,5 @@ import psidev.psi.mi.jami.model.BioactiveEntity;
 public class BioactiveEntityEnricherLogger extends InteractorEnricherLogger<BioactiveEntity>
         implements BioactiveEntityEnricherListener {
 
-    private static final Logger log = LoggerFactory.getLogger(BioactiveEntityEnricherLogger.class.getName());
+    private static final Logger log = Logger.getLogger(BioactiveEntityEnricherLogger.class.getName());
 }

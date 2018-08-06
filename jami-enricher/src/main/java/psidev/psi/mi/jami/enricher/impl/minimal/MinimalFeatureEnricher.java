@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.enricher.impl.minimal;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.enricher.CvTermEnricher;
 import psidev.psi.mi.jami.enricher.ProteinListeningFeatureEnricher;
 import psidev.psi.mi.jami.enricher.exception.EnricherException;
@@ -20,6 +18,7 @@ import psidev.psi.mi.jami.utils.RangeUtils;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Provides minimal enrichment of feature.
@@ -37,7 +36,7 @@ import java.util.List;
  */
 public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeningFeatureEnricher<F> {
 
-    private static final Logger log = LoggerFactory.getLogger(MinimalFeatureEnricher.class.getName());
+    private static final Logger log = Logger.getLogger(MinimalFeatureEnricher.class.getName());
 
     private FeatureEnricherListener<F> listener;
     private CvTermEnricher cvTermEnricher;
@@ -246,7 +245,7 @@ public class MinimalFeatureEnricher<F extends Feature> implements ProteinListeni
 
     /** {@inheritDoc} */
     public void setFeaturesWithRangesToUpdate(Collection<F> features) {
-        log.trace("Setting the features");
+        log.finest("Setting the features");
         if (features == null){
             this.featuresWithRangesToUpdate = Collections.EMPTY_LIST;
         }

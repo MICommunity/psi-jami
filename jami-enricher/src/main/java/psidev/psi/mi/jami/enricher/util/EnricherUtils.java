@@ -333,16 +333,16 @@ public class EnricherUtils {
         annotIterator = fetchedAnnotations.iterator();
         while(annotIterator.hasNext()){
             Annotation annot = annotIterator.next();
-            boolean containsChecksum = false;
+            boolean containsAnnotation = false;
             for (Annotation annot2 : toEnrichAnnotations){
                 // identical annot
                 if (DefaultAnnotationComparator.areEquals(annot, annot2)){
-                    containsChecksum = true;
+                    containsAnnotation = true;
                     break;
                 }
             }
             // add missing xref not in second list
-            if (!containsChecksum){
+            if (!containsAnnotation){
                 toEnrichAnnotations.add(annot);
                 if (annotationListener != null){
                     annotationListener.onAddedAnnotation(termToEnrich, annot);
