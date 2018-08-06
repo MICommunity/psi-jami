@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.bridges.uniprot.taxonomy;
 
 import com.hp.hpl.jena.rdf.model.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher;
 import psidev.psi.mi.jami.model.Alias;
@@ -18,6 +16,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,7 +28,7 @@ import java.util.Collections;
  */
 public class UniprotTaxonomyFetcher implements OrganismFetcher {
 
-    private final Logger log = LoggerFactory.getLogger(UniprotTaxonomyFetcher.class.getName());
+    private final Logger log = Logger.getLogger(UniprotTaxonomyFetcher.class.getName());
 
     private static final String UNIPROT_NS = "http://purl.uniprot.org/core/";
     private static final String UNIPROT_TAXONOMY_NS = "http://purl.uniprot.org/taxonomy/";
@@ -79,7 +79,7 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
             // model.write(System.out);
             Resource taxonomyResource = model.getResource(UNIPROT_TAXONOMY_NS + taxID);
 
-            if (log.isWarnEnabled()) {
+            if (log.isLoggable(Level.WARNING)) {
                 // check first if it has been replaced by another record (would contain the replacedBy property)
                 Property replacedByProperty = model.getProperty(UNIPROT_NS, "replacedBy");
                 boolean isReplaced = model.contains(taxonomyResource, replacedByProperty);
@@ -128,7 +128,7 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
                     stream.close();
                 }
             } catch (IOException e) {
-                log.error("Cannot close stream", e);
+                log.severe("Cannot close stream: " + e);
             }
         }
         return organism;
