@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.bridges.ols;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultAnnotation;
 import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
@@ -10,6 +8,8 @@ import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
 import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
+
+import java.util.logging.Logger;
 
 /**
  * A lazy cvTerm which will only fetch metadata when required.
@@ -20,7 +20,7 @@ import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
  */
 public class LazySource extends LazyCvTerm implements Source {
 
-    protected final Logger log = LoggerFactory.getLogger(LazySource.class.getName());
+    protected final Logger log = Logger.getLogger(LazySource.class.getName());
 
     private Annotation url;
     private Annotation postalAddress;

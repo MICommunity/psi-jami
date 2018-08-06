@@ -1,7 +1,5 @@
 package psidev.psi.mi.jami.bridges.ols;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.model.OntologyTerm;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.model.impl.DefaultXref;
@@ -9,8 +7,11 @@ import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
 import uk.ac.ebi.pride.utilities.ols.web.service.model.Identifier;
 import uk.ac.ebi.pride.utilities.ols.web.service.model.Term;
 
-import java.rmi.RemoteException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * A lazy ontology term, which only checks for parents of children when required.
@@ -22,7 +23,7 @@ import java.util.*;
 public class LazyOntologyTerm
         extends LazyCvTerm implements OntologyTerm{
 
-    protected final Logger log = LoggerFactory.getLogger(LazyOntologyTerm.class.getName());
+    protected final Logger log = Logger.getLogger(LazyOntologyTerm.class.getName());
 
     private Collection<OntologyTerm> parents;
     private Collection<OntologyTerm> children;
