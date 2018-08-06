@@ -3,13 +3,11 @@ package psidev.psi.mi.jami.bridges.picr;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.picr.io.PicrParsingException;
 import psidev.psi.mi.jami.bridges.picr.io.PicrRESTParser;
-import psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionReturn;
-import psidev.psi.mi.jami.bridges.picr.IdenticalCrossReferences;
 import uk.ac.ebi.picr.accessionmappingservice.AccessionMapperInterface;
 import uk.ac.ebi.picr.accessionmappingservice.AccessionMapperService;
-import uk.ac.ebi.picr.accessionmappingservice.GetUPIForAccessionResponse;
 import uk.ac.ebi.picr.model.CrossReference;
 import uk.ac.ebi.picr.model.UPEntry;
+
 import javax.xml.namespace.QName;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * The PiCR client
@@ -37,7 +36,7 @@ public class PicrClient {
     /**
      * Sets up a logger for that class.
      */
-    public static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(PicrClient.class.getName());
+    public static final Logger log = Logger.getLogger(PicrClient.class.getName());
 
     /**
      * <p>Constructor for PicrClient.</p>
@@ -164,7 +163,7 @@ public class PicrClient {
             entries = getAccessionMapperPort().getUPIForAccession(accession, null, databaseEnumToList(databases), taxonId, true);
         }
         catch (Exception e){
-            log.error("PICR could not work properly", e);
+            log.severe("PICR could not work properly: " + e);
         }
         return entries;
     }
@@ -270,7 +269,7 @@ public class PicrClient {
                     true);
         }
         catch (Exception e){
-            log.error("PICR could not work properly", e);
+            log.severe("PICR could not work properly: " + e);
         }
 
         return entry;
