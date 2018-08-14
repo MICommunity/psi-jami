@@ -1,7 +1,5 @@
 package psidev.psi.mi.jami.bridges.uniprot;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.ProteinFetcher;
 import psidev.psi.mi.jami.bridges.uniprot.util.UniprotUtils;
@@ -34,6 +32,7 @@ import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
 import uk.ac.ebi.uniprot.dataservice.query.Query;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,7 +44,7 @@ import java.util.*;
 public class UniprotProteinFetcher
         implements ProteinFetcher {
 
-    private final Logger log = LoggerFactory.getLogger(UniprotProteinFetcher.class.getName());
+    private final Logger log = Logger.getLogger(UniprotProteinFetcher.class.getName());
 
     private UniProtService uniProtQueryService;
 
@@ -263,12 +262,12 @@ public class UniprotProteinFetcher
             UniProtEntry entry = uniProtQueryService.getEntry(identifier);
             if(entry!=null) {
                 AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
-                if (isoform == null) log.warn("No isoform in entry " + entry.getUniProtId());
+                if (isoform == null) log.warning("No isoform in entry " + entry.getUniProtId());
                 else {
                     proteins.add(createIsoformFrom(entry, isoform));
                 }
             }else {
-                log.warn("The entry for "+ identifier + " cannot be retrieved from Uniprot");
+                log.warning("The entry for "+ identifier + " cannot be retrieved from Uniprot");
             }
         } catch (ServiceException e) {
             uniProtQueryService.stop();
@@ -303,7 +302,7 @@ public class UniprotProteinFetcher
             while (true) {
                 for (UniProtEntry e : currentPage.getResults()) {
                     Collection<AlternativeProductsIsoform> matchingIsoform = findIsoformsInEntry(e, identifiers);
-                    if (matchingIsoform.isEmpty()) log.warn("No isoform in entry " + e.getUniProtId());
+                    if (matchingIsoform.isEmpty()) log.warning("No isoform in entry " + e.getUniProtId());
                     else {
                         for (AlternativeProductsIsoform isoform : matchingIsoform) {
                             proteins.add(createIsoformFrom(e, isoform));
@@ -356,7 +355,7 @@ public class UniprotProteinFetcher
             while (true) {
                 for (UniProtEntry e : currentPage.getResults()) {
                     Feature feature = findFeatureInEntry(e, identifier);
-                    if (feature == null) log.warn("No feature in entry " + e.getUniProtId());
+                    if (feature == null) log.warning("No feature in entry " + e.getUniProtId());
                     else {
                         proteins.add(createProteinFeatureFrom(e, feature));
                     }
@@ -644,7 +643,7 @@ public class UniprotProteinFetcher
         // SEQUENCE
         switch (isoform.getIsoformSequenceStatus()) {
             case NOT_DESCRIBED:
-                log.error("Splice variant has no sequence (status = NOT_DESCRIBED)");
+                log.severe("Splice variant has no sequence (status = NOT_DESCRIBED)");
                 break;
             case DESCRIBED:
                 p.setSequence(entry.getSplicedSequence(isoform.getName().getValue())); break;
@@ -652,7 +651,7 @@ public class UniprotProteinFetcher
                 p.setSequence(entry.getSplicedSequence(isoform.getName().getValue())); break;
             case EXTERNAL:
                 // When an isoform is retrieved, it will be retrieved with the master which matches its identifier.
-                log.warn("Isoform ["+isoform.getName().getValue()+"] has an unexpected external sequence.");
+                log.warning("Isoform ["+isoform.getName().getValue()+"] has an unexpected external sequence.");
                 break;
         }
 

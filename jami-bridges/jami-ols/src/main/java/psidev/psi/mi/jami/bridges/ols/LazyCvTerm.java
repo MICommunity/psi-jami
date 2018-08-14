@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.bridges.ols;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.ols.utils.OlsUtils;
 import psidev.psi.mi.jami.model.Alias;
 import psidev.psi.mi.jami.model.Annotation;
@@ -17,6 +15,7 @@ import uk.ac.ebi.pride.utilities.ols.web.service.model.Identifier;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import static psidev.psi.mi.jami.bridges.ols.utils.OlsUtils.META_XREF_SEPARATOR;
 import static psidev.psi.mi.jami.bridges.ols.utils.OlsUtils.XREF_DEFINITION_KEY;
@@ -32,7 +31,7 @@ import static psidev.psi.mi.jami.model.Annotation.VALIDATION_REGEXP;
  */
 public class LazyCvTerm extends DefaultCvTerm {
 
-    protected final Logger log = LoggerFactory.getLogger(LazyCvTerm.class.getName());
+    protected final Logger log = Logger.getLogger(LazyCvTerm.class.getName());
 
     private OLSClient olsClient;
 

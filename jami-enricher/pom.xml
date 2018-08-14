@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.18</version>
+        <version>3.0.19</version>
     </parent>
 
     <artifactId>jami-enricher</artifactId>
-    <version>3.0.18</version>
+    <version>3.0.19</version>
     <name>PSI :: JAMI - Enricher</name>
     <description>JAMI - Enricher</description>
     <dependencies>
@@ -28,6 +28,12 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
+        </dependency>
+
+        <!--logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
         </dependency>
     </dependencies>
 </project>

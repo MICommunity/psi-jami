@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.18</version>
+    <version>3.0.19</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -126,6 +126,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <!--Logging-->
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.6.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Testing -->

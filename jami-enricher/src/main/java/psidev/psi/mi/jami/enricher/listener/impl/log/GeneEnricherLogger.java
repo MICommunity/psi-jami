@@ -1,9 +1,9 @@
 package psidev.psi.mi.jami.enricher.listener.impl.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.enricher.listener.GeneEnricherListener;
 import psidev.psi.mi.jami.model.Gene;
+
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,5 +15,5 @@ import psidev.psi.mi.jami.model.Gene;
 public class GeneEnricherLogger extends InteractorEnricherLogger<Gene>
         implements GeneEnricherListener {
 
-    private static final Logger log = LoggerFactory.getLogger(GeneEnricherLogger.class.getName());
+    private static final Logger log = Logger.getLogger(GeneEnricherLogger.class.getName());
 }

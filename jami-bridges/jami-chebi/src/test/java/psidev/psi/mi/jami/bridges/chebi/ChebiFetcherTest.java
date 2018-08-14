@@ -3,12 +3,11 @@ package psidev.psi.mi.jami.bridges.chebi;
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.BioactiveEntity;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +17,7 @@ import java.util.Collection;
  */
 public class ChebiFetcherTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(ChebiFetcherTest.class.getName());
+    protected static final Logger log = Logger.getLogger(ChebiFetcherTest.class.getName());
 
     private ChebiFetcher chebiFetcher;
 

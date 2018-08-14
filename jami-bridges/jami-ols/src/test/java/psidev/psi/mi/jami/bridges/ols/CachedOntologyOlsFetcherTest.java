@@ -4,10 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.OntologyTerm;
+
+import java.util.logging.Logger;
 
 import static junit.framework.Assert.*;
 
@@ -19,7 +19,7 @@ import static junit.framework.Assert.*;
  */
 public class CachedOntologyOlsFetcherTest {
 
-    protected final Logger log = LoggerFactory.getLogger(CachedOntologyOlsFetcherTest.class.getName());
+    protected final Logger log = Logger.getLogger(CachedOntologyOlsFetcherTest.class.getName());
 
     private CachedOlsOntologyTermFetcher ontologyOLSFetcher;
 

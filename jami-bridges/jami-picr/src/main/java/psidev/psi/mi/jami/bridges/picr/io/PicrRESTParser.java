@@ -1,7 +1,5 @@
 package psidev.psi.mi.jami.bridges.picr.io;
 
-
-
 import psidev.psi.mi.jami.bridges.picr.GetUPIForAccessionResponse;
 
 import javax.xml.bind.JAXBContext;
@@ -9,6 +7,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Picr REST xml result parser
@@ -22,7 +22,7 @@ public class PicrRESTParser {
    /**
      * Sets up a logger for this class.
      */
-    public static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(PicrRESTParser.class.getName());
+    public static final Logger log = Logger.getLogger(PicrRESTParser.class.getName());
 
     // //////////////////////
     // Private methods
@@ -71,22 +71,22 @@ public class PicrRESTParser {
         // unmarshal an entrySet instance document into a tree of Java content
         // objects composed of classes from the jaxb package.
 
-        if (log.isDebugEnabled()){
-            log.debug("unmarshal : " + file.getPath());
+        if (log.isLoggable(Level.FINE)){
+            log.fine("unmarshal : " + file.getPath());
         }
 
         FileInputStream inputStream = new FileInputStream( file );
         try {
             return ( GetUPIForAccessionResponse ) u.unmarshal( inputStream );
         } catch (ClassCastException e){
-            if (log.isWarnEnabled()){
-                log.warn("ClassCastException: file: " + file.getPath());
+            if (log.isLoggable(Level.WARNING)){
+                log.warning("ClassCastException: file: " + file.getPath());
             }
         } finally {
             try {
                 inputStream.close();
             } catch (IOException e) {
-                log.error("Inpossible to close the resulting file input stream", e);
+                log.severe("Impossible to close the resulting file input stream: " + e);
             }
         }
       //  return (EBIApplicationResult) ((JAXBElement)u.unmarshal(new FileInputStream(file))).getValue();

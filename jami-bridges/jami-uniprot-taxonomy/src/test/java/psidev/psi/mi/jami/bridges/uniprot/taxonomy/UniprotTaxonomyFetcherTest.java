@@ -2,10 +2,10 @@ package psidev.psi.mi.jami.bridges.uniprot.taxonomy;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.Organism;
+
+import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class UniprotTaxonomyFetcherTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(UniprotTaxonomyFetcherTest.class.getName());
+    protected static final Logger log = Logger.getLogger(UniprotTaxonomyFetcherTest.class.getName());
 
     UniprotTaxonomyFetcher taxonomyFetcher;
 
