@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.20</version>
+    <version>3.0.21-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
