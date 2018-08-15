@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.0.21-SNAPSHOT</version>
+        <version>3.0.20</version>
     </parent>
 
     <artifactId>jami-enricher</artifactId>
-    <version>3.0.21-SNAPSHOT</version>
+    <version>3.0.20</version>
     <name>PSI :: JAMI - Enricher</name>
     <description>JAMI - Enricher</description>
     <dependencies>
