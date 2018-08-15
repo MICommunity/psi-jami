@@ -229,6 +229,12 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
         return uniprotkb != null ? uniprotkb : (refseq != null ? refseq : super.getPreferredIdentifier());
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String getPreferredName(){
+        return this.getGeneName();
+    }
+
     /**
      * <p>Getter for the field <code>uniprotkb</code>.</p>
      *

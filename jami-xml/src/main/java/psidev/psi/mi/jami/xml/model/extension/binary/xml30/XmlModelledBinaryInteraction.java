@@ -407,6 +407,12 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         return this.organism;
     }

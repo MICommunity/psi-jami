@@ -426,6 +426,12 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         // initialise organism from experiments
         if (this.organism == null && !getExperiments().isEmpty()){

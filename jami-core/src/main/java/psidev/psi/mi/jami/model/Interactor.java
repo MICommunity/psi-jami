@@ -69,6 +69,12 @@ public interface Interactor {
     public Xref getPreferredIdentifier();
 
     /**
+     * The preferred name is the name by which we want to refer the interactor on our web site.
+     * @return the preferred name
+     */
+    public String getPreferredName();
+
+    /**
      * Set of checksums computed for this interactor.
      * The Collection cannot be null so when an interactor does not have a checksum, the method should return an empty Collection
      * Ex: rogid:u1FCes02jPb3CGRj1aDkzpbSiuI9606, standard Inchi key, ...
