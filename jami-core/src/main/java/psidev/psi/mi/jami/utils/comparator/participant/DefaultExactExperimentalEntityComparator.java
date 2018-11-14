@@ -1,7 +1,7 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
 import psidev.psi.mi.jami.model.Complex;
-import psidev.psi.mi.jami.model.ExperimentalEntity;
+import psidev.psi.mi.jami.model.Entity;
 import psidev.psi.mi.jami.model.FeatureEvidence;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.utils.comparator.feature.DefaultFeatureEvidenceComparator;
@@ -23,12 +23,12 @@ public class DefaultExactExperimentalEntityComparator {
     /**
      * Use DefaultExactExperimentalEntityComparator to know if two experimental entities are equals.
      *
-     * @param participant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
-     * @param participant2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.Entity} object.
      * @return true if the two experimental entities are equal
      * @param checkComplexesAsInteractors a boolean.
      */
-    public static boolean areEquals(ExperimentalEntity participant1, ExperimentalEntity participant2, boolean checkComplexesAsInteractors){
+    public static boolean areEquals(Entity<FeatureEvidence> participant1, Entity<FeatureEvidence> participant2, boolean checkComplexesAsInteractors){
         Map<Complex, Set<Interactor>> processedComplexes = new IdentityHashMap<Complex, Set<Interactor>>();
 
         if (participant1 == participant2){
@@ -89,7 +89,7 @@ public class DefaultExactExperimentalEntityComparator {
         }
     }
 
-    private static boolean checkIfComplexAlreadyProcessed(ExperimentalEntity bioParticipant1, ExperimentalEntity bioParticipant2, Map<Complex, Set<Interactor>> processedComplexes) {
+    private static boolean checkIfComplexAlreadyProcessed(Entity<FeatureEvidence> bioParticipant1, Entity<FeatureEvidence> bioParticipant2, Map<Complex, Set<Interactor>> processedComplexes) {
         Complex complex = null;
         if (bioParticipant1.getInteractor() instanceof Complex){
             complex = (Complex) bioParticipant1.getInteractor();

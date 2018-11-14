@@ -9,9 +9,13 @@ import psidev.psi.mi.jami.tab.extension.MitabFeatureEvidence;
 import psidev.psi.mi.jami.tab.io.parser.BinaryEvidenceLineParser;
 import psidev.psi.mi.jami.tab.io.parser.ParseException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
-import psidev.psi.mi.jami.utils.*;
+import psidev.psi.mi.jami.utils.AnnotationUtils;
+import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.PositionUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -355,6 +359,57 @@ public class BinaryEvidenceLineParserTest {
         Feature f2 = (Feature)A2.getFeatures().iterator().next();
         Assert.assertEquals("IPR020405", f2.getInterpro());
         Assert.assertTrue(parser.hasFinished());
+    }
+
+    @Test
+    public void test_read_valid_mitab28() throws ParseException {
+        InputStream stream = BinaryEvidenceLineParserTest.class.getResourceAsStream("/samples/mitab28.txt");
+        BinaryEvidenceLineParser parser = new BinaryEvidenceLineParser(stream);
+
+        // read first interaction
+        BinaryInteractionEvidence binary1 = parser.MitabLine();
+        Assert.assertNotNull(binary1);
+        Assert.assertFalse(parser.hasFinished());
+
+        Collection<CvTerm> methodsA = binary1.getParticipantA().getIdentificationMethods();
+        Assert.assertEquals(1, methodsA.size());
+        Assert.assertEquals(CvTermUtils.createMICvTerm("predetermined participant", "MI:0396"), methodsA.iterator().next());
+
+        // go:"GO:0016301"(kinase activity)
+        binary1.getParticipantA().getBiologicalEffect();
+        // psi-mi:"MI:2249"(post transcriptional regulation)
+        binary1.getCausalRegulatoryMechanism();
+        // psi-mi:"MI:2235"(up regulates)
+        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getShortName();
+        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getIdentifiers().iterator().next().getDatabase();
+        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getIdentifiers().iterator().next().getId();
+
+        // read second interaction
+        BinaryInteractionEvidence binary2 = parser.MitabLine();
+        Assert.assertNotNull(binary2);
+        Assert.assertFalse(parser.hasFinished());
+
+        Collection<CvTerm> methodsB = binary2.getParticipantB().getIdentificationMethods();
+        Assert.assertEquals(1, methodsB.size());
+        Assert.assertEquals(CvTermUtils.createMICvTerm("western blot", "MI:0113"), methodsB.iterator().next());
+
+        // read third interaction
+        BinaryInteractionEvidence binary3 = parser.MitabLine();
+        Assert.assertNotNull(binary3);
+        Assert.assertFalse(parser.hasFinished());
+
+        methodsB = binary3.getParticipantB().getIdentificationMethods();
+        Assert.assertEquals(1, methodsB.size());
+        Assert.assertEquals(CvTermUtils.createMICvTerm("western blot", "MI:0113"), methodsB.iterator().next());
+
+        // read fourth interaction
+        BinaryInteractionEvidence binary4 = parser.MitabLine();
+        Assert.assertNotNull(binary4);
+        Assert.assertTrue(parser.hasFinished());
+
+        methodsA = binary4.getParticipantA().getIdentificationMethods();
+        Assert.assertEquals(1, methodsA.size());
+        Assert.assertEquals(CvTermUtils.createMICvTerm("tag visualisation by peroxidase activity", "MI:0981"), methodsA.iterator().next());
     }
 
     @Test

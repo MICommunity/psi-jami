@@ -1,6 +1,6 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
-import psidev.psi.mi.jami.model.ExperimentalEntity;
+import psidev.psi.mi.jami.model.Entity;
 import psidev.psi.mi.jami.model.FeatureEvidence;
 import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
 import psidev.psi.mi.jami.utils.comparator.feature.FeatureCollectionComparator;
@@ -18,7 +18,7 @@ import java.util.Comparator;
  * @version $Id$
  * @since <pre>17/01/13</pre>
  */
-public class ExperimentalEntityComparator implements Comparator<ExperimentalEntity> {
+public class ExperimentalEntityComparator implements Comparator<Entity<FeatureEvidence>> {
 
     private EntityBaseComparator participantBaseComparator;
     private CollectionComparator<FeatureEvidence> featureCollectionComparator;
@@ -80,11 +80,11 @@ public class ExperimentalEntityComparator implements Comparator<ExperimentalEnti
     /**
      * It will compare the basic properties of an experimental entity using EntityBaseComparator and FeatureEvidenceComparator.
      *
-     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
-     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param experimentalParticipant2 a {@link psidev.psi.mi.jami.model.Entity} object.
      * @return a int.
      */
-    public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
+    public int compare(Entity<FeatureEvidence> experimentalParticipant1, Entity<FeatureEvidence> experimentalParticipant2) {
         int EQUAL = 0;
         int BEFORE = -1;
         int AFTER = 1;

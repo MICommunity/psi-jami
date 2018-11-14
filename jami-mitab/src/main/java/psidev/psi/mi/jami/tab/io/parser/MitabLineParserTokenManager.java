@@ -15,21 +15,13 @@ import psidev.psi.mi.jami.exception.IllegalParameterException;
 import psidev.psi.mi.jami.exception.IllegalRangeException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
 
-/**
- * Token Manager.
- *
-
- */
+/** Token Manager. */
 public class MitabLineParserTokenManager implements MitabLineParserConstants
 {
 
   /** Debug output. */
   public  java.io.PrintStream debugStream = System.out;
-  /**
-   * Set debug output.
-   *
-   * @param ds a {@link java.io.PrintStream} object.
-   */
+  /** Set debug output. */
   public  void setDebugStream(java.io.PrintStream ds) { debugStream = ds; }
 private final int jjStopStringLiteralDfa_0(int pos, long active0)
 {
@@ -245,33 +237,20 @@ protected JavaCharStream input_stream;
 private final int[] jjrounds = new int[5];
 private final int[] jjstateSet = new int[10];
 protected char curChar;
-/**
- * Constructor.
- *
- * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
- */
+/** Constructor. */
 public MitabLineParserTokenManager(JavaCharStream stream){
    if (JavaCharStream.staticFlag)
       throw new Error("ERROR: Cannot use a static CharStream class with a non-static lexical analyzer.");
    input_stream = stream;
 }
 
-/**
- * Constructor.
- *
- * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
- * @param lexState a int.
- */
+/** Constructor. */
 public MitabLineParserTokenManager(JavaCharStream stream, int lexState){
    this(stream);
    SwitchTo(lexState);
 }
 
-/**
- * Reinitialise parser.
- *
- * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
- */
+/** Reinitialise parser. */
 public void ReInit(JavaCharStream stream)
 {
    jjmatchedPos = jjnewStateCnt = 0;
@@ -287,23 +266,14 @@ private void ReInitRounds()
       jjrounds[i] = 0x80000000;
 }
 
-/**
- * Reinitialise parser.
- *
- * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
- * @param lexState a int.
- */
+/** Reinitialise parser. */
 public void ReInit(JavaCharStream stream, int lexState)
 {
    ReInit(stream);
    SwitchTo(lexState);
 }
 
-/**
- * Switch to specified lex state.
- *
- * @param lexState a int.
- */
+/** Switch to specified lex state. */
 public void SwitchTo(int lexState)
 {
    if (lexState >= 1 || lexState < 0)
@@ -312,11 +282,6 @@ public void SwitchTo(int lexState)
       curLexState = lexState;
 }
 
-/**
- * <p>jjFillToken.</p>
- *
- * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
- */
 protected Token jjFillToken()
 {
    final Token t;
@@ -348,11 +313,7 @@ int jjround;
 int jjmatchedPos;
 int jjmatchedKind;
 
-/**
- * Get the next Token.
- *
- * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
- */
+/** Get the next Token. */
 public Token getNextToken() 
 {
   Token matchedToken;

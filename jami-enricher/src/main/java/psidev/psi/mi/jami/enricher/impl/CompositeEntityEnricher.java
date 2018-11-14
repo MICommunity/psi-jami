@@ -19,7 +19,7 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
 
     private EntityEnricher<Entity,Feature> entityBaseEnricher;
     private EntityEnricher<ModelledEntity,ModelledFeature> modelledEntityEnricher;
-    private EntityEnricher<ExperimentalEntity,FeatureEvidence> experimentalEntityEnricher;
+    private EntityEnricher<Entity<FeatureEvidence>, FeatureEvidence> experimentalEntityEnricher;
 
     /**
      * <p>Constructor for CompositeEntityEnricher.</p>
@@ -66,7 +66,7 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
      *
      * @return a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
      */
-    public EntityEnricher<ExperimentalEntity,FeatureEvidence> getExperimentalEntityEnricher() {
+    public EntityEnricher<Entity<FeatureEvidence>, FeatureEvidence> getExperimentalEntityEnricher() {
         return experimentalEntityEnricher;
     }
 
@@ -75,7 +75,7 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
      *
      * @param experimentalEntityEnricher a {@link psidev.psi.mi.jami.enricher.EntityEnricher} object.
      */
-    public void setExperimentalEntityEnricher(EntityEnricher<ExperimentalEntity,FeatureEvidence> experimentalEntityEnricher) {
+    public void setExperimentalEntityEnricher(EntityEnricher<Entity<FeatureEvidence>, FeatureEvidence> experimentalEntityEnricher) {
         this.experimentalEntityEnricher = experimentalEntityEnricher;
     }
 
@@ -88,9 +88,9 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
     public void enrich(Entity object) throws EnricherException {
         if(object == null)
             throw new IllegalArgumentException("Cannot enrich a null entity.");
-        if (object instanceof ExperimentalEntity){
+        if (object instanceof Entity){
             if (this.experimentalEntityEnricher != null){
-               this.experimentalEntityEnricher.enrich((ExperimentalEntity)object);
+               this.experimentalEntityEnricher.enrich((Entity<FeatureEvidence>)object);
             }
             else{
                 this.entityBaseEnricher.enrich(object);
@@ -132,9 +132,9 @@ public class CompositeEntityEnricher implements EntityEnricher<Entity, Feature> 
      * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void enrich(Entity object, Entity objectSource) throws EnricherException {
-        if (object instanceof ExperimentalEntity && objectSource instanceof ExperimentalEntity){
+        if (object instanceof Entity && objectSource instanceof Entity){
             if (this.experimentalEntityEnricher != null){
-                this.experimentalEntityEnricher.enrich((ExperimentalEntity)object, (ExperimentalEntity)objectSource);
+                this.experimentalEntityEnricher.enrich((Entity<FeatureEvidence>)object, (Entity<FeatureEvidence>)objectSource);
             }
             else{
                 this.entityBaseEnricher.enrich(object, objectSource);

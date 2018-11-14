@@ -57,12 +57,12 @@ public class DefaultExactEntityComparator {
                 }
                 else {
                     // both are experimental entities
-                    boolean isExperimentalParticipant1 = participant1 instanceof ExperimentalEntity;
-                    boolean isExperimentalParticipant2 = participant2 instanceof ExperimentalEntity;
+                    boolean isExperimentalParticipant1 = participant1 instanceof Entity ;
+                    boolean isExperimentalParticipant2 = participant2 instanceof Entity ;
                     if (isExperimentalParticipant1 && isExperimentalParticipant2) {
                         return DefaultExactExperimentalEntityComparator.areEquals(
-                                (ExperimentalEntity) participant1,
-                                (ExperimentalEntity) participant2, false);
+                                (Entity<FeatureEvidence>) participant1,
+                                (Entity<FeatureEvidence>) participant2, false);
                     }
                     // the experimental participant is before
                     else if (isExperimentalParticipant1 || isExperimentalParticipant2) {

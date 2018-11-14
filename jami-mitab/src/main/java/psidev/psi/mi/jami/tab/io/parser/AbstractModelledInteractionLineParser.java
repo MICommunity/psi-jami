@@ -67,7 +67,12 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
     }
 
     @Override
-    MitabModelledParticipant finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases, Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole, Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot, Collection<MitabChecksum> checksum, Collection<ModelledFeature> feature, Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod, int line, int column, int mitabColumn) {
+    MitabModelledParticipant finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases,
+                                               Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole,
+                                               Collection<MitabCvTerm> expRole, Collection<MitabCvTerm> type, Collection<MitabXref> xref,
+                                               Collection<MitabAnnotation> annot, Collection<MitabChecksum> checksum, Collection<ModelledFeature> feature,
+                                               Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioeffect,
+                                               Collection<MitabCvTerm> causalStatement, int line, int column, int mitabColumn) {
         boolean hasParticipantFields = !bioRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty();
         // first identify interactor
         Interactor interactor = createInteractorFrom(uniqueId, altid, aliases, taxid, type, xref, checksum, line, column, mitabColumn);
@@ -129,7 +134,13 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
     }
 
     @Override
-    T finishInteraction(ModelledParticipant A, ModelledParticipant B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative, int line) {
+    T finishInteraction(ModelledParticipant A, ModelledParticipant B, Collection<MitabCvTerm> detMethod,
+                        Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType,
+                        Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf,
+                        Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI,
+                        Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created,
+                        Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative,
+                        Collection<MitabCvTerm> causalRegMechanism, int line) {
         T interaction = null;
         boolean hasInteractionFields = !interactionType.isEmpty() || !source.isEmpty() || !interactionId.isEmpty() || !conf.isEmpty() || !expansion.isEmpty()
                 || !xrefI.isEmpty() || !annotI.isEmpty() || !checksumI.isEmpty() || !params.isEmpty() || !created.isEmpty() || !update.isEmpty();

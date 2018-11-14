@@ -10,7 +10,7 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>07/12/12</pre>
  */
-public interface FeatureEvidence extends Feature<ExperimentalEntity, FeatureEvidence> {
+public interface FeatureEvidence extends Feature<Entity<FeatureEvidence>, FeatureEvidence> {
 
     /**
      * The collection of feature detection methods. Each feature detectionMethod is a controlled vocabulary term.
