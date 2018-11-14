@@ -34,6 +34,8 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
 
     private I interaction;
     private CvTerm biologicalRole;
+    private CvTerm biologicalEffect;
+
     private NamesContainer namesContainer;
     private XrefContainer xrefContainer;
 
@@ -269,6 +271,24 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
         else {
             biologicalRole = bioRole;
         }
+    }
+
+    /**
+     * Gets the value of the biologicalEffect property.
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public CvTerm getBiologicalEffect() {
+        return this.biologicalEffect;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Sets the value of the biologicalEffect property.
+     */
+    public void setBiologicalEffect(CvTerm biologicalEffect) {
+        this.biologicalEffect = biologicalEffect;
     }
 
     /**

@@ -90,6 +90,20 @@ public class XmlBinaryInteractionWrapper implements BinaryInteraction<Participan
     }
 
     /**
+     * <p>The causal regulatory mechanism for the binary interaction.</p>
+     */
+    public CvTerm getCausalRegulatoryMechanism(){
+        return this.binaryWrapper.getCausalRegulatoryMechanism();
+    };
+
+    /**
+     * <p>Sets the causal regulatory mechanism of this binary interaction.</p>
+     */
+    public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism){
+        this.binaryWrapper.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
+    };
+
+    /**
      * {@inheritDoc}
      *
      * The collection of participants for this binary interaction.

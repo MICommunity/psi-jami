@@ -158,6 +158,11 @@ public interface Participant<I extends Interaction, F extends Feature> extends E
      */
     public CvTerm getBiologicalEffect();
 
+    /**
+     * Sets the biological effect of the participant in a causal interaction.
+     *
+     * @param biologicalEffect : biological effect
+     */
     public void setBiologicalEffect(CvTerm biologicalEffect);
 
     /**

@@ -4,7 +4,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.0.17-SNAPSHOT</version>
+    <version>3.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
     <description>JAMI master module</description>
@@ -15,13 +15,13 @@
         <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
         <spring.version>3.2.9.RELEASE</spring.version>
 
-        <ontology.manager.version>2.0.9</ontology.manager.version>
+        <ontology.manager.version>2.0.10</ontology.manager.version>
 
-        <intact.bridges.version>2.1.23</intact.bridges.version>
+        <intact.bridges.version>2.1.26</intact.bridges.version>
         <protein.mapping.version>1.0.8</protein.mapping.version>
 
         <ols.client.version>2.11</ols.client.version>
-        <uniprot.japi.version>1.0.15</uniprot.japi.version>
+        <uniprot.japi.version>1.0.22</uniprot.japi.version>
         <chebiws.client.version>2.3.2</chebiws.client.version>
 
         <!--<maven.javadoc.skip>true</maven.javadoc.skip>-->
@@ -126,6 +126,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <!--Logging-->
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.6.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Testing -->

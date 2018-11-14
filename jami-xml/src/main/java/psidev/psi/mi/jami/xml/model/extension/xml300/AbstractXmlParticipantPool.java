@@ -402,6 +402,18 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
 
     /** {@inheritDoc} */
     @Override
+    public CvTerm getBiologicalEffect() {
+        return getDelegate().getBiologicalEffect();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBiologicalEffect(CvTerm biologicalEffect) {
+        getDelegate().setBiologicalEffect(biologicalEffect);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Collection<Xref> getXrefs() {
         return getDelegate().getXrefs();
     }

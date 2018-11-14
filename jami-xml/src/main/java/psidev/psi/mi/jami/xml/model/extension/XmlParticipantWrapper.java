@@ -191,6 +191,18 @@ public class XmlParticipantWrapper implements ModelledParticipant, ExtendedPsiXm
         this.participant.setBiologicalRole(bioRole);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public CvTerm getBiologicalEffect() {
+        return this.participant.getBiologicalEffect();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setBiologicalEffect(CvTerm biologicalEffect) {
+        this.participant.setBiologicalEffect(biologicalEffect);
+    }
+
     /**
      * <p>initialiseFeatures.</p>
      */
