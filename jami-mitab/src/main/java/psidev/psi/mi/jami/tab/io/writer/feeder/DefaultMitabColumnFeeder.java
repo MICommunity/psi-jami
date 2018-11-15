@@ -187,5 +187,10 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
     public void writeParticipantIdentificationMethod(Participant participant) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
+
+    @Override
+    public void writeParticipantBiologicalEffect(Participant participant) throws IOException {
+        getWriter().write(MitabUtils.EMPTY_COLUMN);
+    }
 }
 

@@ -785,6 +785,47 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
     }
 
     /**
+     * <p>writeBiologicalRole.</p>
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeParticipantBiologicalEffect(P participant) throws IOException {
+        if (participant != null){
+            writeCvTerm(participant.getBiologicalEffect());
+        }
+        else {
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
+        }
+    }
+
+    /**
+     * <p>writeInteractionType.</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeInteractionCausalRegulatoryMechanism(T interaction) throws IOException {
+        writeCvTerm(interaction.getCausalRegulatoryMechanism());
+    }
+
+    /**
+     * <p>writeInteractionType.</p>
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeInteractionCausalStatement(T interaction) throws IOException {
+        Iterator<CausalRelationship> causalRelationshipIterator = interaction.getParticipantA().getCausalRelationships().iterator();
+        if(causalRelationshipIterator.hasNext()){
+            writeCvTerm(causalRelationshipIterator.next().getRelationType());
+        }
+        else {
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
+        }
+    }
+
+    /**
      * <p>Getter for the field <code>writer</code>.</p>
      *
      * @return a {@link java.io.Writer} object.

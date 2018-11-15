@@ -342,4 +342,28 @@ public interface MitabColumnFeeder<T extends BinaryInteraction, P extends Partic
      * @throws java.io.IOException if any.
      */
     public void writeFeature(Feature feature) throws IOException;
+
+    /**
+     * Writes participant biological effect
+     *
+     * @param participant a P object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeParticipantBiologicalEffect(P participant) throws IOException;
+
+    /**
+     * Writes interaction checksum
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeInteractionCausalRegulatoryMechanism(T interaction) throws IOException;
+
+    /**
+     * Writes interaction checksum
+     *
+     * @param interaction a T object.
+     * @throws java.io.IOException if any.
+     */
+    public void writeInteractionCausalStatement(T interaction) throws IOException;
 }
