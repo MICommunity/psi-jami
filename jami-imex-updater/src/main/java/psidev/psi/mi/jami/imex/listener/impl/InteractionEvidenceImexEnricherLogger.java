@@ -1,13 +1,13 @@
 package psidev.psi.mi.jami.imex.listener.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import psidev.psi.mi.jami.enricher.listener.impl.log.InteractionEvidenceEnricherLogger;
+import psidev.psi.mi.jami.imex.listener.InteractionImexEnricherListener;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.Xref;
-import psidev.psi.mi.jami.imex.listener.InteractionImexEnricherListener;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * A logging listener. It will display a message when each event if fired.
@@ -19,11 +19,11 @@ import java.util.Collection;
 public class InteractionEvidenceImexEnricherLogger
         extends InteractionEvidenceEnricherLogger implements InteractionImexEnricherListener {
 
-    private static final Logger log = LoggerFactory.getLogger(InteractionEvidenceImexEnricherLogger.class.getName());
+    private static final Logger log = Logger.getLogger(InteractionEvidenceImexEnricherLogger.class.getName());
 
     /** {@inheritDoc} */
     public void onImexIdConflicts(InteractionEvidence interactionEvidence, Collection<Xref> conflictingXrefs) {
-        log.error("The interaction " + interactionEvidence + " has " + conflictingXrefs.size() + " IMEx primary references and only one" +
+        log.severe("The interaction " + interactionEvidence + " has " + conflictingXrefs.size() + " IMEx primary references and only one" +
                 "is allowed");
     }
 

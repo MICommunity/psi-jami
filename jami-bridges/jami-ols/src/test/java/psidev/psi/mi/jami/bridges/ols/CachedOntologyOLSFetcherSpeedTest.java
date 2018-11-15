@@ -1,11 +1,10 @@
 package psidev.psi.mi.jami.bridges.ols;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.OntologyTerm;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +14,7 @@ import java.util.Collection;
  */
 public class CachedOntologyOLSFetcherSpeedTest {
 
-    protected static  final Logger log = LoggerFactory.getLogger(CachedOntologyOLSFetcherSpeedTest.class.getName());
+    protected static  final Logger log = Logger.getLogger(CachedOntologyOLSFetcherSpeedTest.class.getName());
 
     private CachedOlsOntologyTermFetcher ontologyOLSFetcher;
 
@@ -32,7 +31,7 @@ public class CachedOntologyOLSFetcherSpeedTest {
 
     public void test_speed() throws BridgeFailedException {
 
-        log.warn("TEST");
+        log.warning("TEST");
 
         String[] featureTests = {"binding-associated region","sufficient binding region",
                 //"mutation disrupting interaction rate","necessary binding region","sufficient binding region",
@@ -45,7 +44,7 @@ public class CachedOntologyOLSFetcherSpeedTest {
         //log.info("Start time "+times.get(0));
 
 
-        if(ontologyOLSFetcher == null) log.warn("null OLS!");
+        if(ontologyOLSFetcher == null) log.warning("null OLS!");
         else{
             long start =  System.currentTimeMillis();
             OntologyTerm term = ontologyOLSFetcher.fetchByName("biological feature", "psi-mi");

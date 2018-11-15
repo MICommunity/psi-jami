@@ -19,17 +19,17 @@ public class OrganismEnricherLogger
         implements OrganismEnricherListener {
 
 
-    private static final org.slf4j.Logger organismChangeLogger = LoggerFactory.getLogger(OrganismEnricherLogger.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(OrganismEnricherLogger.class);
 
     /** {@inheritDoc} */
     public void onEnrichmentComplete(Organism organism, EnrichmentStatus status, String message) {
-        organismChangeLogger.info(organism.toString() + " enrichment complete " +
+        log.info(organism.toString() + " enrichment complete " +
                 "The status was: " + status + ". Additional info: " + message);
     }
 
     /** {@inheritDoc} */
     public void onEnrichmentError(Organism object, String message, Exception e) {
-        organismChangeLogger.error(object.toString() + " enrichment error " +
+        log.error(object.toString() + " enrichment error " +
                 "Error message : " + message, e);
     }
 }

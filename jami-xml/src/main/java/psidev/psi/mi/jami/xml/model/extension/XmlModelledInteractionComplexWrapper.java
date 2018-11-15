@@ -247,6 +247,12 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         if (this.organism == null && !this.modelledInteraction.getExperiments().isEmpty()){
            for (Experiment exp : this.modelledInteraction.getExperiments()){

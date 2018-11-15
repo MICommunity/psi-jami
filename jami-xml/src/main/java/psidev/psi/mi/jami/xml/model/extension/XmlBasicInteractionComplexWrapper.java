@@ -316,6 +316,12 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         return this.organism;
     }

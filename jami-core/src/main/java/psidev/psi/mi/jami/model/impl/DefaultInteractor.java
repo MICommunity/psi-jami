@@ -403,6 +403,10 @@ public class DefaultInteractor implements Interactor {
         return !getIdentifiers().isEmpty() ? getIdentifiers().iterator().next() : null;
     }
 
+    public String getPreferredName(){
+        return this.getShortName();
+    }
+
     /**
      * <p>Getter for the field <code>checksums</code>.</p>
      *

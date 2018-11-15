@@ -1,12 +1,11 @@
 package psidev.psi.mi.jami.bridges.mapper.listener;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.mapper.ProteinMapperListener;
 import psidev.psi.mi.jami.model.Protein;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +17,7 @@ import java.util.Collection;
 public class ProteinMappingLogger implements ProteinMapperListener {
 
     /** Constant <code>log</code> */
-    protected static final Logger log = LoggerFactory.getLogger(ProteinMappingLogger.class.getName());
+    protected static final Logger log = Logger.getLogger(ProteinMappingLogger.class.getName());
 
 
     /** {@inheritDoc} */

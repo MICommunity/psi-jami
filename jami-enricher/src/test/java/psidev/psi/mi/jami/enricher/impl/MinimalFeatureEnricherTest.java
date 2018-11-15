@@ -1,21 +1,19 @@
 package psidev.psi.mi.jami.enricher.impl;
 
 
-
 import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.fetcher.mock.MockCvTermFetcher;
 import psidev.psi.mi.jami.bridges.fetcher.mock.MockProteinFetcher;
-import psidev.psi.mi.jami.enricher.*;
+import psidev.psi.mi.jami.enricher.CvTermEnricher;
+import psidev.psi.mi.jami.enricher.ProteinEnricher;
 import psidev.psi.mi.jami.enricher.exception.EnricherException;
 import psidev.psi.mi.jami.enricher.impl.minimal.*;
+import psidev.psi.mi.jami.enricher.listener.EnrichmentStatus;
 import psidev.psi.mi.jami.enricher.listener.FeatureEnricherListener;
 import psidev.psi.mi.jami.enricher.listener.impl.FeatureEnricherListenerManager;
 import psidev.psi.mi.jami.enricher.listener.impl.log.FeatureEnricherLogger;
-import psidev.psi.mi.jami.enricher.listener.EnrichmentStatus;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.*;
 
@@ -23,9 +21,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,7 +33,7 @@ import static org.junit.Assert.assertNull;
  */
 public class MinimalFeatureEnricherTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(MinimalFeatureEnricherTest.class.getName());
+    protected static final Logger log = Logger.getLogger(MinimalFeatureEnricherTest.class.getName());
 
     private MinimalParticipantEnricher participantEnricher;
     private ProteinEnricher proteinEnricher;

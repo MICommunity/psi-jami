@@ -17,17 +17,17 @@ public class PolymerEnricherLogger<P extends Polymer>
         extends PolymerChangeLogger<P>
         implements PolymerEnricherListener<P> {
 
-    private static final org.slf4j.Logger proteinChangeLogger = LoggerFactory.getLogger(PolymerEnricherLogger.class);
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(PolymerEnricherLogger.class);
 
     /** {@inheritDoc} */
     public void onEnrichmentComplete(P protein, EnrichmentStatus status, String message) {
-        proteinChangeLogger.info(protein.toString() + " enrichment complete. " +
+        log.info(protein.toString() + " enrichment complete. " +
                 "The status was: " + status + ". The message reads: " + message);
     }
 
     /** {@inheritDoc} */
     public void onEnrichmentError(P object, String message, Exception e) {
-        proteinChangeLogger.error(object.toString() + " enrichment error. " +
+        log.error(object.toString() + " enrichment error. " +
                 "The message reads: " + message, e);
     }
 }

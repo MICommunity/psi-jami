@@ -1,7 +1,5 @@
 package psidev.psi.mi.jami.bridges.europubmedcentral;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.PublicationFetcher;
 import psidev.psi.mi.jami.model.Publication;
@@ -13,6 +11,7 @@ import javax.xml.namespace.QName;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Uses the EuroPubmedCentral WSDL SOAP service to fetch publication entries.
@@ -25,7 +24,7 @@ public class EuroPubmedCentralFetcher
         implements PublicationFetcher {
 
     /** Constant <code>log</code> */
-    protected static final Logger log = LoggerFactory.getLogger(EuroPubmedCentralFetcher.class.getName());
+    protected static final Logger log = Logger.getLogger(EuroPubmedCentralFetcher.class.getName());
 
     private static final String IDENTIFIER_TYPE = "med";
     private static final String DATA_SET = "metadata";

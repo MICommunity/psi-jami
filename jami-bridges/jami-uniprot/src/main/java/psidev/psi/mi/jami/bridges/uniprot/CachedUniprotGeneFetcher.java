@@ -3,14 +3,13 @@ package psidev.psi.mi.jami.bridges.uniprot;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.CachedFetcher;
 import psidev.psi.mi.jami.model.Gene;
 
 import java.net.URL;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,7 +22,7 @@ public class CachedUniprotGeneFetcher
         extends UniprotGeneFetcher
         implements CachedFetcher {
 
-    private final Logger log = LoggerFactory.getLogger(CachedUniprotGeneFetcher.class.getName());
+    private final Logger log = Logger.getLogger(CachedUniprotGeneFetcher.class.getName());
 
     private Cache cache;
     private static CacheManager cacheManager;

@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.bridges.uniprot.taxonomy;
 
 import com.hp.hpl.jena.rdf.model.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.OrganismFetcher;
 import psidev.psi.mi.jami.model.Alias;
@@ -18,6 +16,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,10 +28,11 @@ import java.util.Collections;
  */
 public class UniprotTaxonomyFetcher implements OrganismFetcher {
 
-    private final Logger log = LoggerFactory.getLogger(UniprotTaxonomyFetcher.class.getName());
+    private final Logger log = Logger.getLogger(UniprotTaxonomyFetcher.class.getName());
 
     private static final String UNIPROT_NS = "http://purl.uniprot.org/core/";
     private static final String UNIPROT_TAXONOMY_NS = "http://purl.uniprot.org/taxonomy/";
+    private static final String UNIPROT_TAXONOMY_URL = "https://www.uniprot.org/taxonomy/";
 
     /** {@inheritDoc} */
     public Organism fetchByTaxID(int taxID) throws BridgeFailedException {
@@ -61,6 +62,8 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
         return results;
     }
 
+    // NOTE: It takes the IntAct approach; the nemonic has precedence vs the common name.
+    // By default returns nmemonic and adds the common name to alias
     private Organism fetchOrganismFromStream(int taxID) throws BridgeFailedException {
         InputStream stream = null;
         Organism organism;
@@ -72,10 +75,11 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
             stream = con.getInputStream();
 
             Model model = ModelFactory.createDefaultModel();
-            model.read(stream, null);
+            model.read(stream, UNIPROT_NS);
+            // model.write(System.out);
             Resource taxonomyResource = model.getResource(UNIPROT_TAXONOMY_NS + taxID);
 
-            if(log.isWarnEnabled()){
+            if (log.isLoggable(Level.WARNING)) {
                 // check first if it has been replaced by another record (would contain the replacedBy property)
                 Property replacedByProperty = model.getProperty(UNIPROT_NS, "replacedBy");
                 boolean isReplaced = model.contains(taxonomyResource, replacedByProperty);
@@ -86,47 +90,45 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
                     String replacedByTaxidStr = replacedUri.replaceAll(UNIPROT_TAXONOMY_NS, "");
                     int replacedByTaxid = Integer.parseInt(replacedByTaxidStr);
 
-                    log.info( "WARNING - the taxid replacement for " + taxID + " is " + replacedByTaxid );
+                    log.info("WARNING - the taxid replacement for " + taxID + " is " + replacedByTaxid);
                 }
             }
 
-            organism = new DefaultOrganism( taxID );
+            organism = new DefaultOrganism(taxID);
 
             String mnemonic = getLiteral(model, taxonomyResource, "mnemonic");
-            if (mnemonic != null) organism.setCommonName(mnemonic);
+            if (mnemonic != null && mnemonic.length() > 0) organism.setCommonName(mnemonic);
 
             String commonName = getLiteral(model, taxonomyResource, "commonName");
-            if(commonName != null && commonName.length() > 0){
-                if (mnemonic == null){
+            if (commonName != null && commonName.length() > 0) {
+                if (mnemonic == null) {
                     organism.setCommonName(commonName);
-                }
-                else{
+                } else {
                     organism.getAliases().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, commonName));
                 }
             }
 
             String scientificName = getLiteral(model, taxonomyResource, "scientificName");
-            if(scientificName != null && scientificName.length() > 0)
-                organism.setScientificName(scientificName);
+            if (scientificName != null && scientificName.length() > 0) organism.setScientificName(scientificName);
 
-            String synonym = getLiteral(model, taxonomyResource, "synonym");
-            if(synonym != null && synonym.length() > 0)
-                organism.getAliases().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
-
-            if (organism.getCommonName() == null){
+            if (organism.getCommonName() == null) {
                 organism.setCommonName(scientificName);
             }
 
-        }catch (IOException e) {
-            throw new BridgeFailedException("Input stream failed to open",e);
-        }
-        finally {
+            String synonym = getLiteral(model, taxonomyResource, "synonym");
+            if (synonym != null && synonym.length() > 0)
+                organism.getAliases().add(AliasUtils.createAlias(Alias.SYNONYM, Alias.SYNONYM_MI, synonym));
+
+
+        } catch (IOException e) {
+            throw new BridgeFailedException("Input stream failed to open", e);
+        } finally {
             try {
-                if (stream != null){
-                   stream.close();
+                if (stream != null) {
+                    stream.close();
                 }
             } catch (IOException e) {
-                log.error("Cannot close stream", e);
+                log.severe("Cannot close stream: " + e);
             }
         }
         return organism;
@@ -141,6 +143,6 @@ public class UniprotTaxonomyFetcher implements OrganismFetcher {
     }
 
     private String generateQueryUrl( int taxid ) throws IOException {
-        return UNIPROT_TAXONOMY_NS + taxid + ".rdf";
+        return UNIPROT_TAXONOMY_URL + taxid + ".rdf";
     }
 }
