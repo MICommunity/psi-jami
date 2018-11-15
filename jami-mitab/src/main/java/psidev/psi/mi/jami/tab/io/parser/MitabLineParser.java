@@ -16,11 +16,6 @@ import psidev.psi.mi.jami.exception.IllegalParameterException;
 import psidev.psi.mi.jami.exception.IllegalRangeException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
 
-/**
- * <p>Abstract MitabLineParser class.</p>
- *
-
- */
 public abstract class MitabLineParser<T extends Interaction, P extends Participant, F extends Feature> implements MitabLineParserConstants {
 
         void processSyntaxError(int lineNumber, int columnNumber, int mitabColumn, Exception e) {
@@ -35,32 +30,17 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         processSyntaxError(lineNumber, columnNumber, mitabColumn, e2);
     }
 
-        /**
-         * <p>getParserListener.</p>
-         *
-         * @return a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
-         */
         public abstract MitabParserListener getParserListener();
 
-        /**
-         * <p>setParserListener.</p>
-         *
-         * @param listener a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
-         */
         public abstract void setParserListener(MitabParserListener listener);
 
     abstract void fireOnInvalidSyntax(int lineNumber, int columnNumber, int mitabColumn, Exception e);
 
     abstract void reachEndOfFile();
 
-    /**
-     * <p>hasFinished.</p>
-     *
-     * @return a boolean.
-     */
     public abstract boolean hasFinished();
 
-    abstract java.lang.StringBuilder resetStringBuilder();
+    abstract StringBuilder resetStringBuilder();
 
     abstract F createFeature(String type, Collection<Range> ranges, String text, int line, int column, int mitabColumn);
 
@@ -68,22 +48,16 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                                                Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
                                                Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
                                                Collection<MitabChecksum> checksum, Collection<F> feature, Collection<MitabStoichiometry> stc,
-                                               Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect, Collection<MitabCvTerm> causalStatement,
+                                               Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect,
                                                int line, int column, int mitabColumn);
         abstract T finishInteraction(P A, P B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor,
                                                Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source,
                                                Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion,
                                                Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host,
                                                Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
-                                               Collection<MitabChecksum> checksumI, boolean isNegative, Collection<MitabCvTerm> causalRegMechanism,
-                                               int line);
+                                               Collection<MitabChecksum> checksumI, boolean isNegative, int line);
+        abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
-  /**
-   * <p>MitabLine.</p>
-   *
-   * @return a T object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public T MitabLine() throws ParseException {
   Collection<MitabXref> uniqueIdA = Collections.EMPTY_LIST;
   Collection<MitabXref> uniqueIdB = Collections.EMPTY_LIST;
@@ -487,7 +461,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
             }
             jj_consume_token(COLUMN_SEPARATOR);
           } catch (ParseException e) {
-                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\u005c"MI id\u005c"(name) separated by '|'.");
+                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\u005c"MI:XXX\u005c"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
           }
           try {
@@ -879,10 +853,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
           jj_la1[46] = jj_gen;
           ;
         }
-                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, causalStatement, line, columnA, 1);
-                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, causalStatement, line, columnB, 2);
+                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, line, columnA, 1);
+                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, line, columnB, 2);
                 interaction = finishInteraction(participantA, participantB, detMethod, firstAuthor, pubId, interactionType, source, interactionId,
-                                         conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, causalRegMechanism, line);
+                                         conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, line);
+                interaction = finishCausalInteraction(interaction, causalStatement, causalRegMechanism);
         try {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case LINE_SEPARATOR:

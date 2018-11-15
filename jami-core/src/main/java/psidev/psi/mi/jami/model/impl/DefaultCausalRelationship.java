@@ -38,7 +38,7 @@ public class DefaultCausalRelationship implements CausalRelationship {
         this.relationType = relationType;
 
         if (target == null){
-            throw new IllegalArgumentException("The participat target in a CausalRelationship cannot be null");
+            throw new IllegalArgumentException("The participant target in a CausalRelationship cannot be null");
         }
         this.target = target;
     }

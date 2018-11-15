@@ -72,7 +72,7 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
                                                Collection<MitabCvTerm> expRole, Collection<MitabCvTerm> type, Collection<MitabXref> xref,
                                                Collection<MitabAnnotation> annot, Collection<MitabChecksum> checksum, Collection<ModelledFeature> feature,
                                                Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioeffect,
-                                               Collection<MitabCvTerm> causalStatement, int line, int column, int mitabColumn) {
+                                               int line, int column, int mitabColumn) {
         boolean hasParticipantFields = !bioRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty();
         // first identify interactor
         Interactor interactor = createInteractorFrom(uniqueId, altid, aliases, taxid, type, xref, checksum, line, column, mitabColumn);
@@ -139,8 +139,7 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
                         Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf,
                         Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI,
                         Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created,
-                        Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative,
-                        Collection<MitabCvTerm> causalRegMechanism, int line) {
+                        Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative, int line) {
         T interaction = null;
         boolean hasInteractionFields = !interactionType.isEmpty() || !source.isEmpty() || !interactionId.isEmpty() || !conf.isEmpty() || !expansion.isEmpty()
                 || !xrefI.isEmpty() || !annotI.isEmpty() || !checksumI.isEmpty() || !params.isEmpty() || !created.isEmpty() || !update.isEmpty();
@@ -223,6 +222,12 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
 
         ((FileSourceContext)interaction).setSourceLocator(new MitabSourceLocator(line, 0, 0));
 
+        return interaction;
+    }
+
+    @Override
+    T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
+        if (interaction == null) return null;
         return interaction;
     }
 }

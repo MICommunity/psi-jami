@@ -375,14 +375,36 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(1, methodsA.size());
         Assert.assertEquals(CvTermUtils.createMICvTerm("predetermined participant", "MI:0396"), methodsA.iterator().next());
 
-        // go:"GO:0016301"(kinase activity)
-        binary1.getParticipantA().getBiologicalEffect();
-        // psi-mi:"MI:2249"(post transcriptional regulation)
-        binary1.getCausalRegulatoryMechanism();
-        // psi-mi:"MI:2235"(up regulates)
-        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getShortName();
-        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getIdentifiers().iterator().next().getDatabase();
-        binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType().getIdentifiers().iterator().next().getId();
+        // check biological effect of A participant
+        CvTerm bioeffectA = binary1.getParticipantA().getBiologicalEffect();
+        Xref identifierA = bioeffectA.getIdentifiers().iterator().next();
+
+        Assert.assertEquals(bioeffectA.getShortName(), "kinase activity");
+        Assert.assertEquals(identifierA.getId(),"GO:0016301");
+        Assert.assertEquals(identifierA.getDatabase().getShortName(),"go");
+
+        // check biological effect of B participant
+        CvTerm bioeffectB = binary1.getParticipantB().getBiologicalEffect();
+        Xref identifierB = bioeffectB.getIdentifiers().iterator().next();
+
+        Assert.assertEquals(bioeffectB.getShortName(), "kinase activity");
+        Assert.assertEquals(identifierB.getId(),"GO:0016301");
+        Assert.assertEquals(identifierB.getDatabase().getShortName(),"go");
+
+        // check the causal regulatory mechanism
+        CvTerm causalRegMechanism = binary1.getCausalRegulatoryMechanism();
+        Xref causalMechanismIdentifier = causalRegMechanism.getIdentifiers().iterator().next();
+
+        Assert.assertEquals(causalMechanismIdentifier.getId(), "MI:2249");
+        Assert.assertEquals(causalMechanismIdentifier.getDatabase().getShortName(), "psi-mi");
+        Assert.assertEquals(causalRegMechanism.getShortName(), "post transcriptional regulation");
+
+        // check the causal statement
+        CvTerm causalStatement = binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType();
+        Xref causalStatementIdentifier = causalStatement.getIdentifiers().iterator().next();
+        Assert.assertEquals(causalStatementIdentifier.getId(),"MI:2235");
+        Assert.assertEquals(causalStatementIdentifier.getDatabase().getShortName(),"psi-mi");
+        Assert.assertEquals(causalStatement.getShortName(), "up regulates");
 
         // read second interaction
         BinaryInteractionEvidence binary2 = parser.MitabLine();
@@ -393,6 +415,8 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(1, methodsB.size());
         Assert.assertEquals(CvTermUtils.createMICvTerm("western blot", "MI:0113"), methodsB.iterator().next());
 
+
+
         // read third interaction
         BinaryInteractionEvidence binary3 = parser.MitabLine();
         Assert.assertNotNull(binary3);
@@ -402,6 +426,9 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(1, methodsB.size());
         Assert.assertEquals(CvTermUtils.createMICvTerm("western blot", "MI:0113"), methodsB.iterator().next());
 
+
+
+
         // read fourth interaction
         BinaryInteractionEvidence binary4 = parser.MitabLine();
         Assert.assertNotNull(binary4);
@@ -410,6 +437,11 @@ public class BinaryEvidenceLineParserTest {
         methodsA = binary4.getParticipantA().getIdentificationMethods();
         Assert.assertEquals(1, methodsA.size());
         Assert.assertEquals(CvTermUtils.createMICvTerm("tag visualisation by peroxidase activity", "MI:0981"), methodsA.iterator().next());
+
+
+
+
+
     }
 
     @Test

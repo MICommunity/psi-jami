@@ -59,15 +59,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
 	                                       Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
 	                                       Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
 	                                       Collection<MitabChecksum> checksum, Collection<F> feature, Collection<MitabStoichiometry> stc,
-	                                       Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect, Collection<MitabCvTerm> causalStatement,
+	                                       Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect,
 	                                       int line, int column, int mitabColumn);
 	abstract T finishInteraction(P A, P B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor,
 	                                       Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source,
 	                                       Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion,
 	                                       Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host,
 	                                       Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
-	                                       Collection<MitabChecksum> checksumI, boolean isNegative, Collection<MitabCvTerm> causalRegMechanism,
-	                                       int line);
+	                                       Collection<MitabChecksum> checksumI, boolean isNegative, int line);
+	abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 }
 
 PARSER_END(MitabLineParser)
@@ -425,10 +425,11 @@ T MitabLine():
         )
         ] // end MITAB 2.6
               {
-                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, causalStatement, line, columnA, 1);
-                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, causalStatement, line, columnB, 2);
+                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, line, columnA, 1);
+                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, line, columnB, 2);
                 interaction = finishInteraction(participantA, participantB, detMethod, firstAuthor, pubId, interactionType, source, interactionId,
-                                         conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, causalRegMechanism, line);
+                                         conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, line);
+                interaction = finishCausalInteraction(interaction, causalStatement, causalRegMechanism);
               }
       (try{<LINE_SEPARATOR> | <EOF> {reachEndOfFile();}}
        catch (ParseException e){
