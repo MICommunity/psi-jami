@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
-import psidev.psi.mi.jami.model.Entity;
-import psidev.psi.mi.jami.model.FeatureEvidence;
+import psidev.psi.mi.jami.model.ExperimentalEntity;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.utils.comparator.interactor.DefaultExactInteractorComparator;
 
@@ -20,11 +19,11 @@ public class DefaultExactParticipantEvidenceInteractorComparator {
     /**
      * Use DefaultExactParticipantEvidenceInteractorComparator to know if two experimental participants are equals.
      *
-     * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
-     * @param participant2 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param participant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param participant2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental participants are equal
      */
-    public static boolean areEquals(Entity<FeatureEvidence> participant1, Entity<FeatureEvidence> participant2){
+    public static boolean areEquals(ExperimentalEntity participant1, ExperimentalEntity participant2){
 
         if (participant1 == participant2){
             return true;

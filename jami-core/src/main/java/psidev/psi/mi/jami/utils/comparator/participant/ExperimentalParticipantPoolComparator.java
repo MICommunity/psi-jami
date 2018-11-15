@@ -33,8 +33,8 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
     private OrganismComparator organismComparator;
     private CollectionComparator<Parameter> parameterCollectionComparator;
     private CollectionComparator<FeatureEvidence> featureCollectionComparator;
-    private CollectionComparator<Entity<FeatureEvidence>> experimentalEntityCollectionComparator;
-    private Comparator<Entity<FeatureEvidence>> experimentalEntityComparator;
+    private CollectionComparator<ExperimentalEntity> experimentalEntityCollectionComparator;
+    private Comparator<ExperimentalEntity> experimentalEntityComparator;
 
     /**
      * Creates a new ExperimentalParticipantPoolComparator
@@ -71,7 +71,7 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
             throw new IllegalArgumentException("The experimental entity comparator is required to compare participant candidates. It cannot be null");
         }
         this.experimentalEntityComparator = entityComparator;
-        this.experimentalEntityCollectionComparator = new CollectionComparator<Entity<FeatureEvidence>>(this.experimentalEntityComparator);
+        this.experimentalEntityCollectionComparator = new CollectionComparator<ExperimentalEntity>(this.experimentalEntityComparator);
     }
 
     /**
@@ -88,7 +88,7 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
                                                  OrganismComparator organismComparator,
                                                  CollectionComparator<Parameter> parameterComparator,
                                                  CollectionComparator<FeatureEvidence> featureComparator,
-                                                 CollectionComparator<Entity<FeatureEvidence>> entityComparator,
+                                                 CollectionComparator<ExperimentalEntity> entityComparator,
                                                  CollectionComparator<CvTerm> cvTermComparator){
         if (participantBaseComparator == null){
             throw new IllegalArgumentException("The participant comparator is required to compare basic participant properties. It cannot be null");
@@ -164,7 +164,7 @@ public class ExperimentalParticipantPoolComparator implements Comparator<Experim
      *
      * @return a {@link java.util.Comparator} object.
      */
-    public Comparator<Entity<FeatureEvidence>> getExperimentalEntityComparator() {
+    public Comparator<ExperimentalEntity> getExperimentalEntityComparator() {
         return experimentalEntityComparator;
     }
 

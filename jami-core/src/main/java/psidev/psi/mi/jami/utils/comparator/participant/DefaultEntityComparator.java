@@ -1,7 +1,7 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
 import psidev.psi.mi.jami.model.Entity;
-import psidev.psi.mi.jami.model.FeatureEvidence;
+import psidev.psi.mi.jami.model.ExperimentalEntity;
 import psidev.psi.mi.jami.model.ModelledEntity;
 import psidev.psi.mi.jami.model.Participant;
 
@@ -60,12 +60,12 @@ public class DefaultEntityComparator {
                 }
                 else {
                     // both are experimental entities
-                    boolean isExperimentalParticipant1 = participant1 instanceof Entity;
-                    boolean isExperimentalParticipant2 = participant2 instanceof Entity;
+                    boolean isExperimentalParticipant1 = participant1 instanceof ExperimentalEntity;
+                    boolean isExperimentalParticipant2 = participant2 instanceof ExperimentalEntity;
                     if (isExperimentalParticipant1 && isExperimentalParticipant2) {
                         return DefaultExperimentalEntityComparator.areEquals(
-                                (Entity<FeatureEvidence>) participant1,
-                                (Entity<FeatureEvidence>) participant2, false);
+                                (ExperimentalEntity) participant1,
+                                (ExperimentalEntity) participant2, false);
                     }
                     // the experimental participant is before
                     else if (isExperimentalParticipant1 || isExperimentalParticipant2) {

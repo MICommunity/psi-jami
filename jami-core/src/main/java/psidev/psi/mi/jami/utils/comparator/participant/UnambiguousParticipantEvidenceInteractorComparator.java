@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
-import psidev.psi.mi.jami.model.Entity;
-import psidev.psi.mi.jami.model.FeatureEvidence;
+import psidev.psi.mi.jami.model.ExperimentalEntity;
 import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousComplexComparator;
 import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorComparator;
 
@@ -16,7 +15,7 @@ import psidev.psi.mi.jami.utils.comparator.interactor.UnambiguousInteractorCompa
  * @since <pre>17/01/13</pre>
  */
 public class UnambiguousParticipantEvidenceInteractorComparator extends
-        ParticipantInteractorComparator<Entity<FeatureEvidence>> {
+        ParticipantInteractorComparator<ExperimentalEntity> {
     private static UnambiguousParticipantEvidenceInteractorComparator unambiguousExperimentalParticipantInteractorComparator;
 
     /**
@@ -43,18 +42,18 @@ public class UnambiguousParticipantEvidenceInteractorComparator extends
      * This comparator will ignore all the other properties of an experimental participant.
      */
     @Override
-    public int compare(Entity<FeatureEvidence> experimentalParticipant1, Entity<FeatureEvidence> experimentalParticipant2) {
+    public int compare(ExperimentalEntity experimentalParticipant1, ExperimentalEntity experimentalParticipant2) {
         return super.compare(experimentalParticipant1, experimentalParticipant2);
     }
 
     /**
      * Use UnambiguousParticipantEvidenceInteractorComparator to know if two experimental participants are equals.
      *
-     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.Entity} object.
-     * @param component2 a {@link psidev.psi.mi.jami.model.Entity} object.
+     * @param experimentalParticipant1 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
+     * @param component2 a {@link psidev.psi.mi.jami.model.ExperimentalEntity} object.
      * @return true if the two experimental participants are equal
      */
-    public static boolean areEquals(Entity<FeatureEvidence> experimentalParticipant1, Entity<FeatureEvidence> component2){
+    public static boolean areEquals(ExperimentalEntity experimentalParticipant1, ExperimentalEntity component2){
         if (unambiguousExperimentalParticipantInteractorComparator == null){
             unambiguousExperimentalParticipantInteractorComparator = new UnambiguousParticipantEvidenceInteractorComparator();
         }

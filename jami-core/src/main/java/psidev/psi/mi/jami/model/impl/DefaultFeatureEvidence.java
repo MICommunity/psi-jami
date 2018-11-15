@@ -18,7 +18,7 @@ import java.util.Collections;
  * @version $Id$
  * @since <pre>04/02/13</pre>
  */
-public class DefaultFeatureEvidence extends AbstractFeature<Entity<FeatureEvidence> , FeatureEvidence> implements FeatureEvidence {
+public class DefaultFeatureEvidence extends AbstractFeature<ExperimentalEntity, FeatureEvidence> implements FeatureEvidence {
     private Collection<CvTerm> detectionMethods;
     private Collection<Parameter> parameters;
 

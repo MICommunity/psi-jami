@@ -9,7 +9,7 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>07/12/12</pre>
  */
-public interface ParticipantEvidence extends Participant<InteractionEvidence, FeatureEvidence>,Entity<FeatureEvidence> {
+public interface ParticipantEvidence extends Participant<InteractionEvidence, FeatureEvidence>,ExperimentalEntity {
     /**
      * The experimental role of the participant.
      * It is a controlled vocabulary term and cannot be null.

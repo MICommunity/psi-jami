@@ -2,10 +2,7 @@ package psidev.psi.mi.jami.tab.extension;
 
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
-import psidev.psi.mi.jami.model.CvTerm;
-import psidev.psi.mi.jami.model.Entity;
-import psidev.psi.mi.jami.model.FeatureEvidence;
-import psidev.psi.mi.jami.model.ParticipantEvidence;
+import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultFeatureEvidence;
 
 /**
@@ -15,7 +12,7 @@ import psidev.psi.mi.jami.model.impl.DefaultFeatureEvidence;
  * @version $Id$
  * @since <pre>09/07/13</pre>
  */
-public class MitabFeatureEvidence extends DefaultFeatureEvidence implements MitabFeature<Entity<FeatureEvidence>, FeatureEvidence>, FileSourceContext {
+public class MitabFeatureEvidence extends DefaultFeatureEvidence implements MitabFeature<ExperimentalEntity, FeatureEvidence>, FileSourceContext {
     private String text;
     private FileSourceLocator sourceLocator;
 
