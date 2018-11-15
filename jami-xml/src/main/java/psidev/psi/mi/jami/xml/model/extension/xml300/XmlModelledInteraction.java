@@ -276,6 +276,12 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         return this.organism;
     }

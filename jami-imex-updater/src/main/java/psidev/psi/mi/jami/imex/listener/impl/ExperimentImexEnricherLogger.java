@@ -1,13 +1,12 @@
 package psidev.psi.mi.jami.imex.listener.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.enricher.listener.impl.log.ExperimentEnricherLogger;
+import psidev.psi.mi.jami.imex.listener.ExperimentImexEnricherListener;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Xref;
-import psidev.psi.mi.jami.imex.listener.ExperimentImexEnricherListener;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * A logging listener. It will display a message when each event if fired.
@@ -17,11 +16,11 @@ import java.util.Collection;
 public class ExperimentImexEnricherLogger extends ExperimentEnricherLogger
         implements ExperimentImexEnricherListener {
 
-    private static final Logger log = LoggerFactory.getLogger(ExperimentImexEnricherLogger.class.getName());
+    private static final Logger log = Logger.getLogger(ExperimentImexEnricherLogger.class.getName());
 
     /** {@inheritDoc} */
     public void onImexIdConflicts(Experiment originalExperiment, Collection<Xref> conflictingXrefs) {
-        log.error("The experiment "+originalExperiment+" has "+conflictingXrefs.size()+" IMEx primary references and only one" +
+        log.severe("The experiment "+originalExperiment+" has "+conflictingXrefs.size()+" IMEx primary references and only one" +
                 "is allowed");
     }
 

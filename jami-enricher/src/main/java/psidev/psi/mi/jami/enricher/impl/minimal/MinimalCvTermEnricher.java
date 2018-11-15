@@ -24,7 +24,7 @@ import psidev.psi.mi.jami.utils.CvTermUtils;
  * @since 08/05/13
 
  */
-public class MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<C> implements CvTermEnricher<C>{
+public class    MinimalCvTermEnricher<C extends CvTerm> extends AbstractMIEnricher<C> implements CvTermEnricher<C>{
 
     private int retryCount = 5;
 

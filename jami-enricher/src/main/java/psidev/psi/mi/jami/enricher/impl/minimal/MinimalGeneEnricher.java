@@ -39,6 +39,12 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
 
     /** {@inheritDoc} */
     @Override
+    public GeneFetcher getInteractorFetcher() {
+        return (GeneFetcher)super.getInteractorFetcher();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Gene find(Gene geneToEnrich) throws EnricherException {
         int taxid = -3;
         if(geneToEnrich.getOrganism() != null) {
@@ -59,18 +65,14 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
         return geneFetched;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public GeneFetcher getInteractorFetcher() {
-        return (GeneFetcher)super.getInteractorFetcher();
-    }
 
     /** {@inheritDoc} */
     @Override
     protected void onEnrichedVersionNotFound(Gene objectToEnrich) throws EnricherException{
-        getListener().onEnrichmentComplete(
+        if(getListener() != null)
+            getListener().onEnrichmentComplete(
                 objectToEnrich , EnrichmentStatus.FAILED ,
-                "Could not fetch a gene with the provided identifier.");
+                "Could not fetch a gene with the provided identifier [" + objectToEnrich.getPreferredIdentifier() + "].");
     }
 
     /** {@inheritDoc} */
@@ -84,7 +86,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
     protected void onCompletedEnrichment(Gene objectToEnrich) {
         if(getListener() != null)
             getListener().onEnrichmentComplete(
-                    objectToEnrich , EnrichmentStatus.SUCCESS , "The gene has been successfully enriched.");
+                    objectToEnrich , EnrichmentStatus.SUCCESS , "The gene [" + objectToEnrich.getPreferredIdentifier() + "] has been successfully enriched.");
     }
 
     /** {@inheritDoc} */
@@ -92,7 +94,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
     protected void onInteractorCheckFailure(Gene objectToEnrich, Gene fetchedObject) throws EnricherException{
         if(getListener() != null)
             getListener().onEnrichmentComplete(
-                    objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the gene because the interactor type is not a gene type or we have a mismatch between the gene taxid to enrich and the fetched gene taxid.");
+                    objectToEnrich , EnrichmentStatus.FAILED , "Cannot enrich the gene [" + objectToEnrich.getPreferredIdentifier() + "] because the interactor type is not a gene type or we have a mismatch between the gene taxid to enrich and the fetched gene taxid.");
     }
 
     /** {@inheritDoc} */
@@ -127,7 +129,7 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
             }
             else if (!results.isEmpty()){
                 if (getListener() != null){
-                    getListener().onEnrichmentError(gene, "The identifier " + identifier + " and taxid " + taxid + " can match " +
+                    getListener().onEnrichmentError(gene, "The identifier [" + identifier + "] and taxid " + taxid + " can match " +
                     results.size() + " genes and it is not possible to enrich with multiple entries", new EnricherException("Multiple gene entries found for " + identifier + " and taxid " + taxid));
                 }
                 return null;
@@ -145,8 +147,8 @@ public class MinimalGeneEnricher extends AbstractInteractorEnricher<Gene> {
                     }
                     else if (!results.isEmpty()){
                         if (getListener() != null){
-                            getListener().onEnrichmentError(gene, "The identifier " + identifier + " and taxid " + taxid + " can match " +
-                                    results.size() + " genes and it is not possible to enrich with multiple entries", new EnricherException("Multiple gene entries found for " + identifier + " and taxid " + taxid));
+                            getListener().onEnrichmentError(gene, "The identifier [" + identifier + "] and taxid " + taxid + " can match " +
+                                    results.size() + " genes and it is not possible to enrich with multiple entries", new EnricherException("Multiple gene entries found for [" + identifier + "] and taxid " + taxid));
                         }
                         return null;
                     }

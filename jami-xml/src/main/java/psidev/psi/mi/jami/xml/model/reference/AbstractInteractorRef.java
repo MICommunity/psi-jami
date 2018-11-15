@@ -99,6 +99,18 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     }
 
     /**
+     * <p>getPreferredName.</p>
+     *
+     * @return a String.
+     */
+    public String getPreferredName() {
+        if (this.delegate == null){
+            initialiseInteractorDelegate();
+        }
+        return this.delegate.getPreferredName();
+    }
+
+    /**
      * <p>getChecksums.</p>
      *
      * @return a {@link java.util.Collection} object.

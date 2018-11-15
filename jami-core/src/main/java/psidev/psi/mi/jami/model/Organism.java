@@ -4,7 +4,7 @@ import java.util.Collection;
 
 /**
  * The organism is defined by a taxonomy identifier.
- * It can be used to decsribe the source organism of an interactor, the organism in which the experiment has been performed or
+ * It can be used to describe the source organism of an interactor, the organism in which the experiment has been performed or
  * the organism where the participants of an interaction have been expressed in.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
@@ -18,7 +18,7 @@ public interface Organism {
      * It can be null.
      * Ex: human, mouse, ...
      *
-     * @return the common name/mnemonic
+     * @return the mnemonic, common name if there is no mnemonic, scientific name if no common names/mnemonic
      */
     public String getCommonName();
 

@@ -2,8 +2,6 @@ package psidev.psi.mi.jami.enricher.listener;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.fetcher.mock.MockProteinFetcher;
 import psidev.psi.mi.jami.enricher.exception.EnricherException;
 import psidev.psi.mi.jami.enricher.impl.minimal.MinimalProteinEnricher;
@@ -18,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import static junit.framework.Assert.assertTrue;
 
@@ -31,7 +30,7 @@ public class ProteinEnricherStatisticsWriterTest {
 
 
 
-    protected static final Logger log = LoggerFactory.getLogger(ProteinEnricherStatisticsWriterTest.class.getName());
+    protected static final Logger log = Logger.getLogger(ProteinEnricherStatisticsWriterTest.class.getName());
 
 
     private File successFile , failFile;

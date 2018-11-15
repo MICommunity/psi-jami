@@ -3,8 +3,6 @@ package psidev.psi.mi.jami.enricher.listener;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.mock.MockCvTermFetcher;
 import psidev.psi.mi.jami.enricher.exception.EnricherException;
@@ -20,8 +18,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,7 +29,7 @@ import static junit.framework.Assert.*;
  */
 public class CvTermEnricherStatisticsWriterTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(CvTermEnricherLogger.class.getName());
+    protected static final Logger log = Logger.getLogger(CvTermEnricherLogger.class.getName());
 
     MinimalCvTermEnricher minimumCvTermEnricher;
     MockCvTermFetcher mockCvTermFetcher;

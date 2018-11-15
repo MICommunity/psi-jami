@@ -314,6 +314,12 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         if (this.organism == null && !this.interactionEvidence.getExperiments().isEmpty()){
             for (Experiment exp : this.interactionEvidence.getExperiments()){

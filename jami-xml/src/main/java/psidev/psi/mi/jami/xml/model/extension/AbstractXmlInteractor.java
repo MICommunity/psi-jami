@@ -354,6 +354,15 @@ public abstract class AbstractXmlInteractor implements Interactor, FileSourceCon
     }
 
     /**
+     * <p>getPreferredName.</p>
+     *
+     * @return preferred name
+     */
+    public String getPreferredName() {
+        return this.getShortName() ;
+    }
+
+    /**
      * <p>getChecksums.</p>
      *
      * @return a {@link java.util.Collection} object.

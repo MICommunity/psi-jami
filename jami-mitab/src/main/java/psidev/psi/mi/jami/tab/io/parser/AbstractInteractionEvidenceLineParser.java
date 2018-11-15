@@ -271,7 +271,6 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
                 }
                 CvTerm causalStat = causalStatement.iterator().next();
                 participantA.getCausalRelationships().add(new MitabCausalRelationship(causalStat, participantB));
-                participantA.getCausalRelationships().iterator().next().getRelationType();
             } else if (!causalStatement.isEmpty()) {
                 CvTerm causalStat = causalStatement.iterator().next();
                 participantA.getCausalRelationships().add(new MitabCausalRelationship(causalStat, participantB));
@@ -281,11 +280,11 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
             if (causalRegMechanism.size() > 1) {
                 if (getParserListener() != null) {
                     getParserListener().onSeveralCvTermsFound(causalRegMechanism, causalRegMechanism.iterator().next(),
-                            causalStatement.size() + " causal regulatory mechanisms found. Only the first one will be loaded.");
+                            causalRegMechanism.size() + " causal regulatory mechanisms found. Only the first one will be loaded.");
                 }
                 CvTerm causalRegulatoryMechanism = causalRegMechanism.iterator().next();
                 interactionEvidence.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
-            } else if (!causalStatement.isEmpty()) {
+            } else if (!causalRegMechanism.isEmpty()) {
                 CvTerm causalRegulatoryMechanism = causalRegMechanism.iterator().next();
                 interactionEvidence.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
             }

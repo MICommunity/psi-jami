@@ -28,7 +28,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * Example URL: http://www.uniprot.org/taxonomy/?query=*&limit=10&format=list
+ * Example URL: https://www.uniprot.org/taxonomy/?query=*&limit=10&format=list
  *
  * @author Bruno Aranda (baranda@ebi.ac.uk)
  * @version $Id: UniprotTaxonomyOntologyIterator.java 19999 2014-02-28 09:47:55Z mdumousseau@yahoo.com $
@@ -38,7 +38,7 @@ public class UniprotTaxonomyOntologyIterator extends LineOntologyIterator {
     private final static String UNIPROT_TAXONOMY = "uniprot taxonomy";
     private final static String UNIPROT_TAXONOMY_MI = "MI:0942";
 
-    private static String BASE_URL = "http://www.uniprot.org/taxonomy/?format=tab&query=";
+    private static String BASE_URL = "https://www.uniprot.org/taxonomy/?format=tab&query=";
 
     public UniprotTaxonomyOntologyIterator(URL url) throws IOException {
         super(url);

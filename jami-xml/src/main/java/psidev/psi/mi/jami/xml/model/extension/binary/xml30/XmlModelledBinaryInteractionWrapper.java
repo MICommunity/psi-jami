@@ -181,6 +181,12 @@ public class XmlModelledBinaryInteractionWrapper implements ModelledBinaryIntera
 
     /** {@inheritDoc} */
     @Override
+    public String getPreferredName() {
+        return this.getShortName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Organism getOrganism() {
         return this.wrappedInteraction.getOrganism();
     }

@@ -2,13 +2,12 @@ package psidev.psi.mi.jami.bridges.uniprot;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.uniprot.util.UniprotUtils;
 import psidev.psi.mi.jami.model.Protein;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -21,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class UniprotProteinFetcherTest {
 
-    private static final Logger log = LoggerFactory.getLogger(UniprotProteinFetcherTest.class.getName());
+    private static final Logger log = Logger.getLogger(UniprotProteinFetcherTest.class.getName());
     private UniprotProteinFetcher fetcher;
 
     @Before
@@ -55,8 +54,8 @@ public class UniprotProteinFetcherTest {
 
         for(String identifier : identifiers){
             String proIdentifier = identifier.substring(identifier.indexOf("PRO")+4,identifier.length()).trim();
-            log.warn("doing identifier "+identifier);
-            log.warn("Searching for the pro identifier ["+proIdentifier+"] (from identifier ["+identifier+"])");
+            log.warning("doing identifier "+identifier);
+            log.warning("Searching for the pro identifier ["+proIdentifier+"] (from identifier ["+identifier+"])");
 
         }
     }
@@ -118,7 +117,7 @@ public class UniprotProteinFetcherTest {
                 "PRO_0000021449"};
 
         for(String identifier : identifiers){
-            log.warn("testing entry: "+identifier);
+            log.warning("testing entry: "+identifier);
             assertTrue(UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find());
             Collection<Protein> proteins = fetcher.fetchByIdentifier(identifier);
             assertNotNull(proteins);

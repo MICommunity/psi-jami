@@ -707,7 +707,7 @@ public class MinimalProteinEnricherTest {
                 persistentProtein.getInteractorType().getMIIdentifier());
 
         proteinEnricher.setListener(new ProteinEnricherListenerManager(
-                // new ProteinEnricherLogger() ,  //Comment this line to silence logging
+                new ProteinEnricherLogger() ,  //Comment this line to silence logging
                 new ProteinEnricherListener() {
                     public void onEnrichmentComplete(Protein protein, EnrichmentStatus status, String message) {
                         assertTrue(protein == persistentProtein);

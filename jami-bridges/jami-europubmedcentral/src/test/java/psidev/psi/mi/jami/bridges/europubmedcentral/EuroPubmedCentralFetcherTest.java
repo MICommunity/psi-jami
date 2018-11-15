@@ -2,14 +2,14 @@ package psidev.psi.mi.jami.bridges.europubmedcentral;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.Publication;
 import psidev.psi.mi.jami.model.Xref;
 
-import static org.junit.Assert.*;
+import java.util.logging.Logger;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class EuroPubmedCentralFetcherTest {
 
-    protected static final Logger log = LoggerFactory.getLogger(EuroPubmedCentralFetcherTest.class.getName());
+    protected static final Logger log = Logger.getLogger(EuroPubmedCentralFetcherTest.class.getName());
 
     EuroPubmedCentralFetcher fetcher;
 
