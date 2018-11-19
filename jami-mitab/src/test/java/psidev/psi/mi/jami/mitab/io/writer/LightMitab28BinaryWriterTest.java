@@ -12,7 +12,7 @@ import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.tab.MitabVersion;
 import psidev.psi.mi.jami.tab.extension.*;
 import psidev.psi.mi.jami.tab.extension.factory.options.MitabWriterOptions;
-import psidev.psi.mi.jami.tab.io.writer.LightMitab27BinaryWriter;
+import psidev.psi.mi.jami.tab.io.writer.LightMitab28BinaryWriter;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
 import psidev.psi.mi.jami.utils.*;
 
@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Unit tester for LightMitab27BinaryWriter
+ * Unit tester for LightMitab28BinaryWriter
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -34,27 +34,27 @@ public class LightMitab28BinaryWriterTest {
 
     @Test
     public void test_mitab_version_and_header(){
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter();
-        Assert.assertEquals(MitabVersion.v2_7, binaryWriter.getVersion());
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter();
+        Assert.assertEquals(MitabVersion.v2_8, binaryWriter.getVersion());
         Assert.assertTrue(binaryWriter.isWriteHeader());
     }
 
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter();
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter();
         binaryWriter.write(new MitabModelledBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter();
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter();
         binaryWriter.initialiseContext(null);
     }
 
     @Test
     public void test_write_binary() throws IllegalParameterException, ParseException {
         StringWriter writer = new StringWriter();
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter(writer);
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter(writer);
         binaryWriter.setWriteHeader(false);
 
         ModelledBinaryInteraction binary = createModelledBinaryInteraction();
@@ -68,7 +68,7 @@ public class LightMitab28BinaryWriterTest {
     @Test
     public void test_write_binary_list() throws IllegalParameterException, ParseException {
         StringWriter writer = new StringWriter();
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter(writer);
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter(writer);
         binaryWriter.setWriteHeader(false);
 
         ModelledBinaryInteraction binary = createModelledBinaryInteraction();
@@ -82,7 +82,7 @@ public class LightMitab28BinaryWriterTest {
     @Test
     public void test_write_binary2() throws IllegalParameterException, ParseException {
         StringWriter writer = new StringWriter();
-        LightMitab27BinaryWriter binaryWriter = new LightMitab27BinaryWriter();
+        LightMitab28BinaryWriter binaryWriter = new LightMitab28BinaryWriter();
         Map<String, Object> options = new HashMap<String, Object>();
         options.put(MitabWriterOptions.MITAB_HEADER_OPTION, false);
         options.put(InteractionWriterOptions.OUTPUT_OPTION_KEY, writer);
@@ -137,6 +137,10 @@ public class LightMitab28BinaryWriterTest {
                 "\t-" +
                 "\t2" +
                 "\t5" +
+                "\t-" +
+                "\t-" +
+                "\t-" +
+                "\t-" +
                 "\t-" +
                 "\t-";
     }

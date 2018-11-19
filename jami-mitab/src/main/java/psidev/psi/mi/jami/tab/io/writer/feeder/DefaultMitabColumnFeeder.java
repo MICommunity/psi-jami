@@ -188,9 +188,5 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
-    @Override
-    public void writeParticipantBiologicalEffect(Participant participant) throws IOException {
-        getWriter().write(MitabUtils.EMPTY_COLUMN);
-    }
 }
 

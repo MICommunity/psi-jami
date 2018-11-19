@@ -17,7 +17,7 @@ import java.io.Writer;
  * @version $Id$
  * @since <pre>20/06/13</pre>
  */
-public class Mitab28EvidenceWriter extends Mitab26EvidenceWriter {
+public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
 
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>

@@ -253,21 +253,6 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
     }
 
     /**
-     * <p>writeParticipantBiologicalEffect.</p>
-     *
-     * @param participant a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
-     * @throws java.io.IOException if any.
-     */
-    public void writeParticipantBiologicalEffect(ParticipantEvidence participant) throws IOException {
-        if (participant != null){
-            writeCvTerm(participant.getBiologicalEffect());
-        }
-        else {
-            getWriter().write(MitabUtils.EMPTY_COLUMN);
-        }
-    }
-
-    /**
      * <p>writeInteractionXrefs.</p>
      *
      * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
