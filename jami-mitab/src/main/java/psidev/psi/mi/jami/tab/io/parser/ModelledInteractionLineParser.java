@@ -1,10 +1,12 @@
 package psidev.psi.mi.jami.tab.io.parser;
 
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.tab.extension.MitabCvTerm;
 import psidev.psi.mi.jami.tab.extension.MitabModelledInteraction;
 
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Collection;
 
 /**
  * An extension of MitabLineParser which parses only ModelledInteraction
@@ -56,5 +58,10 @@ public class ModelledInteractionLineParser extends AbstractModelledInteractionLi
     @Override
     protected ModelledInteraction createInteraction() {
         return new MitabModelledInteraction();
+    }
+
+    @Override
+    ModelledInteraction finishCausalInteraction(ModelledInteraction interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
+        return interaction;
     }
 }

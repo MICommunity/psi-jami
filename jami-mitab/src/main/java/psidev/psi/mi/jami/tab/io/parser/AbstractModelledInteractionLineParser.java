@@ -226,8 +226,5 @@ public abstract class AbstractModelledInteractionLineParser<T extends ModelledIn
     }
 
     @Override
-    T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
-        if (interaction == null) return null;
-        return interaction;
-    }
+    abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 }

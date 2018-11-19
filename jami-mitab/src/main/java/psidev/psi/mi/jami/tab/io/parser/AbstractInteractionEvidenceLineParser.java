@@ -1,6 +1,5 @@
 package psidev.psi.mi.jami.tab.io.parser;
 
-import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
@@ -78,7 +77,7 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
                                                Collection<MitabChecksum> checksum, Collection<FeatureEvidence> feature,
                                                Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod,
                                                Collection<MitabCvTerm> bioeffect, int line, int column, int mitabColumn) {
-        boolean hasParticipantFields = !bioRole.isEmpty() || !expRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty() || !detMethod.isEmpty() || !bioeffect.isEmpty();
+        boolean hasParticipantFields = !bioRole.isEmpty() || !expRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty() || !detMethod.isEmpty();
         // first identify interactor
         Interactor interactor = createInteractorFrom(uniqueId, altid, aliases, taxid, type, xref, checksum, line, column, mitabColumn);
         MitabParticipantEvidence participant = null;
@@ -137,20 +136,6 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
             }
             // add detection methods
             participant.getIdentificationMethods().addAll(detMethod);
-
-            // set biological effect
-            if (bioeffect.size() > 1) {
-                if (getParserListener() != null) {
-                    getParserListener().onSeveralCvTermsFound(bioeffect, bioeffect.iterator().next(),
-                            bioeffect.size() + " biological effects found in one participant. Only the first one will be loaded");
-                }
-                MitabCvTerm bioeffectTerm = bioeffect.iterator().next();
-                participant.setBiologicalEffect(bioeffectTerm);
-            }
-            else if (!bioeffect.isEmpty()) {
-                MitabCvTerm bioeffectTerm = bioeffect.iterator().next();
-                participant.setBiologicalEffect(bioeffectTerm);
-            }
 
             // add source locator
             participant.setSourceLocator(new MitabSourceLocator(line, column, mitabColumn));
@@ -255,42 +240,7 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
     }
 
     @Override
-    T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
-        if (interaction == null) return null;
-
-        if (interaction instanceof BinaryInteractionEvidence) {
-            BinaryInteractionEvidence interactionEvidence = (BinaryInteractionEvidence) interaction;
-            ParticipantEvidence participantA = interactionEvidence.getParticipantA();
-            ParticipantEvidence participantB = interactionEvidence.getParticipantB();
-
-            // add the causalStatement in participant A with target B and relationType the causalStatement
-            if (causalStatement.size() > 1) {
-                if (getParserListener() != null) {
-                    getParserListener().onSeveralCvTermsFound(causalStatement, causalStatement.iterator().next(),
-                            causalStatement.size() + " causal statements found. Only the first one will be loaded.");
-                }
-                CvTerm causalStat = causalStatement.iterator().next();
-                participantA.getCausalRelationships().add(new MitabCausalRelationship(causalStat, participantB));
-            } else if (!causalStatement.isEmpty()) {
-                CvTerm causalStat = causalStatement.iterator().next();
-                participantA.getCausalRelationships().add(new MitabCausalRelationship(causalStat, participantB));
-            }
-
-            // add the causalRegulatoryMechanism
-            if (causalRegMechanism.size() > 1) {
-                if (getParserListener() != null) {
-                    getParserListener().onSeveralCvTermsFound(causalRegMechanism, causalRegMechanism.iterator().next(),
-                            causalRegMechanism.size() + " causal regulatory mechanisms found. Only the first one will be loaded.");
-                }
-                CvTerm causalRegulatoryMechanism = causalRegMechanism.iterator().next();
-                interactionEvidence.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
-            } else if (!causalRegMechanism.isEmpty()) {
-                CvTerm causalRegulatoryMechanism = causalRegMechanism.iterator().next();
-                interactionEvidence.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
-            }
-        }
-        return interaction;
-    }
+    abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
     /**
      * <p>initialiseInteractionAnnotations.</p>

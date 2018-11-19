@@ -8,9 +8,13 @@ import psidev.psi.mi.jami.tab.extension.MitabModelledFeature;
 import psidev.psi.mi.jami.tab.io.parser.ModelledInteractionLineParser;
 import psidev.psi.mi.jami.tab.io.parser.ParseException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
-import psidev.psi.mi.jami.utils.*;
+import psidev.psi.mi.jami.utils.AnnotationUtils;
+import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.PositionUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -279,6 +283,84 @@ public class ModelledInteractionLineParserTest {
         ModelledInteraction binary2 = parser.MitabLine();
         Assert.assertNotNull(binary2);
         Assert.assertTrue(parser.hasFinished());
+    }
+
+    @Test
+    public void test_read_valid_mitab28() throws ParseException {
+        InputStream stream = InteractionEvidenceLineParserTest.class.getResourceAsStream("/samples/mitab28.txt");
+        ModelledInteractionLineParser parser = new ModelledInteractionLineParser(stream);
+
+        // 1st interaction
+        ModelledInteraction binary1 = parser.MitabLine();
+        Assert.assertNotNull(binary1);
+        Assert.assertFalse(parser.hasFinished());
+
+        Iterator<ModelledParticipant> iterator = binary1.getParticipants().iterator();
+        ModelledParticipant participantA = iterator.next();
+        ModelledParticipant participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        CvTerm bioeffectA = participantA.getBiologicalEffect();
+        CvTerm bioeffectB = participantB.getBiologicalEffect();
+        Collection<CausalRelationship> causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 2nd interaction
+        Interaction binary2 = parser.MitabLine();
+        Assert.assertNotNull(binary2);
+        Assert.assertFalse(parser.hasFinished());
+
+        iterator = binary2.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 3rd interaction
+        Interaction binary3 = parser.MitabLine();
+        Assert.assertNotNull(binary3);
+        Assert.assertFalse(parser.hasFinished());
+
+        iterator = binary3.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 4th interaction
+        Interaction binary4 = parser.MitabLine();
+        Assert.assertNotNull(binary4);
+        Assert.assertTrue(parser.hasFinished());
+
+        iterator = binary4.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
     }
 
     @Test
