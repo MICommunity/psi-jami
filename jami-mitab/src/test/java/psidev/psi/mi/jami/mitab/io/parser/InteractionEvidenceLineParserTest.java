@@ -8,9 +8,13 @@ import psidev.psi.mi.jami.tab.extension.MitabFeatureEvidence;
 import psidev.psi.mi.jami.tab.io.parser.InteractionEvidenceLineParser;
 import psidev.psi.mi.jami.tab.io.parser.ParseException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
-import psidev.psi.mi.jami.utils.*;
+import psidev.psi.mi.jami.utils.AnnotationUtils;
+import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.utils.PositionUtils;
+import psidev.psi.mi.jami.utils.XrefUtils;
 
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -353,6 +357,84 @@ public class InteractionEvidenceLineParserTest {
         Feature f2 = (Feature)A2.getFeatures().iterator().next();
         Assert.assertEquals("IPR020405", f2.getInterpro());
         Assert.assertTrue(parser.hasFinished());
+    }
+
+    @Test
+    public void test_read_valid_mitab28() throws ParseException {
+        InputStream stream = InteractionEvidenceLineParserTest.class.getResourceAsStream("/samples/mitab28.txt");
+        InteractionEvidenceLineParser parser = new InteractionEvidenceLineParser(stream);
+
+        // 1st interaction
+        InteractionEvidence binary1 = parser.MitabLine();
+        Assert.assertNotNull(binary1);
+        Assert.assertFalse(parser.hasFinished());
+
+        Iterator<ParticipantEvidence> iterator = binary1.getParticipants().iterator();
+        ParticipantEvidence participantA = iterator.next();
+        ParticipantEvidence participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        CvTerm bioeffectA = participantA.getBiologicalEffect();
+        CvTerm bioeffectB = participantB.getBiologicalEffect();
+        Collection<CausalRelationship> causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 2nd interaction
+        InteractionEvidence binary2 = parser.MitabLine();
+        Assert.assertNotNull(binary2);
+        Assert.assertFalse(parser.hasFinished());
+
+        iterator = binary2.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 3rd interaction
+        InteractionEvidence binary3 = parser.MitabLine();
+        Assert.assertNotNull(binary3);
+        Assert.assertFalse(parser.hasFinished());
+
+        iterator = binary3.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
+
+        // 4th interaction
+        InteractionEvidence binary4 = parser.MitabLine();
+        Assert.assertNotNull(binary4);
+        Assert.assertTrue(parser.hasFinished());
+
+        iterator = binary4.getParticipants().iterator();
+        participantA = iterator.next();
+        participantB = iterator.next();
+
+        // no causal regulatory mechanism in InteractionEvidence
+        bioeffectA = participantA.getBiologicalEffect();
+        bioeffectB = participantB.getBiologicalEffect();
+        causalRelationships = participantA.getCausalRelationships();
+
+        Assert.assertNull(bioeffectA);
+        Assert.assertNull(bioeffectB);
+        Assert.assertTrue(causalRelationships.isEmpty());
     }
 
     @Test

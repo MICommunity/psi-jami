@@ -1,10 +1,12 @@
 package psidev.psi.mi.jami.tab.io.parser;
 
 import psidev.psi.mi.jami.model.InteractionEvidence;
+import psidev.psi.mi.jami.tab.extension.MitabCvTerm;
 import psidev.psi.mi.jami.tab.extension.MitabInteractionEvidence;
 
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Collection;
 
 /**
  * An extension of MitabLineParser that returns interactions evidences only.
@@ -56,5 +58,10 @@ public class InteractionEvidenceLineParser extends AbstractInteractionEvidenceLi
     @Override
     protected InteractionEvidence createInteraction() {
         return new MitabInteractionEvidence();
+    }
+
+    @Override
+    InteractionEvidence finishCausalInteraction(InteractionEvidence interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
+        return interaction;
     }
 }

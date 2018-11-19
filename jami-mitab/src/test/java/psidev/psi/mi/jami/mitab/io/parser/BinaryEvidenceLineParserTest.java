@@ -400,14 +400,16 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(causalRegMechanism.getShortName(), "post transcriptional regulation");
 
         // check the causal statement (relationType)
-        CvTerm causalStatement = binary1.getParticipantA().getCausalRelationships().iterator().next().getRelationType();
+        Iterator<CausalRelationship> it = binary1.getParticipantA().getCausalRelationships().iterator();
+        CausalRelationship causalRelationship = it.next();
+        CvTerm causalStatement = causalRelationship.getRelationType();
         Xref causalStatementIdentifier = causalStatement.getIdentifiers().iterator().next();
         Assert.assertEquals(causalStatementIdentifier.getId(),"MI:2235");
         Assert.assertEquals(causalStatementIdentifier.getDatabase().getShortName(),"psi-mi");
         Assert.assertEquals(causalStatement.getShortName(), "up regulates");
 
         // check the target of causality
-        Entity target = binary1.getParticipantA().getCausalRelationships().iterator().next().getTarget();
+        Entity target = causalRelationship.getTarget();
         Assert.assertEquals(target, binary1.getParticipantB());
 
         // 2nd interaction
@@ -444,14 +446,16 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(causalRegMechanism.getShortName(), "post transcriptional regulation");
 
         // check the causal statement (relationType)
-        causalStatement = binary2.getParticipantA().getCausalRelationships().iterator().next().getRelationType();
+        it = binary2.getParticipantA().getCausalRelationships().iterator();
+        causalRelationship = it.next();
+        causalStatement = causalRelationship.getRelationType();
         causalStatementIdentifier = causalStatement.getIdentifiers().iterator().next();
         Assert.assertEquals(causalStatementIdentifier.getId(),"MI:2240");
         Assert.assertEquals(causalStatementIdentifier.getDatabase().getShortName(),"psi-mi");
         Assert.assertEquals(causalStatement.getShortName(), "down regulates");
 
         // check the target of causality
-        target = binary2.getParticipantA().getCausalRelationships().iterator().next().getTarget();
+        target = causalRelationship.getTarget();
         Assert.assertEquals(target, binary2.getParticipantB());
 
         // 3rd interaction
@@ -488,14 +492,16 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(causalRegMechanism.getShortName(), "post transcriptional regulation");
 
         // check the causal statement (relationType)
-        causalStatement = binary3.getParticipantA().getCausalRelationships().iterator().next().getRelationType();
+        it = binary3.getParticipantA().getCausalRelationships().iterator();
+        causalRelationship = it.next();
+        causalStatement = causalRelationship.getRelationType();
         causalStatementIdentifier = causalStatement.getIdentifiers().iterator().next();
         Assert.assertEquals(causalStatementIdentifier.getId(),"MI:2240");
         Assert.assertEquals(causalStatementIdentifier.getDatabase().getShortName(),"psi-mi");
         Assert.assertEquals(causalStatement.getShortName(), "down regulates");
 
         // check the target of causality
-        target = binary3.getParticipantA().getCausalRelationships().iterator().next().getTarget();
+        target = causalRelationship.getTarget();
         Assert.assertEquals(target, binary3.getParticipantB());
 
         // 4th interaction
@@ -532,14 +538,16 @@ public class BinaryEvidenceLineParserTest {
         Assert.assertEquals(causalRegMechanism.getShortName(), "post transcriptional regulation");
 
         // check the causal statement (relationType)
-        causalStatement = binary4.getParticipantA().getCausalRelationships().iterator().next().getRelationType();
+        it = binary4.getParticipantA().getCausalRelationships().iterator();
+        causalRelationship = it.next();
+        causalStatement = causalRelationship.getRelationType();
         causalStatementIdentifier = causalStatement.getIdentifiers().iterator().next();
         Assert.assertEquals(causalStatementIdentifier.getId(),"MI:2235");
         Assert.assertEquals(causalStatementIdentifier.getDatabase().getShortName(),"psi-mi");
         Assert.assertEquals(causalStatement.getShortName(), "up regulates");
 
         // check the target of causality
-        target = binary4.getParticipantA().getCausalRelationships().iterator().next().getTarget();
+        target = causalRelationship.getTarget();
         Assert.assertEquals(target, binary4.getParticipantB());
     }
 
@@ -567,7 +575,7 @@ public class BinaryEvidenceLineParserTest {
         // 2nd interaction
         BinaryInteractionEvidence binary2 = parser.MitabLine();
         Assert.assertNotNull(binary2);
-        Assert.assertTrue(parser.hasFinished());
+        Assert.assertFalse(parser.hasFinished());
 
         // check biological effect of A participant
         bioeffectA = binary2.getParticipantA().getBiologicalEffect();

@@ -117,6 +117,7 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
             else if (!stc.isEmpty()){
                 participant.setStoichiometry(stc.iterator().next());
             }
+
             // add source locator
             participant.setSourceLocator(new MitabSourceLocator(line, column, mitabColumn));
         }
@@ -207,10 +208,7 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
     }
 
     @Override
-    T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
-        if (interaction == null) return null;
-        return interaction;
-    }
+    abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
     /**
      * <p>addParticipant.</p>
