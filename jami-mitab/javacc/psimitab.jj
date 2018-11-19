@@ -413,7 +413,7 @@ T MitabLine():
                   createParseException(token.beginLine, token.beginColumn, 45, e, "Invalid Causal Regulatory Mechanism column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
                  }
-        try{(<DASH> {causalStatement = Collections.EMPTY_LIST;} | causalStatement = cvTerms(46)) <COLUMN_SEPARATOR>}
+        try{(<DASH> {causalStatement = Collections.EMPTY_LIST;} | causalStatement = cvTerms(46))}
         catch (ParseException e){
                   createParseException(token.beginLine, token.beginColumn, 46, e, "Invalid Causal Statement column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
