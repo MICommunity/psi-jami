@@ -55,6 +55,11 @@ public class ReadWriteWithJami {
         // By default, the datasource will be streaming (only returns an iterator of interactions), and returns a source of Interaction objects.
         // The default options can be overridden using the optionfactory or by manually adding options listed in MitabDataSourceOptions or PsiXmlDataSourceOptions
         Map<String, Object> parsingOptions = optionfactory.getDefaultOptions(new File(fileName));
+        /**
+         * uncomment next line if you want to parse causal-related
+         * data, which are absorved only by binary parsers
+         */
+        //parsingOptions.put(MitabDataSourceOptions.COMPLEX_TYPE_OPTION_KEY, ComplexType.binary);
 
         InteractionStream interactionSource = null;
         InteractionWriter xmlInteractionWriter = null;
@@ -76,12 +81,17 @@ public class ReadWriteWithJami {
             // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
             // MitabWriterOptions
             Map<String, Object> mitabWritingOptions = optionwriterFactory.getDefaultMitabOptions(new File(mitabFileName));
+            /** uncomment next line(s) if you want to write the causal-related miTab 2.8 columns */
+            //mitabWritingOptions.put(MitabWriterOptions.MITAB_VERSION_OPTION, MitabVersion.v2_8);
+            //mitabWritingOptions.put(MitabWriterOptions.COMPLEX_TYPE_OPTION_KEY, ComplexType.binary);
 
             // get default options for writing PSI-MI XML file.
             // By default, the writer will be a PSI-MI XML 2.5.4 writer and it will write expanded PSI-MI XML
             // The default options can be overridden using the optionWriterfactory or by manually adding options listed in
             // PsiXmlWriterOptions
             Map<String, Object> xmlWritingOptions = optionwriterFactory.getDefaultXmlOptions(new File(xmlFileName));
+            /** uncomment next line if you want to write in the 3.0.0 xml version */
+            //xmlWritingOptions.put(PsiXmlWriterOptions.XML_VERSION_OPTION, PsiXmlVersion.v3_0_0);
 
             // Get the default MITAB writer
             mitabInteractionWriter = writerFactory.getInteractionWriterWith(mitabWritingOptions);
