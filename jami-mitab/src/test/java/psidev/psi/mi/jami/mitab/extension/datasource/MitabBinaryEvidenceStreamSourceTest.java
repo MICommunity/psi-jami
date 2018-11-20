@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.mitab.extension.datasource;
 
 import junit.framework.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
@@ -172,8 +171,7 @@ public class MitabBinaryEvidenceStreamSourceTest {
         dataSource.close();
     }
 
-    @Test
-    @Ignore
+    // not a test in the junit sense :)
     public void test_playground(){
         MitabBinaryEvidenceStreamSource dataSource = new MitabBinaryEvidenceStreamSource();
         Map<String, Object> options = new HashMap<String, Object>();
