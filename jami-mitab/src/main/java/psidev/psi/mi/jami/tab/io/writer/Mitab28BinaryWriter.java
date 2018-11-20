@@ -17,7 +17,7 @@ import java.io.Writer;
 import java.util.Map;
 
 /**
- * The basic Mitab 2.7 writer for BinaryInteraction
+ * The basic Mitab 2.8 writer for BinaryInteraction
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -111,7 +111,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
         }
 
         boolean hasJustStarted = !hasStarted();
-        if (!hasStarted()){
+        if (hasJustStarted){
             start();
         }
 
