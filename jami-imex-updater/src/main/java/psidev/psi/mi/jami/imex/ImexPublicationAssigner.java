@@ -136,13 +136,13 @@ public class ImexPublicationAssigner extends FullPublicationEnricher{
                     return null;
                 }
                 // the publication has been registered in IMex central but does not have an IMEx id. We cannot assign IMEx id, the curator must have a look at it
-                else if (!isEntitledToAssignImexId(publicationToEnrich, imexPublication)){
+               /* else if (!isEntitledToAssignImexId(publicationToEnrich, imexPublication)){
                     if (getPublicationEnricherListener() instanceof PublicationImexEnricherListener){
                         ((PublicationImexEnricherListener)getPublicationEnricherListener()).onPublicationAlreadyRegisteredInImexCentral(publicationToEnrich, imexPublication.getImexId());
                         ((PublicationImexEnricherListener)getPublicationEnricherListener()).onPublicationNotEligibleForImex(publicationToEnrich);
                     }
                     return null;
-                }
+                }*/
             }
 
             // the publication has a valid pubmed identifier and can be registered and assign IMEx id in IMEx central

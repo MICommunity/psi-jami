@@ -3,10 +3,13 @@ package psidev.psi.mi.jami.imex.actions.impl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
+import psidev.psi.mi.jami.bridges.imex.Constants;
 import psidev.psi.mi.jami.bridges.imex.ImexCentralClient;
+import psidev.psi.mi.jami.bridges.imex.Operation;
 import psidev.psi.mi.jami.bridges.imex.PublicationStatus;
 import psidev.psi.mi.jami.bridges.imex.extension.ImexPublication;
 import psidev.psi.mi.jami.model.Publication;
+import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.imex.actions.PublicationStatusSynchronizer;
 
@@ -96,6 +99,12 @@ public class PublicationStatusSynchronizerImpl implements PublicationStatusSynch
             }
             imexCentral.updatePublicationStatus( pubId, source, PublicationStatus.DISCARDED );
             log.info("Updating imex status to DISCARDED");
+
+            Source institution = publication.getSource();
+            String imexInstitutionName=institution.getShortName().toUpperCase();
+            getImexCentralClient().updatePublicationAdminGroup( pubId, source, Operation.DROP,imexInstitutionName );
+            log.info("Removing Publication Source Admin Group from Imex Publication Entry");
+
         }
     }
 

@@ -5,9 +5,7 @@ import edu.ucla.mbi.imex.central.ws.v20.Identifier;
 import edu.ucla.mbi.imex.central.ws.v20.ImexCentralFault;
 import edu.ucla.mbi.imex.central.ws.v20.Publication;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
-import psidev.psi.mi.jami.bridges.imex.ImexCentralClient;
-import psidev.psi.mi.jami.bridges.imex.Operation;
-import psidev.psi.mi.jami.bridges.imex.PublicationStatus;
+import psidev.psi.mi.jami.bridges.imex.*;
 import psidev.psi.mi.jami.bridges.imex.extension.ImexPublication;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.model.impl.DefaultSource;
@@ -29,6 +27,7 @@ public class MockImexCentralClient implements ImexCentralClient {
      */
     public MockImexCentralClient() {
         allPublications = new ArrayList<psidev.psi.mi.jami.model.Publication>( );
+        initializeImexDBGroups();
     }
 
     private int imexIdSequence = 1;
@@ -37,6 +36,9 @@ public class MockImexCentralClient implements ImexCentralClient {
 
     private String INTACT_GROUP = "INTACT";
     private String MATRIXDB_GROUP = "MATRIXDB";
+    private String INTACT_CURATORS = "INTACT CURATORS";
+    private String MATRIXDB_CURATORS = "MATRIXDB CURATORS";
+    private String IMEX_CURATORS = "IMEX CURATORS";
     private String intact_user = "intact";
     private String phantom_user = "phantom";
 
@@ -45,6 +47,15 @@ public class MockImexCentralClient implements ImexCentralClient {
     /////////////////////////////
     // Service initialization
 
+    public Set<String> initializeImexDBGroups() {
+
+        Constants.IMEX_PARTNERS =null; // for garbage collection
+        Constants.IMEX_PARTNERS = new HashSet<>();
+
+        Constants.IMEX_PARTNERS.add(this.INTACT_GROUP);
+        Constants.IMEX_PARTNERS.add(this.MATRIXDB_GROUP);
+        return Constants.IMEX_PARTNERS;
+    }
     /**
      * <p>initImexSequence.</p>
      *
@@ -204,7 +215,10 @@ public class MockImexCentralClient implements ImexCentralClient {
         psidev.psi.mi.jami.model.Publication p = fetchByIdentifier(identifier, source);
 
         if (p != null && p instanceof ImexPublication){
-            if (group != null && (group.equalsIgnoreCase(INTACT_GROUP) || group.equalsIgnoreCase(MATRIXDB_GROUP))){
+            if (group != null && (group.equalsIgnoreCase(INTACT_GROUP) || group.equalsIgnoreCase(MATRIXDB_GROUP)
+            ||group.equalsIgnoreCase(INTACT_CURATORS)
+            ||group.equalsIgnoreCase(MATRIXDB_CURATORS)
+            ||group.equalsIgnoreCase(IMEX_CURATORS))){
                 ((ImexPublication) p).getSources().add(new DefaultSource(group));
             }
             // group not recognized, throw exception as in the real webservice

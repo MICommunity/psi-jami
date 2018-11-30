@@ -68,6 +68,12 @@
             <artifactId>xalan</artifactId>
             <version>2.7.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
     </dependencies>
 
     <!--Temporary solution to find all the imex central dependencies. -->

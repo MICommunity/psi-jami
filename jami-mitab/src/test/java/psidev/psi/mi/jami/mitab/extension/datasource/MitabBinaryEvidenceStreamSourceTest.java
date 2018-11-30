@@ -177,7 +177,7 @@ public class MitabBinaryEvidenceStreamSourceTest {
     public void test_playground(){
         MitabBinaryEvidenceStreamSource dataSource = new MitabBinaryEvidenceStreamSource();
         Map<String, Object> options = new HashMap<String, Object>();
-        options.put(MIFileDataSourceOptions.INPUT_OPTION_KEY, new File("/home/marine/Desktop/general/intact/intact.txt"));
+        options.put(MIFileDataSourceOptions.INPUT_OPTION_KEY, new File("/home/anjali/Documents/projects_docs/open_target/reactome_data/reactome.homo_sapiens.interactions.psi-mitab.txt"));
         dataSource.initialiseContext(options);
         System.out.print("start "+System.currentTimeMillis());
 

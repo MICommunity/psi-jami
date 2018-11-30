@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.utils.comparator.cv.DefaultCvTermComparator;
 import psidev.psi.mi.jami.imex.actions.PublicationAdminGroupSynchronizer;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class is for synchronizing the admin group of a publication in imex central
@@ -88,6 +89,27 @@ public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGr
         }
 
         return false;
+    }
+
+    /**
+     * <p>checks any of the sources is a imex partner.</p>
+     *
+     * @param adminGroupList a {@link java.util.List} object.
+     * @param imexPartners
+     * @return a boolean.
+     */
+    protected Source getImexPublicationOwnerGroup(List<Source> adminGroupList, Set<String> imexPartners){
+
+        Source imexPublicationSource=null;
+        if (!adminGroupList.isEmpty()){
+            for (Source source : adminGroupList){
+                if(imexPartners.contains(source.getShortName().toUpperCase())){
+                    return source;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**

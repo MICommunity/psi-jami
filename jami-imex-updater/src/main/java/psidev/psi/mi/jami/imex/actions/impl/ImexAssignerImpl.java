@@ -206,7 +206,8 @@ public class ImexAssignerImpl implements ImexAssigner {
             return false;
         }
 
-        int numberOfProteinsPeptides = 0;
+        return true;
+        /*int numberOfProteinsPeptides = 0;
 
         for ( ParticipantEvidence component : interaction.getParticipants() ) {
             if (InteractorUtils.doesInteractorHaveType(component.getInteractor(), Protein.PROTEIN_MI, Protein.PROTEIN)
@@ -215,7 +216,7 @@ public class ImexAssignerImpl implements ImexAssigner {
             }
         }
 
-        return numberOfProteinsPeptides > 0 && (numberOfProteinsPeptides == interaction.getParticipants().size());
+        return numberOfProteinsPeptides > 0 && (numberOfProteinsPeptides == interaction.getParticipants().size());*/
     }
 
     /**
