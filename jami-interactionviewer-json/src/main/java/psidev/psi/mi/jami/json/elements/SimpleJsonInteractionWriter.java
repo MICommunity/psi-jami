@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.*;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
     private Map<Feature, Integer> processedFeatures;
     private Map<Entity, Integer> processedParticipants;
     private Map<String, String> processedInteractors;
+    private Map<String, String> processedInteractions = new HashMap<>();
     private IncrementalIdGenerator idGenerator;
     private OntologyTermFetcher fetcher;
 
@@ -95,13 +97,13 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
         String id = null;
 
         // if the interaction has not yet been processed, we write the interactor
-        if (!processedInteractors.containsKey(keyValues[0]+"_"+keyValues[1])){
+        if (!processedInteractions.containsKey(keyValues[0]+"_"+keyValues[1])){
             // when the interactor is not the first one, we write an element separator
-            if (!processedInteractors.isEmpty()){
+            if (!processedInteractions.isEmpty() || ! processedInteractors.isEmpty()){
                 MIJsonUtils.writeSeparator(writer);
             }
             id = keyValues[0]+"_"+keyValues[1];
-            this.processedInteractors.put(keyValues[0]+"_"+keyValues[1], keyValues[0]+"_"+keyValues[1]);
+            this.processedInteractions.put(keyValues[0]+"_"+keyValues[1], keyValues[0]+"_"+keyValues[1]);
 
             MIJsonUtils.writeStartObject(writer);
             MIJsonUtils.writeProperty("object","interaction", writer);

@@ -392,11 +392,11 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
                 // write as an interaction
                 if (!complex.getParticipants().isEmpty()){
                      writeComplex(complex);
+                     getInteractorWriter().write(interactor);
                 }
                 // write as an interactor
-                else{
-                    getInteractorWriter().write(interactor);
-                }
+//                else{
+//                }
             }
             else{
                 getInteractorWriter().write(interactor);
