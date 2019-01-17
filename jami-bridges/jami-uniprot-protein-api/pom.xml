@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>psidev.psi.mi.jami.bridges</groupId>
+        <artifactId>jami-bridges</artifactId>
+        <version>3.2.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jami-uniprot-protein-api</artifactId>
+    <name>PSI :: JAMI - Bridges - Uniprot Protein API</name>
+    <description>Jami Uniprot Protein API client module</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring.version>4.3.12.RELEASE</spring.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Conversion of XML Schema into Java source code using JAXB-XJC -->
+            <!-- It generates the sources in the target folder and then they needs to
+                 be copied manually until we can automatically tell the plugin that
+                 Entry.java doesn't have the namespace (it not the rest template can't map
+                 properly the response -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.2</version>
+                <configuration>
+                    <schemaDirectory>src/main/resources</schemaDirectory>
+                    <generatePackage>psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb</generatePackage>
+                    <strict>false</strict>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- IntAct -->
+        <dependency>
+            <groupId>psidev.psi.mi.jami.bridges</groupId>
+            <artifactId>jami-uniprot</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+    
+</project>
