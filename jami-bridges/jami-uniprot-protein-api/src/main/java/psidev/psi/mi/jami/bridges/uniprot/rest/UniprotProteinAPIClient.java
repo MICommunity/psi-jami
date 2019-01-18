@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 import static psidev.psi.mi.jami.bridges.uniprot.rest.SearchDatabase.*;
 
 /**
- * Client for the Uniprot REST Api
+ * Client for the Uniprot Protein API
  */
 public class UniprotProteinAPIClient {
 
@@ -52,7 +52,7 @@ public class UniprotProteinAPIClient {
      * @return the swissprotIds if found, empty list otherwise
      * @throws UniprotProteinAPIClientException : an exception if the given accession is null
      */
-    //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getSwissprotIdsForAccession(String accession, String taxonId) throws UniprotProteinAPIClientException {
         return getIdsForAccession(accession, taxonId, SWISSPROT, SWISSPROT_VARSPLIC);
     }
@@ -65,7 +65,7 @@ public class UniprotProteinAPIClient {
      * @return the tremblId if found, empty list otherwise
      * @throws UniprotProteinAPIClientException : an exception if the given accession is null
      */
-    //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getTremblIdsForAccession(String accession, String taxonId) throws UniprotProteinAPIClientException {
         return getIdsForAccession(accession, taxonId, TREMBL);
     }
@@ -78,7 +78,7 @@ public class UniprotProteinAPIClient {
      * @return the list of uniparc Id or empty list if the accession doesn't match any Uniparc sequence
      * @throws UniprotProteinAPIClientException : an exception if the given accession is null
      */
-    //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot Protein API
     public List<Entry> getUniparcEntries(String accession, String taxonId) throws UniprotProteinAPIClientException {
         return getUPEntriesForAccession(accession, taxonId, SWISSPROT, SWISSPROT_VARSPLIC, TREMBL);
     }
@@ -162,11 +162,11 @@ public class UniprotProteinAPIClient {
 
         } catch (HttpClientErrorException e) {
             if(e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot REST API could not found any best guess");
+                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot REST API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot REST API could not work properly.");
+            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
+            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
         }
 
 
@@ -208,7 +208,7 @@ public class UniprotProteinAPIClient {
      * @return the swissprotIds if found, empty list otherwise
      * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
      */
-    //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getSwissprotIdsForSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
         return getIdsForSequence(sequence, taxonId, SWISSPROT, SWISSPROT_VARSPLIC);
     }
@@ -221,7 +221,7 @@ public class UniprotProteinAPIClient {
      * @return the tremblId if found, empty list otherwise
      * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
      */
-    //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getTremblIdsForSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
         return getIdsForSequence(sequence, taxonId, TREMBL);
     }
@@ -233,7 +233,7 @@ public class UniprotProteinAPIClient {
      * @param taxonId
      * @return the uniparc Id or null if the sequence doesn't match any Uniparc sequence
      */
-    //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot REST API
+    //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot Protein API
     public String getUniparcIdFromSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
         Entry upEntry = getUPEntriesForSequence(sequence, taxonId, SWISSPROT, SWISSPROT_VARSPLIC, TREMBL);
 
@@ -285,11 +285,11 @@ public class UniprotProteinAPIClient {
 
         } catch (HttpClientErrorException e) {
             if(e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot REST API could not found any best guess");
+                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot REST API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot REST API could not work properly.");
+            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
+            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
         }
 
         return entry;
@@ -429,11 +429,11 @@ public class UniprotProteinAPIClient {
 
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot REST API could not found any best guess");
+                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot REST API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot REST API could not work properly.");
+            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
+            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
         }
 
         return result;

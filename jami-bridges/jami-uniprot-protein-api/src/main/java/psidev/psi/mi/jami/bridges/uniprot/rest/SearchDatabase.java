@@ -16,10 +16,7 @@
 package psidev.psi.mi.jami.bridges.uniprot.rest;
 
 /**
- * TODO comment this
- *
- * @author Bruno Aranda (baranda@ebi.ac.uk)
- * @version $Id$
+ * TODO: Work in progress to adapt the databases
  */
 public enum SearchDatabase {
 
