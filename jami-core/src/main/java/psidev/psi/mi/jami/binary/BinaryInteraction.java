@@ -58,4 +58,18 @@ public interface BinaryInteraction<T extends Participant> extends Interaction<T>
      * @param expansion : the complex expansion
      */
     public void setComplexExpansion(CvTerm expansion);
+
+    /**
+     * The causal regulatory mechanism for the binary interaction
+     *
+     * @return the complex regulatory mechanism CvTerm
+     */
+    public CvTerm getCausalRegulatoryMechanism();
+
+    /**
+     * Sets the causal regulatory mechanism of this binary interaction
+     *
+     * @param causalRegulatoryMechanism : the complex regulatory mechanism CvTerm
+     */
+    public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism);
 }

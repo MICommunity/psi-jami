@@ -17,6 +17,7 @@ import java.util.Collections;
 public abstract class AbstractParticipant<I extends Interaction, F extends Feature> extends AbstractEntity<F> implements Participant<I,F> {
     private I interaction;
     private CvTerm biologicalRole;
+    private CvTerm biologicalEffect;
     private Collection<Xref> xrefs;
     private Collection<Annotation> annotations;
     private Collection<Alias> aliases;
@@ -63,6 +64,20 @@ public abstract class AbstractParticipant<I extends Interaction, F extends Featu
     public AbstractParticipant(Interactor interactor, CvTerm bioRole, Stoichiometry stoichiometry){
         super(interactor, stoichiometry);
         this.biologicalRole = bioRole != null ? bioRole : CvTermUtils.createUnspecifiedRole();
+    }
+
+    /**
+     * <p>Constructor for AbstractParticipant.</p>
+     *
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
+     * @param biologicalEffect a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public AbstractParticipant(Interactor interactor, CvTerm bioRole, CvTerm biologicalEffect, Stoichiometry stoichiometry){
+        super(interactor, stoichiometry);
+        this.biologicalRole = bioRole != null ? bioRole : CvTermUtils.createUnspecifiedRole();
+        this.biologicalEffect = biologicalEffect;
     }
 
     /**
@@ -145,6 +160,24 @@ public abstract class AbstractParticipant<I extends Interaction, F extends Featu
         else {
             biologicalRole = bioRole;
         }
+    }
+
+    /**
+     * <p>Getter for the field <code>biologicalEffect</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public CvTerm getBiologicalEffect() {
+        return this.biologicalEffect;
+    }
+
+    /**
+     * <p>setBiologicalEffect</p>
+     *
+     * @param biologicalEffect a CvTerm object.
+     */
+    public void setBiologicalEffect(CvTerm biologicalEffect) {
+        this.biologicalEffect = biologicalEffect;
     }
 
     /**

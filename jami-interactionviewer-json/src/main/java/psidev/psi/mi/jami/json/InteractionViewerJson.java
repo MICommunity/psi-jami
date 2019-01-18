@@ -50,27 +50,39 @@ public class InteractionViewerJson {
 
         Map<String, Object> supportedOptions1 = createMIJsonWriterOptions(InteractionCategory.evidence, null, MIJsonType.n_ary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.nary.MIJsonEvidenceWriter.class, supportedOptions1);
+
         Map<String, Object> supportedOptions2 = createMIJsonWriterOptions(InteractionCategory.modelled, null, MIJsonType.n_ary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.nary.MIJsonModelledWriter.class, supportedOptions2);
+
         Map<String, Object> supportedOptions3 = createMIJsonWriterOptions(InteractionCategory.mixed, null, MIJsonType.n_ary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.nary.MIJsonWriter.class, supportedOptions3);
+
         Map<String, Object> supportedOptions4 = createMIJsonWriterOptions(InteractionCategory.basic, null, MIJsonType.n_ary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.nary.LightMIJsonWriter.class, supportedOptions4);
 
+
         Map<String, Object> supportedOptions5 = createMIJsonWriterOptions(InteractionCategory.evidence, ComplexType.binary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonBinaryEvidenceWriter.class, supportedOptions5);
+
         Map<String, Object> supportedOptions6 = createMIJsonWriterOptions(InteractionCategory.modelled, ComplexType.binary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonModelledBinaryWriter.class, supportedOptions6);
+
         Map<String, Object> supportedOptions7 = createMIJsonWriterOptions(InteractionCategory.mixed, ComplexType.binary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonBinaryWriter.class, supportedOptions7);
+
         Map<String, Object> supportedOptions8 = createMIJsonWriterOptions(InteractionCategory.basic, ComplexType.binary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.LightMIJsonBinaryWriter.class, supportedOptions8);
+
+
         Map<String, Object> supportedOptions9 = createMIJsonWriterOptions(InteractionCategory.evidence, ComplexType.n_ary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonEvidenceWriter.class, supportedOptions9);
+
         Map<String, Object> supportedOptions10 = createMIJsonWriterOptions(InteractionCategory.modelled, ComplexType.n_ary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonModelledWriter.class, supportedOptions10);
+
         Map<String, Object> supportedOptions11 = createMIJsonWriterOptions(InteractionCategory.mixed, ComplexType.n_ary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.MIJsonWriter.class, supportedOptions11);
+
         Map<String, Object> supportedOptions12 = createMIJsonWriterOptions(InteractionCategory.basic, ComplexType.n_ary, MIJsonType.binary_only);
         writerFactory.registerDataSourceWriter(psidev.psi.mi.jami.json.binary.LightMIJsonWriter.class, supportedOptions12);
     }

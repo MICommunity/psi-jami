@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.mitab.extension.datasource;
 
 import junit.framework.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
@@ -172,12 +171,11 @@ public class MitabBinaryEvidenceStreamSourceTest {
         dataSource.close();
     }
 
-    @Test
-    @Ignore
+    // not a test in the junit sense :)
     public void test_playground(){
         MitabBinaryEvidenceStreamSource dataSource = new MitabBinaryEvidenceStreamSource();
         Map<String, Object> options = new HashMap<String, Object>();
-        options.put(MIFileDataSourceOptions.INPUT_OPTION_KEY, new File("/home/marine/Desktop/general/intact/intact.txt"));
+        options.put(MIFileDataSourceOptions.INPUT_OPTION_KEY, new File("/home/anjali/Documents/projects_docs/open_target/reactome_data/reactome.homo_sapiens.interactions.psi-mitab.txt"));
         dataSource.initialiseContext(options);
         System.out.print("start "+System.currentTimeMillis());
 

@@ -38,8 +38,7 @@ import java.util.logging.Logger;
  * Created with IntelliJ IDEA.
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
- * @since  14/05/13
-
+ * @since 14/05/13
  */
 public class UniprotProteinFetcher
         implements ProteinFetcher {
@@ -48,7 +47,7 @@ public class UniprotProteinFetcher
 
     private UniProtService uniProtQueryService;
 
-    private Map<DatabaseType,CvTerm> selectedDatabases = null;
+    private Map<DatabaseType, CvTerm> selectedDatabases = null;
     private RogidGenerator rogidGenerator;
 
     /**
@@ -59,7 +58,7 @@ public class UniprotProteinFetcher
         rogidGenerator = new RogidGenerator();
     }
 
-    private void initiateDatabaseMap(){
+    private void initiateDatabaseMap() {
         selectedDatabases = new HashMap<DatabaseType, CvTerm>();
         selectedDatabases.put(DatabaseType.GO, new DefaultCvTerm(Xref.GO, Xref.GO_MI));
         selectedDatabases.put(DatabaseType.INTERPRO, new DefaultCvTerm(Xref.INTERPRO, Xref.INTERPRO_MI));
@@ -69,7 +68,6 @@ public class UniprotProteinFetcher
         selectedDatabases.put(DatabaseType.WORMBASE, new DefaultCvTerm("wormbase", "MI:0487"));
         selectedDatabases.put(DatabaseType.FLYBASE, new DefaultCvTerm("flybase", "MI:0478"));
         selectedDatabases.put(DatabaseType.REFSEQ, new DefaultCvTerm(Xref.REFSEQ, Xref.REFSEQ_MI));
-        selectedDatabases.put(DatabaseType.IPI, new DefaultCvTerm("ipi", "MI:0675"));
     }
 
     /**
@@ -92,19 +90,19 @@ public class UniprotProteinFetcher
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Takes the various type of uniprot protein identifier and uses the uniprotJAPI to retrieve the matching proteins.
      */
     public Collection<Protein> fetchByIdentifier(String identifier)
             throws BridgeFailedException {
 
-        if(identifier == null) throw new IllegalArgumentException("Could not perform search on null identifier.");
+        if (identifier == null) throw new IllegalArgumentException("Could not perform search on null identifier.");
 
-        if(UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find()){
+        if (UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find()) {
             // Truncate the pro identifier to allow the search to take place
-            String proIdentifier = identifier.substring(identifier.indexOf("PRO")).replace("-","_");
+            String proIdentifier = identifier.substring(identifier.indexOf("PRO")).replace("-", "_");
             return fetchFeaturesByIdentifier(proIdentifier);
-        } else if (UniprotUtils.UNIPROT_ISOFORM_REGEX.matcher(identifier).find()){
+        } else if (UniprotUtils.UNIPROT_ISOFORM_REGEX.matcher(identifier).find()) {
             return fetchIsoformsByIdentifier(identifier);
         } else {
             return fetchMasterProteinsByIdentifier(identifier);
@@ -113,13 +111,14 @@ public class UniprotProteinFetcher
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Takes the various type of uniprot protein identifier
      * and uses the uniprotJAPI to retrieve the matching proteins.
      */
     public Collection<Protein> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
-        if(identifiers == null) throw new IllegalArgumentException("Could not perform search on null collection of identifiers.");
-        if(identifiers.isEmpty()){
+        if (identifiers == null)
+            throw new IllegalArgumentException("Could not perform search on null collection of identifiers.");
+        if (identifiers.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
 
@@ -127,12 +126,12 @@ public class UniprotProteinFetcher
         List<String> featureIdentifiers = new ArrayList<String>(identifiers.size());
         List<String> isoformIdentifiers = new ArrayList<String>(identifiers.size());
 
-        for(String identifier : identifiers){
-            if(UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find()){
+        for (String identifier : identifiers) {
+            if (UniprotUtils.UNIPROT_PRO_REGEX.matcher(identifier).find()) {
                 // Truncate the pro identifier to allow the search to take place
-                String proIdentifier = identifier.substring(identifier.indexOf("PRO")).replace("-","_");
+                String proIdentifier = identifier.substring(identifier.indexOf("PRO")).replace("-", "_");
                 featureIdentifiers.add(proIdentifier);
-            } else if (UniprotUtils.UNIPROT_ISOFORM_REGEX.matcher(identifier).find()){
+            } else if (UniprotUtils.UNIPROT_ISOFORM_REGEX.matcher(identifier).find()) {
                 isoformIdentifiers.add(identifier);
             } else {
                 masterIdentifiers.add(identifier);
@@ -148,16 +147,15 @@ public class UniprotProteinFetcher
         proteinResults.addAll(fetchIsoformsByIdentifiers(isoformIdentifiers));
 
         // == Features ===========
-        for (String featureId : featureIdentifiers){
+        for (String featureId : featureIdentifiers) {
             proteinResults.addAll(fetchFeaturesByIdentifier(featureId));
         }
         return proteinResults;
     }
 
     /**
-     *
-     * @param identifier    The identifier for a master protein
-     * @return              The master proteins which match the identifier.
+     * @param identifier The identifier for a master protein
+     * @return The master proteins which match the identifier.
      * @throws BridgeFailedException
      */
     private Collection<Protein> fetchMasterProteinsByIdentifier(String identifier) throws BridgeFailedException {
@@ -198,17 +196,16 @@ public class UniprotProteinFetcher
     }
 
     /**
-     *
-     * @param identifiers    The identifier for a master protein
-     * @return              The master proteins which match the identifier.
+     * @param identifiers The identifier for a master protein
+     * @return The master proteins which match the identifier.
      * @throws BridgeFailedException
      */
     private Collection<Protein> fetchMasterProteinsByIdentifiers(List<String> identifiers) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>();
         Query query = null;
-        try{
-            for(String id : identifiers){
-                if(query == null){
+        try {
+            for (String id : identifiers) {
+                if (query == null) {
                     query = UniProtQueryBuilder.id(id);
                 } else {
                     query.or(UniProtQueryBuilder.id(id));
@@ -233,9 +230,9 @@ public class UniprotProteinFetcher
                     break;
                 }
             }
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             uniProtQueryService.stop();
-            throw new BridgeFailedException("Problem with Uniprot Service.",e);
+            throw new BridgeFailedException("Problem with Uniprot Service.", e);
         }
 
         // Examples:
@@ -250,8 +247,8 @@ public class UniprotProteinFetcher
     /**
      * Queries uniprot for the isoform identifier and returns the results in a list of Proteins
      *
-     * @param identifier    the isoform identifier in the form of [MasterID]-[IsoformNumber]
-     * @return      the collection of proteins which match the search term
+     * @param identifier the isoform identifier in the form of [MasterID]-[IsoformNumber]
+     * @return the collection of proteins which match the search term
      * @throws BridgeFailedException
      */
     private Collection<Protein> fetchIsoformsByIdentifier(String identifier) throws BridgeFailedException {
@@ -260,14 +257,14 @@ public class UniprotProteinFetcher
         try {
             uniProtQueryService.start();
             UniProtEntry entry = uniProtQueryService.getEntry(identifier);
-            if(entry!=null) {
+            if (entry != null) {
                 AlternativeProductsIsoform isoform = findIsoformInEntry(entry, identifier);
                 if (isoform == null) log.warning("No isoform in entry " + entry.getUniProtId());
                 else {
                     proteins.add(createIsoformFrom(entry, isoform));
                 }
-            }else {
-                log.warning("The entry for "+ identifier + " cannot be retrieved from Uniprot");
+            } else {
+                log.warning("The entry for " + identifier + " cannot be retrieved from Uniprot");
             }
         } catch (ServiceException e) {
             uniProtQueryService.stop();
@@ -280,16 +277,16 @@ public class UniprotProteinFetcher
     /**
      * Queries uniprot for the isoform identifier and returns the results in a list of Proteins
      *
-     * @param identifiers    the isoform identifier in the form of [MasterID]-[IsoformNumber]
-     * @return      the collection of proteins which match the search term
+     * @param identifiers the isoform identifier in the form of [MasterID]-[IsoformNumber]
+     * @return the collection of proteins which match the search term
      * @throws BridgeFailedException
      */
     private Collection<Protein> fetchIsoformsByIdentifiers(List<String> identifiers) throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>(identifiers.size());
         Query query = null;
-        try{
-            for(String identifier : identifiers){
-                if(query == null){
+        try {
+            for (String identifier : identifiers) {
+                if (query == null) {
                     query = UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier);
                 } else {
                     query = query.or(UniProtQueryBuilder.comments(CommentType.ALTERNATIVE_PRODUCTS, identifier));
@@ -320,9 +317,9 @@ public class UniprotProteinFetcher
                     break;
                 }
             }
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             uniProtQueryService.stop();
-            throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.",e);
+            throw new BridgeFailedException("Problem encountered whilst querying Uniprot service for isoforms.", e);
         }
         uniProtQueryService.stop();
         return proteins;
@@ -330,20 +327,20 @@ public class UniprotProteinFetcher
 
     /**
      * Queries uniprot for the feature identifier  and returns the results in a list of protein.
-     *
+     * <p>
      * The search term is a PRO identifier. These may be encountered in the form [MasterID]-PRO_[number]
      * or in the form PRO-[number]. Only the number should be supplied for the search.
      * The "Pro_" marker and all preceding identifiers must be removed.
      *
-     * @param identifier    the identifier for the feature in the form of a 10 digit number.
-     * @return      the collection of proteins found in the search
+     * @param identifier the identifier for the feature in the form of a 10 digit number.
+     * @return the collection of proteins found in the search
      * @throws BridgeFailedException
      */
     private Collection<Protein> fetchFeaturesByIdentifier(String identifier)
-            throws  BridgeFailedException {
+            throws BridgeFailedException {
         Collection<Protein> proteins = new ArrayList<Protein>();
 
-        try{
+        try {
             uniProtQueryService.start();
             Query query = UniProtQueryBuilder.features(FeatureType.CHAIN, identifier)
                     .or(UniProtQueryBuilder.features(FeatureType.PEPTIDE, identifier)
@@ -371,9 +368,9 @@ public class UniprotProteinFetcher
                     break;
                 }
             }
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             uniProtQueryService.stop();
-            throw new BridgeFailedException("Problem with Uniprot Service.",e);
+            throw new BridgeFailedException("Problem with Uniprot Service.", e);
         }
         uniProtQueryService.stop();
         return proteins;
@@ -390,8 +387,9 @@ public class UniprotProteinFetcher
      * SEQUENCE = sequence
      * ORGANISM = organism
      * CHECKSUMS + generated ROGID, supplied CRC64
-     * @param entity    A uniprot protein entity
-     * @return          The protein object from the entity
+     *
+     * @param entity A uniprot protein entity
+     * @return The protein object from the entity
      * @throws BridgeFailedException
      */
     private Protein createMasterProteinFromEntry(UniProtEntry entity) throws BridgeFailedException {
@@ -401,28 +399,27 @@ public class UniprotProteinFetcher
         String fullName = null;
 
         //THIS ID HAS BEEN TAKEN FROM THE 'ID' name
-        List<Field> fields =  entity.getProteinDescription().getRecommendedName().getFields();
-        for(Field f: fields){
-            if(f.getType() == FieldType.SHORT){
-                if(shortName == null){
+        List<Field> fields = entity.getProteinDescription().getRecommendedName().getFields();
+        for (Field f : fields) {
+            if (f.getType() == FieldType.SHORT) {
+                if (shortName == null) {
                     shortName = f.getValue();
                 }
-            }
-            else if(f.getType() == FieldType.FULL){
-                if(fullName == null){
+            } else if (f.getType() == FieldType.FULL) {
+                if (fullName == null) {
                     fullName = f.getValue();
                 }
             }
         }
 
         //SHORT NAME - ShortName/FullName/UniprotID/UniprotAC
-        if(entity.getUniProtId() != null){
+        if (entity.getUniProtId() != null) {
             p = new DefaultProtein(entity.getUniProtId().getValue().toLowerCase());
-        }else if(shortName != null){
+        } else if (shortName != null) {
             p = new DefaultProtein(shortName);
-        }else if(fullName != null){
+        } else if (fullName != null) {
             p = new DefaultProtein(fullName);
-        }else {
+        } else {
             p = new DefaultProtein(entity.getPrimaryUniProtAccession().getValue().toLowerCase());
 
         }
@@ -434,39 +431,39 @@ public class UniprotProteinFetcher
         p.setUniprotkb(entity.getPrimaryUniProtAccession().getValue());
 
         //SECONDARY ACs
-        if(entity.getSecondaryUniProtAccessions() != null
-                && ! entity.getSecondaryUniProtAccessions().isEmpty()) {
-            for(SecondaryUniProtAccession ac : entity.getSecondaryUniProtAccessions()){
+        if (entity.getSecondaryUniProtAccessions() != null
+                && !entity.getSecondaryUniProtAccessions().isEmpty()) {
+            for (SecondaryUniProtAccession ac : entity.getSecondaryUniProtAccessions()) {
                 p.getIdentifiers().add(
                         XrefUtils.createUniprotSecondary(ac.getValue()));
             }
         }
 
         //Aliases
-        if(entity.getGenes() != null && entity.getGenes().size() > 0){
-            for(Gene g : entity.getGenes()){
+        if (entity.getGenes() != null && entity.getGenes().size() > 0) {
+            for (Gene g : entity.getGenes()) {
                 //Gene Name
-                if(g.hasGeneName()){
+                if (g.hasGeneName()) {
                     p.getAliases().add(AliasUtils.createGeneName(g.getGeneName().getValue()));
                 }
                 //Gene Name Synonym
-                if(g.getGeneNameSynonyms() != null
-                        && !g.getGeneNameSynonyms().isEmpty()){
-                    for(GeneNameSynonym gns : g.getGeneNameSynonyms()){
+                if (g.getGeneNameSynonyms() != null
+                        && !g.getGeneNameSynonyms().isEmpty()) {
+                    for (GeneNameSynonym gns : g.getGeneNameSynonyms()) {
                         p.getAliases().add(AliasUtils.createGeneNameSynonym(gns.getValue()));
                     }
                 }
                 //ORF names
-                if(g.getORFNames() != null
-                        && !g.getORFNames().isEmpty()){
-                    for(ORFName orf : g.getORFNames()){
+                if (g.getORFNames() != null
+                        && !g.getORFNames().isEmpty()) {
+                    for (ORFName orf : g.getORFNames()) {
                         p.getAliases().add(AliasUtils.createOrfName(orf.getValue()));
                     }
                 }
                 //Locus Names
-                if(g.getOrderedLocusNames() != null
-                        && !g.getOrderedLocusNames().isEmpty()){
-                    for(OrderedLocusName oln : g.getOrderedLocusNames()){
+                if (g.getOrderedLocusNames() != null
+                        && !g.getOrderedLocusNames().isEmpty()) {
+                    for (OrderedLocusName oln : g.getOrderedLocusNames()) {
                         p.getAliases().add(AliasUtils.createLocusName(oln.getValue()));
                     }
                 }
@@ -474,9 +471,9 @@ public class UniprotProteinFetcher
         }
 
         // Database Xrefs
-        for(DatabaseCrossReference dbxref : entity.getDatabaseCrossReferences()){
+        for (DatabaseCrossReference dbxref : entity.getDatabaseCrossReferences()) {
             Collection<Xref> dbxrefStandardised = createXrefsFrom(dbxref);
-            if(dbxrefStandardised != null && !dbxrefStandardised.isEmpty()){
+            if (dbxrefStandardised != null && !dbxrefStandardised.isEmpty()) {
                 p.getXrefs().addAll(dbxrefStandardised);
             }
         }
@@ -496,40 +493,39 @@ public class UniprotProteinFetcher
     /**
      * For each UniprotEntry DatabaseCrossReference,
      * find the matching CvTerm and return it in an Xref with the identifier.
-     *
+     * <p>
      * For each type of DatabaseCrossReference in Uniprot there is a different method of access.
      * Each of these which are considered relevant have been implemented here.
      *
      * @param dbxref
      * @return
      */
-    private Collection<Xref> createXrefsFrom(DatabaseCrossReference dbxref){
-        if(selectedDatabases == null) initiateDatabaseMap();
+    private Collection<Xref> createXrefsFrom(DatabaseCrossReference dbxref) {
+        if (selectedDatabases == null) initiateDatabaseMap();
 
-        if (selectedDatabases.containsKey(dbxref.getDatabase())){
+        if (selectedDatabases.containsKey(dbxref.getDatabase())) {
             Collection<Xref> refs = new ArrayList<Xref>(3);
             CvTerm database = selectedDatabases.get(dbxref.getDatabase());
             String id = null;
 
-            switch(dbxref.getDatabase()){
-                case GO :
-                case INTERPRO :
-                case PDB :
+            switch (dbxref.getDatabase()) {
+                case GO:
+                case INTERPRO:
+                case PDB:
                 case REACTOME:
-                case WORMBASE :
-                case FLYBASE :
-                case REFSEQ :
-                case IPI :
-                    if(dbxref.getPrimaryId() != null) id = dbxref.getPrimaryId().getValue();
+                case WORMBASE:
+                case FLYBASE:
+                case REFSEQ:
+                    if (dbxref.getPrimaryId() != null) id = dbxref.getPrimaryId().getValue();
                     refs.add(new DefaultXref(database, id));
                     break;
-                case ENSEMBL :
-                    if(dbxref.getPrimaryId() != null) id = dbxref.getPrimaryId().getValue();
+                case ENSEMBL:
+                    if (dbxref.getPrimaryId() != null) id = dbxref.getPrimaryId().getValue();
                     refs.add(new DefaultXref(database, id));
-                    if (dbxref.getDescription() != null && dbxref.getDescription().getValue().length() > 0){
+                    if (dbxref.getDescription() != null && dbxref.getDescription().getValue().length() > 0) {
                         refs.add(new DefaultXref(database, dbxref.getDescription().getValue()));
                     }
-                    if (dbxref.hasThird()){
+                    if (dbxref.hasThird()) {
                         refs.add(new DefaultXref(database, dbxref.getThird().getValue()));
                     }
                     break;
@@ -537,18 +533,18 @@ public class UniprotProteinFetcher
                     break;
             }
 
-            if(id != null) return refs;
+            if (id != null) return refs;
         }
         return null;
     }
 
     private void generateChecksums(Protein p) throws BridgeFailedException {
         // CHECKSUMS
-        if(p.getSequence() != null){
+        if (p.getSequence() != null) {
             //TODO add an MI term if one is created
             p.getChecksums().add(ChecksumUtils.createChecksum("crc64", Crc64Generator.computeCrc64For(p.getSequence())));
 
-            if(p.getOrganism() != null){
+            if (p.getOrganism() != null) {
                 try {
                     String rogidValue = rogidGenerator.computeRogidFrom(
                             p.getSequence(), Integer.toString(p.getOrganism().getTaxId()));
@@ -556,29 +552,28 @@ public class UniprotProteinFetcher
 
                 } catch (SeguidException e) {
                     throw new BridgeFailedException(
-                            "Error was encountered whilst generating RogID in protein fetcher.",e);
+                            "Error was encountered whilst generating RogID in protein fetcher.", e);
                 }
             }
         }
     }
 
     /**
-     *
      * Entry => comments => Isoforms => ids
      * There will be one ID matching the search identifier for each entry.
      *
      * @param entry
      * @param identifier
      */
-    private AlternativeProductsIsoform findIsoformInEntry(UniProtEntry entry, String identifier){
+    private AlternativeProductsIsoform findIsoformInEntry(UniProtEntry entry, String identifier) {
 
         List<AlternativeProductsComment> comments = entry.getComments(CommentType.ALTERNATIVE_PRODUCTS);
 
-        for ( AlternativeProductsComment comment : comments ) {
+        for (AlternativeProductsComment comment : comments) {
             List<AlternativeProductsIsoform> isoforms = comment.getIsoforms();
-            for ( AlternativeProductsIsoform isoform : isoforms ){
-                for( IsoformId id :  isoform.getIds()){
-                    if(identifier.equals(id.getValue())) return isoform;
+            for (AlternativeProductsIsoform isoform : isoforms) {
+                for (IsoformId id : isoform.getIds()) {
+                    if (identifier.equals(id.getValue())) return isoform;
                 }
             }
         }
@@ -598,8 +593,8 @@ public class UniprotProteinFetcher
      * ORGANISM = organism
      * CHECKSUMS + generated ROGID, supplied CRC64
      * XREFS - ONLY: MasterProtein (db = uniprotkb, id = uniprotMaster, qualifier = isoform-parent (MI:0243))
-     *
-     *primary id, secondary ids
+     * <p>
+     * primary id, secondary ids
      *
      * @param entry
      * @param isoform
@@ -612,15 +607,15 @@ public class UniprotProteinFetcher
         String fullName = null;
 
         //THIS ID HAS BEEN TAKEN FROM THE 'ID' name
-        List<Field> fields =  entry.getProteinDescription().getRecommendedName().getFields();
-        for(Field f: fields){
-            if(f.getType() == FieldType.FULL){
-                if(fullName == null){
+        List<Field> fields = entry.getProteinDescription().getRecommendedName().getFields();
+        for (Field f : fields) {
+            if (f.getType() == FieldType.FULL) {
+                if (fullName == null) {
                     fullName = f.getValue();
                 }
             }
         }
-        if (fullName == null && isoform.hasName()){
+        if (fullName == null && isoform.hasName()) {
             fullName = isoform.getName().getValue();
         }
         Iterator<IsoformId> acIterator = isoform.getIds().iterator();
@@ -632,7 +627,7 @@ public class UniprotProteinFetcher
         p.setUniprotkb(firstAc.getValue());
 
         // SECONDARY ACS
-        while(acIterator.hasNext()){
+        while (acIterator.hasNext()) {
             IsoformId id = acIterator.next();
             p.getIdentifiers().add(XrefUtils.createUniprotSecondary(id.getValue()));
         }
@@ -646,12 +641,14 @@ public class UniprotProteinFetcher
                 log.severe("Splice variant has no sequence (status = NOT_DESCRIBED)");
                 break;
             case DESCRIBED:
-                p.setSequence(entry.getSplicedSequence(isoform.getName().getValue())); break;
+                p.setSequence(entry.getSplicedSequence(isoform.getName().getValue()));
+                break;
             case DISPLAYED:
-                p.setSequence(entry.getSplicedSequence(isoform.getName().getValue())); break;
+                p.setSequence(entry.getSplicedSequence(isoform.getName().getValue()));
+                break;
             case EXTERNAL:
                 // When an isoform is retrieved, it will be retrieved with the master which matches its identifier.
-                log.warning("Isoform ["+isoform.getName().getValue()+"] has an unexpected external sequence.");
+                log.warning("Isoform [" + isoform.getName().getValue() + "] has an unexpected external sequence.");
                 break;
         }
 
@@ -659,69 +656,69 @@ public class UniprotProteinFetcher
         generateChecksums(p);
 
         // ALIASES - gene name, gene name synonyms, orf, locus
-        if(entry.getGenes() != null && !entry.getGenes().isEmpty()){
-            for(Gene g : entry.getGenes()){
+        if (entry.getGenes() != null && !entry.getGenes().isEmpty()) {
+            for (Gene g : entry.getGenes()) {
                 //Gene Name
-                if(g.hasGeneName()) p.getAliases().add(AliasUtils.createGeneName(g.getGeneName().getValue()));
+                if (g.hasGeneName()) p.getAliases().add(AliasUtils.createGeneName(g.getGeneName().getValue()));
                 //Gene Name Synonym
-                if(g.getGeneNameSynonyms() != null && !g.getGeneNameSynonyms().isEmpty()){
-                    for(GeneNameSynonym gns : g.getGeneNameSynonyms()){
-                        p.getAliases().add( AliasUtils.createGeneNameSynonym(gns.getValue()));
+                if (g.getGeneNameSynonyms() != null && !g.getGeneNameSynonyms().isEmpty()) {
+                    for (GeneNameSynonym gns : g.getGeneNameSynonyms()) {
+                        p.getAliases().add(AliasUtils.createGeneNameSynonym(gns.getValue()));
                     }
                 }
                 //ORF names
-                if(g.getORFNames() != null && !g.getORFNames().isEmpty()){
-                    for(ORFName orf : g.getORFNames()){
-                        p.getAliases().add( AliasUtils.createOrfName(orf.getValue()));
+                if (g.getORFNames() != null && !g.getORFNames().isEmpty()) {
+                    for (ORFName orf : g.getORFNames()) {
+                        p.getAliases().add(AliasUtils.createOrfName(orf.getValue()));
                     }
                 }
                 //Locus Names
-                if(g.getOrderedLocusNames() != null && !g.getOrderedLocusNames().isEmpty()){
-                    for(OrderedLocusName oln : g.getOrderedLocusNames()){
-                        p.getAliases().add( AliasUtils.createLocusName(oln.getValue()));
+                if (g.getOrderedLocusNames() != null && !g.getOrderedLocusNames().isEmpty()) {
+                    for (OrderedLocusName oln : g.getOrderedLocusNames()) {
+                        p.getAliases().add(AliasUtils.createLocusName(oln.getValue()));
                     }
                 }
             }
         }
 
         // ALIASES - isoform synonyms
-        for ( IsoformSynonym syn : isoform.getSynonyms() ) {
-            p.getAliases().add( AliasUtils.createIsoformSynonym( syn.getValue() ));
+        for (IsoformSynonym syn : isoform.getSynonyms()) {
+            p.getAliases().add(AliasUtils.createIsoformSynonym(syn.getValue()));
         }
 
         // XREF - uniprotMaster
-        p.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.UNIPROTKB , Xref.UNIPROTKB_MI,
-                entry.getPrimaryUniProtAccession().getValue() , Xref.ISOFORM_PARENT, Xref.ISOFORM_PARENT_MI));
+        p.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.UNIPROTKB, Xref.UNIPROTKB_MI,
+                entry.getPrimaryUniProtAccession().getValue(), Xref.ISOFORM_PARENT, Xref.ISOFORM_PARENT_MI));
 
         return p;
     }
 
     /**
      * Searches a uniprot entry to find the feature with a matching identifier.
+     *
      * @param entry
      * @param identifier
      * @return
      */
-    private Feature findFeatureInEntry(UniProtEntry entry, String identifier){
-        Collection<ChainFeature> chainFeatures = entry.getFeatures( FeatureType.CHAIN );
-        for(ChainFeature f : chainFeatures){
-            if(f.getFeatureId().getValue().equals(identifier)) return f;
+    private Feature findFeatureInEntry(UniProtEntry entry, String identifier) {
+        Collection<ChainFeature> chainFeatures = entry.getFeatures(FeatureType.CHAIN);
+        for (ChainFeature f : chainFeatures) {
+            if (f.getFeatureId().getValue().equals(identifier)) return f;
         }
 
-        Collection<PeptideFeature> peptideFeatures = entry.getFeatures( FeatureType.PEPTIDE );
-        for(PeptideFeature f : peptideFeatures){
-            if(f.getFeatureId().getValue().equals(identifier))return f;
+        Collection<PeptideFeature> peptideFeatures = entry.getFeatures(FeatureType.PEPTIDE);
+        for (PeptideFeature f : peptideFeatures) {
+            if (f.getFeatureId().getValue().equals(identifier)) return f;
         }
 
-        Collection<ProPepFeature> proPepFeatures = entry.getFeatures( FeatureType.PROPEP );
-        for(ProPepFeature f : proPepFeatures){
-            if(f.getFeatureId().getValue().equals(identifier)) return f;
+        Collection<ProPepFeature> proPepFeatures = entry.getFeatures(FeatureType.PROPEP);
+        for (ProPepFeature f : proPepFeatures) {
+            if (f.getFeatureId().getValue().equals(identifier)) return f;
         }
         return null;
     }
 
     /**
-     *
      * The mapping of fields for features is as follows:
      * SHORTNAME = pro identifier number
      * FULLNAME = feature chain description.
@@ -745,21 +742,21 @@ public class UniprotProteinFetcher
         // SHORT NAME - identifier
         Protein p;
         String id;
-        switch (feature.getType()){
+        switch (feature.getType()) {
             case CHAIN:
-                ChainFeature chainFeature = (ChainFeature)feature;
+                ChainFeature chainFeature = (ChainFeature) feature;
                 id = chainFeature.getFeatureId().getValue();
                 p = new DefaultProtein(id.toLowerCase());
                 p.setFullName(chainFeature.getFeatureDescription().getValue());
                 break;
             case PEPTIDE:
-                PeptideFeature peptideFeature = (PeptideFeature)feature;
+                PeptideFeature peptideFeature = (PeptideFeature) feature;
                 id = peptideFeature.getFeatureId().getValue();
                 p = new DefaultProtein(id.toLowerCase());
                 p.setFullName(peptideFeature.getFeatureDescription().getValue());
                 break;
             case PROPEP:
-                ProPepFeature proPepFeature = (ProPepFeature)feature;
+                ProPepFeature proPepFeature = (ProPepFeature) feature;
                 id = proPepFeature.getFeatureId().getValue();
                 p = new DefaultProtein(id.toLowerCase());
                 p.setFullName(proPepFeature.getFeatureDescription().getValue());
@@ -769,24 +766,24 @@ public class UniprotProteinFetcher
         }
 
         // PRIMARY AC - uniprotIdMaster-chainId
-        String primaryAc = entry.getPrimaryUniProtAccession().getValue()+"-"+id;
+        String primaryAc = entry.getPrimaryUniProtAccession().getValue() + "-" + id;
         p.setUniprotkb(primaryAc);
 
         // SEQUENCE
         FeatureLocation location = feature.getFeatureLocation();
-        if (location != null){
-            int begin = location.getStart()-1;
+        if (location != null) {
+            int begin = location.getStart() - 1;
             int end = location.getEnd();
 
-            if (begin >= 0 && end >=0){
-                if(begin > end) throw new IllegalArgumentException(
-                        "Sequence has a start ("+begin+") larger than end ("+end+").");
+            if (begin >= 0 && end >= 0) {
+                if (begin > end) throw new IllegalArgumentException(
+                        "Sequence has a start (" + begin + ") larger than end (" + end + ").");
 
-                if(end > entry.getSequence().getValue().length()) throw new IllegalArgumentException(
-                        "Sequence has end ("+end+") larger than " +
-                                "length ("+entry.getSequence().getValue().length()+").");
+                if (end > entry.getSequence().getValue().length()) throw new IllegalArgumentException(
+                        "Sequence has end (" + end + ") larger than " +
+                                "length (" + entry.getSequence().getValue().length() + ").");
 
-                p.setSequence(entry.getSequence().subSequence(begin,end).getValue());
+                p.setSequence(entry.getSequence().subSequence(begin, end).getValue());
             }
         }
 
@@ -797,48 +794,48 @@ public class UniprotProteinFetcher
         generateChecksums(p);
 
         // ALIASES - gene name, gene name synonyms, orf, locus
-        if(entry.getGenes() != null && entry.getGenes().size() > 0){
-            for(Gene g : entry.getGenes()){
+        if (entry.getGenes() != null && entry.getGenes().size() > 0) {
+            for (Gene g : entry.getGenes()) {
                 //Gene Name
-                if(g.hasGeneName()) p.getAliases().add(AliasUtils.createGeneName(g.getGeneName().getValue()));
+                if (g.hasGeneName()) p.getAliases().add(AliasUtils.createGeneName(g.getGeneName().getValue()));
                 //Gene Name Synonym
-                if(g.getGeneNameSynonyms() != null && g.getGeneNameSynonyms().size() > 0){
-                    for(GeneNameSynonym gns : g.getGeneNameSynonyms()){
-                        p.getAliases().add( AliasUtils.createGeneNameSynonym(gns.getValue()));
+                if (g.getGeneNameSynonyms() != null && g.getGeneNameSynonyms().size() > 0) {
+                    for (GeneNameSynonym gns : g.getGeneNameSynonyms()) {
+                        p.getAliases().add(AliasUtils.createGeneNameSynonym(gns.getValue()));
                     }
                 }
                 //ORF names
-                if(g.getORFNames() != null && g.getORFNames().size() > 0){
-                    for(ORFName orf : g.getORFNames()){
-                        p.getAliases().add( AliasUtils.createOrfName(orf.getValue()));
+                if (g.getORFNames() != null && g.getORFNames().size() > 0) {
+                    for (ORFName orf : g.getORFNames()) {
+                        p.getAliases().add(AliasUtils.createOrfName(orf.getValue()));
                     }
                 }
                 //Locus Names
-                if(g.getOrderedLocusNames() != null && g.getOrderedLocusNames().size() > 0){
-                    for(OrderedLocusName oln : g.getOrderedLocusNames()){
-                        p.getAliases().add( AliasUtils.createLocusName(oln.getValue()));
+                if (g.getOrderedLocusNames() != null && g.getOrderedLocusNames().size() > 0) {
+                    for (OrderedLocusName oln : g.getOrderedLocusNames()) {
+                        p.getAliases().add(AliasUtils.createLocusName(oln.getValue()));
                     }
                 }
             }
         }
 
         // XREF - uniprotMaster
-        p.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.UNIPROTKB , Xref.UNIPROTKB_MI,
-                entry.getPrimaryUniProtAccession().getValue() , Xref.CHAIN_PARENT, Xref.CHAIN_PARENT_MI));
+        p.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.UNIPROTKB, Xref.UNIPROTKB_MI,
+                entry.getPrimaryUniProtAccession().getValue(), Xref.CHAIN_PARENT, Xref.CHAIN_PARENT_MI));
 
         return p;
     }
 
-    private Collection<AlternativeProductsIsoform> findIsoformsInEntry(UniProtEntry entry, Collection<String> identifiers){
+    private Collection<AlternativeProductsIsoform> findIsoformsInEntry(UniProtEntry entry, Collection<String> identifiers) {
 
-        List<AlternativeProductsComment> comments = entry.getComments(CommentType.ALTERNATIVE_PRODUCTS );
+        List<AlternativeProductsComment> comments = entry.getComments(CommentType.ALTERNATIVE_PRODUCTS);
         Collection<AlternativeProductsIsoform> results = new ArrayList<AlternativeProductsIsoform>(identifiers.size());
 
-        for ( AlternativeProductsComment comment : comments ) {
+        for (AlternativeProductsComment comment : comments) {
             List<AlternativeProductsIsoform> isoforms = comment.getIsoforms();
-            for ( AlternativeProductsIsoform isoform : isoforms ){
-                for( IsoformId id :  isoform.getIds()){
-                    if(identifiers.contains(id.getValue())){
+            for (AlternativeProductsIsoform isoform : isoforms) {
+                for (IsoformId id : isoform.getIds()) {
+                    if (identifiers.contains(id.getValue())) {
                         results.add(isoform);
                         // the isoform has been fetched. No need to fetch it again
                         identifiers.remove(id.getValue());

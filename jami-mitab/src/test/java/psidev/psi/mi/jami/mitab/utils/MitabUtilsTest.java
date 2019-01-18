@@ -76,6 +76,18 @@ public class MitabUtilsTest {
                 Assert.assertEquals(columns[k].toString(), head);
             }k++;
         }
+
+        String[] header4 = MitabUtils.buildHeader(MitabVersion.v2_8);
+        Assert.assertEquals(46, header4.length);
+        int w = 0;
+        for (String head : header4){
+            if (w == 0){
+                Assert.assertEquals(MitabUtils.COMMENT_PREFIX+columns[w].toString(), head);
+            }
+            else {
+                Assert.assertEquals(columns[w].toString(), head);
+            }w++;
+        }
     }
 
     @Test

@@ -20,6 +20,7 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
     private T participantA;
     private T participantB;
     private CvTerm complexExpansion;
+    private CvTerm causalRegulatoryMechanism;
 
     private boolean hasInitialisedA;
     private boolean hasInitialisedB;
@@ -131,6 +132,24 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
     /** {@inheritDoc} */
     public void setComplexExpansion(CvTerm expansion) {
         this.complexExpansion = expansion;
+    }
+
+    /**
+     * Getter for the field <code>causalRegulatoryMechanism</code>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public CvTerm getCausalRegulatoryMechanism() {
+        return this.causalRegulatoryMechanism;
+    }
+
+    /**
+     * <p>Setter for the field <code>causalRegulatoryMechanism</code>.</p>
+     *
+     * @param causalRegulatoryMechanism a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
+        this.causalRegulatoryMechanism = causalRegulatoryMechanism;
     }
 
     /**

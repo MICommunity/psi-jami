@@ -67,7 +67,12 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
     }
 
     @Override
-    MitabParticipant finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases, Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole, Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot, Collection<MitabChecksum> checksum, Collection<Feature> feature, Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod, int line, int column, int mitabColumn) {
+    MitabParticipant finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases,
+                                       Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
+                                       Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
+                                       Collection<MitabChecksum> checksum, Collection<Feature> feature, Collection<MitabStoichiometry> stc,
+                                       Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioeffect,
+                                       int line, int column, int mitabColumn) {
         boolean hasParticipantFields = !bioRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty();
         // first identify interactor
         Interactor interactor = createInteractorFrom(uniqueId, altid, aliases, taxid, type, xref, checksum, line, column, mitabColumn);
@@ -112,6 +117,7 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
             else if (!stc.isEmpty()){
                 participant.setStoichiometry(stc.iterator().next());
             }
+
             // add source locator
             participant.setSourceLocator(new MitabSourceLocator(line, column, mitabColumn));
         }
@@ -128,7 +134,12 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
     }
 
     @Override
-    T finishInteraction(Participant A, Participant B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative, int line) {
+    T finishInteraction(Participant A, Participant B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor,
+                        Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source,
+                        Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion,
+                        Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host,
+                        Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
+                        Collection<MitabChecksum> checksumI, boolean isNegative, int line) {
         T interaction = null;
         boolean hasInteractionFields = !interactionType.isEmpty() || !source.isEmpty() || !interactionId.isEmpty() || !expansion.isEmpty()
                 || !xrefI.isEmpty() || !annotI.isEmpty() || !checksumI.isEmpty() || !created.isEmpty() || !update.isEmpty();
@@ -195,6 +206,9 @@ public abstract class AbstractLightInteractionLineParser<T extends Interaction> 
 
         return interaction;
     }
+
+    @Override
+    abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
     /**
      * <p>addParticipant.</p>

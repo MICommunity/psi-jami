@@ -151,6 +151,21 @@ public interface Participant<I extends Interaction, F extends Feature> extends E
     public void setBiologicalRole(CvTerm bioRole);
 
     /**
+     * The biological effect of the participant in a causal interaction.
+     * It is a controlled vocabulary term and can be null.
+     *
+     * @return the biological effect
+     */
+    public CvTerm getBiologicalEffect();
+
+    /**
+     * Sets the biological effect of the participant in a causal interaction.
+     *
+     * @param biologicalEffect : biological effect
+     */
+    public void setBiologicalEffect(CvTerm biologicalEffect);
+
+    /**
      * Collection of cross references which give more information about the participant.
      * The set of xrefs cannot be null. If the participant does not have any xrefs, the method should return an empty Collection.
      * Ex: author identifiers, ...

@@ -60,7 +60,7 @@ Here is an example of CacheManager level resource tuning, which will use up to 4
 -->
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="ehcache.xsd"
-         updateCheck="true" monitoring="autodetect"
+         updateCheck="false" monitoring="autodetect"
          dynamicConfig="true">
 
     <!--

@@ -174,7 +174,7 @@ public class Mitab25Writer extends AbstractMitabWriter<Interaction, BinaryIntera
         }
 
         boolean hasJustStarted = !hasStarted();
-        if (!hasStarted()){
+        if (hasJustStarted){
            start();
         }
 

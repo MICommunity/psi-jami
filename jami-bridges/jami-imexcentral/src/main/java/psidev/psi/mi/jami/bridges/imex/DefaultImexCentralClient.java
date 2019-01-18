@@ -4,6 +4,7 @@ import edu.ucla.mbi.imex.central.ws.v20.*;
 import edu.ucla.mbi.imex.central.ws.v20.Publication;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.bridges.imex.extension.ImexPublication;
@@ -14,6 +15,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Holder;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
@@ -54,8 +56,18 @@ public class DefaultImexCentralClient implements ImexCentralClient {
             ( ( BindingProvider ) port ).getRequestContext().put( BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endPoint );
             ( ( BindingProvider ) port ).getRequestContext().put( BindingProvider.USERNAME_PROPERTY, username );
             ( ( BindingProvider ) port ).getRequestContext().put( BindingProvider.PASSWORD_PROPERTY, password );
+
         } catch ( MalformedURLException e ) {
             throw new BridgeFailedException( "Error while initializing IMEx Central Client", e );
+        }
+
+        // vital code for processing against existing imex partners
+
+        try {
+            ImexCentralUtility.initializeImexDBGroups(endPoint);
+        }
+        catch(Exception e){
+            throw new BridgeFailedException( "Error while initializing IMEx Central Partners", e );
         }
     }
 

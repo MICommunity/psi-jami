@@ -98,6 +98,20 @@ public class XmlModelledBinaryInteractionWrapper implements ModelledBinaryIntera
     }
 
     /**
+     * <p>getCausalRegulatoryMechanism.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public CvTerm getCausalRegulatoryMechanism(){
+        return this.binaryWrapper.getCausalRegulatoryMechanism();
+    };
+
+    /** {@inheritDoc} */
+    public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism){
+        this.binaryWrapper.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
+    };
+
+    /**
      * {@inheritDoc}
      *
      * The collection of participants for this binary interaction.

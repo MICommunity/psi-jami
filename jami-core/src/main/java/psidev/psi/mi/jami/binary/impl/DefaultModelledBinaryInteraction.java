@@ -139,6 +139,20 @@ public class DefaultModelledBinaryInteraction extends AbstractBinaryInteraction<
     }
 
     /**
+     * <p>Constructor for DefaultModelledBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param causalRegulatoryMechanism a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public DefaultModelledBinaryInteraction(String shortName, CvTerm type, ModelledParticipant participantA, ModelledParticipant participantB, CvTerm complexExpansion, CvTerm causalRegulatoryMechanism) {
+        super(shortName, type, participantA, participantB, complexExpansion, causalRegulatoryMechanism);
+    }
+
+    /**
      * <p>initialiseInteractionEvidences</p>
      */
     protected void initialiseInteractionEvidences(){

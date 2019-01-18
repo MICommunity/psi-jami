@@ -24,7 +24,7 @@ import java.util.*;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 07/08/13
-
+ *
  */
 public class ChebiFetcher
         implements BioactiveEntityFetcher {
@@ -42,12 +42,15 @@ public class ChebiFetcher
     }
 
     /**
-     * {@inheritDoc}
      *
      * Searches Chebi for an entry matching the identifier.
      * If it's found, the record is used to create a bioactiveEntity with:
      * ChebiAsciiName = Full name, Short name
      * with Inchi, InchiKey, Smile, ChebiId matched to the corresponding fields.
+     *
+     * @param identifier    The identifier of the CHEBI entry to find.
+     * @return              A completed bioactiveEntity for the given identifier. May be null.
+     * @throws BridgeFailedException    Thrown if the fetcher encounters a problem.
      */
     public Collection<BioactiveEntity> fetchByIdentifier (String identifier) throws BridgeFailedException {
         if(identifier == null) throw new IllegalArgumentException("Can not fetch on null identifier");

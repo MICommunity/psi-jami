@@ -16,11 +16,6 @@ import psidev.psi.mi.jami.exception.IllegalParameterException;
 import psidev.psi.mi.jami.exception.IllegalRangeException;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
 
-/**
- * <p>Abstract MitabLineParser class.</p>
- *
-
- */
 public abstract class MitabLineParser<T extends Interaction, P extends Participant, F extends Feature> implements MitabLineParserConstants {
 
         void processSyntaxError(int lineNumber, int columnNumber, int mitabColumn, Exception e) {
@@ -35,32 +30,17 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         processSyntaxError(lineNumber, columnNumber, mitabColumn, e2);
     }
 
-        /**
-         * <p>getParserListener.</p>
-         *
-         * @return a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
-         */
         public abstract MitabParserListener getParserListener();
 
-        /**
-         * <p>setParserListener.</p>
-         *
-         * @param listener a {@link psidev.psi.mi.jami.tab.listener.MitabParserListener} object.
-         */
         public abstract void setParserListener(MitabParserListener listener);
 
     abstract void fireOnInvalidSyntax(int lineNumber, int columnNumber, int mitabColumn, Exception e);
 
     abstract void reachEndOfFile();
 
-    /**
-     * <p>hasFinished.</p>
-     *
-     * @return a boolean.
-     */
     public abstract boolean hasFinished();
 
-    abstract java.lang.StringBuilder resetStringBuilder();
+    abstract StringBuilder resetStringBuilder();
 
     abstract F createFeature(String type, Collection<Range> ranges, String text, int line, int column, int mitabColumn);
 
@@ -68,20 +48,16 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                                                Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
                                                Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
                                                Collection<MitabChecksum> checksum, Collection<F> feature, Collection<MitabStoichiometry> stc,
-                                               Collection<MitabCvTerm> detMethod, int line, int column, int mitabColumn);
+                                               Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect,
+                                               int line, int column, int mitabColumn);
         abstract T finishInteraction(P A, P B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor,
                                                Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source,
                                                Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion,
                                                Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host,
                                                Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
                                                Collection<MitabChecksum> checksumI, boolean isNegative, int line);
+        abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
-  /**
-   * <p>MitabLine.</p>
-   *
-   * @return a T object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public T MitabLine() throws ParseException {
   Collection<MitabXref> uniqueIdA = Collections.EMPTY_LIST;
   Collection<MitabXref> uniqueIdB = Collections.EMPTY_LIST;
@@ -125,6 +101,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   Collection<MitabStoichiometry> stcB = Collections.EMPTY_LIST;
   Collection<MitabCvTerm> pmethodA = Collections.EMPTY_LIST;
   Collection<MitabCvTerm> pmethodB = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> bioEffectA = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> bioEffectB = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> causalRegMechanism = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> causalStatement = Collections.EMPTY_LIST;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.LINE_SEPARATOR);
   EnumSet<TokenKind> columnSet = EnumSet.of(TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
 
@@ -162,7 +142,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         }
         break;
       default:
-        jj_la1[43] = jj_gen;
+        jj_la1[48] = jj_gen;
         try {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case DASH:
@@ -481,7 +461,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
             }
             jj_consume_token(COLUMN_SEPARATOR);
           } catch (ParseException e) {
-                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\u005c"MI id\u005c"(name) separated by '|'.");
+                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\u005c"MI:XXX\u005c"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
           }
           try {
@@ -795,20 +775,88 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                   createParseException(token.beginLine, token.beginColumn, 42, e, "Invalid participant identification methods B column. Expected xrefs of type psi-mi:\u005c"MI id\u005c"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
             }
+            switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+            case COLUMN_SEPARATOR:
+              jj_consume_token(COLUMN_SEPARATOR);
+              try {
+                switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+                case DASH:
+                  jj_consume_token(DASH);
+                     bioEffectA = Collections.EMPTY_LIST;
+                  break;
+                default:
+                  jj_la1[40] = jj_gen;
+                  bioEffectA = cvTerms(43);
+                }
+                jj_consume_token(COLUMN_SEPARATOR);
+              } catch (ParseException e) {
+                  createParseException(token.beginLine, token.beginColumn, 43, e, "Invalid Biological Effect A column. Expected xrefs of type db:id(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+              }
+              try {
+                switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+                case DASH:
+                  jj_consume_token(DASH);
+                     bioEffectB = Collections.EMPTY_LIST;
+                  break;
+                default:
+                  jj_la1[41] = jj_gen;
+                  bioEffectB = cvTerms(44);
+                }
+                jj_consume_token(COLUMN_SEPARATOR);
+              } catch (ParseException e) {
+                  createParseException(token.beginLine, token.beginColumn, 44, e, "Invalid Biological Effect B column. Expected xrefs of type db:id(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+              }
+              try {
+                switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+                case DASH:
+                  jj_consume_token(DASH);
+                     causalRegMechanism = Collections.EMPTY_LIST;
+                  break;
+                default:
+                  jj_la1[42] = jj_gen;
+                  causalRegMechanism = cvTerms(45);
+                }
+                jj_consume_token(COLUMN_SEPARATOR);
+              } catch (ParseException e) {
+                  createParseException(token.beginLine, token.beginColumn, 45, e, "Invalid Causal Regulatory Mechanism column. Expected xrefs of type psi-mi:\u005c"MI id\u005c"(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+              }
+              try {
+                switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+                case DASH:
+                  jj_consume_token(DASH);
+                     causalStatement = Collections.EMPTY_LIST;
+                  break;
+                default:
+                  jj_la1[43] = jj_gen;
+                  causalStatement = cvTerms(46);
+                }
+              } catch (ParseException e) {
+                  createParseException(token.beginLine, token.beginColumn, 46, e, "Invalid Causal Statement column. Expected xrefs of type psi-mi:\u005c"MI id\u005c"(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+              }
+              break;
+            default:
+              jj_la1[44] = jj_gen;
+              ;
+            }
             break;
           default:
-            jj_la1[40] = jj_gen;
+            jj_la1[45] = jj_gen;
             ;
           }
           break;
         default:
-          jj_la1[41] = jj_gen;
+          jj_la1[46] = jj_gen;
           ;
         }
-                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, line, columnA, 1);
-                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, line, columnB, 2);
+                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, line, columnA, 1);
+                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, line, columnB, 2);
                 interaction = finishInteraction(participantA, participantB, detMethod, firstAuthor, pubId, interactionType, source, interactionId,
                                          conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, line);
+                interaction = finishCausalInteraction(interaction, causalStatement, causalRegMechanism);
         try {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case LINE_SEPARATOR:
@@ -819,33 +867,24 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                                      reachEndOfFile();
             break;
           default:
-            jj_la1[42] = jj_gen;
+            jj_la1[47] = jj_gen;
             jj_consume_token(-1);
             throw new ParseException();
           }
         } catch (ParseException e) {
-           createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid number of columns. Expected 15, 36 or 42 tab separated columns.");
+           createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid number of columns. Expected 15, 36, 42 or 46 tab separated columns.");
            error_skipToNext(enumSet, true);
         }
       }
        {if (true) return interaction;}
     } catch (ParseException e) {
-        createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid MITAB line syntax. Expected 15, 36 or 42 tab separated columns per line and all special characters should be escaped by double quote. See MITAB format description");
+        createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid MITAB line syntax. Expected 15, 36, 42 or 46 tab separated columns per line and all special characters should be escaped by double quote. See MITAB format description");
         error_skipToNext(enumSet, true);
         {if (true) return interaction;}
     }
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>ids.</p>
-   *
-   * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
-   * @param recognizeImex a boolean.
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabXref> ids(CvTerm qualifier, boolean recognizeImex, int column) throws ParseException {
   Collection<MitabXref> xrefs;
   MitabXref var;
@@ -858,7 +897,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[44] = jj_gen;
+        jj_la1[49] = jj_gen;
         break label_1;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -869,13 +908,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>aliases.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabAlias> aliases(int column) throws ParseException {
   Collection<MitabAlias> aliases;
   MitabAlias var;
@@ -888,7 +920,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[45] = jj_gen;
+        jj_la1[50] = jj_gen;
         break label_2;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -899,13 +931,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>cvTerms.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabCvTerm> cvTerms(int columnNumber) throws ParseException {
   Collection<MitabCvTerm> methods;
   MitabCvTerm var;
@@ -918,7 +943,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[46] = jj_gen;
+        jj_la1[51] = jj_gen;
         break label_3;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -929,12 +954,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>firstAuthors.</p>
-   *
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabAuthor> firstAuthors() throws ParseException {
   Collection<MitabAuthor> authors;
   MitabAuthor var;
@@ -947,7 +966,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[47] = jj_gen;
+        jj_la1[52] = jj_gen;
         break label_4;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -958,13 +977,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>taxId.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabOrganism> taxId(int column) throws ParseException {
   Collection<MitabOrganism> organisms;
   MitabOrganism var;
@@ -977,7 +989,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[48] = jj_gen;
+        jj_la1[53] = jj_gen;
         break label_5;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -988,12 +1000,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>sourceDbs.</p>
-   *
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabSource> sourceDbs() throws ParseException {
   Collection<MitabSource> sources;
   MitabSource var;
@@ -1006,7 +1012,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[49] = jj_gen;
+        jj_la1[54] = jj_gen;
         break label_6;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1017,12 +1023,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>confidences.</p>
-   *
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabConfidence> confidences() throws ParseException {
   Collection<MitabConfidence> confs;
   MitabConfidence var;
@@ -1035,7 +1035,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[50] = jj_gen;
+        jj_la1[55] = jj_gen;
         break label_7;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1046,12 +1046,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>complexExpansion.</p>
-   *
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabCvTerm> complexExpansion() throws ParseException {
   Collection<MitabCvTerm> expansions;
   MitabCvTerm var;
@@ -1064,7 +1058,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[51] = jj_gen;
+        jj_la1[56] = jj_gen;
         break label_8;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1075,13 +1069,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>annotations.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabAnnotation> annotations(int column) throws ParseException {
   Collection<MitabAnnotation> annots;
   MitabAnnotation var;
@@ -1094,7 +1081,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[52] = jj_gen;
+        jj_la1[57] = jj_gen;
         break label_9;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1105,12 +1092,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>parameters.</p>
-   *
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabParameter> parameters() throws ParseException {
   Collection<MitabParameter> params;
   MitabParameter var;
@@ -1123,7 +1104,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[53] = jj_gen;
+        jj_la1[58] = jj_gen;
         break label_10;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1134,13 +1115,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>dates.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabDate> dates(int column) throws ParseException {
   Collection<MitabDate> dates;
   MitabDate var;
@@ -1153,7 +1127,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[54] = jj_gen;
+        jj_la1[59] = jj_gen;
         break label_11;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1164,13 +1138,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>checksums.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabChecksum> checksums(int column) throws ParseException {
   Collection<MitabChecksum> checksums;
   MitabChecksum var;
@@ -1183,7 +1150,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[55] = jj_gen;
+        jj_la1[60] = jj_gen;
         break label_12;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1194,13 +1161,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>features.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<F> features(int column) throws ParseException {
   Collection<F> features;
   F var;
@@ -1213,7 +1173,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[56] = jj_gen;
+        jj_la1[61] = jj_gen;
         break label_13;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1224,13 +1184,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>stoichiometryList.</p>
-   *
-   * @param column a int.
-   * @return a {@link java.util.Collection} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public Collection<MitabStoichiometry> stoichiometryList(int column) throws ParseException {
   Collection<MitabStoichiometry> stc;
   MitabStoichiometry var;
@@ -1243,7 +1196,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         ;
         break;
       default:
-        jj_la1[57] = jj_gen;
+        jj_la1[62] = jj_gen;
         break label_14;
       }
       jj_consume_token(FIELD_SEPARATOR);
@@ -1254,18 +1207,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>stoichiometry.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabStoichiometry} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabStoichiometry stoichiometry(int columnNumber) throws ParseException {
   int min;
   int max = 0;
-  java.lang.String minString;
-  java.lang.String maxString = null;
+  String minString;
+  String maxString = null;
   int beginLine=0;
   int beginColumn=0;
   MitabStoichiometry stc;
@@ -1281,7 +1227,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         maxString = safeStoichiometry();
         break;
       default:
-        jj_la1[58] = jj_gen;
+        jj_la1[63] = jj_gen;
         ;
       }
          try{
@@ -1319,18 +1265,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>feature.</p>
-   *
-   * @param columnNumber a int.
-   * @return a F object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public F feature(int columnNumber) throws ParseException {
-  java.lang.String type;
+  String type;
   Collection<Range> ranges;
   Range var;
-  java.lang.String text = null;
+  String text = null;
   F feature;
   int beginLine=0;
   int beginColumn=0;
@@ -1349,7 +1288,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
           ;
           break;
         default:
-          jj_la1[59] = jj_gen;
+          jj_la1[64] = jj_gen;
           break label_15;
         }
         jj_consume_token(RANGE_SEPARATOR);
@@ -1363,7 +1302,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[60] = jj_gen;
+        jj_la1[65] = jj_gen;
         ;
       }
         feature = createFeature(type, ranges, text, beginLine, beginColumn, columnNumber);
@@ -1380,18 +1319,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>range.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabRange} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabRange range(int columnNumber) throws ParseException {
   Position start;
   Position end;
-  java.lang.String startString;
-  java.lang.String endString;
+  String startString;
+  String endString;
   MitabRange range;
   int beginLine=0;
   int beginColumn=0;
@@ -1439,15 +1371,9 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>negative.</p>
-   *
-   * @return a boolean.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public boolean negative() throws ParseException {
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
-  java.lang.String value;
+  String value;
     try {
       //false or true
           value = safeFreeText();
@@ -1460,16 +1386,9 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>checksum.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabChecksum} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabChecksum checksum(int columnNumber) throws ParseException {
-  java.lang.String method;
-  java.lang.String value;
+  String method;
+  String value;
   MitabChecksum checksum;
   int beginLine=0;
   int beginColumn=0;
@@ -1493,15 +1412,8 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>date.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabDate} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabDate date(int columnNumber) throws ParseException {
-  java.lang.String date;
+  String date;
   MitabDate mitabDate;
   int beginLine = 0;
   int beginColumn=0;
@@ -1523,16 +1435,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>parameter.</p>
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabParameter} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabParameter parameter() throws ParseException {
-  java.lang.String type;
-  java.lang.String value;
-  java.lang.String unit = null;
+  String type;
+  String value;
+  String unit = null;
   MitabParameter param;
   int beginLine=0;
   int beginColumn=0;
@@ -1550,7 +1456,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[61] = jj_gen;
+        jj_la1[66] = jj_gen;
         ;
       }
      param = new MitabParameter(type, value, unit);
@@ -1569,16 +1475,9 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>annotation.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAnnotation} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabAnnotation annotation(int columnNumber) throws ParseException {
-  java.lang.String topic;
-  java.lang.String value = null;
+  String topic;
+  String value = null;
   MitabAnnotation annot;
   int beginLine=0;
   int beginColumn=0;
@@ -1593,7 +1492,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         value = safeString();
         break;
       default:
-        jj_la1[62] = jj_gen;
+        jj_la1[67] = jj_gen;
         ;
       }
       annot = new MitabAnnotation(topic, value);
@@ -1608,16 +1507,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>expansion.</p>
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabCvTerm} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabCvTerm expansion() throws ParseException {
-  java.lang.String db = null;
-  java.lang.String id = null;
-  java.lang.String name = null;
+  String db = null;
+  String id = null;
+  String name = null;
   MitabCvTerm cv;
   int beginLine=0;
   int beginColumn=0;
@@ -1635,7 +1528,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[63] = jj_gen;
+        jj_la1[68] = jj_gen;
         ;
       }
       if (id == null) {cv = new MitabCvTerm(name);
@@ -1652,16 +1545,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>confidence.</p>
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabConfidence} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabConfidence confidence() throws ParseException {
- java.lang.String type;
- java.lang.String value;
- java.lang.String text = null;
+ String type;
+ String value;
+ String text = null;
   MitabConfidence conf;
   int beginLine=0;
   int beginColumn=0;
@@ -1678,7 +1565,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[64] = jj_gen;
+        jj_la1[69] = jj_gen;
         ;
       }
       if (text == null){conf = new MitabConfidence(type, value, null); conf.setSourceLocator(new MitabSourceLocator(beginLine, beginColumn, 15));}
@@ -1695,16 +1582,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>source.</p>
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabSource} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabSource source() throws ParseException {
-  java.lang.String db;
-  java.lang.String id;
-  java.lang.String name = null;
+  String db;
+  String id;
+  String name = null;
   MitabSource s;
   int beginLine=0;
   int beginColumn=0;
@@ -1722,7 +1603,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[65] = jj_gen;
+        jj_la1[70] = jj_gen;
         ;
       }
          s = new MitabSource(name, null, db, id); s.setSourceLocator(new MitabSourceLocator(beginLine, beginColumn, 13));
@@ -1736,17 +1617,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>organism.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabOrganism} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabOrganism organism(int columnNumber) throws ParseException {
-  java.lang.String id;
-  java.lang.String name = null;
-  java.lang.String db;
+  String id;
+  String name = null;
+  String db;
   MitabOrganism organism;
   int beginLine=0;
   int beginColumn=0;
@@ -1754,7 +1628,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     try {
       db = safeString();
      if (!db.equalsIgnoreCase("taxid"))
-    { processSyntaxError(token.beginLine, token.beginColumn, columnNumber, new java.lang.RuntimeException("Found " + db + " instead of expected taxid."));
+    { processSyntaxError(token.beginLine, token.beginColumn, columnNumber, new RuntimeException("Found " + db + " instead of expected taxid."));
       error_skipToNext(enumSet, false); {if (true) return null;}
       }
       jj_consume_token(COLON);
@@ -1767,7 +1641,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[66] = jj_gen;
+        jj_la1[71] = jj_gen;
         ;
       }
     try{
@@ -1790,15 +1664,9 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>author.</p>
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAuthor} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabAuthor author() throws ParseException {
  MitabAuthor auth;
- java.lang.String first=null;
+ String first=null;
  int beginLine;
  int beginColumn;
  EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.FIELD_SEPARATOR, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
@@ -1816,17 +1684,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>cvTerm.</p>
-   *
-   * @param column a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabCvTerm} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabCvTerm cvTerm(int column) throws ParseException {
-  java.lang.String db;
-  java.lang.String id = null;
-  java.lang.String name = null;
+  String db;
+  String id = null;
+  String name = null;
   int beginLine=0;
   int beginColumn=0;
   MitabCvTerm cv;
@@ -1843,7 +1704,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[67] = jj_gen;
+        jj_la1[72] = jj_gen;
         ;
       }
       cv = new MitabCvTerm(name, null, db, id); cv.setSourceLocator(new MitabSourceLocator(token.beginLine, token.beginColumn, column));
@@ -1857,17 +1718,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>alias.</p>
-   *
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabAlias} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabAlias alias(int columnNumber) throws ParseException {
-  java.lang.String db;
-  java.lang.String name;
-  java.lang.String type = null;
+  String db;
+  String name;
+  String type = null;
   int beginLine=0;
   int beginColumn=0;
   MitabAlias alias;
@@ -1884,7 +1738,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[68] = jj_gen;
+        jj_la1[73] = jj_gen;
         ;
       }
         alias = new MitabAlias(db, name, type);
@@ -1900,19 +1754,10 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>id.</p>
-   *
-   * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
-   * @param recognizeImexPrimary a boolean.
-   * @param columnNumber a int.
-   * @return a {@link psidev.psi.mi.jami.tab.extension.MitabXref} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
   final public MitabXref id(CvTerm qualifier, boolean recognizeImexPrimary, int columnNumber) throws ParseException {
-  java.lang.String db;
-  java.lang.String id;
-  java.lang.String text = null;
+  String db;
+  String id;
+  String text = null;
   int beginLine=0;
   int beginColumn=0;
   MitabXref ref;
@@ -1930,7 +1775,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
         jj_consume_token(CLOSE_PAREN);
         break;
       default:
-        jj_la1[69] = jj_gen;
+        jj_la1[74] = jj_gen;
         ;
       }
       if (recognizeImexPrimary && Xref.IMEX.equalsIgnoreCase(db.trim())){
@@ -1964,14 +1809,8 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>safeString.</p>
-   *
-   * @return a {@link java.lang.String} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
-  final public java.lang.String safeString() throws ParseException {
-  java.lang.String result = null;
+  final public String safeString() throws ParseException {
+  String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.FIELD_SEPARATOR, TokenKind.COLON, TokenKind.OPEN_PAREN, TokenKind.CLOSE_PAREN, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case QUOTED_STRING:
@@ -1979,21 +1818,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                      result = MitabUtils.unescapeDoubleQuote(token.image.substring(1,token.image.length() - 1).trim());
       break;
     default:
-      jj_la1[70] = jj_gen;
+      jj_la1[75] = jj_gen;
       result = anyStringBut(enumSet);
     }
    {if (true) return result;}
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>safeFreeText.</p>
-   *
-   * @return a {@link java.lang.String} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
-  final public java.lang.String safeFreeText() throws ParseException {
-  java.lang.String result = null;
+  final public String safeFreeText() throws ParseException {
+  String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.FIELD_SEPARATOR, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case QUOTED_STRING:
@@ -2001,21 +1834,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                      result = MitabUtils.unescapeDoubleQuote(token.image.substring(1,token.image.length() - 1).trim());
       break;
     default:
-      jj_la1[71] = jj_gen;
+      jj_la1[76] = jj_gen;
       result = anyStringBut(enumSet);
     }
    {if (true) return result;}
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>safePosition.</p>
-   *
-   * @return a {@link java.lang.String} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
-  final public java.lang.String safePosition() throws ParseException {
-  java.lang.String result = null;
+  final public String safePosition() throws ParseException {
+  String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.DASH, TokenKind.RANGE_SEPARATOR, TokenKind.FIELD_SEPARATOR, TokenKind.OPEN_PAREN, TokenKind.CLOSE_PAREN, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case QUOTED_STRING:
@@ -2023,21 +1850,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                      result = MitabUtils.unescapeDoubleQuote(token.image.substring(1,token.image.length() - 1).trim());
       break;
     default:
-      jj_la1[72] = jj_gen;
+      jj_la1[77] = jj_gen;
       result = anyStringBut(enumSet);
     }
    {if (true) return result;}
     throw new Error("Missing return statement in function");
   }
 
-  /**
-   * <p>safeStoichiometry.</p>
-   *
-   * @return a {@link java.lang.String} object.
-   * @throws psidev.psi.mi.jami.tab.io.parser.ParseException if any.
-   */
-  final public java.lang.String safeStoichiometry() throws ParseException {
-  java.lang.String result = null;
+  final public String safeStoichiometry() throws ParseException {
+  String result = null;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.DASH, TokenKind.FIELD_SEPARATOR, TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case QUOTED_STRING:
@@ -2045,15 +1866,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
                      result = MitabUtils.unescapeDoubleQuote(token.image.substring(1,token.image.length() - 1).trim());
       break;
     default:
-      jj_la1[73] = jj_gen;
+      jj_la1[78] = jj_gen;
       result = anyStringBut(enumSet);
     }
    {if (true) return result;}
     throw new Error("Missing return statement in function");
   }
 
-  java.lang.String anyStringBut(EnumSet<TokenKind> skipToTokens) throws ParseException {
-  java.lang.StringBuilder result = resetStringBuilder();
+  String anyStringBut(EnumSet<TokenKind> skipToTokens) throws ParseException {
+  StringBuilder result = resetStringBuilder();
 
   Token t = getToken(1);
   // next token is 1
@@ -2063,7 +1884,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
       result.append(t.image);
       t = getToken(1);
   }
-  java.lang.String resultStr = result.toString().trim();
+  String resultStr = result.toString().trim();
   return resultStr.length() > 0 ? resultStr : null;
   }
 
@@ -2101,12 +1922,6 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     finally { jj_save(2, xla); }
   }
 
-  private boolean jj_3_3() {
-    if (jj_scan_token(DASH)) return true;
-    if (jj_scan_token(COLUMN_SEPARATOR)) return true;
-    return false;
-  }
-
   private boolean jj_3_1() {
     if (jj_scan_token(DASH)) return true;
     if (jj_scan_token(COLUMN_SEPARATOR)) return true;
@@ -2114,6 +1929,12 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   }
 
   private boolean jj_3_2() {
+    if (jj_scan_token(DASH)) return true;
+    if (jj_scan_token(COLUMN_SEPARATOR)) return true;
+    return false;
+  }
+
+  private boolean jj_3_3() {
     if (jj_scan_token(DASH)) return true;
     if (jj_scan_token(COLUMN_SEPARATOR)) return true;
     return false;
@@ -2130,121 +1951,87 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   private Token jj_scanpos, jj_lastpos;
   private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[74];
+  final private int[] jj_la1 = new int[79];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x81,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x40,0x40,0x81,0x91,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x800,0x8,0x100,0x100,0x400,0x100,0x100,0x100,0x100,0x100,0x100,0x100,0x1000,0x1000,0x1000,0x1000,};
+      jj_la1_0 = new int[] {0x81,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x800,0x40,0x40,0x40,0x81,0x91,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x800,0x8,0x100,0x100,0x400,0x100,0x100,0x100,0x100,0x100,0x100,0x100,0x1000,0x1000,0x1000,0x1000,};
    }
   final private JJCalls[] jj_2_rtns = new JJCalls[3];
   private boolean jj_rescan = false;
   private int jj_gc = 0;
 
-  /**
-   * Constructor with InputStream.
-   *
-   * @param stream a {@link java.io.InputStream} object.
-   */
+  /** Constructor with InputStream. */
   public MitabLineParser(java.io.InputStream stream) {
      this(stream, null);
   }
-  /**
-   * Constructor with InputStream and supplied encoding
-   *
-   * @param stream a {@link java.io.InputStream} object.
-   * @param encoding a {@link java.lang.String} object.
-   */
+  /** Constructor with InputStream and supplied encoding */
   public MitabLineParser(java.io.InputStream stream, String encoding) {
     try { jj_input_stream = new JavaCharStream(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source = new MitabLineParserTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /**
-   * Reinitialise.
-   *
-   * @param stream a {@link java.io.InputStream} object.
-   */
+  /** Reinitialise. */
   public void ReInit(java.io.InputStream stream) {
      ReInit(stream, null);
   }
-  /**
-   * Reinitialise.
-   *
-   * @param stream a {@link java.io.InputStream} object.
-   * @param encoding a {@link java.lang.String} object.
-   */
+  /** Reinitialise. */
   public void ReInit(java.io.InputStream stream, String encoding) {
     try { jj_input_stream.ReInit(stream, encoding, 1, 1); } catch(java.io.UnsupportedEncodingException e) { throw new RuntimeException(e); }
     token_source.ReInit(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /**
-   * Constructor.
-   *
-   * @param stream a {@link java.io.Reader} object.
-   */
+  /** Constructor. */
   public MitabLineParser(java.io.Reader stream) {
     jj_input_stream = new JavaCharStream(stream, 1, 1);
     token_source = new MitabLineParserTokenManager(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /**
-   * Reinitialise.
-   *
-   * @param stream a {@link java.io.Reader} object.
-   */
+  /** Reinitialise. */
   public void ReInit(java.io.Reader stream) {
     jj_input_stream.ReInit(stream, 1, 1);
     token_source.ReInit(jj_input_stream);
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /**
-   * Constructor with generated Token Manager.
-   *
-   * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
-   */
+  /** Constructor with generated Token Manager. */
   public MitabLineParser(MitabLineParserTokenManager tm) {
     token_source = tm;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
-  /**
-   * Reinitialise.
-   *
-   * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
-   */
+  /** Reinitialise. */
   public void ReInit(MitabLineParserTokenManager tm) {
     token_source = tm;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 74; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 79; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -2272,7 +2059,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     throw generateParseException();
   }
 
-  static private final class LookaheadSuccess extends java.lang.Error { }
+  static private final class LookaheadSuccess extends Error { }
   final private LookaheadSuccess jj_ls = new LookaheadSuccess();
   private boolean jj_scan_token(int kind) {
     if (jj_scanpos == jj_lastpos) {
@@ -2296,11 +2083,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
   }
 
 
-  /**
-   * Get the next Token.
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
-   */
+/** Get the next Token. */
   final public Token getNextToken() {
     if (token.next != null) token = token.next;
     else token = token.next = token_source.getNextToken();
@@ -2309,12 +2092,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     return token;
   }
 
-  /**
-   * Get the specific Token.
-   *
-   * @param index a int.
-   * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
-   */
+/** Get the specific Token. */
   final public Token getToken(int index) {
     Token t = token;
     for (int i = 0; i < index; i++) {
@@ -2331,7 +2109,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
       return (jj_ntk = jj_nt.kind);
   }
 
-  private java.util.List<int[]> jj_expentries = new java.util.ArrayList<int[]>();
+  private java.util.List<int[]> jj_expentries = new ArrayList<int[]>();
   private int[] jj_expentry;
   private int jj_kind = -1;
   private int[] jj_lasttokens = new int[100];
@@ -2365,11 +2143,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     }
   }
 
-  /**
-   * Generate ParseException.
-   *
-   * @return a {@link psidev.psi.mi.jami.tab.io.parser.ParseException} object.
-   */
+  /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
     boolean[] la1tokens = new boolean[14];
@@ -2377,7 +2151,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 74; i++) {
+    for (int i = 0; i < 79; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -2403,15 +2177,11 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     return new ParseException(token, exptokseq, tokenImage);
   }
 
-  /**
-   * Enable tracing.
-   */
+  /** Enable tracing. */
   final public void enable_tracing() {
   }
 
-  /**
-   * Disable tracing.
-   */
+  /** Disable tracing. */
   final public void disable_tracing() {
   }
 

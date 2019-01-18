@@ -4,12 +4,12 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
     </parent>
 
     <groupId>psidev.psi.mi.jami.bridges</groupId>
     <artifactId>jami-bridges</artifactId>
-    <version>3.1.0</version>
+    <version>3.2.0</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Bridges</name>
     <description>Bridges master module based on JAMI core interfaces</description>
@@ -22,9 +22,8 @@
         <module>jami-uniprot-taxonomy</module>
         <module>jami-obo</module>
         <module>jami-europubmedcentral</module>
-        <module>uniprot-mapping</module>
         <module>jami-unisave</module>
-        <module>jami-picr</module>
+        <module>jami-uniprot-protein-api</module>
         <module>jami-ontology-manager</module>
         <module>jami-imexcentral</module>
     </modules>
@@ -45,31 +44,26 @@
                 <groupId>uk.ac.ebi.uniprot</groupId>
                 <artifactId>japi</artifactId>
                 <version>${uniprot.japi.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>com.fasterxml.jackson.core</groupId>
-                        <artifactId>jackson-annotations</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
-            <!--Add it back to avoid a dependency conflict inside of the uniprot-japi.
-            Related to the exclusion in jami-uniprot of jackson-core -->
-            <!--TODO check if it is solve in a future release of uniprot-japi-->
+            <!--Add it to dependency management to have the same version
+              of jackson in uniprot and ols-client-->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.7.5</version>
+                <version>2.9.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.8</version>
             </dependency>
 
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.7.5</version>
+                <version>2.9.8</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
