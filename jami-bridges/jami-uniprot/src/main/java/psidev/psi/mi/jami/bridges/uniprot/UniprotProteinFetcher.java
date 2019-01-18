@@ -69,7 +69,6 @@ public class UniprotProteinFetcher
         selectedDatabases.put(DatabaseType.WORMBASE, new DefaultCvTerm("wormbase", "MI:0487"));
         selectedDatabases.put(DatabaseType.FLYBASE, new DefaultCvTerm("flybase", "MI:0478"));
         selectedDatabases.put(DatabaseType.REFSEQ, new DefaultCvTerm(Xref.REFSEQ, Xref.REFSEQ_MI));
-        selectedDatabases.put(DatabaseType.IPI, new DefaultCvTerm("ipi", "MI:0675"));
     }
 
     /**
@@ -519,7 +518,6 @@ public class UniprotProteinFetcher
                 case WORMBASE :
                 case FLYBASE :
                 case REFSEQ :
-                case IPI :
                     if(dbxref.getPrimaryId() != null) id = dbxref.getPrimaryId().getValue();
                     refs.add(new DefaultXref(database, id));
                     break;
