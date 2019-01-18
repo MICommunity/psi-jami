@@ -1,5 +1,7 @@
 package psidev.psi.mi.jami.bridges.ols;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher;
 import psidev.psi.mi.jami.model.CvTerm;
@@ -77,7 +79,16 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
 
         // 1) query ols which returns full name.
         Identifier identifier = new Identifier(termIdentifier, Identifier.IdentifierType.OBO);
-        fullName = olsClient.getTermById(identifier , olsOntologyName).getLabel();
+        try {
+            fullName = olsClient.getTermById(identifier, olsOntologyName).getLabel();
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+           if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+               throw new BridgeFailedException(e);
+           }
+        }
 
         // 2) if no results, return null
         if (fullName == null || fullName.equals(termIdentifier))
@@ -109,7 +120,16 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
 
         // 1) query ols which returns full name.
         Identifier identifier = new Identifier(termIdentifier, Identifier.IdentifierType.OBO);
-        fullName = olsClient.getTermById(identifier , olsOntologyName).getLabel();
+        try {
+            fullName = olsClient.getTermById(identifier, olsOntologyName).getLabel();
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+                throw new BridgeFailedException(e);
+            }
+        }
 
         // 2) if no results, return null
         if (fullName == null || fullName.equals(termIdentifier))
@@ -120,6 +140,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
     }
 
     /** {@inheritDoc} */
+    //TODO review ols 404 client exception
     public T fetchByName(String searchName, String miOntologyName) throws BridgeFailedException {
 
         if(searchName == null || searchName.isEmpty())
@@ -146,6 +167,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
     }
 
     /** {@inheritDoc} */
+    //TODO review ols 404 client exception
     public Collection<T> fetchByName(String searchName) throws BridgeFailedException {
         if(searchName == null || searchName.isEmpty())
             throw new IllegalArgumentException("Can not search for an identifier without a value.");
