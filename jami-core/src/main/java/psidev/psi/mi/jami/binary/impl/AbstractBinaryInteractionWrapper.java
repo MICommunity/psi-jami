@@ -144,9 +144,9 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
     }
 
     /**
-     * Getter for the field <code>causalRegulatoryMechanism</code>
+     * <p>Setter for the field <code>causalRegulatoryMechanism</code>.</p>
      *
-     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param causalRegulatoryMechanism a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
         this.causalRegulatoryMechanism = causalRegulatoryMechanism;

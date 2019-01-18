@@ -172,9 +172,9 @@ public abstract class AbstractParticipant<I extends Interaction, F extends Featu
     }
 
     /**
-     * <p>Setter for the field <code>biologicalEffect</code>.</p>
+     * <p>setBiologicalEffect</p>
      *
-     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param biologicalEffect a CvTerm object.
      */
     public void setBiologicalEffect(CvTerm biologicalEffect) {
         this.biologicalEffect = biologicalEffect;

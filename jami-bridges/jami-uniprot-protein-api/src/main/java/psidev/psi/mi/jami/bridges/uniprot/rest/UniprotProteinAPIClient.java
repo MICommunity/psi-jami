@@ -48,9 +48,9 @@ public class UniprotProteinAPIClient {
      * Finds the list of swissProtIds for a provided ID and taxonId
      *
      * @param accession the accession to look for
-     * @param taxonId   : the organism of the protein
+     * @param taxonId the organism of the protein
      * @return the swissprotIds if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given accession is null
+     * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
     //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getSwissprotIdsForAccession(String accession, String taxonId) throws UniprotProteinAPIClientException {
@@ -61,9 +61,9 @@ public class UniprotProteinAPIClient {
      * Finds the list of termblIds for a provided ID and taxonId
      *
      * @param accession the accession to look for
-     * @param taxonId   : the organism of the protein
+     * @param taxonId the organism of the protein
      * @return the tremblId if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given accession is null
+     * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
     //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getTremblIdsForAccession(String accession, String taxonId) throws UniprotProteinAPIClientException {
@@ -73,10 +73,10 @@ public class UniprotProteinAPIClient {
     /**
      * Gets the list of uniparcId matching this accession number
      *
-     * @param accession
-     * @param taxonId
+     * @param accession the accession to look for
+     * @param taxonId: the organism of the protein
      * @return the list of uniparc Id or empty list if the accession doesn't match any Uniparc sequence
-     * @throws UniprotProteinAPIClientException : an exception if the given accession is null
+     * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
     //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot Protein API
     public List<Entry> getUniparcEntries(String accession, String taxonId) throws UniprotProteinAPIClientException {
@@ -87,10 +87,10 @@ public class UniprotProteinAPIClient {
      * get the list of cross references accessions for a provided Id and taxonId from a list of databases
      *
      * @param accession the accession to look for
-     * @param taxonId   : the organism of the protein
-     * @param databases : the databases to query
+     * @param taxonId   the organism of the protein
+     * @param databases the databases to query
      * @return the cross reference IDs if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given accession is null
+     * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
     private List<String> getIdsForAccession(String accession, String taxonId, SearchDatabase... databases) throws UniprotProteinAPIClientException {
         List<Entry> upEntries = getUPEntriesForAccession(accession, taxonId, databases);
@@ -112,7 +112,7 @@ public class UniprotProteinAPIClient {
     /**
      * Converts a list of SearchDatabase into String
      *
-     * @param databases : the databases to query
+     * @param databases the databases to query
      * @return the list of databases
      */
     //TODO Review if it can work with a List instead of an Array. Apparently the output of both is different
@@ -133,7 +133,7 @@ public class UniprotProteinAPIClient {
      * @param taxonId   the organism of the protein
      * @param databases the databases to query
      * @return the uniprot ID if found, null otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given accession is null
+     * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
     public List<Entry> getUPEntriesForAccession(String accession, String taxonId, SearchDatabase... databases) throws UniprotProteinAPIClientException {
         if (accession == null) {
@@ -177,10 +177,10 @@ public class UniprotProteinAPIClient {
      * get the cross references ids for a provided sequence and taxonId from a list of databases
      *
      * @param sequence  the sequence to look for
-     * @param taxonId   : the organism of the protein
-     * @param databases : the databases to query
+     * @param taxonId   the organism of the protein
+     * @param databases the databases to query
      * @return the list of cross reference IDs if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
+     * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
     private List<String> getIdsForSequence(String sequence, String taxonId, SearchDatabase... databases) throws UniprotProteinAPIClientException {
         Entry upEntry = getUPEntriesForSequence(sequence, taxonId, databases);
@@ -204,9 +204,9 @@ public class UniprotProteinAPIClient {
      * Finds the list of swissProtIds for a provided sequence and taxonId
      *
      * @param sequence the sequence to look for
-     * @param taxonId  : the organism of the protein
+     * @param taxonId  the organism of the protein
      * @return the swissprotIds if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
+     * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
     //TODO Review if SearchDatabase.SWISSPROT_VARSPLIC is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getSwissprotIdsForSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
@@ -217,9 +217,9 @@ public class UniprotProteinAPIClient {
      * Finds the list of termblIds for a provided sequence and taxonId
      *
      * @param sequence the sequence to look for
-     * @param taxonId  : the organism of the protein
+     * @param taxonId the organism of the protein
      * @return the tremblId if found, empty list otherwise
-     * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
+     * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
     //TODO Review if SearchDatabase.TREMBL_VARSPLIC, is changing the value of the query in PICR to adapt the query in Uniprot Protein API
     public List<String> getTremblIdsForSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
@@ -229,9 +229,10 @@ public class UniprotProteinAPIClient {
     /**
      * Gets the uniparcId matching this sequence
      *
-     * @param sequence
-     * @param taxonId
+     * @param sequence the sequence to look for
+     * @param taxonId the organism of the sequence
      * @return the uniparc Id or null if the sequence doesn't match any Uniparc sequence
+     * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
     //TODO Review if SearchDatabase.TREMBL_VARSPLIC,  SearchDatabase.SWISSPROT_VARSPLIC are changing the value of the query in PICR to adaptt the query in Uniprot Protein API
     public String getUniparcIdFromSequence(String sequence, String taxonId) throws UniprotProteinAPIClientException {
@@ -247,11 +248,11 @@ public class UniprotProteinAPIClient {
     /**
      * Get the Entry which matches the sequence and taxonId in the given databases
      *
-     * @param sequence  : sequence of the protein to retrieve
-     * @param taxonId   : organism of the sequence
-     * @param databases : the databases to look into
+     * @param sequence  sequence of the protein to retrieve
+     * @param taxonId   organism of the sequence
+     * @param databases the databases to look into
      * @return an Entry instance matching the sequence, taxonId in the specific databases
-     * @throws UniprotProteinAPIClientException : an exception if the given sequence is null
+     * @throws UniprotProteinAPIClientException if the given sequence is null
      */
     public Entry getUPEntriesForSequence(String sequence, String taxonId, SearchDatabase... databases) throws UniprotProteinAPIClientException {
         if (sequence == null) {
@@ -298,7 +299,7 @@ public class UniprotProteinAPIClient {
     /**
      * Get the UniprotEntry with its accession number
      *
-     * @param accession : the Uniprot identifier of the protein we want to retrieve
+     * @param accession the Uniprot identifier of the protein we want to retrieve
      * @return A list of UniprotEntry instances for this identifier
      */
     public List<UniProtEntry> getUniprotEntryForAccession(String accession) {
@@ -331,7 +332,7 @@ public class UniprotProteinAPIClient {
     /**
      * Get the UniparcEntry with an accession number
      *
-     * @param accession : the identifier of the protein we want to retrieve
+     * @param accession the identifier of the protein we want to retrieve
      * @return a list of UniparcEntry instances for this accession
      */
     public List<UniParcEntry> getUniparcEntryForAccession(String accession) {
@@ -364,10 +365,10 @@ public class UniprotProteinAPIClient {
     /**
      * Get an Unique uniprot Id for this accession
      *
-     * @param accession : the accession to look at
-     * @param taxonId   : the organism
+     * @param accession the accession to look at
+     * @param taxonId   the organism
      * @return an Unique uniprot Id
-     * @throws UniprotProteinAPIClientException
+     * @throws UniprotProteinAPIClientException if the given accession is null
      */
     public String[] getUniprotBestGuessFor(String accession, String taxonId) throws UniprotProteinAPIClientException {
 

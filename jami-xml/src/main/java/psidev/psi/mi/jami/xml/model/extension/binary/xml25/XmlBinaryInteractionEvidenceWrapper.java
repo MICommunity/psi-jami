@@ -100,7 +100,7 @@ public class XmlBinaryInteractionEvidenceWrapper implements BinaryInteractionEvi
     }
 
     /**
-     * <p>The causal regulatory mechanism for the binary interaction.</p>
+     * <p>getCausalRegulatoryMechanism.</p>
      *
      * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */

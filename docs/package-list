@@ -22,10 +22,9 @@ psidev.psi.mi.jami.bridges.ontologymanager
 psidev.psi.mi.jami.bridges.ontologymanager.impl
 psidev.psi.mi.jami.bridges.ontologymanager.impl.local
 psidev.psi.mi.jami.bridges.ontologymanager.impl.ols
-psidev.psi.mi.jami.bridges.picr
-psidev.psi.mi.jami.bridges.picr.io
 psidev.psi.mi.jami.bridges.uniprot
-psidev.psi.mi.jami.bridges.uniprot.mapping
+psidev.psi.mi.jami.bridges.uniprot.rest
+psidev.psi.mi.jami.bridges.uniprot.rest.response.model
 psidev.psi.mi.jami.bridges.uniprot.taxonomy
 psidev.psi.mi.jami.bridges.uniprot.util
 psidev.psi.mi.jami.bridges.unisave
