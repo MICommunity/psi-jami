@@ -16,10 +16,7 @@
         <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
         <spring.version>3.2.9.RELEASE</spring.version>
 
-        <ontology.manager.version>2.0.10</ontology.manager.version>
-
-        <protein.mapping.version>1.0.8</protein.mapping.version>
-
+        <ontology.manager.version>2.0.12</ontology.manager.version>
         <ols.client.version>2.11</ols.client.version>
         <uniprot.japi.version>1.0.23</uniprot.japi.version>
         <chebiws.client.version>2.3.2</chebiws.client.version>
