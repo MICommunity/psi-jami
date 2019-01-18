@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.bridges.fetcher.SourceFetcher;
 /**
  *
  *
- * Code for the cache based on the CachedOntologyService at uk.ac.ebi.intact.bridges.olslight;
+ * Code for the cache OLS fetcher;
  *
  * @author Gabriel Aldam (galdam@ebi.ac.uk)
  * @since 03/07/13

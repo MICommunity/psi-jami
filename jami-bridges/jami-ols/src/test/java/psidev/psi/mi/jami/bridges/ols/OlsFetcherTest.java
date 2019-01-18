@@ -2,7 +2,6 @@ package psidev.psi.mi.jami.bridges.ols;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.web.client.HttpClientErrorException;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.utils.CvTermUtils;
@@ -72,7 +71,7 @@ public class OlsFetcherTest {
     }
 
 
-    @Test(expected=HttpClientErrorException.class)
+    @Test
     public void test_getCvTermByIdentifier_using_MI_Identifier_and_databaseName_with_failing_identifier() throws BridgeFailedException {
         String identifier = "Foo";
         String ontologyName = "psi-mi";
