@@ -59,13 +59,15 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
 	                                       Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
 	                                       Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
 	                                       Collection<MitabChecksum> checksum, Collection<F> feature, Collection<MitabStoichiometry> stc,
-	                                       Collection<MitabCvTerm> detMethod, int line, int column, int mitabColumn);
+	                                       Collection<MitabCvTerm> detMethod, Collection<MitabCvTerm> bioEffect,
+	                                       int line, int column, int mitabColumn);
 	abstract T finishInteraction(P A, P B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor,
 	                                       Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source,
 	                                       Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion,
 	                                       Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host,
 	                                       Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update,
 	                                       Collection<MitabChecksum> checksumI, boolean isNegative, int line);
+	abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 }
 
 PARSER_END(MitabLineParser)
@@ -146,6 +148,10 @@ T MitabLine():
   Collection<MitabStoichiometry> stcB = Collections.EMPTY_LIST;
   Collection<MitabCvTerm> pmethodA = Collections.EMPTY_LIST;
   Collection<MitabCvTerm> pmethodB = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> bioEffectA = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> bioEffectB = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> causalRegMechanism = Collections.EMPTY_LIST;
+  Collection<MitabCvTerm> causalStatement = Collections.EMPTY_LIST;
   EnumSet<TokenKind> enumSet = EnumSet.of(TokenKind.LINE_SEPARATOR);
   EnumSet<TokenKind> columnSet = EnumSet.of(TokenKind.LINE_SEPARATOR, TokenKind.COLUMN_SEPARATOR);
 
@@ -278,7 +284,7 @@ T MitabLine():
                  }
         try{(<DASH> {typeA = Collections.EMPTY_LIST;} | typeA = cvTerms(21)) <COLUMN_SEPARATOR>}
         catch (ParseException e){
-                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
+                  createParseException(token.beginLine, token.beginColumn, 21, e, "Invalid syntax in interactor type A column. Expected xrefs of type psi-mi:\"MI:XXX\"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
                  }
         try{(<DASH> {typeB = Collections.EMPTY_LIST;} | typeB = cvTerms(22)) <COLUMN_SEPARATOR>}
@@ -389,26 +395,52 @@ T MitabLine():
                   createParseException(token.beginLine, token.beginColumn, 42, e, "Invalid participant identification methods B column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
                   error_skipToNext(columnSet, true);
                  }
+        [ //starting MITAB 2.8
+        (
+        <COLUMN_SEPARATOR> //end of pmethodB delimiter
+        try{(<DASH> {bioEffectA = Collections.EMPTY_LIST;} | bioEffectA = cvTerms(43)) <COLUMN_SEPARATOR>}
+        catch (ParseException e){
+                  createParseException(token.beginLine, token.beginColumn, 43, e, "Invalid Biological Effect A column. Expected xrefs of type db:id(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+                 }
+        try{(<DASH> {bioEffectB = Collections.EMPTY_LIST;} | bioEffectB = cvTerms(44)) <COLUMN_SEPARATOR>}
+        catch (ParseException e){
+                  createParseException(token.beginLine, token.beginColumn, 44, e, "Invalid Biological Effect B column. Expected xrefs of type db:id(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+                 }
+        try{(<DASH> {causalRegMechanism = Collections.EMPTY_LIST;} | causalRegMechanism = cvTerms(45)) <COLUMN_SEPARATOR>}
+        catch (ParseException e){
+                  createParseException(token.beginLine, token.beginColumn, 45, e, "Invalid Causal Regulatory Mechanism column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+                 }
+        try{(<DASH> {causalStatement = Collections.EMPTY_LIST;} | causalStatement = cvTerms(46))}
+        catch (ParseException e){
+                  createParseException(token.beginLine, token.beginColumn, 46, e, "Invalid Causal Statement column. Expected xrefs of type psi-mi:\"MI id\"(name) separated by '|'.");
+                  error_skipToNext(columnSet, true);
+                 }
+        )
+        ] // end MITAB 2.8
         )
         ] // end MITAB 2.7
-         )
-        ] //end MITAB 2.6
+        )
+        ] // end MITAB 2.6
               {
-                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, line, columnA, 1);
-                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, line, columnB, 2);
+                participantA = finishParticipant(uniqueIdA, altIdA, aliasA, taxidA, bioRoleA, expRoleA, typeA, xrefA, annotA, checksumA, featureA, stcA, pmethodA, bioEffectA, line, columnA, 1);
+                participantB = finishParticipant(uniqueIdB, altIdB, aliasB, taxidB, bioRoleB, expRoleB, typeB, xrefB, annotB, checksumB, featureB, stcB, pmethodB, bioEffectB, line, columnB, 2);
                 interaction = finishInteraction(participantA, participantB, detMethod, firstAuthor, pubId, interactionType, source, interactionId,
                                          conf, expansion, xrefI, annotI, host, params, created, update, checksumI, isNegative, line);
+                interaction = finishCausalInteraction(interaction, causalStatement, causalRegMechanism);
               }
       (try{<LINE_SEPARATOR> | <EOF> {reachEndOfFile();}}
        catch (ParseException e){
-           createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid number of columns. Expected 15, 36 or 42 tab separated columns.");
+           createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid number of columns. Expected 15, 36, 42 or 46 tab separated columns.");
            error_skipToNext(enumSet, true);
       }))
       )
       {return interaction;}
       }
        catch (ParseException e){
-        createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid MITAB line syntax. Expected 15, 36 or 42 tab separated columns per line and all special characters should be escaped by double quote. See MITAB format description");
+        createParseException(token.beginLine, token.beginColumn, 0, e, "Invalid MITAB line syntax. Expected 15, 36, 42 or 46 tab separated columns per line and all special characters should be escaped by double quote. See MITAB format description");
         error_skipToNext(enumSet, true);
         return interaction;
       }

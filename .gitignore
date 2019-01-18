@@ -51,3 +51,7 @@ local.properties
 # Hidden files
 .DS_Store
 
+# Ignore files generated from the Java Parser Generator
+jami-mitab/javacc/*.java
+
+

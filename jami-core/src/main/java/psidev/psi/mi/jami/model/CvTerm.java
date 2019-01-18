@@ -26,15 +26,15 @@ public interface CvTerm {
     public static final String PSI_PAR = "psi-par";
 
     /**
-     * Short label of a controlled vocabulary. It cannot be null or empty.
+     * Short name of a controlled vocabulary. It cannot be null or empty.
      * Ex: electrophoresis, binding site, protein, ...
      *
-     * @return the short label
+     * @return the short name
      */
     public String getShortName();
 
     /**
-     * Set the short label
+     * Set the short name
      *
      * @param name : short name
      * @throws java.lang.IllegalArgumentException if name is null or empty

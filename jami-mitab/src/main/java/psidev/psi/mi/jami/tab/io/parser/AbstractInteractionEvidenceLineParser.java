@@ -71,7 +71,12 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
     }
 
     @Override
-    MitabParticipantEvidence finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases, Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole, Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot, Collection<MitabChecksum> checksum, Collection<FeatureEvidence> feature, Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod, int line, int column, int mitabColumn) {
+    MitabParticipantEvidence finishParticipant(Collection<MitabXref> uniqueId, Collection<MitabXref> altid, Collection<MitabAlias> aliases,
+                                               Collection<MitabOrganism> taxid, Collection<MitabCvTerm> bioRole, Collection<MitabCvTerm> expRole,
+                                               Collection<MitabCvTerm> type, Collection<MitabXref> xref, Collection<MitabAnnotation> annot,
+                                               Collection<MitabChecksum> checksum, Collection<FeatureEvidence> feature,
+                                               Collection<MitabStoichiometry> stc, Collection<MitabCvTerm> detMethod,
+                                               Collection<MitabCvTerm> bioeffect, int line, int column, int mitabColumn) {
         boolean hasParticipantFields = !bioRole.isEmpty() || !expRole.isEmpty() || !annot.isEmpty() || !feature.isEmpty() || !stc.isEmpty() || !detMethod.isEmpty();
         // first identify interactor
         Interactor interactor = createInteractorFrom(uniqueId, altid, aliases, taxid, type, xref, checksum, line, column, mitabColumn);
@@ -92,7 +97,8 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
             // set biorole
             if (bioRole.size() > 1){
                 if (getParserListener() != null){
-                    getParserListener().onSeveralCvTermsFound(bioRole, bioRole.iterator().next(), bioRole.size() + " biological roles found in one participant. Only the first one will be loaded");
+                    getParserListener().onSeveralCvTermsFound(bioRole, bioRole.iterator().next(),
+                            bioRole.size() + " biological roles found in one participant. Only the first one will be loaded");
                 }
                 bioRoleTerm = bioRole.iterator().next();
             }
@@ -130,6 +136,7 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
             }
             // add detection methods
             participant.getIdentificationMethods().addAll(detMethod);
+
             // add source locator
             participant.setSourceLocator(new MitabSourceLocator(line, column, mitabColumn));
         }
@@ -147,7 +154,13 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
     }
 
     @Override
-    T finishInteraction(ParticipantEvidence A, ParticipantEvidence B, Collection<MitabCvTerm> detMethod, Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType, Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf, Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI, Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created, Collection<MitabDate> update, Collection<MitabChecksum> checksumI, boolean isNegative, int line) {
+    T finishInteraction(ParticipantEvidence A, ParticipantEvidence B, Collection<MitabCvTerm> detMethod,
+                        Collection<MitabAuthor> firstAuthor, Collection<MitabXref> pubId, Collection<MitabCvTerm> interactionType,
+                        Collection<MitabSource> source, Collection<MitabXref> interactionId, Collection<MitabConfidence> conf,
+                        Collection<MitabCvTerm> expansion, Collection<MitabXref> xrefI, Collection<MitabAnnotation> annotI,
+                        Collection<MitabOrganism> host, Collection<MitabParameter> params, Collection<MitabDate> created,
+                        Collection<MitabDate> update, Collection<MitabChecksum> checksumI,
+                        boolean isNegative, int line) {
         T interaction = null;
         boolean hasInteractionFields = !detMethod.isEmpty() || !firstAuthor.isEmpty() || !pubId.isEmpty() || !interactionType.isEmpty() || !source.isEmpty() || !interactionId.isEmpty() || !conf.isEmpty() || !expansion.isEmpty()
                 || !xrefI.isEmpty() || !annotI.isEmpty() || !checksumI.isEmpty() || !params.isEmpty() || !host.isEmpty() || !created.isEmpty() || !update.isEmpty() || isNegative;
@@ -225,6 +238,9 @@ public abstract class AbstractInteractionEvidenceLineParser<T extends Interactio
 
         return interaction;
     }
+
+    @Override
+    abstract T finishCausalInteraction(T interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism);
 
     /**
      * <p>initialiseInteractionAnnotations.</p>

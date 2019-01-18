@@ -2,9 +2,7 @@ package psidev.psi.mi.jami.bridges.ontologymanager.impl;
 
 import psidev.psi.mi.jami.bridges.ontologymanager.MIOntologyTermI;
 import psidev.psi.mi.jami.model.Alias;
-import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.OntologyTerm;
-import psidev.psi.mi.jami.utils.AnnotationUtils;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -57,9 +55,9 @@ public class OntologyTermWrapper implements MIOntologyTermI {
         }
 
         // initialise obsolete annotation
-        Annotation def = AnnotationUtils.collectFirstAnnotationWithTopic(cv.getAnnotations(), null, "definition");
-        if (def != null && def.getValue() != null){
-           processDefinition(def.getValue());
+        String def = cv.getDefinition();
+        if (def != null && !def.isEmpty()){
+           processDefinition(def);
         }
     }
 

@@ -2,10 +2,12 @@ package psidev.psi.mi.jami.tab.io.parser;
 
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
+import psidev.psi.mi.jami.tab.extension.MitabCvTerm;
 import psidev.psi.mi.jami.tab.extension.MitabInteraction;
 
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Collection;
 
 /**
  * An extension of MitabLineParser that returns simple interactions only.
@@ -64,5 +66,10 @@ public class InteractionLineParser extends AbstractLightInteractionLineParser<In
     @Override
     protected Interaction createInteraction() {
         return new MitabInteraction();
+    }
+
+    @Override
+    Interaction finishCausalInteraction(Interaction interaction, Collection<MitabCvTerm> causalStatement, Collection<MitabCvTerm> causalRegMechanism) {
+        return interaction;
     }
 }

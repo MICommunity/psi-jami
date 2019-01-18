@@ -87,7 +87,7 @@ public class Mitab26BinaryWriter extends AbstractMitab26BinaryWriter<BinaryInter
         }
 
         boolean hasJustStarted = !hasStarted();
-        if (!hasStarted()){
+        if (hasJustStarted){
            start();
         }
 

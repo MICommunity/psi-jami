@@ -358,12 +358,28 @@ public class CvTermUtils {
      * <p>createECOCvTerm</p>
      *
      * @param name a {@link java.lang.String} object.
-     * @param ECO a {@link java.lang.String} object.
+     * @param ecoId a {@link java.lang.String} object.
      * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
-    public static CvTerm createECOCvTerm(String name, String ECO){
-        if (ECO != null){
-            return new DefaultCvTerm(name, new DefaultXref(createMICvTerm(Complex.ECO, Complex.ECO_MI), ECO, createIdentityQualifier()));
+    public static CvTerm createECOCvTerm(String name, String ecoId){
+        if (ecoId != null){
+            return new DefaultCvTerm(name, new DefaultXref(createMICvTerm(Complex.ECO, Complex.ECO_MI), ecoId, createIdentityQualifier()));
+        }
+        else {
+            return new DefaultCvTerm(name);
+        }
+    }
+
+    /**
+     * <p>createGOCvTerm</p>
+     *
+     * @param name a {@link java.lang.String} object.
+     * @param goId a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public static CvTerm createGOCvTerm(String name, String goId) {
+        if (goId != null){
+            return new DefaultCvTerm(name, new DefaultXref(createMICvTerm(Xref.GO, Xref.GO_MI), goId, createIdentityQualifier()));
         }
         else {
             return new DefaultCvTerm(name);

@@ -80,6 +80,35 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     }
 
     /**
+     * The biological effect of the participant in a causal interaction.
+     * It is a controlled vocabulary term and can be null.
+     *
+     * @return the biological effect
+     */
+    public CvTerm getBiologicalEffect(){
+        logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+            initialiseParticipantDelegate();
+        }
+        return getDelegate().getBiologicalEffect();
+    }
+
+    /**
+     * Sets the biological effect of the participant in a causal interaction.
+     *
+     * @param biologicalEffect : biological effect
+     */
+    public void setBiologicalEffect(CvTerm biologicalEffect){
+        logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
+        if (getDelegate() == null){
+        initialiseParticipantDelegate();
+    }
+    getDelegate().setBiologicalEffect(biologicalEffect);
+}
+
+
+
+    /**
      * <p>getXrefs.</p>
      *
      * @return a {@link java.util.Collection} object.

@@ -24,6 +24,7 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     private T participantA;
     private T participantB;
     private CvTerm complexExpansion;
+    private CvTerm causalRegulatoryMechanism;
 
     /**
      * <p>Constructor for AbstractBinaryInteraction.</p>
@@ -158,6 +159,24 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     }
 
     /**
+     * <p>Constructor for AbstractBinaryInteraction.</p>
+     *
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a T object.
+     * @param participantB a T object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param causalRegulatoryMechanism a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public AbstractBinaryInteraction(String shortName, CvTerm type, T participantA, T participantB, CvTerm complexExpansion, CvTerm causalRegulatoryMechanism){
+        super(shortName, type);
+        this.participantA = participantA;
+        this.participantB = participantB;
+        this.complexExpansion = complexExpansion;
+        this.causalRegulatoryMechanism = causalRegulatoryMechanism;
+    }
+
+    /**
      * <p>Getter for the field <code>participantA</code>.</p>
      *
      * @return a T object.
@@ -205,6 +224,24 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     /** {@inheritDoc} */
     public void setComplexExpansion(CvTerm expansion) {
         this.complexExpansion = expansion;
+    }
+
+    /**
+     * <p>Getter for the field <code>causalRegulatoryMechanism</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public CvTerm getCausalRegulatoryMechanism() {
+        return this.causalRegulatoryMechanism;
+    }
+
+    /**
+     * <p>Setter for the field <code>causalRegulatoryMechanism</code>.</p>
+     *
+     * @param causalRegulatoryMechanism a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     */
+    public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
+        this.causalRegulatoryMechanism = causalRegulatoryMechanism;
     }
 
     /**
@@ -325,7 +362,8 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
         return "Binary interaction: " +
                 "participant A=["+(getParticipantA() != null ? getParticipantA().toString() : "") + "], participant B=[" +
                 (getParticipantB() != null ? getParticipantB().toString() : "")+"], Complex expansion=["+
-                (getComplexExpansion() != null ? getComplexExpansion().toString() : "")+"]";
+                (getComplexExpansion() != null ? getComplexExpansion().toString() : "")+"], Causal Regulatory Mechanism=[" +
+                (getCausalRegulatoryMechanism() != null ? getCausalRegulatoryMechanism().toString() : "")+"]";
     }
 
 }

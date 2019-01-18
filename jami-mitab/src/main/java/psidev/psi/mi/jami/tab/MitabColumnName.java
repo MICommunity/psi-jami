@@ -26,7 +26,9 @@ public enum MitabColumnName {
     SOURCE("Source database(s)"), // 13
     INTERACTION_ID("Interaction identifier(s)"),// 14
     CONFIDENCE("Confidence value(s)"), // 15
+
     //MITAB 2.6
+
     COMPLEX_EXPANSION("Expansion method(s)"), // 16
     BIOROLE_A("Biological role(s) interactor A"), // 17
     BIOROLE_B("Biological role(s) interactor B"), // 18
@@ -47,14 +49,24 @@ public enum MitabColumnName {
     CHECKSUM_A("Checksum(s) interactor A"), // 33
     CHECKSUM_B("Checksum(s) interactor B"), // 34
     CHECKSUM_I("Interaction Checksum(s)"), // 35
-    NEGATIVE("Negative"), //36
+    NEGATIVE("Negative"), // 36
+
     // MITAB 2.7
-    FEATURES_A("Feature(s) interactor A"), //37
-    FEATURES_B("Feature(s) interactor B"), //38
-    STOICHIOMETRY_A("Stoichiometry(s) interactor A"), //39
-    STOICHIOMETRY_B("Stoichiometry(s) interactor B"), //40
-    PARTICIPANT_IDENT_MED_A("Identification method participant A"), //41
-    PARTICIPANT_IDENT_MED_B("Identification method participant B"), //42
+
+    FEATURES_A("Feature(s) interactor A"), // 37
+    FEATURES_B("Feature(s) interactor B"), // 38
+    STOICHIOMETRY_A("Stoichiometry(s) interactor A"), // 39
+    STOICHIOMETRY_B("Stoichiometry(s) interactor B"), // 40
+    PARTICIPANT_IDENT_MED_A("Identification method participant A"), // 41
+    PARTICIPANT_IDENT_MED_B("Identification method participant B"), // 42
+
+    // MITAB 2.8
+
+    BIO_EFFECT_A("Biological effect interactor A"), // 43
+    BIO_EFFECT_B("Biological effect interactor B"), // 44
+    CAUSAL_REG_MECHANISM("Causal Regulatory Mechanism"), // 45
+    CAUSAL_STAT("Causal Statement"), // 46
+
     MITAB_LENGTH("length");
 
 
