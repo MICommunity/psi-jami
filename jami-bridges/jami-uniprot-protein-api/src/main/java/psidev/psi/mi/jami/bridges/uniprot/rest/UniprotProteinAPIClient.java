@@ -1,6 +1,9 @@
 package psidev.psi.mi.jami.bridges.uniprot.rest;
 
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -48,7 +51,7 @@ public class UniprotProteinAPIClient {
      * Finds the list of swissProtIds for a provided ID and taxonId
      *
      * @param accession the accession to look for
-     * @param taxonId the organism of the protein
+     * @param taxonId   the organism of the protein
      * @return the swissprotIds if found, empty list otherwise
      * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
@@ -61,7 +64,7 @@ public class UniprotProteinAPIClient {
      * Finds the list of termblIds for a provided ID and taxonId
      *
      * @param accession the accession to look for
-     * @param taxonId the organism of the protein
+     * @param taxonId   the organism of the protein
      * @return the tremblId if found, empty list otherwise
      * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
@@ -74,7 +77,7 @@ public class UniprotProteinAPIClient {
      * Gets the list of uniparcId matching this accession number
      *
      * @param accession the accession to look for
-     * @param taxonId: the organism of the protein
+     * @param taxonId:  the organism of the protein
      * @return the list of uniparc Id or empty list if the accession doesn't match any Uniparc sequence
      * @throws UniprotProteinAPIClientException an exception if the given accession is null
      */
@@ -146,9 +149,7 @@ public class UniprotProteinAPIClient {
             databases = values();
         }
 
-        if (taxonId != null) {
-            query += "&rfTaxId=" + taxonId;
-        }
+        query = appendTaxonId(taxonId, query);
 
         List<Entry> entries = Collections.EMPTY_LIST;
 
@@ -161,14 +162,13 @@ public class UniprotProteinAPIClient {
             entries = response.getEntry();
 
         } catch (HttpClientErrorException e) {
-            if(e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+            if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
             }
         } catch (RestClientException e) {
             log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
             throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
         }
-
 
         return entries;
     }
@@ -217,7 +217,7 @@ public class UniprotProteinAPIClient {
      * Finds the list of termblIds for a provided sequence and taxonId
      *
      * @param sequence the sequence to look for
-     * @param taxonId the organism of the protein
+     * @param taxonId  the organism of the protein
      * @return the tremblId if found, empty list otherwise
      * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
@@ -230,7 +230,7 @@ public class UniprotProteinAPIClient {
      * Gets the uniparcId matching this sequence
      *
      * @param sequence the sequence to look for
-     * @param taxonId the organism of the sequence
+     * @param taxonId  the organism of the sequence
      * @return the uniparc Id or null if the sequence doesn't match any Uniparc sequence
      * @throws UniprotProteinAPIClientException an exception if the given sequence is null
      */
@@ -265,9 +265,7 @@ public class UniprotProteinAPIClient {
             databases = values();
         }
 
-        if (taxonId != null) {
-            query += "&rfTaxId=" + taxonId;
-        }
+        query = appendTaxonId(taxonId, query);
 
         Entry entry = null;
 
@@ -285,7 +283,7 @@ public class UniprotProteinAPIClient {
             entry = restTemplate.postForObject(query, request, Entry.class, databaseEnumToString(databases));
 
         } catch (HttpClientErrorException e) {
-            if(e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+            if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
                 log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
             }
         } catch (RestClientException e) {
@@ -382,14 +380,22 @@ public class UniprotProteinAPIClient {
         //https://www.ebi.ac.uk/proteins/api/uniparc/bestguess?accession=P45532&taxid=83333
 
         if (taxonId != null) {
-            query += "&taxid=" + taxonId;
+            try {
+                Integer taxInt = Integer.valueOf(taxonId);
+                if (taxInt > 0) {
+                    query += "&taxid=" + taxonId;
+                }
+            } catch (NumberFormatException e) {
+                //If there is no valid number we don't query by taxonId
+                log.log(Level.INFO, "An invalid taxon identifier has been found: " + taxonId);
+            }
         }
 
         String[] result = null;
 
         try {
 
-           Entry entry = restTemplate.getForObject(query, Entry.class, accession);
+            Entry entry = restTemplate.getForObject(query, Entry.class, accession);
 
             if (entry != null) {
                 List<DbReferenceType> dbReferences = entry.getDbReference();
@@ -438,6 +444,21 @@ public class UniprotProteinAPIClient {
         }
 
         return result;
+    }
+
+    private String appendTaxonId(String taxonId, String query) {
+        if (taxonId != null) {
+            try {
+                Integer taxInt = Integer.valueOf(taxonId);
+                if (taxInt > 0) {
+                    query += "&rfTaxId=" + taxonId;
+                }
+            } catch (NumberFormatException e) {
+                //If there is no valid number we don't query by taxonId
+                log.log(Level.INFO, "An invalid taxon identifier has been found: " + taxonId);
+            }
+        }
+        return query;
     }
 }
 

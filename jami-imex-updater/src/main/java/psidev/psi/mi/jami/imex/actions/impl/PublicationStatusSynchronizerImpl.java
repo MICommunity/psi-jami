@@ -3,7 +3,6 @@ package psidev.psi.mi.jami.imex.actions.impl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
-import psidev.psi.mi.jami.bridges.imex.Constants;
 import psidev.psi.mi.jami.bridges.imex.ImexCentralClient;
 import psidev.psi.mi.jami.bridges.imex.Operation;
 import psidev.psi.mi.jami.bridges.imex.PublicationStatus;

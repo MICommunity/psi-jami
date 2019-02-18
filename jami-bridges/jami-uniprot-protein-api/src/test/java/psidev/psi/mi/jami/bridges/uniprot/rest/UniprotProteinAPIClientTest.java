@@ -42,7 +42,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(25, upis.size());
+        Assert.assertEquals(23, upis.size());
 
     }
 
@@ -104,7 +104,17 @@ public class UniprotProteinAPIClientTest {
             System.out.println(upi);
         }
         Assert.assertEquals(4, upis.size());
+    }
 
+    @Test
+    public void getSwissprotIdsForSequenceAndSpecialOrganism() throws UniprotProteinAPIClientException {
+        List<String> upis;
+
+        upis = client.getSwissprotIdsForSequence("YIYTQ", "-2");
+        for (String upi : upis) {
+            System.out.println(upi);
+        }
+        Assert.assertEquals(1, upis.size());
     }
 
     @Test
@@ -116,7 +126,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(25, upis.size());
+        Assert.assertEquals(23, upis.size());
 
     }
 
@@ -140,7 +150,7 @@ public class UniprotProteinAPIClientTest {
         System.out.println(upi.getAccession());
         Assert.assertNotNull(upi);
         Assert.assertEquals("UPI000003EADC", upi.getAccession());
-        Assert.assertEquals(29, upi.getDbReference().size());
+        Assert.assertEquals(27, upi.getDbReference().size());
 
     }
 
