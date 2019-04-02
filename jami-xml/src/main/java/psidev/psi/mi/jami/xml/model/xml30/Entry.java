@@ -101,7 +101,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a JAXBAnnotationsWrapper object.
      */
-    @XmlElement(name = "annotationList")
+    @XmlElement(name = "attributeList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
@@ -221,7 +221,7 @@ public class Entry extends AbstractEntry<Interaction> {
             experiments = new ArrayList<Experiment>();
         }
 
-        @XmlElement(type= XmlExperiment.class, name="experimentDescription", required = true)
+        @XmlElement(name="experimentDescription", required = true, type= XmlExperiment.class)
         public List<Experiment> getJAXBExperiments() {
             return experiments;
         }

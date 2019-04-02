@@ -94,7 +94,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
      *
      * @param wrapper a JAXBAnnotationsWrapper object.
      */
-    @XmlElement(name = "annotationList")
+    @XmlElement(name = "attributeList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
