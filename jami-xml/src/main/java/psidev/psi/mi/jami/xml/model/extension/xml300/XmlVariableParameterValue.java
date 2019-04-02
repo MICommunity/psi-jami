@@ -218,7 +218,7 @@ public class XmlVariableParameterValue implements VariableParameterValue,FileSou
      *
      * @param order a {@link java.lang.Integer} object.
      */
-    @XmlElement(name = "order", required = true)
+    @XmlAttribute(name = "order", required = true)
     public void setJAXBOrder(Integer order){
         this.order = order;
     }
