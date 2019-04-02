@@ -281,7 +281,7 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
      *
      * @param ref a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
      */
-    @XmlElement(name = "bibRef", type = BibRef.class)
+    @XmlElement(name = "bibref", type = BibRef.class)
     public void setJAXBBibRef(BibRef ref) {
         this.bibRef = ref;
     }
