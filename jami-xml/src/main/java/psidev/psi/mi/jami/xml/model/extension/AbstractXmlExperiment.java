@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
 import psidev.psi.mi.jami.xml.model.Entry;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlVariableParameter;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.annotation.*;
@@ -41,11 +42,11 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     private Publication publication;
     private CvTerm interactionDetectionMethod;
     private Collection<InteractionEvidence> interactions;
-    private Collection<VariableParameter> variableParameters;
 
     private JAXBAttributeWrapper jaxbAttributeWrapper;
     private JAXBHostOrganismWrapper jaxbHostOrganismWrapper;
     private JAXBConfidenceWrapper jaxbConfidenceWrapper;
+    private JAXBVariableParameterWrapper jaxbVariableParameterWrapper;
 
     @XmlLocation
     @XmlTransient
@@ -296,10 +297,10 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      * @return a {@link java.util.Collection} object.
      */
     public Collection<VariableParameter> getVariableParameters() {
-        if (variableParameters == null){
+        if (jaxbVariableParameterWrapper == null){
             initialiseVariableParameters();
         }
-        return variableParameters;
+        return jaxbVariableParameterWrapper.variableParameters;
     }
 
     /** {@inheritDoc} */
@@ -501,6 +502,28 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     @XmlElement(name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
         this.jaxbConfidenceWrapper = wrapper;
+    }
+
+    /**
+     * <p>setJAXBVariableParameterValuesWrapper.</p>
+     *
+     * @param jaxbVariableParameterList a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlExperiment.JAXBVariableParameterWrapper} object.
+     */
+    // We need to handle variable parameters at this level in the class hierarchy to be able to resolve properly the XmlExperiment.class at
+    // experimentDescription when it gets call inside of AbstractXmlInteractionEvidence (in the expanded version).
+    // It always resolve the class as psidev.psi.mi.jami.xml.model.extension.XmlExperiment
+    // but no any of the subclasses, so it is the only way that the unmarshaller find variableParameterList
+    // An alternative approach could be delegating the experimentDescription mapping to the specific XmlInteractionEvidence subclasses per schema
+    // , but implies more duplicated code
+    @XmlElement(name = "variableParameterList")
+    public void setJAXBVariableParameterValuesWrapper(JAXBVariableParameterWrapper jaxbVariableParameterList) {
+        this.jaxbVariableParameterWrapper = jaxbVariableParameterList;
+        // initialise all variable parameters because of back references
+        if (this.jaxbVariableParameterWrapper != null && !this.jaxbVariableParameterWrapper.variableParameters.isEmpty()){
+            for (VariableParameter param : this.jaxbVariableParameterWrapper.variableParameters){
+                param.setExperiment(this);
+            }
+        }
     }
 
     /**
@@ -750,7 +773,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      * <p>initialiseVariableParameters.</p>
      */
     protected void initialiseVariableParameters(){
-        this.variableParameters = new ArrayList<VariableParameter>();
+        this.jaxbVariableParameterWrapper = new JAXBVariableParameterWrapper();
     }
 
     ////////////////////////////////////////////////////////////////// classes
@@ -1083,6 +1106,62 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
         @Override
         public String toString() {
             return "Experiment Confidence List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+        }
+    }
+
+    @XmlAccessorType(XmlAccessType.NONE)
+    @XmlType(name="variableParametersWrapper")
+    public static class JAXBVariableParameterWrapper implements Locatable, FileSourceContext {
+        private PsiXmlLocator sourceLocator;
+        @XmlLocation
+        @XmlTransient
+        private Locator locator;
+        private List<VariableParameter> variableParameters;
+
+        public JAXBVariableParameterWrapper(){
+            initialiseVariables();
+        }
+
+        public JAXBVariableParameterWrapper(List<VariableParameter> parameters){
+            this.variableParameters = parameters;
+        }
+
+        @Override
+        public Locator sourceLocation() {
+            return (Locator)getSourceLocator();
+        }
+
+        public FileSourceLocator getSourceLocator() {
+            if (sourceLocator == null && locator != null){
+                sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
+            }
+            return sourceLocator;
+        }
+
+        public void setSourceLocator(FileSourceLocator sourceLocator) {
+            if (sourceLocator == null){
+                this.sourceLocator = null;
+            }
+            else if (sourceLocator instanceof PsiXmlLocator){
+                this.sourceLocator = (PsiXmlLocator)sourceLocator;
+            }
+            else {
+                this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
+            }
+        }
+
+        protected void initialiseVariables(){
+            this.variableParameters = new ArrayList<VariableParameter>();
+        }
+
+        @XmlElement(type=XmlVariableParameter.class, name="variableParameter", required = true)
+        public List<VariableParameter> getJAXBVariableParameters() {
+            return this.variableParameters;
+        }
+
+        @Override
+        public String toString() {
+            return "Variable parameter values List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
         }
     }
 }
