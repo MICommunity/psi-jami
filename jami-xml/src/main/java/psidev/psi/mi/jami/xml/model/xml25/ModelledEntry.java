@@ -85,7 +85,7 @@ public class ModelledEntry extends AbstractEntry<ModelledInteraction> {
      *
      * @param wrapper a JAXBAnnotationsWrapper object.
      */
-    @XmlElement(name = "annotationList")
+    @XmlElement(name = "attributeList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }

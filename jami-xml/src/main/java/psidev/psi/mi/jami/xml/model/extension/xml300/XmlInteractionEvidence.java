@@ -6,9 +6,13 @@ import org.xml.sax.Locator;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.CvTerm;
+import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.VariableParameterValueSet;
+import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
+import psidev.psi.mi.jami.xml.model.reference.AbstractExperimentRef;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -94,6 +98,185 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
     }
 
     ////////////////////////////////////////////////////////////////// classes
+
+    @XmlAccessorType(XmlAccessType.NONE)
+    @XmlType(name = "experimentListType")
+    public static class JAXBExperimentWrapper implements Locatable, FileSourceContext{
+
+        private List<ExtendedPsiXmlExperiment> jaxbExperiments;
+        private PsiXmlLocator sourceLocator;
+        @XmlLocation
+        @XmlTransient
+        private Locator locator;
+        private List<Experiment> experiments;
+        private JAXBExperimentRefList jaxbExperimentRefList;
+        private psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence parent;
+
+        public JAXBExperimentWrapper(){
+            this.experiments = new ArrayList<Experiment>();
+        }
+
+        @XmlElement(name="experimentDescription", required = true, type = XmlExperiment.class)
+        public List<ExtendedPsiXmlExperiment> getJAXBExperimentDescriptions() {
+            if (jaxbExperiments == null){
+                jaxbExperiments = new ArrayList<ExtendedPsiXmlExperiment>();
+            }
+            return jaxbExperiments;
+        }
+
+        @XmlElement(name="experimentRef", required = true, type = Integer.class)
+        public List<Integer> getJAXBExperimentRefs() {
+            if (this.jaxbExperimentRefList == null){
+                this.jaxbExperimentRefList = new JAXBExperimentRefList();
+            }
+            return jaxbExperimentRefList;
+        }
+
+        @Override
+        public Locator sourceLocation() {
+            return (Locator)getSourceLocator();
+        }
+
+        public FileSourceLocator getSourceLocator() {
+            if (sourceLocator == null && locator != null){
+                sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
+            }
+            return sourceLocator;
+        }
+
+        public void setSourceLocator(FileSourceLocator sourceLocator) {
+            if (sourceLocator == null){
+                this.sourceLocator = null;
+            }
+            else if (sourceLocator instanceof PsiXmlLocator){
+                this.sourceLocator = (PsiXmlLocator)sourceLocator;
+            }
+            else {
+                this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "Interaction Experiment List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+        }
+
+        ////////////////////////////////////////////////// Inner classes of ExperimentList
+
+        /**
+         * The experiment ref list used by JAXB to populate experiment refs
+         */
+        private class JAXBExperimentRefList extends ArrayList<Integer>{
+
+            public JAXBExperimentRefList(){
+                super();
+            }
+
+            @Override
+            public boolean add(Integer val) {
+                if (val == null){
+                    return false;
+                }
+                return experiments.add(new JAXBExperimentRefList.ExperimentRef(val));
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Integer> c) {
+                if (c == null){
+                    return false;
+                }
+                boolean added = false;
+
+                for (Integer a : c){
+                    if (add(a)){
+                        added = true;
+                    }
+                }
+                return added;
+            }
+
+            @Override
+            public void add(int index, Integer element) {
+                addToSpecificIndex(index, element);
+            }
+
+            @Override
+            public boolean addAll(int index, Collection<? extends Integer> c) {
+                int newIndex = index;
+                if (c == null){
+                    return false;
+                }
+                boolean add = false;
+                for (Integer a : c){
+                    if (addToSpecificIndex(newIndex, a)){
+                        newIndex++;
+                        add = true;
+                    }
+                }
+                return add;
+            }
+
+            private boolean addToSpecificIndex(int index, Integer val) {
+                if (val == null){
+                    return false;
+                }
+                experiments.add(index, new JAXBExperimentRefList.ExperimentRef(val));
+                return true;
+            }
+
+            @Override
+            public String toString() {
+                return "Interaction Experiment Reference List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            }
+
+            /**
+             * Experiment ref for experimental interactor
+             */
+            private class ExperimentRef extends AbstractExperimentRef {
+                public ExperimentRef(int ref) {
+                    super(ref);
+                }
+
+                public boolean resolve(PsiXmlIdCache parsedObjects) {
+                    if (parsedObjects.containsExperiment(this.ref)){
+                        Experiment obj = parsedObjects.getExperiment(this.ref);
+                        if (obj == null){
+                            return false;
+                        }
+                        else if (obj instanceof ExtendedPsiXmlExperiment){
+                            ExtendedPsiXmlExperiment exp = (ExtendedPsiXmlExperiment)obj;
+                            experiments.remove(this);
+                            experiments.add(exp);
+
+                            exp.getInteractionEvidences().add(parent);
+                            return true;
+                        }
+                        else {
+                            experiments.remove(this);
+                            experiments.add(obj);
+
+                            obj.getInteractionEvidences().add(parent);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                @Override
+                public String toString() {
+                    return "Interaction Experiment Reference: "+(ref+(getSourceLocator() != null ? ", "+getSourceLocator().toString():super.toString()));
+                }
+
+                public FileSourceLocator getSourceLocator() {
+                    return sourceLocator;
+                }
+
+                public void setSourceLocator(FileSourceLocator locator) {
+                    throw new UnsupportedOperationException("Cannot set the source locator of an experiment ref");
+                }
+            }
+        }
+    }
 
     @XmlAccessorType(XmlAccessType.NONE)
     @XmlType(name = "variableParameterValueSetList")

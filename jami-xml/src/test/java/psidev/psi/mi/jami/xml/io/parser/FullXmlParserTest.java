@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.parser;
 
-import junit.framework.Assert;
+
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
@@ -9,8 +10,8 @@ import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
-import psidev.psi.mi.jami.xml.model.extension.xml300.*;
+import psidev.psi.mi.jami.xml.model.extension.xml300.BindingFeatures;
+import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlCausalRelationship;
 import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInteraction;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -1117,6 +1118,127 @@ public class FullXmlParserTest {
 
         Assert.assertEquals(1, c.getSource().getCausalRelationships().size());
         Assert.assertTrue(c == c.getSource().getCausalRelationships().iterator().next());
+
+        Assert.assertFalse(parser.hasFinished());
+
+        parser.close();
+    }
+
+    @Test
+    public void test_read_valid_xml30_variable_parameters_compact() throws PsiXmlParserException, JAXBException, XMLStreamException {
+        InputStream stream = XmlEvidenceParserTest.class.getResourceAsStream("/samples/xml30/several_variable_parameters_compact.xml");
+
+        PsiXmlParser<Interaction> parser = new FullXmlParser(stream);
+
+        psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence interaction =
+                (psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence)parser.parseNextInteraction();
+        Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+
+        Assert.assertNotNull(interaction);
+
+        // variable parameters experiment
+        Assert.assertNotNull(interaction.getExperiment());
+        Assert.assertEquals(2, interaction.getExperiment().getVariableParameters().size());
+        Iterator<VariableParameter> variableParameterIterator = interaction.getExperiment().getVariableParameters().iterator();
+
+        VariableParameter p1 = variableParameterIterator.next();
+        Assert.assertEquals("MLN924", p1.getDescription());
+        Assert.assertEquals(p1.getExperiment(), interaction.getExperiment());
+        Assert.assertEquals(1, p1.getVariableValues().size());
+
+        VariableParameterValue v1 = p1.getVariableValues().iterator().next();
+        Assert.assertEquals("-6", v1.getValue() );
+
+        Assert.assertEquals((Integer)1, v1.getOrder());
+        Assert.assertNotNull(p1.getUnit());
+        Assert.assertEquals("molar", p1.getUnit().getShortName());
+
+        VariableParameter p2 = variableParameterIterator.next();
+        Assert.assertEquals("1,10-orthophenathroline (OPT)", p2.getDescription());
+        Assert.assertEquals(p2.getExperiment(), interaction.getExperiment());
+        Assert.assertEquals(1, p1.getVariableValues().size());
+
+        VariableParameterValue v2 = p2.getVariableValues().iterator().next();
+        Assert.assertEquals("-3", v2.getValue() );
+
+        Assert.assertEquals((Integer)2, v2.getOrder());
+        Assert.assertNotNull(p1.getUnit());
+        Assert.assertEquals("molar", p2.getUnit().getShortName());
+
+        // participants
+        Assert.assertEquals(3, interaction.getParticipants().size());
+
+        // variable parameter values
+        Assert.assertEquals(1, interaction.getVariableParameterValues().size());
+        VariableParameterValueSet set = interaction.getVariableParameterValues().iterator().next();
+        Assert.assertEquals(1, set.size());
+        Iterator<VariableParameterValue> vIterator = set.iterator();
+        VariableParameterValue v11 = vIterator.next();
+        Assert.assertSame(v2, v11);
+
+
+        Assert.assertFalse(parser.hasFinished());
+
+        parser.close();
+    }
+
+    @Test
+    public void test_read_valid_xml30_variable_parameters_expanded() throws PsiXmlParserException, JAXBException, XMLStreamException {
+        InputStream stream = XmlEvidenceParserTest.class.getResourceAsStream("/samples/xml30/several_variable_parameters_expanded.xml");
+
+        PsiXmlParser<Interaction> parser = new FullXmlParser(stream);
+
+        psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence interaction =
+                (psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence)parser.parseNextInteraction();
+        Assert.assertNotNull(((FileSourceContext)interaction).getSourceLocator());
+
+        Assert.assertNotNull(interaction);
+
+        // variable parameters experiment
+        Assert.assertNotNull(interaction.getExperiment());
+        Assert.assertEquals(2, interaction.getExperiment().getVariableParameters().size());
+        Iterator<VariableParameter> variableParameterIterator = interaction.getExperiment().getVariableParameters().iterator();
+
+        VariableParameter p1 = variableParameterIterator.next();
+        Assert.assertEquals("MLN924", p1.getDescription());
+        Assert.assertEquals(p1.getExperiment(), interaction.getExperiment());
+        Assert.assertEquals(1, p1.getVariableValues().size());
+
+        VariableParameterValue v1 = p1.getVariableValues().iterator().next();
+        Assert.assertEquals("-6", v1.getValue() );
+
+        Assert.assertEquals((Integer)1, v1.getOrder());
+        Assert.assertNotNull(p1.getUnit());
+        Assert.assertEquals("molar", p1.getUnit().getShortName());
+
+        VariableParameter p2 = variableParameterIterator.next();
+        Assert.assertEquals("1,10-orthophenathroline (OPT)", p2.getDescription());
+        Assert.assertEquals(p2.getExperiment(), interaction.getExperiment());
+        Assert.assertEquals(1, p1.getVariableValues().size());
+
+        VariableParameterValue v2 = p2.getVariableValues().iterator().next();
+        Assert.assertEquals("-3", v2.getValue() );
+
+        Assert.assertEquals((Integer)2, v2.getOrder());
+        Assert.assertNotNull(p1.getUnit());
+        Assert.assertEquals("molar", p2.getUnit().getShortName());
+
+        // participants
+        Assert.assertEquals(3, interaction.getParticipants().size());
+
+        // variable parameter values
+        Assert.assertEquals(1, interaction.getVariableParameterValues().size());
+        VariableParameterValueSet set = interaction.getVariableParameterValues().iterator().next();
+        Assert.assertEquals(1, set.size());
+        Iterator<VariableParameterValue> vIterator = set.iterator();
+        VariableParameterValue v11 = vIterator.next();
+        //In expanded they are different objects if the reference is the same
+        //because it returns the first one stored from the first time that
+        //the experiment is parsed. We can change it if we have the experiment
+        //into account to compare but it doesn't look necessary at this point
+        //Assert.assertSame(v2, v11);
+        Assert.assertEquals(v2.getValue(), v11.getValue());
+
 
         Assert.assertFalse(parser.hasFinished());
 

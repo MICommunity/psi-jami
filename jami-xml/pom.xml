@@ -4,11 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.2.1</version>
+        <version>3.2.2</version>
     </parent>
 
     <artifactId>jami-xml</artifactId>
-    <version>3.2.1</version>
+    <version>3.2.2</version>
     <name>PSI :: JAMI - XML</name>
     <description>JAMI - PSI-XML parser and writer</description>
 
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>woodstox-core-asl</artifactId>
-            <version>4.0.6</version>
+            <version>4.4.1</version>
         </dependency>
         <!-- stax utils -->
         <dependency>

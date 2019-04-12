@@ -85,7 +85,7 @@ public class ComplexEntry extends AbstractEntry<Complex> {
      *
      * @param wrapper a JAXBAnnotationsWrapper object.
      */
-    @XmlElement(name = "annotationList")
+    @XmlElement(name = "attributeList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
