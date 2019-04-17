@@ -72,6 +72,8 @@ public interface Xref {
     public static final String INTERPRO = "interpro";
     /** Constant <code>INTERPRO_MI="MI:0449"</code> */
     public static final String INTERPRO_MI = "MI:0449";
+    /** Constant <code>INTACT_MI="MI:0469"</code> */
+    public static final String INTACT_MI="MI:0469";
 
     /** Constant <code>COMPLEX_PRIMARY="complex-primary"</code> */
     public static final String COMPLEX_PRIMARY="complex-primary";
