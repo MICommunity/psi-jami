@@ -79,7 +79,9 @@ public abstract class AbstractComplexExpansionMethod<T extends Interaction, B ex
 
         switch (category){
             case binary:
-                return createBinaryInteractionWrappersFrom(interaction);
+                return (interaction instanceof BinaryInteraction)
+                        ? (Collections.singletonList((B) interaction))
+                        : (createBinaryInteractionWrappersFrom(interaction));
             case self_intra_molecular:
                 return createBinaryInteractionWrappersFrom(interaction);
             case self_inter_molecular:
