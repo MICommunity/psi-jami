@@ -1,10 +1,10 @@
-#PSI-JAMI
+# PSI-JAMI
 
 Master | Develop | Latest release
 --- | --- | ---
 [![Build Status: master][travis-badge-master]][ci]| [![Build Status: dev][travis-badge-dev]][ci] | [![Version](http://img.shields.io/badge/version-3.0.15-blue.svg?style=flat)](https://github.com/MICommunity/psi-jami/tree/psi-jami-3.0.15)
 
-###Introduction
+### Introduction
 
 The aim of JAMI is to provide a single java library and framework which unifies the standard formats such as PSI-MI XML and PSI-MITAB.
 
