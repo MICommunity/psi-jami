@@ -6,17 +6,15 @@ For more information about the molecular interaction standards you can refer to 
 
 ## How does it relate to other packages ?
 
-Only `jami-commons` uses this package. But `jami-commons` is used by following packages
-`jami-examples`
-`jami-ontology-manager`
-`psi-jami`
+Only `jami-commons` uses this package. `jami-commons` is used by the following packages:
+- `jami-examples`
+- `jami-ontology-manager`
+- `psi-jami`
 
-but 
+but `jami-mitab` itself uses `jami-core` internally
 
-`jami-mitab` itself uses `jami-core` internally
-
-##Examples
-###Reading PSI-MITAB files
+## Examples
+### Reading PSI-MITAB files
 
 ```java
 //File is your mitab file to read
@@ -54,7 +52,7 @@ finally {
     }
 }
 ```
-###Writing PSI-MITAB files
+### Writing PSI-MITAB files
 
 ```java  
 
@@ -110,23 +108,23 @@ finally {
 }
 ```
 
-#Advance configuration for readers and writers
-It has the potential of giving out readers and writers the following configurations.
+### Advance configuration for readers and writers
+It has the potential of giving out readers and writers the following configurations:
 
-##InteractionCategory
+#### InteractionCategory
  - evidence: for InteractionEvidence implementations.
  - modelled: for ModelledInteraction implementations.
  - basic: for basic implementations of Interaction
  - mixed: for a mix of any kind of interactions
  - complex: for biological complexes. Not all datasources support this kind of interactions
  
-##ComplexType
+#### ComplexType
  - binary: for binay interactions
  - n_ary: for n-ary interactions
  - self_intra_molecular: for intra molecule interactions
  - self_inter_molecular: for inter molecule interactions
  
-##ComplexExpansionMethod
+#### ComplexExpansionMethod
 Could be any of the implementation of the [ComplexExpansionMethod](https://github.com/MICommunity/psi-jami/tree/master/jami-core/src/main/java/psidev/psi/mi/jami/binary/expansion) interface, like:
  - BipartiteExpansion
  - MatrixExpansion
@@ -134,9 +132,8 @@ Could be any of the implementation of the [ComplexExpansionMethod](https://githu
 
 For more details about all the possible configuration for readers and writers you can have a look to jami-commoms factories [MIWriterOptionFactory](https://github.com/MICommunity/psi-jami/blob/master/jami-commons/src/main/java/psidev/psi/mi/jami/commons/MIWriterOptionFactory.java) and [MIDataSourceOptionFactory](https://github.com/MICommunity/psi-jami/blob/master/jami-commons/src/main/java/psidev/psi/mi/jami/commons/MIDataSourceOptionFactory.java) in
 
-#Other Java Examples
+### Other Java Examples
 
 https://github.com/MICommunity/psi-jami/blob/master/jami-examples/src/main/java/psidev/psi/mi/jami/examples/core/ReadWriteWithJami.java
 
 https://github.com/MICommunity/psi-jami/tree/develop/jami-mitab/src/test
-
