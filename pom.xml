@@ -18,7 +18,7 @@
 
         <ontology.manager.version>2.0.12</ontology.manager.version>
         <ols.client.version>2.11</ols.client.version>
-        <uniprot.japi.version>1.0.25</uniprot.japi.version>
+        <uniprot.japi.version>1.0.27</uniprot.japi.version>
         <chebiws.client.version>2.3.2</chebiws.client.version>
 
     </properties>
