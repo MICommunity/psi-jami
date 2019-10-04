@@ -34,7 +34,7 @@
             },
             "uri": {
               "type": "string",
-              "description": "Uniform Resource Identifier for this interactor."
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -64,6 +64,10 @@
             "taxid": {
               "type": "number",
               "description": "The uniprot taxonomy identifier for this organism. Can be -1 if in vitro, -2 if chemical synthesis, -3 if unknown, -4 if in vivo"
+            },
+            "uri": {
+              "type": "string",
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -85,6 +89,10 @@
             "name": {
               "type": "string",
               "description": "The interactor type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0313&termName=interactor%20type"
+            },
+            "uri": {
+              "type": "string",
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -129,6 +137,10 @@
                 "name": {
                   "type": "string",
                   "description": "The interaction detection method unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0001&termName=interaction%20detection%20method"
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             },
@@ -171,6 +183,10 @@
                   "type": "number",
                   "description": "The uniprot taxonomy identifier for this organism. Can be -1 if in vitro, -2 if chemical synthesis, -3 if unknown, -4 if in vivo"
                 },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
+                },
                 "cellType": {
                   "type": "object",
                   "required": [
@@ -185,6 +201,10 @@
                     "name": {
                       "type": "string",
                       "description": "The cell type short name."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 },
@@ -202,6 +222,10 @@
                     "name": {
                       "type": "string",
                       "description": "The source tissue short name."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 },
@@ -219,6 +243,10 @@
                     "name": {
                       "type": "string",
                       "description": "The subcellular compartment type short name."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 }
@@ -265,6 +293,10 @@
                 "name": {
                   "type": "string",
                   "description": "The institution name. Most of the time, the name will match a term from the PSI-MI ontology http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0461&termName=interaction%20database. It represents the unique PSI shortlabel for this database"
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             }
@@ -316,6 +348,10 @@
             "name": {
               "type": "string",
               "description": "The interaction type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0190&termName=interaction%20type."
+            },
+            "uri": {
+              "type": "string",
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -358,6 +394,10 @@
                     "name": {
                       "type": "string",
                       "description": "The biological role unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0500&termName=biological%20role."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 },
@@ -375,6 +415,10 @@
                     "name": {
                       "type": "string",
                       "description": "The experimental role unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0495&termName=experimental%20role."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 },
@@ -396,6 +440,10 @@
                         "name": {
                           "type": "string",
                           "description": "The participant identification method unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0002&termName=experimental%20prep."
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "Uniform Resource Identifier for this instance."
                         }
                       }
                     }
@@ -419,6 +467,10 @@
                         "name": {
                           "type": "string",
                           "description": "The participant identification method unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0002&termName=participant%20identification%20method."
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "Uniform Resource Identifier for this instance."
                         }
                       }
                     }
@@ -443,6 +495,10 @@
                       "type": "number",
                       "description": "The uniprot taxonomy identifier for this organism. Can be -1 if in vitro, -2 if chemical synthesis, -3 if unknown, -4 if in vivo"
                     },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
+                    },
                     "cellType": {
                       "type": "object",
                       "required": [
@@ -457,6 +513,10 @@
                         "name": {
                           "type": "string",
                           "description": "The cell type short name."
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "Uniform Resource Identifier for this instance."
                         }
                       }
                     },
@@ -474,6 +534,10 @@
                         "name": {
                           "type": "string",
                           "description": "The source tissue short name."
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "Uniform Resource Identifier for this instance."
                         }
                       }
                     },
@@ -491,6 +555,10 @@
                         "name": {
                           "type": "string",
                           "description": "The subcellular compartment type short name."
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "Uniform Resource Identifier for this instance."
                         }
                       }
                     }
@@ -522,6 +590,10 @@
                             "name": {
                               "type": "string",
                               "description": "The confidence type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A1064&termName=confidence."
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "Uniform Resource Identifier for this instance."
                             }
                           }
                         },
@@ -559,6 +631,10 @@
                             "name": {
                               "type": "string",
                               "description": "The parameter type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0640&termName=parameter%20type."
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "Uniform Resource Identifier for this instance."
                             }
                           }
                         },
@@ -580,6 +656,10 @@
                             "name": {
                               "type": "string",
                               "description": "The parameter unit unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0647&termName=parameter%20unit."
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "Uniform Resource Identifier for this instance."
                             }
                           }
                         }
@@ -659,6 +739,10 @@
                                 "name": {
                                   "type": "string",
                                   "description": "The feature detection method unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0003&termName=feature%20detection%20method."
+                                },
+                                "uri": {
+                                  "type": "string",
+                                  "description": "Uniform Resource Identifier for this instance."
                                 }
                               }
                             }
@@ -690,6 +774,10 @@
                                     "name": {
                                       "type": "string",
                                       "description": "The parameter type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0640&termName=parameter%20type."
+                                    },
+                                    "uri": {
+                                      "type": "string",
+                                      "description": "Uniform Resource Identifier for this instance."
                                     }
                                   }
                                 },
@@ -711,6 +799,10 @@
                                     "name": {
                                       "type": "string",
                                       "description": "The parameter unit unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0647&termName=parameter%20unit."
+                                    },
+                                    "uri": {
+                                      "type": "string",
+                                      "description": "Uniform Resource Identifier for this instance."
                                     }
                                   }
                                 }
@@ -742,6 +834,10 @@
                             "name": {
                               "type": "string",
                               "description": "The feature type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0505&termName=experimental%20feature."
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "Uniform Resource Identifier for this instance."
                             }
                           }
                         },
@@ -759,6 +855,10 @@
                             "name": {
                               "type": "string",
                               "description": "The feature role unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0925&termName=observed%20ptm."
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "Uniform Resource Identifier for this instance."
                             }
                           }
                         },
@@ -784,6 +884,10 @@
                     "name": {
                       "type": "string",
                       "description": "GO term short name associated with the molecular function of interactor that is responsible for its regulatory activity."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 }
@@ -817,6 +921,10 @@
                     "name": {
                       "type": "string",
                       "description": "The confidence type unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A1064&termName=confidence."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 },
@@ -875,6 +983,10 @@
                     "name": {
                       "type": "string",
                       "description": "The parameter unit unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0647&termName=parameter%20unit."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Uniform Resource Identifier for this instance."
                     }
                   }
                 }
@@ -915,6 +1027,10 @@
                 "name": {
                   "type": "string",
                   "description": "The cell type short name."
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             },
@@ -949,6 +1065,10 @@
                 "name": {
                   "type": "string",
                   "description": "The subcellular compartment type short name."
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             }
@@ -968,6 +1088,10 @@
             "name": {
               "type": "string",
               "description": "The evidence type short name from the ECO ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=ECO."
+            },
+            "uri": {
+              "type": "string",
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -1002,6 +1126,10 @@
             "name": {
               "type": "string",
               "description": "The complex expansion method short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A1059&termName=complex%20expansion."
+            },
+            "uri": {
+              "type": "string",
+              "description": "Uniform Resource Identifier for this instance."
             }
           }
         },
@@ -1055,6 +1183,10 @@
                 "name": {
                   "type": "string",
                   "description": "The causality statement unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A2234&termName=causal%20statement."
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             },
@@ -1072,6 +1204,10 @@
                 "name": {
                   "type": "string",
                   "description": "The causal regulatory mechanism unique short name from the PSI-MI ontology: http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A2245&termName=causal%20regulatory%20mechanism."
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for this instance."
                 }
               }
             }
