@@ -1095,6 +1095,33 @@
             }
           }
         },
+        "xrefs": {
+          "type": "array",
+          "description": "A list of cross references for the interaction (e.g. list of pubmed identifiers for modelled interactions like complexes or causality when a experiment does not exist).",
+          "items": [
+            {
+              "type": "object",
+              "required": [
+                "db",
+                "id"
+              ],
+              "properties": {
+                "db": {
+                  "type": "string",
+                  "description": "The database name (usually pubmed, doi or imex). Most of the time, the name will match a term from the PSI-MI ontology http://www.ebi.ac.uk/ontology-lookup/browse.do?ontName=MI&termId=MI%3A0444&termName=database%20citation. It represents the unique PSI shortlabel for this database"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The database identifier/accession. It usually represents the primary accession of this object in a specific database."
+                },
+                "uri": {
+                  "type": "string",
+                  "description": "Uniform Resource Identifier for the publication."
+                }
+              }
+            }
+          ]
+        },
         "complexType": {
           "type": "object",
           "required": [
