@@ -17,15 +17,17 @@ import uk.ac.ebi.kraken.interfaces.uniprot.description.FieldType;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.GeneNameSynonym;
 import uk.ac.ebi.uniprot.dataservice.client.Client;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
-import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
 import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
-import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
 import uk.ac.ebi.uniprot.dataservice.query.Query;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+
+import static uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder.taxonID;
+import static uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder.xref;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,46 +56,39 @@ public class UniprotGeneFetcher implements GeneFetcher {
      */
     public Collection<Gene> fetchByIdentifier(String identifier, int taxID)
             throws BridgeFailedException {
-        Collection<Gene> genes = new ArrayList<Gene>();
+        Collection<Gene> genes = new HashSet<Gene>();
 
         if(identifier == null)
             throw new IllegalArgumentException("Could not perform search on null identifier.");
         try {
             uniProtQueryService.start();
-            Query query = UniProtQueryBuilder.xref(DatabaseType.ENSEMBL, identifier)
-                    .or(UniProtQueryBuilder.xref(DatabaseType.REFSEQ, identifier)
-                            .or(UniProtQueryBuilder.xref(DatabaseType.ENSEMBLBACTERIA, identifier))
-                            .or(UniProtQueryBuilder.xref(DatabaseType.ENSEMBLFUNGI, identifier))
-                            .or(UniProtQueryBuilder.xref(DatabaseType.ENSEMBLMETAZOA, identifier))
-                            .or(UniProtQueryBuilder.xref(DatabaseType.ENSEMBLPROTISTS, identifier))
-                            .or(UniProtQueryBuilder.xref(DatabaseType.ENSEMBLPLANTS, identifier)));
+            Query query = xref(DatabaseType.ENSEMBL, identifier)
+                    .or(xref(DatabaseType.REFSEQ, identifier)
+                            .or(xref(DatabaseType.GENEID, identifier))
+                            .or(xref(DatabaseType.ENSEMBLBACTERIA, identifier))
+                            .or(xref(DatabaseType.ENSEMBLFUNGI, identifier))
+                            .or(xref(DatabaseType.ENSEMBLMETAZOA, identifier))
+                            .or(xref(DatabaseType.ENSEMBLPROTISTS, identifier))
+                            .or(xref(DatabaseType.ENSEMBLPLANTS, identifier)));
             if (taxID != -3) {
-                query.and(UniProtQueryBuilder.taxonID(taxID));
+                query.and(taxonID(taxID));
             }
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
-            int count = 0;
-            while (true) {
-                for (UniProtEntry e : currentPage.getResults()) {
-                    Gene gene = createGenesFromEntry(e, identifier);
-                    genes.add(gene);
-                    count++;
-                }
-                if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    break;
-                }
+
+            // Because we extract only gene information, as soon as we have one result if
+            // enough to retrieve the minimal information needed. This is a temporary solution.
+            // This fetcher should be migrated to ensembl services in the future.
+            if (entries.getNumberOfHits() >= 1) {
+                Gene gene = createGenesFromEntry(entries.getFirstResult(), identifier);
+                genes.add(gene);
             }
-        }catch (ServiceException e){
-            uniProtQueryService.stop();
+        } catch (ServiceException e){
             throw new BridgeFailedException("Problem with Uniprot Service.",e);
         }
-        uniProtQueryService.stop();
+        finally {
+            uniProtQueryService.stop();
+        }
+
         return genes;
     }
 
@@ -148,6 +143,15 @@ public class UniprotGeneFetcher implements GeneFetcher {
                             jamiGene.setRefseq(identifier);
                         else
                             jamiGene.getXrefs().add(XrefUtils.createXref(Xref.REFSEQ, Xref.REFSEQ_MI, crossRef.getPrimaryId().getValue()));
+                    }
+                    break;
+                    //TODO tests this
+                case GENEID:
+                    if(crossRef.getPrimaryId() != null) {
+                        if(crossRef.getPrimaryId().getValue().equals(identifier))
+                            jamiGene.setEntrezGeneId(identifier);
+                        else
+                            jamiGene.getXrefs().add(XrefUtils.createXref(Xref.ENTREZ_GENE, Xref.ENTREZ_GENE_MI, crossRef.getPrimaryId().getValue()));
                     }
                     break;
                 case ENSEMBL:
