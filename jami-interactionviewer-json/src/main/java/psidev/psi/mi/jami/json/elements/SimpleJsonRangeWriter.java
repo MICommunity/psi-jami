@@ -89,11 +89,12 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
             interactor = object.getParticipant().getInteractor();
             participant = object.getParticipant();
         }
+        // This case branch takes into account too the cases that the feature hasn't selected a member of the complex participant. To avoid the viewer to
+        // fail it will point to the whole complex cover the case
         else if (object.getParticipant() == null &&
-                parent != null && parent.getParticipant() != null &&
-                !(parent.getParticipant().getInteractor() instanceof Complex)){
-           interactor = parent.getParticipant().getInteractor();
-           participant = parent.getParticipant();
+                parent != null && parent.getParticipant() != null){
+            interactor = parent.getParticipant().getInteractor();
+            participant = parent.getParticipant();
         }
         if (interactor != null){
             String[] extractedInteractorId =  MIJsonUtils.extractInteractorId(interactor.getPreferredIdentifier(), interactor);
