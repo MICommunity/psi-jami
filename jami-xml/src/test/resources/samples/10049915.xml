@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <entrySet minorVersion="3" version="5" level="2" xsi:schemaLocation="net:sf:psidev:mi https://raw.githubusercontent.com/HUPO-PSI/miXML/master/2.5/src/MIF253.xsd" xmlns="net:sf:psidev:mi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <entry>
         <source releaseDate="2013-09-02+01:00">
