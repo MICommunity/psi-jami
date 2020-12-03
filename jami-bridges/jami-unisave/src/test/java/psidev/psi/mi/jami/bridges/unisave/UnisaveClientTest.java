@@ -216,7 +216,7 @@ public class UnisaveClientTest {
                 "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
                 "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
                 "FT   MOD_RES         96\n" +
-                "FT                   /note=\"Nitrated tyrosine; alternate\"\n" +
+                "FT                   /note=\"3'-nitrotyrosine; alternate\"\n" +
                 "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
                 "FT   MOD_RES         96\n" +
                 "FT                   /note=\"Phosphotyrosine; alternate\"\n" +
