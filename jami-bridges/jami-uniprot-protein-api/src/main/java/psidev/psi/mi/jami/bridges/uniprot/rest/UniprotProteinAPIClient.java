@@ -40,7 +40,7 @@ public class UniprotProteinAPIClient {
      */
     public static final Logger log = Logger.getLogger(UniprotProteinAPIClient.class.getName());
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     public UniprotProteinAPIClient() {
         this.restTemplate = new RestTemplate();
@@ -163,11 +163,21 @@ public class UniprotProteinAPIClient {
 
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
+                log.log(Level.SEVERE, "UniProt Protein API could not found any entry for "+ accession);
+            }
+            else if(e.getStatusCode().equals(HttpStatus.SERVICE_UNAVAILABLE)){
+                log.log(Level.SEVERE, "Couldn't connect to UniProt. Will wait 5 min seconds before retrying.");
+                try {
+                    Thread.sleep(300*1000);
+                    Uniparc response = restTemplate.getForObject(query, Uniparc.class, accession, databaseEnumToString(databases));
+                    entries = response.getEntry();
+                } catch (InterruptedException ie) {
+                    throw new UniprotProteinAPIClientException("Problem while waiting before retrying for "+ accession, ie);
+                }
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
+            log.log(Level.SEVERE, "UniProt Protein API did not work properly", e);
+            throw new UniprotProteinAPIClientException("UniProt Protein API did not work properly.");
         }
 
         return entries;
@@ -268,13 +278,13 @@ public class UniprotProteinAPIClient {
         query = appendTaxonId(taxonId, query);
 
         Entry entry = null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_PLAIN);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
+
+        HttpEntity<String> request = new HttpEntity<>(sequence, headers);
 
         try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.TEXT_PLAIN);
-            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_XML));
-
-            HttpEntity<String> request = new HttpEntity<String>(sequence, headers);
             //Example end-point
             //curl 'https://www.ebi.ac.uk/proteins/api/uniparc/sequence?rfDdtype=UniProtKB%2FSwiss-Prot&rfActive=true'
             // -H 'Content-type:text/plain' -H 'Accept:application/json' -X POST
@@ -284,11 +294,20 @@ public class UniprotProteinAPIClient {
 
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
+                log.log(Level.SEVERE, "UniProt Protein API could not found any entry for sequence:  " + sequence);
+            }
+            else if(e.getStatusCode().equals(HttpStatus.SERVICE_UNAVAILABLE)){
+                log.log(Level.SEVERE, "Couldn't connect to UniProt. Will wait 5 min seconds before retrying.");
+                try {
+                    Thread.sleep(300*1000);
+                    entry = restTemplate.postForObject(query, request, Entry.class, databaseEnumToString(databases));
+                } catch (InterruptedException ie) {
+                    throw new UniprotProteinAPIClientException("Problem while waiting before retrying sequence:"+ sequence, ie);
+                }
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
+            log.log(Level.SEVERE, "UniProt Protein API did not work properly", e);
+            throw new UniprotProteinAPIClientException("UniProt Protein API did not work properly.");
         }
 
         return entry;
@@ -392,55 +411,63 @@ public class UniprotProteinAPIClient {
         }
 
         String[] result = null;
+        Entry entry = null;
 
         try {
-
-            Entry entry = restTemplate.getForObject(query, Entry.class, accession);
-
-            if (entry != null) {
-                List<DbReferenceType> dbReferences = entry.getDbReference();
-
-                switch (dbReferences.size()) {
-                    case 1:
-                        result = new String[2];
-                        result[0] = toEnumString(dbReferences.get(0).getType());
-                        result[1] = dbReferences.get(0).getId();
-                        break;
-                    case 2:
-                        //We need to check if the best guest is returning the isoform and the swiss-prot at the same time.
-                        //In this case there is no error and we need to extract the isoform.
-                        String idOne = dbReferences.get(0).getId();
-                        String idTwo = dbReferences.get(1).getId();
-                        String dbOne = dbReferences.get(0).getType();
-                        String dbTwo = dbReferences.get(1).getType();
-
-                        if (idOne.length() > idTwo.length()) { //idOne could be the isoform
-                            if (idOne.contains(idTwo)) { //If contains idTwo, is the same entry. The result is correct
-                                result = new String[2];
-                                result[0] = toEnumString(dbOne);
-                                result[1] = idOne;
-                                break;
-                            }
-                        } else {
-                            if (idTwo.contains(idOne)) { //If contains idOne, is the same entry. The result is correct
-                                result = new String[2];
-                                result[0] = toEnumString(dbTwo);
-                                result[1] = idTwo;
-                                break;
-                            }
-                        }
-                    default:
-                        throw new UniprotProteinAPIClientException("Found more than one best guess");
-                }
-            }
-
+            entry = restTemplate.getForObject(query, Entry.class, accession);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
-                log.log(Level.SEVERE, "Uniprot Protein API could not found any best guess");
+                log.log(Level.SEVERE, "UniProt Protein API could not found any best guess");
+            } else if (e.getStatusCode().equals(HttpStatus.SERVICE_UNAVAILABLE)) {
+                log.log(Level.SEVERE, "Couldn't connect to UniProt. Will wait 5 min seconds before retrying.");
+                try {
+                    Thread.sleep(300 * 1000);
+                    entry = restTemplate.getForObject(query, Entry.class, accession);
+                } catch (InterruptedException ie) {
+                    throw new UniprotProteinAPIClientException("Problem while waiting before retrying best guess for " + accession, ie);
+                }
             }
         } catch (RestClientException e) {
-            log.log(Level.SEVERE, "Uniprot Protein API could not work properly", e);
-            throw new UniprotProteinAPIClientException("Uniprot Protein API could not work properly.");
+            log.log(Level.SEVERE, "UniProt Protein API did not work properly", e);
+            throw new UniprotProteinAPIClientException("UniProt Protein API did not work properly.");
+        }
+
+        //If everything goes well we process the entry
+        if (entry != null) {
+            List<DbReferenceType> dbReferences = entry.getDbReference();
+
+            switch (dbReferences.size()) {
+                case 1:
+                    result = new String[2];
+                    result[0] = toEnumString(dbReferences.get(0).getType());
+                    result[1] = dbReferences.get(0).getId();
+                    break;
+                case 2:
+                    //We need to check if the best guest is returning the isoform and the swiss-prot at the same time.
+                    //In this case there is no error and we need to extract the isoform.
+                    String idOne = dbReferences.get(0).getId();
+                    String idTwo = dbReferences.get(1).getId();
+                    String dbOne = dbReferences.get(0).getType();
+                    String dbTwo = dbReferences.get(1).getType();
+
+                    if (idOne.length() > idTwo.length()) { //idOne could be the isoform
+                        if (idOne.contains(idTwo)) { //If contains idTwo, is the same entry. The result is correct
+                            result = new String[2];
+                            result[0] = toEnumString(dbOne);
+                            result[1] = idOne;
+                            break;
+                        }
+                    } else {
+                        if (idTwo.contains(idOne)) { //If contains idOne, is the same entry. The result is correct
+                            result = new String[2];
+                            result[0] = toEnumString(dbTwo);
+                            result[1] = idTwo;
+                            break;
+                        }
+                    }
+                default:
+                    throw new UniprotProteinAPIClientException("Found more than one best guess");
+            }
         }
 
         return result;
