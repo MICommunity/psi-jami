@@ -91,6 +91,8 @@ public class MIJsonBinaryEvidenceWriter extends AbstractMIJsonBinaryWriter<Binar
     protected void initialiseInteractionWriter() {
         super.setInteractionWriter(new SimpleJsonBinaryInteractionEvidenceWriter(getWriter(), getProcessedFeatures(),
                 getProcessedInteractors(), getProcessedParticipants(), getIdGenerator()));
+        ((SimpleJsonBinaryInteractionEvidenceWriter)getInteractionWriter()).setFetcher(getFetcher());
+
         if (getExpansionId() != null){
             ((SimpleJsonBinaryInteractionEvidenceWriter)getInteractionWriter()).setExpansionId(getExpansionId());
         }

@@ -352,10 +352,6 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
             writer.write(MitabUtils.XREF_SEPARATOR);
             // write id
             escapeAndWriteString(identifier.getId());
-            // write version
-            if (identifier.getVersion() != null){
-                writer.write(identifier.getVersion());
-            }
         }
     }
 

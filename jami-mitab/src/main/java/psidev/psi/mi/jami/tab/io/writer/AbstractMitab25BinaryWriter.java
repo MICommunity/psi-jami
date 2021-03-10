@@ -172,7 +172,6 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
         else if (writeHeader){
             try {
                 writeHeader();
-                writer.write(MitabUtils.LINE_BREAK);
             } catch (IOException e) {
                 throw new MIIOException("Impossible to write the MITAB header.", e);
             }
