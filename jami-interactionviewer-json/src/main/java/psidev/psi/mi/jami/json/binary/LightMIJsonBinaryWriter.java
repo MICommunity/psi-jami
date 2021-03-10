@@ -93,6 +93,8 @@ public class LightMIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryIn
     protected void initialiseInteractionWriter() {
         super.setInteractionWriter(new SimpleJsonBinaryInteractionWriter<BinaryInteraction>(getWriter(), getProcessedFeatures(),
                 getProcessedInteractors(), getProcessedParticipants(), getIdGenerator()));
+        ((SimpleJsonBinaryInteractionWriter<BinaryInteraction>)getInteractionWriter()).setFetcher(getFetcher());
+
         if (getExpansionId() != null){
             ((SimpleJsonBinaryInteractionWriter)getInteractionWriter()).setExpansionId(getExpansionId());
         }

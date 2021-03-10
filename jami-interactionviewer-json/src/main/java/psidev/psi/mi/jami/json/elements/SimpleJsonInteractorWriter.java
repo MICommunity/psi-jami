@@ -135,7 +135,7 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
 
             // write label
             MIJsonUtils.writeSeparator(writer);
-            MIJsonUtils.writeProperty("label", JSONValue.escape(object.getShortName()), writer);
+            MIJsonUtils.writeProperty("label", JSONValue.escape(object.getPreferredName()), writer);
             MIJsonUtils.writeEndObject(writer);
         }
     }

@@ -132,8 +132,9 @@ public class MIJsonBinaryWriter extends AbstractMIJsonBinaryWriter<BinaryInterac
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractionWriter() {
-        super.setInteractionWriter(new SimpleJsonBinaryInteractionWriter<BinaryInteraction>(getWriter(), getProcessedFeatures(),
+        super.setInteractionWriter(new SimpleJsonBinaryInteractionWriter(getWriter(), getProcessedFeatures(),
                 getProcessedInteractors(), getProcessedParticipants(), getIdGenerator()));
+        ((SimpleJsonBinaryInteractionWriter)getInteractionWriter()).setFetcher(getFetcher());
         if (getExpansionId() != null){
             ((SimpleJsonBinaryInteractionWriter)getInteractionWriter()).setExpansionId(getExpansionId());
         }

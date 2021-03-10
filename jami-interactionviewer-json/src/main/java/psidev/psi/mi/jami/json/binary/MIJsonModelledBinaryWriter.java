@@ -97,6 +97,7 @@ public class MIJsonModelledBinaryWriter extends AbstractMIJsonBinaryWriter<Model
     protected void initialiseInteractionWriter() {
         super.setInteractionWriter(new SimpleJsonModelledBinaryInteractionWriter(getWriter(), getProcessedFeatures(), getProcessedInteractors(),
                 getProcessedParticipants(), getIdGenerator()));
+        ((SimpleJsonModelledBinaryInteractionWriter)getInteractionWriter()).setFetcher(getFetcher());
         if (getExpansionId() != null){
             ((SimpleJsonModelledBinaryInteractionWriter)getInteractionWriter()).setExpansionId(getExpansionId());
         }
