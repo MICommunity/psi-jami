@@ -232,7 +232,7 @@ public class DefaultProtein extends DefaultPolymer implements Protein {
     /** {@inheritDoc} */
     @Override
     public String getPreferredName(){
-        return this.getGeneName();
+        return this.getGeneName() != null ? this.getGeneName() : super.getPreferredName();
     }
 
     /**
