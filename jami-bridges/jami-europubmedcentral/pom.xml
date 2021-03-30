@@ -4,7 +4,7 @@
     <parent>
         <artifactId>jami-bridges</artifactId>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
-        <version>3.2.12-SNAPSHOT</version>
+        <version>3.2.11</version>
     </parent>
 
     <artifactId>jami-europubmedcentral</artifactId>
