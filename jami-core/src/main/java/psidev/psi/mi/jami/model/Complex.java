@@ -1,5 +1,12 @@
 package psidev.psi.mi.jami.model;
 
+import org.apache.commons.lang3.SerializationUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * An interactor composed of interacting molecules that can be copurified.
  *
@@ -106,4 +113,56 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * @param name  : the systematic name
      */
     public void setSystematicName(String name);
+
+    default Collection<ModelledParticipant> getComparableParticipants() {
+        Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
+        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
+            if (modelledParticipant instanceof Complex) {
+                allParticipantsCollection.addAll(expandComplexIntoParticipants(modelledParticipant));
+            } else {
+                allParticipantsCollection.add(modelledParticipant);
+            }
+        }
+
+        List<ModelledParticipant> comparableParticipants = allParticipantsCollection.stream().filter(
+                participant -> participant instanceof Protein || //protein
+                        participant instanceof InteractorPool) //sets
+                .collect(Collectors.toList());
+        return comparableParticipants;
+    }
+
+    default Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
+        if (parentParticipant.getInteractor().getInteractorType() instanceof Complex) {
+            Complex complex = (Complex) parentParticipant.getInteractor();
+            Collection<ModelledParticipant> memberModelledParticipants = new ArrayList<>();
+
+            for (ModelledParticipant modelledParticipant : complex.getParticipants()) {
+                ModelledParticipant memberModelledParticipant = null;
+                memberModelledParticipant = SerializationUtils.clone(modelledParticipant);
+
+                // expand stoichiometry
+                int minStoichiometry = 0;
+                int maxStoichiometry = 0;
+                Stoichiometry expandedStoichiometry = null;
+                minStoichiometry = (modelledParticipant.getStoichiometry() != null ? modelledParticipant.getStoichiometry().getMinValue() : 0)
+                        *
+                        (parentParticipant.getStoichiometry() != null ? parentParticipant.getStoichiometry().getMinValue() : 0);
+                maxStoichiometry = (modelledParticipant.getStoichiometry() != null ? modelledParticipant.getStoichiometry().getMaxValue() : 0)
+                        *
+                        (parentParticipant.getStoichiometry() != null ? parentParticipant.getStoichiometry().getMaxValue() : 0);
+                Class stoichiometryClazz = memberModelledParticipant.getStoichiometry().getClass();
+                try {
+                    expandedStoichiometry = (Stoichiometry) stoichiometryClazz.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                memberModelledParticipant.setStoichiometry(expandedStoichiometry);
+                memberModelledParticipants.add(memberModelledParticipant);
+            }
+            return memberModelledParticipants;
+        }
+        return null;
+    }
 }
+
