@@ -247,4 +247,59 @@ public class DefaultComplexTest {
 
         Assert.assertTrue("Expected expanded participants absent", (testedCase5 && testedCase6));
     }
+
+    @Test
+    public void test_get_comparable_participants() {
+        Complex complexAsAnInteractor1 = new DefaultComplex("complex_interactor", new DefaultCvTerm("protein complex"));
+        complexAsAnInteractor1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        Stoichiometry stc = new DefaultStoichiometry(1, 3);
+        complexAsAnInteractor1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test1 protein",
+                XrefUtils.createUniprotIdentity("P12345")), stc));
+        complexAsAnInteractor1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12347"))));
+
+        Complex complex1 = new DefaultComplex("test", new DefaultCvTerm("protein complex"));
+        complex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        complex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P12346"))));
+        complex1.addParticipant(new DefaultModelledParticipant(new DefaultNucleicAcid("test")));
+        Stoichiometry stc1 = new DefaultStoichiometry(2, 2);
+        complex1.addParticipant(new DefaultModelledParticipant(complexAsAnInteractor1, stc1));
+        complex1.addParticipant(new DefaultModelledParticipant(new DefaultInteractorPool("pool_or_set")));
+
+        Collection<ModelledParticipant> comparableParticipants = complex1.getComparableParticipants();
+        Assert.assertEquals(4, comparableParticipants.size());
+
+        boolean testedCase1 = false;
+        boolean testedCase2 = false;
+        boolean testedCase3 = false;
+        boolean testedCase4 = false;
+
+        try {
+            for (ModelledParticipant comparableParticipant : comparableParticipants) {
+                if (comparableParticipant.getInteractor().getShortName().equals("pool_or_set")) {
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    testedCase4 = true;
+                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
+                    Assert.assertEquals(2, comparableParticipant.getStoichiometry().getMinValue());
+                    Assert.assertEquals(6, comparableParticipant.getStoichiometry().getMaxValue());
+                    testedCase1 = true;
+                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    testedCase2 = true;
+                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12346")) {
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                    testedCase3 = true;
+                }
+            }
+        } catch (Exception e) {
+            Assert.assertFalse("Expected comparable participants absent", true);
+        }
+
+        Assert.assertTrue("Expected comparable participants absent", (testedCase1 && testedCase2 && testedCase3 && testedCase4));
+
+    }
 }

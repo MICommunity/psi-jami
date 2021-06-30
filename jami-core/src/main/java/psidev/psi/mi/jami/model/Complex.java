@@ -129,15 +129,15 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
         Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
             if (modelledParticipant.getInteractor() instanceof Complex) {
-                allParticipantsCollection.addAll(expandComplexIntoParticipants(modelledParticipant));
+                allParticipantsCollection.addAll(Complex.expandComplexIntoParticipants(modelledParticipant));
             } else {
                 allParticipantsCollection.add(modelledParticipant);
             }
         }
 
         List<ModelledParticipant> comparableParticipants = allParticipantsCollection.stream().filter(
-                participant -> participant instanceof Protein || //protein
-                        participant instanceof InteractorPool) //sets
+                participant -> participant.getInteractor() instanceof Protein || //protein
+                        participant.getInteractor() instanceof InteractorPool) //sets
                 .collect(Collectors.toList());
         return comparableParticipants;
     }
