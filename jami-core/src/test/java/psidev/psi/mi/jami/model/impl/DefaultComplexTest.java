@@ -1,12 +1,11 @@
 package psidev.psi.mi.jami.model.impl;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
-import psidev.psi.mi.jami.model.Annotation;
-import psidev.psi.mi.jami.model.Complex;
-import psidev.psi.mi.jami.model.ModelledParticipant;
-import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.*;
+
+import java.util.Collection;
 
 /**
  * Unit tester for DefaultComplex
@@ -19,7 +18,7 @@ import psidev.psi.mi.jami.utils.*;
 public class DefaultComplexTest {
 
     @Test
-    public void create_empty_complex(){
+    public void create_empty_complex() {
 
         Complex interaction = new DefaultComplex("test complex");
 
@@ -37,7 +36,7 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void create_complex_interactor_type_null(){
+    public void create_complex_interactor_type_null() {
 
         Complex interactor = new DefaultComplex("test", CvTermUtils.createUnknownInteractorType());
         Assert.assertEquals(CvTermUtils.createUnknownInteractorType(), interactor.getInteractorType());
@@ -50,7 +49,7 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void test_add_remove_modelledParticipants(){
+    public void test_add_remove_modelledParticipants() {
         Complex interaction = new DefaultComplex("test interaction");
         ModelledParticipant participant = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
 
@@ -78,7 +77,7 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void test_add_remove_rigid(){
+    public void test_add_remove_rigid() {
         Complex interaction = new DefaultComplex("test interaction");
         Assert.assertNull(interaction.getRigid());
 
@@ -106,7 +105,7 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void test_add_remove_physical_properties(){
+    public void test_add_remove_physical_properties() {
         Complex interaction = new DefaultComplex("test interaction");
         Assert.assertNull(interaction.getPhysicalProperties());
 
@@ -134,14 +133,14 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void test_add_remove_complex_ac(){
+    public void test_add_remove_complex_ac() {
         Complex interaction = new DefaultComplex("test interaction");
         Assert.assertNull(interaction.getComplexAc());
 
-        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI, "CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
         Assert.assertEquals("CPX-1", interaction.getComplexAc());
 
-        interaction.getXrefs().remove(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        interaction.getXrefs().remove(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI, "CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
         Assert.assertNull(interaction.getComplexAc());
 
         interaction.getXrefs().clear();
@@ -150,14 +149,102 @@ public class DefaultComplexTest {
         interaction.assignComplexAc("CPX-1");
         Assert.assertEquals("CPX-1", interaction.getComplexAc());
         Assert.assertEquals(1, interaction.getXrefs().size());
-        Assert.assertEquals(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI), interaction.getXrefs().iterator().next());
+        Assert.assertEquals(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI, "CPX-1", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI), interaction.getXrefs().iterator().next());
 
-        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL,Xref.COMPLEX_PORTAL_MI,"CPX-2", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
+        interaction.getXrefs().add(XrefUtils.createXrefWithQualifier(Xref.COMPLEX_PORTAL, Xref.COMPLEX_PORTAL_MI, "CPX-2", Xref.COMPLEX_PRIMARY, Xref.COMPLEX_PRIMARY_MI));
         Assert.assertEquals("CPX-1", interaction.getComplexAc());
         Assert.assertEquals(2, interaction.getXrefs().size());
 
         interaction.getXrefs().clear();
         Assert.assertNull(interaction.getComplexAc());
         Assert.assertEquals(0, interaction.getXrefs().size());
+    }
+
+    @Test
+    public void test_expand_complex_participants() {
+        Complex complexAsAnInteractor1 = new DefaultComplex("complex_interactor", new DefaultCvTerm("protein complex"));
+        complexAsAnInteractor1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        Stoichiometry stc = new DefaultStoichiometry(1, 3);
+        complexAsAnInteractor1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test1 protein",
+                XrefUtils.createUniprotIdentity("P12345")), stc));
+        complexAsAnInteractor1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12347"))));
+
+
+        Stoichiometry stc1 = new DefaultStoichiometry(2, 2);
+        //with stoichiometry
+        ModelledParticipant complexParticipantToExpand1 = new DefaultModelledParticipant(complexAsAnInteractor1, stc1);
+        //without stoichiometry
+        ModelledParticipant complexParticipantToExpand2 = new DefaultModelledParticipant(complexAsAnInteractor1);
+
+        //complexParticipantToExpand1 testing
+        Collection<ModelledParticipant> expandedParticipants1 = Complex.expandComplexIntoParticipants(complexParticipantToExpand1);
+        Assert.assertEquals(2, expandedParticipants1.size());
+        boolean testedCase1 = false;
+        boolean testedCase2 = false;
+
+        try {
+            for (ModelledParticipant expandedParticipant : expandedParticipants1) {
+                if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
+                    Assert.assertEquals(2, expandedParticipant.getStoichiometry().getMinValue());
+                    Assert.assertEquals(6, expandedParticipant.getStoichiometry().getMaxValue());
+                    testedCase1 = true;
+                } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    testedCase2 = true;
+                }
+            }
+        } catch (Exception e) {
+            Assert.assertFalse("Expected expanded participants absent", true);
+        }
+
+
+        Assert.assertTrue("Expected expanded participants absent", (testedCase1 && testedCase2));
+
+        //original interactor complex stoichiometry should be same as before
+        boolean testedCase3 = false;
+        boolean testedCase4 = false;
+        try {
+            for (ModelledParticipant expandedParticipant : complexAsAnInteractor1.getParticipants()) {
+                if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
+                    Assert.assertEquals(1, expandedParticipant.getStoichiometry().getMinValue());
+                    Assert.assertEquals(3, expandedParticipant.getStoichiometry().getMaxValue());
+                    testedCase3 = true;
+                } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    testedCase4 = true;
+                }
+            }
+        } catch (Exception e) {
+            Assert.assertFalse("Expected original complex participants absent", true);
+        }
+
+        Assert.assertTrue("Expected original complex participants absent", (testedCase3 && testedCase4));
+
+
+        //complexParticipantToExpand2 testing
+        Collection<ModelledParticipant> expandedParticipants2 = Complex.expandComplexIntoParticipants(complexParticipantToExpand2);
+        Assert.assertEquals(2, expandedParticipants2.size());
+        boolean testedCase5 = false;
+        boolean testedCase6 = false;
+        try {
+            for (ModelledParticipant expandedParticipant : expandedParticipants2) {
+                if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    testedCase5 = true;
+                } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    Assert.assertNull(expandedParticipant.getStoichiometry());
+                    testedCase6 = true;
+                }
+            }
+        } catch (Exception e) {
+            Assert.assertFalse("Expected expanded participants absent", true);
+        }
+
+        Assert.assertTrue("Expected expanded participants absent", (testedCase5 && testedCase6));
     }
 }

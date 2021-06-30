@@ -1,6 +1,6 @@
 package psidev.psi.mi.jami.model;
 
-import org.apache.commons.lang3.SerializationUtils;
+import com.thoughtworks.xstream.XStream;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,16 +16,21 @@ import java.util.stream.Collectors;
  */
 public interface Complex extends Interactor, ModelledInteraction, NamedInteraction<ModelledParticipant> {
 
-    /** Constant <code>COMPLEX="complex"</code> */
-    public static final String COMPLEX="complex";
-    /** Constant <code>COMPLEX_MI="MI:0314"</code> */
-    public static final String COMPLEX_MI="MI:0314";
+    /**
+     * Constant <code>COMPLEX="complex"</code>
+     */
+    public static final String COMPLEX = "complex";
+    /**
+     * Constant <code>COMPLEX_MI="MI:0314"</code>
+     */
+    public static final String COMPLEX_MI = "MI:0314";
 
     /**
      * Complex accession if the complex has been curated under the Complex Portal curation rules.
      * It can be null if the complex is not registered in the Complex Portal.
      * This complex accession should be a shortcut to the complex-primary Xref in the collection of xrefs.
      * Ex: CPX-123
+     *
      * @return the complex accession
      */
     public String getComplexAc();
@@ -35,6 +40,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * It can be null if the complex is not registered in the Complex Portal.
      * This complex version should be a shortcut to the complex-primary Xref version in the collection of xrefs.
      * Ex: 1
+     *
      * @return the complex version
      */
     public String getComplexVersion();
@@ -42,9 +48,10 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     /**
      * Assign a complex accession to a complex.
      * It will add the new complex-primary ref to the collection of xrefs
+     *
      * @param accession : the complex accession. If the version is added to the accession e.g. CPX-1234.2 the complex will be updated with the corresponding version, if not it is assumed version 1
      * @throws IllegalArgumentException if
-     * - the accession is null or empty
+     *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession);
 
@@ -52,10 +59,11 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     /**
      * Assign a complex accession to a complex.
      * It will add the new complex-primary ref to the collection of xrefs
+     *
      * @param accession : the complex accession
-     * @param version : the version of the complex if it is provided. If version is null it will create the complex with version 1
+     * @param version   : the version of the complex if it is provided. If version is null it will create the complex with version 1
      * @throws IllegalArgumentException if
-     * - the accession is null or empty
+     *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession, String version);
 
@@ -110,14 +118,17 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * with the new systematic name. If the new systematic name is null, all the existing systematic names will be removed from the
      * collection of aliases
      *
-     * @param name  : the systematic name
+     * @param name : the systematic name
      */
     public void setSystematicName(String name);
 
+    /**
+     *
+     */
     default Collection<ModelledParticipant> getComparableParticipants() {
         Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
-            if (modelledParticipant instanceof Complex) {
+            if (modelledParticipant.getInteractor() instanceof Complex) {
                 allParticipantsCollection.addAll(expandComplexIntoParticipants(modelledParticipant));
             } else {
                 allParticipantsCollection.add(modelledParticipant);
@@ -131,38 +142,46 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
         return comparableParticipants;
     }
 
-    default Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
-        if (parentParticipant.getInteractor().getInteractorType() instanceof Complex) {
-            Complex complex = (Complex) parentParticipant.getInteractor();
-            Collection<ModelledParticipant> memberModelledParticipants = new ArrayList<>();
+    /**
+     *
+     */
+    static Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
 
-            for (ModelledParticipant modelledParticipant : complex.getParticipants()) {
-                ModelledParticipant memberModelledParticipant = null;
-                memberModelledParticipant = SerializationUtils.clone(modelledParticipant);
+        Collection<ModelledParticipant> expandedModelledParticipants = new ArrayList<>();
+        if (parentParticipant.getInteractor() instanceof Complex) {
+            Complex complex = (Complex) parentParticipant.getInteractor();
+            for (ModelledParticipant complexParticipant : complex.getParticipants()) {
+
+                // clone as we do not want to change the stoichiometry of interactor complex participants
+                ModelledParticipant expandedModelledParticipant = (ModelledParticipant) new XStream().fromXML(new XStream().toXML(complexParticipant));
 
                 // expand stoichiometry
                 int minStoichiometry = 0;
                 int maxStoichiometry = 0;
                 Stoichiometry expandedStoichiometry = null;
-                minStoichiometry = (modelledParticipant.getStoichiometry() != null ? modelledParticipant.getStoichiometry().getMinValue() : 0)
-                        *
-                        (parentParticipant.getStoichiometry() != null ? parentParticipant.getStoichiometry().getMinValue() : 0);
-                maxStoichiometry = (modelledParticipant.getStoichiometry() != null ? modelledParticipant.getStoichiometry().getMaxValue() : 0)
-                        *
-                        (parentParticipant.getStoichiometry() != null ? parentParticipant.getStoichiometry().getMaxValue() : 0);
-                Class stoichiometryClazz = memberModelledParticipant.getStoichiometry().getClass();
-                try {
-                    expandedStoichiometry = (Stoichiometry) stoichiometryClazz.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (complexParticipant.getStoichiometry() != null && parentParticipant.getStoichiometry() != null) {
+                    minStoichiometry = (complexParticipant.getStoichiometry().getMinValue())
+                            *
+                            (parentParticipant.getStoichiometry().getMinValue());
+                    maxStoichiometry = (complexParticipant.getStoichiometry().getMaxValue())
+                            *
+                            (parentParticipant.getStoichiometry().getMaxValue());
+                    Class stoichiometryClass = expandedModelledParticipant.getStoichiometry().getClass();
+                    try {
+                        expandedStoichiometry = (Stoichiometry) stoichiometryClass.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                memberModelledParticipant.setStoichiometry(expandedStoichiometry);
-                memberModelledParticipants.add(memberModelledParticipant);
+                expandedModelledParticipant.setStoichiometry(expandedStoichiometry);
+                expandedModelledParticipants.add(expandedModelledParticipant);
             }
-            return memberModelledParticipants;
+            return expandedModelledParticipants;
         }
-        return null;
+
+        // return back the participant if not complex
+        expandedModelledParticipants.add(parentParticipant);
+        return expandedModelledParticipants;
     }
 }
 
