@@ -123,7 +123,10 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     public void setSystematicName(String name);
 
     /**
-     *
+     * Gets comparable participants for a complex.
+     * It will remove the features, expand complex participant.
+     * It will filter by proteins and sets
+     * Comparable participants created are new instances.
      */
     default Collection<ModelledParticipant> getComparableParticipants() {
         Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
@@ -147,7 +150,10 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     }
 
     /**
-     *
+     * Expands the given complex participant.
+     * Changes/expands the stoichiometry in expanded participants.
+     * Inherit the features in expanded participants.
+     * Expanded participants created are new instances.
      */
     static Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
 
