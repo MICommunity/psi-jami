@@ -1,6 +1,6 @@
 package psidev.psi.mi.jami.model;
 
-import com.thoughtworks.xstream.XStream;
+import psidev.psi.mi.jami.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -131,7 +131,9 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
             if (modelledParticipant.getInteractor() instanceof Complex) {
                 allParticipantsCollection.addAll(Complex.expandComplexIntoParticipants(modelledParticipant));
             } else {
-                allParticipantsCollection.add(modelledParticipant);
+                // clone as we do not want to change/clear the original complex participants features
+                ModelledParticipant clonedModelledParticipant = (ModelledParticipant) CommonUtils.cloneAnObject(modelledParticipant);
+                allParticipantsCollection.add(clonedModelledParticipant);
             }
         }
 
@@ -155,7 +157,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
             for (ModelledParticipant complexParticipant : complex.getParticipants()) {
 
                 // clone as we do not want to change the stoichiometry of interactor complex participants
-                ModelledParticipant expandedModelledParticipant = (ModelledParticipant) new XStream().fromXML(new XStream().toXML(complexParticipant));
+                ModelledParticipant expandedModelledParticipant = (ModelledParticipant) CommonUtils.cloneAnObject(complexParticipant);
 
                 // expand stoichiometry
                 int minStoichiometry = 0;
@@ -176,6 +178,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
                     }
                 }
                 expandedModelledParticipant.setStoichiometry(expandedStoichiometry);
+                expandedModelledParticipant.getFeatures().addAll(parentParticipant.getFeatures());
                 expandedModelledParticipants.add(expandedModelledParticipant);
             }
             return expandedModelledParticipants;
