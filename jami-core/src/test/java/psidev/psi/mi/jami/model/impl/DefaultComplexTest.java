@@ -260,8 +260,12 @@ public class DefaultComplexTest {
 
         Complex complex1 = new DefaultComplex("test", new DefaultCvTerm("protein complex"));
         complex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
-        complex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
-                XrefUtils.createUniprotIdentity("P12346"))));
+
+        ModelledParticipant modelledParticipant1=new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P12346")));
+        modelledParticipant1.addFeature(new DefaultModelledFeature());
+        modelledParticipant1.addFeature(new DefaultModelledFeature());
+        complex1.addParticipant(modelledParticipant1);
         complex1.addParticipant(new DefaultModelledParticipant(new DefaultNucleicAcid("test")));
         Stoichiometry stc1 = new DefaultStoichiometry(2, 2);
         complex1.addParticipant(new DefaultModelledParticipant(complexAsAnInteractor1, stc1));
@@ -292,6 +296,7 @@ public class DefaultComplexTest {
                 } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12346")) {
                     Assert.assertNull(comparableParticipant.getStoichiometry());
                     Assert.assertNull(comparableParticipant.getStoichiometry());
+                    Assert.assertEquals(0,comparableParticipant.getFeatures().size());
                     testedCase3 = true;
                 }
             }

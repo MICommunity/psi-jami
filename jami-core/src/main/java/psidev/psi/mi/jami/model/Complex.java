@@ -139,6 +139,8 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
                 participant -> participant.getInteractor() instanceof Protein || //protein
                         participant.getInteractor() instanceof InteractorPool) //sets
                 .collect(Collectors.toList());
+        // we do not want to compare features when comparing complexes
+        comparableParticipants.forEach(comparableParticipant -> comparableParticipant.getFeatures().clear());
         return comparableParticipants;
     }
 
