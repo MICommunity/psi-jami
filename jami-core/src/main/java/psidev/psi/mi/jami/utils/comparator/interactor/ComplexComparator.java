@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 /**
  * Basic ComplexComparator.
- *
+ * <p>
  * It will first look at the default properties of an interactor using AbstractInteractorBaseComparator.
  * It will then compare the interaction types using AbstractCvtermComparator
  * If the basic interactor properties are the same, It will first compare the collection of components using ModelledParticipantComparator.
@@ -31,22 +31,22 @@ public class ComplexComparator implements Comparator<Complex> {
      * Creates a bew ComplexComparator. It needs a AbstractInteractorBaseComparator to compares interactor properties
      *
      * @param interactorBaseComparator a {@link java.util.Comparator} object.
-     * @param componentComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.CustomizableModelledParticipantComparator} object.
-     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param componentComparator      a {@link psidev.psi.mi.jami.utils.comparator.participant.CustomizableModelledParticipantComparator} object.
+     * @param cvTermComparator         a {@link java.util.Comparator} object.
      */
-    public ComplexComparator(Comparator<Interactor> interactorBaseComparator, CustomizableModelledParticipantComparator componentComparator, Comparator<CvTerm> cvTermComparator){
+    public ComplexComparator(Comparator<Interactor> interactorBaseComparator, CustomizableModelledParticipantComparator componentComparator, Comparator<CvTerm> cvTermComparator) {
 
-        if (componentComparator == null){
+        if (componentComparator == null) {
             throw new IllegalArgumentException("The ModelledParticipant comparator is required to compare participants composing the complexes. It cannot be null");
         }
         this.componentCollectionComparator = new ModelledParticipantCollectionComparator(componentComparator);
 
-        if (interactorBaseComparator == null){
+        if (interactorBaseComparator == null) {
             throw new IllegalArgumentException("The comparator<Interactor> is required to compare participants composing the complexes. It cannot be null");
         }
         this.interactorBaseComparator = interactorBaseComparator;
 
-        if (cvTermComparator == null){
+        if (cvTermComparator == null) {
             throw new IllegalArgumentException("The CvTermComparator comparator is required to compare the interaction type of a complex. It cannot be null");
         }
         this.cvTermComparator = cvTermComparator;
@@ -56,23 +56,23 @@ public class ComplexComparator implements Comparator<Complex> {
      * Creates a bew ComplexComparator. It needs a AbstractInteractorBaseComparator to compares interactor properties
      *
      * @param interactorBaseComparator a {@link java.util.Comparator} object.
-     * @param componentComparator a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantCollectionComparator} object.
-     * @param cvTermComparator a {@link java.util.Comparator} object.
+     * @param componentComparator      a {@link psidev.psi.mi.jami.utils.comparator.participant.ModelledParticipantCollectionComparator} object.
+     * @param cvTermComparator         a {@link java.util.Comparator} object.
      */
     public ComplexComparator(Comparator<Interactor> interactorBaseComparator, ModelledParticipantCollectionComparator componentComparator,
-                             Comparator<CvTerm> cvTermComparator){
+                             Comparator<CvTerm> cvTermComparator) {
 
-        if (componentComparator == null){
+        if (componentComparator == null) {
             throw new IllegalArgumentException("The ModelledParticipant comparator is required to compare participants composing the complexes. It cannot be null");
         }
         this.componentCollectionComparator = componentComparator;
 
-        if (interactorBaseComparator == null){
+        if (interactorBaseComparator == null) {
             throw new IllegalArgumentException("The comparator<Interactor> is required to compare participants composing the complexes. It cannot be null");
         }
         this.interactorBaseComparator = interactorBaseComparator;
 
-        if (cvTermComparator == null){
+        if (cvTermComparator == null) {
             throw new IllegalArgumentException("The CvTermComparator comparator is required to compare the interaction type of a complex. It cannot be null");
         }
         this.cvTermComparator = cvTermComparator;
@@ -92,22 +92,19 @@ public class ComplexComparator implements Comparator<Complex> {
         int BEFORE = -1;
         int AFTER = 1;
 
-        if (complex1 == complex2){
+        if (complex1 == complex2) {
             return 0;
-        }
-        else if (complex1 == null){
+        } else if (complex1 == null) {
             return AFTER;
-        }
-        else if (complex2 == null){
+        } else if (complex2 == null) {
             return BEFORE;
-        }
-        else {
+        } else {
 
             this.componentCollectionComparator.getObjectComparator().setCheckComplexesAsInteractors(false);
 
             // compares the basic interactor properties first
             int comp = interactorBaseComparator.compare(complex1, complex2);
-            if (comp != 0){
+            if (comp != 0) {
                 return comp;
             }
 
@@ -116,13 +113,13 @@ public class ComplexComparator implements Comparator<Complex> {
             CvTerm type2 = complex2.getInteractionType();
 
             comp = cvTermComparator.compare(type1, type2);
-            if (comp != 0){
+            if (comp != 0) {
                 return comp;
             }
 
             // then compares collection of components
-            Collection<ModelledParticipant> components1 = complex1.getParticipants();
-            Collection<ModelledParticipant> components2 = complex2.getParticipants();
+            Collection<ModelledParticipant> components1 = complex1.getComparableParticipants();
+            Collection<ModelledParticipant> components2 = complex2.getComparableParticipants();
 
             return componentCollectionComparator.compare(components1, components2);
         }
