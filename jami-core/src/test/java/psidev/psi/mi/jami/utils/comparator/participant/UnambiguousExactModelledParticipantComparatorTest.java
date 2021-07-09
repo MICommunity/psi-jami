@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.ModelledParticipant;
 import psidev.psi.mi.jami.model.impl.DefaultModelledFeature;
 import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
 import psidev.psi.mi.jami.model.impl.DefaultProtein;
+import psidev.psi.mi.jami.model.impl.DefaultStoichiometry;
 import psidev.psi.mi.jami.utils.InteractorUtils;
 
 /**
@@ -21,7 +22,7 @@ public class UnambiguousExactModelledParticipantComparatorTest {
     private UnambiguousExactModelledParticipantComparator comparator = new UnambiguousExactModelledParticipantComparator();
 
     @Test
-    public void test_modelled_participant_null_after(){
+    public void test_modelled_participant_null_after() {
         ModelledParticipant participant1 = null;
         ModelledParticipant participant2 = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
 
@@ -32,7 +33,7 @@ public class UnambiguousExactModelledParticipantComparatorTest {
     }
 
     @Test
-    public void test_different_interactors(){
+    public void test_different_interactors() {
         ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
         ModelledParticipant participant2 = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
 
@@ -43,7 +44,7 @@ public class UnambiguousExactModelledParticipantComparatorTest {
     }
 
     @Test
-    public void test_same_interactors(){
+    public void test_same_interactors() {
         ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
         ModelledParticipant participant2 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
 
@@ -54,7 +55,7 @@ public class UnambiguousExactModelledParticipantComparatorTest {
     }
 
     @Test
-    public void test_same_interactors_different_features(){
+    public void test_same_interactors_different_features() {
         ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultModelledFeature("test1", "test feature 1"));
         ModelledParticipant participant2 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
@@ -68,7 +69,7 @@ public class UnambiguousExactModelledParticipantComparatorTest {
     }
 
     @Test
-    public void test_same_interactors_same_features_ignore_order(){
+    public void test_same_interactors_same_features_ignore_order() {
         ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultModelledFeature("test2", "test feature 2"));
         participant1.addFeature(new DefaultModelledFeature("test1", "test feature 1"));
@@ -80,5 +81,19 @@ public class UnambiguousExactModelledParticipantComparatorTest {
         Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
 
         Assert.assertTrue(UnambiguousExactModelledParticipantComparator.areEquals(participant1, participant2));
+    }
+
+    @Test
+    public void test_same_interactors_different_ignored_stoichiometry() {
+        ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 2));
+        ModelledParticipant participant2 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 3));
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) != 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) != 0);
+
+        comparator.getParticipantPoolComparator().getParticipantBaseComparator().setIgnoreStoichiometry(true);
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) == 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
     }
 }

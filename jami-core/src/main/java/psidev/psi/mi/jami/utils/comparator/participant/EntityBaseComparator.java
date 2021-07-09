@@ -1,6 +1,9 @@
 package psidev.psi.mi.jami.utils.comparator.participant;
 
-import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.Entity;
+import psidev.psi.mi.jami.model.Feature;
+import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.model.Stoichiometry;
 import psidev.psi.mi.jami.utils.comparator.interactor.InteractorComparator;
 
 import java.util.Comparator;
@@ -10,7 +13,7 @@ import java.util.Comparator;
  * It will first compare the interactors using InteractorComparator. If both interactors are the same,
  * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
  * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
- *
+ * <p>
  * This comparator will ignore all the other properties of a participant.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
@@ -21,7 +24,7 @@ public class EntityBaseComparator implements Comparator<Entity> {
 
     private StoichiometryComparator stoichiometryComparator;
     private InteractorComparator interactorComparator;
-
+    private boolean ignoreStoichiometry;
     private boolean ignoreInteractors = false;
 
     /**
@@ -29,9 +32,9 @@ public class EntityBaseComparator implements Comparator<Entity> {
      *
      * @param interactorComparator : interactor comparator required for comparing the molecules
      */
-    public EntityBaseComparator(InteractorComparator interactorComparator){
+    public EntityBaseComparator(InteractorComparator interactorComparator) {
 
-        if (interactorComparator == null){
+        if (interactorComparator == null) {
             throw new IllegalArgumentException("The Interactor comparator is required to compare interactors. It cannot be null");
         }
         this.interactorComparator = interactorComparator;
@@ -58,6 +61,24 @@ public class EntityBaseComparator implements Comparator<Entity> {
     }
 
     /**
+     * <p>isIgnoreStoichiometry</p>
+     *
+     * @return a boolean.
+     */
+    public boolean isIgnoreStoichiometry() {
+        return ignoreStoichiometry;
+    }
+
+    /**
+     * <p>setIgnoreStoichiometry</p>
+     *
+     * @param ignoreStoichiometry a boolean.
+     */
+    public void setIgnoreStoichiometry(boolean ignoreStoichiometry) {
+        this.ignoreStoichiometry = ignoreStoichiometry;
+    }
+
+    /**
      * <p>isIgnoreInteractors</p>
      *
      * @return a boolean.
@@ -79,7 +100,7 @@ public class EntityBaseComparator implements Comparator<Entity> {
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
      * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
-     *
+     * <p>
      * This comparator will ignore all the other properties of a participant.
      *
      * @param participant1 a {@link psidev.psi.mi.jami.model.Entity} object.
@@ -91,33 +112,34 @@ public class EntityBaseComparator implements Comparator<Entity> {
         int BEFORE = -1;
         int AFTER = 1;
 
-        if (participant1 == participant2){
+        if (participant1 == participant2) {
             return EQUAL;
-        }
-        else if (participant1 == null){
+        } else if (participant1 == null) {
             return AFTER;
-        }
-        else if (participant2 == null){
+        } else if (participant2 == null) {
             return BEFORE;
-        }
-        else {
-            int comp;
+        } else {
+            int comp = EQUAL;
             // first compares interactors
-            if (!ignoreInteractors){
+            if (!ignoreInteractors) {
                 Interactor interactor1 = participant1.getInteractor();
                 Interactor interactor2 = participant2.getInteractor();
 
                 comp = interactorComparator.compare(interactor1, interactor2);
-                if (comp != 0){
+                if (comp != 0) {
                     return comp;
                 }
             }
 
             // then compares the stoichiometry
-            Stoichiometry stc1 = participant1.getStoichiometry();
-            Stoichiometry stc2 = participant2.getStoichiometry();
+            if (!ignoreStoichiometry) {
+                Stoichiometry stc1 = participant1.getStoichiometry();
+                Stoichiometry stc2 = participant2.getStoichiometry();
 
-            return stoichiometryComparator.compare(stc1, stc2);
+                return stoichiometryComparator.compare(stc1, stc2);
+            }
+
+            return comp;
         }
     }
 }

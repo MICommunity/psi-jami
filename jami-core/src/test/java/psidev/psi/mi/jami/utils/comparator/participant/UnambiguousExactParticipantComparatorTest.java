@@ -2,10 +2,9 @@ package psidev.psi.mi.jami.utils.comparator.participant;
 
 import org.junit.Assert;
 import org.junit.Test;
+import psidev.psi.mi.jami.model.ModelledParticipant;
 import psidev.psi.mi.jami.model.Participant;
-import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
-import psidev.psi.mi.jami.model.impl.DefaultParticipant;
-import psidev.psi.mi.jami.model.impl.DefaultParticipantEvidence;
+import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.InteractorUtils;
 
 /**
@@ -21,7 +20,7 @@ public class UnambiguousExactParticipantComparatorTest {
     private UnambiguousExactParticipantComparator comparator = new UnambiguousExactParticipantComparator();
 
     @Test
-    public void test_participant_null_after(){
+    public void test_participant_null_after() {
         Participant participant1 = null;
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
 
@@ -32,7 +31,7 @@ public class UnambiguousExactParticipantComparatorTest {
     }
 
     @Test
-    public void test_modelled_participant_first(){
+    public void test_modelled_participant_first() {
         Participant participant1 = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant3 = new DefaultParticipantEvidence(InteractorUtils.createUnknownBasicInteractor());
@@ -47,7 +46,7 @@ public class UnambiguousExactParticipantComparatorTest {
     }
 
     @Test
-    public void test_participant_evidence_second(){
+    public void test_participant_evidence_second() {
         Participant participant1 = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant3 = new DefaultParticipantEvidence(InteractorUtils.createUnknownBasicInteractor());
@@ -62,7 +61,7 @@ public class UnambiguousExactParticipantComparatorTest {
     }
 
     @Test
-    public void test_default_participant_third(){
+    public void test_default_participant_third() {
         Participant participant1 = new DefaultModelledParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant3 = new DefaultParticipantEvidence(InteractorUtils.createUnknownBasicInteractor());
@@ -74,5 +73,19 @@ public class UnambiguousExactParticipantComparatorTest {
         Assert.assertFalse(UnambiguousExactParticipantComparator.areEquals(participant1, participant2));
         Assert.assertTrue(UnambiguousExactParticipantComparator.areEquals(participant2, participant2));
         Assert.assertFalse(UnambiguousExactParticipantComparator.areEquals(participant3, participant2));
+    }
+
+    @Test
+    public void test_same_interactors_different_ignored_stoichiometry() {
+        ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 2));
+        ModelledParticipant participant2 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 3));
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) != 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) != 0);
+
+        comparator.getBiologicalParticipantComparator().getParticipantPoolComparator().getParticipantBaseComparator().setIgnoreStoichiometry(true);
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) == 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
     }
 }

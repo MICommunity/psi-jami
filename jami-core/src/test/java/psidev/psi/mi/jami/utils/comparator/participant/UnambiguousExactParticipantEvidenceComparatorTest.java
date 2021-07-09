@@ -22,7 +22,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     private UnambiguousExactParticipantEvidenceComparator comparator = new UnambiguousExactParticipantEvidenceComparator();
 
     @Test
-    public void test_modelled_participant_null_after(){
+    public void test_modelled_participant_null_after() {
         ParticipantEvidence participant1 = null;
         ParticipantEvidence participant2 = new DefaultParticipantEvidence(InteractorUtils.createUnknownBasicInteractor());
 
@@ -33,7 +33,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_different_interactors(){
+    public void test_different_interactors() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         ParticipantEvidence participant2 = new DefaultParticipantEvidence(InteractorUtils.createUnknownBasicInteractor());
 
@@ -44,7 +44,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_interactors(){
+    public void test_same_interactors() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         ParticipantEvidence participant2 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
 
@@ -55,7 +55,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_interactors_different_features(){
+    public void test_same_interactors_different_features() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         ParticipantEvidence participant2 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
@@ -69,7 +69,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_interactors_same_features_ignore_order(){
+    public void test_same_interactors_same_features_ignore_order() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test2", "test feature 2"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
@@ -84,7 +84,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_interactors_different_experimental_roles(){
+    public void test_same_interactors_different_experimental_roles() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("bait"));
@@ -99,7 +99,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_experimental_roles(){
+    public void test_same_experimental_roles() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -114,7 +114,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_experimental_roles_different_methods(){
+    public void test_same_experimental_roles_different_methods() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -131,7 +131,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_identification_methods(){
+    public void test_same_identification_methods() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -148,7 +148,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_identification_methods_different_preparations(){
+    public void test_same_identification_methods_different_preparations() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -167,7 +167,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_experimental_preparations(){
+    public void test_same_experimental_preparations() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -186,7 +186,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_experimental_preparations_different_organisms(){
+    public void test_same_experimental_preparations_different_organisms() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -208,7 +208,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_expressed_in_organism(){
+    public void test_same_expressed_in_organism() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -230,7 +230,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_organism_different_parameters(){
+    public void test_same_organism_different_parameters() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -255,7 +255,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
     }
 
     @Test
-    public void test_same_parameters(){
+    public void test_same_parameters() {
         ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"));
         participant1.addFeature(new DefaultFeatureEvidence("test1", "test feature 1"));
         participant1.setExperimentalRole(new DefaultCvTerm("prey"));
@@ -276,5 +276,19 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
         Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
 
         Assert.assertTrue(UnambiguousExactParticipantEvidenceComparator.areEquals(participant1, participant2));
+    }
+
+    @Test
+    public void test_same_interactors_different_ignored_stoichiometry() {
+        ParticipantEvidence participant1 = new DefaultParticipantEvidence(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 2));
+        ParticipantEvidence participant2 = new DefaultParticipantEvidence(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 3));
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) != 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) != 0);
+
+        comparator.getParticipantPoolComparator().getParticipantBaseComparator().setIgnoreStoichiometry(true);
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) == 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
     }
 }
