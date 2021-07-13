@@ -23,6 +23,7 @@ public class ComplexComparatorListenerImpl implements ComplexComparatorListener 
             complexComparatorObservations.get(alreadyExistingObserverIndex).getDifferentObservations().add(complexComparisonEvent);
         } else {
             complexComparatorObserver.getDifferentObservations().add(complexComparisonEvent);
+            complexComparatorObservations.add(complexComparatorObserver);
         }
     }
 
