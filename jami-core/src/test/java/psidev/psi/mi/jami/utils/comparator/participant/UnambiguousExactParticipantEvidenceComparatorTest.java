@@ -290,5 +290,7 @@ public class UnambiguousExactParticipantEvidenceComparatorTest {
 
         Assert.assertTrue(comparator.compare(participant1, participant2) == 0);
         Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
+
+        comparator.getParticipantPoolComparator().getParticipantBaseComparator().setIgnoreStoichiometry(false);
     }
 }
