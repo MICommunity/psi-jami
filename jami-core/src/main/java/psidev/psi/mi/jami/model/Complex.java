@@ -1,11 +1,11 @@
 package psidev.psi.mi.jami.model;
 
-import psidev.psi.mi.jami.utils.CommonUtils;
+import psidev.psi.mi.jami.utils.ComplexUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * An interactor composed of interacting molecules that can be copurified.
@@ -128,71 +128,22 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * It will filter by proteins and sets
      * Comparable participants created are new instances.
      */
-    default Collection<ModelledParticipant> getComparableParticipants() {
+    default Collection<ModelledComparableParticipant> getComparableParticipants() {
         Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
+
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
             if (modelledParticipant.getInteractor() instanceof Complex) {
-                allParticipantsCollection.addAll(Complex.expandComplexIntoParticipants(modelledParticipant));
+                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
+                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
+                        (ModelledParticipant[]) complexExpandedParticipants.toArray());
             } else {
-                // clone as we do not want to change/clear the original complex participants features
-                ModelledParticipant clonedModelledParticipant = (ModelledParticipant) CommonUtils.cloneAnObject(modelledParticipant);
-                allParticipantsCollection.add(clonedModelledParticipant);
+                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
+                        modelledParticipant);
             }
         }
 
-        List<ModelledParticipant> comparableParticipants = allParticipantsCollection.stream().filter(
-                participant -> participant.getInteractor() instanceof Protein || //protein
-                        participant.getInteractor() instanceof InteractorPool) //sets
-                .collect(Collectors.toList());
-        // we do not want to compare features when comparing complexes
-        comparableParticipants.forEach(comparableParticipant -> comparableParticipant.getFeatures().clear());
-        return comparableParticipants;
-    }
-
-    /**
-     * Expands the given complex participant.
-     * Changes/expands the stoichiometry in expanded participants.
-     * Inherit the features in expanded participants.
-     * Expanded participants created are new instances.
-     */
-    static Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
-
-        Collection<ModelledParticipant> expandedModelledParticipants = new ArrayList<>();
-        if (parentParticipant.getInteractor() instanceof Complex) {
-            Complex complex = (Complex) parentParticipant.getInteractor();
-            for (ModelledParticipant complexParticipant : complex.getParticipants()) {
-
-                // clone as we do not want to change the stoichiometry of interactor complex participants
-                ModelledParticipant expandedModelledParticipant = (ModelledParticipant) CommonUtils.cloneAnObject(complexParticipant);
-
-                // expand stoichiometry
-                int minStoichiometry = 0;
-                int maxStoichiometry = 0;
-                Stoichiometry expandedStoichiometry = null;
-                if (complexParticipant.getStoichiometry() != null && parentParticipant.getStoichiometry() != null) {
-                    minStoichiometry = (complexParticipant.getStoichiometry().getMinValue())
-                            *
-                            (parentParticipant.getStoichiometry().getMinValue());
-                    maxStoichiometry = (complexParticipant.getStoichiometry().getMaxValue())
-                            *
-                            (parentParticipant.getStoichiometry().getMaxValue());
-                    Class stoichiometryClass = expandedModelledParticipant.getStoichiometry().getClass();
-                    try {
-                        expandedStoichiometry = (Stoichiometry) stoichiometryClass.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                expandedModelledParticipant.setStoichiometry(expandedStoichiometry);
-                expandedModelledParticipant.getFeatures().addAll(parentParticipant.getFeatures());
-                expandedModelledParticipants.add(expandedModelledParticipant);
-            }
-            return expandedModelledParticipants;
-        }
-
-        // return back the participant if not complex
-        expandedModelledParticipants.add(parentParticipant);
-        return expandedModelledParticipants;
+        return interactorParticipantMap.values();
     }
 }
 

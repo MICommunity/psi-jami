@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 /**
  * Basic ComplexComparator.
- * <p>
+ *
  * It will first look at the default properties of an interactor using AbstractInteractorBaseComparator.
  * It will then compare the interaction types using AbstractCvtermComparator
  * If the basic interactor properties are the same, It will first compare the collection of components using ModelledParticipantComparator.
@@ -118,8 +118,8 @@ public class ComplexComparator implements Comparator<Complex> {
             }
 
             // then compares collection of components
-            Collection<ModelledParticipant> components1 = complex1.getComparableParticipants();
-            Collection<ModelledParticipant> components2 = complex2.getComparableParticipants();
+            Collection<ModelledParticipant> components1 = complex1.getParticipants();
+            Collection<ModelledParticipant> components2 = complex2.getParticipants();
 
             return componentCollectionComparator.compare(components1, components2);
         }
