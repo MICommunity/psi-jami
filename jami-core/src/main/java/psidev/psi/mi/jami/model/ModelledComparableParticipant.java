@@ -5,6 +5,14 @@ public class ModelledComparableParticipant {
     private String interactorPreferredIdentifier;
     private int stoichiometry;
 
+    public ModelledComparableParticipant() {
+    }
+
+    public ModelledComparableParticipant(String interactorPreferredIdentifier, int stoichiometry) {
+        this.interactorPreferredIdentifier = interactorPreferredIdentifier;
+        this.stoichiometry = stoichiometry;
+    }
+
     public String getInteractorPreferredIdentifier() {
         return interactorPreferredIdentifier;
     }
