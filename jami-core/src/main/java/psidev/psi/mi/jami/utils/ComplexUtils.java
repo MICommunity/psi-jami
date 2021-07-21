@@ -28,21 +28,19 @@ public class ComplexUtils {
     }
 
     private static void delegateMapMaintenance(String preferredIdentifier, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
-        if (modelledParticipant.getStoichiometry() != null) {
-            if (map.get(preferredIdentifier) != null) {
-                ModelledComparableParticipant modelledComparableParticipant = map.get(preferredIdentifier);
-                if (modelledParticipant.getStoichiometry() != null) {
-                    int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
-                    modelledComparableParticipant.setStoichiometry(addedStoichiometry);
-                }
-            } else {
-                ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
-                modelledComparableParticipant.setInteractorPreferredIdentifier(preferredIdentifier);
-                if (modelledParticipant.getStoichiometry() != null) {
-                    modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
-                }
-                map.put(preferredIdentifier, modelledComparableParticipant);
+        if (map.get(preferredIdentifier) != null) {
+            ModelledComparableParticipant modelledComparableParticipant = map.get(preferredIdentifier);
+            if (modelledParticipant.getStoichiometry() != null) {
+                int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
+                modelledComparableParticipant.setStoichiometry(addedStoichiometry);
             }
+        } else {
+            ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
+            modelledComparableParticipant.setInteractorPreferredIdentifier(preferredIdentifier);
+            if (modelledParticipant.getStoichiometry() != null) {
+                modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
+            }
+            map.put(preferredIdentifier, modelledComparableParticipant);
         }
     }
 
