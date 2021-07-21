@@ -2,7 +2,6 @@ package psidev.psi.mi.jami.model;
 
 import psidev.psi.mi.jami.utils.ComplexUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -129,14 +128,13 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * Comparable participants created are new instances.
      */
     default Collection<ModelledComparableParticipant> getComparableParticipants() {
-        Collection<ModelledParticipant> allParticipantsCollection = new ArrayList<>();
         Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
 
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
             if (modelledParticipant.getInteractor() instanceof Complex) {
                 Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
                 ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
-                        (ModelledParticipant[]) complexExpandedParticipants.toArray());
+                        complexExpandedParticipants.toArray(new ModelledParticipant[complexExpandedParticipants.size()]));
             } else {
                 ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
                         modelledParticipant);

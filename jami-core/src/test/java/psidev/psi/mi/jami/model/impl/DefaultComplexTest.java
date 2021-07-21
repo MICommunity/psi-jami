@@ -161,105 +161,6 @@ public class DefaultComplexTest {
     }
 
     @Test
-    public void test_expand_complex_participants() {
-        Complex complexAsAnInteractor1 = new DefaultComplex("complex_interactor", new DefaultCvTerm("protein complex"));
-        complexAsAnInteractor1.setInteractionType(new DefaultCvTerm("phosphorylation"));
-        Stoichiometry stc = new DefaultStoichiometry(1, 3);
-        ModelledParticipant modelledParticipant1=new DefaultModelledParticipant(new DefaultProtein("test1 protein",
-                XrefUtils.createUniprotIdentity("P12345")), stc);
-        modelledParticipant1.addFeature(new DefaultModelledFeature());
-        modelledParticipant1.addFeature(new DefaultModelledFeature());
-        complexAsAnInteractor1.addParticipant(modelledParticipant1);
-        complexAsAnInteractor1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
-                XrefUtils.createUniprotIdentity("P12347"))));
-
-
-        Stoichiometry stc1 = new DefaultStoichiometry(2, 2);
-        //with stoichiometry
-        ModelledParticipant complexParticipantToExpand1 = new DefaultModelledParticipant(complexAsAnInteractor1, stc1);
-        complexParticipantToExpand1.addFeature(new DefaultModelledFeature());
-        complexParticipantToExpand1.addFeature(new DefaultModelledFeature());
-        //without stoichiometry
-        ModelledParticipant complexParticipantToExpand2 = new DefaultModelledParticipant(complexAsAnInteractor1);
-
-        //complexParticipantToExpand1 testing
-        Collection<ModelledParticipant> expandedParticipants1 = Complex.expandComplexIntoParticipants(complexParticipantToExpand1);
-        Assert.assertEquals(2, expandedParticipants1.size());
-        boolean testedCase1 = false;
-        boolean testedCase2 = false;
-
-        try {
-            for (ModelledParticipant expandedParticipant : expandedParticipants1) {
-                if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
-                    Assert.assertEquals(2, expandedParticipant.getStoichiometry().getMinValue());
-                    Assert.assertEquals(6, expandedParticipant.getStoichiometry().getMaxValue());
-                    Assert.assertEquals(4,expandedParticipant.getFeatures().size());
-                    testedCase1 = true;
-                } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    testedCase2 = true;
-                }
-            }
-        } catch (Exception e) {
-            Assert.assertFalse("Expected expanded participants absent", true);
-        }
-
-
-        Assert.assertTrue("Expected expanded participants absent", (testedCase1 && testedCase2));
-
-        //original interactor complex stoichiometry/features should be same as before
-        boolean testedCase3 = false;
-        boolean testedCase4 = false;
-        try {
-            for (ModelledParticipant originalParticipant : complexAsAnInteractor1.getParticipants()) {
-                if (originalParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
-                    Assert.assertEquals(1, originalParticipant.getStoichiometry().getMinValue());
-                    Assert.assertEquals(3, originalParticipant.getStoichiometry().getMaxValue());
-                    Assert.assertEquals(2,originalParticipant.getFeatures().size());
-                    testedCase3 = true;
-                } else if (originalParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
-                    Assert.assertNull(originalParticipant.getStoichiometry());
-                    Assert.assertNull(originalParticipant.getStoichiometry());
-                    testedCase4 = true;
-                }
-            }
-        } catch (Exception e) {
-            Assert.assertFalse("Expected original complex participants absent", true);
-        }
-
-        Assert.assertTrue("Expected original complex participants absent", (testedCase3 && testedCase4));
-
-        // original parent participant should be unchanged
-        Assert.assertEquals(2,complexParticipantToExpand1.getFeatures().size());
-        Assert.assertEquals(2, complexParticipantToExpand1.getStoichiometry().getMinValue());
-        Assert.assertEquals(2, complexParticipantToExpand1.getStoichiometry().getMaxValue());
-
-        //complexParticipantToExpand2 testing
-        Collection<ModelledParticipant> expandedParticipants2 = Complex.expandComplexIntoParticipants(complexParticipantToExpand2);
-        Assert.assertEquals(2, expandedParticipants2.size());
-        boolean testedCase5 = false;
-        boolean testedCase6 = false;
-        try {
-            for (ModelledParticipant expandedParticipant : expandedParticipants2) {
-                if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    testedCase5 = true;
-                } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    Assert.assertNull(expandedParticipant.getStoichiometry());
-                    testedCase6 = true;
-                }
-            }
-        } catch (Exception e) {
-            Assert.assertFalse("Expected expanded participants absent", true);
-        }
-
-        Assert.assertTrue("Expected expanded participants absent", (testedCase5 && testedCase6));
-    }
-
-    @Test
     public void test_get_comparable_participants() {
         Complex complexAsAnInteractor1 = new DefaultComplex("complex_interactor", new DefaultCvTerm("protein complex"));
         complexAsAnInteractor1.setInteractionType(new DefaultCvTerm("phosphorylation"));
@@ -276,38 +177,36 @@ public class DefaultComplexTest {
                 XrefUtils.createUniprotIdentity("P12346")));
         modelledParticipant1.addFeature(new DefaultModelledFeature());
         modelledParticipant1.addFeature(new DefaultModelledFeature());
+
+        ModelledParticipant modelledParticipant2=new DefaultModelledParticipant(new DefaultProtein("test1 protein",
+                XrefUtils.createUniprotIdentity("P12345")), new DefaultStoichiometry(1, 3));
+
+        complex1.addParticipant(modelledParticipant2);
         complex1.addParticipant(modelledParticipant1);
         complex1.addParticipant(new DefaultModelledParticipant(new DefaultNucleicAcid("test")));
-        Stoichiometry stc1 = new DefaultStoichiometry(2, 2);
-        complex1.addParticipant(new DefaultModelledParticipant(complexAsAnInteractor1, stc1));
-        complex1.addParticipant(new DefaultModelledParticipant(new DefaultInteractorPool("pool_or_set")));
+        complex1.addParticipant(new DefaultModelledParticipant(complexAsAnInteractor1, new DefaultStoichiometry(2, 2)));
+        InteractorPool pool=new DefaultInteractorPool("pool_or_set");
+        pool.add(new DefaultProtein("test3 protein",
+                XrefUtils.createUniprotIdentity("P12345")));
+        complex1.addParticipant(new DefaultModelledParticipant(pool,new DefaultStoichiometry(1, 3)));
 
-        Collection<ModelledParticipant> comparableParticipants = complex1.getComparableParticipants();
-        Assert.assertEquals(4, comparableParticipants.size());
+        Collection<ModelledComparableParticipant> comparableParticipants = complex1.getComparableParticipants();
+        Assert.assertEquals(3, comparableParticipants.size());
 
         boolean testedCase1 = false;
         boolean testedCase2 = false;
         boolean testedCase3 = false;
-        boolean testedCase4 = false;
 
         try {
-            for (ModelledParticipant comparableParticipant : comparableParticipants) {
-                if (comparableParticipant.getInteractor().getShortName().equals("pool_or_set")) {
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
-                    testedCase4 = true;
-                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
-                    Assert.assertEquals(2, comparableParticipant.getStoichiometry().getMinValue());
-                    Assert.assertEquals(6, comparableParticipant.getStoichiometry().getMaxValue());
+            for (ModelledComparableParticipant comparableParticipant : comparableParticipants) {
+                if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12345")) {
+                    Assert.assertEquals(4,comparableParticipant.getStoichiometry());
                     testedCase1 = true;
-                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
+                } else if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12347")) {
+                    Assert.assertEquals(0, comparableParticipant.getStoichiometry());
                     testedCase2 = true;
-                } else if (comparableParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12346")) {
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
-                    Assert.assertNull(comparableParticipant.getStoichiometry());
-                    Assert.assertEquals(0,comparableParticipant.getFeatures().size());
+                } else if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12346")) {
+                    Assert.assertEquals(0, comparableParticipant.getStoichiometry());
                     testedCase3 = true;
                 }
             }
@@ -315,23 +214,6 @@ public class DefaultComplexTest {
             Assert.assertFalse("Expected comparable participants absent", true);
         }
 
-        Assert.assertTrue("Expected comparable participants absent", (testedCase1 && testedCase2 && testedCase3 && testedCase4));
-
-        //original complex participants features should be same as before
-        boolean testedCase5 = false;
-        try {
-            for (ModelledParticipant originalParticipant : complex1.getParticipants()) {
-                if (originalParticipant.getInteractor().getPreferredIdentifier()!=null
-                        && originalParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12346")) {
-                    Assert.assertEquals(2,originalParticipant.getFeatures().size());
-                    testedCase5 = true;
-                }
-            }
-        } catch (Exception e) {
-            Assert.assertFalse("Expected original complex participant absent", true);
-        }
-
-        Assert.assertTrue("Expected original complex participant absent",testedCase5);
-
+        Assert.assertTrue("Expected comparable participants absent", (testedCase1 && testedCase2 && testedCase3));
     }
 }
