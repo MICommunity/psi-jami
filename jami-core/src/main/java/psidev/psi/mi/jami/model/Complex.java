@@ -123,9 +123,10 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
 
     /**
      * Gets comparable participants for a complex.
-     * It will remove the features, expand complex participant.
-     * It will filter by proteins and sets
-     * Comparable participants created are new instances.
+     * It will expand complex participant, pools.
+     * It will filter by proteins
+     * It will combine stoichiometry for same interactors
+     * Comparable participants are per interactor and are new instances.
      */
     default Collection<ModelledComparableParticipant> getComparableParticipants() {
         Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
