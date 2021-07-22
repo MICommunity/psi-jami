@@ -12,39 +12,56 @@ public class ComplexUtils {
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
             if (modelledParticipant.getInteractor() instanceof Protein) {
-                String preferredIdentifier = ((Protein) modelledParticipant.getInteractor()).getPreferredIdentifier().getId();
-                delegateMapMaintenance(preferredIdentifier, modelledParticipant, map);
+                String proteinId = extractIdentifier((Protein) modelledParticipant.getInteractor());
+                if(proteinId!=null) {
+                    delegateMapMaintenance(proteinId, modelledParticipant, map);
+                }
             } else if (modelledParticipant.getInteractor() instanceof InteractorPool) {
                 Iterator<Interactor> poolIterator = ((InteractorPool) modelledParticipant.getInteractor()).iterator();
                 while (poolIterator.hasNext()) {
                     Interactor interactor = poolIterator.next();
                     if (interactor instanceof Protein) {
-                        String preferredIdentifier = interactor.getPreferredIdentifier().getId();
-                        delegateMapMaintenance(preferredIdentifier, modelledParticipant, map);
+                        String proteinId = extractIdentifier((Protein)interactor);
+                        if(proteinId!=null) {
+                            delegateMapMaintenance(proteinId, modelledParticipant, map);
+                        }
                     }
                 }
             }
         }
     }
 
-    private static void delegateMapMaintenance(String preferredIdentifier, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
-        if (map.get(preferredIdentifier) != null) {
-            ModelledComparableParticipant modelledComparableParticipant = map.get(preferredIdentifier);
+    private static void delegateMapMaintenance(String proteinId, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
+        if (map.get(proteinId) != null) {
+            ModelledComparableParticipant modelledComparableParticipant = map.get(proteinId);
             if (modelledParticipant.getStoichiometry() != null) {
                 int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
                 modelledComparableParticipant.setStoichiometry(addedStoichiometry);
             }
         } else {
             ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
-            modelledComparableParticipant.setInteractorPreferredIdentifier(preferredIdentifier);
+            modelledComparableParticipant.setProteinId(proteinId);
             if (modelledParticipant.getStoichiometry() != null) {
                 modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
             }
-            map.put(preferredIdentifier, modelledComparableParticipant);
+            map.put(proteinId, modelledComparableParticipant);
         }
     }
 
-    /**
+    private static String extractIdentifier(Protein protein){
+        String id=null;
+        if(protein.getUniprotkb()!=null&&!protein.getUniprotkb().isEmpty()){
+            id=protein.getUniprotkb();
+        }else {
+            String ac=CommonUtils.extractIntactAcFromIdentifier(protein.getIdentifiers());
+            if (ac != null && !ac.isEmpty()) {
+              id=ac;
+            }
+        }
+
+        return id;
+    }
+     /**
      * Expands the given complex participant.
      * Changes/expands the stoichiometry in expanded participants.
      * Inherit the features in expanded participants.

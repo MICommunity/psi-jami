@@ -126,12 +126,12 @@ public class ComplexUtilsTest {
                 XrefUtils.createUniprotIdentity("UNIPROTID3")), new DefaultStoichiometry(1, 3));
         ModelledParticipant modelledParticipant6=new DefaultModelledParticipant(new DefaultNucleicAcid("test"));
 
-
-
         InteractorPool interactorPool1 = new DefaultInteractorPool("test pool 1");
         interactorPool1.add(new DefaultProtein("test6 protein",
                 XrefUtils.createUniprotIdentity("UNIPROTID1")));
         interactorPool1.add(new DefaultNucleicAcid("test2 "));
+        interactorPool1.add(new DefaultProtein("test2 protein",
+                XrefUtils.createIdentityXref("intact","MI:0469","EBI-AC1")));
 
         InteractorPool interactorPool2 = new DefaultInteractorPool("test pool 2");
         interactorPool2.add(new DefaultProtein("test7 protein",
@@ -143,6 +143,8 @@ public class ComplexUtilsTest {
         ModelledParticipant modelledParticipant8=new DefaultModelledParticipant(interactorPool2);
         ModelledParticipant modelledParticipant9=new DefaultModelledParticipant(new DefaultProtein("test9 protein",
                 XrefUtils.createUniprotIdentity("UNIPROTID1")),new DefaultStoichiometry(1, 3));
+        ModelledParticipant modelledParticipant10=new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createIdentityXref("intact","MI:0469","EBI-AC1")),new DefaultStoichiometry(1, 3));
 
         Collection<ModelledParticipant> modelledParticipants=new ArrayList<>();
         modelledParticipants.add(modelledParticipant1);
@@ -153,6 +155,7 @@ public class ComplexUtilsTest {
         modelledParticipants.add(modelledParticipant6);
         modelledParticipants.add(modelledParticipant7);
         modelledParticipants.add(modelledParticipant8);
+        modelledParticipants.add(modelledParticipant10);
 
         Map<String, ModelledComparableParticipant> testMap=new HashMap<>();
 
@@ -161,19 +164,22 @@ public class ComplexUtilsTest {
         ComplexUtils.maintainProteinComparableParticipantMap(testMap,modelledParticipants.toArray(modelledParticipantsArray));
         ComplexUtils.maintainProteinComparableParticipantMap(testMap,modelledParticipant9);
 
-        Assert.assertEquals(4,testMap.size());
+        Assert.assertEquals(5,testMap.size());
 
-        Assert.assertEquals("UNIPROTID1",testMap.get("UNIPROTID1").getInteractorPreferredIdentifier());
+        Assert.assertEquals("UNIPROTID1",testMap.get("UNIPROTID1").getProteinId());
         Assert.assertEquals(4,testMap.get("UNIPROTID1").getStoichiometry());
 
-        Assert.assertEquals("UNIPROTID2",testMap.get("UNIPROTID2").getInteractorPreferredIdentifier());
+        Assert.assertEquals("UNIPROTID2",testMap.get("UNIPROTID2").getProteinId());
         Assert.assertEquals(0,testMap.get("UNIPROTID2").getStoichiometry());
 
-        Assert.assertEquals("UNIPROTID3",testMap.get("UNIPROTID3").getInteractorPreferredIdentifier());
+        Assert.assertEquals("UNIPROTID3",testMap.get("UNIPROTID3").getProteinId());
         Assert.assertEquals(1,testMap.get("UNIPROTID3").getStoichiometry());
 
-        Assert.assertEquals("UNIPROTID4",testMap.get("UNIPROTID4").getInteractorPreferredIdentifier());
+        Assert.assertEquals("UNIPROTID4",testMap.get("UNIPROTID4").getProteinId());
         Assert.assertEquals(0,testMap.get("UNIPROTID4").getStoichiometry());
+
+        Assert.assertEquals("EBI-AC1",testMap.get("EBI-AC1").getProteinId());
+        Assert.assertEquals(2,testMap.get("EBI-AC1").getStoichiometry());
 
     }
 }

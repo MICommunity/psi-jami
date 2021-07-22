@@ -2,23 +2,23 @@ package psidev.psi.mi.jami.model;
 
 public class ModelledComparableParticipant {
 
-    private String interactorPreferredIdentifier;
+    private String proteinId;// only uniprot or intact ac
     private int stoichiometry;
 
     public ModelledComparableParticipant() {
     }
 
-    public ModelledComparableParticipant(String interactorPreferredIdentifier, int stoichiometry) {
-        this.interactorPreferredIdentifier = interactorPreferredIdentifier;
+    public ModelledComparableParticipant(String proteinId, int stoichiometry) {
+        this.proteinId = proteinId;
         this.stoichiometry = stoichiometry;
     }
 
-    public String getInteractorPreferredIdentifier() {
-        return interactorPreferredIdentifier;
+    public String getProteinId() {
+        return proteinId;
     }
 
-    public void setInteractorPreferredIdentifier(String interactorPreferredIdentifier) {
-        this.interactorPreferredIdentifier = interactorPreferredIdentifier;
+    public void setProteinId(String proteinId) {
+        this.proteinId = proteinId;
     }
 
     public int getStoichiometry() {

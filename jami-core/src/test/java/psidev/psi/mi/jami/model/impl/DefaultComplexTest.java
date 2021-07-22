@@ -199,13 +199,13 @@ public class DefaultComplexTest {
 
         try {
             for (ModelledComparableParticipant comparableParticipant : comparableParticipants) {
-                if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12345")) {
+                if (comparableParticipant.getProteinId().equals("P12345")) {
                     Assert.assertEquals(4,comparableParticipant.getStoichiometry());
                     testedCase1 = true;
-                } else if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12347")) {
+                } else if (comparableParticipant.getProteinId().equals("P12347")) {
                     Assert.assertEquals(0, comparableParticipant.getStoichiometry());
                     testedCase2 = true;
-                } else if (comparableParticipant.getInteractorPreferredIdentifier().equals("P12346")) {
+                } else if (comparableParticipant.getProteinId().equals("P12346")) {
                     Assert.assertEquals(0, comparableParticipant.getStoichiometry());
                     testedCase3 = true;
                 }
