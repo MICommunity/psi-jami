@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.utils;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
 
 import java.util.*;
 
@@ -74,9 +75,6 @@ public class ComplexUtils {
             Complex complex = (Complex) parentParticipant.getInteractor();
             for (ModelledParticipant complexParticipant : complex.getParticipants()) {
 
-                // clone as we do not want to change the stoichiometry of interactor complex participants
-                ModelledParticipant expandedModelledParticipant = (ModelledParticipant) CommonUtils.cloneAnObject(complexParticipant);
-
                 // expand stoichiometry
                 int minStoichiometry = 0;
                 int maxStoichiometry = 0;
@@ -88,16 +86,15 @@ public class ComplexUtils {
                     maxStoichiometry = (complexParticipant.getStoichiometry().getMaxValue())
                             *
                             (parentParticipant.getStoichiometry().getMaxValue());
-                    Class stoichiometryClass = expandedModelledParticipant.getStoichiometry().getClass();
+                    Class stoichiometryClass = complexParticipant.getStoichiometry().getClass();
                     try {
                         expandedStoichiometry = (Stoichiometry) stoichiometryClass.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-                expandedModelledParticipant.setStoichiometry(expandedStoichiometry);
-                expandedModelledParticipant.getFeatures().addAll(parentParticipant.getFeatures());
-                expandedModelledParticipants.add(expandedModelledParticipant);
+                DefaultModelledParticipant defaultModelledParticipant=new DefaultModelledParticipant(complexParticipant.getInteractor(),expandedStoichiometry);
+                expandedModelledParticipants.add(defaultModelledParticipant);
             }
             return expandedModelledParticipants;
         }
