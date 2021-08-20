@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>jami-examples</artifactId>
-    <version>3.2.12</version>
+    <version>3.2.13-SNAPSHOT</version>
 
     <name>PSI :: JAMI - Examples</name>
     <description>JAMI - Examples</description>
