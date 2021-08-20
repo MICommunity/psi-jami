@@ -9,7 +9,7 @@ import java.util.Comparator;
  * Basic participant comparator.
  * It will first compare the interactors/stoichiometry/features using EntityBaseComparator. If both interactors are the same,
  * it will compare the biological roles using AbstractCvTermComparator.
- *
+ * <p>
  * This comparator will ignore all the other properties of a participant.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
@@ -25,16 +25,16 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
      * Creates a new ParticipantBaseComparator
      *
      * @param interactorComparator : interactor comparator required for comparing the molecules
-     * @param cvTermComparator : CvTerm comparator required for comparing biological roles
+     * @param cvTermComparator     : CvTerm comparator required for comparing biological roles
      */
-    public ParticipantBaseComparator(EntityBaseComparator interactorComparator, Comparator<CvTerm> cvTermComparator){
+    public ParticipantBaseComparator(EntityBaseComparator interactorComparator, Comparator<CvTerm> cvTermComparator) {
 
-        if (interactorComparator == null){
+        if (interactorComparator == null) {
             throw new IllegalArgumentException("The Entity base comparator is required to compare interactors, stoichiometry and features. It cannot be null");
         }
         this.entityComparator = interactorComparator;
 
-        if (cvTermComparator == null){
+        if (cvTermComparator == null) {
             throw new IllegalArgumentException("The CvTerm comparator is required to compare biological roles. It cannot be null");
         }
         this.cvTermComparator = cvTermComparator;
@@ -77,11 +77,29 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
     }
 
     /**
+     * <p>isIgnoreStoichiometry</p>
+     *
+     * @return a boolean.
+     */
+    public boolean isIgnoreStoichiometry() {
+        return entityComparator.isIgnoreStoichiometry();
+    }
+
+    /**
+     * <p>setIgnoreStoichiometry</p>
+     *
+     * @param ignoreStoichiometry a boolean.
+     */
+    public void setIgnoreStoichiometry(boolean ignoreStoichiometry) {
+        this.entityComparator.setIgnoreStoichiometry(ignoreStoichiometry);
+    }
+
+    /**
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will compare the biological roles using AbstractCvTermComparator. If both biological roles are the same, it
      * will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
      * it will compare the features using a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Feature}.
-     *
+     * <p>
      * This comparator will ignore all the other properties of a participant.
      *
      * @param participant1 a {@link psidev.psi.mi.jami.model.Participant} object.
@@ -93,19 +111,16 @@ public class ParticipantBaseComparator implements Comparator<Participant> {
         int BEFORE = -1;
         int AFTER = 1;
 
-        if (participant1 == participant2){
+        if (participant1 == participant2) {
             return EQUAL;
-        }
-        else if (participant1 == null){
+        } else if (participant1 == null) {
             return AFTER;
-        }
-        else if (participant2 == null){
+        } else if (participant2 == null) {
             return BEFORE;
-        }
-        else {
+        } else {
             int comp = this.entityComparator.compare(participant1, participant2);
             // first compares interactors
-            if (comp != 0){
+            if (comp != 0) {
                 return comp;
             }
 

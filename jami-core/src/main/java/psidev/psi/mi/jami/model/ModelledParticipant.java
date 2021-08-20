@@ -1,7 +1,7 @@
 package psidev.psi.mi.jami.model;
 
 /**
- *  Participant of a modelled interaction.
+ * Participant of a modelled interaction.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

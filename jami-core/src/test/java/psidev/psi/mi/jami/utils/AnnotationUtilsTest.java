@@ -133,4 +133,21 @@ public class AnnotationUtilsTest {
         Assert.assertEquals(1, annotations.size());
         Assert.assertTrue(annotations.contains(annot4));
     }
+
+    @Test
+    public void test_remove_annotation_with_topic_value_like(){
+        CvTerm topic_name_and_id = CvTermUtils.createMICvTerm(Annotation.CAUTION, Annotation.CAUTION_MI);
+        CvTerm topic2 = CvTermUtils.createMICvTerm(Annotation.COMMENT, Annotation.COMMENT_MI);
+        Annotation annot1 = new DefaultAnnotation(topic2, "test_comment 4");
+        Annotation annot2 = new DefaultAnnotation(topic_name_and_id, "test_caution 1");
+        Annotation annot3 = new DefaultAnnotation(topic_name_and_id, "test_caution 1 - to remove");
+
+        List<Annotation> annotations = new ArrayList<Annotation>(Arrays.asList(annot1, annot2, annot3));
+
+        AnnotationUtils.removeAllAnnotationsWithTopicAndValueLike(annotations,Annotation.CAUTION_MI,Annotation.CAUTION,"to remove");
+
+        Assert.assertEquals(2, annotations.size());
+        Assert.assertTrue(annotations.contains(annot1));
+        Assert.assertTrue(annotations.contains(annot2));
+    }
 }

@@ -170,6 +170,61 @@ public class AnnotationUtils {
     }
 
     /**
+     * To know if the annotation does have a specific topic and like value
+     *
+     * @param annotation : the annotation
+     * @param topicId :  the topic MI identifier
+     * @param topicName :  the topic name
+     * @param value : the annotation value
+     * @return true if the annotation has the topic with given name/identifier
+     */
+    public static boolean doesAnnotationHaveTopicAndValueLike(Annotation annotation, String topicId, String topicName, String value){
+
+        if (annotation == null || (topicName == null && topicId == null)){
+            return false;
+        }
+
+        CvTerm topic = annotation.getTopic();
+        // we can compare identifiers
+        if (topicId != null && topic.getMIIdentifier() != null){
+            // we have the same topic id
+            if (topic.getMIIdentifier().equals(topicId)){
+                if (annotation.getValue() != null && value != null){
+                    return annotation.getValue().contains(value);
+                }
+                else if (annotation.getValue() == null && value == null){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+        // we need to compare topic names
+        else if (topicName != null) {
+            if (topicName.equalsIgnoreCase(topic.getShortName())){
+                if (annotation.getValue() != null && value != null){
+                    return annotation.getValue().equalsIgnoreCase(value);
+                }
+                else if (annotation.getValue() == null && value == null){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Collect all annotations having a specific topic and value
      *
      * @param annots : the annotations
@@ -239,6 +294,28 @@ public class AnnotationUtils {
             }
         }
     }
+
+    /**
+     * Remove all annotations having this topic name/database id and like value from the collection of annotations
+     *
+     * @param annotations : the collection of annotations
+     * @param topicId : the topic id to look for
+     * @param topicName : the topic name to look for
+     * @param value a {@link java.lang.String} object.
+     */
+    public static void removeAllAnnotationsWithTopicAndValueLike(Collection<? extends Annotation> annotations, String topicId, String topicName, String value){
+
+        if (annotations != null){
+            Iterator<? extends Annotation> annotIterator = annotations.iterator();
+
+            while (annotIterator.hasNext()){
+                if (doesAnnotationHaveTopicAndValueLike(annotIterator.next(), topicId, topicName, value)){
+                    annotIterator.remove();
+                }
+            }
+        }
+    }
+
 
     /**
      * <p>createAnnotation</p>

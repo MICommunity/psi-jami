@@ -2,12 +2,11 @@ package psidev.psi.mi.jami.utils.comparator.interactor;
 
 import org.junit.Assert;
 import org.junit.Test;
-import psidev.psi.mi.jami.model.Complex;
-import psidev.psi.mi.jami.model.impl.DefaultComplex;
-import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
-import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
-import psidev.psi.mi.jami.model.impl.DefaultProtein;
+import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.XrefUtils;
+import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
+import psidev.psi.mi.jami.utils.comparator.participant.ModelledComparableParticipantComparator;
 
 /**
  * Unit tester for UnambiguousExactComplexComparator
@@ -147,4 +146,6 @@ public class UnambiguousExactComplexComparatorTest {
 
         Assert.assertTrue(UnambiguousExactComplexComparator.areEquals(complex1, complex2));
     }
+
+
 }

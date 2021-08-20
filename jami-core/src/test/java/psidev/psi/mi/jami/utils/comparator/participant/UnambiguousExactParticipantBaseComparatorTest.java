@@ -2,10 +2,9 @@ package psidev.psi.mi.jami.utils.comparator.participant;
 
 import org.junit.Assert;
 import org.junit.Test;
+import psidev.psi.mi.jami.model.ModelledParticipant;
 import psidev.psi.mi.jami.model.Participant;
-import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
-import psidev.psi.mi.jami.model.impl.DefaultParticipant;
-import psidev.psi.mi.jami.model.impl.DefaultProtein;
+import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.InteractorUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
@@ -23,7 +22,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     private UnambiguousExactParticipantBaseComparator comparator = new UnambiguousExactParticipantBaseComparator();
 
     @Test
-    public void test_participant_null_after(){
+    public void test_participant_null_after() {
         Participant participant1 = null;
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
 
@@ -35,7 +34,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_different_interactors(){
+    public void test_different_interactors() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12346")));
 
@@ -57,7 +56,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_same_interactors(){
+    public void test_same_interactors() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
 
@@ -69,7 +68,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_same_interactor_different_roles(){
+    public void test_same_interactor_different_roles() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
 
@@ -84,7 +83,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_same_roles(){
+    public void test_same_roles() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
 
@@ -99,7 +98,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_same_roles_different_stoichiometry(){
+    public void test_same_roles_different_stoichiometry() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
 
@@ -114,7 +113,7 @@ public class UnambiguousExactParticipantBaseComparatorTest {
     }
 
     @Test
-    public void test_same_stoichiometry(){
+    public void test_same_stoichiometry() {
         Participant participant1 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("test", XrefUtils.createUniprotIdentity("P12345")));
 
@@ -128,5 +127,21 @@ public class UnambiguousExactParticipantBaseComparatorTest {
 
         Assert.assertTrue(UnambiguousExactParticipantBaseComparator.areEquals(participant1, participant2));
         Assert.assertTrue(UnambiguousExactParticipantBaseComparator.hashCode(participant1) == UnambiguousExactParticipantBaseComparator.hashCode(participant2));
+    }
+
+    @Test
+    public void test_same_interactors_different_ignored_stoichiometry() {
+        ModelledParticipant participant1 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 2));
+        ModelledParticipant participant2 = new DefaultModelledParticipant(new DefaultProtein("test protein"), new DefaultStoichiometry(2, 3));
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) != 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) != 0);
+
+        comparator.getEntityBaseComparator().setIgnoreStoichiometry(true);
+
+        Assert.assertTrue(comparator.compare(participant1, participant2) == 0);
+        Assert.assertTrue(comparator.compare(participant2, participant1) == 0);
+
+        comparator.getEntityBaseComparator().setIgnoreStoichiometry(false);
     }
 }

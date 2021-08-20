@@ -1,5 +1,11 @@
 package psidev.psi.mi.jami.model;
 
+import psidev.psi.mi.jami.utils.ComplexUtils;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * An interactor composed of interacting molecules that can be copurified.
  *
@@ -9,16 +15,21 @@ package psidev.psi.mi.jami.model;
  */
 public interface Complex extends Interactor, ModelledInteraction, NamedInteraction<ModelledParticipant> {
 
-    /** Constant <code>COMPLEX="complex"</code> */
-    public static final String COMPLEX="complex";
-    /** Constant <code>COMPLEX_MI="MI:0314"</code> */
-    public static final String COMPLEX_MI="MI:0314";
+    /**
+     * Constant <code>COMPLEX="complex"</code>
+     */
+    public static final String COMPLEX = "complex";
+    /**
+     * Constant <code>COMPLEX_MI="MI:0314"</code>
+     */
+    public static final String COMPLEX_MI = "MI:0314";
 
     /**
      * Complex accession if the complex has been curated under the Complex Portal curation rules.
      * It can be null if the complex is not registered in the Complex Portal.
      * This complex accession should be a shortcut to the complex-primary Xref in the collection of xrefs.
      * Ex: CPX-123
+     *
      * @return the complex accession
      */
     public String getComplexAc();
@@ -28,6 +39,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * It can be null if the complex is not registered in the Complex Portal.
      * This complex version should be a shortcut to the complex-primary Xref version in the collection of xrefs.
      * Ex: 1
+     *
      * @return the complex version
      */
     public String getComplexVersion();
@@ -35,9 +47,10 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     /**
      * Assign a complex accession to a complex.
      * It will add the new complex-primary ref to the collection of xrefs
+     *
      * @param accession : the complex accession. If the version is added to the accession e.g. CPX-1234.2 the complex will be updated with the corresponding version, if not it is assumed version 1
      * @throws IllegalArgumentException if
-     * - the accession is null or empty
+     *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession);
 
@@ -45,10 +58,11 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
     /**
      * Assign a complex accession to a complex.
      * It will add the new complex-primary ref to the collection of xrefs
+     *
      * @param accession : the complex accession
-     * @param version : the version of the complex if it is provided. If version is null it will create the complex with version 1
+     * @param version   : the version of the complex if it is provided. If version is null it will create the complex with version 1
      * @throws IllegalArgumentException if
-     * - the accession is null or empty
+     *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession, String version);
 
@@ -103,7 +117,32 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * with the new systematic name. If the new systematic name is null, all the existing systematic names will be removed from the
      * collection of aliases
      *
-     * @param name  : the systematic name
+     * @param name : the systematic name
      */
     public void setSystematicName(String name);
+
+    /**
+     * Gets comparable participants for a complex.
+     * It will expand complex participant, pools.
+     * It will filter by proteins
+     * It will combine stoichiometry for same interactors
+     * Comparable participants are per interactor and are new instances.
+     */
+    default Collection<ModelledComparableParticipant> getComparableParticipants() {
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
+
+        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
+            if (modelledParticipant.getInteractor() instanceof Complex) {
+                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
+                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
+                        complexExpandedParticipants.toArray(new ModelledParticipant[complexExpandedParticipants.size()]));
+            } else {
+                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
+                        modelledParticipant);
+            }
+        }
+
+        return interactorParticipantMap.values();
+    }
 }
+
