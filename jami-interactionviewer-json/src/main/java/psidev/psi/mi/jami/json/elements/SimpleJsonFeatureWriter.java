@@ -93,6 +93,7 @@ public class SimpleJsonFeatureWriter<F extends Feature> implements JsonElementWr
      * @throws java.io.IOException if any.
      */
     public void write(F object) throws IOException {
+        if (object == null) return;
         MIJsonUtils.writeStartObject(writer);
 
         // generate feature id

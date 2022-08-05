@@ -64,6 +64,11 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
             MIJsonUtils.writePropertyKey("complexType", getWriter());
             getCvWriter().write(complex.getInteractorType());
 
+            if (complex.getPreferredName() != null) {
+                MIJsonUtils.writeSeparator(getWriter());
+                MIJsonUtils.writeProperty("label", complex.getPreferredName(), getWriter());
+            }
+
             if (complex.getEvidenceType() != null) {
                 MIJsonUtils.writeSeparator(getWriter());
                 MIJsonUtils.writePropertyKey("evidenceType", getWriter());

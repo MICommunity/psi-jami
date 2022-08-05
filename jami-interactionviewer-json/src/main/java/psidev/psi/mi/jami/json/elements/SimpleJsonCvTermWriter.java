@@ -37,6 +37,7 @@ public class SimpleJsonCvTermWriter implements JsonElementWriter<CvTerm>{
      * @throws java.io.IOException if any.
      */
     public void write(CvTerm object) throws IOException {
+        if (object == null) return;
         MIJsonUtils.writeStartObject(writer);
         boolean hasId = false;
         if (object.getMIIdentifier() != null){

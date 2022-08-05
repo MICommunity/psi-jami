@@ -38,6 +38,7 @@ public class SimpleJsonParameterWriter implements JsonElementWriter<Parameter>{
      * @throws java.io.IOException if any.
      */
     public void write(Parameter object) throws IOException {
+        if (object == null) return;
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("type", JSONValue.escape(object.getType().getShortName()), writer);
         MIJsonUtils.writeSeparator(writer);

@@ -82,6 +82,7 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
      * @throws java.io.IOException if any.
      */
     public void write(I object) throws IOException {
+        if (object == null) return;
         Xref preferredIdentifier;
 
         if(object instanceof Complex){

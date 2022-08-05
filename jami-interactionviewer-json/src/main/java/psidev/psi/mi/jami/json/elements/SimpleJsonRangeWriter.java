@@ -73,6 +73,7 @@ public class SimpleJsonRangeWriter implements JsonRangeWriter{
 
     /** {@inheritDoc} */
     public void write(Range object, Feature parent) throws IOException {
+        if (object == null) return;
         // start object
         MIJsonUtils.writeStartObject(writer);
         // position

@@ -973,6 +973,11 @@
                                     }
                                 }
                             },
+                            "label": {
+                                "type":"string",
+                                "required":false,
+                                "description":"The short name of the interaction which is usually used for visualizing a complex in a network"
+                            },
                             "expansion": {
                                 "type":"object",
                                 "required":false,

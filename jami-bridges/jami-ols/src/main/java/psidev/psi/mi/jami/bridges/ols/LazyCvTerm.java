@@ -346,7 +346,7 @@ public class LazyCvTerm extends DefaultCvTerm {
                         String value = metaDataRefs.get(keyName);
                         if ((keyName.startsWith(VALIDATION_REGEXP) || keyName.startsWith(SEARCH_URL)) && value != null) {
                             processXref(keyName.replace(":", ""), value);
-                        } else {
+                        } else if (value != null) {
                             processXref(null, value);
                         }
                     }

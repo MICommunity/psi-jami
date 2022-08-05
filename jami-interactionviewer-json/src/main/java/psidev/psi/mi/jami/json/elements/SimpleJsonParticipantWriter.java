@@ -90,7 +90,7 @@ public class SimpleJsonParticipantWriter<P extends Participant> implements JsonE
      * @throws java.io.IOException if any.
      */
     public void write(P object) throws IOException {
-
+        if (object == null) return;
         MIJsonUtils.writeStartObject(writer);
         // generate participant id
         int id = 0;

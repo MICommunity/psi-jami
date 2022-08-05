@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.2.13-SNAPSHOT</version>
+    <version>3.3.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
@@ -12,13 +13,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<calimocho.version>2.5.2-SNAPSHOT</calimocho.version>-->
-        <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
         <spring.version>3.2.9.RELEASE</spring.version>
 
-        <ontology.manager.version>2.0.12</ontology.manager.version>
-        <ols.client.version>2.11</ols.client.version>
-        <uniprot.japi.version>1.0.37</uniprot.japi.version>
+        <ontology.manager.version>2.1.0-SNAPSHOT</ontology.manager.version>
+        <ols.client.version>2.13</ols.client.version>
+        <uniprot.japi.version>1.1.2</uniprot.japi.version>
         <chebiws.client.version>2.4</chebiws.client.version>
 
     </properties>
@@ -90,14 +89,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <target>1.8</target>
-                    <source>1.8</source>
+                    <target>11</target>
+                    <source>11</source>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-source</id>
@@ -135,11 +134,62 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- JAVA 11 -->
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>jsr181-api</artifactId>
+            <version>1.0-MR1</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
+
+
         <!-- Testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <optional>true</optional>
             <scope>test</scope>
         </dependency>
@@ -148,8 +198,8 @@
     <!-- EBI repositories -->
     <repositories>
         <repository>
-            <id>imex-repo</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/imex-public</url>
+            <id>nexus-ebi-public</id>
+            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/public</url>
         </repository>
         <repository>
             <id>nexus-ebi-repo-old</id>

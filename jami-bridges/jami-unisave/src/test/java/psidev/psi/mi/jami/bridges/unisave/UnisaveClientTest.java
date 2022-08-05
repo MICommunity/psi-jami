@@ -32,8 +32,8 @@ public class UnisaveClientTest {
     @Test
     public void getVersions_2() throws Exception {
         UnisaveClient service = new UnisaveClient();
-        final List<Integer> versions = service.getVersions( "Q98753" );
-        Assert.assertNotNull( versions );
+        final List<Integer> versions = service.getVersions("Q98753");
+        Assert.assertNotNull(versions);
     }
 
 
@@ -41,14 +41,14 @@ public class UnisaveClientTest {
     public void getFastaSequence_1() throws Exception {
         UnisaveClient service = new UnisaveClient();
         String id = "Q98753";
-        service.getFastaSequence( id , 7);
+        service.getFastaSequence(id, 7);
     }
 
     @Test
     public void getFastaSequence_2() throws Exception {
         UnisaveClient service = new UnisaveClient();
         String id = "Q00001";
-        service.getFastaSequence( id , 7);
+        service.getFastaSequence(id, 7);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class UnisaveClientTest {
 
         String sequence = service.getLastSequenceAtTheDate("Q98753", new Date(System.currentTimeMillis()));
 
-        Assert.assertNotNull( sequence );
+        Assert.assertNotNull(sequence);
         Assert.assertEquals("VPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGE" +
                 "NDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARN" +
                 "KANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDAL" +
@@ -80,7 +80,7 @@ public class UnisaveClientTest {
         DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         String sequence = service.getLastSequenceAtTheDate("P51875", format.parse("2007/09/17"));
 
-        Assert.assertNotNull( sequence );
+        Assert.assertNotNull(sequence);
         Assert.assertEquals("MGCTMSQEERAALERSRMIEKNLKEDGMQAAKDIKLLLLGAGESGKSTIVKQMKIIHESGFTAEDYKQYKPVVYSNTVQSLVAILRAMSNLGVSFGSADREVDA" +
                 "KLVMDVVARMEDTEPFSEELLSSMKRLWGDAGVQDCFSRSNEYQLNDSAKYFLDDLERLGEAIYQPTEQDILRTRVKTTGIVEVHFTFKNLNFKLFDVGGQRSERKKWIHCFEDVTA" +
                 "IIFCVAMSEYDQVLHEDETTNRMHESLKLFDSICNNKWFTDTSIILFLNKKDLFEEKIKKSPLTICFPEYSGRQDYHEASAYIQAQFEAKNKSANKEIYCHMTCATDTTNIQFVFDA" +
@@ -90,7 +90,7 @@ public class UnisaveClientTest {
     }
 
     @Test
-    public void getSequenceVersion(){
+    public void getSequenceVersion() {
         String sequence = "MNKLAILAIIAMVLFSANAFRFQSRIRSNVEAKTETRDLCEQSALQCNEQGCHNFCSPEDKPGCLGMVWNPELVP";
         String uniprotAc = "P12350";
         UnisaveClient service = new UnisaveClient();
@@ -105,7 +105,7 @@ public class UnisaveClientTest {
     }
 
     @Test
-    public void getSequenceForSequenceVersion(){
+    public void getSequenceForSequenceVersion() {
         String sequence = "MNKLAILAIIAMVLFSANAFRFQSRIRSNVEAKTETRDLCEQSALQCNEQGCHNFCSPEDKPGCLGMVWNPELVP";
         String uniprotAc = "P12350";
         UnisaveClient service = new UnisaveClient();
@@ -120,7 +120,7 @@ public class UnisaveClientTest {
     }
 
     @Test
-    public void getSequenceVersion_sequence_not_found(){
+    public void getSequenceVersion_sequence_not_found() {
         String sequence = "MNKLAI";
         String uniprotAc = "P12350";
         UnisaveClient service = new UnisaveClient();
@@ -141,7 +141,7 @@ public class UnisaveClientTest {
         DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         String sequence = service.getLastSequenceAtTheDate("P51875", format.parse("2006/09/01"));
 
-        Assert.assertNotNull( sequence );
+        Assert.assertNotNull(sequence);
         Assert.assertEquals("GCTMSQEERAALERSRMIEKNLKEDGMQAAKDIKLLLLGAGESGKSTIVKQMKIIHESGF" +
                 "TAEDYKQYKPVVYSNTVQSLVAILRAMSNLGVSFGSADREVDAKLVMDVVARMEDTEPFS" +
                 "EELLSSMKRLWGDAGVQDCFSRSNEYQLNDSAKYFLDDLERLGEAIYQPTEQDILRTRVK" +
@@ -169,30 +169,30 @@ public class UnisaveClientTest {
         // example of a sequence that doesn't have any update through its history
 
         UnisaveClient service = new UnisaveClient();
-        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate( "P12345", "SSWWAHVEMGPPDPILGVTEAYKRDTNSKK" );
-        Assert.assertNotNull( updates );
-        Assert.assertEquals( 1, updates.size() );
+        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate("P12345", "SSWWAHVEMGPPDPILGVTEAYKRDTNSKK");
+        Assert.assertNotNull(updates);
+        Assert.assertEquals(1, updates.size());
         final SequenceVersion sv = updates.iterator().next();
-        Assert.assertNotNull( sv );
-        Assert.assertNotNull( sv.getSequence() );
-        Assert.assertEquals( "MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKMNLGVGAYRDDNGKPYVLPSVRKAEAQIAAKGLDKEYLPIGGLAEFCRASAELALGENSEVVKSGRFVTVQTISGTGALRIGASFLQRFFKFSRDVFLPKPSWGNHTPIFRDAGMQLQSYRYYDPKTCGFDFTGALEDISKIPEQSVLLLHACAHNPTGVDPRPEQWKEIATVVKKRNLFAFFDMAYQGFASGDGDKDAWAVRHFIEQGINVCLCQSYAKNMGLYGERVGAFTVICKDADEAKRVESQLKILIRPMYSNPPIHGARIASTILTSPDLRKQWLQEVKGMADRIIGMRTQLVSNLKKEGSTHSWQHITDQIGMFCFTGLKPEQVERLTKEFSIYMTKDGRISVAGVTSGNVGYLAHAIHQVTK", sv.getSequence().getSequence() );
-        Assert.assertEquals( "FT   TRANSIT         1..29\n" +
+        Assert.assertNotNull(sv);
+        Assert.assertNotNull(sv.getSequence());
+        Assert.assertEquals("MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKMNLGVGAYRDDNGKPYVLPSVRKAEAQIAAKGLDKEYLPIGGLAEFCRASAELALGENSEVVKSGRFVTVQTISGTGALRIGASFLQRFFKFSRDVFLPKPSWGNHTPIFRDAGMQLQSYRYYDPKTCGFDFTGALEDISKIPEQSVLLLHACAHNPTGVDPRPEQWKEIATVVKKRNLFAFFDMAYQGFASGDGDKDAWAVRHFIEQGINVCLCQSYAKNMGLYGERVGAFTVICKDADEAKRVESQLKILIRPMYSNPPIHGARIASTILTSPDLRKQWLQEVKGMADRIIGMRTQLVSNLKKEGSTHSWQHITDQIGMFCFTGLKPEQVERLTKEFSIYMTKDGRISVAGVTSGNVGYLAHAIHQVTK", sv.getSequence().getSequence());
+        Assert.assertEquals("FT   TRANSIT         1..29\n" +
                 "FT                   /note=\"Mitochondrion\"\n" +
                 "FT                   /evidence=\"ECO:0000269|PubMed:4030726\"\n" +
                 "FT   CHAIN           30..430\n" +
                 "FT                   /note=\"Aspartate aminotransferase, mitochondrial\"\n" +
                 "FT                   /id=\"PRO_0000123886\"\n" +
                 "FT   BINDING         65\n" +
-                "FT                   /note=\"Substrate; via amide nitrogen\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         162\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         215\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         407\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   MOD_RES         48\n" +
                 "FT                   /note=\"Phosphothreonine\"\n" +
@@ -304,8 +304,8 @@ public class UnisaveClientTest {
                 "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
                 "FT   MOD_RES         404\n" +
                 "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"", sv.getSequence().getHeader() );
-        Assert.assertEquals( 2, sv.getVersion() );
+                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"", sv.getSequence().getHeader());
+        Assert.assertEquals(2, sv.getVersion());
     }
 
     @Test
@@ -314,26 +314,26 @@ public class UnisaveClientTest {
         // example of a sequence that has multiple updates (1 and 2) through its history, we are searching with version 1
 
         UnisaveClient service = new UnisaveClient();
-        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate( "Q98753", "XXX" );
-        Assert.assertNotNull( updates );
-        Assert.assertEquals( 2, updates.size() );
+        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate("Q98753", "XXX");
+        Assert.assertNotNull(updates);
+        Assert.assertEquals(2, updates.size());
         SequenceVersion sv;
         final Iterator<SequenceVersion> updateIterator = updates.iterator();
 
         sv = updateIterator.next();
-        Assert.assertNotNull( sv );
-        Assert.assertNotNull( sv.getSequence() );
-        Assert.assertEquals( "VPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence() );
-        Assert.assertEquals( "FT   NON_TER         1\n" +
-                             "FT                   /evidence=\"ECO:0000313|EMBL:AAC55469.2\"", sv.getSequence().getHeader() );
-        Assert.assertEquals( 2, sv.getVersion() );
+        Assert.assertNotNull(sv);
+        Assert.assertNotNull(sv.getSequence());
+        Assert.assertEquals("VPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence());
+        Assert.assertEquals("FT   NON_TER         1\n" +
+                "FT                   /evidence=\"ECO:0000313|EMBL:AAC55469.2\"", sv.getSequence().getHeader());
+        Assert.assertEquals(2, sv.getVersion());
 
         sv = updateIterator.next();
-        Assert.assertNotNull( sv );
-        Assert.assertNotNull( sv.getSequence() );
-        Assert.assertEquals( "XPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence() );
-        Assert.assertEquals( null, sv.getSequence().getHeader() );
-        Assert.assertEquals( 1, sv.getVersion() );
+        Assert.assertNotNull(sv);
+        Assert.assertNotNull(sv.getSequence());
+        Assert.assertEquals("XPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence());
+        Assert.assertEquals(null, sv.getSequence().getHeader());
+        Assert.assertEquals(1, sv.getVersion());
 
     }
 
@@ -343,8 +343,8 @@ public class UnisaveClientTest {
         // example of a sequence that doesn't have any update through its history
 
         UnisaveClient service = new UnisaveClient();
-        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate( "P12345", "SSWWAHVEMGPPDPILGVTEAYKRDTNSKK" );
-        Assert.assertNotNull( updates );
-        Assert.assertEquals( 1, updates.size() );
+        final List<SequenceVersion> updates = service.getAvailableSequenceUpdate("P12345", "SSWWAHVEMGPPDPILGVTEAYKRDTNSKK");
+        Assert.assertNotNull(updates);
+        Assert.assertEquals(1, updates.size());
     }
 }

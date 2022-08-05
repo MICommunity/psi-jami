@@ -4,7 +4,7 @@
     <parent>
         <artifactId>jami-bridges</artifactId>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
-        <version>3.2.13-SNAPSHOT</version>
+        <version>3.3.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>jami-europubmedcentral</artifactId>
@@ -23,9 +23,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <groupId>com.helger.maven</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <id>wsimport-from-jdk</id>
