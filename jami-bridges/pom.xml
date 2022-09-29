@@ -4,12 +4,12 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.2.13</version>
+        <version>3.2.14-SNAPSHOT</version>
     </parent>
 
     <groupId>psidev.psi.mi.jami.bridges</groupId>
     <artifactId>jami-bridges</artifactId>
-    <version>3.2.13</version>
+    <version>3.2.14-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Bridges</name>
     <description>Bridges master module based on JAMI core interfaces</description>
@@ -44,6 +44,7 @@
                 <groupId>uk.ac.ebi.uniprot</groupId>
                 <artifactId>japi</artifactId>
                 <version>${uniprot.japi.version}</version>
+                <classifier>${uniprot.japi.classifier}</classifier>
             </dependency>
 
             <!--Add it to dependency management to have the same version

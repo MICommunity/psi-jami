@@ -183,16 +183,16 @@ public class UnisaveClientTest {
                 "FT                   /note=\"Aspartate aminotransferase, mitochondrial\"\n" +
                 "FT                   /id=\"PRO_0000123886\"\n" +
                 "FT   BINDING         65\n" +
-                "FT                   /note=\"Substrate; via amide nitrogen\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         162\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         215\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   BINDING         407\n" +
-                "FT                   /note=\"Substrate\"\n" +
+                "FT                   /ligand=\"substrate\"\n" +
                 "FT                   /evidence=\"ECO:0000250\"\n" +
                 "FT   MOD_RES         48\n" +
                 "FT                   /note=\"Phosphothreonine\"\n" +
