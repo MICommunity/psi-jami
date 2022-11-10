@@ -23,6 +23,7 @@
         <dependency>
             <groupId>uk.ac.ebi.uniprot</groupId>
             <artifactId>japi</artifactId>
+            <version>${uniprot.japi.version}</version>
         </dependency>
     </dependencies>
 </project>
