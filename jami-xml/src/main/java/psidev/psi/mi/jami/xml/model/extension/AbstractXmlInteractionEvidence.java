@@ -61,43 +61,53 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * <p>Constructor for AbstractXmlInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
-     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param type      a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlInteractionEvidence(String shortName, CvTerm type) {
         super(shortName, type);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @XmlElement(name = "names")
     public void setInteractionNamesContainer(NamesContainer value) {
         super.setInteractionNamesContainer(value);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @XmlElement(name = "xref")
     public void setInteractionXrefContainer(InteractionXrefContainer value) {
         super.setInteractionXrefContainer(value);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    @XmlElement(name="attributeList")
+    @XmlElement(name = "attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    @XmlElement(name="inferredInteractionList")
+    @XmlElement(name = "inferredInteractionList")
     public void setJAXBInferredInteractionWrapper(JAXBInferredInteractionWrapper jaxbInferredWrapper) {
         super.setJAXBInferredInteractionWrapper(jaxbInferredWrapper);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    @XmlElement(name="interactionType", type = XmlCvTerm.class)
+    @XmlElement(name = "interactionType", type = XmlCvTerm.class)
     public List<CvTerm> getInteractionTypes() {
         return super.getInteractionTypes();
     }
@@ -111,19 +121,21 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         String imexId = super.getImexId();
         // If the imexId is not defined in the attributes
         // of the interaction we try to retrieve from the xrefs
-        if (imexId == null){
+        if (imexId == null) {
             return getInteractionXrefContainer() != null ? getInteractionXrefContainer().getImexId() : null;
         }
         return imexId;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void assignImexId(String identifier) {
-        if (getInteractionXrefContainer() == null && identifier != null){
+        if (getInteractionXrefContainer() == null && identifier != null) {
             setInteractionXrefContainer(new InteractionXrefContainer());
         }
         getInteractionXrefContainer().assignImexId(identifier);
-        if (getImexId() == null){
+        if (getImexId() == null) {
             setJAXBImexId(identifier);
         }
     }
@@ -134,26 +146,26 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public Experiment getExperiment() {
-        if (this.jaxbExperimentWrapper == null || this.jaxbExperimentWrapper.experiments.isEmpty()){
+        if (this.jaxbExperimentWrapper == null || this.jaxbExperimentWrapper.experiments.isEmpty()) {
             return null;
         }
         return this.jaxbExperimentWrapper.experiments.iterator().next();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExperiment(Experiment experiment) {
-        if (this.jaxbExperimentWrapper == null && experiment != null){
+        if (this.jaxbExperimentWrapper == null && experiment != null) {
             this.jaxbExperimentWrapper = new JAXBExperimentWrapper();
             this.jaxbExperimentWrapper.experiments.add(experiment);
-        }
-        else if (experiment != null){
-            if (!this.jaxbExperimentWrapper.experiments.isEmpty()){
+        } else if (experiment != null) {
+            if (!this.jaxbExperimentWrapper.experiments.isEmpty()) {
                 this.jaxbExperimentWrapper.experiments.remove(0);
             }
             this.jaxbExperimentWrapper.experiments.add(0, experiment);
-        }
-        else{
-            if (!this.jaxbExperimentWrapper.experiments.isEmpty()){
+        } else {
+            if (!this.jaxbExperimentWrapper.experiments.isEmpty()) {
                 this.jaxbExperimentWrapper.experiments.remove(0);
             }
         }
@@ -165,20 +177,22 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * @return a {@link java.util.List} object.
      */
     public List<Experiment> getExperiments() {
-        if (jaxbExperimentWrapper == null){
+        if (jaxbExperimentWrapper == null) {
             jaxbExperimentWrapper = new JAXBExperimentWrapper();
         }
         return jaxbExperimentWrapper.experiments;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setExperimentAndAddInteractionEvidence(Experiment experiment) {
         Experiment current = getExperiment();
-        if (current != null){
+        if (current != null) {
             current.removeInteractionEvidence(this);
         }
 
-        if (experiment != null){
+        if (experiment != null) {
             experiment.addInteractionEvidence(this);
         }
     }
@@ -190,7 +204,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      */
     public Collection<VariableParameterValueSet> getVariableParameterValues() {
 
-        if (variableParameterValueSets == null){
+        if (variableParameterValueSets == null) {
             initialiseVariableParameterValueSets();
         }
         return this.variableParameterValueSets;
@@ -202,7 +216,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * @return a {@link java.util.Collection} object.
      */
     public Collection<Confidence> getConfidences() {
-        if (this.jaxbConfidenceWrapper == null){
+        if (this.jaxbConfidenceWrapper == null) {
             initialiseConfidenceWrapper();
         }
         return this.jaxbConfidenceWrapper.confidences;
@@ -214,16 +228,17 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * @return a {@link java.lang.String} object.
      */
     public String getAvailability() {
-        return this.availability!= null ? this.availability.getValue() : null;
+        return this.availability != null ? this.availability.getValue() : null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setAvailability(String availability) {
-        if (this.availability == null && availability != null){
+        if (this.availability == null && availability != null) {
             this.availability = new Availability();
             this.availability.setValue(availability);
-        }
-        else if (availability != null){
+        } else if (availability != null) {
             this.availability.setValue(availability);
         }
     }
@@ -237,7 +252,9 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.isNegative;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setNegative(boolean negative) {
         this.isNegative = negative;
     }
@@ -248,7 +265,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      * @return a {@link java.util.Collection} object.
      */
     public Collection<Parameter> getParameters() {
-        if (jaxbParameterWrapper == null){
+        if (jaxbParameterWrapper == null) {
             initialiseParameterWrapper();
         }
         return this.jaxbParameterWrapper.parameters;
@@ -263,7 +280,9 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return this.isInferred;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setInferred(boolean inferred) {
         this.isInferred = inferred;
     }
@@ -303,7 +322,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBParticipantWrapper} object.
      */
-    @XmlElement(name="participantList", required = true)
+    @XmlElement(name = "participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
         super.setParticipantWrapper(jaxbParticipantWrapper);
     }
@@ -313,7 +332,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
      */
-    @XmlElement(name="confidenceList")
+    @XmlElement(name = "confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
         this.jaxbConfidenceWrapper = wrapper;
     }
@@ -323,7 +342,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
      */
-    @XmlElement(name="parameterList")
+    @XmlElement(name = "parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
         this.jaxbParameterWrapper = wrapper;
     }
@@ -345,7 +364,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      */
     @XmlElement(name = "availabilityRef")
     public void setJAXBAvailabilityRef(Integer value) {
-        if (value != null){
+        if (value != null) {
             this.availability = new AvailabilityRef(value);
         }
     }
@@ -355,26 +374,26 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @param value allowed object is {@link JAXBExperimentWrapper}
      */
-    @XmlElement(name="experimentList")
+    @XmlElement(name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentWrapper value) {
         this.jaxbExperimentWrapper = value;
         // experiment list is set. Because we use back references, we need to post process.
-        if (this.jaxbExperimentWrapper != null){
+        if (this.jaxbExperimentWrapper != null) {
             // set the parent for future references
             this.jaxbExperimentWrapper.parent = this;
             // we don't have experiment refs, need to prepare each loaded experiment
             if (this.jaxbExperimentWrapper.jaxbExperimentRefList == null &&
                     this.jaxbExperimentWrapper.jaxbExperiments != null &&
-                    !this.jaxbExperimentWrapper.jaxbExperiments.isEmpty()){
-                for (Experiment exp : this.jaxbExperimentWrapper.jaxbExperiments){
+                    !this.jaxbExperimentWrapper.jaxbExperiments.isEmpty()) {
+                for (Experiment exp : this.jaxbExperimentWrapper.jaxbExperiments) {
                     jaxbExperimentWrapper.experiments.add(exp);
                     exp.getInteractionEvidences().add(this);
                 }
             }
 
-            if (this.jaxbExperimentWrapper.experiments.size() > 1 ){
+            if (this.jaxbExperimentWrapper.experiments.size() > 1) {
                 PsiXmlParserListener listener = XmlEntryContext.getInstance().getListener();
-                if (listener != null){
+                if (listener != null) {
                     listener.onSeveralExperimentsFound(this.jaxbExperimentWrapper.experiments, this.jaxbExperimentWrapper.getSourceLocator());
                 }
             }
@@ -390,13 +409,17 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         return isInferred();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AbstractAvailability getXmlAvailability() {
         return this.availability;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setXmlAvailability(AbstractAvailability availability) {
         this.availability = availability;
@@ -404,7 +427,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Sets the value of the modelled property.
      */
     public void setModelled(boolean value) {
@@ -424,16 +447,14 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the negative property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link java.lang.Boolean}
+     * @param value allowed object is
+     *              {@link java.lang.Boolean}
      */
     @XmlElement(name = "negative", defaultValue = "false", type = Boolean.class)
     public void setJAXBNegative(Boolean value) {
-        if (value == null){
+        if (value == null) {
             this.isNegative = false;
-        }
-        else{
+        } else {
             this.isNegative = value;
         }
     }
@@ -470,14 +491,14 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
      *
      * @return a {@link java.util.List} object.
      */
-    public List<ExtendedPsiXmlExperiment> getOriginalExperiments(){
+    public List<ExtendedPsiXmlExperiment> getOriginalExperiments() {
         return jaxbExperimentWrapper != null ? jaxbExperimentWrapper.jaxbExperiments : Collections.EMPTY_LIST;
     }
 
     /**
      * <p>initialiseConfidenceWrapper.</p>
      */
-    protected void initialiseConfidenceWrapper(){
+    protected void initialiseConfidenceWrapper() {
         this.jaxbConfidenceWrapper = new JAXBConfidenceWrapper();
     }
 
@@ -485,40 +506,47 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * <p>initialiseVariableParameterValueSets.</p>
      */
-    protected void initialiseVariableParameterValueSets(){
+    protected void initialiseVariableParameterValueSets() {
         this.variableParameterValueSets = new ArrayList<VariableParameterValueSet>();
     }
 
     /**
      * <p>initialiseParameterWrapper.</p>
      */
-    protected void initialiseParameterWrapper(){
+    protected void initialiseParameterWrapper() {
         this.jaxbParameterWrapper = new JAXBParameterWrapper();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processAddedParticipant(ParticipantEvidence participant) {
-        ((XmlParticipantEvidence)participant).setOriginalXmlInteraction(this);
+        ((XmlParticipantEvidence) participant).setOriginalXmlInteraction(this);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FileSourceLocator getSourceLocator() {
-        if (super.getSourceLocator() == null && locator != null){
+        if (super.getSourceLocator() == null && locator != null) {
             super.setSourceLocator(new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), getId()));
         }
         return super.getSourceLocator();
     }
 
-    private FileSourceLocator getInteractionLocator(){
+    private FileSourceLocator getInteractionLocator() {
         return getSourceLocator();
     }
-    private Locator getInteractionSaxLocator(){
+
+    private Locator getInteractionSaxLocator() {
         return sourceLocation();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void initialiseParticipantWrapper() {
         super.setParticipantWrapper(new JAXBParticipantWrapper());
@@ -527,21 +555,21 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     ////////////////////////////////////////////////////////////////////////// classes
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="participantEvidenceWrapper")
+    @XmlType(name = "participantEvidenceWrapper")
     public static class JAXBParticipantWrapper extends AbstractPsiXmlInteraction.JAXBParticipantWrapper<ParticipantEvidence> {
 
-        public JAXBParticipantWrapper(){
+        public JAXBParticipantWrapper() {
             super();
         }
 
-        @XmlElement(type=XmlParticipantEvidence.class, name="participant", required = true)
+        @XmlElement(type = XmlParticipantEvidence.class, name = "participant", required = true)
         public List<ParticipantEvidence> getJAXBParticipants() {
             return super.getJAXBParticipants();
         }
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="experimentalConfidenceWrapper")
+    @XmlType(name = "experimentalConfidenceWrapper")
     public static class JAXBConfidenceWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -549,51 +577,49 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         private Locator locator;
         private List<Confidence> confidences;
 
-        public JAXBConfidenceWrapper(){
+        public JAXBConfidenceWrapper() {
             initialiseConfidences();
         }
 
         @Override
         public Locator sourceLocation() {
-            return (Locator)getSourceLocator();
+            return (Locator) getSourceLocator();
         }
 
         public FileSourceLocator getSourceLocator() {
-            if (sourceLocator == null && locator != null){
+            if (sourceLocator == null && locator != null) {
                 sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
             }
             return sourceLocator;
         }
 
         public void setSourceLocator(FileSourceLocator sourceLocator) {
-            if (sourceLocator == null){
+            if (sourceLocator == null) {
                 this.sourceLocator = null;
-            }
-            else if (sourceLocator instanceof PsiXmlLocator){
-                this.sourceLocator = (PsiXmlLocator)sourceLocator;
-            }
-            else {
+            } else if (sourceLocator instanceof PsiXmlLocator) {
+                this.sourceLocator = (PsiXmlLocator) sourceLocator;
+            } else {
                 this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
             }
         }
 
-        @XmlElement(type=XmlConfidence.class, name="confidence", required = true)
+        @XmlElement(type = XmlConfidence.class, name = "confidence", required = true)
         public List<Confidence> getJAXBConfidences() {
             return this.confidences;
         }
 
-        protected void initialiseConfidences(){
+        protected void initialiseConfidences() {
             this.confidences = new ArrayList<Confidence>();
         }
 
         @Override
         public String toString() {
-            return "Interaction Confidence List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Interaction Confidence List: " + (getSourceLocator() != null ? getSourceLocator().toString() : super.toString());
         }
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="experimentalParameterWrapper")
+    @XmlType(name = "experimentalParameterWrapper")
     public static class JAXBParameterWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -601,59 +627,57 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         private Locator locator;
         private List<Parameter> parameters;
 
-        public JAXBParameterWrapper(){
+        public JAXBParameterWrapper() {
             initialiseParameters();
         }
 
         @Override
         public Locator sourceLocation() {
-            return (Locator)getSourceLocator();
+            return (Locator) getSourceLocator();
         }
 
         public FileSourceLocator getSourceLocator() {
-            if (sourceLocator == null && locator != null){
+            if (sourceLocator == null && locator != null) {
                 sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
             }
             return sourceLocator;
         }
 
         public void setSourceLocator(FileSourceLocator sourceLocator) {
-            if (sourceLocator == null){
+            if (sourceLocator == null) {
                 this.sourceLocator = null;
-            }
-            else if (sourceLocator instanceof PsiXmlLocator){
-                this.sourceLocator = (PsiXmlLocator)sourceLocator;
-            }
-            else {
+            } else if (sourceLocator instanceof PsiXmlLocator) {
+                this.sourceLocator = (PsiXmlLocator) sourceLocator;
+            } else {
                 this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
             }
         }
 
-        @XmlElement(type=XmlParameter.class, name="parameter", required = true)
+        @XmlElement(type = XmlParameter.class, name = "parameter", required = true)
         public List<Parameter> getJAXBParameters() {
             return this.parameters;
         }
 
-        protected void initialiseParameters(){
+        protected void initialiseParameters() {
             this.parameters = new ArrayList<Parameter>();
         }
 
         @Override
         public String toString() {
-            return "Interaction Parameter List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Interaction Parameter List: " + (getSourceLocator() != null ? getSourceLocator().toString() : super.toString());
         }
     }
 
-    private class AvailabilityRef extends AbstractAvailabilityRef{
+    private class AvailabilityRef extends AbstractAvailabilityRef {
         public AvailabilityRef(int ref) {
             super(ref);
         }
 
         public boolean resolve(PsiXmlIdCache parsedObjects) {
-            if (parsedObjects.containsAvailability(this.ref)){
+            if (parsedObjects.containsAvailability(this.ref)) {
                 AbstractAvailability av = parsedObjects.getAvailability(this.ref);
-                if (av != null){
-                   availability = av;
+                if (av != null) {
+                    availability = av;
                     return true;
                 }
             }
@@ -677,13 +701,13 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
         @Override
         public String toString() {
-            return "Interaction Availability Reference: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Interaction Availability Reference: " + (getSourceLocator() != null ? getSourceLocator().toString() : super.toString());
         }
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
     @XmlType(name = "experimentListType")
-    public static class JAXBExperimentWrapper implements Locatable, FileSourceContext{
+    public static class JAXBExperimentWrapper implements Locatable, FileSourceContext {
 
         private List<ExtendedPsiXmlExperiment> jaxbExperiments;
         private PsiXmlLocator sourceLocator;
@@ -694,21 +718,21 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         private JAXBExperimentRefList jaxbExperimentRefList;
         private ExtendedPsiXmlInteractionEvidence parent;
 
-        public JAXBExperimentWrapper(){
+        public JAXBExperimentWrapper() {
             this.experiments = new ArrayList<Experiment>();
         }
 
-        @XmlElement(name="experimentDescription", required = true, type = XmlExperiment.class)
+        @XmlElement(name = "experimentDescription", required = true, type = XmlExperiment.class)
         public List<ExtendedPsiXmlExperiment> getJAXBExperimentDescriptions() {
-            if (jaxbExperiments == null){
+            if (jaxbExperiments == null) {
                 jaxbExperiments = new ArrayList<ExtendedPsiXmlExperiment>();
             }
             return jaxbExperiments;
         }
 
-        @XmlElement(name="experimentRef", required = true, type = Integer.class)
+        @XmlElement(name = "experimentRef", required = true, type = Integer.class)
         public List<Integer> getJAXBExperimentRefs() {
-            if (this.jaxbExperimentRefList == null){
+            if (this.jaxbExperimentRefList == null) {
                 this.jaxbExperimentRefList = new JAXBExperimentRefList();
             }
             return jaxbExperimentRefList;
@@ -716,31 +740,29 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
         @Override
         public Locator sourceLocation() {
-            return (Locator)getSourceLocator();
+            return (Locator) getSourceLocator();
         }
 
         public FileSourceLocator getSourceLocator() {
-            if (sourceLocator == null && locator != null){
+            if (sourceLocator == null && locator != null) {
                 sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
             }
             return sourceLocator;
         }
 
         public void setSourceLocator(FileSourceLocator sourceLocator) {
-            if (sourceLocator == null){
+            if (sourceLocator == null) {
                 this.sourceLocator = null;
-            }
-            else if (sourceLocator instanceof PsiXmlLocator){
-                this.sourceLocator = (PsiXmlLocator)sourceLocator;
-            }
-            else {
+            } else if (sourceLocator instanceof PsiXmlLocator) {
+                this.sourceLocator = (PsiXmlLocator) sourceLocator;
+            } else {
                 this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
             }
         }
 
         @Override
         public String toString() {
-            return "Interaction Experiment List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+            return "Interaction Experiment List: " + (getSourceLocator() != null ? getSourceLocator().toString() : super.toString());
         }
 
         ////////////////////////////////////////////////// Inner classes of ExperimentList
@@ -748,16 +770,16 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
         /**
          * The experiment ref list used by JAXB to populate experiment refs
          */
-        private class JAXBExperimentRefList extends ArrayList<Integer>{
+        private class JAXBExperimentRefList extends ArrayList<Integer> {
 
-            public JAXBExperimentRefList(){
+            public JAXBExperimentRefList() {
                 super();
                 jaxbExperiments = new ArrayList<ExtendedPsiXmlExperiment>();
             }
 
             @Override
             public boolean add(Integer val) {
-                if (val == null){
+                if (val == null) {
                     return false;
                 }
                 return experiments.add(new ExperimentRef(val));
@@ -765,13 +787,13 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
             @Override
             public boolean addAll(Collection<? extends Integer> c) {
-                if (c == null){
+                if (c == null) {
                     return false;
                 }
                 boolean added = false;
 
-                for (Integer a : c){
-                    if (add(a)){
+                for (Integer a : c) {
+                    if (add(a)) {
                         added = true;
                     }
                 }
@@ -786,12 +808,12 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
             @Override
             public boolean addAll(int index, Collection<? extends Integer> c) {
                 int newIndex = index;
-                if (c == null){
+                if (c == null) {
                     return false;
                 }
                 boolean add = false;
-                for (Integer a : c){
-                    if (addToSpecificIndex(newIndex, a)){
+                for (Integer a : c) {
+                    if (addToSpecificIndex(newIndex, a)) {
                         newIndex++;
                         add = true;
                     }
@@ -800,7 +822,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
             }
 
             private boolean addToSpecificIndex(int index, Integer val) {
-                if (val == null){
+                if (val == null) {
                     return false;
                 }
                 experiments.add(index, new ExperimentRef(val));
@@ -809,33 +831,31 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
             @Override
             public String toString() {
-                return "Interaction Experiment Reference List: "+(getSourceLocator() != null ? getSourceLocator().toString():super.toString());
+                return "Interaction Experiment Reference List: " + (getSourceLocator() != null ? getSourceLocator().toString() : super.toString());
             }
 
             /**
              * Experiment ref for experimental interactor
              */
-            private class ExperimentRef extends AbstractExperimentRef{
+            private class ExperimentRef extends AbstractExperimentRef {
                 public ExperimentRef(int ref) {
                     super(ref);
                 }
 
                 public boolean resolve(PsiXmlIdCache parsedObjects) {
-                    if (parsedObjects.containsExperiment(this.ref)){
+                    if (parsedObjects.containsExperiment(this.ref)) {
                         Experiment obj = parsedObjects.getExperiment(this.ref);
-                        if (obj == null){
-                           return false;
-                        }
-                        else if (obj instanceof ExtendedPsiXmlExperiment){
-                            ExtendedPsiXmlExperiment exp = (ExtendedPsiXmlExperiment)obj;
+                        if (obj == null) {
+                            return false;
+                        } else if (obj instanceof ExtendedPsiXmlExperiment) {
+                            ExtendedPsiXmlExperiment exp = (ExtendedPsiXmlExperiment) obj;
                             experiments.remove(this);
                             experiments.add(exp);
                             jaxbExperiments.add(exp);
 
                             exp.getInteractionEvidences().add(parent);
                             return true;
-                        }
-                        else {
+                        } else {
                             experiments.remove(this);
                             experiments.add(obj);
 
@@ -848,7 +868,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
 
                 @Override
                 public String toString() {
-                    return "Interaction Experiment Reference: "+(ref+(getSourceLocator() != null ? ", "+getSourceLocator().toString():super.toString()));
+                    return "Interaction Experiment Reference: " + (ref + (getSourceLocator() != null ? ", " + getSourceLocator().toString() : super.toString()));
                 }
 
                 public FileSourceLocator getSourceLocator() {
