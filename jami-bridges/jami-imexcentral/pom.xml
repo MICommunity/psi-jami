@@ -58,17 +58,4 @@
         </dependency>
     </dependencies>
 
-    <!--Temporary solution to find all the imex central dependencies. -->
-    <!--TODO: deploy dependencies in ebi nexus-->
-    <repositories>
-<!--        <repository>
-            <id>imex-ucl</id>
-            <url>http://imex.mbi.ucla.edu/archiva/repository/imex-public/</url>
-        </repository>-->
-        <repository>
-            <id>nexus-ebi-repo-old-snapshots</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots/</url>
-        </repository>
-    </repositories>
-
 </project>
