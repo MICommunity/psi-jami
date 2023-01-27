@@ -4,7 +4,7 @@ import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
 import psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod;
 import psidev.psi.mi.jami.binary.expansion.ModelledInteractionSpokeExpansion;
 import psidev.psi.mi.jami.model.ModelledInteraction;
-import psidev.psi.mi.jami.xml.model.AbstractEntry;
+import psidev.psi.mi.jami.xml.model.AbstractBaseEntry;
 import psidev.psi.mi.jami.xml.model.AbstractEntrySet;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 
@@ -72,7 +72,7 @@ public class FullXmlModelledBinaryParser extends AbstractPsixmlBinaryParser<Mode
 
     /** {@inheritDoc} */
     @Override
-    public AbstractEntrySet<AbstractEntry<ModelledInteraction>> getEntrySet() throws PsiXmlParserException {
+    public AbstractEntrySet<AbstractBaseEntry<ModelledInteraction>> getEntrySet() throws PsiXmlParserException {
         return ((FullPsiXmlParser<ModelledInteraction>)getDelegateParser()).getEntrySet();
     }
 }

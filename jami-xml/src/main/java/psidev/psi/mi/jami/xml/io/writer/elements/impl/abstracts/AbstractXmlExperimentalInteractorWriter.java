@@ -4,8 +4,8 @@ import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -17,7 +17,7 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<ExperimentalInteractor> {
+public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<AbstractExperimentalInteractor> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
@@ -39,7 +39,7 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
     }
     /** {@inheritDoc} */
     @Override
-    public void write(ExperimentalInteractor object) throws MIIOException {
+    public void write(AbstractExperimentalInteractor object) throws MIIOException {
         try {
             // write start
             this.streamWriter.writeStartElement("experimentalInteractor");

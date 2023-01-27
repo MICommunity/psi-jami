@@ -11,7 +11,8 @@ import psidev.psi.mi.jami.model.impl.DefaultPublication;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.model.extension.XmlConfidence;
+import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlConfidence;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;

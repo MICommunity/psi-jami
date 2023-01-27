@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.model.ParticipantPool;
 import psidev.psi.mi.jami.model.Stoichiometry;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.*;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlParameterWriter;
+import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlParameterWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlFeatureEvidenceWriter;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 

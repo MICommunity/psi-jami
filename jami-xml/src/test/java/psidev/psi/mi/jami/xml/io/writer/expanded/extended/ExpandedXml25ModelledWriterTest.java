@@ -5,7 +5,8 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultPreassemby;
 import psidev.psi.mi.jami.utils.CvTermUtils;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledWriter;
+import psidev.psi.mi.jami.xml.model.extension.xml254.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1129,7 +1130,7 @@ public class ExpandedXml25ModelledWriterTest {
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter();
-        writer.write(new XmlModelledInteraction());
+        writer.write(new DefaultXmlModelledInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -1143,7 +1144,7 @@ public class ExpandedXml25ModelledWriterTest {
         StringWriter stringWriter = new StringWriter();
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
 
@@ -1160,10 +1161,10 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -1180,10 +1181,10 @@ public class ExpandedXml25ModelledWriterTest {
         StringWriter stringWriter = new StringWriter();
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -1201,10 +1202,10 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(participant.getInteractor());
         interaction2.addParticipant(participant2);
 
@@ -1222,10 +1223,10 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(participant.getInteractor());
         interaction2.addParticipant(participant2);
 
@@ -1241,11 +1242,11 @@ public class ExpandedXml25ModelledWriterTest {
     public void test_single_interaction_complexes() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(complex);
         interaction.addParticipant(participant);
 
@@ -1261,13 +1262,13 @@ public class ExpandedXml25ModelledWriterTest {
     public void test_single_interaction_complexes_as_Interactor() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(complex);
         interaction.addParticipant(participant);
 
@@ -1284,7 +1285,7 @@ public class ExpandedXml25ModelledWriterTest {
         StringWriter stringWriter = new StringWriter();
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
 
@@ -1303,10 +1304,10 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -1325,10 +1326,10 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -1346,10 +1347,10 @@ public class ExpandedXml25ModelledWriterTest {
         StringWriter stringWriter = new StringWriter();
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Source source = new XmlSource("intact");
+        Source source = new DefaultXmlSource("intact");
         interaction.setSource(source);
         try {
             DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
@@ -1372,20 +1373,20 @@ public class ExpandedXml25ModelledWriterTest {
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
 
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        ModelledInteraction interaction2 = new XmlModelledInteraction();
+        ModelledInteraction interaction2 = new DefaultXmlModelledInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
-        Source source = new XmlSource("mint");
+        Source source = new DefaultXmlSource("mint");
         interaction.setSource(source);
         interaction2.setSource(source);
-        ModelledInteraction interaction3 = new XmlModelledInteraction();
+        ModelledInteraction interaction3 = new DefaultXmlModelledInteraction();
         interaction3.addParticipant(participant);
-        ModelledInteraction interaction4 = new XmlModelledInteraction();
+        ModelledInteraction interaction4 = new DefaultXmlModelledInteraction();
         interaction4.addParticipant(participant2);
-        Source source2 = new XmlSource("intact");
+        Source source2 = new DefaultXmlSource("intact");
         interaction3.setSource(source2);
         interaction4.setSource(source2);
         try {
@@ -1408,11 +1409,11 @@ public class ExpandedXml25ModelledWriterTest {
     public void test_single_interaction_cooperative() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(stringWriter);
-        ModelledInteraction interaction = new XmlModelledInteraction();
+        ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(complex.getParticipants().iterator().next().getInteractor());
         interaction.addParticipant(participant);
         Preassembly assembly = new DefaultPreassemby(CvTermUtils.createMICvTerm("positive cooperative effect", "MI:1154"));

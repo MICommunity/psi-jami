@@ -16,7 +16,7 @@ public interface PsiXmlIdCache {
      * Register an availability with an id
      *
      * @param id a int.
-     * @param object a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
+     * @param object a {@link AbstractAvailability} object.
      */
     public void registerAvailability(int id, AbstractAvailability object);
 

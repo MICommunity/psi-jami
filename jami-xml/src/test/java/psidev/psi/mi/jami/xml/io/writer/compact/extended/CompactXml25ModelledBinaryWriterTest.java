@@ -10,11 +10,11 @@ import psidev.psi.mi.jami.model.Preassembly;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
-import psidev.psi.mi.jami.xml.model.extension.XmlComplex;
-import psidev.psi.mi.jami.xml.model.extension.XmlModelledParticipant;
-import psidev.psi.mi.jami.xml.model.extension.XmlProtein;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
-import psidev.psi.mi.jami.xml.model.extension.binary.xml25.XmlModelledBinaryInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlComplex;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledParticipant;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlProtein;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlSource;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlModelledBinaryInteraction;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1177,7 +1177,7 @@ public class CompactXml25ModelledBinaryWriterTest {
     public void test_single_interaction_complexes() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter(stringWriter);
@@ -1197,7 +1197,7 @@ public class CompactXml25ModelledBinaryWriterTest {
     public void test_single_interaction_complexes_as_Interactor() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter(stringWriter);
@@ -1287,7 +1287,7 @@ public class CompactXml25ModelledBinaryWriterTest {
         ModelledBinaryInteraction interaction = new XmlModelledBinaryInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Source source = new XmlSource("intact");
+        Source source = new DefaultXmlSource("intact");
         interaction.setSource(source);
         try {
             DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
@@ -1317,14 +1317,14 @@ public class CompactXml25ModelledBinaryWriterTest {
         ModelledBinaryInteraction interaction2 = new XmlModelledBinaryInteraction();
         ModelledParticipant participant2 = new XmlModelledParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
-        Source source = new XmlSource("mint");
+        Source source = new DefaultXmlSource("mint");
         interaction.setSource(source);
         interaction2.setSource(source);
         ModelledBinaryInteraction interaction3 = new XmlModelledBinaryInteraction();
         interaction3.addParticipant(participant);
         ModelledBinaryInteraction interaction4 = new XmlModelledBinaryInteraction();
         interaction4.addParticipant(participant2);
-        Source source2 = new XmlSource("intact");
+        Source source2 = new DefaultXmlSource("intact");
         interaction3.setSource(source2);
         interaction4.setSource(source2);
         try {
@@ -1347,7 +1347,7 @@ public class CompactXml25ModelledBinaryWriterTest {
     public void test_single_interaction_cooperative() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter(stringWriter);

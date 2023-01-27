@@ -8,13 +8,10 @@ import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.*;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAnnotationWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlChecksumWriter;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -623,9 +620,7 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
     /**
      * <p>initialiseDefaultExperiment.</p>
      */
-    protected void initialiseDefaultExperiment(){
-        this.defaultExperiment = new XmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null));
-    }
+    protected abstract void initialiseDefaultExperiment();
 
     /**
      * <p>writeAttribute.</p>

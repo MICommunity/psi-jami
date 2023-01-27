@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.xml.PsiXmlType;
 import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.*;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
 import psidev.psi.mi.jami.xml.model.extension.factory.options.PsiXmlWriterOptions;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -738,7 +739,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
                 attributeWriter, xrefWriter, openCvWriter);
 
         // host organism (expressed in) writer
-        PsiXmlElementWriter<Organism> hostOrganismWriter = this.subWritersFactory.createHostOrganismWriter(this.streamWriter, extended, getElementCache(), aliasWriter,
+        PsiXmlElementWriter<Organism> hostOrganismWriter = this.subWritersFactory.createHostOrganismWriter(this.streamWriter, version, extended, getElementCache(), aliasWriter,
                 attributeWriter, xrefWriter, openCvWriter);
 
         // checksum writer
@@ -1003,5 +1004,17 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.interactionsToWrite.clear();
         this.interactionsIterator = interactions;
         this.currentInteraction = null;
+    }
+
+    protected ExtendedPsiXmlSource newXmlSource(String shortName) {
+        switch (getVersion()) {
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlSource(shortName);
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlSource(shortName);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlSource(shortName);
+        }
     }
 }

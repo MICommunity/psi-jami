@@ -4,12 +4,11 @@
     <parent>
         <groupId>psidev.psi.mi.jami</groupId>
         <artifactId>psi-jami</artifactId>
-        <version>3.2.14-SNAPSHOT</version>
+        <version>3.3.0</version>
     </parent>
 
     <groupId>psidev.psi.mi.jami.bridges</groupId>
     <artifactId>jami-bridges</artifactId>
-    <version>3.2.14-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Bridges</name>
     <description>Bridges master module based on JAMI core interfaces</description>
@@ -44,7 +43,6 @@
                 <groupId>uk.ac.ebi.uniprot</groupId>
                 <artifactId>japi</artifactId>
                 <version>${uniprot.japi.version}</version>
-                <classifier>${uniprot.japi.classifier}</classifier>
             </dependency>
 
             <!--Add it to dependency management to have the same version
@@ -52,19 +50,19 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.9.8</version>
+                <version>2.13.3</version>
             </dependency>
 
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.9.8</version>
+                <version>2.13.3</version>
             </dependency>
 
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.9.8</version>
+                <version>2.13.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

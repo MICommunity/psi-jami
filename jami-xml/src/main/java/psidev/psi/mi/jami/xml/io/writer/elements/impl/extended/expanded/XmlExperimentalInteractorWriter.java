@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlInteractorWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlExperimentalInteractorWriter;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -18,7 +18,7 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInteractorWriter implements ExpandedPsiXmlElementWriter<ExperimentalInteractor> {
+public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInteractorWriter implements ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> {
     private PsiXmlElementWriter<Interactor> interactorWriter;
 
     /**

@@ -4,7 +4,6 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.ModelledInteraction;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlInteraction;
 
 import javax.xml.stream.XMLStreamException;
@@ -70,12 +69,6 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void initialiseInteractionTypeWriter() {
         super.setInteractionTypeWriter(new XmlCvTermWriter(getStreamWriter()));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

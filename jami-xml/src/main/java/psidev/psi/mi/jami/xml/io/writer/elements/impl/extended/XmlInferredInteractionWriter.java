@@ -3,9 +3,9 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended;
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteractionParticipant;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteractionParticipant;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -17,7 +17,7 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public class XmlInferredInteractionWriter implements PsiXmlElementWriter<InferredInteraction> {
+public class XmlInferredInteractionWriter implements PsiXmlElementWriter<AbstractInferredInteraction> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
@@ -40,13 +40,13 @@ public class XmlInferredInteractionWriter implements PsiXmlElementWriter<Inferre
 
     /** {@inheritDoc} */
     @Override
-    public void write(InferredInteraction object) throws MIIOException {
+    public void write(AbstractInferredInteraction object) throws MIIOException {
         try {
             if (object != null){
                 // write start
                 this.streamWriter.writeStartElement("inferredInteraction");
                 // write participants
-                for (InferredInteractionParticipant participant : object.getParticipants()){
+                for (AbstractInferredInteractionParticipant participant : object.getParticipants()){
                     if (participant != null){
                         this.streamWriter.writeStartElement("participant");
                         if (participant.getFeature() != null){

@@ -7,10 +7,9 @@ import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalCvTerm;
+import psidev.psi.mi.jami.xml.model.extension.xml254.ExperimentalCvTerm;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlExperiment;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.stream.XMLStreamException;
@@ -292,7 +291,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
 
         elementCache.clear();
 
@@ -305,7 +304,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_defaultPublication() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(null);
+        Experiment exp = new DefaultXmlExperiment(null);
 
         elementCache.clear();
 
@@ -318,7 +317,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_xref() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxxxx"));
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"),"12345"));
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"),"12346"));
@@ -333,7 +332,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_imex() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.getPublication().assignImexId("IM-1");
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxxxx"));
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"),"12345"));
@@ -349,7 +348,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_host() throws XMLStreamException, IOException {
-        ExtendedPsiXmlExperiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        ExtendedPsiXmlExperiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.setHostOrganism(new DefaultOrganism(9606, "human"));
         exp.getHostOrganisms().add(new DefaultOrganism(-1, "in vitro"));
         elementCache.clear();
@@ -363,7 +362,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_confidence() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("intact-miscore"),"0.8"));
         elementCache.clear();
 
@@ -376,7 +375,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_attributes() throws XMLStreamException, IOException, ParseException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         Publication pub = exp.getPublication();
         pub.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         exp.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
@@ -398,7 +397,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_pub_attributes() throws XMLStreamException, IOException, ParseException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         Publication pub = exp.getPublication();
         pub.setTitle("test title");
         pub.setJournal("test journal");
@@ -420,7 +419,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_already_registered() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         this.elementCache.clear();
         this.elementCache.extractIdForExperiment(new DefaultExperiment(new DefaultPublication("P1234")));
         this.elementCache.extractIdForExperiment(exp);
@@ -434,7 +433,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_names() throws XMLStreamException, IOException {
-        NamedExperiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        NamedExperiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.setShortName("author-2013-1");
         exp.setFullName("experiment description");
         exp.getAliases().add(new DefaultAlias(new DefaultCvTerm("synonym"), "experiment synonym"));
@@ -451,7 +450,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_participantIdentificationMethod() throws XMLStreamException, IOException {
-        ExtendedPsiXmlExperiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        ExtendedPsiXmlExperiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.setParticipantIdentificationMethod(new ExperimentalCvTerm(exp.getInteractionDetectionMethod().getShortName(), exp.getInteractionDetectionMethod().getMIIdentifier()));
         elementCache.clear();
 
@@ -464,7 +463,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_featureDetectionMethod() throws XMLStreamException, IOException {
-        ExtendedPsiXmlExperiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        ExtendedPsiXmlExperiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.setFeatureDetectionMethod(exp.getInteractionDetectionMethod());
         elementCache.clear();
 

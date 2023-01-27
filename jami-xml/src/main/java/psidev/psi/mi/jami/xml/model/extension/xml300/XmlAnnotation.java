@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.xml.model.extension.xml300;
 
 import psidev.psi.mi.jami.model.CvTerm;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlAnnotation;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version $Id$
  * @since <pre>18/07/13</pre>
  */
-@XmlRootElement(name = "attribute", namespace = "http://psi.hupo.org/mi/mif300")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif300", name = "attribute")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlAnnotation extends AbstractXmlAnnotation {
 

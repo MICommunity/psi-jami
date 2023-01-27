@@ -9,10 +9,10 @@ import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.xml300.ExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
-import psidev.psi.mi.jami.xml.model.extension.XmlFeatureEvidence;
-import psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlFeatureEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantEvidence;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;

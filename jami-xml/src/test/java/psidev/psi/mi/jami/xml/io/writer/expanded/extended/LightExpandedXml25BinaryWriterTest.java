@@ -5,11 +5,12 @@ import org.junit.Test;
 import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.Participant;
-import psidev.psi.mi.jami.xml.model.extension.XmlComplex;
-import psidev.psi.mi.jami.xml.model.extension.XmlModelledParticipant;
-import psidev.psi.mi.jami.xml.model.extension.XmlParticipant;
-import psidev.psi.mi.jami.xml.model.extension.XmlProtein;
-import psidev.psi.mi.jami.xml.model.extension.binary.xml25.XmlBinaryInteraction;
+import psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlBinaryWriter;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlComplex;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledParticipant;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipant;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlProtein;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlBinaryInteraction;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.StringWriter;
@@ -860,7 +861,7 @@ public class LightExpandedXml25BinaryWriterTest {
     public void test_single_interaction_complexes() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter(stringWriter);
@@ -880,7 +881,7 @@ public class LightExpandedXml25BinaryWriterTest {
     public void test_single_interaction_complexes_as_Interactor() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter(stringWriter);

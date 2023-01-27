@@ -5,7 +5,8 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlWriter;
+import psidev.psi.mi.jami.xml.model.extension.xml254.*;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.StringWriter;
@@ -744,7 +745,7 @@ public class LightExpandedXml25WriterTest {
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter();
-        writer.write(new XmlBasicInteraction());
+        writer.write(new DefaultXmlBasicInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -758,7 +759,7 @@ public class LightExpandedXml25WriterTest {
         StringWriter stringWriter = new StringWriter();
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
 
@@ -775,10 +776,10 @@ public class LightExpandedXml25WriterTest {
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -795,10 +796,10 @@ public class LightExpandedXml25WriterTest {
         StringWriter stringWriter = new StringWriter();
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -816,10 +817,10 @@ public class LightExpandedXml25WriterTest {
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(participant.getInteractor());
         interaction2.addParticipant(participant2);
 
@@ -837,10 +838,10 @@ public class LightExpandedXml25WriterTest {
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(participant.getInteractor());
         interaction2.addParticipant(participant2);
 
@@ -856,11 +857,11 @@ public class LightExpandedXml25WriterTest {
     public void test_single_interaction_complexes() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(complex);
         interaction.addParticipant(participant);
 
@@ -876,13 +877,13 @@ public class LightExpandedXml25WriterTest {
     public void test_single_interaction_complexes_as_Interactor() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        Complex complex = new XmlComplex("test complex");
+        Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(complex);
         interaction.addParticipant(participant);
 
@@ -899,7 +900,7 @@ public class LightExpandedXml25WriterTest {
         StringWriter stringWriter = new StringWriter();
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
 
@@ -918,10 +919,10 @@ public class LightExpandedXml25WriterTest {
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 
@@ -940,10 +941,10 @@ public class LightExpandedXml25WriterTest {
 
         LightExpandedXmlWriter writer = new LightExpandedXmlWriter(stringWriter);
 
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new XmlParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
-        Interaction interaction2 = new XmlBasicInteraction();
+        Interaction interaction2 = new DefaultXmlBasicInteraction();
         Participant participant2 = new XmlParticipant(new XmlProtein("protein test2"));
         interaction2.addParticipant(participant2);
 

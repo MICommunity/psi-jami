@@ -135,7 +135,7 @@ public abstract class AbstractPsixmlBinaryParser<T extends Interaction, B extend
                 binaryFactory = new psidev.psi.mi.jami.xml.model.extension.factory.xml30.XmlBinaryInteractionFactory();
                 break;
             default:
-                binaryFactory = new XmlBinaryInteractionFactory();
+                binaryFactory = new XmlBinaryInteractionFactory(this.delegateParser.getVersion());
                 break;
         }
         return binaryFactory;

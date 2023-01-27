@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 import psidev.psi.mi.jami.xml.io.parser.FullPsiXmlParser;
-import psidev.psi.mi.jami.xml.model.AbstractEntry;
+import psidev.psi.mi.jami.xml.model.AbstractBaseEntry;
 import psidev.psi.mi.jami.xml.model.AbstractEntrySet;
 
 import java.io.File;
@@ -129,8 +129,8 @@ public abstract class AbstractPsiXmlSource<T extends Interaction> extends Abstra
 
     private void initialiseLoadedInteractions() throws PsiXmlParserException {
         this.loadedInteractions = new ArrayList<T>();
-        AbstractEntrySet<AbstractEntry<T>> entrySet = ((FullPsiXmlParser<T>)getParser()).getEntrySet();
-        for (AbstractEntry<T> entry : entrySet.getEntries()){
+        AbstractEntrySet<AbstractBaseEntry<T>> entrySet = ((FullPsiXmlParser<T>)getParser()).getEntrySet();
+        for (AbstractBaseEntry<T> entry : entrySet.getEntries()){
             this.loadedInteractions.addAll(entry.getInteractions());
         }
     }

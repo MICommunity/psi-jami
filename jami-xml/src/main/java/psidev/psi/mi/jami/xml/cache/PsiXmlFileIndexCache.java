@@ -9,8 +9,16 @@ import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.io.parser.JaxbUnmarshallerFactory;
 import psidev.psi.mi.jami.xml.io.parser.NonCloseableInputStreamWrapper;
 import psidev.psi.mi.jami.xml.io.parser.XmlReaderWithDefaultNamespace;
-import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.extension.xml300.XmlVariableParameterValue;
+import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
+import psidev.psi.mi.jami.xml.model.extension.AbstractBaseXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractXmlVariableParameterValue;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlEntity;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlInteraction;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.JAXBException;
@@ -47,6 +55,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
     private File file;
     private Unmarshaller unmarshaller;
     private RandomAccessFile randomAccessFile;
+    private PsiXmlVersion version;
     private String namespaceUri;
     private XMLInputFactory xmlif;
     private String encoding;
@@ -79,7 +88,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
      * <p>Constructor for PsiXmlFileIndexCache.</p>
      *
      * @param file a {@link java.io.File} object.
-     * @param unmarshaller a {@link javax.xml.bind.Unmarshaller} object.
+     * @param unmarshaller a {@link  javax.xml.bind.Unmarshaller} object.
      * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @throws java.io.IOException if any.
      */
@@ -116,6 +125,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         this.complexParticipantWeakMap = new WeakHashMap<Integer, ModelledEntity>();
         this.complexFeatureWeakMap = new WeakHashMap<Integer, ModelledFeature>();
 
+        this.version = version;
         switch (version){
             case v2_5_4:
                 this.namespaceUri = PsiXmlUtils.Xml254_NAMESPACE_URI;
@@ -248,7 +258,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
         else {
             try {
-                AbstractXmlInteractor interactor = loadFromFile(this.interactorPositions.get(location));
+                AbstractBaseXmlInteractor interactor = loadFromFile(this.interactorPositions.get(location));
                 return XmlEntryContext.getInstance().getInteractorFactory().createInteractorFromXmlInteractorInstance(interactor);
             } catch (IOException e) {
                 logger.log(Level.SEVERE, "cannot reload interactor "+id, e);
@@ -447,15 +457,39 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         }
         // convert interaction evidence in a complex
         else if (originalInteraction instanceof ExtendedPsiXmlInteractionEvidence){
-            return new XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+            switch (version){
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+            }
         }
         // wrap modelled interaction
         else if (originalInteraction instanceof ExtendedPsiXmlModelledInteraction){
-            return new XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+            switch (version){
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+            }
         }
         // wrap basic interaction
         else if (originalInteraction instanceof ExtendedPsiXmlInteraction){
-            return new XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+            switch (version){
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+            }
         }
         else{
             return null;
@@ -554,15 +588,39 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
                 }
                 // convert interaction evidence in a complex
                 else if (originalInteraction instanceof ExtendedPsiXmlInteractionEvidence){
-                    return new XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                    switch (version){
+                        case v2_5_3:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                        case v3_0_0:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                        case v2_5_4:
+                        default:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)originalInteraction);
+                    }
                 }
                 // wrap modelled interaction
                 else if (originalInteraction instanceof ExtendedPsiXmlModelledInteraction){
-                    return new XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                    switch (version){
+                        case v2_5_3:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                        case v3_0_0:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                        case v2_5_4:
+                        default:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)originalInteraction);
+                    }
                 }
                 // wrap basic interaction
                 else if (originalInteraction instanceof ExtendedPsiXmlInteraction){
-                    return new XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                    switch (version){
+                        case v2_5_3:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                        case v3_0_0:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                        case v2_5_4:
+                        default:
+                            return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)originalInteraction);
+                    }
                 }
                 else{
                     logger.log(Level.SEVERE, "cannot reload complex "+id);
@@ -609,7 +667,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
                 else{
                     for (VariableParameter p : originalExperiment.getVariableParameters()){
                         for (VariableParameterValue value : p.getVariableValues()){
-                            XmlVariableParameterValue xmlValue = (XmlVariableParameterValue)value;
+                            AbstractXmlVariableParameterValue xmlValue = (AbstractXmlVariableParameterValue)value;
                             if (xmlValue.getId() == id){
                                 return xmlValue;
                             }

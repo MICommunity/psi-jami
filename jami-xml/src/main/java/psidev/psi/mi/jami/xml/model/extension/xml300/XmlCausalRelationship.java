@@ -10,10 +10,7 @@ import psidev.psi.mi.jami.model.Entity;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
-import psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm;
-import psidev.psi.mi.jami.xml.model.extension.XmlParticipant;
-import psidev.psi.mi.jami.xml.model.reference.AbstractParticipantRef;
+import psidev.psi.mi.jami.xml.model.reference.xml300.AbstractParticipantRef;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -141,7 +138,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     * @param sourceLocator a {@link PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -152,7 +149,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
      *
      * @param ref a int.
      */
-    @XmlElement(name = "sourceParticipantRef", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "sourceParticipantRef", required = true)
     public void setJAXBSourceParticipant(int ref){
         this.source = new SourceParticipantRef(ref);
     }
@@ -160,9 +157,9 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
     /**
      * <p>setJAXBRelationType.</p>
      *
-     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.XmlOpenCvTerm} object.
+     * @param value a {@link XmlOpenCvTerm} object.
      */
-    @XmlElement(name = "causalityStatement", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "causalityStatement", required = true)
     public void setJAXBRelationType(XmlOpenCvTerm value){
         this.relationType = value;
     }
@@ -172,7 +169,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
      *
      * @param ref a int.
      */
-    @XmlElement(name = "targetParticipantRef", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "targetParticipantRef", required = true)
     public void setJAXBTargetParticipant(int ref){
         this.target = new TargetParticipantRef(ref);
     }

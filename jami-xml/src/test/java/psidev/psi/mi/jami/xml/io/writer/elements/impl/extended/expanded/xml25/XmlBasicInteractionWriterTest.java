@@ -11,9 +11,9 @@ import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBasicInteractionWriter;
+import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicInteractionWriter;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
-import psidev.psi.mi.jami.xml.model.extension.XmlBasicInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlBasicInteraction;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -824,7 +824,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         elementCache.clear();
@@ -839,7 +839,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
         Participant participant = new DefaultParticipant(complex);
@@ -856,7 +856,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex_as_interactor() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
         Participant participant = new DefaultParticipant(complex);
@@ -874,7 +874,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex_no_participants() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         Participant participant = new DefaultParticipant(complex);
         interaction.addParticipant(participant);
@@ -890,7 +890,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_shortName() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction("interaction test");
+        Interaction interaction = new DefaultXmlBasicInteraction("interaction test");
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         elementCache.clear();
@@ -905,7 +905,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_fullName() throws XMLStreamException, IOException, IllegalRangeException {
-        NamedInteraction interaction = new XmlBasicInteraction();
+        NamedInteraction interaction = new DefaultXmlBasicInteraction();
         interaction.setFullName("interaction test");
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -921,7 +921,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_alias() throws XMLStreamException, IOException, IllegalRangeException {
-        NamedInteraction interaction = new XmlBasicInteraction();
+        NamedInteraction interaction = new DefaultXmlBasicInteraction();
         interaction.getAliases().add(new DefaultAlias(new DefaultCvTerm("synonym"), "interaction synonym"));
         interaction.getAliases().add(new DefaultAlias("test"));
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
@@ -938,7 +938,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_identifier() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         interaction.getIdentifiers().add(new DefaultXref(new DefaultCvTerm("intact"), "EBI-xxx"));
@@ -955,7 +955,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_xref() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"), "xxxx2"));
@@ -973,7 +973,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
     @Test
     @Ignore
     public void test_write_interaction_inferred() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         Participant participant2 = new DefaultParticipant(new DefaultProtein("protein test2"));
         Participant participant3 = new DefaultParticipant(new DefaultProtein("protein test3"));
@@ -1015,7 +1015,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_type() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         interaction.setInteractionType(CvTermUtils.createMICvTerm("association", "MI:0914"));
@@ -1031,7 +1031,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_attributes() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         interaction.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test2")));
@@ -1048,7 +1048,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_registered() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         elementCache.clear();
@@ -1065,7 +1065,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_intraMolecular() throws XMLStreamException, IOException, IllegalRangeException {
-        ExtendedPsiXmlInteraction interaction = new XmlBasicInteraction();
+        ExtendedPsiXmlInteraction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
         interaction.setIntraMolecular(true);

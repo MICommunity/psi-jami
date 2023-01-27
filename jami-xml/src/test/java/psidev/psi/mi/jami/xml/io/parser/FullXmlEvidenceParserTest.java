@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
@@ -188,7 +188,7 @@ public class FullXmlEvidenceParserTest {
         Assert.assertNotSame(p1.getIdentificationMethods().iterator().next(), exp.getParticipantIdentificationMethod());
         // experimental interactor
         Assert.assertEquals(1, ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().size());
-        ExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
+        AbstractExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
         Assert.assertNotNull(expInteractor.getInteractor());
         Assert.assertTrue(expInteractor.getExperiments().isEmpty());
         Assert.assertEquals("dbf4_yeast", expInteractor.getInteractor().getShortName());
@@ -401,7 +401,7 @@ public class FullXmlEvidenceParserTest {
         Assert.assertNotSame(p1.getIdentificationMethods().iterator().next(), exp.getParticipantIdentificationMethod());
         // experimental interactor
         Assert.assertEquals(1, ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().size());
-        ExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
+        AbstractExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
         Assert.assertNotNull(expInteractor.getInteractor());
         Assert.assertTrue(expInteractor.getExperiments().isEmpty());
         Assert.assertEquals("dbf4_yeast", expInteractor.getInteractor().getShortName());

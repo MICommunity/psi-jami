@@ -1,5 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30;
 
+import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlSourceWriter;
+
 import javax.xml.stream.XMLStreamWriter;
 
 /**
@@ -9,7 +11,7 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>11/11/13</pre>
  */
-public class XmlSourceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlSourceWriter {
+public class XmlSourceWriter extends AbstractXmlSourceWriter {
 
     /**
      * <p>Constructor for XmlSourceWriter.</p>

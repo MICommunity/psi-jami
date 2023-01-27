@@ -20,13 +20,13 @@ public interface ExtendedPsiXmlInteractionEvidence extends ExtendedPsiXmlInterac
     /**
      * <p>getXmlAvailability.</p>
      *
-     * @return a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
+     * @return a {@link AbstractAvailability} object.
      */
     public AbstractAvailability getXmlAvailability();
     /**
      * <p>setXmlAvailability.</p>
      *
-     * @param availability a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
+     * @param availability a {@link AbstractAvailability} object.
      */
     public void setXmlAvailability(AbstractAvailability availability);
     /**

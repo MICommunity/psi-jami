@@ -12,7 +12,7 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>13/11/13</pre>
  */
-public class XmlRangeWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlRangeWriter {
+public class XmlRangeWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlRangeWriter {
 
     /**
      * <p>Constructor for XmlRangeWriter.</p>

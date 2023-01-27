@@ -5,9 +5,9 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlAllostery;
-import psidev.psi.mi.jami.xml.model.extension.XmlCooperativityEvidence;
-import psidev.psi.mi.jami.xml.model.extension.XmlPreAssembly;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlCooperativityEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlPreAssembly;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
 
 import javax.xml.stream.XMLStreamException;

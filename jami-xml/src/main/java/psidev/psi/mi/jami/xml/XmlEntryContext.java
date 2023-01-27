@@ -6,8 +6,8 @@ import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
 import psidev.psi.mi.jami.xml.model.Entry;
 import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteractionParticipant;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteractionParticipant;
 import psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory;
 import psidev.psi.mi.jami.xml.model.extension.xml300.BindingFeatures;
 import psidev.psi.mi.jami.xml.model.reference.XmlIdReference;
@@ -29,7 +29,7 @@ public class XmlEntryContext {
 
     private PsiXmlIdCache elementCache;
     private Collection<XmlIdReference> references;
-    private Collection<InferredInteraction> inferredInteractions;
+    private Collection<AbstractInferredInteraction> inferredInteractions;
     private Collection<BindingFeatures> bindingFeatures;
     private Entry currentEntry;
     private PsiXmlParserListener listener;
@@ -106,7 +106,7 @@ public class XmlEntryContext {
     /**
      * <p>Getter for the field <code>currentEntry</code>.</p>
      *
-     * @return a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     * @return a {@link Entry} object.
      */
     public Entry getCurrentEntry() {
         return currentEntry;
@@ -115,7 +115,7 @@ public class XmlEntryContext {
     /**
      * <p>setCurrentSource.</p>
      *
-     * @param entry a {@link psidev.psi.mi.jami.xml.model.Entry} object.
+     * @param entry a {@link Entry} object.
      */
     public void setCurrentSource(Entry entry){
         this.currentEntry = entry;
@@ -152,7 +152,7 @@ public class XmlEntryContext {
      * <p>registerAvailability.</p>
      *
      * @param id a int.
-     * @param o a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
+     * @param o a {@link AbstractAvailability} object.
      */
     public void registerAvailability(int id, AbstractAvailability o){
         if (this.elementCache != null){
@@ -271,9 +271,9 @@ public class XmlEntryContext {
     /**
      * <p>registerInferredInteraction.</p>
      *
-     * @param infer a {@link psidev.psi.mi.jami.xml.model.extension.InferredInteraction} object.
+     * @param infer a {@link AbstractInferredInteraction} object.
      */
-    public void registerInferredInteraction(InferredInteraction infer){
+    public void registerInferredInteraction(AbstractInferredInteraction infer){
         if (this.inferredInteractions != null){
             this.inferredInteractions.add(infer);
         }
@@ -323,8 +323,8 @@ public class XmlEntryContext {
      * <p>initialiseInferredInteractionList.</p>
      */
     public void initialiseInferredInteractionList(){
-        this.inferredInteractions = new ArrayList<InferredInteraction>();
-        this.bindingFeatures = new ArrayList<BindingFeatures>();
+        this.inferredInteractions = new ArrayList<>();
+        this.bindingFeatures = new ArrayList<>();
     }
 
     /**
@@ -360,21 +360,21 @@ public class XmlEntryContext {
      */
     public void resolveInferredInteractionRefs(){
         if (inferredInteractions != null){
-            Iterator<InferredInteraction> inferredIterator = inferredInteractions.iterator();
+            Iterator<AbstractInferredInteraction> inferredIterator = inferredInteractions.iterator();
             while(inferredIterator.hasNext()){
-                InferredInteraction inferred = inferredIterator.next();
+                AbstractInferredInteraction inferred = inferredIterator.next();
                 boolean toRemove = true;
 
                 if (!inferred.getParticipants().isEmpty()){
-                    Iterator<InferredInteractionParticipant> partIterator = inferred.getParticipants().iterator();
-                    List<InferredInteractionParticipant> partIterator2 = new ArrayList<InferredInteractionParticipant>(inferred.getParticipants());
+                    Iterator<? extends AbstractInferredInteractionParticipant> partIterator = inferred.getParticipants().iterator();
+                    List<AbstractInferredInteractionParticipant> partIterator2 = new ArrayList<>(inferred.getParticipants());
                     int currentIndex = 0;
 
                     while (partIterator.hasNext()){
                         currentIndex++;
-                        InferredInteractionParticipant p1 = partIterator.next();
+                        AbstractInferredInteractionParticipant p1 = partIterator.next();
                         for (int i = currentIndex; i < partIterator2.size();i++){
-                            InferredInteractionParticipant p2 = partIterator2.get(i);
+                            AbstractInferredInteractionParticipant p2 = partIterator2.get(i);
 
                             if (p1.getFeature() != null && p2.getFeature() != null
                                     && !(p1.getFeature() instanceof XmlIdReference)

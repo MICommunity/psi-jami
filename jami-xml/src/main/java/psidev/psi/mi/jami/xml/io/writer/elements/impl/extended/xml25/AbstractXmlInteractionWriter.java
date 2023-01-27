@@ -8,8 +8,8 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAliasWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInferredInteractionWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlInteraction;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -29,7 +29,7 @@ public abstract class AbstractXmlInteractionWriter<I extends Interaction>
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml25.AbstractXmlInteractionWriter<I>
         implements PsiXmlExtendedInteractionWriter<I>{
 
-    private PsiXmlElementWriter<InferredInteraction> inferredInteractionWriter;
+    private PsiXmlElementWriter<AbstractInferredInteraction> inferredInteractionWriter;
     private PsiXmlElementWriter<Alias> aliasWriter;
     private List<Experiment> defaultExperiments;
 
@@ -63,7 +63,7 @@ public abstract class AbstractXmlInteractionWriter<I extends Interaction>
      *
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      */
-    public PsiXmlElementWriter<InferredInteraction> getXmlInferredInteractionWriter() {
+    public PsiXmlElementWriter<AbstractInferredInteraction> getXmlInferredInteractionWriter() {
         if (this.inferredInteractionWriter == null){
             this.inferredInteractionWriter = new XmlInferredInteractionWriter(getStreamWriter(), getObjectIndex());
         }
@@ -75,7 +75,7 @@ public abstract class AbstractXmlInteractionWriter<I extends Interaction>
      *
      * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      */
-    public void setXmlInferredInteractionWriter(PsiXmlElementWriter<InferredInteraction> inferredInteractionWriter) {
+    public void setXmlInferredInteractionWriter(PsiXmlElementWriter<AbstractInferredInteraction> inferredInteractionWriter) {
         this.inferredInteractionWriter = inferredInteractionWriter;
     }
 
@@ -174,7 +174,7 @@ public abstract class AbstractXmlInteractionWriter<I extends Interaction>
             if (!xmlInteraction.getInferredInteractions().isEmpty()){
                 getStreamWriter().writeStartElement("inferredInteractionList");
                 for (Object inferred : xmlInteraction.getInferredInteractions()){
-                    getXmlInferredInteractionWriter().write((InferredInteraction)inferred);
+                    getXmlInferredInteractionWriter().write((AbstractInferredInteraction)inferred);
                 }
                 getStreamWriter().writeEndElement();
             }

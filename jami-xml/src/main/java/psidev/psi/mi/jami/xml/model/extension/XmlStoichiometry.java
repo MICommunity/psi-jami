@@ -1,10 +1,12 @@
 package psidev.psi.mi.jami.xml.model.extension;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.impl.DefaultStoichiometry;
-
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Xml implementation of stoichiometry
@@ -13,10 +15,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @version $Id$
  * @since <pre>02/08/13</pre>
  */
-@XmlTransient
+@XmlAccessorType(XmlAccessType.NONE)
 public class XmlStoichiometry extends DefaultStoichiometry implements FileSourceContext {
 
     private PsiXmlLocator sourceLocator;
+
+    public XmlStoichiometry() {
+    }
 
     /**
      * <p>Constructor for XmlStoichiometry.</p>
@@ -24,7 +29,7 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
      * @param value a int.
      */
     public XmlStoichiometry(int value) {
-        super(value);
+        super(value, value);
     }
 
     /**
@@ -37,10 +42,26 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
         super(minValue, maxValue);
     }
 
+    @XmlAttribute(name = "value")
+    public void setValue(int value) {
+        setMinValue(value);
+        setMaxValue(value);
+    }
+
+    @XmlAttribute(name = "minValue")
+    public void setMinValue(int value) {
+        super.setMinValue(value);
+    }
+
+    @XmlAttribute(name = "maxValue")
+    public void setMaxValue(int value) {
+        super.setMaxValue(value);
+    }
+
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     * @return a {@link FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -62,7 +83,7 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     * @param sourceLocator a {@link PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

@@ -5,10 +5,10 @@ import org.xml.sax.Locator;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
-import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.extension.XmlInteractor;
 
 import javax.xml.bind.annotation.*;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
+
 import java.util.List;
 
 /**
@@ -55,14 +55,14 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
 
     /** {@inheritDoc} */
     @Override
-    @XmlElement(name = "interactor", namespace = "http://psi.hupo.org/mi/mif300")
-    public void setJAXBInteractor(XmlInteractor interactor) {
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactor")
+    public void setJAXBInteractor(DefaultXmlInteractor interactor) {
         super.setJAXBInteractor(interactor);
     }
 
     /** {@inheritDoc} */
     @Override
-    @XmlElement(name = "interactorRef", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorRef")
     public void setJAXBInteractorRef(Integer value) {
         super.setJAXBInteractorRef(value);
     }
@@ -73,7 +73,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
      *
      * @param value a int.
      */
-    @XmlAttribute(name = "id", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         super.setId(value);
         // register participant as complex participant
@@ -85,7 +85,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
      *
      * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledParticipantCandidate.JAXBFeatureWrapper} object.
      */
-    @XmlElement(name = "featureList", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {
         super.setFeatureWrapper(jaxbFeatureWrapper);
     }
@@ -119,7 +119,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
 
     ////////////////////////////////////////////////////// classes
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="modelledEntityFeatureWrapper", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="modelledEntityFeatureWrapper")
     public static class JAXBFeatureWrapper extends AbstractXmlEntity.JAXBFeatureWrapper<ModelledFeature> {
 
         public JAXBFeatureWrapper(){
@@ -130,7 +130,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
             super(features);
         }
 
-        @XmlElement(type=XmlModelledFeature.class, name="feature", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type= XmlModelledFeature.class, name="feature", required = true)
         public List<ModelledFeature> getJAXBFeatures() {
             return super.getJAXBFeatures();
         }

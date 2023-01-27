@@ -1,10 +1,10 @@
 package psidev.psi.mi.jami.xml.model;
 
+import javax.xml.bind.annotation.XmlTransient;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
 
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +33,7 @@ public class Entry {
     /**
      * <p>Getter for the field <code>source</code>.</p>
      *
-     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
+     * @return a {@link ExtendedPsiXmlSource} object.
      */
     public ExtendedPsiXmlSource getSource() {
         return source;
@@ -42,7 +42,7 @@ public class Entry {
     /**
      * <p>Setter for the field <code>source</code>.</p>
      *
-     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
+     * @param source a {@link ExtendedPsiXmlSource} object.
      */
     public void setSource(ExtendedPsiXmlSource source) {
         this.source = source;
@@ -51,7 +51,7 @@ public class Entry {
     /**
      * <p>Getter for the field <code>availabilities</code>.</p>
      *
-     * @return a {@link java.util.List} object.
+     * @return a {@link List} object.
      */
     public List<AbstractAvailability> getAvailabilities() {
         if (availabilities == null){
@@ -63,7 +63,7 @@ public class Entry {
     /**
      * <p>Getter for the field <code>annotations</code>.</p>
      *
-     * @return a {@link java.util.List} object.
+     * @return a {@link List} object.
      */
     public List<Annotation> getAnnotations() {
         if (annotations == null){
@@ -107,7 +107,7 @@ public class Entry {
     /**
      * <p>initialiseAvailabilitiesWith.</p>
      *
-     * @param availabilities a {@link java.util.List} object.
+     * @param availabilities a {@link List} object.
      */
     protected void initialiseAvailabilitiesWith(List<AbstractAvailability> availabilities) {
         if (availabilities == null){
@@ -121,7 +121,7 @@ public class Entry {
     /**
      * <p>initialiseAnnotationsWith.</p>
      *
-     * @param annotations a {@link java.util.List} object.
+     * @param annotations a {@link List} object.
      */
     protected void initialiseAnnotationsWith(List<Annotation> annotations) {
         if (annotations == null){

@@ -9,7 +9,6 @@ import psidev.psi.mi.jami.model.ResultingSequence;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.utils.comparator.range.ResultingSequenceComparator;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XrefContainer;
 
 import javax.xml.bind.annotation.*;
 import java.util.Collection;
@@ -97,7 +96,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
      *
      * @param sequence a {@link java.lang.String} object.
      */
-    @XmlElement(name = "newSequence", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "newSequence", required = true)
     public void setJAXBNewSequence(String sequence) {
         setNewSequence(sequence);
     }
@@ -107,7 +106,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
      *
      * @param sequence a {@link java.lang.String} object.
      */
-    @XmlElement(name = "originalSequence", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "originalSequence", required = true)
     public void setJAXBOriginalSequence(String sequence) {
         setOriginalSequence(sequence);
     }
@@ -115,9 +114,9 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.XrefContainer} object.
+     * @param value a {@link XrefContainer} object.
      */
-    @XmlElement(name = "xref", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "xref")
     public void setJAXBXref(XrefContainer value) {
         this.xrefContainer = value;
     }
@@ -183,7 +182,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     * @param sourceLocator a {@link PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

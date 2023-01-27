@@ -6,8 +6,16 @@ import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
 import psidev.psi.mi.jami.factory.BinaryInteractionFactory;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.clone.InteractionCloner;
-import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.extension.binary.xml25.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
+import psidev.psi.mi.jami.xml.model.extension.binary.AbstractXmlBinaryInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlBinaryInteraction;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlBinaryInteractionEvidenceWrapper;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlBinaryInteractionWrapper;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlModelledBinaryInteraction;
+import psidev.psi.mi.jami.xml.model.extension.binary.XmlModelledBinaryInteractionWrapper;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction;
 
 /**
  * Xml extension of BinaryInteractionFactory for XML 2.5
@@ -18,10 +26,16 @@ import psidev.psi.mi.jami.xml.model.extension.binary.xml25.*;
  */
 public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
 
+    private PsiXmlVersion version;
+
+    public XmlBinaryInteractionFactory(PsiXmlVersion version) {
+        this.version = version;
+    }
+
     /** {@inheritDoc} */
     @Override
     public BinaryInteractionEvidence createSelfBinaryInteractionEvidenceFrom(InteractionEvidence interaction) {
-        XmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
+        AbstractXmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
         InteractionCloner.copyAndOverrideParticipantsEvidencesToBinary(interaction, binary, false, true);
 
         copyXmlInteractionEvidenceProperties(interaction, binary);
@@ -41,7 +55,7 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
     /** {@inheritDoc} */
     @Override
     public BinaryInteractionEvidence createBinaryInteractionEvidenceFrom(InteractionEvidence interaction, ParticipantEvidence p1, ParticipantEvidence p2, CvTerm expansionMethod) {
-        XmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
+        AbstractXmlBinaryInteractionEvidence binary = instantiateNewBinaryInteractionEvidence();
         binary.setComplexExpansion(expansionMethod);
         copyXmlInteractionEvidenceProperties(interaction, binary);
         binary.setParticipantA(p1);
@@ -106,8 +120,14 @@ public class XmlBinaryInteractionFactory implements BinaryInteractionFactory {
 
     /** {@inheritDoc} */
     @Override
-    public XmlBinaryInteractionEvidence instantiateNewBinaryInteractionEvidence() {
-        return new XmlBinaryInteractionEvidence();
+    public AbstractXmlBinaryInteractionEvidence instantiateNewBinaryInteractionEvidence() {
+        switch (version) {
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.binary.xml253.XmlBinaryInteractionEvidence();
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.binary.xml254.XmlBinaryInteractionEvidence();
+        }
     }
 
     /** {@inheritDoc} */

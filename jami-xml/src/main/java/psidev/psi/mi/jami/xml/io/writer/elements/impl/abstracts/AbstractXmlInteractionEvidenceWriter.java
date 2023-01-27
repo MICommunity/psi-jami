@@ -116,13 +116,6 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
 
     /** {@inheritDoc} */
     @Override
-    protected void initialiseDefaultExperiment() {
-        super.initialiseDefaultExperiment();
-        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setDefaultExperiment(Experiment defaultExperiment) {
         super.setDefaultExperiment(defaultExperiment);
         getParameterWriter().setDefaultExperiment(defaultExperiment);

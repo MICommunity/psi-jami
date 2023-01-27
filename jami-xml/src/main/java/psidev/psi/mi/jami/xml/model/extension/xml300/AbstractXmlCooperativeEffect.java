@@ -9,9 +9,7 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
-import psidev.psi.mi.jami.xml.model.extension.XmlXref;
-import psidev.psi.mi.jami.xml.model.reference.AbstractComplexRef;
+import psidev.psi.mi.jami.xml.model.reference.xml300.AbstractComplexRef;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -201,7 +199,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     * @param sourceLocator a {@link PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -212,7 +210,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBCooperativityEvidenceWrapper} object.
      */
-    @XmlElement(name = "cooperativityEvidenceList", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativityEvidenceList", required = true)
     public void setJAXBCooperativityEvidenceWrapper(JAXBCooperativityEvidenceWrapper wrapper) {
         this.jaxbCooperativityEvidenceWrapper = wrapper;
     }
@@ -222,7 +220,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBAffectedInteractionRefWrapper} object.
      */
-    @XmlElement(name = "affectedInteractionList", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "affectedInteractionList", required = true)
     public void setJAXBAffectedInteractionWrapper(JAXBAffectedInteractionRefWrapper wrapper) {
         this.jaxbAffectedInteractionWrapper = wrapper;
     }
@@ -230,9 +228,9 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setJAXBOutCome.</p>
      *
-     * @param outcome a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param outcome a {@link XmlCvTerm} object.
      */
-    @XmlElement(name = "cooperativeEffectOutcome", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativeEffectOutcome", required = true)
     public void setJAXBOutCome(XmlCvTerm outcome) {
         this.outcome = outcome;
     }
@@ -240,9 +238,9 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setJAXBResponse.</p>
      *
-     * @param response a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param response a {@link XmlCvTerm} object.
      */
-    @XmlElement(name = "cooperativeEffectResponse")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativeEffectResponse")
     public void setJAXBResponse(XmlCvTerm response) {
         this.response = response;
     }
@@ -252,7 +250,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlCooperativeEffect.JAXBAttributeWrapper} object.
      */
-    @XmlElement(name = "attributeList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
         this.jaxbAttributeWrapper = wrapper;
     }
@@ -260,7 +258,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     ////////////////////////////////////////////////////////
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="cooperativityEvidenceWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="cooperativityEvidenceWrapper")
     public static class JAXBCooperativityEvidenceWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -300,7 +298,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
             cooperativityEvidences = new ArrayList<CooperativityEvidence>();
         }
 
-        @XmlElement(type=XmlCooperativityEvidence.class, name="cooperativityEvidenceDescription", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlCooperativityEvidence.class, name="cooperativityEvidenceDescription", required = true)
         public List<CooperativityEvidence> getJAXBCooperativityEvidences() {
             return cooperativityEvidences;
         }
@@ -312,7 +310,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="cooperativeEffectAttributeWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="cooperativeEffectAttributeWrapper")
     public static class JAXBAttributeWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -352,7 +350,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
             annotations = new ArrayList<Annotation>();
         }
 
-        @XmlElement(type=XmlAnnotation.class, name="attribute", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlAnnotation.class, name="attribute", required = true)
         public List<Annotation> getJAXBAttributes() {
             return annotations;
         }
@@ -364,7 +362,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name = "cooperativeEffectInteractionRefList")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativeEffectInteractionRefList")
     public static class JAXBAffectedInteractionRefWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -401,7 +399,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
             }
         }
 
-        @XmlElement(name = "affectedInteractionRef", type = Integer.class, required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "affectedInteractionRef", type = Integer.class, required = true)
         public List<Integer> getJAXBAffectedInteractionRefs() {
             if (this.jaxbAffectedInteractionRefs == null){
                 this.jaxbAffectedInteractionRefs = new JAXBAffectedInteractionRefList();

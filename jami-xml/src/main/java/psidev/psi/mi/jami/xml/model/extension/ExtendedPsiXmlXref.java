@@ -17,19 +17,19 @@ public interface ExtendedPsiXmlXref extends Xref {
     /**
      * <p>getSecondary.</p>
      *
-     * @return a {@link java.lang.String} object.
+     * @return a {@link String} object.
      */
     public String getSecondary();
     /**
      * <p>setSecondary.</p>
      *
-     * @param secondary a {@link java.lang.String} object.
+     * @param secondary a {@link String} object.
      */
     public void setSecondary(String secondary);
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link java.util.List} object.
+     * @return a {@link List} object.
      */
     public List<Annotation> getAnnotations();
 }

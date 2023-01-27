@@ -7,7 +7,18 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.clone.InteractorCloner;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.model.extension.AbstractBaseXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlComplex;
+import psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlBioactiveEntity;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlGene;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractorPool;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlNucleicAcid;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlPolymer;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlProtein;
+import psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -61,7 +72,7 @@ public class XmlInteractorFactory extends DefaultInteractorFactory{
     /** {@inheritDoc} */
     @Override
     public Complex createComplex(String name, CvTerm type) {
-        return delegate != null ? delegate.createComplex(name, type) : new XmlComplex(name, type);
+        return delegate != null ? delegate.createComplex(name, type) : new DefaultXmlComplex(name, type);
     }
 
     /** {@inheritDoc} */
@@ -79,7 +90,7 @@ public class XmlInteractorFactory extends DefaultInteractorFactory{
     /** {@inheritDoc} */
     @Override
     public Interactor createInteractor(String name, CvTerm type) {
-        return delegate != null ? delegate.createInteractor(name, type) : new XmlInteractor(name, type);
+        return delegate != null ? delegate.createInteractor(name, type) : new DefaultXmlInteractor(name, type);
     }
 
     /** {@inheritDoc} */
@@ -91,10 +102,10 @@ public class XmlInteractorFactory extends DefaultInteractorFactory{
     /**
      * <p>createInteractorFromXmlInteractorInstance.</p>
      *
-     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractor} object.
+     * @param source a {@link AbstractXmlInteractor} object.
      * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
-    public Interactor createInteractorFromXmlInteractorInstance(AbstractXmlInteractor source){
+    public Interactor createInteractorFromXmlInteractorInstance(AbstractBaseXmlInteractor source){
         Interactor reloadedInteractorDependingOnType = createInteractorFromInteractorType(source.getInteractorType(), source.getShortName());
         if (reloadedInteractorDependingOnType == null){
             reloadedInteractorDependingOnType = createInteractorFromIdentityXrefs(source.getIdentifiers(), source.getShortName());

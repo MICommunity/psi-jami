@@ -4,6 +4,7 @@ import psidev.psi.mi.jami.datasource.InteractionWriter;
 import psidev.psi.mi.jami.model.ComplexType;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.io.writer.compact.*;
 import psidev.psi.mi.jami.xml.io.writer.compact.extended.LightCompactXmlBinaryWriter;
 import psidev.psi.mi.jami.xml.io.writer.expanded.*;
@@ -42,12 +43,12 @@ public class PsiXmlWriterFactory {
      * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
      */
     public InteractionWriter createPsiXmlWriter(InteractionCategory interactionCategory, ComplexType complexType,
-                                                PsiXmlType type, boolean extended, boolean named){
+                                                PsiXmlType type, PsiXmlVersion version, boolean extended, boolean named){
         switch (complexType){
             case binary:
-                return createPsiXmlBinaryWriter(interactionCategory, type, extended, named);
+                return createPsiXmlBinaryWriter(interactionCategory, version, type, extended, named);
             default:
-                return createPsiXmlWriter(interactionCategory, type, extended, named);
+                return createPsiXmlWriter(interactionCategory, type, version, extended, named);
         }
     }
 
@@ -61,6 +62,7 @@ public class PsiXmlWriterFactory {
      * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
      */
     public InteractionWriter createPsiXmlBinaryWriter(InteractionCategory interactionCategory,
+                                                      PsiXmlVersion version,
                                                       PsiXmlType type, boolean extended, boolean named){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;
@@ -84,13 +86,45 @@ public class PsiXmlWriterFactory {
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlBinaryEvidenceWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlBinaryEvidenceWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlBinaryEvidenceWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlBinaryEvidenceWriter();
+                            }
                         case modelled:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlModelledBinaryWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlModelledBinaryWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlModelledBinaryWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledBinaryWriter();
+                            }
                         case basic:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.LightExpandedXmlBinaryWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.LightExpandedXmlBinaryWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.LightExpandedXmlBinaryWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlBinaryWriter();
+                            }
                         case mixed:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlBinaryWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlBinaryWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlBinaryWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlBinaryWriter();
+                            }
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
@@ -168,6 +202,7 @@ public class PsiXmlWriterFactory {
      * @return a {@link psidev.psi.mi.jami.datasource.InteractionWriter} object.
      */
     public InteractionWriter createPsiXmlWriter(InteractionCategory interactionCategory, PsiXmlType type,
+                                                PsiXmlVersion version,
                                                 boolean extended, boolean named){
         if (interactionCategory == null){
             interactionCategory = InteractionCategory.mixed;
@@ -191,15 +226,55 @@ public class PsiXmlWriterFactory {
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlEvidenceWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlEvidenceWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlEvidenceWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlEvidenceWriter();
+                            }
                         case modelled:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlModelledWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlModelledWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlModelledWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledWriter();
+                            }
                         case basic:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.LightExpandedXmlWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.LightExpandedXmlWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.LightExpandedXmlWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlWriter();
+                            }
                         case complex:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlComplexWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlComplexWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlComplexWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlComplexWriter();
+                            }
                         default:
-                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlWriter();
+                            switch (version) {
+                                case v3_0_0:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlWriter();
+                                case v2_5_3:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlWriter();
+                                case v2_5_4:
+                                default:
+                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlWriter();
+                            }
                     }
             }
         }

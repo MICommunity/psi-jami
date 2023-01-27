@@ -9,10 +9,13 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlOrganismWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.*;
+import psidev.psi.mi.jami.xml.model.extension.xml300.BibRef;
+import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -330,5 +333,12 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void writeStartInteraction() throws XMLStreamException {
         getStreamWriter().writeStartElement("abstractInteraction");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void initialiseDefaultExperiment() {
+        setDefaultExperiment(new DefaultXmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null)));
+        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 }

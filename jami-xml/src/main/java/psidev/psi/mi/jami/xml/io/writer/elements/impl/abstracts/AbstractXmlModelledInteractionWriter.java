@@ -5,13 +5,10 @@ import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAliasWriter;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.Date;
 
 /**
  * Abstract class for XML writers of modelled interaction
@@ -106,13 +103,6 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      */
     public void setParameterWriter(PsiXmlParameterWriter parameterWriter) {
         this.parameterWriter = parameterWriter;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseDefaultExperiment() {
-        Experiment defaultExperiment = new XmlExperiment(new BibRef("Mock publication and experiment for abstract interactions that are not interaction evidences.",(String)null,(Date)null));
-        setDefaultExperiment(defaultExperiment);
     }
 
     /** {@inheritDoc} */
@@ -225,25 +215,6 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void writeNegative(I object) {
         // nothing to do
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected CvTerm writeExperiments(I object) throws XMLStreamException {
-        // write experimental evidences
-        if (!object.getCooperativeEffects().isEmpty()){
-            CooperativeEffect effect = object.getCooperativeEffects().iterator().next();
-            if (!effect.getCooperativityEvidences().isEmpty()){
-                CooperativityEvidence evidence = effect.getCooperativityEvidences().iterator().next();
-                // set first experiment as default experiment
-                if (evidence.getPublication() != null){
-                    NamedExperiment exp = new XmlExperiment(evidence.getPublication());
-                    exp.setFullName(evidence.getPublication().getTitle());
-                    setDefaultExperiment(exp);
-                }
-            }
-        }
-        return null;
     }
 
     /** {@inheritDoc} */
