@@ -323,7 +323,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -340,7 +340,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -352,7 +352,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
@@ -367,7 +367,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
@@ -455,7 +455,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -472,7 +472,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -484,7 +484,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
@@ -499,7 +499,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
@@ -732,7 +732,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -749,7 +749,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -761,7 +761,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionWriter(streamWriter, objectIndex);
@@ -776,7 +776,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
@@ -864,7 +864,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -881,7 +881,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -893,7 +893,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionWriter(streamWriter, objectIndex);
@@ -908,7 +908,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
@@ -1150,7 +1150,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
                                         modelledWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -1168,7 +1168,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter, extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -1180,7 +1180,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
@@ -1196,7 +1196,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter, extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
@@ -1285,7 +1285,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
@@ -1302,7 +1302,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter, extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                             default:
                                 switch (interactionCategory) {
@@ -1314,7 +1314,7 @@ public class PsiXmlElementWriterFactory {
                                         initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
                                                 interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
                                     case basic:
                                         psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicInteractionWriter basicWriter =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
@@ -1329,7 +1329,7 @@ public class PsiXmlElementWriterFactory {
                                                 interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
                                                 availabilityWriter, extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
                                 }
                         }
                 }
