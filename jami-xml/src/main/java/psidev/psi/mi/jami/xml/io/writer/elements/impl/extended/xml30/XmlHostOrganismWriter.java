@@ -22,8 +22,8 @@ public class XmlHostOrganismWriter extends psidev.psi.mi.jami.xml.io.writer.elem
     /**
      * <p>Constructor for XmlHostOrganismWriter.</p>
      *
-     * @param writer a {@link XMLStreamWriter} object.
-     * @param objectIndex a {@link PsiXmlObjectCache} object.
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlHostOrganismWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer);

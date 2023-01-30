@@ -106,7 +106,7 @@ public class XmlEntryContext {
     /**
      * <p>Getter for the field <code>currentEntry</code>.</p>
      *
-     * @return a {@link Entry} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.Entry} object.
      */
     public Entry getCurrentEntry() {
         return currentEntry;
@@ -115,7 +115,7 @@ public class XmlEntryContext {
     /**
      * <p>setCurrentSource.</p>
      *
-     * @param entry a {@link Entry} object.
+     * @param entry a {@link psidev.psi.mi.jami.xml.model.Entry} object.
      */
     public void setCurrentSource(Entry entry){
         this.currentEntry = entry;
@@ -152,7 +152,7 @@ public class XmlEntryContext {
      * <p>registerAvailability.</p>
      *
      * @param id a int.
-     * @param o a {@link AbstractAvailability} object.
+     * @param o a {@link psidev.psi.mi.jami.xml.model.extension.AbstractAvailability} object.
      */
     public void registerAvailability(int id, AbstractAvailability o){
         if (this.elementCache != null){
@@ -271,7 +271,7 @@ public class XmlEntryContext {
     /**
      * <p>registerInferredInteraction.</p>
      *
-     * @param infer a {@link AbstractInferredInteraction} object.
+     * @param infer a {@link psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction} object.
      */
     public void registerInferredInteraction(AbstractInferredInteraction infer){
         if (this.inferredInteractions != null){

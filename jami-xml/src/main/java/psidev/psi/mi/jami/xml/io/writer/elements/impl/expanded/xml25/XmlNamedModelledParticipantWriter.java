@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25;
 
 import psidev.psi.mi.jami.model.ModelledParticipant;
 import psidev.psi.mi.jami.model.NamedParticipant;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -23,8 +24,8 @@ public class XmlNamedModelledParticipantWriter extends XmlModelledParticipantWri
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlNamedModelledParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlNamedModelledParticipantWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */

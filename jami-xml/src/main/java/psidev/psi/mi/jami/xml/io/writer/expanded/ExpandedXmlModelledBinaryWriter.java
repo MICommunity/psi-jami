@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.ComplexType;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -26,8 +27,8 @@ public class ExpandedXmlModelledBinaryWriter extends AbstractExpandedXmlWriter<M
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
      */
-    public ExpandedXmlModelledBinaryWriter() {
-        super(ModelledBinaryInteraction.class);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version) {
+        super(version, ModelledBinaryInteraction.class);
     }
 
     /**

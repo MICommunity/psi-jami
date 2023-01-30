@@ -88,7 +88,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
      * <p>Constructor for PsiXmlFileIndexCache.</p>
      *
      * @param file a {@link java.io.File} object.
-     * @param unmarshaller a {@link  javax.xml.bind.Unmarshaller} object.
+     * @param unmarshaller a {@link javax.xml.bind.Unmarshaller} object.
      * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @throws java.io.IOException if any.
      */

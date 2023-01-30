@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.binary.impl.DefaultNamedBinaryInteraction;
 import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.StringWriter;
@@ -723,13 +724,13 @@ public class LightCompactXml25NamedBinaryWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter();
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultNamedBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter();
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

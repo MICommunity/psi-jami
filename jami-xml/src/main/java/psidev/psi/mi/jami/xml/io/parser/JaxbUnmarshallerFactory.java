@@ -98,7 +98,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createXml300JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createXml300JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
@@ -110,7 +110,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createXml253JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createXml253JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
@@ -135,7 +135,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createXml254JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createXml254JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
@@ -160,7 +160,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createFullXml300JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createFullXml300JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
@@ -174,7 +174,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createFullXml253JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createFullXml253JAXBUnmarshaller(InteractionCategory category) throws JAXBException {
@@ -200,7 +200,7 @@ public class JaxbUnmarshallerFactory {
      * <p>createFullXml254JAXBUnmarshaller.</p>
      *
      * @param category a {@link psidev.psi.mi.jami.model.InteractionCategory} object.
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     public Unmarshaller createFullXml254JAXBUnmarshaller(InteractionCategory category) throws JAXBException {

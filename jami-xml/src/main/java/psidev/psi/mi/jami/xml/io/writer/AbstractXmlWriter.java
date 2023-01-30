@@ -52,13 +52,14 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     private Collection<Annotation> entryAnnotations=null;
     private PsiXmlElementWriter<Annotation> annotationsWriter=null;
 
-    private PsiXmlVersion version = PsiXmlVersion.v2_5_4;
+    private PsiXmlVersion version;
     private PsiXmlElementWriterFactory subWritersFactory;
 
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
      */
-    public AbstractXmlWriter(){
+    public AbstractXmlWriter(PsiXmlVersion version){
+        this.version = version;
         this.interactionsToWrite = new ArrayList<T>();
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
@@ -745,7 +746,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         // checksum writer
         PsiXmlElementWriter<Checksum> checksumWriter = this.subWritersFactory.createChecksumWriter(this.streamWriter);
         // interactor writer
-        PsiXmlElementWriter<Interactor> interactorWriter = this.subWritersFactory.createInteractorWriter(this.streamWriter, extended, getElementCache(),
+        PsiXmlElementWriter<Interactor> interactorWriter = this.subWritersFactory.createInteractorWriter(version, this.streamWriter, extended, getElementCache(),
                 aliasWriter, attributeWriter, xrefWriter, cvWriter, organismWriter, checksumWriter);
         // experiment Writer
         PsiXmlExperimentWriter experimentWriter = this.subWritersFactory.createExperimentWriter(this.streamWriter, extended, getElementCache(),

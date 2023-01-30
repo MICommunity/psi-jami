@@ -5,7 +5,7 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
-import psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlWriter;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.model.extension.xml254.*;
 
 import javax.xml.stream.XMLStreamException;
@@ -744,13 +744,13 @@ public class LightExpandedXml25WriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        LightExpandedXmlWriter writer = new LightExpandedXmlWriter();
+        LightExpandedXmlWriter writer = new LightExpandedXmlWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultXmlBasicInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        LightExpandedXmlWriter writer = new LightExpandedXmlWriter();
+        LightExpandedXmlWriter writer = new LightExpandedXmlWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

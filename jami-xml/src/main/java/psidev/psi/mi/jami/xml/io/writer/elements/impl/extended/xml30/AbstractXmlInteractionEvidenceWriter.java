@@ -5,17 +5,15 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.VariableParameterValueSet;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlVariableParameterValueSetWriter;
-import psidev.psi.mi.jami.xml.model.extension.xml300.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * Abstract class for interaction evidence writers that write expanded interactions (having modelled, intramolecular properties, list
@@ -37,8 +35,8 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlInteractionEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
 
     }
 
@@ -99,12 +97,6 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
 
     /** {@inheritDoc} */
     @Override
-    protected void initialiseConfidenceWriter(){
-        super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
-    }
-
-    /** {@inheritDoc} */
-    @Override
     protected void initialiseExperimentWriter(){
         super.setExperimentWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
     }
@@ -158,12 +150,5 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
             // end list
             getStreamWriter().writeEndElement();
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseDefaultExperiment() {
-        setDefaultExperiment(new DefaultXmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null)));
-        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 }

@@ -73,58 +73,26 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlBinaryEvidenceWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlBinaryEvidenceWriter(version);
                         case modelled:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlModelledBinaryWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlModelledBinaryWriter(version);
                         case basic:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.LightCompactXmlBinaryWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.LightCompactXmlBinaryWriter(version);
                         case mixed:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlBinaryWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlBinaryEvidenceWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlBinaryEvidenceWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlBinaryEvidenceWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlBinaryEvidenceWriter(version);
                         case modelled:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlModelledBinaryWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlModelledBinaryWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledBinaryWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlModelledBinaryWriter(version);
                         case basic:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.LightExpandedXmlBinaryWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.LightExpandedXmlBinaryWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlBinaryWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.LightExpandedXmlBinaryWriter(version);
                         case mixed:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlBinaryWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlBinaryWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlBinaryWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
@@ -135,26 +103,26 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new CompactXmlNamedBinaryEvidenceWriter();
+                            return new CompactXmlNamedBinaryEvidenceWriter(version);
                         case modelled:
-                            return new CompactXmlNamedModelledBinaryWriter();
+                            return new CompactXmlNamedModelledBinaryWriter(version);
                         case basic:
-                            return new LightCompactXmlNamedBinaryWriter();
+                            return new LightCompactXmlNamedBinaryWriter(version);
                         case mixed:
-                            return new CompactXmlNamedBinaryWriter();
+                            return new CompactXmlNamedBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new ExpandedXmlNamedBinaryEvidenceWriter();
+                            return new ExpandedXmlNamedBinaryEvidenceWriter(version);
                         case modelled:
-                            return new ExpandedXmlNamedModelledBinaryWriter();
+                            return new ExpandedXmlNamedModelledBinaryWriter(version);
                         case basic:
-                            return new LightExpandedXmlNamedBinaryWriter();
+                            return new LightExpandedXmlNamedBinaryWriter(version);
                         case mixed:
-                            return new ExpandedXmlNamedBinaryWriter();
+                            return new ExpandedXmlNamedBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
@@ -165,26 +133,26 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new CompactXmlBinaryEvidenceWriter();
+                            return new CompactXmlBinaryEvidenceWriter(version);
                         case modelled:
-                            return new CompactXmlModelledBinaryWriter();
+                            return new CompactXmlModelledBinaryWriter(version);
                         case basic:
-                            return new LightCompactXmlBinaryWriter();
+                            return new LightCompactXmlBinaryWriter(version);
                         case mixed:
-                            return new CompactXmlBinaryWriter();
+                            return new CompactXmlBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new ExpandedXmlBinaryEvidenceWriter();
+                            return new ExpandedXmlBinaryEvidenceWriter(version);
                         case modelled:
-                            return new ExpandedXmlModelledBinaryWriter();
+                            return new ExpandedXmlModelledBinaryWriter(version);
                         case basic:
-                            return new LightExpandedXmlBinaryWriter();
+                            return new LightExpandedXmlBinaryWriter(version);
                         case mixed:
-                            return new ExpandedXmlBinaryWriter();
+                            return new ExpandedXmlBinaryWriter(version);
                         default:
                             throw new IllegalArgumentException("Cannot find a XML binary writer for interaction category: "+interactionCategory);
                     }
@@ -213,68 +181,28 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlEvidenceWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlEvidenceWriter(version);
                         case modelled:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlModelledWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlModelledWriter(version);
                         case basic:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.LightCompactXmlWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.LightCompactXmlWriter(version);
                         case complex:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlComplexWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlComplexWriter(version);
                         default:
-                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlWriter();
+                            return new psidev.psi.mi.jami.xml.io.writer.compact.extended.CompactXmlWriter(version);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlEvidenceWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlEvidenceWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlEvidenceWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlEvidenceWriter(version);
                         case modelled:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlModelledWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlModelledWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlModelledWriter(version);
                         case basic:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.LightExpandedXmlWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.LightExpandedXmlWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.LightExpandedXmlWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.LightExpandedXmlWriter(version);
                         case complex:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlComplexWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlComplexWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlComplexWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlComplexWriter(version);
                         default:
-                            switch (version) {
-                                case v3_0_0:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml300.ExpandedXmlWriter();
-                                case v2_5_3:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml253.ExpandedXmlWriter();
-                                case v2_5_4:
-                                default:
-                                    return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlWriter();
-                            }
+                            return new psidev.psi.mi.jami.xml.io.writer.expanded.extended.ExpandedXmlWriter(version);
                     }
             }
         }
@@ -283,28 +211,28 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new CompactXmlNamedEvidenceWriter();
+                            return new CompactXmlNamedEvidenceWriter(version);
                         case modelled:
-                            return new CompactXmlNamedModelledWriter();
+                            return new CompactXmlNamedModelledWriter(version);
                         case basic:
-                            return new LightCompactXmlNamedWriter();
+                            return new LightCompactXmlNamedWriter(version);
                         case complex:
-                            return new CompactXmlComplexWriter();
+                            return new CompactXmlComplexWriter(version);
                         default:
-                            return new CompactXmlNamedWriter();
+                            return new CompactXmlNamedWriter(version);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new ExpandedXmlNamedEvidenceWriter();
+                            return new ExpandedXmlNamedEvidenceWriter(version);
                         case modelled:
-                            return new ExpandedXmlNamedModelledWriter();
+                            return new ExpandedXmlNamedModelledWriter(version);
                         case basic:
-                            return new LightExpandedXmlNamedWriter();
+                            return new LightExpandedXmlNamedWriter(version);
                         case complex:
-                            return new ExpandedXmlComplexWriter();
+                            return new ExpandedXmlComplexWriter(version);
                         default:
-                            return new ExpandedXmlNamedWriter();
+                            return new ExpandedXmlNamedWriter(version);
                     }
             }
         }
@@ -313,28 +241,28 @@ public class PsiXmlWriterFactory {
                 case compact:
                     switch (interactionCategory){
                         case evidence:
-                            return new CompactXmlEvidenceWriter();
+                            return new CompactXmlEvidenceWriter(version);
                         case modelled:
-                            return new CompactXmlModelledWriter();
+                            return new CompactXmlModelledWriter(version);
                         case basic:
-                            return new LightCompactXmlWriter();
+                            return new LightCompactXmlWriter(version);
                         case complex:
-                            return new CompactXmlComplexWriter();
+                            return new CompactXmlComplexWriter(version);
                         default:
-                            return new CompactXmlWriter();
+                            return new CompactXmlWriter(version);
                     }
                 default:
                     switch (interactionCategory){
                         case evidence:
-                            return new ExpandedXmlEvidenceWriter();
+                            return new ExpandedXmlEvidenceWriter(version);
                         case modelled:
-                            return new ExpandedXmlModelledWriter();
+                            return new ExpandedXmlModelledWriter(version);
                         case basic:
-                            return new LightExpandedXmlWriter();
+                            return new LightExpandedXmlWriter(version);
                         case complex:
-                            return new ExpandedXmlComplexWriter();
+                            return new ExpandedXmlComplexWriter(version);
                         default:
-                            return new ExpandedXmlWriter();
+                            return new ExpandedXmlWriter(version);
                     }
             }
         }

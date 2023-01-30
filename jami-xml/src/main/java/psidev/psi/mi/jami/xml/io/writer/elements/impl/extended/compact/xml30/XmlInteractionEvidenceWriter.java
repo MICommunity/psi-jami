@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30;
 
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.InteractionEvidence;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.AbstractXmlInteractionEvidenceWriter;
@@ -26,7 +27,7 @@ public class XmlInteractionEvidenceWriter extends AbstractXmlInteractionEvidence
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /** {@inheritDoc} */

@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ParticipantEvidence;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1199,13 +1200,13 @@ public class CompactXml25EvidenceWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        CompactXmlEvidenceWriter writer = new CompactXmlEvidenceWriter();
+        CompactXmlEvidenceWriter writer = new CompactXmlEvidenceWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultInteractionEvidence());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        CompactXmlEvidenceWriter writer = new CompactXmlEvidenceWriter();
+        CompactXmlEvidenceWriter writer = new CompactXmlEvidenceWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

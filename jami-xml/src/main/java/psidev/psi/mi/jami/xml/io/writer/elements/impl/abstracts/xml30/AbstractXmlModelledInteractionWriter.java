@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
@@ -9,13 +10,10 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlOrganismWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.*;
-import psidev.psi.mi.jami.xml.model.extension.xml300.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -41,7 +39,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /**
@@ -333,12 +331,5 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void writeStartInteraction() throws XMLStreamException {
         getStreamWriter().writeStartElement("abstractInteraction");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseDefaultExperiment() {
-        setDefaultExperiment(new DefaultXmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null)));
-        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 }

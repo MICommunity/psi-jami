@@ -33,8 +33,8 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
      *
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractExpandedXmlMixWriter(Class<I> type) {
-        super(type);
+    public AbstractExpandedXmlMixWriter(PsiXmlVersion version, Class<I> type) {
+        super(version, type);
     }
 
     /**

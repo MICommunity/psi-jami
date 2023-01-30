@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.AbstractXmlWriter;
@@ -43,8 +44,8 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
      *
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractCompactXmlWriter(Class<T> type) {
-        super();
+    public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type) {
+        super(version);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }

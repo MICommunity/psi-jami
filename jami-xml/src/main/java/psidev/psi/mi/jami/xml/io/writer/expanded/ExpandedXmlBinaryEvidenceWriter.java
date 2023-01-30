@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -27,8 +28,8 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
     /**
      * <p>Constructor for ExpandedXmlBinaryEvidenceWriter.</p>
      */
-    public ExpandedXmlBinaryEvidenceWriter() {
-        super(BinaryInteractionEvidence.class);
+    public ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion version) {
+        super(version, BinaryInteractionEvidence.class);
     }
 
     /**

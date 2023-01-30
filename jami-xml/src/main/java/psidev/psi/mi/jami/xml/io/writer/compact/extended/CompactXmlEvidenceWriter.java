@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
@@ -25,8 +26,8 @@ public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<Interacti
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
      */
-    public CompactXmlEvidenceWriter() {
-        super(InteractionEvidence.class);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version) {
+        super(version, InteractionEvidence.class);
     }
 
     /**

@@ -4,6 +4,7 @@ import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.model.ComplexType;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 
@@ -26,8 +27,8 @@ public class LightCompactXmlBinaryWriter extends AbstractCompactXmlWriter<Binary
     /**
      * <p>Constructor for LightCompactXmlBinaryWriter.</p>
      */
-    public LightCompactXmlBinaryWriter() {
-        super(BinaryInteraction.class);
+    public LightCompactXmlBinaryWriter(PsiXmlVersion version) {
+        super(version, BinaryInteraction.class);
     }
 
     /**

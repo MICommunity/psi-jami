@@ -5,6 +5,7 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.impl.DefaultExperiment;
 import psidev.psi.mi.jami.model.impl.DefaultProtein;
 import psidev.psi.mi.jami.model.impl.DefaultPublication;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
@@ -101,7 +102,7 @@ public class XmlExperimentalInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.setInteractor(new DefaultProtein("protein test"));
         elementCache.clear();
 
-        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -116,7 +117,7 @@ public class XmlExperimentalInteractorWriterTest extends AbstractXmlWriterTest {
         elementCache.extractIdForInteractor(new DefaultProtein("p12346"));
         elementCache.extractIdForInteractor(interactor.getInteractor());
 
-        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -130,7 +131,7 @@ public class XmlExperimentalInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.getExperiments().add(new DefaultExperiment(new DefaultPublication()));
         elementCache.clear();
 
-        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -146,7 +147,7 @@ public class XmlExperimentalInteractorWriterTest extends AbstractXmlWriterTest {
         elementCache.extractIdForExperiment(new DefaultExperiment(new DefaultPublication("12345")));
         elementCache.extractIdForExperiment(interactor.getExperiments().iterator().next());
 
-        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlExperimentalInteractorWriter writer = new XmlExperimentalInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 

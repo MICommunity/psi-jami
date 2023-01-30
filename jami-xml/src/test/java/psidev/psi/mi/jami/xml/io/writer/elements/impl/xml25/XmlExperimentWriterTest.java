@@ -7,10 +7,10 @@ import psidev.psi.mi.jami.model.CurationDepth;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Publication;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlExperimentWriter;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.stream.XMLStreamException;
@@ -223,7 +223,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -236,7 +236,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -251,7 +251,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"),"12346"));
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -267,7 +267,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"),"12346"));
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -280,7 +280,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         exp.setHostOrganism(new DefaultOrganism(9606, "human"));
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -293,7 +293,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         exp.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("intact-miscore"),"0.8"));
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -315,7 +315,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -337,7 +337,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         exp.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 
@@ -351,7 +351,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
         this.elementCache.extractIdForExperiment(new DefaultExperiment(new DefaultPublication("P1234")));
         this.elementCache.extractIdForExperiment(exp);
 
-        XmlExperimentWriter writer = new XmlExperimentWriter(createStreamWriter(), elementCache);
+        XmlExperimentWriter writer = new XmlExperimentWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), elementCache);
         writer.write(exp);
         streamWriter.flush();
 

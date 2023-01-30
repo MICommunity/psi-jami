@@ -322,7 +322,7 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
     /**
      * <p>createJAXBUnmarshaller.</p>
      *
-     * @return a {@link  javax.xml.bind.Unmarshaller} object.
+     * @return a {@link javax.xml.bind.Unmarshaller} object.
      * @throws javax.xml.bind.JAXBException if any.
      */
     protected abstract Unmarshaller createJAXBUnmarshaller() throws JAXBException;

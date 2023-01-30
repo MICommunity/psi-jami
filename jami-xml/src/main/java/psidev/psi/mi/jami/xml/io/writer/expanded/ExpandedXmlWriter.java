@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.expanded;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
@@ -22,8 +23,8 @@ public class ExpandedXmlWriter extends AbstractExpandedXmlMixWriter<Interaction,
     /**
      * <p>Constructor for ExpandedXmlWriter.</p>
      */
-    public ExpandedXmlWriter() {
-        super(Interaction.class);
+    public ExpandedXmlWriter(PsiXmlVersion version) {
+        super(version, Interaction.class);
     }
 
     /**

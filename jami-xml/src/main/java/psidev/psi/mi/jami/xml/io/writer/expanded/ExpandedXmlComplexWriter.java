@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.expanded;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -24,8 +25,8 @@ public class ExpandedXmlComplexWriter extends AbstractExpandedXmlWriter<Complex>
     /**
      * <p>Constructor for ExpandedXmlComplexWriter.</p>
      */
-    public ExpandedXmlComplexWriter() {
-        super(Complex.class);
+    public ExpandedXmlComplexWriter(PsiXmlVersion version) {
+        super(version, Complex.class);
     }
 
     /**

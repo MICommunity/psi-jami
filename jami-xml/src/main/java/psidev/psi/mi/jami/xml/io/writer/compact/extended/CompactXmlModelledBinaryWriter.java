@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
@@ -26,8 +27,8 @@ public class CompactXmlModelledBinaryWriter extends AbstractCompactXmlWriter<Mod
     /**
      * <p>Constructor for CompactXmlModelledBinaryWriter.</p>
      */
-    public CompactXmlModelledBinaryWriter() {
-        super(ModelledBinaryInteraction.class);
+    public CompactXmlModelledBinaryWriter(PsiXmlVersion version) {
+        super(version, ModelledBinaryInteraction.class);
     }
 
     /**

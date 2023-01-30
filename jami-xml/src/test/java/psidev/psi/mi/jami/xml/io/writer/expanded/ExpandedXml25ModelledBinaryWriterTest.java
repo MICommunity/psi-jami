@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.Preassembly;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1132,13 +1133,13 @@ public class ExpandedXml25ModelledBinaryWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        ExpandedXmlModelledBinaryWriter writer = new ExpandedXmlModelledBinaryWriter();
+        ExpandedXmlModelledBinaryWriter writer = new ExpandedXmlModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultModelledBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        ExpandedXmlModelledBinaryWriter writer = new ExpandedXmlModelledBinaryWriter();
+        ExpandedXmlModelledBinaryWriter writer = new ExpandedXmlModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30.AbstractXmlParticipantEvidenceWriter;
@@ -52,7 +53,7 @@ public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidence
      */
     public ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> getExperimentalInteractorWriter() {
         if (this.experimentalInteractorWriter == null){
-            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getStreamWriter(), getObjectIndex());
+            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(PsiXmlVersion.v3_0_0, getStreamWriter(), getObjectIndex());
 
         }
         return experimentalInteractorWriter;

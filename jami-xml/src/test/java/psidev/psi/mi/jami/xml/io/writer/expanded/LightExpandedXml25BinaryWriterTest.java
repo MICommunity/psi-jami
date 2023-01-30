@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.impl.DefaultComplex;
 import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
 import psidev.psi.mi.jami.model.impl.DefaultParticipant;
 import psidev.psi.mi.jami.model.impl.DefaultProtein;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.StringWriter;
@@ -747,13 +748,13 @@ public class LightExpandedXml25BinaryWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter();
+        LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter();
+        LightExpandedXmlBinaryWriter writer = new LightExpandedXmlBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

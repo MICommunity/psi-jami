@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
@@ -25,8 +26,8 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
      */
-    public CompactXmlModelledWriter() {
-        super(ModelledInteraction.class);
+    public CompactXmlModelledWriter(PsiXmlVersion version) {
+        super(version, ModelledInteraction.class);
     }
 
     /**

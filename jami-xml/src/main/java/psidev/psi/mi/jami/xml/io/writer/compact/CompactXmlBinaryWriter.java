@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact;
 import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
@@ -22,8 +23,8 @@ public class CompactXmlBinaryWriter extends AbstractCompactXmlMixWriter<BinaryIn
     /**
      * <p>Constructor for CompactXmlBinaryWriter.</p>
      */
-    public CompactXmlBinaryWriter() {
-        super(BinaryInteraction.class);
+    public CompactXmlBinaryWriter(PsiXmlVersion version) {
+        super(version, BinaryInteraction.class);
     }
 
     /**

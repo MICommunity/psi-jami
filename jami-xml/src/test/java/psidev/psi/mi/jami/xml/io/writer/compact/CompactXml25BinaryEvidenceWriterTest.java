@@ -9,6 +9,7 @@ import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.ParticipantEvidence;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1200,13 +1201,13 @@ public class CompactXml25BinaryEvidenceWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        CompactXmlBinaryEvidenceWriter writer = new CompactXmlBinaryEvidenceWriter();
+        CompactXmlBinaryEvidenceWriter writer = new CompactXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultBinaryInteractionEvidence());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        CompactXmlBinaryEvidenceWriter writer = new CompactXmlBinaryEvidenceWriter();
+        CompactXmlBinaryEvidenceWriter writer = new CompactXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

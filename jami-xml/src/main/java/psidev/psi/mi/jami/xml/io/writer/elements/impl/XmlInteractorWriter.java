@@ -2,11 +2,11 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlXrefWriter;
-import psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -20,6 +20,7 @@ import java.util.Iterator;
  * @since <pre>12/11/13</pre>
  */
 public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
     private PsiXmlElementWriter<Alias> aliasWriter;
@@ -35,7 +36,8 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public XmlInteractorWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlInteractorWriter");
         }
@@ -506,12 +508,10 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
 
                     if (preferredIdentifier != null && isFirst){
                         isFirst = false;
-                        getXrefWriter().write(new XmlXref(preferredIdentifier.getDatabase(), preferredIdentifier.getId(),
-                                preferredIdentifier.getVersion()),"primaryRef");
+                        writeNewXref(preferredIdentifier,"primaryRef");
                     }
                     else if (preferredIdentifier != null){
-                        getXrefWriter().write(new XmlXref(preferredIdentifier.getDatabase(), preferredIdentifier.getId(),
-                                preferredIdentifier.getVersion()),"secondaryRef");
+                        writeNewXref(preferredIdentifier,"secondaryRef");
                     }
                 }
 
@@ -539,5 +539,31 @@ public class XmlInteractorWriter implements PsiXmlElementWriter<Interactor> {
      */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
+    }
+
+    protected void writeNewXref(Xref preferredIdentifier, String nodeName) {
+        Xref xref;
+        switch (version){
+            case v3_0_0:
+                xref = new psidev.psi.mi.jami.xml.model.extension.xml300.XmlXref(
+                        preferredIdentifier.getDatabase(),
+                        preferredIdentifier.getId(),
+                        preferredIdentifier.getVersion());
+                break;
+            case v2_5_3:
+                xref = new psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref(
+                        preferredIdentifier.getDatabase(),
+                        preferredIdentifier.getId(),
+                        preferredIdentifier.getVersion());
+                break;
+            case v2_5_4:
+            default:
+                xref = new psidev.psi.mi.jami.xml.model.extension.xml254.XmlXref(
+                        preferredIdentifier.getDatabase(),
+                        preferredIdentifier.getId(),
+                        preferredIdentifier.getVersion());
+                break;
+        }
+        getXrefWriter().write(xref, nodeName);
     }
 }

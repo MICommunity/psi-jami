@@ -5,7 +5,7 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultPreassemby;
 import psidev.psi.mi.jami.utils.CvTermUtils;
-import psidev.psi.mi.jami.xml.io.writer.expanded.extended.xml254.ExpandedXmlModelledWriter;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.model.extension.xml254.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -1129,13 +1129,13 @@ public class ExpandedXml25ModelledWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter();
+        ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultXmlModelledInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter();
+        ExpandedXmlModelledWriter writer = new ExpandedXmlModelledWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

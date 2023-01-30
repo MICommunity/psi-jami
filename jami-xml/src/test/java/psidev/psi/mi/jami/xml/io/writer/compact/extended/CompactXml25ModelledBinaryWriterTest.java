@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.model.Preassembly;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlComplex;
 import psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledParticipant;
 import psidev.psi.mi.jami.xml.model.extension.xml254.XmlProtein;
@@ -1060,13 +1061,13 @@ public class CompactXml25ModelledBinaryWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter();
+        CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.write(new XmlModelledBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter();
+        CompactXmlModelledBinaryWriter writer = new CompactXmlModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 

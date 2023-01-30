@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter;
@@ -28,8 +29,8 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /**
@@ -103,6 +104,16 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      */
     public void setParameterWriter(PsiXmlParameterWriter parameterWriter) {
         this.parameterWriter = parameterWriter;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void initialiseDefaultExperiment() {
+        Experiment defaultExperiment = newExperiment(newPublication(
+                "Mock publication and experiment for abstract interactions that are not interaction evidences.",
+                null,
+                null));
+        setDefaultExperiment(defaultExperiment);
     }
 
     /** {@inheritDoc} */
@@ -215,6 +226,25 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void writeNegative(I object) {
         // nothing to do
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected CvTerm writeExperiments(I object) throws XMLStreamException {
+        // write experimental evidences
+        if (!object.getCooperativeEffects().isEmpty()){
+            CooperativeEffect effect = object.getCooperativeEffects().iterator().next();
+            if (!effect.getCooperativityEvidences().isEmpty()){
+                CooperativityEvidence evidence = effect.getCooperativityEvidences().iterator().next();
+                // set first experiment as default experiment
+                if (evidence.getPublication() != null){
+                    NamedExperiment exp = newExperiment(evidence.getPublication());
+                    exp.setFullName(evidence.getPublication().getTitle());
+                    setDefaultExperiment(exp);
+                }
+            }
+        }
+        return null;
     }
 
     /** {@inheritDoc} */

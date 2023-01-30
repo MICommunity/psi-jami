@@ -4,14 +4,17 @@ import psidev.psi.mi.jami.analysis.graph.BindingSiteCliqueFinder;
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.*;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAnnotationWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlChecksumWriter;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -24,6 +27,7 @@ import java.util.Set;
  */
 public abstract class AbstractXmlInteractionWriter<T extends Interaction, P extends Participant> implements PsiXmlInteractionWriter<T> {
 
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
     private PsiXmlXrefWriter xrefWriter;
@@ -41,7 +45,8 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlInteractionWriter");
         }
@@ -620,7 +625,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
     /**
      * <p>initialiseDefaultExperiment.</p>
      */
-    protected abstract void initialiseDefaultExperiment();
+    protected void initialiseDefaultExperiment(){
+        this.defaultExperiment = newExperiment(newPublication(
+                "Mock publication for interactions that do not have experimental details.",
+                null,
+                null));
+    }
 
     /**
      * <p>writeAttribute.</p>
@@ -650,5 +660,59 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
     protected Collection<Set<Feature>> collectInferredInteractionsFrom(T object){
         BindingSiteCliqueFinder<T,Feature> cliqueFinder = new BindingSiteCliqueFinder<T, Feature>(object);
         return cliqueFinder.getAllMaximalCliques();
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
+    }
+
+    protected ExtendedPsiXmlExperiment newExperiment(Publication publication) {
+        switch (version) {
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment(publication);
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlExperiment(publication);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlExperiment(publication);
+        }
+    }
+
+    protected Publication newPublication(String title, String journal, Date publicationDate) {
+        switch (version) {
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.BibRef(title, journal, publicationDate);
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.BibRef(title, journal, publicationDate);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.BibRef(title, journal, publicationDate);
+        }
+    }
+
+    protected Publication newPublication(String pubmed) {
+        switch (version) {
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.BibRef(pubmed);
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.BibRef(pubmed);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.BibRef(pubmed);
+        }
+    }
+
+    protected CvTerm newXmlCvTerm(String shortName, CvTerm database, String id, CvTerm qualifier) {
+        switch (getVersion()) {
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm(
+                        shortName,
+                        new psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref(database, id, qualifier));
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlCvTerm(
+                        shortName,
+                        new psidev.psi.mi.jami.xml.model.extension.xml254.XmlXref(database, id, qualifier));
+        }
     }
 }

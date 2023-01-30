@@ -4,6 +4,7 @@ import psidev.psi.mi.jami.model.ComplexType;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -25,8 +26,8 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
     /**
      * <p>Constructor for LightExpandedXmlWriter.</p>
      */
-    public LightExpandedXmlWriter() {
-        super(Interaction.class);
+    public LightExpandedXmlWriter(PsiXmlVersion version) {
+        super(version, Interaction.class);
     }
 
     /**

@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
@@ -18,6 +19,8 @@ import javax.xml.stream.XMLStreamWriter;
  * @since <pre>14/11/13</pre>
  */
 public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<AbstractExperimentalInteractor> {
+
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
@@ -27,7 +30,8 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlExperimentalInteractorWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlExperimentalInteractorWriter");
         }
@@ -37,6 +41,7 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
         }
         this.objectIndex = objectIndex;
     }
+
     /** {@inheritDoc} */
     @Override
     public void write(AbstractExperimentalInteractor object) throws MIIOException {
@@ -87,5 +92,9 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
      */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
     }
 }

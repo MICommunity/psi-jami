@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
@@ -9,14 +10,11 @@ import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlOrganismWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlBindingFeaturesWriter;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction;
-import psidev.psi.mi.jami.xml.model.extension.xml300.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -43,8 +41,8 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
 
     }
 
@@ -213,13 +211,6 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     @Override
     protected void initialiseParameterWriter(){
         super.setParameterWriter(new XmlModelledParameterWriter(getStreamWriter(), getObjectIndex()));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseDefaultExperiment() {
-        setDefaultExperiment(new DefaultXmlExperiment(new BibRef("Mock publication and experiment for abstract interactions that are not interaction evidences.",(String)null,(Date)null)));
-        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 
     /** {@inheritDoc} */

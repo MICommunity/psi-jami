@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.ModelledInteraction;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -26,8 +27,8 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
      */
-    public ExpandedXmlModelledWriter() {
-        super(ModelledInteraction.class);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version) {
+        super(version, ModelledInteraction.class);
     }
 
     /**

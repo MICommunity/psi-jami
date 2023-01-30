@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
@@ -38,8 +39,8 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlInteractionEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
 
     }
 
@@ -131,6 +132,56 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
     @Override
     protected void initialiseXrefWriter(){
         super.setXrefWriter(new XmlDbXrefWriter(getStreamWriter()));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void initialiseExperimentWriter(){
+        //
+        switch (getVersion()) {
+            case v3_0_0:
+                super.setExperimentWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_3:
+            case v2_5_4:
+            default:
+                super.setExperimentWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
+                break;
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void initialiseConfidenceWriter(){
+        switch (getVersion()) {
+            case v3_0_0:
+                super.setConfidenceWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_3:
+                super.setConfidenceWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setConfidenceWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    protected void initialiseParameterWriter(){
+        switch (getVersion()) {
+            case v3_0_0:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_3:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */

@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -24,8 +25,8 @@ public class CompactXmlNamedEvidenceWriter extends AbstractCompactXmlWriter<Inte
     /**
      * <p>Constructor for CompactXmlNamedEvidenceWriter.</p>
      */
-    public CompactXmlNamedEvidenceWriter() {
-        super(InteractionEvidence.class);
+    public CompactXmlNamedEvidenceWriter(PsiXmlVersion version) {
+        super(version, InteractionEvidence.class);
     }
 
     /**

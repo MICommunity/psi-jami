@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.VariableParameterValueSet;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
@@ -16,13 +17,10 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlCausalRelationshi
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlExperimentWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlParameterWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlVariableParameterValueSetWriter;
-import psidev.psi.mi.jami.xml.model.extension.xml300.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * Abstract class for interaction evidence writers in PSI-MI XML 3.0
@@ -44,7 +42,7 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /**
@@ -180,12 +178,5 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
             // end list
             getStreamWriter().writeEndElement();
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    protected void initialiseDefaultExperiment() {
-        setDefaultExperiment(new DefaultXmlExperiment(new BibRef("Mock publication for interactions that do not have experimental details.",(String)null,(Date)null)));
-        getParameterWriter().setDefaultExperiment(getDefaultExperiment());
     }
 }

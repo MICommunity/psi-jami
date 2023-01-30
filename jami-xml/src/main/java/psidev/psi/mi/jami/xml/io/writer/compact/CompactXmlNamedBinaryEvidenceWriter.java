@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -28,8 +29,8 @@ public class CompactXmlNamedBinaryEvidenceWriter extends AbstractCompactXmlWrite
     /**
      * <p>Constructor for CompactXmlNamedBinaryEvidenceWriter.</p>
      */
-    public CompactXmlNamedBinaryEvidenceWriter() {
-        super(BinaryInteractionEvidence.class);
+    public CompactXmlNamedBinaryEvidenceWriter(PsiXmlVersion version) {
+        super(version, BinaryInteractionEvidence.class);
     }
 
     /**

@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlMixWriter;
 
 import javax.xml.stream.XMLStreamException;
@@ -23,8 +24,8 @@ public class CompactXmlWriter extends AbstractCompactXmlMixWriter<Interaction, M
     /**
      * <p>Constructor for CompactXmlWriter.</p>
      */
-    public CompactXmlWriter() {
-        super(Interaction.class);
+    public CompactXmlWriter(PsiXmlVersion version) {
+        super(version, Interaction.class);
     }
 
     /**

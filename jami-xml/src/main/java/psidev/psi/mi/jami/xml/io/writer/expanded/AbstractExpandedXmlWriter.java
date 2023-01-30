@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.expanded;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.InMemoryLightIdentityObjectCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.AbstractXmlWriter;
@@ -32,8 +33,8 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      *
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractExpandedXmlWriter(Class<T> type) {
-        super();
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type) {
+        super(version);
         this.type = type;
     }
 

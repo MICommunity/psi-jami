@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30;
 
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter;
@@ -47,7 +48,7 @@ public class XmlModelledParticipantWriter extends psidev.psi.mi.jami.xml.io.writ
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
-        super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
+        super.setInteractorWriter(new XmlInteractorWriter(PsiXmlVersion.v3_0_0, getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded;
 
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
@@ -27,8 +28,8 @@ public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInte
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlExperimentalInteractorWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /**
@@ -38,7 +39,7 @@ public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInte
      */
     public PsiXmlElementWriter<Interactor> getInteractorWriter() {
         if (this.interactorWriter == null){
-            this.interactorWriter = new XmlInteractorWriter(getStreamWriter(), getObjectIndex());
+            this.interactorWriter = new XmlInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex());
 
         }
         return interactorWriter;

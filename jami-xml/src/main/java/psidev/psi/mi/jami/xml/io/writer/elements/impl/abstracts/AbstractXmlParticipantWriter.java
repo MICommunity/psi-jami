@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter;
@@ -21,6 +22,7 @@ import java.util.Iterator;
  * @since <pre>12/11/13</pre>
  */
 public abstract class AbstractXmlParticipantWriter<P extends Participant, F extends Feature> implements PsiXmlParticipantWriter<P> {
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
     private PsiXmlElementWriter<Alias> aliasWriter;
@@ -37,7 +39,8 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlParticipantWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlParticipantWriter");
         }
@@ -534,5 +537,9 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
      */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
     }
 }

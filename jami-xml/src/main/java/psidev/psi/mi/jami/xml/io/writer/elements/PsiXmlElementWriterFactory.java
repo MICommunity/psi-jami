@@ -139,367 +139,417 @@ public class PsiXmlElementWriterFactory {
                                                                                   PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
         switch (version) {
             case v3_0_0:
-                PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
-                PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
-                        openCvWriter);
-                PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-                PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledInteractionWriter compactModelledWriter =
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledInteractionWriter(streamWriter, objectIndex);
 
-                        initModelledWriter30(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
+                        modelledWriter2.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter2.setCausalRelationshipWriter(relationshipWriter);
+                        modelledWriter2.setAllosteryWriter(allosteryWriter);
+                        modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledInteractionWriter defaultModelledWriter =
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledInteractionWriter modelledWriter3 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledInteractionWriter(streamWriter, objectIndex);
+                        modelledWriter3.setAliasWriter(aliasWriter);
 
-                        initModelledWriter30(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
+                        modelledWriter3.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter3.setCausalRelationshipWriter(relationshipWriter);
+                        modelledWriter3.setAllosteryWriter(allosteryWriter);
+                        modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
 
             case v2_5_3:
-                switch (xmlType) {
-                    case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                        }
-
-                    default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                        }
-                }
-
             case v2_5_4:
             default:
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledInteractionWriter modelledWriter2 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBasicBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBasicBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter2};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBasicInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlBasicInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledInteractionWriter modelledWriter3 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter3.setAliasWriter(aliasWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBasicBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBasicBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter3};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBasicInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlBasicInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
@@ -548,367 +598,417 @@ public class PsiXmlElementWriterFactory {
                                                                                 PsiXmlVariableNameWriter<CvTerm> openCvWriter) {
         switch (version) {
             case v3_0_0:
-                PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
-                PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
-                        openCvWriter);
-                PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-                PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledInteractionWriter compactModelledWriter =
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
 
-                        initModelledWriter30(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
+                        modelledWriter2.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter2.setAllosteryWriter(allosteryWriter);
+                        modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
+                        modelledWriter2.setCausalRelationshipWriter(relationshipWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml30.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledInteractionWriter defaultModelledWriter =
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledInteractionWriter modelledWriter3 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
 
-                        initModelledWriter30(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter3.setAliasWriter(aliasWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
+                        modelledWriter3.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter3.setAllosteryWriter(allosteryWriter);
+                        modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
+                        modelledWriter3.setCausalRelationshipWriter(relationshipWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml30.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
 
             case v2_5_3:
-                switch (xmlType) {
-                    case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml253.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                        }
-
-                    default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml253.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                        }
-                }
-
             case v2_5_4:
             default:
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledInteractionWriter modelledWriter2 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter2};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.xml254.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledInteractionWriter modelledWriter3 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter3.setAliasWriter(aliasWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter3};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.xml254.XmlNamedInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
@@ -960,376 +1060,433 @@ public class PsiXmlElementWriterFactory {
 
         switch (version) {
             case v3_0_0:
-                PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
-                PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
-                        openCvWriter);
-                PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-                PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
-                        attributeWriter, publicationWriter);
-
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledInteractionWriter compactModelledWriter =
+                        PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        PsiXmlCausalRelationshipWriter relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        PsiXmlElementWriter<Preassembly> preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        PsiXmlElementWriter<Allostery> allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledInteractionWriter modelledWriter2 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledInteractionWriter(streamWriter, objectIndex);
 
-                        initExtendedModelledWriter30(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
+                        modelledWriter2.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter2.setAllosteryWriter(allosteryWriter);
+                        modelledWriter2.setPreAssemblyWriter(preassemblyWriter);
+                        modelledWriter2.setCausalRelationshipWriter(relationshipWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initExtendedModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex, extendedInferredInteractionWriter);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex, extendedInferredInteractionWriter);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledInteractionWriter defaultModelledWriter =
+                        bindingFeaturesWriter = createBindingFeaturesWriter(streamWriter, objectIndex);
+                        relationshipWriter = createCausalRelationshipWriter(streamWriter, false, objectIndex,
+                                openCvWriter);
+                        preassemblyWriter = createPreassemblyWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        allosteryWriter = createAllosteryWriter(streamWriter, false, objectIndex, interactionTypeWriter,
+                                attributeWriter, publicationWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledInteractionWriter modelledWriter3 =
                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledInteractionWriter(streamWriter, objectIndex);
 
-                        initExtendedModelledWriter30(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                        modelledWriter3.setAliasWriter(aliasWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
+                        modelledWriter3.setBindingFeaturesWriter(bindingFeaturesWriter);
+                        modelledWriter3.setAllosteryWriter(allosteryWriter);
+                        modelledWriter3.setPreAssemblyWriter(preassemblyWriter);
+                        modelledWriter3.setCausalRelationshipWriter(relationshipWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledBinaryInteractionWriter modelledWriter4 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initExtendedModelledWriter30(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter,
-                                                bindingFeaturesWriter, relationshipWriter, preassemblyWriter, allosteryWriter);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setBindingFeaturesWriter(bindingFeaturesWriter);
+                                        modelledWriter4.setAllosteryWriter(allosteryWriter);
+                                        modelledWriter4.setPreAssemblyWriter(preassemblyWriter);
+                                        modelledWriter4.setCausalRelationshipWriter(relationshipWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlBinaryInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlBinaryInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex, extendedInferredInteractionWriter);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlInteractionEvidenceWriter evidenceWriter =
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlInteractionEvidenceWriter writer2 =
                                                 new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter30(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, relationshipWriter, streamWriter, objectIndex, extendedInferredInteractionWriter);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
+                                        writer2.setCausalRelationshipWriter(relationshipWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
 
             case v2_5_3:
-                switch (xmlType) {
-                    case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-                        compactModelledWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-                                        modelledWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-                                        basicWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-                                        basicWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
-                                }
-                        }
-
-                    default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-                        defaultModelledWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                        switch (complexType) {
-                            case binary:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-                                        modelledWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-                                        basicWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                            default:
-                                switch (interactionCategory) {
-                                    case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
-                                    case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
-                                    case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
-                                        basicWriter.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
-                                    default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
-                                }
-                        }
-                }
-
-
             case v2_5_4:
             default:
                 switch (xmlType) {
                     case compact:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlModelledInteractionWriter compactModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(compactModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledInteractionWriter modelledWriter2 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter2.setAliasWriter(aliasWriter);
+                        modelledWriter2.setAttributeWriter(attributeWriter);
+                        modelledWriter2.setXrefWriter(primaryRefWriter);
+                        modelledWriter2.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter2.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter2.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter2.setParticipantWriter(participantWriters[1]);
+                        modelledWriter2.setChecksumWriter(checksumWriter);
+                        modelledWriter2.setExperimentWriter(experimentWriter);
+                        modelledWriter2.setParameterWriter(parameterWriters[1]);
+                        modelledWriter2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter2};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBasicBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBasicBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
+                                        writer3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{compactModelledWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter2, modelledWriter2};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, compactModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter2};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBasicInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBasicInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
+                                        writer3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter2};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, compactModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter2};
                                 }
                         }
 
                     default:
-                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlModelledInteractionWriter defaultModelledWriter =
-                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlModelledInteractionWriter(streamWriter, objectIndex);
-
-                        initModelledWriter(defaultModelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledInteractionWriter modelledWriter3 =
+                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledInteractionWriter(version, streamWriter, objectIndex);
+                        modelledWriter3.setAliasWriter(aliasWriter);
+                        modelledWriter3.setAttributeWriter(attributeWriter);
+                        modelledWriter3.setXrefWriter(primaryRefWriter);
+                        modelledWriter3.setInteractionTypeWriter(interactionTypeWriter);
+                        modelledWriter3.setConfidenceWriter(confidenceWriters[1]);
+                        modelledWriter3.setInferredInteractionWriter(inferredInteractionWriter);
+                        modelledWriter3.setParticipantWriter(participantWriters[1]);
+                        modelledWriter3.setChecksumWriter(checksumWriter);
+                        modelledWriter3.setExperimentWriter(experimentWriter);
+                        modelledWriter3.setParameterWriter(parameterWriters[1]);
+                        modelledWriter3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
                         switch (complexType) {
                             case binary:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlModelledBinaryInteractionWriter modelledWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlModelledBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledBinaryInteractionWriter modelledWriter4 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        modelledWriter4.setAliasWriter(aliasWriter);
+                                        modelledWriter4.setAttributeWriter(attributeWriter);
+                                        modelledWriter4.setXrefWriter(primaryRefWriter);
+                                        modelledWriter4.setInteractionTypeWriter(interactionTypeWriter);
+                                        modelledWriter4.setConfidenceWriter(confidenceWriters[1]);
+                                        modelledWriter4.setInferredInteractionWriter(inferredInteractionWriter);
+                                        modelledWriter4.setParticipantWriter(participantWriters[1]);
+                                        modelledWriter4.setChecksumWriter(checksumWriter);
+                                        modelledWriter4.setExperimentWriter(experimentWriter);
+                                        modelledWriter4.setParameterWriter(parameterWriters[1]);
+                                        modelledWriter4.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{modelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter4, modelledWriter3};
                                     case complex:
                                         throw new IllegalArgumentException("Cannot create a XML complex writer for binary interactions");
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicBinaryInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicBinaryInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBasicBinaryInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBasicBinaryInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
+                                        writer3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBinaryInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBinaryInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBinaryInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBinaryInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                             default:
                                 switch (interactionCategory) {
                                     case modelled:
-                                        return new PsiXmlInteractionWriter[]{defaultModelledWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{modelledWriter3, modelledWriter3};
                                     case complex:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlComplexWriter complexWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlComplexWriter(streamWriter, objectIndex);
-                                        initModelledWriter(complexWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriters[1], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[1], participantWriters[1], inferredInteractionWriter);
-
-                                        return new PsiXmlInteractionWriter[]{complexWriter, defaultModelledWriter};
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlComplexWriter complexWriter =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlComplexWriter(version, streamWriter, objectIndex);
+                                        complexWriter.setAliasWriter(aliasWriter);
+                                        complexWriter.setAttributeWriter(attributeWriter);
+                                        complexWriter.setXrefWriter(primaryRefWriter);
+                                        complexWriter.setInteractionTypeWriter(interactionTypeWriter);
+                                        complexWriter.setConfidenceWriter(confidenceWriters[1]);
+                                        complexWriter.setInferredInteractionWriter(inferredInteractionWriter);
+                                        complexWriter.setParticipantWriter(participantWriters[1]);
+                                        complexWriter.setChecksumWriter(checksumWriter);
+                                        complexWriter.setExperimentWriter(experimentWriter);
+                                        complexWriter.setParameterWriter(parameterWriters[1]);
+                                        return new PsiXmlInteractionWriter[]{complexWriter, modelledWriter3};
                                     case basic:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicInteractionWriter basicWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlBasicInteractionWriter(streamWriter, objectIndex);
-                                        initWriter(basicWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                                                inferredInteractionWriter, participantWriters[0]);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBasicInteractionWriter writer3 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlBasicInteractionWriter(version, streamWriter, objectIndex);
+                                        writer3.setAttributeWriter(attributeWriter);
+                                        writer3.setXrefWriter(primaryRefWriter);
+                                        writer3.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer3.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer3.setParticipantWriter(participantWriters[0]);
+                                        writer3.setChecksumWriter(checksumWriter);
+                                        writer3.setExperimentWriter(experimentWriter);
+                                        writer3.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{basicWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer3, modelledWriter3};
                                     default:
-                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlInteractionEvidenceWriter evidenceWriter =
-                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlInteractionEvidenceWriter(streamWriter, objectIndex);
-                                        initExtendedEvidenceWriter(evidenceWriter, attributeWriter, primaryRefWriter, confidenceWriters[0], checksumWriter,
-                                                interactionTypeWriter, experimentWriter, parameterWriters[0], participantWriters[0], inferredInteractionWriter,
-                                                availabilityWriter, extendedInferredInteractionWriter);
+                                        psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlInteractionEvidenceWriter writer2 =
+                                                new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlInteractionEvidenceWriter(version, streamWriter, objectIndex);
+                                        writer2.setAttributeWriter(attributeWriter);
+                                        writer2.setXrefWriter(primaryRefWriter);
+                                        writer2.setInteractionTypeWriter(interactionTypeWriter);
+                                        writer2.setConfidenceWriter(confidenceWriters[0]);
+                                        writer2.setInferredInteractionWriter(inferredInteractionWriter);
+                                        writer2.setParticipantWriter(participantWriters[0]);
+                                        writer2.setChecksumWriter(checksumWriter);
+                                        writer2.setExperimentWriter(experimentWriter);
+                                        writer2.setParameterWriter(parameterWriters[0]);
+                                        writer2.setAvailabilityWriter(availabilityWriter);
+                                        writer2.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
 
-                                        return new PsiXmlInteractionWriter[]{evidenceWriter, defaultModelledWriter};
+                                        return new PsiXmlInteractionWriter[]{writer2, modelledWriter3};
                                 }
                         }
                 }
@@ -1642,11 +1799,13 @@ public class PsiXmlElementWriterFactory {
                 case v2_5_3:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlConfidenceWriter confWriter253 =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlConfidenceWriter(streamWriter, objectIndex);
+                    confWriter253.setTypeWriter(confidenceTypeWriter);
                     return new PsiXmlElementWriter[]{confWriter253, confWriter253};
                 case v2_5_4:
                 default:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter confWriter254 =
                             new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter(streamWriter, objectIndex);
+                    confWriter254.setTypeWriter(confidenceTypeWriter);
                     return new PsiXmlElementWriter[]{confWriter254, confWriter254};
             }
         } else {
@@ -2038,16 +2197,9 @@ public class PsiXmlElementWriterFactory {
                                                                                                          PsiXmlType xmlType) {
         switch (xmlType) {
             case compact:
-                switch (version) {
-                    case v3_0_0:
-                        return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml30.XmlExperimentalInteractorWriter(streamWriter, objectIndex);
-                    case v2_5_3:
-                    case v2_5_4:
-                    default:
-                        return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlExperimentalInteractorWriter(streamWriter, objectIndex);
-                }
+                return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.XmlExperimentalInteractorWriter(version, streamWriter, objectIndex);
             default:
-                return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.XmlExperimentalInteractorWriter(streamWriter, objectIndex);
+                return new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.XmlExperimentalInteractorWriter(version, streamWriter, objectIndex);
         }
     }
 
@@ -2157,7 +2309,7 @@ public class PsiXmlElementWriterFactory {
                 case v2_5_4:
                 default:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter expWriter2 =
-                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter(streamWriter, objectIndex);
+                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter(version, streamWriter, objectIndex);
                     expWriter2.setXrefWriter(primaryRefWriter);
                     expWriter2.setAttributeWriter(attributeWriter);
                     expWriter2.setPublicationWriter(publicationWriter);
@@ -2184,7 +2336,7 @@ public class PsiXmlElementWriterFactory {
                 case v2_5_4:
                 default:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlNamedExperimentWriter expWriter2 =
-                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlNamedExperimentWriter(streamWriter, objectIndex);
+                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlNamedExperimentWriter(version, streamWriter, objectIndex);
                     expWriter2.setXrefWriter(primaryRefWriter);
                     expWriter2.setAttributeWriter(attributeWriter);
                     expWriter2.setPublicationWriter(publicationWriter);
@@ -2210,7 +2362,7 @@ public class PsiXmlElementWriterFactory {
                 case v2_5_4:
                 default:
                     psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlExperimentWriter expWriter2 =
-                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlExperimentWriter(streamWriter, objectIndex);
+                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlExperimentWriter(version, streamWriter, objectIndex);
                     expWriter2.setXrefWriter(primaryRefWriter);
                     expWriter2.setAttributeWriter(attributeWriter);
                     expWriter2.setPublicationWriter(publicationWriter);
@@ -2236,7 +2388,7 @@ public class PsiXmlElementWriterFactory {
      * @param checksumWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      */
-    public static PsiXmlElementWriter<Interactor> createInteractorWriter(XMLStreamWriter streamWriter, boolean extended,
+    public static PsiXmlElementWriter<Interactor> createInteractorWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, boolean extended,
                                                                          PsiXmlObjectCache objectIndex, PsiXmlElementWriter<Alias> aliasWriter,
                                                                          PsiXmlElementWriter<Annotation> attributeWriter,
                                                                          PsiXmlXrefWriter primaryRefWriter,
@@ -2245,7 +2397,7 @@ public class PsiXmlElementWriterFactory {
                                                                          PsiXmlElementWriter<Checksum> checksumWriter) {
         if (extended) {
             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInteractorWriter interactorWriter =
-                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInteractorWriter(streamWriter, objectIndex);
+                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInteractorWriter(version, streamWriter, objectIndex);
             interactorWriter.setAliasWriter(aliasWriter);
             interactorWriter.setAttributeWriter(attributeWriter);
             interactorWriter.setXrefWriter(primaryRefWriter);
@@ -2254,7 +2406,7 @@ public class PsiXmlElementWriterFactory {
             interactorWriter.setChecksumWriter(checksumWriter);
             return interactorWriter;
         } else {
-            XmlInteractorWriter interactorWriter = new XmlInteractorWriter(streamWriter, objectIndex);
+            XmlInteractorWriter interactorWriter = new XmlInteractorWriter(version, streamWriter, objectIndex);
             interactorWriter.setAliasWriter(aliasWriter);
             interactorWriter.setAttributeWriter(attributeWriter);
             interactorWriter.setXrefWriter(primaryRefWriter);
@@ -2539,97 +2691,12 @@ public class PsiXmlElementWriterFactory {
                     }
 
                 case v2_5_3:
-                    switch (xmlType) {
-                        case compact:
-                            psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledParticipantWriter modelledWriter2 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
-                            modelledWriter2.setAliasWriter(aliasWriter);
-                            modelledWriter2.setAttributeWriter(attributeWriter);
-                            modelledWriter2.setXrefWriter(primaryRefWriter);
-                            modelledWriter2.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>) featureWriters[1]);
-                            modelledWriter2.setInteractorWriter(interactorWriter);
-                            modelledWriter2.setBiologicalRoleWriter(cvWriter);
-
-                            switch (category) {
-                                case modelled:
-                                    return new PsiXmlParticipantWriter[]{modelledWriter2, modelledWriter2};
-                                case basic:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantWriter(streamWriter, objectIndex);
-                                    writer3.setAliasWriter(aliasWriter);
-                                    writer3.setAttributeWriter(attributeWriter);
-                                    writer3.setXrefWriter(primaryRefWriter);
-                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>) featureWriters[0]);
-                                    writer3.setInteractorWriter(interactorWriter);
-                                    writer3.setBiologicalRoleWriter(cvWriter);
-
-                                    return new PsiXmlParticipantWriter[]{writer3, modelledWriter2};
-                                default:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml253.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
-                                    writer2.setAliasWriter(aliasWriter);
-                                    writer2.setAttributeWriter(attributeWriter);
-                                    writer2.setXrefWriter(primaryRefWriter);
-                                    writer2.setFeatureWriter((PsiXmlElementWriter<FeatureEvidence>) featureWriters[0]);
-                                    writer2.setInteractorWriter(interactorWriter);
-                                    writer2.setBiologicalRoleWriter(cvWriter);
-                                    writer2.setExperimentalCvWriter(experimentalCvWriter);
-                                    writer2.setParameterWriter(parameterWriter);
-                                    writer2.setConfidenceWriter(confidenceWriter);
-                                    writer2.setHostOrganismWriter(createHostOrganismWriter(streamWriter, version, extended, objectIndex, aliasWriter,
-                                            attributeWriter, primaryRefWriter, openCvWriter));
-
-                                    return new PsiXmlParticipantWriter[]{writer2, modelledWriter2};
-                            }
-                        default:
-                            psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledParticipantWriter modelledWriter3 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
-                            modelledWriter3.setAliasWriter(aliasWriter);
-                            modelledWriter3.setAttributeWriter(attributeWriter);
-                            modelledWriter3.setXrefWriter(primaryRefWriter);
-                            modelledWriter3.setFeatureWriter((PsiXmlElementWriter<ModelledFeature>) featureWriters[1]);
-                            modelledWriter3.setInteractorWriter(interactorWriter);
-                            modelledWriter3.setBiologicalRoleWriter(cvWriter);
-
-                            switch (category) {
-                                case modelled:
-                                    return new PsiXmlParticipantWriter[]{modelledWriter3, modelledWriter3};
-                                case basic:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantWriter(streamWriter, objectIndex);
-                                    writer3.setAliasWriter(aliasWriter);
-                                    writer3.setAttributeWriter(attributeWriter);
-                                    writer3.setXrefWriter(primaryRefWriter);
-                                    writer3.setFeatureWriter((PsiXmlElementWriter<Feature>) featureWriters[0]);
-                                    writer3.setInteractorWriter(interactorWriter);
-                                    writer3.setBiologicalRoleWriter(cvWriter);
-
-                                    return new PsiXmlParticipantWriter[]{writer3, modelledWriter3};
-                                default:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml253.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
-                                    writer2.setAliasWriter(aliasWriter);
-                                    writer2.setAttributeWriter(attributeWriter);
-                                    writer2.setXrefWriter(primaryRefWriter);
-                                    writer2.setFeatureWriter((PsiXmlElementWriter<FeatureEvidence>) featureWriters[0]);
-                                    writer2.setInteractorWriter(interactorWriter);
-                                    writer2.setBiologicalRoleWriter(cvWriter);
-                                    writer2.setExperimentalCvWriter(experimentalCvWriter);
-                                    writer2.setParameterWriter(parameterWriter);
-                                    writer2.setConfidenceWriter(confidenceWriter);
-                                    writer2.setHostOrganismWriter(createHostOrganismWriter(streamWriter, version, extended, objectIndex, aliasWriter,
-                                            attributeWriter, primaryRefWriter, openCvWriter));
-
-                                    return new PsiXmlParticipantWriter[]{writer2, modelledWriter3};
-                            }
-                    }
-
                 case v2_5_4:
                 default:
                     switch (xmlType) {
                         case compact:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledParticipantWriter modelledWriter2 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
+                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlModelledParticipantWriter(version, streamWriter, objectIndex);
                             modelledWriter2.setAliasWriter(aliasWriter);
                             modelledWriter2.setAttributeWriter(attributeWriter);
                             modelledWriter2.setXrefWriter(primaryRefWriter);
@@ -2642,7 +2709,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{modelledWriter2, modelledWriter2};
                                 case basic:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantWriter(version, streamWriter, objectIndex);
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
@@ -2652,8 +2719,8 @@ public class PsiXmlElementWriterFactory {
 
                                     return new PsiXmlParticipantWriter[]{writer3, modelledWriter2};
                                 default:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.xml254.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
+                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantEvidenceWriter writer2 =
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlParticipantEvidenceWriter(version, streamWriter, objectIndex);
                                     writer2.setAliasWriter(aliasWriter);
                                     writer2.setAttributeWriter(attributeWriter);
                                     writer2.setXrefWriter(primaryRefWriter);
@@ -2670,7 +2737,7 @@ public class PsiXmlElementWriterFactory {
                             }
                         default:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledParticipantWriter modelledWriter3 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
+                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlModelledParticipantWriter(version, streamWriter, objectIndex);
                             modelledWriter3.setAliasWriter(aliasWriter);
                             modelledWriter3.setAttributeWriter(attributeWriter);
                             modelledWriter3.setXrefWriter(primaryRefWriter);
@@ -2683,7 +2750,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{modelledWriter3, modelledWriter3};
                                 case basic:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantWriter(version, streamWriter, objectIndex);
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
@@ -2693,8 +2760,8 @@ public class PsiXmlElementWriterFactory {
 
                                     return new PsiXmlParticipantWriter[]{writer3, modelledWriter3};
                                 default:
-                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.xml254.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
+                                    psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantEvidenceWriter writer2 =
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25.XmlParticipantEvidenceWriter(version, streamWriter, objectIndex);
                                     writer2.setAliasWriter(aliasWriter);
                                     writer2.setAttributeWriter(attributeWriter);
                                     writer2.setXrefWriter(primaryRefWriter);
@@ -2787,7 +2854,7 @@ public class PsiXmlElementWriterFactory {
                     switch (xmlType) {
                         case compact:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledParticipantWriter modelledWriter2 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
+                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlModelledParticipantWriter(version, streamWriter, objectIndex);
                             modelledWriter2.setAliasWriter(aliasWriter);
                             modelledWriter2.setAttributeWriter(attributeWriter);
                             modelledWriter2.setXrefWriter(primaryRefWriter);
@@ -2800,7 +2867,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{modelledWriter2, modelledWriter2};
                                 case basic:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantWriter(version, streamWriter, objectIndex);
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
@@ -2811,7 +2878,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{writer3, modelledWriter2};
                                 default:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlParticipantEvidenceWriter(version, streamWriter, objectIndex);
                                     writer2.setAliasWriter(aliasWriter);
                                     writer2.setAttributeWriter(attributeWriter);
                                     writer2.setXrefWriter(primaryRefWriter);
@@ -2828,7 +2895,7 @@ public class PsiXmlElementWriterFactory {
                             }
                         default:
                             psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledParticipantWriter modelledWriter3 =
-                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledParticipantWriter(streamWriter, objectIndex);
+                                    new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlModelledParticipantWriter(version, streamWriter, objectIndex);
                             modelledWriter3.setAliasWriter(aliasWriter);
                             modelledWriter3.setAttributeWriter(attributeWriter);
                             modelledWriter3.setXrefWriter(primaryRefWriter);
@@ -2841,7 +2908,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{modelledWriter3, modelledWriter3};
                                 case basic:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantWriter writer3 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantWriter(version, streamWriter, objectIndex);
                                     writer3.setAliasWriter(aliasWriter);
                                     writer3.setAttributeWriter(attributeWriter);
                                     writer3.setXrefWriter(primaryRefWriter);
@@ -2852,7 +2919,7 @@ public class PsiXmlElementWriterFactory {
                                     return new PsiXmlParticipantWriter[]{writer3, modelledWriter3};
                                 default:
                                     psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantEvidenceWriter writer2 =
-                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantEvidenceWriter(streamWriter, objectIndex);
+                                            new psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlParticipantEvidenceWriter(version, streamWriter, objectIndex);
                                     writer2.setAliasWriter(aliasWriter);
                                     writer2.setAttributeWriter(attributeWriter);
                                     writer2.setXrefWriter(primaryRefWriter);
@@ -2987,184 +3054,5 @@ public class PsiXmlElementWriterFactory {
                     return null;
             }
         }
-    }
-
-    private static void initWriter(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlInteractionWriter writer,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlParticipantWriter participantWriter) {
-
-        writer.setAttributeWriter(attributeWriter);
-        writer.setXrefWriter(primaryRefWriter);
-        writer.setInteractionTypeWriter(interactionTypeWriter);
-        writer.setInferredInteractionWriter(inferredInteractionWriter);
-        writer.setChecksumWriter(checksumWriter);
-        writer.setExperimentWriter(experimentWriter);
-        writer.setParticipantWriter(participantWriter);
-    }
-
-    private static void initModelledWriter(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlModelledInteractionWriter modelledWriter,
-            PsiXmlElementWriter<Alias> aliasWriter,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter) {
-
-        initWriter(modelledWriter, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                inferredInteractionWriter, participantWriter);
-        modelledWriter.setAliasWriter(aliasWriter);
-        modelledWriter.setConfidenceWriter(confidenceWriter);
-        modelledWriter.setParameterWriter(parameterWriter);
-    }
-
-    private static void initModelledWriter30(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30.AbstractXmlModelledInteractionWriter modelledWriter,
-            PsiXmlElementWriter<Alias> aliasWriter,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter,
-            PsiXmlCausalRelationshipWriter relationshipWriter,
-            PsiXmlElementWriter<Preassembly> preassemblyWriter,
-            PsiXmlElementWriter<Allostery> allosteryWriter) {
-
-        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriter, checksumWriter,
-                interactionTypeWriter, experimentWriter, parameterWriter, participantWriter, inferredInteractionWriter);
-        modelledWriter.setBindingFeaturesWriter(bindingFeaturesWriter);
-        modelledWriter.setCausalRelationshipWriter(relationshipWriter);
-        modelledWriter.setAllosteryWriter(allosteryWriter);
-        modelledWriter.setPreAssemblyWriter(preassemblyWriter);
-    }
-
-    private static void initExtendedModelledWriter30(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.AbstractXmlModelledInteractionWriter modelledWriter,
-            PsiXmlElementWriter<Alias> aliasWriter,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<Set<Feature>> bindingFeaturesWriter,
-            PsiXmlCausalRelationshipWriter relationshipWriter,
-            PsiXmlElementWriter<Preassembly> preassemblyWriter,
-            PsiXmlElementWriter<Allostery> allosteryWriter) {
-
-        initModelledWriter(modelledWriter, aliasWriter, attributeWriter, primaryRefWriter, confidenceWriter, checksumWriter,
-                interactionTypeWriter, experimentWriter, parameterWriter, participantWriter, inferredInteractionWriter);
-        modelledWriter.setBindingFeaturesWriter(bindingFeaturesWriter);
-        modelledWriter.setCausalRelationshipWriter(relationshipWriter);
-        modelledWriter.setAllosteryWriter(allosteryWriter);
-        modelledWriter.setPreAssemblyWriter(preassemblyWriter);
-    }
-
-    private static void initEvidenceWriter(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlInteractionEvidenceWriter writer,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<String> availabilityWriter) {
-
-        initWriter(writer, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                inferredInteractionWriter, participantWriter);
-        writer.setConfidenceWriter(confidenceWriter);
-        writer.setParameterWriter(parameterWriter);
-        writer.setAvailabilityWriter(availabilityWriter);
-    }
-
-    private static void initEvidenceWriter30(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30.AbstractXmlInteractionEvidenceWriter writer,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<String> availabilityWriter,
-            PsiXmlCausalRelationshipWriter relationshipWriter,
-            XMLStreamWriter streamWriter,
-            PsiXmlObjectCache objectIndex) {
-
-        initEvidenceWriter(writer, attributeWriter, primaryRefWriter, confidenceWriter, checksumWriter,
-                interactionTypeWriter, experimentWriter, parameterWriter, participantWriter, inferredInteractionWriter, availabilityWriter);
-        writer.setCausalRelationshipWriter(relationshipWriter);
-        writer.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
-        writer.setCausalRelationshipWriter(relationshipWriter);
-    }
-
-    private static void initExtendedEvidenceWriter(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.AbstractXmlInteractionEvidenceWriter writer,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<String> availabilityWriter,
-            PsiXmlElementWriter<AbstractInferredInteraction> extendedInferredInteractionWriter) {
-
-        initWriter(writer, attributeWriter, primaryRefWriter, checksumWriter, interactionTypeWriter, experimentWriter,
-                inferredInteractionWriter, participantWriter);
-        writer.setConfidenceWriter(confidenceWriter);
-        writer.setParameterWriter(parameterWriter);
-        writer.setAvailabilityWriter(availabilityWriter);
-        writer.setXmlInferredInteractionWriter(extendedInferredInteractionWriter);
-    }
-
-    private static void initExtendedEvidenceWriter30(
-            psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.AbstractXmlInteractionEvidenceWriter writer,
-            PsiXmlElementWriter<Annotation> attributeWriter,
-            PsiXmlXrefWriter primaryRefWriter,
-            PsiXmlElementWriter confidenceWriter,
-            PsiXmlElementWriter<Checksum> checksumWriter,
-            PsiXmlVariableNameWriter<CvTerm> interactionTypeWriter,
-            PsiXmlExperimentWriter experimentWriter,
-            PsiXmlParameterWriter parameterWriter,
-            PsiXmlParticipantWriter participantWriter,
-            PsiXmlElementWriter inferredInteractionWriter,
-            PsiXmlElementWriter<String> availabilityWriter,
-            PsiXmlCausalRelationshipWriter relationshipWriter,
-            XMLStreamWriter streamWriter,
-            PsiXmlObjectCache objectIndex,
-            PsiXmlElementWriter<AbstractInferredInteraction> extendedInferredInteractionWriter) {
-
-        initExtendedEvidenceWriter(writer, attributeWriter, primaryRefWriter, confidenceWriter, checksumWriter,
-                interactionTypeWriter, experimentWriter, parameterWriter, participantWriter, inferredInteractionWriter,
-                availabilityWriter, extendedInferredInteractionWriter);
-        writer.setCausalRelationshipWriter(relationshipWriter);
-        writer.setVariableParameterValueSetWriter(createVariableParameterValueSetWriter(streamWriter, objectIndex));
-        writer.setCausalRelationshipWriter(relationshipWriter);
     }
 }

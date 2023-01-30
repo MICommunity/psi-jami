@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml25;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter;
@@ -27,8 +28,8 @@ public abstract class AbstractXmlParticipantWriter
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
-        super(writer, objectIndex);
+    public AbstractXmlParticipantWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
@@ -58,7 +59,7 @@ public abstract class AbstractXmlParticipantWriter
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
-        super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
+        super.setInteractorWriter(new XmlInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

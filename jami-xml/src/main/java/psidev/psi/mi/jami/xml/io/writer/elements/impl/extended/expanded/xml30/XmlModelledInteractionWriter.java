@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30;
 
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.AbstractXmlModelledInteractionWriter;
@@ -26,7 +27,7 @@ public class XmlModelledInteractionWriter extends AbstractXmlModelledInteraction
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /** {@inheritDoc} */

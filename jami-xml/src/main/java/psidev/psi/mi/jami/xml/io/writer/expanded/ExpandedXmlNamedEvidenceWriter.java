@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.expanded;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -24,8 +25,8 @@ public class ExpandedXmlNamedEvidenceWriter extends AbstractExpandedXmlWriter<In
     /**
      * <p>Constructor for ExpandedXmlNamedEvidenceWriter.</p>
      */
-    public ExpandedXmlNamedEvidenceWriter() {
-        super(InteractionEvidence.class);
+    public ExpandedXmlNamedEvidenceWriter(PsiXmlVersion version) {
+        super(version, InteractionEvidence.class);
     }
 
     /**
