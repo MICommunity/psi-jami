@@ -69,11 +69,6 @@ psidev.psi.mi.jami.json.binary.elements
 psidev.psi.mi.jami.json.elements
 psidev.psi.mi.jami.json.nary
 psidev.psi.mi.jami.listener
-psidev.psi.mi.jami.listener.comparator
-psidev.psi.mi.jami.listener.comparator.analyzer
-psidev.psi.mi.jami.listener.comparator.event
-psidev.psi.mi.jami.listener.comparator.impl
-psidev.psi.mi.jami.listener.comparator.observer
 psidev.psi.mi.jami.listener.impl
 psidev.psi.mi.jami.model
 psidev.psi.mi.jami.model.impl
