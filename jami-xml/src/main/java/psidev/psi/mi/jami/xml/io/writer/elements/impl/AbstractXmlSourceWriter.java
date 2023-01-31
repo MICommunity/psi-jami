@@ -109,8 +109,6 @@ public abstract class AbstractXmlSourceWriter implements PsiXmlSourceWriter {
      * <p>initialisePublicationWriter.</p>
      */
     protected abstract void initialisePublicationWriter();
-//        this.publicationWriter = new XmlPublicationWriter(streamWriter);
-//    }
 
     /**
      * <p>Setter for the field <code>publicationWriter</code>.</p>

@@ -88,11 +88,4 @@ public class XmlBasicBinaryInteractionWriter extends AbstractXmlInteractionWrite
             getStreamWriter().writeEndElement();
         }
     }
-
-    protected void initialiseDefaultExperiment(){
-        setDefaultExperiment(newExperiment(newPublication(
-                "Mock publication for interactions that do not have experimental details.",
-                null,
-                null)));
-    }
 }

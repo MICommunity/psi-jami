@@ -9,7 +9,6 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.AbstractXml
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.Date;
 
 /**
  * Compact XML 2.5 writer for a basic interaction (ignore experimental details) which has a fullname
@@ -41,12 +40,5 @@ public class XmlBasicInteractionWriter extends AbstractXmlInteractionWriter<Inte
     @Override
     protected CvTerm writeExperiments(Interaction object) throws XMLStreamException {
         return writeExperimentRef();
-    }
-
-    protected void initialiseDefaultExperiment(){
-        setDefaultExperiment(newExperiment(newPublication(
-                "Mock publication for interactions that do not have experimental details.",
-                null,
-                null)));
     }
 }

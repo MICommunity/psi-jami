@@ -122,7 +122,7 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
      */
     public ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> getExperimentalInteractorWriter() {
         if (this.experimentalInteractorWriter == null){
-            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(PsiXmlVersion.v2_5_3, getStreamWriter(), getObjectIndex());
+            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex());
 
         }
         return experimentalInteractorWriter;
