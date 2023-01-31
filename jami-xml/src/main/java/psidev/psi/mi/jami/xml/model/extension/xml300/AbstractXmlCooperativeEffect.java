@@ -113,6 +113,17 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     }
 
     /**
+     * <p>addAffectedInteractionRef.</p>
+     *
+     * @param affectedInteraction a int.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
+    public void addAffectedInteractionRef(int affectedInteraction, PsiXmlLocator locator){
+        this.jaxbAffectedInteractionWrapper.getJAXBAffectedInteractionRefs().add(affectedInteraction);
+        this.jaxbAffectedInteractionWrapper.setSourceLocator(locator);
+    }
+
+    /**
      * <p>getAnnotations.</p>
      *
      * @return a {@link java.util.Collection} object.

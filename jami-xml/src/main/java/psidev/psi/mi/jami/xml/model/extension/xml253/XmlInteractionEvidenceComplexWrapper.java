@@ -8,6 +8,7 @@ import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.Entry;
 import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
@@ -254,7 +255,11 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
             this.cooperativeEffects = new ArrayList<CooperativeEffect>();
             // collect cooperative effects from interaction evidence annotations
             Collection<Annotation> annotations = new ArrayList<Annotation>(this.interactionEvidence.getAnnotations());
-            CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(annotations, this.interactionEvidence.getExperiments(), XmlEntryContext.getInstance().getListener());
+            CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(
+                    PsiXmlVersion.v2_5_3,
+                    annotations,
+                    this.interactionEvidence.getExperiments(),
+                    XmlEntryContext.getInstance().getListener());
             if (effect != null){
                 getCooperativeEffects().add(effect);
             }

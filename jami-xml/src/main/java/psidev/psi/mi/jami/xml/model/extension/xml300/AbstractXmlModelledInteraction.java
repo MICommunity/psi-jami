@@ -20,6 +20,7 @@ import psidev.psi.mi.jami.model.ModelledConfidence;
 import psidev.psi.mi.jami.model.ModelledParameter;
 import psidev.psi.mi.jami.model.ModelledParticipant;
 import psidev.psi.mi.jami.model.Source;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
@@ -213,7 +214,11 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
         // build the modelled cooperative effects from annotations
         // if possible
         Collection<Annotation> annotations = getAnnotations();
-        CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(annotations, this.jaxbExperimentWrapper != null ? this.jaxbExperimentWrapper.experiments : null, XmlEntryContext.getInstance().getListener());
+        CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(
+                PsiXmlVersion.v3_0_0,
+                annotations,
+                this.jaxbExperimentWrapper != null ? this.jaxbExperimentWrapper.experiments : null,
+                XmlEntryContext.getInstance().getListener());
         if (effect != null){
             getCooperativeEffects().add(effect);
         }

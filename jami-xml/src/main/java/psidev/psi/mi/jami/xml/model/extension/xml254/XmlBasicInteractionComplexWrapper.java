@@ -22,6 +22,7 @@ import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.Entry;
 import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
@@ -272,7 +273,11 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
            this.cooperativeEffects = new ArrayList<CooperativeEffect>();
             // collect cooperative effects from interaction evidence annotations
             Collection<Annotation> annotations = new ArrayList<Annotation>(this.interaction.getAnnotations());
-            CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(annotations, Collections.EMPTY_LIST, XmlEntryContext.getInstance().getListener());
+            CooperativeEffect effect = PsiXmlUtils.extractCooperativeEffectFrom(
+                    PsiXmlVersion.v2_5_4,
+                    annotations,
+                    Collections.EMPTY_LIST,
+                    XmlEntryContext.getInstance().getListener());
             if (effect != null){
                 getCooperativeEffects().add(effect);
             }
