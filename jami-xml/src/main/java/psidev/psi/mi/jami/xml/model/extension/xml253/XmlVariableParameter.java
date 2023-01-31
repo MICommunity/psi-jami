@@ -23,7 +23,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * XML 3.0 implementation of variable parameter
+ * XML 2.5 implementation of variable parameter
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

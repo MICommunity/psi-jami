@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 /**
- * Writer of a source in an 2.5 entry.
+ * Writer of a source in an entry.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

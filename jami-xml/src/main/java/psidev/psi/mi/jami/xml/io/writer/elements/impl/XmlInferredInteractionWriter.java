@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamWriter;
 import java.util.Set;
 
 /**
- * XML 2.5 writer for Inferred interactions
+ * XML writer for Inferred interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -32,7 +32,7 @@ public class XmlInferredInteractionWriter implements PsiXmlElementWriter<Set<Fea
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlInferredInteractionWriter. It is necessary for generating an id to a feature");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlInferredInteractionWriter. It is necessary for generating an id to a feature");
         }
         this.objectIndex = objectIndex;
     }

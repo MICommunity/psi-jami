@@ -13,7 +13,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 25 writer for participant
+ * Xml 2.5 writer for participant
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -15,7 +15,7 @@ import psidev.psi.mi.jami.model.Parameter;
 public interface PsiXmlParameterWriter extends PsiXmlElementWriter<Parameter> {
 
     /**
-     * The default experiment that will be used to write a valid XML 2.5 file but is not a real experiment attached
+     * The default experiment that will be used to write a valid XML file but is not a real experiment attached
      * to the interaction.
      *
      * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
@@ -23,7 +23,7 @@ public interface PsiXmlParameterWriter extends PsiXmlElementWriter<Parameter> {
     public Experiment getDefaultExperiment();
 
     /**
-     * Sets the default experiment that will be used to write a valid XML 2.5 file even if the interaction does not have any valid experiment
+     * Sets the default experiment that will be used to write a valid XML file even if the interaction does not have any valid experiment
      *
      * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
      */

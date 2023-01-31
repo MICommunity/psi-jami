@@ -9,7 +9,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 25 writer of checksums
+ * Xml writer of checksums
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

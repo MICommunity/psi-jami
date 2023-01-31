@@ -16,7 +16,7 @@ import java.io.Writer;
 import java.util.*;
 
 /**
- * Abstract class for an expanded PSI-XML 2.5 writer of mixed interactions
+ * Abstract class for an expanded PSI-XML writer of mixed interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

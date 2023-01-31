@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlRange
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 2.5 writer for a feature range
+ * Xml writer for a feature range
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -38,7 +38,7 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
     /** {@inheritDoc} */
     @Override
     protected void writeOtherProperties(Range object) {
-        // nothing to write in XML 2.5
+        // nothing to write in XML
     }
 
 

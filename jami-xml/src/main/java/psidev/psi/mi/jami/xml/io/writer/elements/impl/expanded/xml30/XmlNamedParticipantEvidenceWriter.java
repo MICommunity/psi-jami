@@ -12,7 +12,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Expanded Xml 2.5 writer for a named participant evidence with a shortname and a fullname.
+ * Expanded Xml 3.0 writer for a named participant evidence with a shortname and a fullname.
  * It writes full experimental details
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

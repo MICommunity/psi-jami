@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 /**
- * Abstract class for expanded PSI-xml 2.5 writers
+ * Abstract class for expanded PSI-xml writers
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

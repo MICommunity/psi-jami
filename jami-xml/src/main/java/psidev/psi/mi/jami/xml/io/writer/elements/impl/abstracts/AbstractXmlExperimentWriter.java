@@ -47,7 +47,7 @@ public abstract class AbstractXmlExperimentWriter implements PsiXmlExperimentWri
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlExperimentWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlExperimentWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }

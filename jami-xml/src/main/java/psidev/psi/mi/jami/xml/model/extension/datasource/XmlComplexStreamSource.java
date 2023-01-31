@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Datasource for Psi-XML 2.5 abstract interactions
+ * Datasource for Psi-XML abstract interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.xml.io.parser.PsiXmlParser;
 
 /**
- * Xml 2.5 complex iterator
+ * Xml complex iterator
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

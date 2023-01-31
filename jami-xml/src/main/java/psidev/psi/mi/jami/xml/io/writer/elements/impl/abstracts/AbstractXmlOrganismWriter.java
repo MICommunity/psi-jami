@@ -12,7 +12,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Abstract class forPSI-XML 2.5 writer for organism
+ * Abstract class forPSI-XML writer for organism
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -37,7 +37,7 @@ public class XmlCausalRelationshipWriter implements PsiXmlCausalRelationshipWrit
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlVariableParameterWriter. It is necessary for generating " +
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the XmlVariableParameterWriter. It is necessary for generating " +
                     "an id to a variable parameter value");
         }
         this.objectIndex = objectIndex;

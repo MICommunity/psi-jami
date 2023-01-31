@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Abstract class for a PSI-XML 2.5 datasource that loads the full interaction dataset
+ * Abstract class for a PSI-XML datasource that loads the full interaction dataset
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -73,7 +73,7 @@ public abstract class AbstractPsiXmlSource<T extends Interaction> extends Abstra
     @Override
     public Collection<T> getInteractions() throws MIIOException {
         if (!isInitialised()){
-            throw new IllegalStateException("The PsiXml interaction datasource has not been initialised. The options for the Psi xml 2.5 interaction datasource should contains at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
+            throw new IllegalStateException("The PsiXml interaction datasource has not been initialised. The options for the Psi xml interaction datasource should contains at least "+ MIFileDataSourceOptions.INPUT_OPTION_KEY + " to know where to read the interactions from.");
         }
         // reset parser if possible
         try {

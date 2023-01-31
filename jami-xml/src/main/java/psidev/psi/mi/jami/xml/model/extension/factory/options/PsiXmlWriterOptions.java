@@ -3,8 +3,8 @@ package psidev.psi.mi.jami.xml.model.extension.factory.options;
 import psidev.psi.mi.jami.factory.options.InteractionWriterOptions;
 
 /**
- * Class that lists all possible options for PsiXml 2.5 Writer.
- * The options listed in InteractionWriterOptions are also valid for a PsiXml 2.5 Writer
+ * Class that lists all possible options for PsiXml Writer.
+ * The options listed in InteractionWriterOptions are also valid for a PsiXml Writer
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -17,11 +17,11 @@ public class PsiXmlWriterOptions extends InteractionWriterOptions{
      * It has to be an enum of type InteractionCategory(mixed, modelled, evidence, basic).
      * If this option is not provided, the default value will be mixed as users may want to write all kind of interactions.
      *
-     * - evidence : the PSI XML 2.5 writer will write interactions implementing InteractionEvidence interface and will write all experimental details
-     * - modelled : the PSI XML 2.5 writer will write interactions implementing ModelledInteraction interface and will ignore all experimental details
+     * - evidence : the PSI XML writer will write interactions implementing InteractionEvidence interface and will write all experimental details
+     * - modelled : the PSI XML writer will write interactions implementing ModelledInteraction interface and will ignore all experimental details
      * excepted interaction confidences, parameters and source.
-     * - mixed: the PSI XML 2.5 writer can write any kind of interaction and delegates to specialised writers in case it finds interaction evidences/abstract interactions, etc.
-     * - basic: the PSI XML 2.5 writer will write interactions implementing Interaction interface but will ignore all details related to experiments, confidences,
+     * - mixed: the PSI XML writer can write any kind of interaction and delegates to specialised writers in case it finds interaction evidences/abstract interactions, etc.
+     * - basic: the PSI XML writer will write interactions implementing Interaction interface but will ignore all details related to experiments, confidences,
      * parameters and source. This aims at having a light file that only contains basic information about the interactions.
      */
 
@@ -46,7 +46,7 @@ public class PsiXmlWriterOptions extends InteractionWriterOptions{
     public static final String XML_ENTRY_ATTRIBUTES_OPTION = "xml25_entry_attributes_key";
 
     /**
-     * The option to select specialised XML 2.5 writers using specific object instances such as expanded interactions, participants,
+     * The option to select specialised XML writers using specific object instances such as expanded interactions, participants,
      * features, confidences, parameters, host organisms, xrefs.
      * It has to be a boolean value.
      * If this option is not provided, it will be set to false by default.
@@ -63,7 +63,7 @@ public class PsiXmlWriterOptions extends InteractionWriterOptions{
 
     /**
      * The option to choose the PSI-XML version. It has to be an enum of type PsiXmlVersion.
-     * If this option is not provided, it will write PSI-XML 2.5.4
+     * If this option is not provided, it will write PSI-XML
      */
     public static final String XML_VERSION_OPTION = "xml_version_key";
 

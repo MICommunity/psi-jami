@@ -32,7 +32,7 @@ public class XmlRangeWriter extends AbstractXmlRangeWriter {
     public XmlRangeWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         super(writer);
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlRangeWriter. It is necessary for generating an id to a participant");
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the XmlRangeWriter. It is necessary for generating an id to a participant");
         }
         this.objectIndex = objectIndex;
     }

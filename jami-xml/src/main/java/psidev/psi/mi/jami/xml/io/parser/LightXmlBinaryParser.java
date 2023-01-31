@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * Xml 2.5 parser creating light binary interactions and ignoring experimental details
+ * Xml parser creating light binary interactions and ignoring experimental details
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

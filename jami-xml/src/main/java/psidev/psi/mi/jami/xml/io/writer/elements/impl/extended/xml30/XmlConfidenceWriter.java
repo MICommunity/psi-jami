@@ -39,7 +39,7 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlConfidenceWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the XmlConfidenceWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }

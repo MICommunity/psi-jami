@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Compact XML 2.5 writer for a named modelled participant having a fullname and a shortname.
+ * Compact XML 3.0 writer for a named modelled participant having a fullname and a shortname.
  * It ignores experimental details.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

@@ -28,7 +28,7 @@ public class XmlExperimentalCvTermWriter extends XmlCvTermWriter {
     public XmlExperimentalCvTermWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer);
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlExperimentalCvTermWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the XmlExperimentalCvTermWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }

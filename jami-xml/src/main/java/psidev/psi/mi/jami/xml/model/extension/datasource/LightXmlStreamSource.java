@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Datasource for PSI-xml 2.5 returning basic interactions
+ * Datasource for PSI-xml returning basic interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

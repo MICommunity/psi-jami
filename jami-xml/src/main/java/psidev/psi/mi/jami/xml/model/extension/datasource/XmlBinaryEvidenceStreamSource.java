@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * PsiXml 2.5 datasource for binaryInteractionEvidence
+ * PsiXml datasource for binaryInteractionEvidence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

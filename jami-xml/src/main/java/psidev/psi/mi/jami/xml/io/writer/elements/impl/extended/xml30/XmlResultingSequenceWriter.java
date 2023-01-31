@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 30 writer for resulting sequence
+ * Xml 3.0 writer for resulting sequence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

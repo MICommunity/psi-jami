@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * PSI-XML 2.5 data source that provides light interactions (no experimental details).
+ * PSI-XML data source that provides light interactions (no experimental details).
  * It will load the full interaction dataset
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

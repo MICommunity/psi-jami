@@ -3,7 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements;
 import psidev.psi.mi.jami.model.Xref;
 
 /**
- * Interface for PSI-XML 2.5 Xref writers
+ * Interface for PSI-XML Xref writers
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

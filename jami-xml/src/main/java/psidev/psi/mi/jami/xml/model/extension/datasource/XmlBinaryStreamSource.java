@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Psi-XML 2.5 mixed binary interaction datasource
+ * Psi-XML mixed binary interaction datasource
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

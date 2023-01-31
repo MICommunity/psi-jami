@@ -15,7 +15,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Expanded XML 2.5 writer for an expanded participant evidence with full experimental details and having experimental interactors, list of host organisms and list of experimental roles.
+ * Expanded XML 3.0 writer for an expanded participant evidence with full experimental details and having experimental interactors, list of host organisms and list of experimental roles.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

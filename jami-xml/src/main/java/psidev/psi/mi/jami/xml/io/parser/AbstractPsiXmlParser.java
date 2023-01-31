@@ -41,7 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Parser for PSI-XML 2.5
+ * Parser for PSI-XML
  *
  * Returns an Iterator of interactions.
  *
@@ -151,7 +151,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
             return parseNextPreLoadedInteraction();
         }
 
-        // get next event from PSI-MI 2.5 schema without parsing it
+        // get next event from PSI-MI schema without parsing it
         if (currentElement == null){
             currentElement = getNextPsiXmlStartElement();
         }
@@ -402,7 +402,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
                 do {
                     start = null;
                     namespaceURI = null;
-                    // Skip all elements that are not from PSI-XML 2.5 schema and that are not start elements
+                    // Skip all elements that are not from PSI-XML schema and that are not start elements
                     while (this.streamReader.hasNext() && !this.streamReader.isStartElement()){
                         this.streamReader.next();
                     }
@@ -451,7 +451,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
             do {
                 start = null;
                 namespaceURI = null;
-                // Skip all elements that are not from PSI-XML 2.5 schema and that are not start elements
+                // Skip all elements that are not from PSI-XML schema and that are not start elements
                 while (this.streamReader.hasNext() && !this.streamReader.isStartElement()){
                     this.streamReader.next();
                 }

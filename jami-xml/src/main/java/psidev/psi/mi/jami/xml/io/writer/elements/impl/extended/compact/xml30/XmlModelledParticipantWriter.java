@@ -10,7 +10,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlModelled
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Compact XML 2.5 writer for a modelled participant. (ignore all experimental details)
+ * Compact XML 3.0 writer for a modelled participant. (ignore all experimental details)
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

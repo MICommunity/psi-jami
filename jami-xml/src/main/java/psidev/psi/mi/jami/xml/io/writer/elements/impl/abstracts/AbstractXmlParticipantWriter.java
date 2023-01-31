@@ -46,7 +46,7 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the AbstractXmlParticipantWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the AbstractXmlParticipantWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }
@@ -359,7 +359,7 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
         // write interaction ref
         if (!writeComplexAsInteractor && interactor instanceof Complex){
             Complex complex = (Complex)interactor;
-            // write complex as an interactor if no participants as XML 25 interactions must have at least one participant
+            // write complex as an interactor if no participants as XML interactions must have at least one participant
             if (complex.getParticipants().isEmpty()){
                 writeMolecule(interactor);
             }

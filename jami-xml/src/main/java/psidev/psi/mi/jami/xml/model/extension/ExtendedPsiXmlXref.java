@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.model.Xref;
 import java.util.List;
 
 /**
- * PSI-XML 2.5 extension of an xref
+ * PSI-XML extension of an xref
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -15,7 +15,7 @@ import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 /**
- * XML 3.0 implementation of variable parameter value
+ * XML implementation of variable parameter value
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

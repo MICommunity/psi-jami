@@ -18,7 +18,7 @@ import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
 import java.util.Collection;
 
 /**
- * Xml implementation of resulting sequence for XML 3.0
+ * Xml implementation of resulting sequence for XML 2.5
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

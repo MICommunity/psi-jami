@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Publication;
 
 /**
- * PsiXml 25 Experiment Writer
+ * PsiXml Experiment Writer
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

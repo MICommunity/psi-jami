@@ -15,7 +15,7 @@ import psidev.psi.mi.jami.utils.comparator.participant.StoichiometryComparator;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
 
 /**
- * Xml 3.0 implementation of stoichiometry range values
+ * Xml 2.5 implementation of stoichiometry range values
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

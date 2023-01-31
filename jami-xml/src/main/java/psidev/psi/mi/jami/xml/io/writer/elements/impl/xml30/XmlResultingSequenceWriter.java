@@ -12,7 +12,7 @@ import javax.xml.stream.XMLStreamWriter;
 import java.util.Iterator;
 
 /**
- * Xml 30 writer for resulting sequence
+ * Xml 3.0 writer for resulting sequence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

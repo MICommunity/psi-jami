@@ -3,8 +3,8 @@ package psidev.psi.mi.jami.xml.model.extension.factory.options;
 import psidev.psi.mi.jami.factory.options.MIFileDataSourceOptions;
 
 /**
- * Class that lists all possible options for PsiXml 2.5 DataSource.
- * The options listed in MIDataSourceOptions and MIDatasourceOptions are also valid for a PsiXml 2.5 DataSource
+ * Class that lists all possible options for PsiXml DataSource.
+ * The options listed in MIDataSourceOptions and MIDatasourceOptions are also valid for a PsiXml DataSource
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -23,13 +23,13 @@ public class PsiXmlDataSourceOptions extends MIFileDataSourceOptions{
     /**
      * The option to describe the type of interaction object we want to return.
      * It has to be an enum of type InteractionCategory (evidence, modelled, basic, mixed). If this option is not provided,
-     * the default value will be evidence as PSI-XML 2.5 is mainly for exchanging interaction evidences.
+     * the default value will be evidence as PSI-XML is mainly for exchanging interaction evidences.
      *
-     * - evidence : the PSI XML 2.5 datasource will return interactions implementing InteractionEvidence interface and will parse all experimental details
-     * - modelled : the PSI XML 2.5 datasource will return interactions implementing ModelledInteraction interface and will ignore all experimental details
+     * - evidence : the PSI XML datasource will return interactions implementing InteractionEvidence interface and will parse all experimental details
+     * - modelled : the PSI XML datasource will return interactions implementing ModelledInteraction interface and will ignore all experimental details
      * excepted interaction confidences, parameters and source.
-     * - mixed: it is equivalent to evidence for PSI XML 2.5 datasources as we cannot distinguish what is modelled from evidences in PSI XML 2.5
-     * - basic: the PSI XML 2.5 datasource will return interactions implementing Interaction interface but will ignore all details related to experiments, confidences,
+     * - mixed: it is equivalent to evidence for PSI XML datasources as we cannot distinguish what is modelled from evidences in PSI XML
+     * - basic: the PSI XML datasource will return interactions implementing Interaction interface but will ignore all details related to experiments, confidences,
      * parameters and source. This aims at having a light datasource that only loads basic information about the interactions it parses.
      */
 }

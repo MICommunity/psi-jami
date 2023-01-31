@@ -8,7 +8,7 @@ import psidev.psi.mi.jami.model.VariableParameter;
 import psidev.psi.mi.jami.xml.model.extension.AbstractXmlVariableParameterValue;
 
 /**
- * XML 3.0 implementation of variable parameter value
+ * XML 2.5 implementation of variable parameter value
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
