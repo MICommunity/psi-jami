@@ -106,7 +106,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getPhysicalProperties.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getPhysicalProperties() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -128,7 +128,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getInteractionEvidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -141,7 +141,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getSource.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -163,7 +163,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getModelledConfidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledConfidence> getModelledConfidences() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -176,7 +176,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getModelledParameters.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParameter> getModelledParameters() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -189,7 +189,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getCooperativeEffects.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -202,7 +202,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getRigid.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getRigid() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -224,7 +224,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getUpdatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getUpdatedDate() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -246,7 +246,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getCreatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getCreatedDate() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -268,7 +268,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getInteractionType.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionType() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -290,7 +290,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>getParticipants.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParticipant> getParticipants() {
         logger.log(Level.WARNING, "The interaction reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -303,7 +303,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>addParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean addParticipant(ModelledParticipant part) {
@@ -317,7 +317,7 @@ public abstract class AbstractComplexRef extends AbstractInteractorRef implement
     /**
      * <p>removeParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean removeParticipant(ModelledParticipant part) {

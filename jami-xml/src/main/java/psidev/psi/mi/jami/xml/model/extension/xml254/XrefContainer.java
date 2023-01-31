@@ -45,7 +45,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link XmlXref}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlXref}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "primaryRef",required = true, type = XmlXref.class)
     public void setJAXBPrimaryRef(Xref value) {
@@ -72,9 +72,9 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlXref}
+     * {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlXref}
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "secondaryRef", type = XmlXref.class)
     public List<Xref> getJAXBSecondaryRefs() {
@@ -87,7 +87,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>xrefs</code>.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Xref> getXrefs() {
         if (xrefs == null) {
@@ -117,7 +117,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -155,7 +155,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>initialiseXrefsWith.</p>
      *
-     * @param list a {@link List} object.
+     * @param list a {@link java.util.List} object.
      */
     protected void initialiseXrefsWith(List<Xref> list){
         if (list == null){
@@ -176,7 +176,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>initialiseSecondaryResWith.</p>
      *
-     * @param list a {@link JAXBSecondaryXrefList} object.
+     * @param list a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XrefContainer.JAXBSecondaryXrefList} object.
      */
     protected void initialiseSecondaryResWith(JAXBSecondaryXrefList list){
         if (list == null){
@@ -190,7 +190,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>processAddedPrimaryRef.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedPrimaryRef(Xref added) {
         if (xrefs == null){

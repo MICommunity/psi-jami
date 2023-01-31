@@ -316,7 +316,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>Getter for the field <code>interactionNamesContainer</code>.</p>
      *
-     * @return a {@link NamesContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer} object.
      */
     protected NamesContainer getInteractionNamesContainer() {
         if (this.interactionNamesContainer == null){
@@ -330,7 +330,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer}
      */
     public void setInteractionNamesContainer(NamesContainer value) {
         this.interactionNamesContainer = value;
@@ -339,7 +339,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>getInteractionXrefContainer.</p>
      *
-     * @return a {@link InteractionXrefContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.InteractionXrefContainer} object.
      */
     protected InteractionXrefContainer getInteractionXrefContainer() {
         return interactionXrefContainer;
@@ -350,7 +350,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
      *
      * @param value
      *     allowed object is
-     *     {@link InteractionXrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.InteractionXrefContainer}
      *
      */
     public void setInteractionXrefContainer(InteractionXrefContainer value) {
@@ -493,7 +493,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>Getter for the field <code>entry</code>.</p>
      *
-     * @return a {@link Entry} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.Entry} object.
      */
     public Entry getEntry() {
         return entry;
@@ -502,7 +502,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>Setter for the field <code>entry</code>.</p>
      *
-     * @param entry a {@link Entry} object.
+     * @param entry a {@link psidev.psi.mi.jami.xml.model.Entry} object.
      */
     public void setEntry(Entry entry) {
         this.entry = entry;
@@ -517,7 +517,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param jaxbAttributeWrapper a {@link AbstractXmlInteraction.JAXBAttributeWrapper} object.
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteraction.JAXBAttributeWrapper} object.
      */
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;
@@ -526,7 +526,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>setParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link AbstractXmlInteraction.JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteraction.JAXBParticipantWrapper} object.
      */
     public void setParticipantWrapper(JAXBParticipantWrapper<T> jaxbParticipantWrapper) {
         this.jaxbParticipantWrapper = jaxbParticipantWrapper;
@@ -578,7 +578,7 @@ public abstract class AbstractXmlInteraction<T extends Participant> implements F
     /**
      * <p>getAttributeWrapper.</p>
      *
-     * @return a {@link AbstractXmlInteraction.JAXBAttributeWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteraction.JAXBAttributeWrapper} object.
      */
     protected JAXBAttributeWrapper getAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){

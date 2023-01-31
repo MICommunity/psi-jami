@@ -64,7 +64,7 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param identifier a {@link Xref} object.
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public BibRef(Xref identifier){
         this();
@@ -77,9 +77,9 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param identifier a {@link Xref} object.
-     * @param curationDepth a {@link CurationDepth} object.
-     * @param source a {@link Source} object.
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(Xref identifier, CurationDepth curationDepth, Source source){
         this(identifier);
@@ -92,9 +92,9 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param identifier a {@link Xref} object.
-     * @param imexId a {@link String} object.
-     * @param source a {@link Source} object.
+     * @param identifier a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(Xref identifier, String imexId, Source source){
         this(identifier, CurationDepth.IMEx, source);
@@ -104,7 +104,7 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param pubmed a {@link String} object.
+     * @param pubmed a {@link java.lang.String} object.
      */
     public BibRef(String pubmed){
 
@@ -116,9 +116,9 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param pubmed a {@link String} object.
-     * @param curationDepth a {@link CurationDepth} object.
-     * @param source a {@link Source} object.
+     * @param pubmed a {@link java.lang.String} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(String pubmed, CurationDepth curationDepth, Source source){
         this(pubmed);
@@ -131,9 +131,9 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param pubmed a {@link String} object.
-     * @param imexId a {@link String} object.
-     * @param source a {@link Source} object.
+     * @param pubmed a {@link java.lang.String} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(String pubmed, String imexId, Source source){
         this(pubmed, CurationDepth.IMEx, source);
@@ -143,9 +143,9 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param title a {@link String} object.
-     * @param journal a {@link String} object.
-     * @param publicationDate a {@link Date} object.
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
      */
     public BibRef(String title, String journal, Date publicationDate){
         setTitle(title);
@@ -156,11 +156,11 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param title a {@link String} object.
-     * @param journal a {@link String} object.
-     * @param publicationDate a {@link Date} object.
-     * @param curationDepth a {@link CurationDepth} object.
-     * @param source a {@link Source} object.
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param curationDepth a {@link psidev.psi.mi.jami.model.CurationDepth} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(String title, String journal, Date publicationDate, CurationDepth curationDepth, Source source){
         this(title, journal, publicationDate);
@@ -171,11 +171,11 @@ public class BibRef
     /**
      * <p>Constructor for BibRef.</p>
      *
-     * @param title a {@link String} object.
-     * @param journal a {@link String} object.
-     * @param publicationDate a {@link Date} object.
-     * @param imexId a {@link String} object.
-     * @param source a {@link Source} object.
+     * @param title a {@link java.lang.String} object.
+     * @param journal a {@link java.lang.String} object.
+     * @param publicationDate a {@link java.util.Date} object.
+     * @param imexId a {@link java.lang.String} object.
+     * @param source a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public BibRef(String title, String journal, Date publicationDate, String imexId, Source source){
         this(title, journal, publicationDate, CurationDepth.IMEx, source);
@@ -185,7 +185,7 @@ public class BibRef
     /**
      * <p>getPubmedId.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getPubmedId() {
         return xrefContainer != null ? xrefContainer.getPubmedId() : null;
@@ -202,7 +202,7 @@ public class BibRef
     /**
      * <p>getDoi.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getDoi() {
         return xrefContainer != null ? xrefContainer.getDoi() : null;
@@ -219,7 +219,7 @@ public class BibRef
     /**
      * <p>getIdentifiers.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         if (xrefContainer == null){
@@ -231,7 +231,7 @@ public class BibRef
     /**
      * <p>getImexId.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getImexId() {
         return this.xrefContainer != null ? this.xrefContainer.getImexId() : null;
@@ -249,7 +249,7 @@ public class BibRef
     /**
      * <p>getTitle.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getTitle() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.title : null;
@@ -266,7 +266,7 @@ public class BibRef
     /**
      * <p>getJournal.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getJournal() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.journal : null;
@@ -283,7 +283,7 @@ public class BibRef
     /**
      * <p>getPublicationDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getPublicationDate() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.publicationDate : null;
@@ -300,7 +300,7 @@ public class BibRef
     /**
      * <p>getAuthors.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<String> getAuthors() {
         if (jaxbAttributeWrapper == null){
@@ -312,7 +312,7 @@ public class BibRef
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
@@ -324,7 +324,7 @@ public class BibRef
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         if (jaxbAttributeWrapper == null){
@@ -336,7 +336,7 @@ public class BibRef
     /**
      * <p>Getter for the field <code>experiments</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (experiments == null){
@@ -348,7 +348,7 @@ public class BibRef
     /**
      * <p>getCurationDepth.</p>
      *
-     * @return a {@link CurationDepth} object.
+     * @return a {@link psidev.psi.mi.jami.model.CurationDepth} object.
      */
     public CurationDepth getCurationDepth() {
         return this.jaxbAttributeWrapper != null ? this.jaxbAttributeWrapper.curationDepth : CurationDepth.undefined;
@@ -377,7 +377,7 @@ public class BibRef
     /**
      * <p>Getter for the field <code>releasedDate</code>.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getReleasedDate() {
         return this.releasedDate;
@@ -391,7 +391,7 @@ public class BibRef
     /**
      * <p>Getter for the field <code>source</code>.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         return this.source;
@@ -467,7 +467,7 @@ public class BibRef
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param xrefContainer a {@link PublicationXrefContainer} object.
+     * @param xrefContainer a {@link psidev.psi.mi.jami.xml.model.extension.xml254.PublicationXrefContainer} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "xref")
     public void setJAXBXref(PublicationXrefContainer xrefContainer) {
@@ -477,7 +477,7 @@ public class BibRef
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param wrapper a {@link JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.BibRef.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
@@ -493,7 +493,7 @@ public class BibRef
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

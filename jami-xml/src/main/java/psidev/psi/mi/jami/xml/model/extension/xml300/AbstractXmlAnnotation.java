@@ -48,8 +48,8 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     /**
      * <p>Constructor for AbstractXmlAnnotation.</p>
      *
-     * @param topic a {@link CvTerm} object.
-     * @param value a {@link String} object.
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
      */
     public AbstractXmlAnnotation(CvTerm topic, String value) {
         if (topic == null){
@@ -62,7 +62,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     /**
      * <p>Constructor for AbstractXmlAnnotation.</p>
      *
-     * @param topic a {@link CvTerm} object.
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlAnnotation(CvTerm topic) {
         if (topic == null){
@@ -74,7 +74,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     /**
      * <p>Getter for the field <code>topic</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getTopic() {
         if (topic == null){
@@ -86,7 +86,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     /**
      * <p>Getter for the field <code>value</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getValue() {
         return this.value;
@@ -103,7 +103,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "name", required = true)
     public void setJAXBName(String value) {
@@ -126,7 +126,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "nameAc")
     public void setJAXBNameAc(String value) {
@@ -147,7 +147,7 @@ public abstract class AbstractXmlAnnotation implements Annotation, FileSourceCon
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

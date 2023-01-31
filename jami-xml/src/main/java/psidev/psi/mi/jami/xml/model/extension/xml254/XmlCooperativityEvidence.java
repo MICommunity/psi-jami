@@ -29,7 +29,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Constructor for XmlCooperativityEvidence.</p>
      *
-     * @param exp a {@link Experiment} object.
+     * @param exp a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public XmlCooperativityEvidence(Experiment exp) {
         if (exp == null){
@@ -41,7 +41,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Getter for the field <code>publication</code>.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         if (this.publication == null){
@@ -59,7 +59,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -81,7 +81,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
@@ -103,7 +103,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>initialiseEvidenceMethodsWith.</p>
      *
-     * @param methods a {@link Collection} object.
+     * @param methods a {@link java.util.Collection} object.
      */
     protected void initialiseEvidenceMethodsWith(Collection<CvTerm> methods){
         if (methods == null){
@@ -125,7 +125,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Getter for the field <code>evidenceMethods</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CvTerm> getEvidenceMethods() {
 

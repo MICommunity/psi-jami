@@ -30,7 +30,7 @@ public class XmlModelledConfidence extends AbstractXmlConfidence implements Mode
     /**
      * <p>Constructor for XmlModelledConfidence.</p>
      *
-     * @param type a {@link XmlOpenCvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlOpenCvTerm} object.
      * @param value a {@link java.lang.String} object.
      */
     public XmlModelledConfidence(XmlOpenCvTerm type, String value) {
@@ -54,7 +54,7 @@ public class XmlModelledConfidence extends AbstractXmlConfidence implements Mode
     /**
      * <p>setJAXBPublication.</p>
      *
-     * @param publication a {@link BibRef} object.
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.xml300.BibRef} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="bibref")
     public void setJAXBPublication(BibRef publication) {

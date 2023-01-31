@@ -39,7 +39,7 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>Constructor for AbstractXmlBasicInteraction.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public AbstractXmlBasicInteraction(String shortName) {
         super(shortName);
@@ -48,8 +48,8 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>Constructor for AbstractXmlBasicInteraction.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlBasicInteraction(String shortName, CvTerm type) {
         super(shortName, type);
@@ -93,7 +93,7 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>setJAXBIntraMolecular.</p>
      *
-     * @param intra a {@link Boolean} object.
+     * @param intra a {@link java.lang.Boolean} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "intraMolecular", defaultValue = "false", type = Boolean.class)
     public void setJAXBIntraMolecular(Boolean intra) {
@@ -113,7 +113,7 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>setJAXBImexId.</p>
      *
-     * @param value a {@link String} object.
+     * @param value a {@link java.lang.String} object.
      */
     @XmlAttribute(name = "imexId")
     public void setJAXBImexId(String value) {
@@ -130,7 +130,7 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>setJAXBParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlBasicInteraction.JAXBParticipantWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {

@@ -54,8 +54,8 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlFeatureEvidence(String shortName, String fullName) {
         super(shortName, fullName);
@@ -64,7 +64,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param type a {@link CvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlFeatureEvidence(CvTerm type) {
         super(type);
@@ -73,9 +73,9 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlFeatureEvidence(String shortName, String fullName, CvTerm type) {
         super(shortName, fullName, type);
@@ -84,9 +84,9 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param interpro a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeatureEvidence(String shortName, String fullName, String interpro) {
         super(shortName, fullName, interpro);
@@ -95,8 +95,8 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param interpro a {@link String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeatureEvidence(CvTerm type, String interpro) {
         super(type, interpro);
@@ -105,10 +105,10 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Constructor for XmlFeatureEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param interpro a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeatureEvidence(String shortName, String fullName, CvTerm type, String interpro) {
         super(shortName, fullName, type, interpro);
@@ -117,7 +117,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>getDetectionMethods.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CvTerm> getDetectionMethods() {
         if (!initialisedMethods){
@@ -129,7 +129,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Experiment> getExperiments() {
         if (jaxbExperimentRefWrapper == null){
@@ -193,7 +193,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>getJAXBFeatureDetectionMethods.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="featureDetectionMethod", type = XmlCvTerm.class)
     public List<CvTerm> getJAXBFeatureDetectionMethods() {
@@ -203,7 +203,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>setJAXBExperimentRefWrapper.</p>
      *
-     * @param wrapper a {@link JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlFeatureEvidence.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {
@@ -213,7 +213,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>setJAXBParameterWrapper.</p>
      *
-     * @param wrapper a {@link JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlFeatureEvidence.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -272,7 +272,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Setter for the field <code>originalParticipant</code>.</p>
      *
-     * @param p a {@link XmlParticipantEvidence} object.
+     * @param p a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantEvidence} object.
      */
     protected void setOriginalParticipant(XmlParticipantEvidence p){
         this.originalParticipant = p;

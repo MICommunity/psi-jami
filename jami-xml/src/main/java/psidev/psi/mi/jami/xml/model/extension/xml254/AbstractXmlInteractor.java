@@ -226,7 +226,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="names", required = true)
     public void setJAXBNames(NamesContainer value) {
@@ -238,7 +238,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
      *
      * @param value
      *     allowed object is
-     *     {@link InteractorXrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.InteractorXrefContainer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="xref")
     public void setJAXBXref(InteractorXrefContainer value) {
@@ -248,7 +248,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
     /**
      * <p>setJAXBInteractorType.</p>
      *
-     * @param interactorType a {@link XmlCvTerm} object.
+     * @param interactorType a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="interactorType", required = true)
     public void setJAXBInteractorType(XmlCvTerm interactorType) {
@@ -258,7 +258,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
     /**
      * <p>setJAXBOrganism.</p>
      *
-     * @param organism a {@link XmlOrganism} object.
+     * @param organism a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOrganism} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="organism")
     public void setJAXBOrganism(XmlOrganism organism) {
@@ -270,7 +270,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="sequence")
     public void setSequence(String value) {
@@ -290,7 +290,7 @@ public abstract class AbstractXmlInteractor extends AbstractBaseXmlInteractor {
     /**
      * Gets the value of the attributeList property.
      *
-     * @param wrapper a {@link JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlInteractor.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {

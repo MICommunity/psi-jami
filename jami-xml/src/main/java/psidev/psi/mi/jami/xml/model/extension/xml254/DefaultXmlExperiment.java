@@ -27,7 +27,7 @@ public class DefaultXmlExperiment extends AbstractXmlExperiment {
     /**
      * <p>Constructor for XmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlExperiment(Publication publication) {
         super(publication);
@@ -36,8 +36,8 @@ public class DefaultXmlExperiment extends AbstractXmlExperiment {
     /**
      * <p>Constructor for XmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
-     * @param interactionDetectionMethod a {@link CvTerm} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public DefaultXmlExperiment(Publication publication, CvTerm interactionDetectionMethod) {
         super(publication, interactionDetectionMethod);
@@ -46,9 +46,9 @@ public class DefaultXmlExperiment extends AbstractXmlExperiment {
     /**
      * <p>Constructor for XmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
-     * @param interactionDetectionMethod a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public DefaultXmlExperiment(Publication publication, CvTerm interactionDetectionMethod, Organism organism) {
         super(publication, interactionDetectionMethod, organism);

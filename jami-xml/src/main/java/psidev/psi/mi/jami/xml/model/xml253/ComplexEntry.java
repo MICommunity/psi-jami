@@ -47,7 +47,7 @@ public class ComplexEntry extends AbstractEntry<Complex> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
@@ -57,7 +57,7 @@ public class ComplexEntry extends AbstractEntry<Complex> {
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param wrapper a {@link ComplexEntry.JAXBExperimentsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.ComplexEntry.JAXBExperimentsWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
@@ -77,7 +77,7 @@ public class ComplexEntry extends AbstractEntry<Complex> {
     /**
      * <p>setJAXBInteractionsWrapper.</p>
      *
-     * @param wrapper a {@link ComplexEntry.JAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.ComplexEntry.JAXBInteractionsWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){

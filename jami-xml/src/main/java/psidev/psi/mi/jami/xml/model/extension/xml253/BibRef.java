@@ -454,7 +454,7 @@ public class BibRef
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param xrefContainer a {@link PublicationXrefContainer} object.
+     * @param xrefContainer a {@link psidev.psi.mi.jami.xml.model.extension.xml253.PublicationXrefContainer} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "xref")
     public void setJAXBXref(PublicationXrefContainer xrefContainer) {
@@ -464,7 +464,7 @@ public class BibRef
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param wrapper a {@link BibRef.JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.BibRef.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {

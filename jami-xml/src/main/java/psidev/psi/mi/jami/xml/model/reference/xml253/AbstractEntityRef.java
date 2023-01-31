@@ -213,7 +213,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlEntity} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     protected ExtendedPsiXmlEntity<T> getDelegate() {
         return delegate;
@@ -222,7 +222,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link ExtendedPsiXmlEntity} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     protected void setDelegate(ExtendedPsiXmlEntity<T> delegate) {
         this.delegate = delegate;

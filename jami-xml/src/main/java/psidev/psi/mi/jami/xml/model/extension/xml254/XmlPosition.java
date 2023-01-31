@@ -36,7 +36,7 @@ public class XmlPosition extends AbstractXmlPosition {
     /**
      * <p>Constructor for XmlPosition.</p>
      *
-     * @param status a {@link CvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param positionUndetermined a boolean.
      */
     public XmlPosition(CvTerm status, boolean positionUndetermined) {
@@ -46,7 +46,7 @@ public class XmlPosition extends AbstractXmlPosition {
     /**
      * <p>Constructor for XmlPosition.</p>
      *
-     * @param status a {@link CvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param pos a long.
      * @param positionUndetermined a boolean.
      */

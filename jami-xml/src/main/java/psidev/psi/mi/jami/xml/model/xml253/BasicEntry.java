@@ -30,7 +30,7 @@ public class BasicEntry extends AbstractEntry<Interaction> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
@@ -50,7 +50,7 @@ public class BasicEntry extends AbstractEntry<Interaction> {
     /**
      * <p>setJAXBInteractionsWrapper.</p>
      *
-     * @param wrapper a {@link BasicEntry.JAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.BasicEntry.JAXBInteractionsWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){

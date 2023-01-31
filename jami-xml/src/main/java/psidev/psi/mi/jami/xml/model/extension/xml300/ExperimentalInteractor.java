@@ -52,7 +52,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (getJaxbExperimentRefWrapper() == null){
@@ -66,7 +66,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
      *
      * @param value
      *     allowed object is
-     *     {@link Interactor}
+     *     {@link psidev.psi.mi.jami.model.Interactor}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactor")
     public void setJAXBInteractor(DefaultXmlInteractor value) {
@@ -78,7 +78,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
      *
      * @param value
      *     allowed object is
-     *     {@link Integer}
+     *     {@link java.lang.Integer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorRef")
     public void setJAXBInteractorRef(Integer value) {
@@ -90,7 +90,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ExperimentalInteractor.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

@@ -25,7 +25,7 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public XmlBinaryInteractionEvidence(String shortName) {
         super(shortName);
@@ -34,8 +34,8 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, CvTerm type) {
         super(shortName, type);
@@ -44,8 +44,8 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      */
     public XmlBinaryInteractionEvidence(ParticipantEvidence participantA, ParticipantEvidence participantB) {
         super(participantA, participantB);
@@ -54,9 +54,9 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, ParticipantEvidence participantA, ParticipantEvidence participantB) {
         super(shortName, participantA, participantB);
@@ -65,10 +65,10 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, CvTerm type, ParticipantEvidence participantA, ParticipantEvidence participantB) {
         super(shortName, type, participantA, participantB);
@@ -77,7 +77,7 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param complexExpansion a {@link CvTerm} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(CvTerm complexExpansion) {
         super(complexExpansion);
@@ -86,9 +86,9 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param complexExpansion a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, CvTerm type, CvTerm complexExpansion) {
         super(shortName, type, complexExpansion);
@@ -97,9 +97,9 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
-     * @param complexExpansion a {@link CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(ParticipantEvidence participantA, ParticipantEvidence participantB, CvTerm complexExpansion) {
         super(participantA, participantB, complexExpansion);
@@ -108,10 +108,10 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
-     * @param complexExpansion a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, ParticipantEvidence participantA, ParticipantEvidence participantB, CvTerm complexExpansion) {
         super(shortName, participantA, participantB, complexExpansion);
@@ -120,11 +120,11 @@ public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEv
     /**
      * <p>Constructor for XmlBinaryInteractionEvidence.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param participantA a {@link ParticipantEvidence} object.
-     * @param participantB a {@link ParticipantEvidence} object.
-     * @param complexExpansion a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
+     * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionEvidence(String shortName, CvTerm type, ParticipantEvidence participantA, ParticipantEvidence participantB, CvTerm complexExpansion) {
         super(shortName, type, participantA, participantB, complexExpansion);

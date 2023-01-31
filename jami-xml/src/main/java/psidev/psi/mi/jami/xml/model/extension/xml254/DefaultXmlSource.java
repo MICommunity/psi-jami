@@ -41,7 +41,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public DefaultXmlSource(String shortName) {
         super(shortName);
@@ -50,8 +50,8 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultXmlSource(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
@@ -60,9 +60,9 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public DefaultXmlSource(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
@@ -71,10 +71,10 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param url a {@link String} object.
-     * @param address a {@link String} object.
-     * @param bibRef a {@link Publication} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlSource(String shortName, String url, String address, Publication bibRef) {
         super(shortName, url, address, bibRef);
@@ -83,11 +83,11 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
-     * @param url a {@link String} object.
-     * @param address a {@link String} object.
-     * @param bibRef a {@link Publication} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlSource(String shortName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, ontologyId, url, address, bibRef);
@@ -96,12 +96,12 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
-     * @param url a {@link String} object.
-     * @param address a {@link String} object.
-     * @param bibRef a {@link Publication} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlSource(String shortName, String fullName, Xref ontologyId, String url, String address, Publication bibRef) {
         super(shortName, fullName, ontologyId, url, address, bibRef);
@@ -110,8 +110,8 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miId a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
      */
     public DefaultXmlSource(String shortName, String miId) {
         super(shortName, miId);
@@ -120,9 +120,9 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miId a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
      */
     public DefaultXmlSource(String shortName, String fullName, String miId) {
         super(shortName, fullName, miId);
@@ -131,11 +131,11 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miId a {@link String} object.
-     * @param url a {@link String} object.
-     * @param address a {@link String} object.
-     * @param bibRef a {@link Publication} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlSource(String shortName, String miId, String url, String address, Publication bibRef) {
         super(shortName, miId, url, address, bibRef);
@@ -144,12 +144,12 @@ public class DefaultXmlSource extends AbstractXmlSource
     /**
      * <p>Constructor for XmlSource.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miId a {@link String} object.
-     * @param url a {@link String} object.
-     * @param address a {@link String} object.
-     * @param bibRef a {@link Publication} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miId a {@link java.lang.String} object.
+     * @param url a {@link java.lang.String} object.
+     * @param address a {@link java.lang.String} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public DefaultXmlSource(String shortName, String fullName, String miId, String url, String address, Publication bibRef) {
         super(shortName, fullName, miId, url, address, bibRef);

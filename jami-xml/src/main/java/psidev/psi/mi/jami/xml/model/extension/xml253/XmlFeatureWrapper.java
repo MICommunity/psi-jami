@@ -27,7 +27,7 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
     /**
      * <p>Constructor for XmlFeatureWrapper.</p>
      *
-     * @param part a {@link ExtendedPsiXmlFeature} object.
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
      * @param parent a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      */
     public XmlFeatureWrapper(ExtendedPsiXmlFeature part, ModelledEntity parent){
@@ -169,7 +169,7 @@ public class XmlFeatureWrapper implements ModelledFeature, ExtendedPsiXmlFeature
     /**
      * <p>getWrappedFeature.</p>
      *
-     * @return a {@link ExtendedPsiXmlFeature} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
      */
     public ExtendedPsiXmlFeature<Participant,Feature> getWrappedFeature(){
         return this.feature;

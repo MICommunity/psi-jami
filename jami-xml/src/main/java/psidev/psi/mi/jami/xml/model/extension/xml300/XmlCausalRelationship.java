@@ -138,7 +138,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -157,7 +157,7 @@ public class XmlCausalRelationship implements ExtendedPsiXmlCausalRelationship,F
     /**
      * <p>setJAXBRelationType.</p>
      *
-     * @param value a {@link XmlOpenCvTerm} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "causalityStatement", required = true)
     public void setJAXBRelationType(XmlOpenCvTerm value){

@@ -35,7 +35,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>getInteractor.</p>
      *
-     * @return a {@link Interactor} object.
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public Interactor getInteractor() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -57,7 +57,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>getCausalRelationships.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CausalRelationship> getCausalRelationships() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -70,7 +70,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>getStoichiometry.</p>
      *
-     * @return a {@link Stoichiometry} object.
+     * @return a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public Stoichiometry getStoichiometry() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -92,7 +92,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>setStoichiometry.</p>
      *
-     * @param stoichiometry a {@link Stoichiometry} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public void setStoichiometry(Stoichiometry stoichiometry) {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -105,7 +105,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>getFeatures.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<T> getFeatures() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -118,7 +118,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>getChangeListener.</p>
      *
-     * @return a {@link EntityInteractorChangeListener} object.
+     * @return a {@link psidev.psi.mi.jami.listener.EntityInteractorChangeListener} object.
      */
     public EntityInteractorChangeListener getChangeListener() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -213,7 +213,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlEntity} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     protected ExtendedPsiXmlEntity<T> getDelegate() {
         return delegate;
@@ -222,7 +222,7 @@ public abstract class AbstractEntityRef<T extends Feature> extends AbstractXmlId
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link ExtendedPsiXmlEntity} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     protected void setDelegate(ExtendedPsiXmlEntity<T> delegate) {
         this.delegate = delegate;

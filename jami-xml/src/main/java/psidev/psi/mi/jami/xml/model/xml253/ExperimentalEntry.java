@@ -48,7 +48,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
@@ -58,7 +58,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBAvailabilityWrapper.</p>
      *
-     * @param wrapper a {@link ExperimentalEntry.JAXBAvailabilitiesWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.ExperimentalEntry.JAXBAvailabilitiesWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "availabilityList")
     public void setJAXBAvailabilityWrapper(JAXBAvailabilitiesWrapper wrapper) {
@@ -68,7 +68,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param wrapper a {@link ExperimentalEntry.JAXBExperimentsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.ExperimentalEntry.JAXBExperimentsWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
@@ -88,7 +88,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBInteractionsWrapper.</p>
      *
-     * @param wrapper a {@link ExperimentalEntry.JAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml253.ExperimentalEntry.JAXBInteractionsWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){

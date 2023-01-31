@@ -61,7 +61,7 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -83,7 +83,7 @@ public class XmlStoichiometry extends DefaultStoichiometry implements FileSource
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

@@ -81,7 +81,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;

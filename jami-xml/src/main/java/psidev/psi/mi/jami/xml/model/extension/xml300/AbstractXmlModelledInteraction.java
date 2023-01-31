@@ -65,7 +65,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Constructor for AbstractXmlModelledInteraction.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public AbstractXmlModelledInteraction(String shortName) {
         super(shortName);
@@ -79,8 +79,8 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Constructor for AbstractXmlModelledInteraction.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlModelledInteraction(String shortName, CvTerm type) {
         super(shortName, type);
@@ -122,7 +122,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Getter for the field <code>interactionEvidences</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (interactionEvidences == null){
@@ -134,7 +134,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Getter for the field <code>source</code>.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         return this.source;
@@ -148,7 +148,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>getModelledConfidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledConfidence> getModelledConfidences() {
         if (this.jaxbConfidenceWrapper == null){
@@ -160,7 +160,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>getModelledParameters.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParameter> getModelledParameters() {
         if (jaxbParameterWrapper == null){
@@ -172,7 +172,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Getter for the field <code>cooperativeEffects</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         if (cooperativeEffects == null){
@@ -232,7 +232,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlModelledInteraction.JAXBParticipantWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
@@ -242,7 +242,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBConfidenceWrapper.</p>
      *
-     * @param wrapper a {@link JAXBConfidenceWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlModelledInteraction.JAXBConfidenceWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -252,7 +252,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBParameterWrapper.</p>
      *
-     * @param wrapper a {@link JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlModelledInteraction.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -262,7 +262,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param value a {@link JAXBExperimentWrapper} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlModelledInteraction.JAXBExperimentWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name ="experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentWrapper value) {
@@ -272,7 +272,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>Getter for the field <code>evidenceType</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getEvidenceType() {
         return this.evidenceType;
@@ -315,7 +315,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Experiment> getExperiments() {
         if (this.jaxbExperimentWrapper == null){

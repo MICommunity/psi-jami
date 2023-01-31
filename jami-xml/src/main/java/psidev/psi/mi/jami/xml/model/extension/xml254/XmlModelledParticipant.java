@@ -46,7 +46,7 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>Constructor for XmlModelledParticipant.</p>
      *
-     * @param interactor a {@link Interactor} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public XmlModelledParticipant(Interactor interactor) {
         super(interactor);
@@ -55,8 +55,8 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>Constructor for XmlModelledParticipant.</p>
      *
-     * @param interactor a {@link Interactor} object.
-     * @param bioRole a {@link CvTerm} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlModelledParticipant(Interactor interactor, CvTerm bioRole) {
         super(interactor, bioRole);
@@ -65,9 +65,9 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>Constructor for XmlModelledParticipant.</p>
      *
-     * @param interactor a {@link Interactor} object.
-     * @param bioRole a {@link CvTerm} object.
-     * @param stoichiometry a {@link Stoichiometry} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param bioRole a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public XmlModelledParticipant(Interactor interactor, CvTerm bioRole, Stoichiometry stoichiometry) {
         super(interactor, bioRole, stoichiometry);
@@ -76,8 +76,8 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>Constructor for XmlModelledParticipant.</p>
      *
-     * @param interactor a {@link Interactor} object.
-     * @param stoichiometry a {@link Stoichiometry} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public XmlModelledParticipant(Interactor interactor, Stoichiometry stoichiometry) {
         super(interactor, stoichiometry);
@@ -121,7 +121,7 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>setJAXBInteractorCandidates.</p>
      *
-     * @param pool a {@link JAXBInteractorCandidatesWrapper} object.
+     * @param pool a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledParticipant.JAXBInteractorCandidatesWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="interactorCandidateList")
     public void setJAXBInteractorCandidates(JAXBInteractorCandidatesWrapper pool) {
@@ -157,7 +157,7 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>setJAXBFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledParticipant.JAXBFeatureWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {

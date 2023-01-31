@@ -282,7 +282,7 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     /**
      * <p>setJAXBBibRef.</p>
      *
-     * @param ref a {@link BibRef} object.
+     * @param ref a {@link psidev.psi.mi.jami.xml.model.extension.xml253.BibRef} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "bibref", type = BibRef.class)
     public void setJAXBBibRef(BibRef ref) {
@@ -349,7 +349,7 @@ public abstract class AbstractXmlSource extends AbstractXmlCvTerm implements Ext
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param wrapper a {@link AbstractXmlSource.JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlSource.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper){

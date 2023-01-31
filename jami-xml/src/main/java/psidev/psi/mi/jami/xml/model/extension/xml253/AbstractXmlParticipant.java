@@ -297,7 +297,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer}
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
@@ -308,7 +308,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
      *
      * @param value
      *     allowed object is
-     *     {@link XrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XrefContainer}
      */
     public void setJAXBXref(XrefContainer value) {
         this.xrefContainer = value;
@@ -319,7 +319,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
      *
      * @param bioRole
      *     allowed object is
-     *     {@link XmlCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm}
      */
     public void setJAXBBiologicalRole(XmlCvTerm bioRole) {
         setBiologicalRole(bioRole);
@@ -328,7 +328,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
     /**
      * <p>setJAXBStoichiometry.</p>
      *
-     * @param stoichiometry a {@link XmlStoichiometry} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.xml.model.extension.XmlStoichiometry} object.
      */
     public void setJAXBStoichiometry(XmlStoichiometry stoichiometry){
         super.setStoichiometry(stoichiometry);
@@ -337,7 +337,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
     /**
      * <p>setJAXBStoichiometryRange.</p>
      *
-     * @param stoichiometry a {@link XmlStoichiometryRange} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlStoichiometryRange} object.
      */
     public void setJAXBStoichiometryRange(XmlStoichiometryRange stoichiometry){
         super.setStoichiometry(stoichiometry);
@@ -359,7 +359,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
     /**
      * <p>getParticipantPool.</p>
      *
-     * @return a {@link AbstractXmlParticipantPool} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlParticipantPool} object.
      */
     public AbstractXmlParticipantPool<I,F,? extends ParticipantCandidate> getParticipantPool() {
         return this.jaxbCandidateWrapper != null ? this.jaxbCandidateWrapper.pool : null;
@@ -382,7 +382,7 @@ public abstract class AbstractXmlParticipant<I extends Interaction, F extends Fe
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param jaxbAttributeWrapper a {@link AbstractXmlParticipant.JAXBAttributeWrapper} object.
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlParticipant.JAXBAttributeWrapper} object.
      */
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;

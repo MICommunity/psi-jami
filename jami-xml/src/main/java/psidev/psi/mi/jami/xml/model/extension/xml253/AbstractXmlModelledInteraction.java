@@ -220,7 +220,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link AbstractXmlModelledInteraction.JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlModelledInteraction.JAXBParticipantWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
@@ -230,7 +230,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBConfidenceWrapper.</p>
      *
-     * @param wrapper a {@link AbstractXmlModelledInteraction.JAXBConfidenceWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlModelledInteraction.JAXBConfidenceWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -240,7 +240,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBParameterWrapper.</p>
      *
-     * @param wrapper a {@link AbstractXmlModelledInteraction.JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlModelledInteraction.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -250,7 +250,7 @@ public abstract class AbstractXmlModelledInteraction extends AbstractPsiXmlInter
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param value a {@link AbstractXmlModelledInteraction.JAXBExperimentWrapper} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlModelledInteraction.JAXBExperimentWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentWrapper value) {

@@ -50,7 +50,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>Constructor for XmlModelledInteractionComplexWrapper.</p>
      *
-     * @param modelled a {@link ExtendedPsiXmlModelledInteraction} object.
+     * @param modelled a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction} object.
      */
     public XmlModelledInteractionComplexWrapper(ExtendedPsiXmlModelledInteraction modelled){
         if (modelled == null){
@@ -66,7 +66,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getUpdatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getUpdatedDate() {
         return this.modelledInteraction.getUpdatedDate();
@@ -80,7 +80,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getCreatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getCreatedDate() {
         return this.modelledInteraction.getCreatedDate();
@@ -94,7 +94,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getInteractionType.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionType() {
         return this.modelledInteraction.getInteractionType();
@@ -108,7 +108,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>addParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean addParticipant(ModelledParticipant part) {
@@ -118,7 +118,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>removeParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean removeParticipant(ModelledParticipant part) {
@@ -138,7 +138,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getParticipants.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParticipant> getParticipants() {
         return this.modelledInteraction.getParticipants();
@@ -147,7 +147,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getInteractionEvidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         return this.modelledInteraction.getInteractionEvidences();
@@ -156,7 +156,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getSource.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         return this.modelledInteraction.getSource();
@@ -182,7 +182,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getModelledConfidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledConfidence> getModelledConfidences() {
         return this.modelledInteraction.getModelledConfidences();
@@ -191,7 +191,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getModelledParameters.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParameter> getModelledParameters() {
         return this.modelledInteraction.getModelledParameters();
@@ -200,7 +200,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>getCooperativeEffects.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         return this.modelledInteraction.getCooperativeEffects();

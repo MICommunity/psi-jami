@@ -203,7 +203,7 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

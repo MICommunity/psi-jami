@@ -59,7 +59,7 @@ public abstract class AbstractXmlPosition implements Position, FileSourceContext
     /**
      * <p>setJAXBStatus.</p>
      *
-     * @param status a {@link XmlCvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm} object.
      */
     public void setJAXBStatus(XmlCvTerm status) {
         this.status = status;

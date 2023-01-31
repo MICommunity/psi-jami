@@ -374,7 +374,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlExperiment} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment} object.
      */
     protected ExtendedPsiXmlExperiment getDelegate() {
         return delegate;

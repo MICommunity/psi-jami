@@ -40,7 +40,7 @@ public abstract class AbstractEntrySet<T extends AbstractBaseEntry> implements L
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -65,7 +65,7 @@ public abstract class AbstractEntrySet<T extends AbstractBaseEntry> implements L
     /**
      * <p>Getter for the field <code>entries</code>.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<T> getEntries() {
         if (entries == null){

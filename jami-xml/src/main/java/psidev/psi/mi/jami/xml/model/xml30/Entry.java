@@ -48,7 +48,7 @@ public class Entry extends AbstractEntry<Interaction> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {

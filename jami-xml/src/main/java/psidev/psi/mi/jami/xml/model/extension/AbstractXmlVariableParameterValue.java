@@ -47,8 +47,8 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Constructor for XmlVariableParameterValue.</p>
      *
-     * @param value a {@link String} object.
-     * @param variableParameter a {@link VariableParameter} object.
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      */
     public AbstractXmlVariableParameterValue(String value, VariableParameter variableParameter){
         if (value == null){
@@ -61,9 +61,9 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Constructor for XmlVariableParameterValue.</p>
      *
-     * @param value a {@link String} object.
-     * @param variableParameter a {@link VariableParameter} object.
-     * @param order a {@link Integer} object.
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param order a {@link java.lang.Integer} object.
      */
     public AbstractXmlVariableParameterValue(String value, VariableParameter variableParameter, Integer order){
         if (value == null){
@@ -77,7 +77,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Getter for the field <code>value</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getValue() {
         if (value == null){
@@ -89,7 +89,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Getter for the field <code>order</code>.</p>
      *
-     * @return a {@link Integer} object.
+     * @return a {@link java.lang.Integer} object.
      */
     public Integer getOrder() {
         return order;
@@ -98,7 +98,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Getter for the field <code>variableParameter</code>.</p>
      *
-     * @return a {@link VariableParameter} object.
+     * @return a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      */
     public VariableParameter getVariableParameter() {
         return variableParameter;
@@ -107,7 +107,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Setter for the field <code>variableParameter</code>.</p>
      *
-     * @param variableParameter a {@link VariableParameter} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      */
     public void setVariableParameter(VariableParameter variableParameter) {
         this.variableParameter = variableParameter;
@@ -148,7 +148,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -174,7 +174,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -192,7 +192,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>setJAXBValue.</p>
      *
-     * @param value a {@link String} object.
+     * @param value a {@link java.lang.String} object.
      */
     public void setJAXBValue(String value){
         this.value = value;
@@ -215,7 +215,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     /**
      * <p>setJAXBOrder.</p>
      *
-     * @param order a {@link Integer} object.
+     * @param order a {@link java.lang.Integer} object.
      */
     public void setJAXBOrder(Integer order){
         this.order = order;

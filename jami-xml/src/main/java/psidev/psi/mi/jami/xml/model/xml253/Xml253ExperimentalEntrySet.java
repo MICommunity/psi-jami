@@ -9,7 +9,7 @@ import psidev.psi.mi.jami.xml.model.AbstractEntrySet;
 import java.util.List;
 
 /**
- * Xml254ExperimentalEntrySet implementation for JAXB read only
+ * Xml253ExperimentalEntrySet implementation for JAXB read only
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

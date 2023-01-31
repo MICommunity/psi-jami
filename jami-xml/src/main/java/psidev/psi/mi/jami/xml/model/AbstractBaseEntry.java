@@ -54,7 +54,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -76,7 +76,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>getInteractors.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Interactor> getInteractors(){
         return this.interactorsWrapper != null ? this.interactorsWrapper.interactors : Collections.EMPTY_LIST;
@@ -85,7 +85,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>getInteractions.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<T> getInteractions(){
         return this.interactionsWrapper != null ? this.interactionsWrapper.interactions : Collections.EMPTY_LIST;
@@ -114,7 +114,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>Setter for the field <code>interactorsWrapper</code>.</p>
      *
-     * @param wrapper a {@link AbstractJAXBInteractorsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractBaseEntry.AbstractJAXBInteractorsWrapper} object.
      */
     protected void setInteractorsWrapper(AbstractJAXBInteractorsWrapper wrapper){
         this.interactorsWrapper = wrapper;
@@ -123,7 +123,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>Setter for the field <code>interactionsWrapper</code>.</p>
      *
-     * @param wrapper a {@link AbstractJAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractBaseEntry.AbstractJAXBInteractionsWrapper} object.
      */
     protected void setInteractionsWrapper(AbstractJAXBInteractionsWrapper wrapper){
         this.interactionsWrapper = wrapper;
@@ -137,7 +137,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     /**
      * <p>Setter for the field <code>annotationsWrapper</code>.</p>
      *
-     * @param wrapper a {@link AbstractJAXBAnnotationsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.AbstractBaseEntry.AbstractJAXBAnnotationsWrapper} object.
      */
     protected void setAnnotationsWrapper(AbstractJAXBAnnotationsWrapper wrapper){
         this.annotationsWrapper = wrapper;

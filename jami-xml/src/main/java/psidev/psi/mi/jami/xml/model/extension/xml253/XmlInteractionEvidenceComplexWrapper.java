@@ -43,7 +43,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>Constructor for XmlInteractionEvidenceComplexWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteractionEvidence} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
      */
     public XmlInteractionEvidenceComplexWrapper(ExtendedPsiXmlInteractionEvidence interaction){
         if (interaction == null){

@@ -57,8 +57,8 @@ public class ExperimentalCvTerm
     /**
      * <p>Constructor for ExperimentalCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public ExperimentalCvTerm(String shortName, String miIdentifier) {
         super(shortName, miIdentifier);
@@ -67,7 +67,7 @@ public class ExperimentalCvTerm
     /**
      * <p>Constructor for ExperimentalCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public ExperimentalCvTerm(String shortName) {
         super(shortName);
@@ -76,9 +76,9 @@ public class ExperimentalCvTerm
     /**
      * <p>Constructor for ExperimentalCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public ExperimentalCvTerm(String shortName, String fullName, String miIdentifier) {
         super(shortName, fullName, miIdentifier);
@@ -87,8 +87,8 @@ public class ExperimentalCvTerm
     /**
      * <p>Constructor for ExperimentalCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public ExperimentalCvTerm(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
@@ -97,9 +97,9 @@ public class ExperimentalCvTerm
     /**
      * <p>Constructor for ExperimentalCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public ExperimentalCvTerm(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);
@@ -108,7 +108,7 @@ public class ExperimentalCvTerm
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (this.jaxbExperimentRefWrapper == null){
@@ -120,7 +120,7 @@ public class ExperimentalCvTerm
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ExperimentalCvTerm.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

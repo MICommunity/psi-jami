@@ -37,7 +37,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
     /**
      * Gets the value of the shortLabel property.
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getShortLabel() {
         return shortLabel;
@@ -48,7 +48,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     public void setShortLabel(String value) {
         this.shortLabel = value;
@@ -57,7 +57,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
     /**
      * Gets the value of the fullName property.
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getFullName() {
         return fullName;
@@ -68,7 +68,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     public void setFullName(String value) {
         this.fullName = value;
@@ -89,7 +89,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
      *    getAlias().add(newItem);
      * </pre>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Alias> getAliases() {
         if (aliases == null) {
@@ -107,7 +107,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -154,7 +154,7 @@ public abstract class AbstractNamesContainer implements FileSourceContext, Locat
     /**
      * <p>initialiseAliasesWith.</p>
      *
-     * @param aliases a {@link List} object.
+     * @param aliases a {@link java.util.List} object.
      */
     protected void initialiseAliasesWith(List<Alias> aliases){
         if (aliases == null){

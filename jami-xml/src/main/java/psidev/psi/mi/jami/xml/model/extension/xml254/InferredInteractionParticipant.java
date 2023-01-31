@@ -47,7 +47,7 @@ public class InferredInteractionParticipant extends AbstractInferredInteractionP
      *
      * @param value
      *     allowed object is
-     *     {@link Integer}
+     *     {@link java.lang.Integer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "participantFeatureRef")
     public void setJAXBParticipantFeatureRef(Integer value) {
@@ -61,7 +61,7 @@ public class InferredInteractionParticipant extends AbstractInferredInteractionP
      *
      * @param value
      *     allowed object is
-     *     {@link Integer}
+     *     {@link java.lang.Integer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "participantRef")
     public void setJAXBParticipantRef(Integer value) {

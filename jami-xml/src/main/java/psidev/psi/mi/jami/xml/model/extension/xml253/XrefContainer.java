@@ -42,7 +42,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link XmlXref}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "primaryRef",required = true, type = XmlXref.class)
     public void setJAXBPrimaryRef(Xref value) {
@@ -69,7 +69,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlXref}
+     * {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref}
      *
      * @return a {@link java.util.List} object.
      */
@@ -173,7 +173,7 @@ public class XrefContainer implements FileSourceContext, Locatable{
     /**
      * <p>initialiseSecondaryResWith.</p>
      *
-     * @param list a {@link XrefContainer.JAXBSecondaryXrefList} object.
+     * @param list a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XrefContainer.JAXBSecondaryXrefList} object.
      */
     protected void initialiseSecondaryResWith(JAXBSecondaryXrefList list){
         if (list == null){

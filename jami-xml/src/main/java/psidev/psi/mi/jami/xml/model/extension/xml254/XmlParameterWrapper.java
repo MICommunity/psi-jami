@@ -25,7 +25,7 @@ public class XmlParameterWrapper implements ModelledParameter {
     /**
      * <p>Constructor for XmlParameterWrapper.</p>
      *
-     * @param param a {@link Parameter} object.
+     * @param param a {@link psidev.psi.mi.jami.model.Parameter} object.
      */
     public XmlParameterWrapper(Parameter param){
         if (param == null){

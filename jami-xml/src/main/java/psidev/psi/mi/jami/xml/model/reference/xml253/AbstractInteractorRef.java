@@ -239,7 +239,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteractor} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
      */
     protected ExtendedPsiXmlInteractor getDelegate() {
         return delegate;
@@ -248,7 +248,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link ExtendedPsiXmlInteractor} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
      */
     protected void setDelegate(ExtendedPsiXmlInteractor delegate) {
         this.delegate = delegate;

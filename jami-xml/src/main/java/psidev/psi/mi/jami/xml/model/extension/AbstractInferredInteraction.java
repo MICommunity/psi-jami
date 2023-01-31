@@ -56,7 +56,7 @@ public abstract class AbstractInferredInteraction implements FileSourceContext, 
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public abstract Collection<Experiment> getExperiments();
 
@@ -69,7 +69,7 @@ public abstract class AbstractInferredInteraction implements FileSourceContext, 
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -109,9 +109,9 @@ public abstract class AbstractInferredInteraction implements FileSourceContext, 
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AbstractInferredInteractionParticipant}
+     * {@link psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteractionParticipant}
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<AbstractInferredInteractionParticipant> getParticipants() {
         return this.participants;
@@ -128,7 +128,7 @@ public abstract class AbstractInferredInteraction implements FileSourceContext, 
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link AbstractInferredInteraction.AbstractJAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction.AbstractJAXBExperimentRefWrapper} object.
      */
     public void setJAXBExperimentRefWrapper(AbstractJAXBExperimentRefWrapper wrapper) {
         this.jaxbExperimentRefWrapper = wrapper;

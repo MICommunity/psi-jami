@@ -30,10 +30,10 @@ public class XmlModelledParameter extends XmlParameter implements ModelledParame
     /**
      * <p>Constructor for XmlModelledParameter.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param value a {@link ParameterValue} object.
-     * @param uncertainty a {@link BigDecimal} object.
-     * @param unit a {@link CvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param uncertainty a {@link java.math.BigDecimal} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlModelledParameter(CvTerm type, ParameterValue value, BigDecimal uncertainty, CvTerm unit) {
         super(type, value, uncertainty, unit);
@@ -42,7 +42,7 @@ public class XmlModelledParameter extends XmlParameter implements ModelledParame
     /**
      * <p>Getter for the field <code>publication</code>.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         if (publication == null){

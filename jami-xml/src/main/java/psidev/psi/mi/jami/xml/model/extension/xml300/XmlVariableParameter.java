@@ -219,7 +219,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -250,7 +250,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setJAXBUnit.</p>
      *
-     * @param unit a {@link XmlCvTerm} object.
+     * @param unit a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "unit")
     public void setJAXBUnit(XmlCvTerm unit){

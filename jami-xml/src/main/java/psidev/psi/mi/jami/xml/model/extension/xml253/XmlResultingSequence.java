@@ -47,8 +47,8 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>Constructor for XmlResultingSequence.</p>
      *
-     * @param oldSequence a {@link String} object.
-     * @param newSequence a {@link String} object.
+     * @param oldSequence a {@link java.lang.String} object.
+     * @param newSequence a {@link java.lang.String} object.
      */
     public XmlResultingSequence(String oldSequence, String newSequence){
         this.originalSequence = oldSequence;
@@ -58,7 +58,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>Getter for the field <code>newSequence</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getNewSequence() {
         return newSequence;
@@ -67,7 +67,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>Getter for the field <code>originalSequence</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getOriginalSequence() {
         return originalSequence;
@@ -76,7 +76,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         if (xrefContainer == null){
@@ -98,7 +98,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setJAXBNewSequence.</p>
      *
-     * @param sequence a {@link String} object.
+     * @param sequence a {@link java.lang.String} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "newSequence", required = true)
     public void setJAXBNewSequence(String sequence) {
@@ -108,7 +108,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setJAXBOriginalSequence.</p>
      *
-     * @param sequence a {@link String} object.
+     * @param sequence a {@link java.lang.String} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "originalSequence", required = true)
     public void setJAXBOriginalSequence(String sequence) {
@@ -118,7 +118,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param value a {@link XrefContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XrefContainer} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "xref")
     public void setJAXBXref(XrefContainer value) {
@@ -161,7 +161,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -186,7 +186,7 @@ public class XmlResultingSequence implements ResultingSequence, FileSourceContex
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

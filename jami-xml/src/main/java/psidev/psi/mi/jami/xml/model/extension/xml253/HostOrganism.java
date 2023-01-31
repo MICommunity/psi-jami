@@ -118,7 +118,7 @@ public class HostOrganism extends XmlOrganism {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link HostOrganism.JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.HostOrganism.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

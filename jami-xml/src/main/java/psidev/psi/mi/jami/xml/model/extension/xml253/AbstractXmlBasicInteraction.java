@@ -126,7 +126,7 @@ public abstract class AbstractXmlBasicInteraction extends AbstractPsiXmlInteract
     /**
      * <p>setJAXBParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link AbstractXmlBasicInteraction.JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlBasicInteraction.JAXBParticipantWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {

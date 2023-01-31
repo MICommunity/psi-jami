@@ -30,8 +30,8 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
     /**
      * <p>Constructor for XmlConfidenceWriter.</p>
      *
-     * @param writer a {@link XMLStreamWriter} object.
-     * @param objectIndex a {@link PsiXmlObjectCache} object.
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlConfidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
         if (writer == null){
@@ -47,7 +47,7 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
     /**
      * <p>Getter for the field <code>typeWriter</code>.</p>
      *
-     * @return a {@link PsiXmlVariableNameWriter} object.
+     * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
      */
     public PsiXmlVariableNameWriter<CvTerm> getTypeWriter() {
         if (this.typeWriter == null){
@@ -67,7 +67,7 @@ public class XmlConfidenceWriter implements PsiXmlElementWriter<Confidence> {
     /**
      * <p>Setter for the field <code>typeWriter</code>.</p>
      *
-     * @param typeWriter a {@link PsiXmlVariableNameWriter} object.
+     * @param typeWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlVariableNameWriter} object.
      */
     public void setTypeWriter(PsiXmlVariableNameWriter<CvTerm> typeWriter) {
         this.typeWriter = typeWriter;

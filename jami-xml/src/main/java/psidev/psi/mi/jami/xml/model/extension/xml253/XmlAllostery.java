@@ -67,7 +67,7 @@ public class XmlAllostery<T extends AllostericEffector> extends DefaultCooperati
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
@@ -149,7 +149,7 @@ public class XmlAllostery<T extends AllostericEffector> extends DefaultCooperati
      * <p>addAffectedInteractionRef.</p>
      *
      * @param affectedInteraction a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void addAffectedInteractionRef(int affectedInteraction, PsiXmlLocator locator){
         getAffectedInteractions().add(new ModelledInteractionRef(affectedInteraction, locator));
@@ -159,7 +159,7 @@ public class XmlAllostery<T extends AllostericEffector> extends DefaultCooperati
      * <p>setAllostericMoleculeRef.</p>
      *
      * @param ref a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setAllostericMoleculeRef(int ref, PsiXmlLocator locator){
        this.allostericMolecule = new AllostericMoleculeRef(ref, locator);
@@ -169,7 +169,7 @@ public class XmlAllostery<T extends AllostericEffector> extends DefaultCooperati
      * <p>setAllostericPTMRef.</p>
      *
      * @param ref a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setAllostericPTMRef(int ref, PsiXmlLocator locator){
         this.allostericEffector = (T)new XmlFeatureModificationEffector(ref, locator);
@@ -179,7 +179,7 @@ public class XmlAllostery<T extends AllostericEffector> extends DefaultCooperati
      * <p>setAllostericEffectorRef.</p>
      *
      * @param ref a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setAllostericEffectorRef(int ref, PsiXmlLocator locator){
         this.allostericEffector = (T)new XmlMoleculeEffector(ref, locator);

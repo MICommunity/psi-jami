@@ -25,7 +25,7 @@ public class DefaultXmlModelledInteraction extends AbstractXmlModelledInteractio
     /**
      * <p>Constructor for XmlModelledInteraction.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public DefaultXmlModelledInteraction(String shortName) {
         super(shortName);
@@ -34,8 +34,8 @@ public class DefaultXmlModelledInteraction extends AbstractXmlModelledInteractio
     /**
      * <p>Constructor for XmlModelledInteraction.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public DefaultXmlModelledInteraction(String shortName, CvTerm type) {
         super(shortName, type);

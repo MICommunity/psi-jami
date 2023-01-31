@@ -41,8 +41,8 @@ public class XmlConfidence extends AbstractXmlConfidence {
     /**
      * <p>Constructor for XmlConfidence.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param value a {@link String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
      */
     public XmlConfidence(CvTerm type, String value) {
         super(type, value);
@@ -51,7 +51,7 @@ public class XmlConfidence extends AbstractXmlConfidence {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlConfidence.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {
@@ -61,7 +61,7 @@ public class XmlConfidence extends AbstractXmlConfidence {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (this.jaxbExperimentRefWrapper == null){

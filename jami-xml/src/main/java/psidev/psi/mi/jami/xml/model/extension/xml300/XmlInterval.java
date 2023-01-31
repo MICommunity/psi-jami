@@ -35,7 +35,7 @@ public class XmlInterval extends AbstractXmlPosition {
     /**
      * <p>Constructor for XmlInterval.</p>
      *
-     * @param status a {@link CvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param positionUndetermined a boolean.
      */
     public XmlInterval(CvTerm status, boolean positionUndetermined) {
@@ -45,7 +45,7 @@ public class XmlInterval extends AbstractXmlPosition {
     /**
      * <p>Constructor for XmlInterval.</p>
      *
-     * @param status a {@link CvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param start a long.
      * @param end a long.
      * @param positionUndetermined a boolean.

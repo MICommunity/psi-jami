@@ -133,7 +133,7 @@ public class XmlParticipant extends AbstractXmlParticipant<Interaction,Feature> 
     /**
      * <p>setJAXBFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link XmlParticipant.JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipant.JAXBFeatureWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {

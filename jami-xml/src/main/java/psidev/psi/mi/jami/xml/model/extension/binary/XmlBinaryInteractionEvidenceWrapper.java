@@ -454,7 +454,7 @@ public class XmlBinaryInteractionEvidenceWrapper implements BinaryInteractionEvi
     /**
      * <p>Getter for the field <code>wrappedInteraction</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteractionEvidence} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
      */
     protected ExtendedPsiXmlInteractionEvidence getWrappedInteraction() {
         return wrappedInteraction;

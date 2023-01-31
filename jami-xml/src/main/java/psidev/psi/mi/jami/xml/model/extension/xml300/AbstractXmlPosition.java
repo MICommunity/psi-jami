@@ -35,7 +35,7 @@ public abstract class AbstractXmlPosition implements Position, FileSourceContext
     /**
      * <p>Constructor for AbstractXmlPosition.</p>
      *
-     * @param status a {@link CvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param positionUndetermined a boolean.
      */
     protected AbstractXmlPosition(CvTerm status, boolean positionUndetermined) {
@@ -46,7 +46,7 @@ public abstract class AbstractXmlPosition implements Position, FileSourceContext
     /**
      * <p>Getter for the field <code>status</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getStatus() {
         if (status == null){
@@ -58,7 +58,7 @@ public abstract class AbstractXmlPosition implements Position, FileSourceContext
     /**
      * <p>setJAXBStatus.</p>
      *
-     * @param status a {@link XmlCvTerm} object.
+     * @param status a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     public void setJAXBStatus(XmlCvTerm status) {
         this.status = status;
@@ -82,7 +82,7 @@ public abstract class AbstractXmlPosition implements Position, FileSourceContext
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;

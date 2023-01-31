@@ -31,7 +31,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>isAnIdentifier.</p>
      *
-     * @param ref a {@link Xref} object.
+     * @param ref a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return a boolean.
      */
     protected boolean isAnIdentifier(Xref ref){
@@ -60,7 +60,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>identifiers</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
@@ -72,7 +72,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>getMIIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getMIIdentifier() {
         return this.miIdentifier != null ? this.miIdentifier.getId() : null;
@@ -81,7 +81,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>getMODIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getMODIdentifier() {
         return this.modIdentifier != null ? this.modIdentifier.getId() : null;
@@ -90,7 +90,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>getPARIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getPARIdentifier() {
         return this.parIdentifier != null ? this.parIdentifier.getId() : null;
@@ -99,7 +99,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>setMIIdentifier.</p>
      *
-     * @param mi a {@link String} object.
+     * @param mi a {@link java.lang.String} object.
      */
     public void setMIIdentifier(String mi) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
@@ -125,7 +125,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>setMODIdentifier.</p>
      *
-     * @param mod a {@link String} object.
+     * @param mod a {@link java.lang.String} object.
      */
     public void setMODIdentifier(String mod) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
@@ -152,7 +152,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>setPARIdentifier.</p>
      *
-     * @param par a {@link String} object.
+     * @param par a {@link java.lang.String} object.
      */
     public void setPARIdentifier(String par) {
         FullIdentifierList cvTermIdentifiers = (FullIdentifierList) getIdentifiers();
@@ -179,7 +179,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>processAddedIdentifierEvent.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedIdentifierEvent(Xref added) {
 
@@ -251,7 +251,7 @@ public class CvTermXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedIdentifierEvent.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is psi-mi

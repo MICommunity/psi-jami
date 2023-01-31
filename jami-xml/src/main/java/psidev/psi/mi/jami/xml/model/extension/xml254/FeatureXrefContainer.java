@@ -30,7 +30,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>isAnIdentifier.</p>
      *
-     * @param ref a {@link Xref} object.
+     * @param ref a {@link psidev.psi.mi.jami.model.Xref} object.
      * @return a boolean.
      */
     protected boolean isAnIdentifier(Xref ref){
@@ -57,7 +57,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>identifiers</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     @XmlTransient
     public Collection<Xref> getIdentifiers() {
@@ -70,7 +70,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>interpro</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     @XmlTransient
     public String getInterpro() {
@@ -80,7 +80,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>Setter for the field <code>interpro</code>.</p>
      *
-     * @param interpro a {@link String} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public void setInterpro(String interpro) {
         FullIdentifierList featureIdentifiers = (FullIdentifierList) getIdentifiers();
@@ -107,7 +107,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>processAddedIdentifierEvent.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedIdentifierEvent(Xref added) {
         // the added identifier is interpro and it is not the current interpro identifier
@@ -136,7 +136,7 @@ public class FeatureXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedIdentifierEvent.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedIdentifierEvent(Xref removed) {
         if (interpro != null && interpro.equals(removed)){

@@ -28,8 +28,8 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlNucleicAcid(String name, CvTerm type) {
         super(name, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())));
@@ -38,9 +38,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlNucleicAcid(String name, String fullName, CvTerm type) {
         super(name, fullName, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())));
@@ -49,9 +49,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlNucleicAcid(String name, CvTerm type, Organism organism) {
         super(name, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -60,10 +60,10 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlNucleicAcid(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -72,9 +72,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, CvTerm type, Xref uniqueId) {
         super(name, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -83,10 +83,10 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -95,10 +95,10 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -107,11 +107,11 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type != null ? type : new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -120,7 +120,7 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public XmlNucleicAcid(String name) {
         super(name, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())));
@@ -129,8 +129,8 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlNucleicAcid(String name, String fullName) {
         super(name, fullName, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())));
@@ -139,8 +139,8 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlNucleicAcid(String name, Organism organism) {
         super(name, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -149,9 +149,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlNucleicAcid(String name, String fullName, Organism organism) {
         super(name, fullName, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -160,8 +160,8 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, Xref uniqueId) {
         super(name, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -170,9 +170,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, String fullName, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -181,9 +181,9 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, Organism organism, Xref uniqueId) {
         super(name, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -192,10 +192,10 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Constructor for XmlNucleicAcid.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlNucleicAcid(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(NucleicAcid.NULCEIC_ACID, new XmlXref(CvTermUtils.createPsiMiDatabase(),NucleicAcid.NULCEIC_ACID_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -237,7 +237,7 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -260,7 +260,7 @@ public class XmlNucleicAcid extends DefaultNucleicAcid implements ExtendedPsiXml
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

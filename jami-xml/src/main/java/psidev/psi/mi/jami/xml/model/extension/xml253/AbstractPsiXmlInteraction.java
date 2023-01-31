@@ -109,7 +109,7 @@ public abstract class AbstractPsiXmlInteraction<T extends Participant> extends A
     /**
      * <p>setJAXBInferredInteractionWrapper.</p>
      *
-     * @param jaxbInferredWrapper a {@link AbstractPsiXmlInteraction.JAXBInferredInteractionWrapper} object.
+     * @param jaxbInferredWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractPsiXmlInteraction.JAXBInferredInteractionWrapper} object.
      */
     public void setJAXBInferredInteractionWrapper(JAXBInferredInteractionWrapper jaxbInferredWrapper) {
         this.jaxbInferredInteractionWrapper = jaxbInferredWrapper;

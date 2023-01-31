@@ -53,7 +53,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     /**
      * <p>Getter for the field <code>feature</code>.</p>
      *
-     * @return a {@link Feature} object.
+     * @return a {@link psidev.psi.mi.jami.model.Feature} object.
      */
     public Feature getFeature() {
         return feature;
@@ -62,7 +62,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     /**
      * <p>Getter for the field <code>participant</code>.</p>
      *
-     * @return a {@link Entity} object.
+     * @return a {@link psidev.psi.mi.jami.model.Entity} object.
      */
     public Entity getParticipant() {
         return participant;
@@ -71,7 +71,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     /**
      * <p>Setter for the field <code>feature</code>.</p>
      *
-     * @param feature a {@link Feature} object.
+     * @param feature a {@link psidev.psi.mi.jami.model.Feature} object.
      */
     public void setFeature(Feature feature) {
         this.feature = feature;
@@ -80,7 +80,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     /**
      * <p>Setter for the field <code>participant</code>.</p>
      *
-     * @param participant a {@link Entity} object.
+     * @param participant a {@link psidev.psi.mi.jami.model.Entity} object.
      */
     public void setParticipant(Entity participant) {
         this.participant = participant;
@@ -95,7 +95,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -122,7 +122,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
      *
      * @param feature
      *     allowed object is
-     *     {@link Feature}
+     *     {@link psidev.psi.mi.jami.model.Feature}
      */
     public void setJAXBParticipantFeatureRef(Feature feature) {
         this.feature = feature;
@@ -133,7 +133,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
      *
      * @param participant
      *     allowed object is
-     *     {@link Entity}
+     *     {@link psidev.psi.mi.jami.model.Entity}
      */
     public void setJAXBParticipantRef(Entity participant) {
         this.participant = participant;

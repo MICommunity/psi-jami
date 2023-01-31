@@ -37,7 +37,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getShortName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getShortName() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -59,7 +59,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getFullName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getFullName() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -81,7 +81,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getIdentifiers.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -94,7 +94,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getPreferredIdentifier.</p>
      *
-     * @return a {@link Xref} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public Xref getPreferredIdentifier() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -119,7 +119,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getChecksums.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Checksum> getChecksums() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -132,7 +132,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -145,7 +145,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -158,7 +158,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getAliases.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Alias> getAliases() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -171,7 +171,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getOrganism.</p>
      *
-     * @return a {@link Organism} object.
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public Organism getOrganism() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -193,7 +193,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>getInteractorType.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractorType() {
         logger.log(Level.WARNING, "The interactor reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -244,7 +244,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteractor} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
      */
     protected ExtendedPsiXmlInteractor getDelegate() {
         return delegate;
@@ -253,7 +253,7 @@ public abstract class AbstractInteractorRef extends AbstractXmlIdReference imple
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link ExtendedPsiXmlInteractor} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractor} object.
      */
     protected void setDelegate(ExtendedPsiXmlInteractor delegate) {
         this.delegate = delegate;

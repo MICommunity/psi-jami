@@ -32,7 +32,7 @@ public class XmlParticipantPoolWrapper extends XmlParticipantWrapper implements 
     /**
      * <p>getCandidates.</p>
      *
-     * @return a {@link XmlParticipantPoolWrapper.SynchronizedParticipantCandidateList} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantPoolWrapper.SynchronizedParticipantCandidateList} object.
      */
     protected SynchronizedParticipantCandidateList getCandidates(){
         return this.candidateList;

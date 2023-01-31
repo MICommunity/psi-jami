@@ -41,8 +41,8 @@ public class XmlCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public XmlCvTerm(String shortName, String miIdentifier) {
         super(shortName, miIdentifier);
@@ -51,7 +51,7 @@ public class XmlCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public XmlCvTerm(String shortName) {
         super(shortName);
@@ -60,9 +60,9 @@ public class XmlCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public XmlCvTerm(String shortName, String fullName, String miIdentifier) {
         super(shortName, fullName, miIdentifier);
@@ -71,8 +71,8 @@ public class XmlCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlCvTerm(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
@@ -81,9 +81,9 @@ public class XmlCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlCvTerm(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);

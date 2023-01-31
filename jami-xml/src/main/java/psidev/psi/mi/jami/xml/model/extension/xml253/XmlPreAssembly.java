@@ -62,7 +62,7 @@ public class XmlPreAssembly extends DefaultPreassemby implements FileSourceConte
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;
@@ -78,7 +78,7 @@ public class XmlPreAssembly extends DefaultPreassemby implements FileSourceConte
      * <p>addAffectedInteractionRef.</p>
      *
      * @param affectedInteraction a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void addAffectedInteractionRef(int affectedInteraction, PsiXmlLocator locator){
         getAffectedInteractions().add(new ModelledInteractionRef(affectedInteraction, locator));

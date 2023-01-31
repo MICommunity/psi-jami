@@ -26,7 +26,7 @@ implements ExperimentalParticipantPool{
     /**
      * <p>Constructor for XmlExperimentalParticipantPool.</p>
      *
-     * @param delegate a {@link AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlParticipant} object.
      */
     public XmlExperimentalParticipantPool(AbstractXmlParticipant<InteractionEvidence, FeatureEvidence> delegate) {
         super(delegate);

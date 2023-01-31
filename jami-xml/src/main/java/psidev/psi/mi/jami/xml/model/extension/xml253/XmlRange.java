@@ -174,7 +174,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link XmlCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="startStatus", required = true)
     public void setJAXBStartStatus(XmlCvTerm value) {
@@ -186,7 +186,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link XmlInterval}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlInterval}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="beginInterval")
     public void setJAXBBeginInterval(XmlInterval value) {
@@ -230,7 +230,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link XmlCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="endStatus", required = true)
     public void setJAXBEndStatus(XmlCvTerm value) {
@@ -242,7 +242,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link XmlInterval}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlInterval}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="endInterval")
     public void setJAXBEndInterval(XmlInterval value) {
@@ -264,7 +264,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link XmlPosition}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlPosition}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="end")
     public void setJAXBEndPosition(XmlPosition value) {
@@ -339,7 +339,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
     /**
      * <p>setJAXBResultingSequence.</p>
      *
-     * @param resultingSequence a {@link XmlResultingSequence} object.
+     * @param resultingSequence a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlResultingSequence} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="resultingSequence")
     public void setJAXBResultingSequence(XmlResultingSequence resultingSequence){
@@ -350,7 +350,7 @@ public class XmlRange implements Range, FileSourceContext, Locatable {
      * <p>setJAXBParticipantRef.</p>
      *
      * @param id a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setJAXBParticipantRef(int id, PsiXmlLocator locator){
         if (this.participant == null){

@@ -41,7 +41,7 @@ public class ModelledEntry extends AbstractEntry<ModelledInteraction> {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Experiment> getExperiments(){
         return this.experimentsWrapper != null ? this.experimentsWrapper.experiments : Collections.EMPTY_LIST;
@@ -50,7 +50,7 @@ public class ModelledEntry extends AbstractEntry<ModelledInteraction> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
@@ -60,7 +60,7 @@ public class ModelledEntry extends AbstractEntry<ModelledInteraction> {
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param wrapper a {@link JAXBExperimentsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml30.ModelledEntry.JAXBExperimentsWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
@@ -80,7 +80,7 @@ public class ModelledEntry extends AbstractEntry<ModelledInteraction> {
     /**
      * <p>setJAXBInteractionsWrapper.</p>
      *
-     * @param wrapper a {@link JAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml30.ModelledEntry.JAXBInteractionsWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){

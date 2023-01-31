@@ -290,7 +290,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Getter for the field <code>xrefContainer</code>.</p>
      *
-     * @return a {@link CvTermXrefContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.CvTermXrefContainer} object.
      */
     protected CvTermXrefContainer getXrefContainer() {
         if (xrefContainer == null){
@@ -302,7 +302,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param value a {@link CvTermXrefContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml253.CvTermXrefContainer} object.
      */
     public void setJAXBXref(CvTermXrefContainer value) {
         this.xrefContainer = value;
@@ -311,7 +311,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Getter for the field <code>namesContainer</code>.</p>
      *
-     * @return a {@link NamesContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer} object.
      */
     protected NamesContainer getNamesContainer() {
         if (namesContainer == null){
@@ -324,7 +324,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setJAXBNames.</p>
      *
-     * @param value a {@link NamesContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer} object.
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
@@ -351,7 +351,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getAttributeWrapper.</p>
      *
-     * @return a {@link AbstractXmlCvTerm.JAXBAttributeWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlCvTerm.JAXBAttributeWrapper} object.
      */
     protected JAXBAttributeWrapper getAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){
@@ -363,7 +363,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setAttributeWrapper.</p>
      *
-     * @param jaxbAttributeWrapper a {@link AbstractXmlCvTerm.JAXBAttributeWrapper} object.
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlCvTerm.JAXBAttributeWrapper} object.
      */
     protected void setAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;

@@ -25,7 +25,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
      * <p>Constructor for XmlMoleculeEffector.</p>
      *
      * @param participant a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public XmlMoleculeEffector(int participant, PsiXmlLocator locator){
         this.participant = new MoleculeEffectorRef(participant, locator);
@@ -74,7 +74,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;

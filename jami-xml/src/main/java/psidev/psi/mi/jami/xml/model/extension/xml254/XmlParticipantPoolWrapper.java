@@ -26,8 +26,8 @@ public class XmlParticipantPoolWrapper extends XmlParticipantWrapper implements 
     /**
      * <p>Constructor for XmlParticipantPoolWrapper.</p>
      *
-     * @param part a {@link ParticipantPool} object.
-     * @param wrapper a {@link ModelledInteraction} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ParticipantPool} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      */
     public XmlParticipantPoolWrapper(ParticipantPool part, ModelledInteraction wrapper){
         super((ExtendedPsiXmlParticipant)part, wrapper);
@@ -37,7 +37,7 @@ public class XmlParticipantPoolWrapper extends XmlParticipantWrapper implements 
     /**
      * <p>getCandidates.</p>
      *
-     * @return a {@link SynchronizedParticipantCandidateList} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipantPoolWrapper.SynchronizedParticipantCandidateList} object.
      */
     protected SynchronizedParticipantCandidateList getCandidates(){
         return this.candidateList;

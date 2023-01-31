@@ -45,7 +45,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
     /**
      * <p>Constructor for XmlModelledParticipantCandidate.</p>
      *
-     * @param interactor a {@link Interactor} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public XmlModelledParticipantCandidate(Interactor interactor) {
         super(interactor);
@@ -54,8 +54,8 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
     /**
      * <p>Constructor for XmlModelledParticipantCandidate.</p>
      *
-     * @param interactor a {@link Interactor} object.
-     * @param stoichiometry a {@link Stoichiometry} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param stoichiometry a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public XmlModelledParticipantCandidate(Interactor interactor, Stoichiometry stoichiometry) {
         super(interactor, stoichiometry);
@@ -91,7 +91,7 @@ public class XmlModelledParticipantCandidate extends AbstractXmlEntity<ModelledF
     /**
      * <p>setJAXBFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledParticipantCandidate.JAXBFeatureWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {

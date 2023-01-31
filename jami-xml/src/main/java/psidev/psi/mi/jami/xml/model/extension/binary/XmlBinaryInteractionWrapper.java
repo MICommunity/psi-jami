@@ -29,7 +29,7 @@ public class XmlBinaryInteractionWrapper implements BinaryInteraction<Participan
     /**
      * <p>Constructor for XmlBinaryInteractionWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteraction} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      */
     public XmlBinaryInteractionWrapper(ExtendedPsiXmlInteraction interaction){
         this.wrappedInteraction = interaction;
@@ -39,7 +39,7 @@ public class XmlBinaryInteractionWrapper implements BinaryInteraction<Participan
     /**
      * <p>Constructor for XmlBinaryInteractionWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteraction} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlBinaryInteractionWrapper(ExtendedPsiXmlInteraction interaction, CvTerm complexExpansion){

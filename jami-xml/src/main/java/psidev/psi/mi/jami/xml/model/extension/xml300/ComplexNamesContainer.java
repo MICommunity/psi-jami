@@ -32,7 +32,7 @@ public class ComplexNamesContainer extends NamesContainer {
     /**
      * <p>Getter for the field <code>recommendedName</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getRecommendedName() {
         return this.recommendedName != null ? this.recommendedName.getName() : null;
@@ -41,7 +41,7 @@ public class ComplexNamesContainer extends NamesContainer {
     /**
      * <p>Setter for the field <code>recommendedName</code>.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public void setRecommendedName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList)getAliases();
@@ -67,7 +67,7 @@ public class ComplexNamesContainer extends NamesContainer {
     /**
      * <p>Getter for the field <code>systematicName</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getSystematicName() {
         return this.systematicName != null ? this.systematicName.getName() : null;
@@ -76,7 +76,7 @@ public class ComplexNamesContainer extends NamesContainer {
     /**
      * <p>Setter for the field <code>systematicName</code>.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public void setSystematicName(String name) {
         ComplexAliasList complexAliasList = (ComplexAliasList)getAliases();

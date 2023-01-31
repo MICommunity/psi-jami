@@ -67,7 +67,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getBiologicalRole.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getBiologicalRole() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -118,7 +118,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -131,7 +131,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -144,7 +144,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getAliases.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Alias> getAliases() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -157,7 +157,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getStoichiometry.</p>
      *
-     * @return a {@link Stoichiometry} object.
+     * @return a {@link psidev.psi.mi.jami.model.Stoichiometry} object.
      */
     public Stoichiometry getStoichiometry() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -188,7 +188,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getFeatures.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<T> getFeatures() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -201,7 +201,7 @@ public abstract class AbstractParticipantRef<I extends Interaction, T extends Fe
     /**
      * <p>getChangeListener.</p>
      *
-     * @return a {@link EntityInteractorChangeListener} object.
+     * @return a {@link psidev.psi.mi.jami.listener.EntityInteractorChangeListener} object.
      */
     public EntityInteractorChangeListener getChangeListener() {
         logger.log(Level.WARNING, "The participant reference "+ref+" is not resolved. Some default properties will be initialised by default");

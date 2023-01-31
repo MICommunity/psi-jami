@@ -57,7 +57,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>Constructor for AbstractXmlParticipantPool.</p>
      *
-     * @param delegate a {@link AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlParticipant} object.
      */
     public AbstractXmlParticipantPool(AbstractXmlParticipant<I,F> delegate){
         this.delegate = delegate;
@@ -77,7 +77,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>initialiseComponentCandidatesSetWith.</p>
      *
-     * @param candidates a {@link Collection} object.
+     * @param candidates a {@link java.util.Collection} object.
      */
     protected void initialiseComponentCandidatesSetWith(Collection<P> candidates) {
         if (candidates == null){
@@ -107,7 +107,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>Getter for the field <code>type</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getType() {
         if (this.type == null){
@@ -158,7 +158,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>iterator.</p>
      *
-     * @return a {@link Iterator} object.
+     * @return a {@link java.util.Iterator} object.
      */
     public Iterator<P> iterator() {
         return candidates.iterator();
@@ -167,7 +167,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>toArray.</p>
      *
-     * @return an array of {@link Object} objects.
+     * @return an array of {@link java.lang.Object} objects.
      */
     public Object[] toArray() {
         return candidates.toArray();
@@ -303,7 +303,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
      *
      * @param type
      *     allowed object is
-     *     {@link XmlCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlCvTerm}
      */
     public void setJAXBType(XmlCvTerm type) {
         setType(type);
@@ -312,7 +312,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>getJAXBInteractorCandidates.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<P> getJAXBInteractorCandidates() {
         return candidates;
@@ -321,7 +321,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -557,7 +557,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link AbstractXmlParticipant} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlParticipant} object.
      */
     protected AbstractXmlParticipant<I, F> getDelegate() {
         if (this.delegate == null){
@@ -574,7 +574,7 @@ public abstract class AbstractXmlParticipantPool<I extends Interaction, F extend
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlParticipant} object.
      */
     public void setDelegate(AbstractXmlParticipant<I, F> delegate) {
         this.delegate = delegate;

@@ -43,7 +43,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>identifiers</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
@@ -55,7 +55,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>pubmedId</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getPubmedId() {
         return this.pubmedId != null ? this.pubmedId.getId() : null;
@@ -64,7 +64,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Setter for the field <code>pubmedId</code>.</p>
      *
-     * @param pubmedId a {@link String} object.
+     * @param pubmedId a {@link java.lang.String} object.
      */
     public void setPubmedId(String pubmedId) {
         FullIdentifierList identifiers = (FullIdentifierList) getIdentifiers();
@@ -90,7 +90,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>doi</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getDoi() {
         return this.doi != null ? this.doi.getId() : null;
@@ -99,7 +99,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Setter for the field <code>doi</code>.</p>
      *
-     * @param doi a {@link String} object.
+     * @param doi a {@link java.lang.String} object.
      */
     public void setDoi(String doi) {
         FullIdentifierList identifiers = (FullIdentifierList) getIdentifiers();
@@ -124,7 +124,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>imexId</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getImexId() {
         return this.imexId != null ? this.imexId.getId() : null;
@@ -133,7 +133,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>assignImexId.</p>
      *
-     * @param identifier a {@link String} object.
+     * @param identifier a {@link java.lang.String} object.
      */
     public void assignImexId(String identifier) {
         FullXrefList xrefs = (FullXrefList) getXrefs();
@@ -156,7 +156,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>processAddedIdentifierEvent.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedIdentifierEvent(Xref added) {
 
@@ -201,7 +201,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedIdentifierEvent.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedIdentifierEvent(Xref removed) {
         // the removed identifier is pubmed
@@ -225,7 +225,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>processAddedPotentialImex.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedPotentialImex(Xref added) {
 
@@ -241,7 +241,7 @@ public class PublicationXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedPotentialImex.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedPotentialImex(Xref removed) {
         // the removed identifier is pubmed

@@ -28,7 +28,7 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public XmlGene(String name) {
         super(name, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())));
@@ -37,8 +37,8 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlGene(String name, String fullName) {
         super(name, fullName, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())));
@@ -47,8 +47,8 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlGene(String name, Organism organism) {
         super(name, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -58,9 +58,9 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlGene(String name, String fullName, Organism organism) {
         super(name, fullName, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -70,8 +70,8 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, Xref uniqueId) {
         super(name, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -81,9 +81,9 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -93,9 +93,9 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, Organism organism, Xref uniqueId) {
         super(name, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -105,10 +105,10 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())),
@@ -118,10 +118,10 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, CvTerm type, Xref ensembl) {
         super(name, fullName, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier()))
@@ -131,9 +131,9 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, CvTerm type, Xref ensembl) {
         super(name, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), ensembl);
@@ -142,10 +142,10 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, CvTerm type, Organism organism, Xref ensembl) {
         super(name, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), organism, ensembl);
@@ -154,11 +154,11 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, CvTerm type, Organism organism, Xref ensembl) {
         super(name, fullName, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), organism, ensembl);
@@ -167,10 +167,10 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, CvTerm type, Xref uniqueId, Xref ensembl) {
         super(name, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), uniqueId, ensembl);
@@ -179,11 +179,11 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, CvTerm type, Xref uniqueId, Xref ensembl) {
         super(name, fullName, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), uniqueId, ensembl);
@@ -192,11 +192,11 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, CvTerm type, Organism organism, Xref uniqueId, Xref ensembl) {
         super(name, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId, ensembl);
@@ -205,12 +205,12 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Constructor for XmlGene.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
-     * @param ensembl a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
+     * @param ensembl a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlGene(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId, Xref ensembl) {
         super(name, fullName, type != null ? type : new XmlCvTerm(Gene.GENE, new XmlXref(CvTermUtils.createPsiMiDatabase(),Gene.GENE_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId, ensembl);
@@ -252,7 +252,7 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -275,7 +275,7 @@ public class XmlGene extends DefaultGene implements ExtendedPsiXmlInteractor, Fi
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

@@ -69,7 +69,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      * <p>Constructor for XmlOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
+     * @param commonName a {@link java.lang.String} object.
      */
     public XmlOrganism(int taxId, String commonName){
         this(taxId);
@@ -81,8 +81,8 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      * <p>Constructor for XmlOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param scientificName a {@link String} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
      */
     public XmlOrganism(int taxId, String commonName, String scientificName){
         this(taxId, commonName);
@@ -93,9 +93,9 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      * <p>Constructor for XmlOrganism.</p>
      *
      * @param taxId a int.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlOrganism(int taxId, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId);
@@ -108,10 +108,10 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      * <p>Constructor for XmlOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlOrganism(int taxId, String commonName, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId, commonName);
@@ -124,11 +124,11 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      * <p>Constructor for XmlOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param scientificName a {@link String} object.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlOrganism(int taxId, String commonName, String scientificName, CvTerm cellType, CvTerm tissue, CvTerm compartment){
         this(taxId, commonName, scientificName);
@@ -140,7 +140,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>cellType</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getCellType() {
         return this.cellType;
@@ -154,7 +154,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>compartment</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getCompartment() {
         return this.compartment;
@@ -168,7 +168,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>tissue</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getTissue() {
         return this.tissue;
@@ -201,7 +201,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>getCommonName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getCommonName() {
         return this.namesContainer != null ? this.namesContainer.getShortLabel() : null;
@@ -218,7 +218,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>getScientificName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getScientificName() {
         return this.namesContainer != null ? this.namesContainer.getFullName() : null;
@@ -235,7 +235,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>getAliases.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Alias> getAliases() {
         if (this.namesContainer == null){
@@ -249,7 +249,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="names")
     public void setJAXBNames(NamesContainer value) {
@@ -259,7 +259,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBCellType.</p>
      *
-     * @param cellType a {@link XmlOpenCvTerm} object.
+     * @param cellType a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="cellType")
     public void setJAXBCellType(XmlOpenCvTerm cellType) {
@@ -269,7 +269,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBCompartment.</p>
      *
-     * @param compartment a {@link XmlOpenCvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="compartment")
     public void setJAXBCompartment(XmlOpenCvTerm compartment) {
@@ -279,7 +279,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBTissue.</p>
      *
-     * @param tissue a {@link XmlOpenCvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="tissue")
     public void setJAXBTissue(XmlOpenCvTerm tissue) {
@@ -314,7 +314,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

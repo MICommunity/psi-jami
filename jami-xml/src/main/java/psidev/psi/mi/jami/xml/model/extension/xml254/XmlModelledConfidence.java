@@ -29,8 +29,8 @@ public class XmlModelledConfidence extends XmlConfidence implements ModelledConf
     /**
      * <p>Constructor for XmlModelledConfidence.</p>
      *
-     * @param type a {@link XmlOpenCvTerm} object.
-     * @param value a {@link String} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOpenCvTerm} object.
+     * @param value a {@link java.lang.String} object.
      */
     public XmlModelledConfidence(XmlOpenCvTerm type, String value) {
         super(type, value);
@@ -39,7 +39,7 @@ public class XmlModelledConfidence extends XmlConfidence implements ModelledConf
     /**
      * <p>Getter for the field <code>publication</code>.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         if (publication == null){

@@ -81,7 +81,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Constructor for AbstractXmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public AbstractXmlExperiment(Publication publication){
 
@@ -92,8 +92,8 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Constructor for AbstractXmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
-     * @param interactionDetectionMethod a {@link CvTerm} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlExperiment(Publication publication, CvTerm interactionDetectionMethod){
 
@@ -109,9 +109,9 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Constructor for AbstractXmlExperiment.</p>
      *
-     * @param publication a {@link Publication} object.
-     * @param interactionDetectionMethod a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public AbstractXmlExperiment(Publication publication, CvTerm interactionDetectionMethod, Organism organism){
         this(publication, interactionDetectionMethod);
@@ -124,7 +124,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Getter for the field <code>publication</code>.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         return this.publication;
@@ -158,7 +158,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         if (this.experimentXrefContainer == null){
@@ -171,7 +171,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>getHostOrganism.</p>
      *
-     * @return a {@link Organism} object.
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public Organism getHostOrganism() {
         return (this.jaxbHostOrganismWrapper != null && !this.jaxbHostOrganismWrapper.hostOrganisms.isEmpty())? this.jaxbHostOrganismWrapper.hostOrganisms.iterator().next() : null;
@@ -199,7 +199,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the interactionDetectionMethod property.
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionDetectionMethod() {
         return interactionDetectionMethod;
@@ -222,7 +222,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>getConfidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Confidence> getConfidences() {
         if (jaxbConfidenceWrapper == null){
@@ -234,7 +234,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         if (jaxbAttributeWrapper == null){
@@ -246,7 +246,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>getInteractionEvidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (interactions == null){
@@ -314,7 +314,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Getter for the field <code>variableParameters</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<VariableParameter> getVariableParameters() {
         if (jaxbVariableParameterWrapper == null){
@@ -382,7 +382,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the experimentNamesContainer property.
      *
-     * @return a {@link NamesContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer} object.
      */
     public NamesContainer getExperimentNamesContainer() {
         return experimentNamesContainer;
@@ -393,7 +393,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="names")
     public void setExperimentNamesContainer(NamesContainer value) {
@@ -403,7 +403,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>setJAXBPublication.</p>
      *
-     * @param publication a {@link BibRef} object.
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.xml254.BibRef} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="bibref", required = true)
     public void setJAXBPublication(BibRef publication) {
@@ -424,7 +424,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>initialiseFullNameFromPublication.</p>
      *
-     * @param publication a {@link BibRef} object.
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.xml254.BibRef} object.
      */
     protected abstract void initialiseFullNameFromPublication(BibRef publication);
 
@@ -433,7 +433,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link XrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.XrefContainer}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="xref")
     public void setExperimentXrefContainer(ExperimentXrefContainer value) {
@@ -446,7 +446,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>setJAXBHostOrganismWrapper.</p>
      *
-     * @param wrapper a {@link JAXBHostOrganismWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlExperiment.JAXBHostOrganismWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="hostOrganismList")
     public void setJAXBHostOrganismWrapper(JAXBHostOrganismWrapper wrapper) {
@@ -464,7 +464,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
      *
      * @param value
      *     allowed object is
-     *     {@link XmlCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlCvTerm}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name ="interactionDetectionMethod", required = true)
     public void setJAXBInteractionDetectionMethod(XmlCvTerm value) {
@@ -479,7 +479,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the participantIdentificationMethod property.
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getParticipantIdentificationMethod() {
         return participantIdentificationMethod;
@@ -498,7 +498,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * Gets the value of the featureDetectionMethod property.
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getFeatureDetectionMethod() {
         return featureDetectionMethod;
@@ -517,7 +517,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>setJAXBConfidenceWrapper.</p>
      *
-     * @param wrapper a {@link JAXBConfidenceWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlExperiment.JAXBConfidenceWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -527,7 +527,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>setJAXBVariableParameterValuesWrapper.</p>
      *
-     * @param jaxbVariableParameterList a {@link JAXBVariableParameterWrapper} object.
+     * @param jaxbVariableParameterList a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlExperiment.JAXBVariableParameterWrapper} object.
      */
     // We need to handle variable parameters at this level in the class hierarchy to be able to resolve properly the XmlExperiment.class at
     // experimentDescription when it gets call inside of AbstractXmlInteractionEvidence (in the expanded version).
@@ -549,7 +549,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param wrapper a {@link JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlExperiment.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
@@ -697,7 +697,7 @@ public abstract class AbstractXmlExperiment implements ExtendedPsiXmlExperiment,
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

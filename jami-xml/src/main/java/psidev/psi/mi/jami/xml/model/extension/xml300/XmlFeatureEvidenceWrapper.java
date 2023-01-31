@@ -41,8 +41,8 @@ public class XmlFeatureEvidenceWrapper implements ModelledFeature, ExtendedPsiXm
     /**
      * <p>Constructor for XmlFeatureEvidenceWrapper.</p>
      *
-     * @param part a {@link ExtendedPsiXmlFeatureEvidence} object.
-     * @param wrapper a {@link ModelledEntity} object.
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeatureEvidence} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      */
     public XmlFeatureEvidenceWrapper(ExtendedPsiXmlFeatureEvidence part, ModelledEntity wrapper){
         if (part == null){
@@ -201,7 +201,7 @@ public class XmlFeatureEvidenceWrapper implements ModelledFeature, ExtendedPsiXm
     /**
      * <p>getWrappedFeature.</p>
      *
-     * @return a {@link ExtendedPsiXmlFeatureEvidence} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeatureEvidence} object.
      */
     public ExtendedPsiXmlFeatureEvidence getWrappedFeature(){
         return this.feature;

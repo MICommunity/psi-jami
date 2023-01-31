@@ -28,7 +28,7 @@ public class NamesContainer extends AbstractNamesContainer {
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "shortLabel")
     public void setShortLabel(String value) {
@@ -40,7 +40,7 @@ public class NamesContainer extends AbstractNamesContainer {
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "fullName")
     public void setFullName(String value) {
@@ -65,9 +65,9 @@ public class NamesContainer extends AbstractNamesContainer {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlAlias}
+     * {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlAlias}
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", type= XmlAlias.class, name = "alias")
     public List<Alias> getAliases() {

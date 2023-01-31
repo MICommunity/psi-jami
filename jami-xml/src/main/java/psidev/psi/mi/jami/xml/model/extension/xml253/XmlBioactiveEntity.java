@@ -367,7 +367,7 @@ public class XmlBioactiveEntity extends DefaultBioactiveEntity implements Extend
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;

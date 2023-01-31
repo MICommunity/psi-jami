@@ -36,8 +36,8 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
     /**
      * <p>Constructor for XmlParticipantCandidateWrapper.</p>
      *
-     * @param part a {@link ParticipantCandidate} object.
-     * @param parent a {@link ModelledParticipantPool} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
+     * @param parent a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
      */
     public XmlParticipantCandidateWrapper(ParticipantCandidate part, ModelledParticipantPool parent){
         if (part == null){
@@ -207,7 +207,7 @@ public class XmlParticipantCandidateWrapper implements ModelledParticipantCandid
     /**
      * <p>getWrappedParticipant.</p>
      *
-     * @return a {@link ParticipantCandidate} object.
+     * @return a {@link psidev.psi.mi.jami.model.ParticipantCandidate} object.
      */
     public ParticipantCandidate<ParticipantPool, Feature> getWrappedParticipant(){
         return this.participant;

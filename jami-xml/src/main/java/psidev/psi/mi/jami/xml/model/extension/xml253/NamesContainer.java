@@ -63,7 +63,7 @@ public class NamesContainer extends AbstractNamesContainer {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link XmlAlias}
+     * {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlAlias}
      *
      * @return a {@link java.util.List} object.
      */

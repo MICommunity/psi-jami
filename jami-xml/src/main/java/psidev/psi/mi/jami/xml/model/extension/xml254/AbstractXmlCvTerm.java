@@ -50,7 +50,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Constructor for AbstractXmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public AbstractXmlCvTerm(String shortName){
         if (shortName == null){
@@ -62,8 +62,8 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Constructor for AbstractXmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public AbstractXmlCvTerm(String shortName, String miIdentifier){
         this(shortName);
@@ -73,9 +73,9 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Constructor for AbstractXmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public AbstractXmlCvTerm(String shortName, String fullName, String miIdentifier){
         this(shortName, miIdentifier);
@@ -85,8 +85,8 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Constructor for AbstractXmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlCvTerm(String shortName, Xref ontologyId){
         this(shortName);
@@ -98,9 +98,9 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Constructor for AbstractXmlCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlCvTerm(String shortName, String fullName, Xref ontologyId){
         this(shortName, ontologyId);
@@ -110,7 +110,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getShortName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getShortName() {
         return getNamesContainer().getShortLabel();
@@ -127,7 +127,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getFullName.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getFullName() {
         return getNamesContainer().getFullName();
@@ -141,7 +141,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getIdentifiers.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         return getXrefContainer().getIdentifiers();
@@ -150,7 +150,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getMIIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getMIIdentifier() {
         return getXrefContainer().getMIIdentifier();
@@ -159,7 +159,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getMODIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getMODIdentifier() {
         return getXrefContainer().getMODIdentifier();
@@ -168,7 +168,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getPARIdentifier.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getPARIdentifier() {
         return getXrefContainer().getPARIdentifier();
@@ -192,7 +192,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         return getXrefContainer().getXrefs();
@@ -201,7 +201,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getSynonyms.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Alias> getSynonyms() {
         return getNamesContainer().getAliases();
@@ -210,7 +210,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         if (jaxbAttributeWrapper == null){
@@ -228,7 +228,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -294,7 +294,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Getter for the field <code>xrefContainer</code>.</p>
      *
-     * @return a {@link CvTermXrefContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.CvTermXrefContainer} object.
      */
     protected CvTermXrefContainer getXrefContainer() {
         if (xrefContainer == null){
@@ -306,7 +306,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setJAXBXref.</p>
      *
-     * @param value a {@link CvTermXrefContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml254.CvTermXrefContainer} object.
      */
     public void setJAXBXref(CvTermXrefContainer value) {
         this.xrefContainer = value;
@@ -315,7 +315,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>Getter for the field <code>namesContainer</code>.</p>
      *
-     * @return a {@link NamesContainer} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer} object.
      */
     protected NamesContainer getNamesContainer() {
         if (namesContainer == null){
@@ -328,7 +328,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setJAXBNames.</p>
      *
-     * @param value a {@link NamesContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml254.NamesContainer} object.
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
@@ -355,7 +355,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>getAttributeWrapper.</p>
      *
-     * @return a {@link JAXBAttributeWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlCvTerm.JAXBAttributeWrapper} object.
      */
     protected JAXBAttributeWrapper getAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){
@@ -367,7 +367,7 @@ public abstract class AbstractXmlCvTerm implements CvTerm, FileSourceContext, Lo
     /**
      * <p>setAttributeWrapper.</p>
      *
-     * @param jaxbAttributeWrapper a {@link JAXBAttributeWrapper} object.
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.AbstractXmlCvTerm.JAXBAttributeWrapper} object.
      */
     protected void setAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;

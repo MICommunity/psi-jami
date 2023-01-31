@@ -49,10 +49,10 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Constructor for AbstractXmlParameter.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param value a {@link ParameterValue} object.
-     * @param uncertainty a {@link BigDecimal} object.
-     * @param unit a {@link CvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link psidev.psi.mi.jami.model.ParameterValue} object.
+     * @param uncertainty a {@link java.math.BigDecimal} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlParameter(CvTerm type, ParameterValue value, BigDecimal uncertainty, CvTerm unit) {
         this.type = type;
@@ -64,7 +64,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Getter for the field <code>type</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getType() {
         if (this.type == null){
@@ -76,7 +76,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Getter for the field <code>uncertainty</code>.</p>
      *
-     * @return a {@link BigDecimal} object.
+     * @return a {@link java.math.BigDecimal} object.
      */
     public BigDecimal getUncertainty() {
         return this.uncertainty;
@@ -85,7 +85,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Getter for the field <code>unit</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getUnit() {
         return this.unit;
@@ -94,7 +94,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Getter for the field <code>value</code>.</p>
      *
-     * @return a {@link ParameterValue} object.
+     * @return a {@link psidev.psi.mi.jami.model.ParameterValue} object.
      */
     public ParameterValue getValue() {
         if (this.value == null){
@@ -108,7 +108,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "term", required = true)
     public void setJAXBTerm(String value) {
@@ -131,7 +131,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "termAc")
     public void setJAXBTermAc(String value) {
@@ -148,7 +148,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "unit")
     public void setJAXBUnit(String value) {
@@ -170,7 +170,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "unitAc")
     public void setUnitAc(String value) {
@@ -192,7 +192,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Short}
+     *     {@link java.lang.Short}
      */
     @XmlAttribute(name = "base")
     public void setJAXBBase(Short value) {
@@ -204,7 +204,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Short}
+     *     {@link java.lang.Short}
      */
     @XmlAttribute(name = "exponent")
     public void setJAXBExponent(Short value) {
@@ -216,7 +216,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link BigDecimal}
+     *     {@link java.math.BigDecimal}
      */
     @XmlAttribute(name = "factor", required = true)
     public void setJAXBFactor(BigDecimal value) {
@@ -238,7 +238,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -265,7 +265,7 @@ public abstract class AbstractXmlParameter implements Parameter, FileSourceConte
      *
      * @param value
      *     allowed object is
-     *     {@link Double}
+     *     {@link java.lang.Double}
      */
     @XmlAttribute(name = "uncertainty")
     public void setJAXBUncertainty(BigDecimal value) {

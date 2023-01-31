@@ -26,8 +26,8 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlPolymer(String name, CvTerm type) {
         super(name, type);
@@ -36,9 +36,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlPolymer(String name, String fullName, CvTerm type) {
         super(name, fullName, type);
@@ -47,9 +47,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlPolymer(String name, CvTerm type, Organism organism) {
         super(name, type, organism);
@@ -58,10 +58,10 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlPolymer(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type, organism);
@@ -70,9 +70,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, CvTerm type, Xref uniqueId) {
         super(name, type, uniqueId);
@@ -81,10 +81,10 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type, uniqueId);
@@ -93,10 +93,10 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type, organism, uniqueId);
@@ -105,11 +105,11 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type, organism, uniqueId);
@@ -118,7 +118,7 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public XmlPolymer(String name) {
         super(name, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())));
@@ -127,8 +127,8 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlPolymer(String name, String fullName) {
         super(name, fullName, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())));
@@ -137,8 +137,8 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlPolymer(String name, Organism organism) {
         super(name, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -147,9 +147,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlPolymer(String name, String fullName, Organism organism) {
         super(name, fullName, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), organism);
@@ -158,8 +158,8 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, Xref uniqueId) {
         super(name, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -168,9 +168,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, String fullName, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), uniqueId);
@@ -179,9 +179,9 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, Organism organism, Xref uniqueId) {
         super(name, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -190,10 +190,10 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>Constructor for XmlPolymer.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlPolymer(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, new XmlCvTerm(Polymer.POLYMER, new XmlXref(CvTermUtils.createPsiMiDatabase(),Polymer.POLYMER_MI, CvTermUtils.createIdentityQualifier())), organism, uniqueId);
@@ -208,7 +208,7 @@ public class XmlPolymer extends XmlMolecule implements Polymer {
     /**
      * <p>getSequence.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getSequence() {
         return super.getSequence();

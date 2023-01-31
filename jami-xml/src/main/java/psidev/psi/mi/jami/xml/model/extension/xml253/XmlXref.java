@@ -297,7 +297,7 @@ public class XmlXref
     /**
      * Gets the value of the attributeList property.
      *
-     * @param wrapper a {@link XmlXref.JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlXref.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {

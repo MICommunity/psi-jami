@@ -37,7 +37,7 @@ public class XmlModelledInteractionComplexWrapper implements Complex, FileSource
     /**
      * <p>Constructor for XmlModelledInteractionComplexWrapper.</p>
      *
-     * @param modelled a {@link ExtendedPsiXmlModelledInteraction} object.
+     * @param modelled a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction} object.
      */
     public XmlModelledInteractionComplexWrapper(ExtendedPsiXmlModelledInteraction modelled){
         if (modelled == null){

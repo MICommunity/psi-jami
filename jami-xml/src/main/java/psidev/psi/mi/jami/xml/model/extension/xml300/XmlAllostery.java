@@ -181,7 +181,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
     /**
      * <p>setJAXBAllostericMechanism.</p>
      *
-     * @param mechanism a {@link XmlCvTerm} object.
+     * @param mechanism a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostericMechanism")
     public void setJAXBAllostericMechanism(XmlCvTerm mechanism) {
@@ -191,7 +191,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
     /**
      * <p>setJAXBAllosteryType.</p>
      *
-     * @param type a {@link XmlCvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allosteryType")
     public void setJAXBAllosteryType(XmlCvTerm type) {

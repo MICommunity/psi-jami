@@ -30,8 +30,8 @@ public class XmlExperimentalParticipantPoolWrapper extends XmlParticipantEvidenc
     /**
      * <p>Constructor for XmlExperimentalParticipantPoolWrapper.</p>
      *
-     * @param part a {@link ExperimentalParticipantPool} object.
-     * @param wrapper a {@link XmlInteractionEvidenceComplexWrapper} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ExperimentalParticipantPool} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper} object.
      */
     public XmlExperimentalParticipantPoolWrapper(ExperimentalParticipantPool part, XmlInteractionEvidenceComplexWrapper wrapper){
         super((ExtendedPsiXmlParticipantEvidence)part, wrapper);
@@ -41,7 +41,7 @@ public class XmlExperimentalParticipantPoolWrapper extends XmlParticipantEvidenc
     /**
      * <p>getCandidates.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     protected Collection<ModelledParticipantCandidate> getCandidates(){
         return this.candidateList;

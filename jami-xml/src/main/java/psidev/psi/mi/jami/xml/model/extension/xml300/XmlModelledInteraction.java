@@ -399,7 +399,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBNames.</p>
      *
-     * @param value a {@link ComplexNamesContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ComplexNamesContainer} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "names")
     public void setJAXBNames(ComplexNamesContainer value) {
@@ -478,7 +478,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBOrganism.</p>
      *
-     * @param organism a {@link XmlOrganism} object.
+     * @param organism a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlOrganism} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="organism")
     public void setJAXBOrganism(XmlOrganism organism) {
@@ -488,7 +488,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBInteractorType.</p>
      *
-     * @param interactorType a {@link XmlCvTerm} object.
+     * @param interactorType a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorType")
     public void setJAXBInteractorType(XmlCvTerm interactorType) {
@@ -498,7 +498,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBInteractionType.</p>
      *
-     * @param term a {@link XmlCvTerm} object.
+     * @param term a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="interactionType")
     public void setJAXBInteractionType(XmlCvTerm term) {
@@ -538,7 +538,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBEvidenceType.</p>
      *
-     * @param evidenceType a {@link XmlCvTerm} object.
+     * @param evidenceType a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "evidenceType")
     public void setJAXBEvidenceType(XmlCvTerm evidenceType) {

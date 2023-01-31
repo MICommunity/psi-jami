@@ -280,7 +280,7 @@ public abstract class AbstractFeatureRef<E extends Entity, F extends Feature> ex
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlFeature} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
      */
     protected ExtendedPsiXmlFeature<E, F> getDelegate() {
         return delegate;
@@ -289,7 +289,7 @@ public abstract class AbstractFeatureRef<E extends Entity, F extends Feature> ex
     /**
      * <p>Setter for the field <code>delegate</code>.</p>
      *
-     * @param delegate a {@link ExtendedPsiXmlFeature} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature} object.
      */
     protected void setDelegate(ExtendedPsiXmlFeature<E, F> delegate) {
         this.delegate = delegate;

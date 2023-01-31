@@ -70,9 +70,9 @@ public class XmlXref
     /**
      * <p>Constructor for XmlXref.</p>
      *
-     * @param database a {@link CvTerm} object.
-     * @param id a {@link String} object.
-     * @param qualifier a {@link CvTerm} object.
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param id a {@link java.lang.String} object.
+     * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlXref(CvTerm database, String id, CvTerm qualifier) {
         this(database, id);
@@ -82,10 +82,10 @@ public class XmlXref
     /**
      * <p>Constructor for XmlXref.</p>
      *
-     * @param database a {@link CvTerm} object.
-     * @param id a {@link String} object.
-     * @param version a {@link String} object.
-     * @param qualifier a {@link CvTerm} object.
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param id a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
+     * @param qualifier a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlXref(CvTerm database, String id, String version, CvTerm qualifier){
         this(database, id, version);
@@ -95,9 +95,9 @@ public class XmlXref
     /**
      * <p>Constructor for XmlXref.</p>
      *
-     * @param database a {@link CvTerm} object.
-     * @param id a {@link String} object.
-     * @param version a {@link String} object.
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param id a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
      */
     public XmlXref(CvTerm database, String id, String version){
         this(database, id);
@@ -107,8 +107,8 @@ public class XmlXref
     /**
      * <p>Constructor for XmlXref.</p>
      *
-     * @param database a {@link CvTerm} object.
-     * @param id a {@link String} object.
+     * @param database a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param id a {@link java.lang.String} object.
      */
     public XmlXref(CvTerm database, String id){
         if (database == null){
@@ -126,7 +126,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>database</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getDatabase() {
         if (this.database == null){
@@ -138,7 +138,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>id</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getId() {
         if (this.id == null){
@@ -152,7 +152,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "id", required = true)
     public void setJAXBId(String value) {
@@ -168,7 +168,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>version</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getVersion() {
         return this.version;
@@ -179,7 +179,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "version")
     public void setJAXBVersion(String value) {
@@ -189,7 +189,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>qualifier</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getQualifier() {
         return this.qualifier;
@@ -200,7 +200,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "db", required = true)
     public void setJAXBDb(String value) {
@@ -223,7 +223,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "dbAc")
     public void setJAXBDbAc(String value) {
@@ -240,7 +240,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "refType")
     public void setJAXBRefType(String value) {
@@ -262,7 +262,7 @@ public class XmlXref
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "refTypeAc")
     public void setJAXBRefTypeAc(String value) {
@@ -282,7 +282,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>secondary</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getSecondary() {
         return secondary;
@@ -302,7 +302,7 @@ public class XmlXref
     /**
      * Gets the value of the attributeList property.
      *
-     * @param wrapper a {@link JAXBAttributeWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlXref.JAXBAttributeWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper wrapper) {
@@ -327,7 +327,7 @@ public class XmlXref
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

@@ -43,7 +43,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link List} object.
+     * @return a {@link java.util.List} object.
      */
     public List<Experiment> getExperiments(){
         return this.experimentsWrapper != null ? this.experimentsWrapper.experiments : Collections.EMPTY_LIST;
@@ -51,7 +51,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBSource.</p>
      *
-     * @param source a {@link ExtendedPsiXmlSource} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
@@ -61,7 +61,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBAvailabilityWrapper.</p>
      *
-     * @param wrapper a {@link JAXBAvailabilitiesWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml254.ExperimentalEntry.JAXBAvailabilitiesWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "availabilityList")
     public void setJAXBAvailabilityWrapper(JAXBAvailabilitiesWrapper wrapper) {
@@ -71,7 +71,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBExperimentWrapper.</p>
      *
-     * @param wrapper a {@link JAXBExperimentsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml254.ExperimentalEntry.JAXBExperimentsWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
@@ -91,7 +91,7 @@ public class ExperimentalEntry extends AbstractEntry<InteractionEvidence> {
     /**
      * <p>setJAXBInteractionsWrapper.</p>
      *
-     * @param wrapper a {@link JAXBInteractionsWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml254.ExperimentalEntry.JAXBInteractionsWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){

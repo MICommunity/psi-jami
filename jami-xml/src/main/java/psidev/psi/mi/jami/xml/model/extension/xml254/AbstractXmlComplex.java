@@ -46,8 +46,8 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlComplex(String name, CvTerm type){
         super(name);
@@ -65,9 +65,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public AbstractXmlComplex(String name, String fullName, CvTerm type){
         this(name, type);
@@ -77,9 +77,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public AbstractXmlComplex(String name, CvTerm type, Organism organism){
         this(name, type);
@@ -89,10 +89,10 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Organism organism){
         this(name, fullName, type);
@@ -102,9 +102,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, CvTerm type, Xref uniqueId){
         this(name, type);
@@ -114,10 +114,10 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Xref uniqueId){
         this(name, fullName, type);
@@ -127,10 +127,10 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, CvTerm type, Organism organism, Xref uniqueId){
         this(name, type, organism);
@@ -140,11 +140,11 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId){
         this(name, fullName, type, organism);
@@ -154,7 +154,7 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public AbstractXmlComplex(String name){
         super(name);
@@ -167,8 +167,8 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public AbstractXmlComplex(String name, String fullName){
         this(name);
@@ -178,8 +178,8 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public AbstractXmlComplex(String name, Organism organism){
         this(name);
@@ -190,9 +190,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public AbstractXmlComplex(String name, String fullName, Organism organism){
         this(name, fullName);
@@ -202,8 +202,8 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, Xref uniqueId){
         this(name);
@@ -214,9 +214,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, String fullName, Xref uniqueId){
         this(name, fullName);
@@ -227,9 +227,9 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, Organism organism, Xref uniqueId){
         this(name, organism);
@@ -240,10 +240,10 @@ public abstract class AbstractXmlComplex extends AbstractXmlModelledInteraction 
     /**
      * <p>Constructor for AbstractXmlComplex.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public AbstractXmlComplex(String name, String fullName, Organism organism, Xref uniqueId){
         this(name, fullName, organism);

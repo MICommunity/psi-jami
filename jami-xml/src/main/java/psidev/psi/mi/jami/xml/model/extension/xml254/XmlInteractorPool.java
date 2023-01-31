@@ -34,8 +34,8 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlInteractorPool(String name, CvTerm type) {
         super(name, type);
@@ -45,9 +45,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlInteractorPool(String name, String fullName, CvTerm type) {
         super(name, fullName, type);
@@ -57,9 +57,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlInteractorPool(String name, CvTerm type, Organism organism) {
         super(name, type, organism);
@@ -69,10 +69,10 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlInteractorPool(String name, String fullName, CvTerm type, Organism organism) {
         super(name, fullName, type, organism);
@@ -82,9 +82,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, CvTerm type, Xref uniqueId) {
         super(name, type, uniqueId);
@@ -94,10 +94,10 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, String fullName, CvTerm type, Xref uniqueId) {
         super(name, fullName, type, uniqueId);
@@ -107,10 +107,10 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, type, organism, uniqueId);
@@ -120,11 +120,11 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, String fullName, CvTerm type, Organism organism, Xref uniqueId) {
         super(name, fullName, type, organism, uniqueId);
@@ -134,7 +134,7 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public XmlInteractorPool(String name) {
         super(name);
@@ -144,8 +144,8 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlInteractorPool(String name, String fullName) {
         super(name, fullName);
@@ -155,8 +155,8 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlInteractorPool(String name, Organism organism) {
         super(name, organism);
@@ -166,9 +166,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public XmlInteractorPool(String name, String fullName, Organism organism) {
         super(name, fullName, organism);
@@ -178,8 +178,8 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, Xref uniqueId) {
         super(name, uniqueId);
@@ -189,9 +189,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, String fullName, Xref uniqueId) {
         super(name, fullName, uniqueId);
@@ -201,9 +201,9 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, Organism organism, Xref uniqueId) {
         super(name, organism, uniqueId);
@@ -213,10 +213,10 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>Constructor for XmlInteractorPool.</p>
      *
-     * @param name a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param organism a {@link Organism} object.
-     * @param uniqueId a {@link Xref} object.
+     * @param name a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
+     * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlInteractorPool(String name, String fullName, Organism organism, Xref uniqueId) {
         super(name, fullName, organism, uniqueId);
@@ -233,7 +233,7 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>initialiseInteractorCandidatesSetWith.</p>
      *
-     * @param interactorCandidates a {@link Set} object.
+     * @param interactorCandidates a {@link java.util.Set} object.
      */
     protected void initialiseInteractorCandidatesSetWith(Set<Interactor> interactorCandidates){
         if (interactorCandidates == null){
@@ -270,7 +270,7 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>iterator.</p>
      *
-     * @return a {@link Iterator} object.
+     * @return a {@link java.util.Iterator} object.
      */
     public Iterator<Interactor> iterator() {
         return interactors.iterator();
@@ -279,7 +279,7 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>toArray.</p>
      *
-     * @return an array of {@link Object} objects.
+     * @return an array of {@link java.lang.Object} objects.
      */
     public Object[] toArray() {
         return interactors.toArray();
@@ -299,7 +299,7 @@ public class XmlInteractorPool extends DefaultXmlInteractor implements Interacto
     /**
      * <p>add.</p>
      *
-     * @param interactor a {@link Interactor} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @return a boolean.
      */
     public boolean add(Interactor interactor) {

@@ -54,7 +54,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Constructor for XmlVariableParameter.</p>
      *
-     * @param description a {@link String} object.
+     * @param description a {@link java.lang.String} object.
      */
     public XmlVariableParameter(String description){
         if (description == null){
@@ -66,8 +66,8 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Constructor for XmlVariableParameter.</p>
      *
-     * @param description a {@link String} object.
-     * @param experiment a {@link Experiment} object.
+     * @param description a {@link java.lang.String} object.
+     * @param experiment a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public XmlVariableParameter(String description, Experiment experiment){
         this(description);
@@ -77,8 +77,8 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Constructor for XmlVariableParameter.</p>
      *
-     * @param description a {@link String} object.
-     * @param unit a {@link CvTerm} object.
+     * @param description a {@link java.lang.String} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlVariableParameter(String description, CvTerm unit){
         this(description);
@@ -88,9 +88,9 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Constructor for XmlVariableParameter.</p>
      *
-     * @param description a {@link String} object.
-     * @param experiment a {@link Experiment} object.
-     * @param unit a {@link CvTerm} object.
+     * @param description a {@link java.lang.String} object.
+     * @param experiment a {@link psidev.psi.mi.jami.model.Experiment} object.
+     * @param unit a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlVariableParameter(String description, Experiment experiment, CvTerm unit){
         this(description, experiment);
@@ -107,7 +107,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Getter for the field <code>description</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getDescription() {
         if (this.description == null){
@@ -127,7 +127,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Getter for the field <code>unit</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getUnit() {
         return this.unit;
@@ -141,7 +141,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>getVariableValues.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<VariableParameterValue> getVariableValues() {
         if (jaxbVariableValueWrapper == null){
@@ -153,7 +153,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Getter for the field <code>experiment</code>.</p>
      *
-     * @return a {@link Experiment} object.
+     * @return a {@link psidev.psi.mi.jami.model.Experiment} object.
      */
     public Experiment getExperiment() {
         return this.experiment;
@@ -198,7 +198,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -223,7 +223,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -244,7 +244,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setJAXBDescription.</p>
      *
-     * @param desc a {@link String} object.
+     * @param desc a {@link java.lang.String} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "description", required = true)
     public void setJAXBDescription(String desc){
@@ -254,7 +254,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setJAXBUnit.</p>
      *
-     * @param unit a {@link XmlCvTerm} object.
+     * @param unit a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "unit")
     public void setJAXBUnit(XmlCvTerm unit){
@@ -264,7 +264,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setJAXBVariableParameterValuesWrapper.</p>
      *
-     * @param jaxbVariableValueList a {@link JAXBVariableValueWrapper} object.
+     * @param jaxbVariableValueList a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlVariableParameter.JAXBVariableValueWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "variableValueList", required = true)
     public void setJAXBVariableParameterValuesWrapper(JAXBVariableValueWrapper jaxbVariableValueList) {

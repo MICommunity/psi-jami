@@ -36,8 +36,8 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
      */
     public XmlFeature(String shortName, String fullName) {
         super(shortName, fullName);
@@ -46,7 +46,7 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param type a {@link CvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlFeature(CvTerm type) {
         super(type);
@@ -55,9 +55,9 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlFeature(String shortName, String fullName, CvTerm type) {
         super(shortName, fullName, type);
@@ -66,9 +66,9 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param interpro a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeature(String shortName, String fullName, String interpro) {
         super(shortName, fullName, interpro);
@@ -77,8 +77,8 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param interpro a {@link String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeature(CvTerm type, String interpro) {
         super(type, interpro);
@@ -87,10 +87,10 @@ public class XmlFeature extends AbstractXmlFeature<Entity,Feature> {
     /**
      * <p>Constructor for XmlFeature.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param type a {@link CvTerm} object.
-     * @param interpro a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param interpro a {@link java.lang.String} object.
      */
     public XmlFeature(String shortName, String fullName, CvTerm type, String interpro) {
         super(shortName, fullName, type, interpro);

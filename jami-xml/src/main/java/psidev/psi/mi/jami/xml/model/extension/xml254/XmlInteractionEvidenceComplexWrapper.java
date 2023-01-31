@@ -59,7 +59,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>Constructor for XmlInteractionEvidenceComplexWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteractionEvidence} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
      */
     public XmlInteractionEvidenceComplexWrapper(ExtendedPsiXmlInteractionEvidence interaction){
         if (interaction == null){
@@ -73,7 +73,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>getUpdatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getUpdatedDate() {
         return this.interactionEvidence.getUpdatedDate();
@@ -87,7 +87,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>getCreatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getCreatedDate() {
         return this.interactionEvidence.getCreatedDate();
@@ -101,7 +101,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>getInteractionType.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionType() {
         return this.interactionEvidence.getInteractionType();
@@ -115,7 +115,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>addParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean addParticipant(ModelledParticipant part) {
@@ -135,7 +135,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>removeParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean removeParticipant(ModelledParticipant part) {
@@ -185,7 +185,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>getParticipants.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParticipant> getParticipants() {
         if (this.modelledParticipants == null){
@@ -206,7 +206,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>getSource.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         if (this.interactionEvidence.getExperiment() != null){
@@ -239,7 +239,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>Getter for the field <code>modelledConfidences</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledConfidence> getModelledConfidences() {
         if (this.modelledConfidences == null){
@@ -251,7 +251,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>Getter for the field <code>modelledParameters</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParameter> getModelledParameters() {
         if (this.modelledParameters == null){
@@ -263,7 +263,7 @@ public class XmlInteractionEvidenceComplexWrapper implements Complex,FileSourceC
     /**
      * <p>Getter for the field <code>cooperativeEffects</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         if (this.cooperativeEffects == null){

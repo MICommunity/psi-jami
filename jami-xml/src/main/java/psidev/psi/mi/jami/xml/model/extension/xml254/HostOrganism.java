@@ -51,7 +51,7 @@ public class HostOrganism extends XmlOrganism {
      * <p>Constructor for HostOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
+     * @param commonName a {@link java.lang.String} object.
      */
     public HostOrganism(int taxId, String commonName) {
         super(taxId, commonName);
@@ -61,8 +61,8 @@ public class HostOrganism extends XmlOrganism {
      * <p>Constructor for HostOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param scientificName a {@link String} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
      */
     public HostOrganism(int taxId, String commonName, String scientificName) {
         super(taxId, commonName, scientificName);
@@ -72,9 +72,9 @@ public class HostOrganism extends XmlOrganism {
      * <p>Constructor for HostOrganism.</p>
      *
      * @param taxId a int.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public HostOrganism(int taxId, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, cellType, tissue, compartment);
@@ -84,10 +84,10 @@ public class HostOrganism extends XmlOrganism {
      * <p>Constructor for HostOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public HostOrganism(int taxId, String commonName, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, commonName, cellType, tissue, compartment);
@@ -97,11 +97,11 @@ public class HostOrganism extends XmlOrganism {
      * <p>Constructor for HostOrganism.</p>
      *
      * @param taxId a int.
-     * @param commonName a {@link String} object.
-     * @param scientificName a {@link String} object.
-     * @param cellType a {@link CvTerm} object.
-     * @param tissue a {@link CvTerm} object.
-     * @param compartment a {@link CvTerm} object.
+     * @param commonName a {@link java.lang.String} object.
+     * @param scientificName a {@link java.lang.String} object.
+     * @param cellType a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public HostOrganism(int taxId, String commonName, String scientificName, CvTerm cellType, CvTerm tissue, CvTerm compartment) {
         super(taxId, commonName, scientificName, cellType, tissue, compartment);
@@ -110,7 +110,7 @@ public class HostOrganism extends XmlOrganism {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (jaxbExperimentRefWrapper == null){
@@ -122,7 +122,7 @@ public class HostOrganism extends XmlOrganism {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml254.HostOrganism.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

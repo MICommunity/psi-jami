@@ -50,7 +50,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
     /**
      * Gets the value of the value property.
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getValue() {
         return value;
@@ -61,7 +61,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlValue
     public void setValue(String value) {
@@ -99,7 +99,7 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

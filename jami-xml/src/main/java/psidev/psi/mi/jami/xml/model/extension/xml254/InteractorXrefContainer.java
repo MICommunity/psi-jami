@@ -38,7 +38,7 @@ public class InteractorXrefContainer extends XrefContainer implements IInteracto
     /**
      * <p>Getter for the field <code>identifiers</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
@@ -50,7 +50,7 @@ public class InteractorXrefContainer extends XrefContainer implements IInteracto
     /**
      * <p>getPreferredIdentifier.</p>
      *
-     * @return a {@link Xref} object.
+     * @return a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public Xref getPreferredIdentifier() {
         return !getIdentifiers().isEmpty() ? identifiers.iterator().next() : null;

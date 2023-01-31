@@ -248,7 +248,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
     /**
      * <p>setJAXBInteractor.</p>
      *
-     * @param interactor a {@link DefaultXmlInteractor} object.
+     * @param interactor a {@link psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlInteractor} object.
      */
     public void setJAXBInteractor(DefaultXmlInteractor interactor) {
         if (interactor == null){
@@ -336,7 +336,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
     /**
      * <p>setFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link AbstractXmlEntity.JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlEntity.JAXBFeatureWrapper} object.
      */
     protected void setFeatureWrapper(JAXBFeatureWrapper<F> jaxbFeatureWrapper) {
         this.jaxbFeatureWrapper = jaxbFeatureWrapper;

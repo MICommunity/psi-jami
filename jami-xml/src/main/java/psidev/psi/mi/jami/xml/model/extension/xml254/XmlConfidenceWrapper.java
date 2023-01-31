@@ -22,7 +22,7 @@ public class XmlConfidenceWrapper implements ModelledConfidence {
     /**
      * <p>Constructor for XmlConfidenceWrapper.</p>
      *
-     * @param conf a {@link Confidence} object.
+     * @param conf a {@link psidev.psi.mi.jami.model.Confidence} object.
      */
     public XmlConfidenceWrapper(Confidence conf){
         if (conf == null){

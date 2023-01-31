@@ -65,7 +65,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Constructor for XmlBasicInteractionComplexWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteraction} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      */
     public XmlBasicInteractionComplexWrapper(ExtendedPsiXmlInteraction<? extends Participant> interaction){
         if (interaction == null){
@@ -79,7 +79,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getUpdatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getUpdatedDate() {
         return this.interaction.getUpdatedDate();
@@ -93,7 +93,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getCreatedDate.</p>
      *
-     * @return a {@link Date} object.
+     * @return a {@link java.util.Date} object.
      */
     public Date getCreatedDate() {
         return this.interaction.getCreatedDate();
@@ -107,7 +107,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getInteractionType.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionType() {
         return this.interaction.getInteractionType();
@@ -133,7 +133,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>addParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean addParticipant(ModelledParticipant part) {
@@ -153,7 +153,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>removeParticipant.</p>
      *
-     * @param part a {@link ModelledParticipant} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
      * @return a boolean.
      */
     public boolean removeParticipant(ModelledParticipant part) {
@@ -203,7 +203,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getParticipants.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParticipant> getParticipants() {
         if (this.modelledParticipants == null){
@@ -215,7 +215,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Getter for the field <code>interactionEvidences</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         if (this.interactionEvidences == null){
@@ -227,7 +227,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Getter for the field <code>source</code>.</p>
      *
-     * @return a {@link Source} object.
+     * @return a {@link psidev.psi.mi.jami.model.Source} object.
      */
     public Source getSource() {
         return this.source;
@@ -241,7 +241,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Getter for the field <code>modelledConfidences</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledConfidence> getModelledConfidences() {
         if (this.modelledConfidences == null){
@@ -253,7 +253,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Getter for the field <code>modelledParameters</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ModelledParameter> getModelledParameters() {
         if (this.modelledParameters == null){
@@ -265,7 +265,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Getter for the field <code>cooperativeEffects</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CooperativeEffect> getCooperativeEffects() {
         if (this.cooperativeEffects == null){
@@ -569,7 +569,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getWrappedInteraction.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteraction} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      */
     public ExtendedPsiXmlInteraction getWrappedInteraction(){
         return this.interaction;

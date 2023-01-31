@@ -45,7 +45,7 @@ public class InferredInteraction extends AbstractInferredInteraction {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (getJaxbExperimentRefWrapper() == null){
@@ -72,7 +72,7 @@ public class InferredInteraction extends AbstractInferredInteraction {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link InferredInteractionParticipant}
+     * {@link psidev.psi.mi.jami.xml.model.extension.xml253.InferredInteractionParticipant}
      *
      * @return a {@link java.util.List} object.
      */
@@ -87,7 +87,7 @@ public class InferredInteraction extends AbstractInferredInteraction {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link InferredInteraction.JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.InferredInteraction.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

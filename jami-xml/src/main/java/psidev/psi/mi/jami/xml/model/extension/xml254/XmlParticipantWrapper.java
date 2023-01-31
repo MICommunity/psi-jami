@@ -42,8 +42,8 @@ public class XmlParticipantWrapper implements ModelledParticipant,
     /**
      * <p>Constructor for XmlParticipantWrapper.</p>
      *
-     * @param part a {@link ExtendedPsiXmlParticipant} object.
-     * @param wrapper a {@link ModelledInteraction} object.
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.model.ModelledInteraction} object.
      */
     public XmlParticipantWrapper(ExtendedPsiXmlParticipant part, ModelledInteraction wrapper){
         if (part == null){
@@ -237,7 +237,7 @@ public class XmlParticipantWrapper implements ModelledParticipant,
     /**
      * <p>getWrappedParticipant.</p>
      *
-     * @return a {@link ExtendedPsiXmlParticipant} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant} object.
      */
     public ExtendedPsiXmlParticipant<Interaction, Feature> getWrappedParticipant(){
         return this.participant;

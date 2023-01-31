@@ -22,8 +22,8 @@ public class XmlExperimentalCvTermWriter extends XmlCvTermWriter {
     /**
      * <p>Constructor for XmlExperimentalCvTermWriter.</p>
      *
-     * @param writer a {@link XMLStreamWriter} object.
-     * @param objectIndex a {@link PsiXmlObjectCache} object.
+     * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlExperimentalCvTermWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
         super(writer);

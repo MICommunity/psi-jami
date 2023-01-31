@@ -28,7 +28,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
      * <p>Constructor for XmlMoleculeEffector.</p>
      *
      * @param participant a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public XmlMoleculeEffector(int participant, PsiXmlLocator locator){
         this.participant = new MoleculeEffectorRef(participant, locator);
@@ -37,7 +37,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     /**
      * <p>getMolecule.</p>
      *
-     * @return a {@link ModelledEntity} object.
+     * @return a {@link psidev.psi.mi.jami.model.ModelledEntity} object.
      */
     public ModelledEntity getMolecule() {
         return participant;
@@ -46,7 +46,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     /**
      * <p>getEffectorType.</p>
      *
-     * @return a {@link AllostericEffectorType} object.
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffectorType} object.
      */
     public AllostericEffectorType getEffectorType() {
         return AllostericEffectorType.molecule;
@@ -55,7 +55,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -77,7 +77,7 @@ public class XmlMoleculeEffector implements MoleculeEffector, FileSourceContext 
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;

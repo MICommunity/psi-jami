@@ -381,7 +381,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link XmlParticipantEvidence.JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBFeatureWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="featureList")
     public void setFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {
@@ -391,7 +391,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBParticipantIdentificationMethodWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBParticipantIdentificationWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBParticipantIdentificationWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="participantIdentificationMethodList")
     public void setJAXBParticipantIdentificationMethodWrapper(JAXBParticipantIdentificationWrapper wrapper) {
@@ -408,7 +408,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBExperimentalRoleWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBExperimentalRoleWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBExperimentalRoleWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentalRoleList")
     public void setJAXBExperimentalRoleWrapper(JAXBExperimentalRoleWrapper wrapper) {
@@ -424,7 +424,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBExperimentalPreparationWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBExperimentalPreparationWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBExperimentalPreparationWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentalPreparationList")
     public void setJAXBExperimentalPreparationWrapper(JAXBExperimentalPreparationWrapper wrapper) {
@@ -434,7 +434,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setExperimentalInteractorWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBExperimentalInteractorWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBExperimentalInteractorWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentalInteractorList")
     public void setExperimentalInteractorWrapper(JAXBExperimentalInteractorWrapper wrapper) {
@@ -444,7 +444,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBHostOrganismWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBHostOrganismWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBHostOrganismWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="hostOrganismList")
     public void setJAXBHostOrganismWrapper(JAXBHostOrganismWrapper wrapper) {
@@ -460,7 +460,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBParameterWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -470,7 +470,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBConfidenceWrapper.</p>
      *
-     * @param wrapper a {@link XmlParticipantEvidence.JAXBConfidenceWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBConfidenceWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -487,7 +487,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setJAXBInteractorCandidates.</p>
      *
-     * @param pool a {@link XmlParticipantEvidence.JAXBInteractorCandidatesWrapper} object.
+     * @param pool a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence.JAXBInteractorCandidatesWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="interactorCandidateList")
     public void setJAXBInteractorCandidates(JAXBInteractorCandidatesWrapper pool) {
@@ -519,7 +519,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>setOriginalXmlInteraction.</p>
      *
-     * @param i a {@link ExtendedPsiXmlInteractionEvidence} object.
+     * @param i a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
      */
     protected void setOriginalXmlInteraction(ExtendedPsiXmlInteractionEvidence i){
         this.originalInteraction = i;
@@ -529,7 +529,7 @@ public class XmlParticipantEvidence extends AbstractXmlParticipant<InteractionEv
     /**
      * <p>Getter for the field <code>originalInteraction</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteractionEvidence} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence} object.
      */
     protected ExtendedPsiXmlInteractionEvidence getOriginalInteraction() {
         return originalInteraction;

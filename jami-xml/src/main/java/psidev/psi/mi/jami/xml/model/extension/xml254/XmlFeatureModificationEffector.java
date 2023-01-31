@@ -28,7 +28,7 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
      * <p>Constructor for XmlFeatureModificationEffector.</p>
      *
      * @param feature a int.
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public XmlFeatureModificationEffector(int feature, PsiXmlLocator locator){
         this.feature = new FeatureEffectorRef(feature, locator);
@@ -37,7 +37,7 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
     /**
      * <p>getFeatureModification.</p>
      *
-     * @return a {@link ModelledFeature} object.
+     * @return a {@link psidev.psi.mi.jami.model.ModelledFeature} object.
      */
     public ModelledFeature getFeatureModification() {
         return feature;
@@ -46,7 +46,7 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
     /**
      * <p>getEffectorType.</p>
      *
-     * @return a {@link AllostericEffectorType} object.
+     * @return a {@link psidev.psi.mi.jami.model.AllostericEffectorType} object.
      */
     public AllostericEffectorType getEffectorType() {
         return AllostericEffectorType.feature_modification;
@@ -55,7 +55,7 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         return sourceLocator;
@@ -77,7 +77,7 @@ public class XmlFeatureModificationEffector implements FeatureModificationEffect
     /**
      * <p>Setter for the field <code>sourceLocator</code>.</p>
      *
-     * @param locator a {@link PsiXmlLocator} object.
+     * @param locator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocator(PsiXmlLocator locator) {
         this.sourceLocator = locator;

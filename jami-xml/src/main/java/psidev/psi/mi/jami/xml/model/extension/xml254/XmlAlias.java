@@ -47,8 +47,8 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>Constructor for XmlAlias.</p>
      *
-     * @param name a {@link String} object.
-     * @param type a {@link CvTerm} object.
+     * @param name a {@link java.lang.String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public XmlAlias(String name, CvTerm type) {
         if (name == null){
@@ -61,7 +61,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>Constructor for XmlAlias.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     public XmlAlias(String name) {
         if (name == null){
@@ -73,7 +73,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>Getter for the field <code>type</code>.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getType() {
         return this.type;
@@ -82,7 +82,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>Getter for the field <code>name</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getName() {
         if (name == null){
@@ -94,7 +94,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>setJAXBName.</p>
      *
-     * @param name a {@link String} object.
+     * @param name a {@link java.lang.String} object.
      */
     @XmlValue
     public void setJAXBName(String name) {
@@ -112,7 +112,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "typeAc")
     public void setJAXBTypeAc(String value) {
@@ -134,7 +134,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlAttribute(name = "type")
     public void setJAXBTypeName(String value) {
@@ -160,7 +160,7 @@ public class XmlAlias implements Alias, FileSourceContext, Locatable {
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

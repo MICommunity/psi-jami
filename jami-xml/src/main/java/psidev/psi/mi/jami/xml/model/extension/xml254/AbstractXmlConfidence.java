@@ -43,8 +43,8 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     /**
      * <p>Constructor for AbstractXmlConfidence.</p>
      *
-     * @param type a {@link CvTerm} object.
-     * @param value a {@link String} object.
+     * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
      */
     public AbstractXmlConfidence(CvTerm type, String value) {
         if (type == null){
@@ -60,7 +60,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     /**
      * Gets the value of the type property.
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getType() {
         if (this.type == null){
@@ -72,7 +72,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     /**
      * <p>Getter for the field <code>value</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getValue() {
         return value;
@@ -83,7 +83,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link String}
+     *     {@link java.lang.String}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "value", required = true)
     public void setJAXBValue(String value) {
@@ -101,7 +101,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link XmlOpenCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml254.XmlOpenCvTerm}
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "unit", required = true)
     public void setJAXBType(XmlOpenCvTerm value) {
@@ -123,7 +123,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){

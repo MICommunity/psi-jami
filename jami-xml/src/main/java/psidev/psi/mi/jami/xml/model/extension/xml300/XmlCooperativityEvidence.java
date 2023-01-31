@@ -98,7 +98,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -161,7 +161,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>setJAXBPublication.</p>
      *
-     * @param bibRef a {@link BibRef} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.xml.model.extension.xml300.BibRef} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "bibref", required = true)
     public void setJAXBPublication(BibRef bibRef) {

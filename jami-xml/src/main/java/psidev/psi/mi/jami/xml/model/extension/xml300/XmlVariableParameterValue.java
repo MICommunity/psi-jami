@@ -24,8 +24,8 @@ public class XmlVariableParameterValue extends AbstractXmlVariableParameterValue
     /**
      * <p>Constructor for XmlVariableParameterValue.</p>
      *
-     * @param value a {@link String} object.
-     * @param variableParameter a {@link VariableParameter} object.
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
      */
     public XmlVariableParameterValue(String value, VariableParameter variableParameter){
         super(value, variableParameter);
@@ -34,9 +34,9 @@ public class XmlVariableParameterValue extends AbstractXmlVariableParameterValue
     /**
      * <p>Constructor for XmlVariableParameterValue.</p>
      *
-     * @param value a {@link String} object.
-     * @param variableParameter a {@link VariableParameter} object.
-     * @param order a {@link Integer} object.
+     * @param value a {@link java.lang.String} object.
+     * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
+     * @param order a {@link java.lang.Integer} object.
      */
     public XmlVariableParameterValue(String value, VariableParameter variableParameter, Integer order){
         super(value, variableParameter, order);

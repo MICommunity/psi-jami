@@ -37,7 +37,7 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlOpenCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
      */
     public XmlOpenCvTerm(String shortName) {
         super(shortName);
@@ -46,8 +46,8 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlOpenCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public XmlOpenCvTerm(String shortName, String miIdentifier) {
         super(shortName, miIdentifier);
@@ -56,9 +56,9 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlOpenCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param miIdentifier a {@link String} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param miIdentifier a {@link java.lang.String} object.
      */
     public XmlOpenCvTerm(String shortName, String fullName, String miIdentifier) {
         super(shortName, fullName, miIdentifier);
@@ -67,8 +67,8 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlOpenCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlOpenCvTerm(String shortName, Xref ontologyId) {
         super(shortName, ontologyId);
@@ -77,9 +77,9 @@ public class XmlOpenCvTerm extends AbstractXmlCvTerm {
     /**
      * <p>Constructor for XmlOpenCvTerm.</p>
      *
-     * @param shortName a {@link String} object.
-     * @param fullName a {@link String} object.
-     * @param ontologyId a {@link Xref} object.
+     * @param shortName a {@link java.lang.String} object.
+     * @param fullName a {@link java.lang.String} object.
+     * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     public XmlOpenCvTerm(String shortName, String fullName, Xref ontologyId) {
         super(shortName, fullName, ontologyId);

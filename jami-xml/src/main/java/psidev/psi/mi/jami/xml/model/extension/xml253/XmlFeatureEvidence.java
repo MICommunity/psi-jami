@@ -195,7 +195,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>setJAXBExperimentRefWrapper.</p>
      *
-     * @param wrapper a {@link XmlFeatureEvidence.JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlFeatureEvidence.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {
@@ -205,7 +205,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>setJAXBParameterWrapper.</p>
      *
-     * @param wrapper a {@link XmlFeatureEvidence.JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlFeatureEvidence.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -264,7 +264,7 @@ public class XmlFeatureEvidence extends AbstractXmlFeature<ExperimentalEntity, F
     /**
      * <p>Setter for the field <code>originalParticipant</code>.</p>
      *
-     * @param p a {@link XmlParticipantEvidence} object.
+     * @param p a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidence} object.
      */
     protected void setOriginalParticipant(XmlParticipantEvidence p){
         this.originalParticipant = p;

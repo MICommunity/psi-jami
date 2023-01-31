@@ -40,8 +40,8 @@ public class XmlExperimentalParticipantCandidateWrapper implements ModelledParti
     /**
      * <p>Constructor for XmlExperimentalParticipantCandidateWrapper.</p>
      *
-     * @param part a {@link ExperimentalParticipantCandidate} object.
-     * @param wrapper a {@link ModelledParticipantPool} object.
+     * @param part a {@link psidev.psi.mi.jami.model.ExperimentalParticipantCandidate} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.model.ModelledParticipantPool} object.
      */
     public XmlExperimentalParticipantCandidateWrapper(ExperimentalParticipantCandidate part, ModelledParticipantPool wrapper){
         if (part == null){
@@ -205,7 +205,7 @@ public class XmlExperimentalParticipantCandidateWrapper implements ModelledParti
     /**
      * <p>getWrappedParticipant.</p>
      *
-     * @return a {@link ExperimentalParticipantCandidate} object.
+     * @return a {@link psidev.psi.mi.jami.model.ExperimentalParticipantCandidate} object.
      */
     public ExperimentalParticipantCandidate getWrappedParticipant(){
         return this.participant;

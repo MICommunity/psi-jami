@@ -44,7 +44,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>identifiers</code>.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getIdentifiers() {
         if (identifiers == null){
@@ -56,7 +56,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>imexId</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getImexId() {
         return this.imexId != null ? this.imexId.getId() : null;
@@ -65,7 +65,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>assignImexId.</p>
      *
-     * @param identifier a {@link String} object.
+     * @param identifier a {@link java.lang.String} object.
      */
     public void assignImexId(String identifier) {
         FullXrefList xrefs = (FullXrefList) getXrefs();
@@ -88,7 +88,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>complexAc</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getComplexAc() {
         return this.complexAcXref != null ? this.complexAcXref.getId() : null;
@@ -97,7 +97,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>complexVersion</code>.</p>
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String getComplexVersion() {
         return this.complexAcXref != null ? this.complexAcXref.getVersion() : null;
@@ -106,8 +106,8 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>assignComplexAc.</p>
      *
-     * @param accession a {@link String} object.
-     * @param version a {@link String} object.
+     * @param accession a {@link java.lang.String} object.
+     * @param version a {@link java.lang.String} object.
      */
     public void assignComplexAc(String accession, String version) {
         // add new complex ac if not null
@@ -136,7 +136,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>assignComplexAc.</p>
      *
-     * @param accession a {@link String} object.
+     * @param accession a {@link java.lang.String} object.
      */
     public void assignComplexAc(String accession) {
         // add new complex ac if not null
@@ -167,7 +167,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>processAddedPotentialImex.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedPotentialImex(Xref added) {
 
@@ -183,7 +183,7 @@ public class InteractionXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedPotentialImex.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedPotentialImex(Xref removed) {
         // the removed identifier is pubmed

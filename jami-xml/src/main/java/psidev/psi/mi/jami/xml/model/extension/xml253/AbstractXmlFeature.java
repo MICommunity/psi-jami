@@ -145,7 +145,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer}
      */
     public void setJAXBNames(NamesContainer value) {
         this.namesContainer = value;
@@ -200,7 +200,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
      *
      * @param value
      *     allowed object is
-     *     {@link FeatureXrefContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.FeatureXrefContainer}
      */
     public void setJAXBXref(FeatureXrefContainer value) {
         this.xrefContainer = value;
@@ -276,7 +276,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>setJAXBType.</p>
      *
-     * @param type a {@link XmlCvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm} object.
      */
     public void setJAXBType(XmlCvTerm type) {
         this.type = type;
@@ -425,7 +425,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>setJAXBAttributeWrapper.</p>
      *
-     * @param jaxbAttributeWrapper a {@link AbstractXmlFeature.JAXBAttributeWrapper} object.
+     * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlFeature.JAXBAttributeWrapper} object.
      */
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         this.jaxbAttributeWrapper = jaxbAttributeWrapper;
@@ -440,7 +440,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>setJAXBRangeWrapper.</p>
      *
-     * @param jaxbRangeWrapper a {@link AbstractXmlFeature.JAXBRangeWrapper} object.
+     * @param jaxbRangeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlFeature.JAXBRangeWrapper} object.
      */
     public void setJAXBRangeWrapper(JAXBRangeWrapper jaxbRangeWrapper) {
         this.jaxbRangeWrapper = jaxbRangeWrapper;
@@ -449,7 +449,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>setJAXBFeatureRole.</p>
      *
-     * @param role a {@link XmlCvTerm} object.
+     * @param role a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlCvTerm} object.
      */
     public void setJAXBFeatureRole(XmlCvTerm role){
         this.role = role;
@@ -458,7 +458,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>getJAXBRangeWrapper.</p>
      *
-     * @return a {@link AbstractXmlFeature.JAXBRangeWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlFeature.JAXBRangeWrapper} object.
      */
     protected JAXBRangeWrapper getJAXBRangeWrapper() {
         if (this.jaxbRangeWrapper == null){
@@ -470,7 +470,7 @@ public abstract class AbstractXmlFeature<P extends Entity, F extends Feature> im
     /**
      * <p>getJAXBAttributeWrapper.</p>
      *
-     * @return a {@link AbstractXmlFeature.JAXBAttributeWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlFeature.JAXBAttributeWrapper} object.
      */
     protected JAXBAttributeWrapper getJAXBAttributeWrapper() {
         if (this.jaxbAttributeWrapper == null){

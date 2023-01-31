@@ -27,8 +27,8 @@ public class DefaultXmlAnnotation extends AbstractXmlAnnotation {
     /**
      * <p>Constructor for XmlAnnotation.</p>
      *
-     * @param topic a {@link CvTerm} object.
-     * @param value a {@link String} object.
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
+     * @param value a {@link java.lang.String} object.
      */
     public DefaultXmlAnnotation(CvTerm topic, String value) {
         super(topic, value);
@@ -37,7 +37,7 @@ public class DefaultXmlAnnotation extends AbstractXmlAnnotation {
     /**
      * <p>Constructor for XmlAnnotation.</p>
      *
-     * @param topic a {@link CvTerm} object.
+     * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public DefaultXmlAnnotation(CvTerm topic) {
         super(topic);

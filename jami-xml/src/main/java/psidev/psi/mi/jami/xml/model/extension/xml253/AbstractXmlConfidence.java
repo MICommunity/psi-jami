@@ -102,7 +102,7 @@ public abstract class AbstractXmlConfidence implements Confidence, FileSourceCon
      *
      * @param value
      *     allowed object is
-     *     {@link XmlOpenCvTerm}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlOpenCvTerm}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "unit", required = true)
     public void setJAXBType(XmlOpenCvTerm value) {

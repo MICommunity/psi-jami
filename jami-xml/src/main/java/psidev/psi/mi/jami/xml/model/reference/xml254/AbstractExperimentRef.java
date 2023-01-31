@@ -41,7 +41,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getPublication.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -72,7 +72,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getXrefs.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Xref> getXrefs() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -85,7 +85,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getAnnotations.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Annotation> getAnnotations() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -98,7 +98,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getConfidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Confidence> getConfidences() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -111,7 +111,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getInteractionDetectionMethod.</p>
      *
-     * @return a {@link CvTerm} object.
+     * @return a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
     public CvTerm getInteractionDetectionMethod() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -133,7 +133,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getHostOrganism.</p>
      *
-     * @return a {@link Organism} object.
+     * @return a {@link psidev.psi.mi.jami.model.Organism} object.
      */
     public Organism getHostOrganism() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -155,7 +155,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getInteractionEvidences.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<InteractionEvidence> getInteractionEvidences() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -204,7 +204,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>getVariableParameters.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<VariableParameter> getVariableParameters() {
         logger.log(Level.WARNING, "The experiment reference "+ref+" is not resolved. Some default properties will be initialised by default");
@@ -382,7 +382,7 @@ public abstract class AbstractExperimentRef extends AbstractXmlIdReference imple
     /**
      * <p>Getter for the field <code>delegate</code>.</p>
      *
-     * @return a {@link ExtendedPsiXmlExperiment} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment} object.
      */
     protected ExtendedPsiXmlExperiment getDelegate() {
         return delegate;

@@ -64,7 +64,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
     /**
      * <p>Getter for the field <code>interactor</code>.</p>
      *
-     * @return a {@link Interactor} object.
+     * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public Interactor getInteractor() {
         return this.interactor;
@@ -73,7 +73,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
     /**
      * <p>Setter for the field <code>interactor</code>.</p>
      *
-     * @param interactor a {@link Interactor} object.
+     * @param interactor a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public void setInteractor(Interactor interactor) {
         this.interactor = interactor;
@@ -92,7 +92,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
     /**
      * <p>Getter for the field <code>sourceLocator</code>.</p>
      *
-     * @return a {@link FileSourceLocator} object.
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
      */
     public FileSourceLocator getSourceLocator() {
         if (sourceLocator == null && locator != null){
@@ -119,7 +119,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
      *
      * @param value
      *     allowed object is
-     *     {@link Interactor}
+     *     {@link psidev.psi.mi.jami.model.Interactor}
      */
     public void setJAXBInteractor(AbstractBaseXmlInteractor value) {
         if (value == null){
@@ -133,7 +133,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link AbstractExperimentalInteractor.AbstractJAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor.AbstractJAXBExperimentRefWrapper} object.
      */
     public void setJAXBExperimentRefWrapper(AbstractJAXBExperimentRefWrapper wrapper) {
         this.jaxbExperimentRefWrapper = wrapper;

@@ -111,7 +111,7 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>setJAXBInteractorCandidates.</p>
      *
-     * @param pool a {@link XmlModelledParticipant.JAXBInteractorCandidatesWrapper} object.
+     * @param pool a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledParticipant.JAXBInteractorCandidatesWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="interactorCandidateList")
     public void setJAXBInteractorCandidates(JAXBInteractorCandidatesWrapper pool) {
@@ -147,7 +147,7 @@ public class XmlModelledParticipant extends AbstractXmlParticipant<ModelledInter
     /**
      * <p>setJAXBFeatureWrapper.</p>
      *
-     * @param jaxbFeatureWrapper a {@link XmlModelledParticipant.JAXBFeatureWrapper} object.
+     * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledParticipant.JAXBFeatureWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {

@@ -47,7 +47,7 @@ public class XmlConfidence extends AbstractXmlConfidence {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link XmlConfidence.JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlConfidence.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

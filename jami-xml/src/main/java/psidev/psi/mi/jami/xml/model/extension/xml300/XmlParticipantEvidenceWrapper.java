@@ -43,8 +43,8 @@ public class XmlParticipantEvidenceWrapper implements ModelledParticipant,
     /**
      * <p>Constructor for XmlParticipantEvidenceWrapper.</p>
      *
-     * @param part a {@link ExtendedPsiXmlParticipantEvidence} object.
-     * @param wrapper a {@link XmlInteractionEvidenceComplexWrapper} object.
+     * @param part a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidenceComplexWrapper} object.
      */
     public XmlParticipantEvidenceWrapper(ExtendedPsiXmlParticipantEvidence part, XmlInteractionEvidenceComplexWrapper wrapper){
         if (part == null){
@@ -256,7 +256,7 @@ public class XmlParticipantEvidenceWrapper implements ModelledParticipant,
     /**
      * <p>getWrappedParticipant.</p>
      *
-     * @return a {@link ExtendedPsiXmlParticipantEvidence} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence} object.
      */
     public ExtendedPsiXmlParticipantEvidence getWrappedParticipant(){
         return this.participant;

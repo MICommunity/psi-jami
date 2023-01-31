@@ -245,7 +245,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
      *
      * @param value
      *     allowed object is
-     *     {@link NamesContainer}
+     *     {@link psidev.psi.mi.jami.xml.model.extension.xml253.NamesContainer}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="names")
     public void setJAXBNames(NamesContainer value) {
@@ -255,7 +255,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBCellType.</p>
      *
-     * @param cellType a {@link XmlOpenCvTerm} object.
+     * @param cellType a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="cellType")
     public void setJAXBCellType(XmlOpenCvTerm cellType) {
@@ -265,7 +265,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBCompartment.</p>
      *
-     * @param compartment a {@link XmlOpenCvTerm} object.
+     * @param compartment a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="compartment")
     public void setJAXBCompartment(XmlOpenCvTerm compartment) {
@@ -275,7 +275,7 @@ public class XmlOrganism implements Organism, FileSourceContext, Locatable{
     /**
      * <p>setJAXBTissue.</p>
      *
-     * @param tissue a {@link XmlOpenCvTerm} object.
+     * @param tissue a {@link psidev.psi.mi.jami.xml.model.extension.xml253.XmlOpenCvTerm} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="tissue")
     public void setJAXBTissue(XmlOpenCvTerm tissue) {

@@ -324,7 +324,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * <p>setJAXBParticipantWrapper.</p>
      *
-     * @param jaxbParticipantWrapper a {@link AbstractXmlInteractionEvidence.JAXBParticipantWrapper} object.
+     * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBParticipantWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
@@ -334,7 +334,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Gets the value of the confidenceList property.
      *
-     * @param wrapper a {@link AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
@@ -344,7 +344,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Gets the value of the parameterList property.
      *
-     * @param wrapper a {@link AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
@@ -354,7 +354,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the availability property.
      *
-     * @param value allowed object is {@link DefaultAvailability}
+     * @param value allowed object is {@link psidev.psi.mi.jami.xml.model.extension.xml253.DefaultAvailability}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="availability")
     public void setJAXBAvailability(DefaultAvailability value) {
@@ -376,7 +376,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * Sets the value of the experimentList property.
      *
-     * @param value allowed object is {@link JAXBExperimentWrapper}
+     * @param value allowed object is {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBExperimentWrapper}
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name ="experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentWrapper value) {
@@ -466,7 +466,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * <p>getJAXBConfidenceWrapper.</p>
      *
-     * @return a {@link AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBConfidenceWrapper} object.
      */
     public JAXBConfidenceWrapper getJAXBConfidenceWrapper() {
         return jaxbConfidenceWrapper;
@@ -475,7 +475,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * <p>getJAXBParameterWrapper.</p>
      *
-     * @return a {@link AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBParameterWrapper} object.
      */
     public JAXBParameterWrapper getJAXBParameterWrapper() {
         return jaxbParameterWrapper;
@@ -484,7 +484,7 @@ public abstract class AbstractXmlInteractionEvidence extends AbstractPsiXmlInter
     /**
      * <p>getJAXBExperimentWrapper.</p>
      *
-     * @return a {@link AbstractXmlInteractionEvidence.JAXBExperimentWrapper} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractionEvidence.JAXBExperimentWrapper} object.
      */
     public JAXBExperimentWrapper getJAXBExperimentWrapper() {
         return jaxbExperimentWrapper;

@@ -48,7 +48,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
     /**
      * <p>getExperiments.</p>
      *
-     * @return a {@link Collection} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Experiment> getExperiments() {
         if (getJaxbExperimentRefWrapper() == null){
@@ -86,7 +86,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
     /**
      * Gets the value of the experimentRefList property.
      *
-     * @param wrapper a {@link ExperimentalInteractor.JAXBExperimentRefWrapper} object.
+     * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml253.ExperimentalInteractor.JAXBExperimentRefWrapper} object.
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name="experimentRefList")
     public void setJAXBExperimentRefWrapper(JAXBExperimentRefWrapper wrapper) {

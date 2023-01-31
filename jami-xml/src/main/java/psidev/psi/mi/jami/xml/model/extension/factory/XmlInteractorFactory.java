@@ -102,7 +102,7 @@ public class XmlInteractorFactory extends DefaultInteractorFactory{
     /**
      * <p>createInteractorFromXmlInteractorInstance.</p>
      *
-     * @param source a {@link AbstractXmlInteractor} object.
+     * @param source a {@link psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractor} object.
      * @return a {@link psidev.psi.mi.jami.model.Interactor} object.
      */
     public Interactor createInteractorFromXmlInteractorInstance(AbstractBaseXmlInteractor source){

@@ -29,7 +29,7 @@ implements ModelledParticipantPool{
     /**
      * <p>Constructor for XmlModelledParticipantPool.</p>
      *
-     * @param delegate a {@link AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlParticipant} object.
      */
     public XmlModelledParticipantPool(AbstractXmlParticipant<ModelledInteraction, ModelledFeature> delegate) {
         super(delegate);

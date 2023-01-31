@@ -48,7 +48,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>Constructor for XmlBasicInteractionComplexWrapper.</p>
      *
-     * @param interaction a {@link ExtendedPsiXmlInteraction} object.
+     * @param interaction a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      */
     public XmlBasicInteractionComplexWrapper(ExtendedPsiXmlInteraction<? extends Participant> interaction){
         if (interaction == null){
@@ -552,7 +552,7 @@ public class XmlBasicInteractionComplexWrapper implements Complex,FileSourceCont
     /**
      * <p>getWrappedInteraction.</p>
      *
-     * @return a {@link ExtendedPsiXmlInteraction} object.
+     * @return a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction} object.
      */
     public ExtendedPsiXmlInteraction getWrappedInteraction(){
         return this.interaction;

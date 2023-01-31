@@ -199,7 +199,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setSourceLocation.</p>
      *
-     * @param sourceLocator a {@link PsiXmlLocator} object.
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
      */
     public void setSourceLocation(PsiXmlLocator sourceLocator) {
         this.sourceLocator = sourceLocator;
@@ -228,7 +228,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setJAXBOutCome.</p>
      *
-     * @param outcome a {@link XmlCvTerm} object.
+     * @param outcome a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativeEffectOutcome", required = true)
     public void setJAXBOutCome(XmlCvTerm outcome) {
@@ -238,7 +238,7 @@ public abstract class AbstractXmlCooperativeEffect implements CooperativeEffect,
     /**
      * <p>setJAXBResponse.</p>
      *
-     * @param response a {@link XmlCvTerm} object.
+     * @param response a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "cooperativeEffectResponse")
     public void setJAXBResponse(XmlCvTerm response) {

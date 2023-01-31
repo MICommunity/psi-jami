@@ -25,7 +25,7 @@ public class ExperimentXrefContainer extends XrefContainer {
     /**
      * <p>Getter for the field <code>publication</code>.</p>
      *
-     * @return a {@link Publication} object.
+     * @return a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public Publication getPublication() {
         return publication;
@@ -34,7 +34,7 @@ public class ExperimentXrefContainer extends XrefContainer {
     /**
      * <p>Setter for the field <code>publication</code>.</p>
      *
-     * @param publication a {@link Publication} object.
+     * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      */
     public void setPublication(Publication publication) {
         this.publication = publication;
@@ -43,7 +43,7 @@ public class ExperimentXrefContainer extends XrefContainer {
     /**
      * <p>processAddedPotentialImex.</p>
      *
-     * @param added a {@link Xref} object.
+     * @param added a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processAddedPotentialImex(Xref added) {
         if (publication != null){
@@ -61,7 +61,7 @@ public class ExperimentXrefContainer extends XrefContainer {
     /**
      * <p>processRemovedPotentialImex.</p>
      *
-     * @param removed a {@link Xref} object.
+     * @param removed a {@link psidev.psi.mi.jami.model.Xref} object.
      */
     protected void processRemovedPotentialImex(Xref removed) {
         if (publication != null){
