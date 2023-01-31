@@ -34,8 +34,8 @@ public class ExpandedXmlNamedWriter extends AbstractExpandedXmlMixWriter<Interac
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public ExpandedXmlNamedWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -44,8 +44,8 @@ public class ExpandedXmlNamedWriter extends AbstractExpandedXmlMixWriter<Interac
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public ExpandedXmlNamedWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -54,15 +54,15 @@ public class ExpandedXmlNamedWriter extends AbstractExpandedXmlMixWriter<Interac
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public ExpandedXmlNamedWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new ExpandedXmlNamedModelledWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new ExpandedXmlNamedEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightExpandedXmlNamedWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new ExpandedXmlNamedModelledWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new ExpandedXmlNamedEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightExpandedXmlNamedWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 }

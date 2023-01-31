@@ -37,8 +37,8 @@ public class ExpandedXmlComplexWriter extends AbstractExpandedXmlWriter<Complex>
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlComplexWriter(File file) throws IOException, XMLStreamException {
-        super(Complex.class, file);
+    public ExpandedXmlComplexWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Complex.class, file);
     }
 
     /**
@@ -47,8 +47,8 @@ public class ExpandedXmlComplexWriter extends AbstractExpandedXmlWriter<Complex>
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlComplexWriter(OutputStream output) throws XMLStreamException {
-        super(Complex.class, output);
+    public ExpandedXmlComplexWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Complex.class, output);
     }
 
     /**
@@ -57,8 +57,8 @@ public class ExpandedXmlComplexWriter extends AbstractExpandedXmlWriter<Complex>
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlComplexWriter(Writer writer) throws XMLStreamException {
-        super(Complex.class, writer);
+    public ExpandedXmlComplexWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Complex.class, writer);
     }
 
     /**
@@ -67,8 +67,8 @@ public class ExpandedXmlComplexWriter extends AbstractExpandedXmlWriter<Complex>
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlComplexWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(Complex.class, streamWriter, cache);
+    public ExpandedXmlComplexWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, Complex.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

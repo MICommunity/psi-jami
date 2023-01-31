@@ -37,8 +37,8 @@ public class LightCompactXmlBinaryWriter extends AbstractCompactXmlWriter<Binary
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteraction.class, file);
+    public LightCompactXmlBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteraction.class, file);
     }
 
     /**
@@ -47,8 +47,8 @@ public class LightCompactXmlBinaryWriter extends AbstractCompactXmlWriter<Binary
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteraction.class, output);
+    public LightCompactXmlBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteraction.class, output);
     }
 
     /**
@@ -57,8 +57,8 @@ public class LightCompactXmlBinaryWriter extends AbstractCompactXmlWriter<Binary
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlBinaryWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteraction.class, writer);
+    public LightCompactXmlBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteraction.class, writer);
     }
 
     /**
@@ -67,8 +67,8 @@ public class LightCompactXmlBinaryWriter extends AbstractCompactXmlWriter<Binary
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public LightCompactXmlBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(BinaryInteraction.class, streamWriter, cache);
+    public LightCompactXmlBinaryWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, BinaryInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

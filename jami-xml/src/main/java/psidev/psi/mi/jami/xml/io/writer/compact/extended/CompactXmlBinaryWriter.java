@@ -35,8 +35,8 @@ public class CompactXmlBinaryWriter extends AbstractCompactXmlMixWriter<BinaryIn
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteraction.class, file);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteraction.class, file);
     }
 
     /**
@@ -45,8 +45,8 @@ public class CompactXmlBinaryWriter extends AbstractCompactXmlMixWriter<BinaryIn
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteraction.class, output);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteraction.class, output);
     }
 
     /**
@@ -55,16 +55,16 @@ public class CompactXmlBinaryWriter extends AbstractCompactXmlMixWriter<BinaryIn
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteraction.class, writer);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteraction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new CompactXmlModelledBinaryWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new CompactXmlBinaryEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightCompactXmlBinaryWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new CompactXmlModelledBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new CompactXmlBinaryEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightCompactXmlBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */

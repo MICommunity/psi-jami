@@ -38,8 +38,8 @@ public class LightCompactXmlNamedWriter extends AbstractCompactXmlWriter<Interac
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlNamedWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public LightCompactXmlNamedWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -48,8 +48,8 @@ public class LightCompactXmlNamedWriter extends AbstractCompactXmlWriter<Interac
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlNamedWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public LightCompactXmlNamedWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -58,8 +58,8 @@ public class LightCompactXmlNamedWriter extends AbstractCompactXmlWriter<Interac
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightCompactXmlNamedWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public LightCompactXmlNamedWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /**
@@ -68,8 +68,8 @@ public class LightCompactXmlNamedWriter extends AbstractCompactXmlWriter<Interac
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public LightCompactXmlNamedWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(Interaction.class, streamWriter, cache);
+    public LightCompactXmlNamedWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, Interaction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

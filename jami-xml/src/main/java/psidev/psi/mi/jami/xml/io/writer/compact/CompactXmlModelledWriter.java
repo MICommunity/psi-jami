@@ -35,8 +35,8 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(File file) throws IOException, XMLStreamException {
-        super(ModelledInteraction.class, file);
+    public CompactXmlModelledWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, ModelledInteraction.class, file);
     }
 
     /**
@@ -45,8 +45,8 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(OutputStream output) throws XMLStreamException {
-        super(ModelledInteraction.class, output);
+    public CompactXmlModelledWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, ModelledInteraction.class, output);
     }
 
     /**
@@ -55,8 +55,8 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(Writer writer) throws XMLStreamException {
-        super(ModelledInteraction.class, writer);
+    public CompactXmlModelledWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, ModelledInteraction.class, writer);
     }
 
     /**
@@ -65,8 +65,8 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public CompactXmlModelledWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(ModelledInteraction.class, streamWriter, cache);
+    public CompactXmlModelledWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, ModelledInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

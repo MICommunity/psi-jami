@@ -38,8 +38,8 @@ public class LightExpandedXmlNamedBinaryWriter extends AbstractExpandedXmlWriter
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteraction.class, file);
+    public LightExpandedXmlNamedBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteraction.class, file);
     }
 
     /**
@@ -48,8 +48,8 @@ public class LightExpandedXmlNamedBinaryWriter extends AbstractExpandedXmlWriter
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteraction.class, output);
+    public LightExpandedXmlNamedBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteraction.class, output);
     }
 
     /**
@@ -58,8 +58,8 @@ public class LightExpandedXmlNamedBinaryWriter extends AbstractExpandedXmlWriter
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedBinaryWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteraction.class, writer);
+    public LightExpandedXmlNamedBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteraction.class, writer);
     }
 
     /**
@@ -68,8 +68,8 @@ public class LightExpandedXmlNamedBinaryWriter extends AbstractExpandedXmlWriter
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public LightExpandedXmlNamedBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(BinaryInteraction.class, streamWriter, cache);
+    public LightExpandedXmlNamedBinaryWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, BinaryInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

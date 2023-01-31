@@ -1067,7 +1067,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_single_interaction() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1084,7 +1084,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_several_interactions1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1106,7 +1106,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_several_interactions2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1127,7 +1127,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_same_interactors1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1149,7 +1149,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_same_interactors2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1173,7 +1173,7 @@ public class CompactXml25ModelledWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(complex);
         interaction.addParticipant(participant);
@@ -1193,7 +1193,7 @@ public class CompactXml25ModelledWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
@@ -1212,7 +1212,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_different_entries1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1231,7 +1231,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_different_entries2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1254,7 +1254,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_different_entries3() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1276,7 +1276,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interaction_source() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1302,7 +1302,7 @@ public class CompactXml25ModelledWriterTest {
     public void test_interactions_different_sources() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(new XmlProtein("protein test"));
@@ -1343,7 +1343,7 @@ public class CompactXml25ModelledWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
-        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(stringWriter);
+        CompactXmlModelledWriter writer = new CompactXmlModelledWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledInteraction interaction = new DefaultXmlModelledInteraction();
         ModelledParticipant participant = new XmlModelledParticipant(complex.getParticipants().iterator().next().getInteractor());
         interaction.addParticipant(participant);

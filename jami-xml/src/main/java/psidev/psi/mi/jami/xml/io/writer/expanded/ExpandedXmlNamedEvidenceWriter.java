@@ -36,8 +36,8 @@ public class ExpandedXmlNamedEvidenceWriter extends AbstractExpandedXmlWriter<In
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedEvidenceWriter(File file) throws IOException, XMLStreamException {
-        super(InteractionEvidence.class, file);
+    public ExpandedXmlNamedEvidenceWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, InteractionEvidence.class, file);
     }
 
     /**
@@ -46,8 +46,8 @@ public class ExpandedXmlNamedEvidenceWriter extends AbstractExpandedXmlWriter<In
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedEvidenceWriter(OutputStream output) throws XMLStreamException {
-        super(InteractionEvidence.class, output);
+    public ExpandedXmlNamedEvidenceWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, InteractionEvidence.class, output);
     }
 
     /**
@@ -56,8 +56,8 @@ public class ExpandedXmlNamedEvidenceWriter extends AbstractExpandedXmlWriter<In
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlNamedEvidenceWriter(Writer writer) throws XMLStreamException {
-        super(InteractionEvidence.class, writer);
+    public ExpandedXmlNamedEvidenceWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, InteractionEvidence.class, writer);
     }
 
     /**
@@ -66,8 +66,8 @@ public class ExpandedXmlNamedEvidenceWriter extends AbstractExpandedXmlWriter<In
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlNamedEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(InteractionEvidence.class, streamWriter, cache);
+    public ExpandedXmlNamedEvidenceWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, InteractionEvidence.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

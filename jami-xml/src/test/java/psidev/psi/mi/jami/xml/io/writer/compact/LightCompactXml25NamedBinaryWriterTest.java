@@ -738,7 +738,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_single_interaction() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -755,7 +755,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_several_interactions1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -777,7 +777,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_several_interactions2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -797,7 +797,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_interactions_same_interactors1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -818,7 +818,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_interactions_same_interactors2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -843,7 +843,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(complex);
         interaction.addParticipant(participant);
@@ -863,7 +863,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
@@ -882,7 +882,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_interactions_different_entries1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -901,7 +901,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_interactions_different_entries2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -924,7 +924,7 @@ public class LightCompactXml25NamedBinaryWriterTest {
     public void test_interactions_different_entries3() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(stringWriter);
+        LightCompactXmlNamedBinaryWriter writer = new LightCompactXmlNamedBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteraction interaction = new DefaultNamedBinaryInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));

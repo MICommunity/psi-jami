@@ -35,8 +35,8 @@ public class CompactXmlWriter extends AbstractCompactXmlMixWriter<Interaction, M
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public CompactXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -45,8 +45,8 @@ public class CompactXmlWriter extends AbstractCompactXmlMixWriter<Interaction, M
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public CompactXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -55,16 +55,16 @@ public class CompactXmlWriter extends AbstractCompactXmlMixWriter<Interaction, M
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public CompactXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new CompactXmlModelledWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new CompactXmlEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightCompactXmlWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new CompactXmlModelledWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new CompactXmlEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightCompactXmlWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */

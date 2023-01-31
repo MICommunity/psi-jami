@@ -46,8 +46,8 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, File file) throws IOException, XMLStreamException {
-        super(file);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, File file) throws IOException, XMLStreamException {
+        super(version, file);
         this.type = type;
     }
 
@@ -58,8 +58,8 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, OutputStream output) throws XMLStreamException {
-        super(output);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, OutputStream output) throws XMLStreamException {
+        super(version, output);
         this.type = type;
     }
 
@@ -70,8 +70,8 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, Writer writer) throws XMLStreamException {
-        super(writer);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, Writer writer) throws XMLStreamException {
+        super(version, writer);
         this.type = type;
     }
 
@@ -89,8 +89,8 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    protected AbstractExpandedXmlWriter(Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
-        super(streamWriter, elementCache);
+    protected AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        super(version, streamWriter, elementCache);
         this.type = type;
     }
 

@@ -71,8 +71,8 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(File file) throws IOException, XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        this.version = version;
         initialiseFile(file);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -85,8 +85,8 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(OutputStream output) throws XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        this.version = version;
         initialiseOutputStream(output);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -99,8 +99,8 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(Writer writer) throws XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        this.version = version;
         initialiseWriter(writer);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -113,7 +113,8 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    protected AbstractXmlWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+    protected AbstractXmlWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        this.version = version;
         if (streamWriter == null){
             throw new IllegalArgumentException("The stream writer cannot be null.");
         }

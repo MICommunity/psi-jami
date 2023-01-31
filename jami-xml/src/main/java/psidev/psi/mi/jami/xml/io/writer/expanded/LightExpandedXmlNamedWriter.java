@@ -38,8 +38,8 @@ public class LightExpandedXmlNamedWriter extends AbstractExpandedXmlWriter<Inter
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public LightExpandedXmlNamedWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -48,8 +48,8 @@ public class LightExpandedXmlNamedWriter extends AbstractExpandedXmlWriter<Inter
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public LightExpandedXmlNamedWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -58,8 +58,8 @@ public class LightExpandedXmlNamedWriter extends AbstractExpandedXmlWriter<Inter
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlNamedWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public LightExpandedXmlNamedWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /**
@@ -68,8 +68,8 @@ public class LightExpandedXmlNamedWriter extends AbstractExpandedXmlWriter<Inter
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public LightExpandedXmlNamedWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(Interaction.class, streamWriter, cache);
+    public LightExpandedXmlNamedWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, Interaction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

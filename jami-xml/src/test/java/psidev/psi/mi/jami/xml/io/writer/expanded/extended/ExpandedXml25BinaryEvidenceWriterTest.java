@@ -1225,7 +1225,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_single_interaction() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1242,7 +1242,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_several_interactions1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1265,7 +1265,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_several_interactions2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1287,7 +1287,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_same_interactors1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1310,7 +1310,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_same_interactors2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1336,7 +1336,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(complex);
         interaction.addParticipant(participant);
@@ -1357,7 +1357,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("test protein")));
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
@@ -1377,7 +1377,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_different_entries1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1396,7 +1396,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_different_entries2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1420,7 +1420,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_different_entries3() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1444,7 +1444,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interaction_source() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         BinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1470,7 +1470,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
     public void test_interactions_different_sources() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         XmlBinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         ParticipantEvidence participant = new XmlParticipantEvidence(new XmlProtein("protein test"));
@@ -1513,7 +1513,7 @@ public class ExpandedXml25BinaryEvidenceWriterTest {
         Complex complex = new DefaultXmlComplex("test complex");
         complex.getParticipants().add(new XmlModelledParticipant(new XmlProtein("protein test")));
 
-        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(stringWriter);
+        ExpandedXmlBinaryEvidenceWriter writer = new ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion.v2_5_4, stringWriter);
         XmlBinaryInteractionEvidence interaction = new XmlBinaryInteractionEvidence();
         interaction.setAvailability("copyright");
         ParticipantEvidence participant = new XmlParticipantEvidence(complex.getParticipants().iterator().next().getInteractor());

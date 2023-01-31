@@ -34,8 +34,8 @@ public class CompactXmlNamedWriter extends AbstractCompactXmlMixWriter<Interacti
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlNamedWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public CompactXmlNamedWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -44,8 +44,8 @@ public class CompactXmlNamedWriter extends AbstractCompactXmlMixWriter<Interacti
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlNamedWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public CompactXmlNamedWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -54,15 +54,15 @@ public class CompactXmlNamedWriter extends AbstractCompactXmlMixWriter<Interacti
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlNamedWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public CompactXmlNamedWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new CompactXmlNamedModelledWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new CompactXmlNamedEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightCompactXmlNamedWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new CompactXmlNamedModelledWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new CompactXmlNamedEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightCompactXmlNamedWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 }

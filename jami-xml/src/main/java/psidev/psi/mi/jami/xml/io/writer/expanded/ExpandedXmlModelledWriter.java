@@ -38,8 +38,8 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(File file) throws IOException, XMLStreamException {
-        super(ModelledInteraction.class, file);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, ModelledInteraction.class, file);
     }
 
     /**
@@ -48,8 +48,8 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(OutputStream output) throws XMLStreamException {
-        super(ModelledInteraction.class, output);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, ModelledInteraction.class, output);
     }
 
     /**
@@ -58,8 +58,8 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(Writer writer) throws XMLStreamException {
-        super(ModelledInteraction.class, writer);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, ModelledInteraction.class, writer);
     }
 
     /**
@@ -68,8 +68,8 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlModelledWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(ModelledInteraction.class, streamWriter, cache);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, ModelledInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

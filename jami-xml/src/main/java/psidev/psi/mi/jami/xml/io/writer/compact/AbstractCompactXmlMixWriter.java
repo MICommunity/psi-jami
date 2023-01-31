@@ -45,8 +45,8 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, File file) throws IOException, XMLStreamException {
-        super(type,file);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, File file) throws IOException, XMLStreamException {
+        super(version, type,file);
     }
 
     /**
@@ -56,8 +56,8 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, OutputStream output) throws XMLStreamException {
-        super(type,output);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, OutputStream output) throws XMLStreamException {
+        super(version, type,output);
     }
 
     /**
@@ -67,8 +67,8 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, Writer writer) throws XMLStreamException {
-        super(type,writer);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, Writer writer) throws XMLStreamException {
+        super(version, type,writer);
     }
 
     /** {@inheritDoc} */

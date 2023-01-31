@@ -38,8 +38,8 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryEvidenceWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteractionEvidence.class, file);
+    public ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteractionEvidence.class, file);
     }
 
     /**
@@ -48,8 +48,8 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryEvidenceWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteractionEvidence.class, output);
+    public ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteractionEvidence.class, output);
     }
 
     /**
@@ -58,8 +58,8 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryEvidenceWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteractionEvidence.class, writer);
+    public ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteractionEvidence.class, writer);
     }
 
     /**
@@ -68,8 +68,8 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlBinaryEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
-        super(BinaryInteractionEvidence.class, streamWriter, elementCache);
+    public ExpandedXmlBinaryEvidenceWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        super(version, BinaryInteractionEvidence.class, streamWriter, elementCache);
     }
 
     /** {@inheritDoc} */

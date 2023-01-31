@@ -36,8 +36,8 @@ public class ExpandedXmlWriter extends AbstractExpandedXmlMixWriter<Interaction,
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public ExpandedXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -46,8 +46,8 @@ public class ExpandedXmlWriter extends AbstractExpandedXmlMixWriter<Interaction,
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public ExpandedXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -56,16 +56,16 @@ public class ExpandedXmlWriter extends AbstractExpandedXmlMixWriter<Interaction,
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public ExpandedXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new ExpandedXmlModelledWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new ExpandedXmlEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightExpandedXmlWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new ExpandedXmlModelledWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new ExpandedXmlEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightExpandedXmlWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */

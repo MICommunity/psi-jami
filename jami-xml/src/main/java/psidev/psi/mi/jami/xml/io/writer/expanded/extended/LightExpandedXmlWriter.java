@@ -40,8 +40,8 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public LightExpandedXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
@@ -50,8 +50,8 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public LightExpandedXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
@@ -60,8 +60,8 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public LightExpandedXmlWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public LightExpandedXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /**
@@ -70,8 +70,8 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public LightExpandedXmlWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(Interaction.class, streamWriter, cache);
+    public LightExpandedXmlWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, Interaction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

@@ -37,8 +37,8 @@ public class ExpandedXmlBinaryWriter extends AbstractExpandedXmlMixWriter<Binary
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteraction.class, file);
+    public ExpandedXmlBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteraction.class, file);
     }
 
     /**
@@ -47,8 +47,8 @@ public class ExpandedXmlBinaryWriter extends AbstractExpandedXmlMixWriter<Binary
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteraction.class, output);
+    public ExpandedXmlBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteraction.class, output);
     }
 
     /**
@@ -57,16 +57,16 @@ public class ExpandedXmlBinaryWriter extends AbstractExpandedXmlMixWriter<Binary
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlBinaryWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteraction.class, writer);
+    public ExpandedXmlBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteraction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new ExpandedXmlModelledBinaryWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new ExpandedXmlBinaryEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightExpandedXmlBinaryWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new ExpandedXmlModelledBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new ExpandedXmlBinaryEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightExpandedXmlBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */
