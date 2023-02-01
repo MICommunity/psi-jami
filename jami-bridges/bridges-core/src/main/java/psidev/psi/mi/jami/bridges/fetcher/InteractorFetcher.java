@@ -20,7 +20,7 @@ public interface InteractorFetcher<I extends Interactor> {
      *
      * @param identifier    The identifier to search for.
      * @return              The proteins which match the search term. Empty if no matches.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException    A problem has been encountered when contacting the service
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException A problem has been encountered when contacting the service
      */
     public Collection<I> fetchByIdentifier(String identifier)
             throws BridgeFailedException;

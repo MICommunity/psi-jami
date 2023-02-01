@@ -25,8 +25,6 @@ public interface PublicationFetcher {
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      * @throws java.lang.IllegalArgumentException if identifier is null
      * @throws java.lang.IllegalArgumentException if source is null
-     * @throws java.lang.IllegalArgumentException if identifier is null
-     * @throws java.lang.IllegalArgumentException if source is null
      */
     public Publication fetchByIdentifier(String identifier, String source)
             throws BridgeFailedException;
