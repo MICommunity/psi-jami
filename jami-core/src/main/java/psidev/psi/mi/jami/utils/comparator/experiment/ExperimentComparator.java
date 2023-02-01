@@ -29,7 +29,8 @@ public class ExperimentComparator implements Comparator<Experiment>{
     private CollectionComparator<VariableParameter> variableParameterCollectionComparator;
 
     /**
-     * Creates a new ExperimentComparator. It needs a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Publication} to compare publications, a OrganismComparator to compare host organisms
+     * Creates a new ExperimentComparator. It needs a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Publication}
+     * to compare publications, a OrganismComparator to compare host organisms
      * and a AbstractCvTermComparator to compare interaction detection methods.
      *
      * @param publicationComparator : comparator for the publication which is required
