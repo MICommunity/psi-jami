@@ -1265,7 +1265,7 @@ public class Base64 {
 
 
     /**
-     * A {@link Base64.InputStream} will read data from another
+     * A {@link psidev.psi.mi.jami.utils.checksum.Base64.InputStream} will read data from another
      * <code>java.io.InputStream</code>, given in the constructor,
      * and encode/decode to/from Base64 notation on the fly.
      *
@@ -1286,7 +1286,7 @@ public class Base64 {
 
 
         /**
-         * Constructs a {@link Base64.InputStream} in DECODE mode.
+         * Constructs a {@link psidev.psi.mi.jami.utils.checksum.Base64.InputStream} in DECODE mode.
          *
          * @param in the <code>java.io.InputStream</code> from which to read data.
          * @since 1.3
@@ -1297,7 +1297,7 @@ public class Base64 {
 
 
         /**
-         * Constructs a {@link Base64.InputStream} in
+         * Constructs a {@link psidev.psi.mi.jami.utils.checksum.Base64.InputStream} in
          * either ENCODE or DECODE mode.
          *
          * Valid options:<pre>
@@ -1475,7 +1475,7 @@ public class Base64 {
 
 
     /**
-     * A {@link Base64.OutputStream} will write data to another
+     * A {@link psidev.psi.mi.jami.utils.checksum.Base64.OutputStream} will write data to another
      * <code>java.io.OutputStream</code>, given in the constructor,
      * and encode/decode to/from Base64 notation on the fly.
      *
@@ -1496,7 +1496,7 @@ public class Base64 {
         private byte[] decodabet;        // Local copies to avoid extra method calls
 
         /**
-         * Constructs a {@link Base64.OutputStream} in ENCODE mode.
+         * Constructs a {@link psidev.psi.mi.jami.utils.checksum.Base64.OutputStream} in ENCODE mode.
          *
          * @param out the <code>java.io.OutputStream</code> to which data will be written.
          * @since 1.3
@@ -1507,7 +1507,7 @@ public class Base64 {
 
 
         /**
-         * Constructs a {@link Base64.OutputStream} in
+         * Constructs a {@link psidev.psi.mi.jami.utils.checksum.Base64.OutputStream} in
          * either ENCODE or DECODE mode.
          *
          * Valid options:<pre>

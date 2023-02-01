@@ -253,7 +253,7 @@ public class MitabLineParserTokenManager implements MitabLineParserConstants {
     /**
      * Constructor.
      *
-     * @param stream a {@link JavaCharStream} object.
+     * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
      */
     public MitabLineParserTokenManager(JavaCharStream stream) {
         if (JavaCharStream.staticFlag)
@@ -264,7 +264,7 @@ public class MitabLineParserTokenManager implements MitabLineParserConstants {
     /**
      * Constructor.
      *
-     * @param stream a {@link JavaCharStream} object.
+     * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
      * @param lexState an int value.
      */
     public MitabLineParserTokenManager(JavaCharStream stream, int lexState) {
@@ -275,7 +275,7 @@ public class MitabLineParserTokenManager implements MitabLineParserConstants {
     /**
      * Reinitialise parser.
      *
-     * @param stream a {@link JavaCharStream} object.
+     * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
      */
     public void ReInit(JavaCharStream stream) {
         jjmatchedPos = jjnewStateCnt = 0;
@@ -294,7 +294,7 @@ public class MitabLineParserTokenManager implements MitabLineParserConstants {
     /**
      * Reinitialise parser.
      *
-     * @param stream a {@link JavaCharStream} object.
+     * @param stream a {@link psidev.psi.mi.jami.tab.io.parser.JavaCharStream} object.
      * @param lexState an int value.
      */
     public void ReInit(JavaCharStream stream, int lexState) {
@@ -347,7 +347,7 @@ public class MitabLineParserTokenManager implements MitabLineParserConstants {
     /**
      * Get the next Token.
      *
-     * @return a {@link Token} object.
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
      */
     public Token getNextToken() {
         Token matchedToken;

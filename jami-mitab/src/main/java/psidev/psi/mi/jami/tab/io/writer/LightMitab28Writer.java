@@ -29,7 +29,7 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public LightMitab28Writer(File file) throws IOException {
@@ -39,7 +39,7 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public LightMitab28Writer(OutputStream output) {
         super(output);
@@ -48,7 +48,7 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public LightMitab28Writer(Writer writer) {
         super(writer);
@@ -57,8 +57,8 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param file a {@link File} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param file a {@link java.io.File} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      * @throws IOException if any.
      */
     public LightMitab28Writer(File file, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) throws IOException {
@@ -68,8 +68,8 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param output a {@link OutputStream} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      */
     public LightMitab28Writer(OutputStream output, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) {
         super(output, expansionMethod);
@@ -78,8 +78,8 @@ public class LightMitab28Writer extends LightMitab27Writer {
     /**
      * <p>Constructor for LightMitab28Writer.</p>
      *
-     * @param writer a {@link Writer} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      */
     public LightMitab28Writer(Writer writer, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) {
         super(writer, expansionMethod);

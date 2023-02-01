@@ -12,7 +12,7 @@ import java.util.Comparator;
  * Basic entity comparator.
  * It will first compare the interactors using InteractorComparator. If both interactors are the same,
  * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
- * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
+ * it will compare the features using a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Feature}.
  * <p>
  * This comparator will ignore all the other properties of a participant.
  *
@@ -99,7 +99,7 @@ public class EntityBaseComparator implements Comparator<Entity> {
     /**
      * It will first compare the interactors using InteractorComparator. If both interactors are the same,
      * it will look at the stoichiometry (participant with lower stoichiometry will come first). If the stoichiometry is the same for both participants,
-     * it will compare the features using a {@link java.util.Comparator} of type {@link Feature}.
+     * it will compare the features using a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Feature}.
      * <p>
      * This comparator will ignore all the other properties of a participant.
      *

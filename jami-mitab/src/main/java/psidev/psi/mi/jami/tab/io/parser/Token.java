@@ -76,7 +76,7 @@ public class Token implements java.io.Serializable {
      * Any subclass of Token that actually wants to return a non-null value can
      * override this method as appropriate.
      *
-     * @return an {@link Object} object.
+     * @return an {@link java.lang.Object} object.
      */
     public Object getValue() {
         return null;
@@ -101,7 +101,7 @@ public class Token implements java.io.Serializable {
      * Constructs a new token for the specified Image and Kind.
      *
      * @param kind an int value.
-     * @param image a {@link String} object.
+     * @param image a {@link java.lang.String} object.
      */
     public Token(int kind, String image) {
         this.kind = kind;
@@ -111,7 +111,7 @@ public class Token implements java.io.Serializable {
     /**
      * Returns the image.
      *
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      */
     public String toString() {
         return image;
@@ -130,8 +130,8 @@ public class Token implements java.io.Serializable {
      * variable to the appropriate type and use sit in your lexical actions.
      *
      * @param ofKind an int value.
-     * @param image a {@link String} object.
-     * @return a {@link Token} object.
+     * @param image a {@link java.lang.String} object.
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
      */
     public static Token newToken(int ofKind, String image) {
         switch (ofKind) {

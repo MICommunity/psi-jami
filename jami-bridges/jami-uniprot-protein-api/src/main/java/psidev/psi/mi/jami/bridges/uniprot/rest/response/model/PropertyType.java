@@ -46,7 +46,7 @@ public class PropertyType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getType() {
@@ -58,7 +58,7 @@ public class PropertyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setType(String value) {
@@ -70,7 +70,7 @@ public class PropertyType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getValue() {
@@ -82,7 +82,7 @@ public class PropertyType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setValue(String value) {

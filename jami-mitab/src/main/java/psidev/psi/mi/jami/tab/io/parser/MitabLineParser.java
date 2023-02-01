@@ -2289,7 +2289,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
      * Constructor with InputStream and supplied encoding.
      *
      * @param stream a {@link java.io.InputStream} object.
-     * @param encoding a {@link String} object.
+     * @param encoding a {@link java.lang.String} object.
      */
     public MitabLineParser(java.io.InputStream stream, String encoding) {
         try {
@@ -2318,7 +2318,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
      * Reinitialise.
      *
      * @param stream a {@link java.io.InputStream} object.
-     * @param encoding a {@link String} object.
+     * @param encoding a {@link java.lang.String} object.
      */
     public void ReInit(java.io.InputStream stream, String encoding) {
         try {
@@ -2367,7 +2367,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     /**
      * Constructor with generated Token Manager.
      *
-     * @param tm a {@link MitabLineParserTokenManager} object.
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
      */
     public MitabLineParser(MitabLineParserTokenManager tm) {
         token_source = tm;
@@ -2381,7 +2381,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     /**
      * Reinitialise.
      *
-     * @param tm a {@link MitabLineParserTokenManager} object.
+     * @param tm a {@link psidev.psi.mi.jami.tab.io.parser.MitabLineParserTokenManager} object.
      */
     public void ReInit(MitabLineParserTokenManager tm) {
         token_source = tm;
@@ -2450,7 +2450,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
     /**
      * Get the next Token.
      *
-     * @return a {@link Token} object.
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
      */
     final public Token getNextToken() {
         if (token.next != null) token = token.next;
@@ -2464,7 +2464,7 @@ public abstract class MitabLineParser<T extends Interaction, P extends Participa
      * Get the specific Token.
      *
      * @param index an int value.
-     * @return a {@link Token} object.
+     * @return a {@link psidev.psi.mi.jami.tab.io.parser.Token} object.
      */
     final public Token getToken(int index) {
         Token t = token;

@@ -26,9 +26,9 @@ public class ParseException extends Exception {
      * a new object of this type with the fields "currentToken",
      * "expectedTokenSequences", and "tokenImage" set.
      *
-     * @param currentTokenVal           a {@link String} object.
+     * @param currentTokenVal           a {@link java.lang.String} object.
      * @param expectedTokenSequencesVal a double array of int values.
-     * @param tokenImageVal             an array of {@link String} objects.
+     * @param tokenImageVal             an array of {@link java.lang.String} objects.
      */
     public ParseException(Token currentTokenVal,
                           int[][] expectedTokenSequencesVal,
@@ -57,7 +57,7 @@ public class ParseException extends Exception {
     /**
      * Constructor with message.
      *
-     * @param message a {@link String} object.
+     * @param message a {@link java.lang.String} object.
      */
     public ParseException(String message) {
         super(message);

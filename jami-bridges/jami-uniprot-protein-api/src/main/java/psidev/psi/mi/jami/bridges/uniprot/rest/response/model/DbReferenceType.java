@@ -82,9 +82,9 @@ public class DbReferenceType {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PropertyType }
+     * {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.PropertyType }
      *
-     * @return a list of {@link PropertyType} objects.
+     * @return a list of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.PropertyType} objects.
      */
     public List<PropertyType> getProperty() {
         if (property == null) {
@@ -98,7 +98,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getType() {
@@ -110,7 +110,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setType(String value) {
@@ -122,7 +122,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getId() {
@@ -134,7 +134,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setId(String value) {
@@ -164,7 +164,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getActive() {
@@ -176,7 +176,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setActive(String value) {
@@ -188,7 +188,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link java.lang.Integer}
      *     
      */
     public Integer getVersion() {
@@ -200,7 +200,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link java.lang.Integer}
      *     
      */
     public void setVersion(Integer value) {
@@ -212,7 +212,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link javax.xml.datatype.XMLGregorianCalendar}
      *     
      */
     public XMLGregorianCalendar getCreated() {
@@ -224,7 +224,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link javax.xml.datatype.XMLGregorianCalendar}
      *     
      */
     public void setCreated(XMLGregorianCalendar value) {
@@ -236,7 +236,7 @@ public class DbReferenceType {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link javax.xml.datatype.XMLGregorianCalendar}
      *     
      */
     public XMLGregorianCalendar getLast() {
@@ -248,7 +248,7 @@ public class DbReferenceType {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link javax.xml.datatype.XMLGregorianCalendar}
      *     
      */
     public void setLast(XMLGregorianCalendar value) {

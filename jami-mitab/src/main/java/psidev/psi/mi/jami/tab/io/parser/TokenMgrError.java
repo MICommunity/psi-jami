@@ -48,8 +48,8 @@ public class TokenMgrError extends Error {
      * Replaces unprintable characters by their escaped (or unicode escaped)
      * equivalents in the given string
      *
-     * @param str a {@link String} object.
-     * @return a {@link String} object.
+     * @param str a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
      */
     protected static final String addEscapes(String str) {
         StringBuffer retval = new StringBuffer();
@@ -105,7 +105,7 @@ public class TokenMgrError extends Error {
      * @param errorColumn : column number when the error occurred
      * @param errorAfter  : prefix that was seen before this error occurred
      * @param curChar     : the offending character
-     * @return a {@link String} object.
+     * @return a {@link java.lang.String} object.
      * Note: You can customize the lexical error message by modifying this method.
      */
     protected static String LexicalError(boolean EOFSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) {
@@ -142,7 +142,7 @@ public class TokenMgrError extends Error {
     /**
      * Constructor with message and reason.
      *
-     * @param message a {@link String} object.
+     * @param message a {@link java.lang.String} object.
      * @param reason an int value.
      */
     public TokenMgrError(String message, int reason) {
@@ -157,7 +157,7 @@ public class TokenMgrError extends Error {
      * @param lexState an int value.
      * @param errorLine an int value.
      * @param errorColumn an int value.
-     * @param errorAfter a {@link String} object.
+     * @param errorAfter a {@link java.lang.String} object.
      * @param curChar a char value.
      * @param reason an int value.
      */

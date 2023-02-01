@@ -48,7 +48,7 @@ public class Sequence {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getContent() {
@@ -60,7 +60,7 @@ public class Sequence {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setContent(String value) {
@@ -90,7 +90,7 @@ public class Sequence {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getChecksum() {
@@ -102,7 +102,7 @@ public class Sequence {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setChecksum(String value) {

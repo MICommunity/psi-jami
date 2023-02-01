@@ -28,7 +28,7 @@ public class LightMitab28BinaryWriter extends AbstractMitab28BinaryWriter<Binary
     /**
      * <p>Constructor for LightMitab28BinaryWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public LightMitab28BinaryWriter(File file) throws IOException {
@@ -38,7 +38,7 @@ public class LightMitab28BinaryWriter extends AbstractMitab28BinaryWriter<Binary
     /**
      * <p>Constructor for LightMitab28BinaryWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public LightMitab28BinaryWriter(OutputStream output) {
         super(output);
@@ -47,7 +47,7 @@ public class LightMitab28BinaryWriter extends AbstractMitab28BinaryWriter<Binary
     /**
      * <p>Constructor for LightMitab28BinaryWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public LightMitab28BinaryWriter(Writer writer) {
         super(writer);

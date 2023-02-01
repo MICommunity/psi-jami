@@ -37,72 +37,72 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Uniparc }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Uniparc}
      *
-     * @return a {@link Uniparc} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Uniparc} object.
      */
     public Uniparc createUniparc() {
         return new Uniparc();
     }
 
     /**
-     * Create an instance of {@link Entry }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry}
      *
-     * @return a {@link Entry} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry} object.
      */
     public Entry createEntry() {
         return new Entry();
     }
 
     /**
-     * Create an instance of {@link DbReferenceType }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.DbReferenceType}
      *
-     * @return a {@link DbReferenceType} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.DbReferenceType} object.
      */
     public DbReferenceType createDbReferenceType() {
         return new DbReferenceType();
     }
 
     /**
-     * Create an instance of {@link SeqFeatureType }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureType}
      *
-     * @return a {@link SeqFeatureType} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureType} object.
      */
     public SeqFeatureType createSeqFeatureType() {
         return new SeqFeatureType();
     }
 
     /**
-     * Create an instance of {@link Sequence }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Sequence}
      *
-     * @return a {@link Sequence} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Sequence} object.
      */
     public Sequence createSequence() {
         return new Sequence();
     }
 
     /**
-     * Create an instance of {@link PropertyType }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.PropertyType}
      *
-     * @return a {@link PropertyType} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.PropertyType} object.
      */
     public PropertyType createPropertyType() {
         return new PropertyType();
     }
 
     /**
-     * Create an instance of {@link LocationType }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.LocationType}
      *
-     * @return a {@link LocationType} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.LocationType} object.
      */
     public LocationType createLocationType() {
         return new LocationType();
     }
 
     /**
-     * Create an instance of {@link SeqFeatureGroupType }
+     * Create an instance of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureGroupType}
      *
-     * @return a {@link SeqFeatureGroupType} object.
+     * @return a {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureGroupType} object.
      */
     public SeqFeatureGroupType createSeqFeatureGroupType() {
         return new SeqFeatureGroupType();

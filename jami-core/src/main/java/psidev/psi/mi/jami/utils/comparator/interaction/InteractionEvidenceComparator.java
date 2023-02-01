@@ -14,7 +14,7 @@ import java.util.Comparator;
 /**
  * Basic InteractionEvidenceComparator.
  *
- * It will first compare the basic interaction properties using {@link java.util.Comparator} of type {@link Interaction}.
+ * It will first compare the basic interaction properties using {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Interaction}.
  * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
  * A negative interaction will come after a positive interaction. it will compare
  * the experiment using ExperimentComparator. If the experiments are the same, it will compare the participants using ParticipantEvidenceComparator. Then it will compare the parameters using ParameterComparator.
@@ -146,7 +146,7 @@ public class InteractionEvidenceComparator implements Comparator<InteractionEvid
     }
 
     /**
-     * It will first compare the basic interaction properties using {@link java.util.Comparator} of type {@link Interaction}.
+     * It will first compare the basic interaction properties using {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Interaction}.
      * It will then compares the IMEx identifiers if both IMEx ids are set. If at least one IMEx id is not set, it will compare the negative properties.
      * A negative interaction will come after a positive interaction. it will compare
      * the experiment using ExperimentComparator. If the experiments are the same, it will compare the participants using ParticipantEvidenceComparator. Then, it will compare the parameters using ParameterComparator.

@@ -64,7 +64,7 @@ public class Entry {
      *
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *
      */
     public String getAccession() {
@@ -76,7 +76,7 @@ public class Entry {
      *
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *
      */
     public void setAccession(String value) {
@@ -101,9 +101,9 @@ public class Entry {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DbReferenceType }
+     * {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.DbReferenceType}
      *
-     * @return a list of {@link DbReferenceType} objects.
+     * @return a list of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.DbReferenceType} objects.
      */
     public List<DbReferenceType> getDbReference() {
         if (dbReference == null) {
@@ -130,9 +130,9 @@ public class Entry {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link SeqFeatureType }
+     * {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureType}
      *
-     * @return a list of {@link SeqFeatureType} objects.
+     * @return a list of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureType} objects.
      */
     public List<SeqFeatureType> getSignatureSequenceMatch() {
         if (signatureSequenceMatch == null) {
@@ -146,7 +146,7 @@ public class Entry {
      *
      * @return
      *     possible object is
-     *     {@link Sequence }
+     *     {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Sequence}
      *
      */
     public Sequence getSequence() {
@@ -158,7 +158,7 @@ public class Entry {
      *
      * @param value
      *     allowed object is
-     *     {@link Sequence }
+     *     {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Sequence}
      *     
      */
     public void setSequence(Sequence value) {
@@ -170,7 +170,7 @@ public class Entry {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getDataset() {
@@ -182,7 +182,7 @@ public class Entry {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setDataset(String value) {
@@ -194,7 +194,7 @@ public class Entry {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getUniProtKBExclusion() {
@@ -206,7 +206,7 @@ public class Entry {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setUniProtKBExclusion(String value) {

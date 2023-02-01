@@ -31,7 +31,7 @@ public abstract class AbstractMitab28BinaryWriter<T extends BinaryInteraction, P
     /**
      * <p>Constructor for AbstractMitab28BinaryWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public AbstractMitab28BinaryWriter(File file) throws IOException {
@@ -42,7 +42,7 @@ public abstract class AbstractMitab28BinaryWriter<T extends BinaryInteraction, P
     /**
      * <p>Constructor for AbstractMitab28BinaryWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public AbstractMitab28BinaryWriter(OutputStream output) {
         super(output);
@@ -52,7 +52,7 @@ public abstract class AbstractMitab28BinaryWriter<T extends BinaryInteraction, P
     /**
      * <p>Constructor for AbstractMitab28BinaryWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public AbstractMitab28BinaryWriter(Writer writer) {
         super(writer);

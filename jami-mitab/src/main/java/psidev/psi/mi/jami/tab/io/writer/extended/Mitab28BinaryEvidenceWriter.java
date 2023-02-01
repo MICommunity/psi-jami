@@ -29,7 +29,7 @@ public class Mitab28BinaryEvidenceWriter extends AbstractMitab28BinaryWriter<Bin
     /**
      * <p>Constructor for Mitab28BinaryEvidenceWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28BinaryEvidenceWriter(File file) throws IOException {
@@ -39,7 +39,7 @@ public class Mitab28BinaryEvidenceWriter extends AbstractMitab28BinaryWriter<Bin
     /**
      * <p>Constructor for Mitab28BinaryEvidenceWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28BinaryEvidenceWriter(OutputStream output) {
         super(output);
@@ -48,7 +48,7 @@ public class Mitab28BinaryEvidenceWriter extends AbstractMitab28BinaryWriter<Bin
     /**
      * <p>Constructor for Mitab28BinaryEvidenceWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28BinaryEvidenceWriter(Writer writer) {
         super(writer);
