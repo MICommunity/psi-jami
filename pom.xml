@@ -113,11 +113,15 @@
                 <version>3.2.0</version>
                 <!--Excludes generated sources-->
                 <configuration>
-                    <excludePackageNames>uk.ac.ebi.cdb.webservice:uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral
+                    <excludePackageNames>
+                        uk.ac.ebi.cdb.webservice:
+                        uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral:
+                        edu.ucla.mbi.imex.icentral.*:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb.*
                     </excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>docs</destDir>
-                    <aggregate>true</aggregate>
                 </configuration>
             </plugin>
         </plugins>
