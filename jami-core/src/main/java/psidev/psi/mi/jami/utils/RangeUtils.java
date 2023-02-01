@@ -42,8 +42,8 @@ public class RangeUtils {
      * Create a Range from a String
      *
      * @param rangeString a {@link java.lang.String} object.
-     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
      * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
      */
     public static Range createRangeFromString(String rangeString) throws IllegalRangeException {
 
@@ -55,8 +55,8 @@ public class RangeUtils {
      *
      * @param rangeString a {@link java.lang.String} object.
      * @param linked a boolean.
-     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
      * @return a {@link psidev.psi.mi.jami.model.Range} object.
+     * @throws psidev.psi.mi.jami.exception.IllegalRangeException if any.
      */
     public static Range createRangeFromString(String rangeString, boolean linked) throws IllegalRangeException {
 

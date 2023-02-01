@@ -49,7 +49,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * It will add the new complex-primary ref to the collection of xrefs
      *
      * @param accession : the complex accession. If the version is added to the accession e.g. CPX-1234.2 the complex will be updated with the corresponding version, if not it is assumed version 1
-     * @throws IllegalArgumentException if
+     * @throws java.lang.IllegalArgumentException if
      *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession);
@@ -61,7 +61,7 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      *
      * @param accession : the complex accession
      * @param version   : the version of the complex if it is provided. If version is null it will create the complex with version 1
-     * @throws IllegalArgumentException if
+     * @throws java.lang.IllegalArgumentException if
      *                                  - the accession is null or empty
      */
     public void assignComplexAc(String accession, String version);
@@ -127,6 +127,8 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * It will filter by proteins
      * It will combine stoichiometry for same interactors
      * Comparable participants are per interactor and are new instances.
+     *
+     * @return a collection of {@link psidev.psi.mi.jami.model.ModelledComparableParticipant} objects.
      */
     default Collection<ModelledComparableParticipant> getComparableParticipants() {
         Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
