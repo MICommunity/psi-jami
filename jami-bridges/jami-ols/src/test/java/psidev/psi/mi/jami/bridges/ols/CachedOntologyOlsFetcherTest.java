@@ -41,17 +41,6 @@ public class CachedOntologyOlsFetcherTest {
         ontologyOLSFetcher.shutDownCache();
     }
 
-    @Test
-    @Ignore("Multicast requests fail in MAC needs investigation")
-    public void test_getRootTerms() throws BridgeFailedException {
-//        Set<OntologyTerm> result = ontologyOLSFetcher.fetchRootTerms("psi-mi");
-//        assertEquals(1, result.size());
-//        for (OntologyTerm term : result) {
-//            assertNotNull(term.getSynonyms());
-//        }
-
-    }
-
 
     /**
      * Test that an ontology term is correctly retrieved with no parents or children.

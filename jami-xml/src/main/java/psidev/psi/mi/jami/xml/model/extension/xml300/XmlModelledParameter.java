@@ -4,12 +4,11 @@ import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.ModelledParameter;
 import psidev.psi.mi.jami.model.ParameterValue;
 import psidev.psi.mi.jami.model.Publication;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlParameter;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+
 import java.math.BigDecimal;
 
 /**
@@ -60,9 +59,9 @@ public class XmlModelledParameter extends AbstractXmlParameter implements Modell
     /**
      * <p>setJAXBPublication.</p>
      *
-     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     * @param publication a {@link psidev.psi.mi.jami.xml.model.extension.xml300.BibRef} object.
      */
-    @XmlElement(name="bibref")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="bibref")
     public void setJAXBPublication(BibRef publication) {
         setPublication(publication);
     }

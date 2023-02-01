@@ -2,6 +2,9 @@ package psidev.psi.mi.jami.xml.model.extension.binary.xml30;
 
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.ParticipantEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.binary.AbstractXmlBinaryInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlXref;
 import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlCausalRelationship;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -16,8 +19,7 @@ import java.util.List;
  * @since <pre>16/10/13</pre>
  */
 @XmlTransient
-public class XmlBinaryInteractionEvidence extends psidev.psi.mi.jami.xml.model.extension.binary.xml25.XmlBinaryInteractionEvidence
-        implements psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlInteractionEvidence {
+public class XmlBinaryInteractionEvidence extends AbstractXmlBinaryInteractionEvidence implements ExtendedPsiXmlInteractionEvidence {
 
     private List<ExtendedPsiXmlCausalRelationship> causalRelationships;
 
@@ -133,6 +135,11 @@ public class XmlBinaryInteractionEvidence extends psidev.psi.mi.jami.xml.model.e
      */
     public XmlBinaryInteractionEvidence(String shortName, CvTerm type, ParticipantEvidence participantA, ParticipantEvidence participantB, CvTerm complexExpansion) {
         super(shortName, type, participantA, participantB, complexExpansion);
+    }
+
+    /** {@inheritDoc} */
+    public void setImexId(CvTerm database, String id, CvTerm qualifier) {
+        setImexId(new XmlXref(database, id, qualifier));
     }
 
     /** {@inheritDoc} */

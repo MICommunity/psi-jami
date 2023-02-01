@@ -7,8 +7,8 @@ import psidev.psi.mi.jami.model.Alias;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.xml.model.Entry;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public abstract class AbstractExtendedXmlBinaryInteraction<P extends Participant
     private Entry entry;
     private int id;
     private List<CvTerm> interactionTypes;
-    private List<InferredInteraction> inferredInteractions;
+    private List<AbstractInferredInteraction> inferredInteractions;
     private Boolean intraMolecular;
 
     /**
@@ -247,9 +247,9 @@ public abstract class AbstractExtendedXmlBinaryInteraction<P extends Participant
 
     /** {@inheritDoc} */
     @Override
-    public List<InferredInteraction> getInferredInteractions() {
+    public List<AbstractInferredInteraction> getInferredInteractions() {
         if (this.inferredInteractions == null){
-            this.inferredInteractions = new ArrayList<InferredInteraction>();
+            this.inferredInteractions = new ArrayList<>();
         }
         return this.inferredInteractions;
     }

@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.3.0-SNAPSHOT</version>
+        <version>3.3.0</version>
     </parent>
 
     <artifactId>jami-ols</artifactId>
@@ -12,6 +12,18 @@
     <description>JAMI-OLS bridge</description>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+
         <!-- Bridges Core -->
         <dependency>
             <groupId>psidev.psi.mi.jami.bridges</groupId>

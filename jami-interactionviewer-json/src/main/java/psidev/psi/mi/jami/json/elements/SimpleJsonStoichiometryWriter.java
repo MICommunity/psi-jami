@@ -36,8 +36,9 @@ public class SimpleJsonStoichiometryWriter implements JsonElementWriter<Stoichio
      * @throws java.io.IOException if any.
      */
     public void write(Stoichiometry object) throws IOException {
-        if (object == null) return;
-        if (object.getMinValue() > 0 && object.getMaxValue() > 0){
+        if (object != null &&
+                object.getMinValue() > 0 &&
+                object.getMaxValue() > 0){
             if (object.getMaxValue() == object.getMinValue()){
                 MIJsonUtils.writeSeparator(writer);
                 MIJsonUtils.writeProperty("stoichiometry", Integer.toString(object.getMinValue()), writer);

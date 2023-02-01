@@ -3,11 +3,9 @@ package psidev.psi.mi.jami.xml.utils;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlAllostery;
-import psidev.psi.mi.jami.xml.model.extension.XmlCooperativityEvidence;
-import psidev.psi.mi.jami.xml.model.extension.XmlPreAssembly;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
 
 import javax.xml.stream.XMLStreamException;
@@ -95,13 +93,18 @@ public class PsiXmlUtils {
     /**
      * <p>extractCooperativeEffectFrom.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param annots a {@link java.util.Collection} object.
      * @param experiments a {@link java.util.Collection} object.
      * @param listener a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.
      * @return a {@link psidev.psi.mi.jami.model.CooperativeEffect} object.
      */
-    public static CooperativeEffect extractCooperativeEffectFrom(Collection<Annotation> annots, Collection<Experiment> experiments,
-                                                                 PsiXmlParserListener listener){
+    public static CooperativeEffect extractCooperativeEffectFrom(
+            PsiXmlVersion version,
+            Collection<Annotation> annots,
+            Collection<Experiment> experiments,
+            PsiXmlParserListener listener){
+
         if (!annots.isEmpty()){
             Annotation allostery = null;
             Annotation preAssembly = null;
@@ -217,9 +220,8 @@ public class PsiXmlUtils {
                 CooperativeEffect effect = null;
                 // create pre-assembly
                 if (preAssembly != null){
-                    effect = new XmlPreAssembly(outcome.getTopic());
-                    XmlPreAssembly preAssemblyEffect = (XmlPreAssembly)effect;
-                    preAssemblyEffect.setSourceLocator((PsiXmlLocator)((FileSourceContext)preAssembly).getSourceLocator());
+                    effect = newXmlPreAssembly(version, outcome.getTopic(), (PsiXmlLocator)((FileSourceContext)preAssembly).getSourceLocator());
+                    Preassembly preAssemblyEffect = (Preassembly)effect;
 
                     // remove annotations
                     annots.remove(outcome);
@@ -229,7 +231,7 @@ public class PsiXmlUtils {
                     if (!affectedInteractions.isEmpty()){
                         for (Annotation ann : affectedInteractions){
                             try{
-                                preAssemblyEffect.addAffectedInteractionRef(Integer.parseInt(ann.getValue()), (PsiXmlLocator) ((FileSourceContext) ann).getSourceLocator());
+                                addAffectedInteraction(version, preAssemblyEffect, Integer.parseInt(ann.getValue()), (PsiXmlLocator) ((FileSourceContext) ann).getSourceLocator());
                                 annots.remove(ann);
                             }
                             catch (NumberFormatException e){
@@ -243,15 +245,11 @@ public class PsiXmlUtils {
                 // create allostery
                 else if (allostery != null && allostericMolecule != null
                         && (allostericEffector != null || allostericPTM != null)){
-                    XmlAllostery xmlAllostery = null;
+                    Allostery<AllostericEffector> xmlAllostery = null;
                     if (allostericEffector != null){
                         try{
-                            int refEffector = Integer.parseInt(allostericEffector.getValue());
-                            int refMolecule = Integer.parseInt(allostericMolecule.getValue());
-                            effect = new XmlAllostery<MoleculeEffector>(outcome.getTopic());
-                            xmlAllostery = (XmlAllostery)effect;
-                            xmlAllostery.setAllostericMoleculeRef(refMolecule, (PsiXmlLocator)((FileSourceContext)allostericMolecule).getSourceLocator());
-                            xmlAllostery.setAllostericEffectorRef(refEffector, (PsiXmlLocator)((FileSourceContext)allostericEffector).getSourceLocator());
+                            effect = newXmlAllostery(version, outcome.getTopic(), allostericMolecule, allostericEffector, null);
+                            xmlAllostery = (Allostery<AllostericEffector>) effect;
 
                             // remove annotations
                             annots.remove(allostery);
@@ -267,12 +265,8 @@ public class PsiXmlUtils {
                     }
                     else{
                         try{
-                            int refEffector = Integer.parseInt(allostericPTM.getValue());
-                            int refMolecule = Integer.parseInt(allostericMolecule.getValue());
-                            effect = new XmlAllostery<FeatureModificationEffector>(outcome.getTopic());
-                            xmlAllostery = (XmlAllostery)effect;
-                            xmlAllostery.setAllostericMoleculeRef(refMolecule, (PsiXmlLocator)((FileSourceContext)allostericMolecule).getSourceLocator());
-                            xmlAllostery.setAllostericPTMRef(refEffector, (PsiXmlLocator)((FileSourceContext)allostericPTM).getSourceLocator());
+                            effect = newXmlAllostery(version, outcome.getTopic(), allostericMolecule, null, allostericPTM);
+                            xmlAllostery = (Allostery<AllostericEffector>) effect;
 
                             // remove annotations
                             annots.remove(allostery);
@@ -291,7 +285,7 @@ public class PsiXmlUtils {
                     if (!affectedInteractions.isEmpty()){
                         for (Annotation ann : affectedInteractions){
                             try{
-                                xmlAllostery.addAffectedInteractionRef(Integer.parseInt(ann.getValue()), (PsiXmlLocator) ((FileSourceContext) ann).getSourceLocator());
+                                addAffectedInteraction(version, xmlAllostery, Integer.parseInt(ann.getValue()), (PsiXmlLocator) ((FileSourceContext) ann).getSourceLocator());
                                 annots.remove(ann);
                             }
                             catch (NumberFormatException e){
@@ -325,7 +319,7 @@ public class PsiXmlUtils {
                     // add experimental evidences
                     if (experiments != null && !experiments.isEmpty()){
                         for (Experiment exp : experiments){
-                            CooperativityEvidence evidence = new XmlCooperativityEvidence(exp);
+                            CooperativityEvidence evidence = newXmlCooperativityEvidence(version, exp);
                             effect.getCooperativityEvidences().add(evidence);
                         }
                     }
@@ -398,5 +392,115 @@ public class PsiXmlUtils {
                 xmlExperiment.getAliases(),
                 writer,
                 aliasWriter);
+    }
+
+    private static CooperativeEffect newXmlPreAssembly(PsiXmlVersion version, CvTerm outcome, PsiXmlLocator sourceLocator) {
+        CooperativeEffect effect;
+        switch (version) {
+            case v3_0_0:
+                effect = new psidev.psi.mi.jami.xml.model.extension.xml300.XmlPreAssembly(outcome);
+                ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlPreAssembly) effect).setSourceLocator(sourceLocator);
+            case v2_5_3:
+                effect = new psidev.psi.mi.jami.xml.model.extension.xml253.XmlPreAssembly(outcome);
+                ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlPreAssembly) effect).setSourceLocator(sourceLocator);
+            case v2_5_4:
+            default:
+                effect = new psidev.psi.mi.jami.xml.model.extension.xml254.XmlPreAssembly(outcome);
+                ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlPreAssembly) effect).setSourceLocator(sourceLocator);
+        }
+        return effect;
+    }
+
+    private static void addAffectedInteraction(PsiXmlVersion version, Preassembly preassembly, int affectedInteraction, PsiXmlLocator sourceLocator) {
+        switch (version) {
+            case v3_0_0:
+                ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlPreAssembly) preassembly).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+            case v2_5_3:
+                ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlPreAssembly) preassembly).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+            case v2_5_4:
+            default:
+                ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlPreAssembly) preassembly).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+        }
+    }
+
+    private static Allostery<AllostericEffector> newXmlAllostery(
+            PsiXmlVersion version,
+            CvTerm outcome,
+            Annotation allostericMoleculeRef,
+            Annotation allostericEffectorRef,
+            Annotation allostericPTMRef) {
+
+        Integer refMolecule = allostericMoleculeRef != null ? Integer.parseInt(allostericMoleculeRef.getValue()) : null;
+        Integer refEffector = allostericEffectorRef != null ? Integer.parseInt(allostericEffectorRef.getValue()) : null;
+        Integer ptmRefEffector = allostericPTMRef != null ? Integer.parseInt(allostericPTMRef.getValue()) : null;
+
+        Allostery<AllostericEffector> allostery;
+        switch (version) {
+            case v3_0_0:
+                allostery = new psidev.psi.mi.jami.xml.model.extension.xml300.XmlAllostery(outcome);
+                if (allostericMoleculeRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlAllostery) allostery).setJAXBAllostericMoleculeRef(refMolecule);
+                }
+                if (allostericEffectorRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlAllostery) allostery).setJAXBMoleculeEffectorRef(refEffector);
+                }
+                if (allostericPTMRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlAllostery) allostery).setJAXBFeatureEffectorRef(ptmRefEffector);
+                }
+            case v2_5_3:
+                allostery = new psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery<>(outcome);
+                if (allostericMoleculeRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericMoleculeRef(refMolecule, (PsiXmlLocator) ((FileSourceContext) allostericMoleculeRef).getSourceLocator());
+                }
+                if (allostericEffectorRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericEffectorRef(refEffector, (PsiXmlLocator) ((FileSourceContext) allostericEffectorRef).getSourceLocator());
+                }
+                if (allostericPTMRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericPTMRef(ptmRefEffector, (PsiXmlLocator) ((FileSourceContext) allostericPTMRef).getSourceLocator());
+                }
+            case v2_5_4:
+            default:
+                allostery = new psidev.psi.mi.jami.xml.model.extension.xml254.XmlAllostery<>(outcome);
+                if (allostericMoleculeRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericMoleculeRef(refMolecule, (PsiXmlLocator) ((FileSourceContext) allostericMoleculeRef).getSourceLocator());
+                }
+                if (allostericEffectorRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericEffectorRef(refEffector, (PsiXmlLocator) ((FileSourceContext) allostericEffectorRef).getSourceLocator());
+                }
+                if (allostericPTMRef != null) {
+                    ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlAllostery<AllostericEffector>) allostery)
+                            .setAllostericPTMRef(ptmRefEffector, (PsiXmlLocator) ((FileSourceContext) allostericPTMRef).getSourceLocator());
+                }
+        }
+        return allostery;
+    }
+
+    private static void addAffectedInteraction(PsiXmlVersion version, Allostery<AllostericEffector> allostery, int affectedInteraction, PsiXmlLocator sourceLocator) {
+        switch (version) {
+            case v3_0_0:
+                ((psidev.psi.mi.jami.xml.model.extension.xml300.XmlAllostery) allostery).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+            case v2_5_3:
+                ((psidev.psi.mi.jami.xml.model.extension.xml253.XmlAllostery<AllostericEffector>) allostery).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+            case v2_5_4:
+            default:
+                ((psidev.psi.mi.jami.xml.model.extension.xml254.XmlAllostery<AllostericEffector>) allostery).addAffectedInteractionRef(affectedInteraction, sourceLocator);
+        }
+    }
+
+    private static CooperativityEvidence newXmlCooperativityEvidence(PsiXmlVersion version, Experiment exp) {
+        switch (version) {
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlCooperativityEvidence(exp.getPublication());
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlCooperativityEvidence(exp);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlCooperativityEvidence(exp);
+        }
     }
 }

@@ -3,7 +3,6 @@ package psidev.psi.mi.jami.xml.model.extension.xml254;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Organism;
 import psidev.psi.mi.jami.model.Xref;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractor;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @since <pre>23/07/13</pre>
  */
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "interactor", namespace = "http://psi.hupo.org/mi/mif")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif", name = "interactor")
 public class XmlInteractor extends AbstractXmlInteractor {
 
     /**

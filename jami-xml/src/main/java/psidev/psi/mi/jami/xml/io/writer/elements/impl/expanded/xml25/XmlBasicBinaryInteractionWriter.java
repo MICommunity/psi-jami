@@ -4,6 +4,7 @@ import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Checksum;
 import psidev.psi.mi.jami.model.CvTerm;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml25.AbstractXmlInteractionWriter;
@@ -22,17 +23,18 @@ public class XmlBasicBinaryInteractionWriter extends AbstractXmlInteractionWrite
     /**
      * <p>Constructor for XmlBasicBinaryInteractionWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlBasicBinaryInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlBasicBinaryInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
-        super.setParticipantWriter(new XmlParticipantWriter(getStreamWriter(), getObjectIndex()));
+        super.setParticipantWriter(new XmlParticipantWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

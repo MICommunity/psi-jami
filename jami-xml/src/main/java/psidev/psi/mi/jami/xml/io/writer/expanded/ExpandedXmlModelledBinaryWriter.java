@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.ComplexType;
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -25,50 +26,56 @@ public class ExpandedXmlModelledBinaryWriter extends AbstractExpandedXmlWriter<M
 
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public ExpandedXmlModelledBinaryWriter() {
-        super(ModelledBinaryInteraction.class);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version) {
+        super(version, ModelledBinaryInteraction.class);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(ModelledBinaryInteraction.class, file);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, ModelledBinaryInteraction.class, file);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(ModelledBinaryInteraction.class, output);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, ModelledBinaryInteraction.class, output);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledBinaryWriter(Writer writer) throws XMLStreamException {
-        super(ModelledBinaryInteraction.class, writer);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, ModelledBinaryInteraction.class, writer);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlModelledBinaryWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(ModelledBinaryInteraction.class, streamWriter, cache);
+    public ExpandedXmlModelledBinaryWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, ModelledBinaryInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

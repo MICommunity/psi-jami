@@ -127,8 +127,8 @@ public class MIBatchJobManager {
      * @param jobName a {@link java.lang.String} object.
      * @param start a int.
      * @param numberJobs a int.
-     * @throws org.springframework.batch.core.launch.NoSuchJobException if any.
      * @return a {@link java.util.List} object.
+     * @throws org.springframework.batch.core.launch.NoSuchJobException if any.
      */
     public List<Long> findJobIdsByName(String jobName, int start, int numberJobs) throws NoSuchJobException {
         return jobOperator.getJobInstances(jobName, start, numberJobs);
@@ -153,8 +153,8 @@ public class MIBatchJobManager {
      * This method will start a job having a specific name and no job parameters. It will return the generated job id of the job that have been started
      *
      * @param jobName a {@link java.lang.String} object.
-     * @throws org.springframework.batch.core.JobParametersInvalidException if any.
      * @return a {@link java.lang.String} object.
+     * @throws org.springframework.batch.core.JobParametersInvalidException if any.
      * @throws org.springframework.batch.core.launch.JobInstanceAlreadyExistsException if any.
      * @throws org.springframework.batch.core.launch.NoSuchJobException if any.
      */
@@ -231,9 +231,9 @@ public class MIBatchJobManager {
      *
      * @param jobName a {@link java.lang.String} object.
      * @param jobId a {@link java.lang.String} object.
+     * @return a {@link org.springframework.batch.core.JobExecution} object.
      * @throws org.springframework.batch.core.launch.NoSuchJobExecutionException if any.
      * @throws org.springframework.batch.core.repository.JobExecutionAlreadyRunningException if any.
-     * @return a {@link org.springframework.batch.core.JobExecution} object.
      */
     public JobExecution abandonJob(String jobName, String jobId) throws NoSuchJobExecutionException, JobExecutionAlreadyRunningException {
         JobExecution execution = findLastJobExecutionFor(jobName, jobId);

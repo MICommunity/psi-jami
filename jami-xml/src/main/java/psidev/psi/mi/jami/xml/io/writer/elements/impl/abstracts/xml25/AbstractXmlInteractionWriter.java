@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml25;
 import psidev.psi.mi.jami.model.Feature;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter;
@@ -27,11 +28,12 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction>
     /**
      * <p>Constructor for AbstractXmlInteractionWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
-        super(writer, objectIndex);
+    public AbstractXmlInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
@@ -43,7 +45,7 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction>
     /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
+        super.setExperimentWriter(new XmlExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

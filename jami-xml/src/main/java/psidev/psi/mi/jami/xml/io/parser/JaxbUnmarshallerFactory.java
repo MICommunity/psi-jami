@@ -2,12 +2,19 @@ package psidev.psi.mi.jami.xml.io.parser;
 
 import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.xml.PsiXmlVersion;
-import psidev.psi.mi.jami.xml.model.xml25.*;
-import psidev.psi.mi.jami.xml.model.xml30.Xml300EntrySet;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import psidev.psi.mi.jami.xml.model.xml253.Xml253BasicEntrySet;
+import psidev.psi.mi.jami.xml.model.xml253.Xml253ComplexEntrySet;
+import psidev.psi.mi.jami.xml.model.xml253.Xml253ExperimentalEntrySet;
+import psidev.psi.mi.jami.xml.model.xml253.Xml253ModelledEntrySet;
+import psidev.psi.mi.jami.xml.model.xml254.Xml254BasicEntrySet;
+import psidev.psi.mi.jami.xml.model.xml254.Xml254ComplexEntrySet;
+import psidev.psi.mi.jami.xml.model.xml254.Xml254ExperimentalEntrySet;
+import psidev.psi.mi.jami.xml.model.xml254.Xml254ModelledEntrySet;
+import psidev.psi.mi.jami.xml.model.xml30.Xml300EntrySet;
 
 /**
  * Factory to initialise JAXB context depending on the version and the interaction object category

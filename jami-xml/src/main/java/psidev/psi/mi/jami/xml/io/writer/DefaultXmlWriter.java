@@ -79,7 +79,7 @@ public class DefaultXmlWriter implements InteractionWriter {
             }
         }
 
-        this.delegate = factory.createPsiXmlWriter(category, type, xmlType, extended, named);
+        this.delegate = factory.createPsiXmlWriter(category, type, xmlType, version, extended, named);
         this.delegate.initialiseContext(options);
     }
 

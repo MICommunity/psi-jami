@@ -1,14 +1,13 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlConfidenceWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlInferredInteractionWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -25,17 +24,18 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
         extends psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.AbstractXmlModelledInteractionWriter<I>
         implements PsiXmlExtendedInteractionWriter<I> {
 
-    private PsiXmlElementWriter<InferredInteraction> inferredInteractionWriter;
+    private PsiXmlElementWriter<AbstractInferredInteraction> inferredInteractionWriter;
     private List<Experiment> defaultExperiments;
 
     /**
      * <p>Constructor for AbstractXmlModelledInteractionWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
 
     }
 
@@ -44,7 +44,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      *
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      */
-    public PsiXmlElementWriter<InferredInteraction> getXmlInferredInteractionWriter() {
+    public PsiXmlElementWriter<AbstractInferredInteraction> getXmlInferredInteractionWriter() {
         if (this.inferredInteractionWriter == null){
             this.inferredInteractionWriter = new XmlInferredInteractionWriter(getStreamWriter(), getObjectIndex());
         }
@@ -56,26 +56,46 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      *
      * @param inferredInteractionWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
      */
-    public void setXmlInferredInteractionWriter(PsiXmlElementWriter<InferredInteraction> inferredInteractionWriter) {
+    public void setXmlInferredInteractionWriter(PsiXmlElementWriter<AbstractInferredInteraction> inferredInteractionWriter) {
         this.inferredInteractionWriter = inferredInteractionWriter;
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlExperimentWriter(getStreamWriter(), getObjectIndex()));
+        super.setExperimentWriter(new XmlExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter(){
-        super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setConfidenceWriter(
+                        new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlConfidenceWriter(
+                                getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setConfidenceWriter(
+                        new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter(
+                                getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter(){
-        super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
@@ -102,8 +122,8 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
                 CooperativityEvidence evidence = effect.getCooperativityEvidences().iterator().next();
                 // set first experiment as default experiment
                 if (evidence.getPublication() != null){
-                    Experiment exp = new XmlExperiment(evidence.getPublication());
-                    ((XmlExperiment)exp).setFullName(evidence.getPublication().getTitle());
+                    Experiment exp = newExperiment(evidence.getPublication());
+                    ((NamedExperiment)exp).setFullName(evidence.getPublication().getTitle());
                     expList.add(exp);
                 }
             }
@@ -124,8 +144,8 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
                 CooperativityEvidence evidence = effect.getCooperativityEvidences().iterator().next();
                 // set first experiment as default experiment
                 if (evidence.getPublication() != null){
-                    exp = new XmlExperiment(evidence.getPublication());
-                    ((XmlExperiment)exp).setFullName(evidence.getPublication().getTitle());
+                    exp = newExperiment(evidence.getPublication());
+                    ((NamedExperiment)exp).setFullName(evidence.getPublication().getTitle());
                 }
             }
         }
@@ -183,7 +203,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
                 for (CooperativityEvidence evidence : effect.getCooperativityEvidences()){
                     // set first experiment as default experiment
                     if (evidence.getPublication() != null){
-                        NamedExperiment exp = new XmlExperiment(evidence.getPublication());
+                        NamedExperiment exp = newExperiment(evidence.getPublication());
                         exp.setFullName(evidence.getPublication().getTitle());
                         defExps.add(exp);
                     }

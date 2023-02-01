@@ -3,8 +3,6 @@ package psidev.psi.mi.jami.xml.model.extension.xml254;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Organism;
 import psidev.psi.mi.jami.model.Publication;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlExperiment;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version $Id$
  * @since <pre>25/07/13</pre>
  */
-@XmlRootElement(name = "experimentDescription", namespace = "http://psi.hupo.org/mi/mif")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif", name = "experimentDescription")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlExperiment extends AbstractXmlExperiment {
 

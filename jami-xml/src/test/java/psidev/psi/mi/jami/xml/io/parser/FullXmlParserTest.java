@@ -9,10 +9,16 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
 import psidev.psi.mi.jami.xml.model.extension.xml300.BindingFeatures;
 import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlCausalRelationship;
 import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledFeature;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledParticipant;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantEvidence;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.JAXBException;
@@ -192,7 +198,7 @@ public class FullXmlParserTest {
         Assert.assertNotSame(p1.getIdentificationMethods().iterator().next(), exp.getParticipantIdentificationMethod());
         // experimental interactor
         Assert.assertEquals(1, ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().size());
-        ExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
+        AbstractExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
         Assert.assertNotNull(expInteractor.getInteractor());
         Assert.assertTrue(expInteractor.getExperiments().isEmpty());
         Assert.assertEquals("dbf4_yeast", expInteractor.getInteractor().getShortName());
@@ -405,7 +411,7 @@ public class FullXmlParserTest {
         Assert.assertNotSame(p1.getIdentificationMethods().iterator().next(), exp.getParticipantIdentificationMethod());
         // experimental interactor
         Assert.assertEquals(1, ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().size());
-        ExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
+        AbstractExperimentalInteractor expInteractor = ((ExtendedPsiXmlParticipantEvidence) p1).getExperimentalInteractors().iterator().next();
         Assert.assertNotNull(expInteractor.getInteractor());
         Assert.assertTrue(expInteractor.getExperiments().isEmpty());
         Assert.assertEquals("dbf4_yeast", expInteractor.getInteractor().getShortName());

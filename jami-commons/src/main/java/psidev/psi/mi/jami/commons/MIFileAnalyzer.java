@@ -185,8 +185,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return an OpenedInputStream MIFileType.other
      *
      * @param stream : the stream to recognize
-     * @throws java.io.IOException if any.
      * @return a {@link psidev.psi.mi.jami.commons.OpenedInputStream} object.
+     * @throws java.io.IOException if any.
      */
     public OpenedInputStream extractMIFileTypeFrom(InputStream stream) throws IOException {
         if (stream == null){
@@ -206,8 +206,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return an OpenedInputStream MIFileType.other
      *
      * @param reader : the reader for the source to recognize
-     * @throws java.io.IOException if any.
      * @return a {@link psidev.psi.mi.jami.commons.OpenedInputStream} object.
+     * @throws java.io.IOException if any.
      */
     public OpenedInputStream extractMIFileTypeAndCopiedInputStream(Reader reader) throws IOException {
 
@@ -228,8 +228,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return a MIFileType.other
      *
      * @param stream : the stream to recognize
-     * @throws java.io.IOException if any.
      * @return a {@link psidev.psi.mi.jami.commons.MIFileType} object.
+     * @throws java.io.IOException if any.
      */
     public MIFileType identifyMIFileTypeFor(InputStream stream) throws IOException {
 
@@ -257,8 +257,8 @@ public class MIFileAnalyzer {
      * It will recognize psi25-xml and mitab files. If it is neither of them, it will return a MIFileType.other
      *
      * @param reader : the reader for the source to recognize
-     * @throws java.io.IOException if any.
      * @return a {@link psidev.psi.mi.jami.commons.MIFileType} object.
+     * @throws java.io.IOException if any.
      */
     public MIFileType identifyMIFileTypeFor(Reader reader) throws IOException {
 

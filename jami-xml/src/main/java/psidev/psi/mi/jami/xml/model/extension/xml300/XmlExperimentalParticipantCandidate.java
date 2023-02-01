@@ -4,10 +4,7 @@ import com.sun.xml.bind.annotation.XmlLocation;
 import org.xml.sax.Locator;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.*;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlEntity;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlFeatureEvidence;
-import psidev.psi.mi.jami.xml.model.extension.XmlInteractor;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
@@ -57,14 +54,14 @@ public class XmlExperimentalParticipantCandidate extends AbstractXmlEntity<Featu
 
     /** {@inheritDoc} */
     @Override
-    @XmlElement(name = "interactor", namespace = "http://psi.hupo.org/mi/mif300")
-    public void setJAXBInteractor(XmlInteractor interactor) {
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactor")
+    public void setJAXBInteractor(DefaultXmlInteractor interactor) {
         super.setJAXBInteractor(interactor);
     }
 
     /** {@inheritDoc} */
     @Override
-    @XmlElement(name = "interactorRef", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorRef")
     public void setJAXBInteractorRef(Integer value) {
         super.setJAXBInteractorRef(value);
     }
@@ -74,7 +71,7 @@ public class XmlExperimentalParticipantCandidate extends AbstractXmlEntity<Featu
      *
      * @param value a int.
      */
-    @XmlAttribute(name = "id", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlAttribute(name = "id", required = true)
     public void setJAXBId(int value) {
         super.setId(value);
     }
@@ -84,7 +81,7 @@ public class XmlExperimentalParticipantCandidate extends AbstractXmlEntity<Featu
      *
      * @param jaxbFeatureWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlExperimentalParticipantCandidate.JAXBFeatureWrapper} object.
      */
-    @XmlElement(name = "featureList", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "featureList")
     public void setJAXBFeatureWrapper(JAXBFeatureWrapper jaxbFeatureWrapper) {
         super.setFeatureWrapper(jaxbFeatureWrapper);
     }
@@ -124,14 +121,14 @@ public class XmlExperimentalParticipantCandidate extends AbstractXmlEntity<Featu
 
     ////////////////////////////////////////////////////// classes
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="experimentalEntityFeatureWrapper", namespace = "http://psi.hupo.org/mi/mif300")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="experimentalEntityFeatureWrapper")
     public static class JAXBFeatureWrapper extends AbstractXmlEntity.JAXBFeatureWrapper<FeatureEvidence> {
 
         public JAXBFeatureWrapper(){
             super();
         }
 
-        @XmlElement(type=XmlFeatureEvidence.class, name="feature", required = true, namespace = "http://psi.hupo.org/mi/mif300")
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlFeatureEvidence.class, name="feature", required = true)
         public List<FeatureEvidence> getJAXBFeatures() {
             return super.getJAXBFeatures();
         }

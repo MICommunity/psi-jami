@@ -5,10 +5,8 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Organism;
 import psidev.psi.mi.jami.utils.ExperimentUtils;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlConfidenceWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlHostOrganismWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlNamedExperimentWriter;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 

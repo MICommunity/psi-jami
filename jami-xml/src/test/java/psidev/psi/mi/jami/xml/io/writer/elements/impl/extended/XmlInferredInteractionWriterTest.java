@@ -10,8 +10,8 @@ import psidev.psi.mi.jami.utils.InteractorUtils;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteractionParticipant;
+import psidev.psi.mi.jami.xml.model.extension.xml254.InferredInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml254.InferredInteractionParticipant;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;

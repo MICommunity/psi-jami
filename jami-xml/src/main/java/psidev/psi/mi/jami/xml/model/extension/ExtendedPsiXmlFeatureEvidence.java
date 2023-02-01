@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.model.FeatureEvidence;
 import java.util.List;
 
 /**
- * PSI-XML 2.5 extension of a feature evidence
+ * PSI-XML extension of a feature evidence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

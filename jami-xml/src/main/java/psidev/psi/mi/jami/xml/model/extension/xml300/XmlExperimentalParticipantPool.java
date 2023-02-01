@@ -1,8 +1,6 @@
 package psidev.psi.mi.jami.xml.model.extension.xml300;
 
 import psidev.psi.mi.jami.model.*;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant;
-import psidev.psi.mi.jami.xml.model.extension.XmlParticipantEvidence;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Collection;
@@ -28,7 +26,7 @@ implements ExperimentalParticipantPool{
     /**
      * <p>Constructor for XmlExperimentalParticipantPool.</p>
      *
-     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlParticipant} object.
      */
     public XmlExperimentalParticipantPool(AbstractXmlParticipant<InteractionEvidence, FeatureEvidence> delegate) {
         super(delegate);

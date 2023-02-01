@@ -7,6 +7,7 @@ import psidev.psi.mi.jami.model.InteractorPool;
 import psidev.psi.mi.jami.model.Protein;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 
@@ -207,7 +208,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         Interactor interactor = new DefaultProtein("protein test");
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -220,7 +221,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.setFullName("protein full name");
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -235,7 +236,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
 
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -249,7 +250,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.getIdentifiers().add(new DefaultXref(new DefaultCvTerm(Xref.UNIPROTKB, Xref.UNIPROTKB_MI), "P22216", new DefaultCvTerm(Xref.IDENTITY, Xref.IDENTITY_MI)));
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -263,7 +264,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "P22216"));
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -276,7 +277,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.setOrganism(new DefaultOrganism(9606, "human"));
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -289,7 +290,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.setSequence("AAGGLLA");
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -307,7 +308,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.add(protein2);
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -328,7 +329,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         protein2.setSequence("AAGGLLA");
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -349,7 +350,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         protein2.setSequence("AAGG");
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -363,7 +364,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         interactor.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 
@@ -377,7 +378,7 @@ public class XmlInteractorWriterTest extends AbstractXmlWriterTest {
         elementCache.extractIdForInteractor(new DefaultInteractor("test interactor"));
         elementCache.extractIdForInteractor(interactor);
 
-        XmlInteractorWriter writer = new XmlInteractorWriter(createStreamWriter(), this.elementCache);
+        XmlInteractorWriter writer = new XmlInteractorWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interactor);
         streamWriter.flush();
 

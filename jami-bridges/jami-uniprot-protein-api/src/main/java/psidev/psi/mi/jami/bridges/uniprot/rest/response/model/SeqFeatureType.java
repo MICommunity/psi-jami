@@ -55,7 +55,7 @@ public class SeqFeatureType {
      *
      * @return
      *     possible object is
-     *     {@link SeqFeatureGroupType }
+     *     {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureGroupType}
      *
      */
     public SeqFeatureGroupType getIpr() {
@@ -67,7 +67,7 @@ public class SeqFeatureType {
      *
      * @param value
      *     allowed object is
-     *     {@link SeqFeatureGroupType }
+     *     {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.SeqFeatureGroupType}
      *
      */
     public void setIpr(SeqFeatureGroupType value) {
@@ -92,9 +92,9 @@ public class SeqFeatureType {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link LocationType }
+     * {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.LocationType}
      *
-     *
+     * @return a list of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.LocationType} objects.
      */
     public List<LocationType> getLcn() {
         if (lcn == null) {
@@ -108,7 +108,7 @@ public class SeqFeatureType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getDatabase() {
@@ -120,7 +120,7 @@ public class SeqFeatureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setDatabase(String value) {
@@ -132,7 +132,7 @@ public class SeqFeatureType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getId() {
@@ -144,7 +144,7 @@ public class SeqFeatureType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setId(String value) {

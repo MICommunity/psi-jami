@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30.AbstractXmlParticipantEvidenceWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.XmlExperimentalInteractorWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.XmlFeatureEvidenceWriter;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -14,14 +14,14 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Compact XML 2.5 writer for an expanded participant evidence with full experimental details and having experimental interactors, list of host organisms and list of experimental roles.
+ * Compact XML 3.0 writer for an expanded participant evidence with full experimental details and having experimental interactors, list of host organisms and list of experimental roles.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
 public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidenceWriter implements CompactPsiXmlElementWriter<ParticipantEvidence> {
-    private CompactPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter;
+    private CompactPsiXmlElementWriter<AbstractExperimentalInteractor> experimentalInteractorWriter;
 
     /**
      * <p>Constructor for XmlParticipantEvidenceWriter.</p>
@@ -51,9 +51,9 @@ public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidence
      *
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter} object.
      */
-    public CompactPsiXmlElementWriter<ExperimentalInteractor> getExperimentalInteractorWriter() {
+    public CompactPsiXmlElementWriter<AbstractExperimentalInteractor> getExperimentalInteractorWriter() {
         if (this.experimentalInteractorWriter == null){
-            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getStreamWriter(), getObjectIndex());
+            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex());
         }
         return experimentalInteractorWriter;
     }
@@ -63,7 +63,7 @@ public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidence
      *
      * @param experimentalInteractorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.CompactPsiXmlElementWriter} object.
      */
-    public void setExperimentalInteractorWriter(CompactPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter) {
+    public void setExperimentalInteractorWriter(CompactPsiXmlElementWriter<AbstractExperimentalInteractor> experimentalInteractorWriter) {
         this.experimentalInteractorWriter = experimentalInteractorWriter;
     }
 
@@ -114,7 +114,7 @@ public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidence
             ExtendedPsiXmlParticipantEvidence xmlParticipant = (ExtendedPsiXmlParticipantEvidence)object;
             if (!xmlParticipant.getExperimentalInteractors().isEmpty()){
                 getStreamWriter().writeStartElement("experimentalInteractorList");
-                for (ExperimentalInteractor expInt : xmlParticipant.getExperimentalInteractors()){
+                for (AbstractExperimentalInteractor expInt : xmlParticipant.getExperimentalInteractors()){
                     getExperimentalInteractorWriter().write(expInt);
                 }
                 getStreamWriter().writeEndElement();

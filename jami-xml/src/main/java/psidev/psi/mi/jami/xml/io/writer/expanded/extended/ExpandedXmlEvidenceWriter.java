@@ -2,10 +2,10 @@ package psidev.psi.mi.jami.xml.io.writer.expanded.extended;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
 import psidev.psi.mi.jami.xml.io.writer.expanded.AbstractExpandedXmlWriter;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -25,50 +25,56 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public ExpandedXmlEvidenceWriter() {
-        super(InteractionEvidence.class);
+    public ExpandedXmlEvidenceWriter(PsiXmlVersion version) {
+        super(version, InteractionEvidence.class);
     }
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlEvidenceWriter(File file) throws IOException, XMLStreamException {
-        super(InteractionEvidence.class, file);
+    public ExpandedXmlEvidenceWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, InteractionEvidence.class, file);
     }
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlEvidenceWriter(OutputStream output) throws XMLStreamException {
-        super(InteractionEvidence.class, output);
+    public ExpandedXmlEvidenceWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, InteractionEvidence.class, output);
     }
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlEvidenceWriter(Writer writer) throws XMLStreamException {
-        super(InteractionEvidence.class, writer);
+    public ExpandedXmlEvidenceWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, InteractionEvidence.class, writer);
     }
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(InteractionEvidence.class, streamWriter, cache);
+    public ExpandedXmlEvidenceWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, InteractionEvidence.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */
@@ -90,7 +96,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
-        setDefaultSource(new XmlSource("Unknown source"));
+        setDefaultSource(newXmlSource("Unknown source"));
     }
 
     /** {@inheritDoc} */

@@ -23,7 +23,7 @@ public interface ExtendedPsiXmlParticipantEvidence extends ExtendedPsiXmlPartici
      *
      * @return a {@link java.util.List} object.
      */
-    public List<ExperimentalInteractor> getExperimentalInteractors();
+    public List<AbstractExperimentalInteractor> getExperimentalInteractors();
     /**
      * <p>getExperimentalRoles.</p>
      *

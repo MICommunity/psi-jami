@@ -44,8 +44,8 @@ public class BatchDataSourceInitializer implements org.springframework.beans.fac
     /**
      * <p>finalize.</p>
      *
-     * @throws java.lang.Throwable if any.
      * @see Object#finalize()
+     * @throws java.lang.Throwable if any.
      */
     protected void finalize() throws Throwable {
         super.finalize();

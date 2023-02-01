@@ -3,8 +3,8 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 import psidev.psi.mi.jami.binary.BinaryInteraction;
 import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlMixWriter;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
@@ -23,53 +23,58 @@ public class CompactXmlBinaryWriter extends AbstractCompactXmlMixWriter<BinaryIn
 
     /**
      * <p>Constructor for CompactXmlBinaryWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public CompactXmlBinaryWriter() {
-        super(BinaryInteraction.class);
+    public CompactXmlBinaryWriter(PsiXmlVersion version) {
+        super(version, BinaryInteraction.class);
     }
 
     /**
      * <p>Constructor for CompactXmlBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(File file) throws IOException, XMLStreamException {
-        super(BinaryInteraction.class, file);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, BinaryInteraction.class, file);
     }
 
     /**
      * <p>Constructor for CompactXmlBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(OutputStream output) throws XMLStreamException {
-        super(BinaryInteraction.class, output);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, BinaryInteraction.class, output);
     }
 
     /**
      * <p>Constructor for CompactXmlBinaryWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlBinaryWriter(Writer writer) throws XMLStreamException {
-        super(BinaryInteraction.class, writer);
+    public CompactXmlBinaryWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, BinaryInteraction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new CompactXmlModelledBinaryWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new CompactXmlBinaryEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightCompactXmlBinaryWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new CompactXmlModelledBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new CompactXmlBinaryEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightCompactXmlBinaryWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
-        setDefaultSource(new XmlSource("Unknown source"));
+        setDefaultSource(newXmlSource("Unknown source"));
     }
 }

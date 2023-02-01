@@ -37,7 +37,6 @@ public class SimpleJsonIdentifierWriter implements JsonElementWriter<Xref>{
      * @throws java.io.IOException if any.
      */
     public void write(Xref object) throws IOException {
-        if (object == null) return;
         MIJsonUtils.writeStartObject(writer);
         MIJsonUtils.writeProperty("db", JSONValue.escape(object.getDatabase().getShortName()), writer);
         MIJsonUtils.writeSeparator(writer);

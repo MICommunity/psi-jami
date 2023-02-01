@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.xml30;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.*;
@@ -31,7 +32,7 @@ public abstract class AbstractXmlParticipantEvidenceWriter
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public AbstractXmlParticipantEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
@@ -116,7 +117,7 @@ public abstract class AbstractXmlParticipantEvidenceWriter
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
-        super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
+        super.setInteractorWriter(new XmlInteractorWriter(PsiXmlVersion.v3_0_0, getStreamWriter(), getObjectIndex()));
     }
 
     /**

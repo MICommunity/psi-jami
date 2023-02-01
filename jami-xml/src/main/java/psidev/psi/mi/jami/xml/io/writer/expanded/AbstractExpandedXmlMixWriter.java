@@ -16,7 +16,7 @@ import java.io.Writer;
 import java.util.*;
 
 /**
- * Abstract class for an expanded PSI-XML 2.5 writer of mixed interactions
+ * Abstract class for an expanded PSI-XML writer of mixed interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -31,44 +31,48 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
     /**
      * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractExpandedXmlMixWriter(Class<I> type) {
-        super(type);
+    public AbstractExpandedXmlMixWriter(PsiXmlVersion version, Class<I> type) {
+        super(version, type);
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlMixWriter(Class<I> type, File file) throws IOException, XMLStreamException {
-        super(type, file);
+    public AbstractExpandedXmlMixWriter(PsiXmlVersion version, Class<I> type, File file) throws IOException, XMLStreamException {
+        super(version, type, file);
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlMixWriter(Class<I> type, OutputStream output) throws XMLStreamException {
-        super(type, output);
+    public AbstractExpandedXmlMixWriter(PsiXmlVersion version, Class<I> type, OutputStream output) throws XMLStreamException {
+        super(version, type, output);
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlMixWriter(Class<I> type, Writer writer) throws XMLStreamException {
-        super(type, writer);
+    public AbstractExpandedXmlMixWriter(PsiXmlVersion version, Class<I> type, Writer writer) throws XMLStreamException {
+        super(version, type, writer);
     }
 
     /** {@inheritDoc} */

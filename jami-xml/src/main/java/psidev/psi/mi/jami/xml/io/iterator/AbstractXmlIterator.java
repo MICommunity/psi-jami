@@ -10,7 +10,7 @@ import psidev.psi.mi.jami.xml.io.parser.PsiXmlParser;
 import java.util.Iterator;
 
 /**
- * Abstract iterator for parsing xml 2.5 interactions
+ * Abstract iterator for parsing xml interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -30,7 +30,7 @@ public class AbstractXmlIterator<T extends Interaction> implements Iterator<T> {
      */
     public AbstractXmlIterator(PsiXmlParser<T> lineParser) throws MIIOException {
         if (lineParser == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 iterator needs a non null parser.");
+            throw new IllegalArgumentException("The PsiXml iterator needs a non null parser.");
         }
         this.parser = lineParser;
         processNextBinary();

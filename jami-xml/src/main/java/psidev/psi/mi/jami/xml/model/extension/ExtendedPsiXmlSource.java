@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.model.Source;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
- * Extended source for PSI-XML 2.5 standards
+ * Extended source for PSI-XML standards
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Psi-xml 2.5 datasource for modelled binary interactions
+ * Psi-xml datasource for modelled binary interactions
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -37,7 +37,6 @@ public class SimpleJsonAnnotationWriter implements JsonElementWriter<Annotation>
      * @throws java.io.IOException if any.
      */
     public void write(Annotation object) throws IOException {
-        if (object == null) return;
         if (object.getValue() != null){
             MIJsonUtils.writePropertyValue(JSONValue.escape(object.getValue()), writer);
         }

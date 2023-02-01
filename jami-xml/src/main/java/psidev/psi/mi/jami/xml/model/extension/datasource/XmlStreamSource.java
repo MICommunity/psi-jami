@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Datasource for PSI-xml 2.5 returning mix of abstract interactions and interaction evidences
+ * Datasource for PSI-xml returning mix of abstract interactions and interaction evidences
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

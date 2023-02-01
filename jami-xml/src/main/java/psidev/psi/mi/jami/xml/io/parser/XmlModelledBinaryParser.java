@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * Xml 2.5 parser creating modelled binary interaction
+ * Xml parser creating modelled binary interaction
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

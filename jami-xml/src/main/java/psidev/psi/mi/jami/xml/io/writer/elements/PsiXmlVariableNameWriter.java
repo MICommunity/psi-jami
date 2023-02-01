@@ -3,7 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements;
 import psidev.psi.mi.jami.exception.MIIOException;
 
 /**
- * Interface for writers of PSI-XML 2.5 object elements that do have a variable node name but otherwise are the same element type.
+ * Interface for writers of PSI-XML object elements that do have a variable node name but otherwise are the same element type.
  *
  * It asks for the name of the cv node in addition to the cv
  *

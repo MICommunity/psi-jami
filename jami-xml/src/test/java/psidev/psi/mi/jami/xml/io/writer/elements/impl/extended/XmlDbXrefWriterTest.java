@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.model.impl.DefaultAnnotation;
 import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.*;
-import psidev.psi.mi.jami.xml.model.extension.XmlXref;
+import psidev.psi.mi.jami.xml.model.extension.xml254.XmlXref;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;

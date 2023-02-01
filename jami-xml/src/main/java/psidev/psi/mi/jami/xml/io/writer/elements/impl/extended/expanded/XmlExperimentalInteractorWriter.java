@@ -1,12 +1,13 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded;
 
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlInteractorWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts.AbstractXmlExperimentalInteractorWriter;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -18,17 +19,18 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInteractorWriter implements ExpandedPsiXmlElementWriter<ExperimentalInteractor> {
+public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInteractorWriter implements ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> {
     private PsiXmlElementWriter<Interactor> interactorWriter;
 
     /**
      * <p>Constructor for XmlExperimentalInteractorWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlExperimentalInteractorWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /**
@@ -38,7 +40,7 @@ public class XmlExperimentalInteractorWriter extends AbstractXmlExperimentalInte
      */
     public PsiXmlElementWriter<Interactor> getInteractorWriter() {
         if (this.interactorWriter == null){
-            this.interactorWriter = new XmlInteractorWriter(getStreamWriter(), getObjectIndex());
+            this.interactorWriter = new XmlInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex());
 
         }
         return interactorWriter;

@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.model.CausalRelationship;
 import psidev.psi.mi.jami.model.Participant;
 
 /**
- * Interface for writers of PSI-XML 3.0 causal relationships elements
+ * Interface for writers of PSI-XML causal relationships elements
  *
  * It asks for the participant source in addition to the causal relationship
  *

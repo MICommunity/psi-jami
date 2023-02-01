@@ -11,7 +11,7 @@ import java.io.Reader;
 import java.net.URL;
 
 /**
- * Abstract class for Psi-XML 2.5 binary interaction data source which loads the full
+ * Abstract class for Psi-XML binary interaction data source which loads the full
  * interaction dataset
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

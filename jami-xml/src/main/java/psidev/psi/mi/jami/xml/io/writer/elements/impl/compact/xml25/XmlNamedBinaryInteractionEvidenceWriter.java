@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25;
 import psidev.psi.mi.jami.binary.BinaryInteractionEvidence;
 import psidev.psi.mi.jami.model.Alias;
 import psidev.psi.mi.jami.model.NamedInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAliasWriter;
@@ -25,11 +26,12 @@ public class XmlNamedBinaryInteractionEvidenceWriter extends XmlBinaryInteractio
     /**
      * <p>Constructor for XmlNamedBinaryInteractionEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlNamedBinaryInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlNamedBinaryInteractionEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /**
@@ -56,13 +58,13 @@ public class XmlNamedBinaryInteractionEvidenceWriter extends XmlBinaryInteractio
     /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
-        super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
+        super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
+        super.setExperimentWriter(new XmlNamedExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

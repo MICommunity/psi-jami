@@ -7,14 +7,14 @@ import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
-import psidev.psi.mi.jami.xml.model.extension.XmlAlias;
-import psidev.psi.mi.jami.xml.model.extension.XmlAnnotation;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
-import psidev.psi.mi.jami.xml.model.extension.XmlXref;
+import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlAlias;
+import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlAnnotation;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm;
+import psidev.psi.mi.jami.xml.model.extension.xml300.XmlXref;
 import psidev.psi.mi.jami.xml.model.extension.binary.AbstractXmlBinaryInteraction;
 import psidev.psi.mi.jami.xml.model.extension.xml300.BindingFeatures;
 import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlCausalRelationship;
-import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInteraction;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
@@ -363,7 +363,7 @@ public class XmlModelledBinaryInteraction extends AbstractXmlBinaryInteraction<M
             propertiesAnnot.setValue(properties);
         }
         else{
-            getAnnotations().add(new XmlAnnotation(CvTermUtils.createMICvTerm(Annotation.COMPLEX_PROPERTIES, Annotation.COMPLEX_PROPERTIES_MI), properties));
+            getAnnotations().add(new DefaultXmlAnnotation(CvTermUtils.createMICvTerm(Annotation.COMPLEX_PROPERTIES, Annotation.COMPLEX_PROPERTIES_MI), properties));
         }
     }
 

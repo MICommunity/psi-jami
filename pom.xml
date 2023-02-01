@@ -5,7 +5,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.3.0-SNAPSHOT</version>
+    <version>3.3.0</version>
 
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
@@ -13,12 +13,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.2.9.RELEASE</spring.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
 
-        <ontology.manager.version>2.1.0-SNAPSHOT</ontology.manager.version>
+        <ontology.manager.version>2.1.0</ontology.manager.version>
         <ols.client.version>2.13</ols.client.version>
         <uniprot.japi.version>1.1.2</uniprot.japi.version>
         <chebiws.client.version>2.4</chebiws.client.version>
+        <h2.version>1.4.197</h2.version>
 
     </properties>
 
@@ -87,7 +88,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.10.1</version>
                 <configuration>
                     <target>11</target>
                     <source>11</source>
@@ -109,14 +110,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>3.2.0</version>
                 <!--Excludes generated sources-->
                 <configuration>
-                    <excludePackageNames>uk.ac.ebi.cdb.webservice:uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral
+                    <excludePackageNames>
+                        uk.ac.ebi.cdb.webservice:
+                        uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral:
+                        edu.ucla.mbi.imex.icentral.*:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb.*
                     </excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>docs</destDir>
-                    <aggregate>true</aggregate>
                 </configuration>
             </plugin>
         </plugins>
@@ -134,56 +139,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- JAVA 11 -->
-        <dependency>
-            <groupId>javax.jws</groupId>
-            <artifactId>jsr181-api</artifactId>
-            <version>1.0-MR1</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>3.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.ws</groupId>
-            <artifactId>jaxws-api</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.ws</groupId>
-            <artifactId>jaxws-rt</artifactId>
-            <version>2.3.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>xerces</groupId>
-            <artifactId>xercesImpl</artifactId>
-            <version>2.12.2</version>
-        </dependency>
-
-
-
         <!-- Testing -->
         <dependency>
             <groupId>junit</groupId>
@@ -198,19 +153,19 @@
     <repositories>
         <repository>
             <id>nexus-ebi-public</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/public</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/public/</url>
         </repository>
         <repository>
             <id>nexus-ebi-repo-old</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
+            <url>https://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
         </repository>
         <repository>
             <id>nexus-ebi-release-repo</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
         </repository>
         <repository>
             <id>nexus-ebi-snapshot-repo</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
         </repository>
     </repositories>
 
@@ -220,14 +175,14 @@
         <repository>
             <id>pst-release</id>
             <name>EBI Nexus Repository</name>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release/</url>
         </repository>
         <!-- EBI SNAPSHOT repo -->
         <snapshotRepository>
             <uniqueVersion>false</uniqueVersion>
             <id>pst-snapshots</id>
             <name>EBI Nexus Snapshots Repository</name>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

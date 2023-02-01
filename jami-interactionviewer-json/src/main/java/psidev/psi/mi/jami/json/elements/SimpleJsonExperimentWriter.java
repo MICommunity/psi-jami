@@ -43,7 +43,6 @@ public class SimpleJsonExperimentWriter implements JsonElementWriter<Interaction
      * @throws java.io.IOException if any.
      */
     public void write(InteractionEvidence object) throws IOException {
-        if (object == null) return;
         Collection<Annotation> figures = AnnotationUtils.collectAllAnnotationsHavingTopic(object.getAnnotations(),
                 Annotation.FIGURE_LEGEND_MI, Annotation.FIGURE_LEGEND);
         Experiment experiment = object.getExperiment();

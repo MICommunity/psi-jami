@@ -2,7 +2,7 @@ package psidev.psi.mi.jami.xml.io.parser;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Interaction;
-import psidev.psi.mi.jami.xml.model.AbstractEntry;
+import psidev.psi.mi.jami.xml.model.AbstractBaseEntry;
 import psidev.psi.mi.jami.xml.model.AbstractEntrySet;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
@@ -22,7 +22,7 @@ public interface FullPsiXmlParser<T extends Interaction> {
      * @return a {@link psidev.psi.mi.jami.xml.model.AbstractEntrySet} object.
      * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
-    public AbstractEntrySet<AbstractEntry<T>> getEntrySet() throws PsiXmlParserException;
+    public AbstractEntrySet<AbstractBaseEntry<T>> getEntrySet() throws PsiXmlParserException;
 
     /**
      * <p>close.</p>

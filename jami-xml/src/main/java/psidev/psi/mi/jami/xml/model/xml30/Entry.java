@@ -7,11 +7,10 @@ import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interaction;
-import psidev.psi.mi.jami.xml.model.AbstractEntry;
+import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlSource;
 import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 import psidev.psi.mi.jami.xml.model.extension.xml300.Availability;
 import psidev.psi.mi.jami.xml.model.extension.xml300.XmlExperiment;
 import psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidence;
@@ -51,7 +50,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param source a {@link psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource} object.
      */
-    @XmlElement(name = "source", type = XmlSource.class)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "source", type = DefaultXmlSource.class)
     public void setJAXBSource(ExtendedPsiXmlSource source) {
         super.setSource(source);
     }
@@ -61,7 +60,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml30.Entry.JAXBAvailabilitiesWrapper} object.
      */
-    @XmlElement(name = "availabilityList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "availabilityList")
     public void setJAXBAvailabilityWrapper(JAXBAvailabilitiesWrapper wrapper) {
         this.availabilitiesWrapper = wrapper;
     }
@@ -71,7 +70,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml30.Entry.JAXBExperimentsWrapper} object.
      */
-    @XmlElement(name = "experimentList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "experimentList")
     public void setJAXBExperimentWrapper(JAXBExperimentsWrapper wrapper){
         this.experimentsWrapper = wrapper;
     }
@@ -81,7 +80,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a JAXBInteractorsWrapper object.
      */
-    @XmlElement(name = "interactorList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorList")
     public void setJAXBInteractorsWrapper(JAXBInteractorsWrapper wrapper){
         super.setInteractorsWrapper(wrapper);
     }
@@ -91,7 +90,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.xml30.Entry.JAXBInteractionsWrapper} object.
      */
-    @XmlElement(name = "interactionList", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactionList", required = true)
     public void setJAXBInteractionsWrapper(JAXBInteractionsWrapper wrapper){
         super.setInteractionsWrapper(wrapper);
     }
@@ -101,7 +100,7 @@ public class Entry extends AbstractEntry<Interaction> {
      *
      * @param wrapper a JAXBAnnotationsWrapper object.
      */
-    @XmlElement(name = "attributeList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "attributeList")
     public void setJAXBAnnotationWrapper(JAXBAnnotationsWrapper wrapper) {
         super.setAnnotationsWrapper(wrapper);
     }
@@ -135,7 +134,7 @@ public class Entry extends AbstractEntry<Interaction> {
     //////////////////////////////// class wrapper
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="entryAvailabilitiesWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="entryAvailabilitiesWrapper")
     public static class JAXBAvailabilitiesWrapper implements Locatable, FileSourceContext {
         private List<AbstractAvailability> availabilities;
         private PsiXmlLocator sourceLocator;
@@ -172,7 +171,7 @@ public class Entry extends AbstractEntry<Interaction> {
             availabilities = new ArrayList<AbstractAvailability>();
         }
 
-        @XmlElement(type= Availability.class, name="availability", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type= Availability.class, name="availability", required = true)
         public List<AbstractAvailability> getJAXBAvailabilities() {
             return availabilities;
         }
@@ -184,7 +183,7 @@ public class Entry extends AbstractEntry<Interaction> {
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="experimentsWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="experimentsWrapper")
     public static class JAXBExperimentsWrapper implements Locatable, FileSourceContext {
         private List<Experiment> experiments;
         private PsiXmlLocator sourceLocator;
@@ -221,7 +220,7 @@ public class Entry extends AbstractEntry<Interaction> {
             experiments = new ArrayList<Experiment>();
         }
 
-        @XmlElement(name="experimentDescription", required = true, type= XmlExperiment.class)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentDescription", required = true, type= XmlExperiment.class)
         public List<Experiment> getJAXBExperiments() {
             return experiments;
         }
@@ -233,7 +232,7 @@ public class Entry extends AbstractEntry<Interaction> {
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="mixedInteractionsWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="mixedInteractionsWrapper")
     public static class JAXBInteractionsWrapper extends AbstractEntry.JAXBInteractionsWrapper<Interaction>{
 
         public JAXBInteractionsWrapper(){
@@ -241,8 +240,8 @@ public class Entry extends AbstractEntry<Interaction> {
         }
 
         @XmlElements({
-                @XmlElement(name = "interaction", type = XmlInteractionEvidence.class),
-                @XmlElement(name = "abstractInteraction", type = XmlModelledInteraction.class)
+                @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interaction", type = XmlInteractionEvidence.class),
+                @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "abstractInteraction", type = XmlModelledInteraction.class)
         })
         public List<Interaction> getJAXBInteractions() {
             return super.getJAXBInteractions();

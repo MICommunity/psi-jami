@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Participant;
 
 /**
- * Interface for PSI-XML 2.5 participant writers.
+ * Interface for PSI-XML participant writers.
  *
  * A participant writer has an option to write a complex as an interactor or as an interaction
  *

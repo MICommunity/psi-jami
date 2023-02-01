@@ -5,13 +5,11 @@ import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.AbstractXmlModelledInteractionWriter;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
-import psidev.psi.mi.jami.xml.model.extension.XmlXref;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -33,17 +31,18 @@ public class XmlComplexWriter extends AbstractXmlModelledInteractionWriter<Compl
     /**
      * <p>Constructor for XmlComplexWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlComplexWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlComplexWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
-        super.setParticipantWriter(new XmlModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
+        super.setParticipantWriter(new XmlModelledParticipantWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */
@@ -56,12 +55,12 @@ public class XmlComplexWriter extends AbstractXmlModelledInteractionWriter<Compl
     /** {@inheritDoc} */
     @Override
     public Experiment extractDefaultExperimentFrom(Complex interaction) {
-        XmlExperiment exp = new XmlExperiment(new BibRef("Mock publication for biological complexes."));
+        ExtendedPsiXmlExperiment exp = newExperiment(newPublication("Mock publication for biological complexes."));
         exp.setHostOrganism(interaction.getOrganism());
-        exp.setInteractionDetectionMethod(new XmlCvTerm(Experiment.INFERRED_BY_CURATOR,
-                new XmlXref(CvTermUtils.createPsiMiDatabase(), Experiment.INFERRED_BY_CURATOR_MI, CvTermUtils.createIdentityQualifier())));
-        exp.setParticipantIdentificationMethod(new XmlCvTerm(Participant.PREDETERMINED,
-                new XmlXref(CvTermUtils.createPsiMiDatabase(), Participant.PREDETERMINED_MI, CvTermUtils.createIdentityQualifier())));
+        exp.setInteractionDetectionMethod(newXmlCvTerm(
+                Experiment.INFERRED_BY_CURATOR, CvTermUtils.createPsiMiDatabase(), Experiment.INFERRED_BY_CURATOR_MI, CvTermUtils.createIdentityQualifier()));
+        exp.setParticipantIdentificationMethod(newXmlCvTerm(
+                Participant.PREDETERMINED, CvTermUtils.createPsiMiDatabase(), Participant.PREDETERMINED_MI, CvTermUtils.createIdentityQualifier()));
         return exp;
     }
 

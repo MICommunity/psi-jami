@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30;
 
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.VariableParameter;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlConfidenceWriter;
@@ -31,7 +32,7 @@ public class XmlExperimentWriter extends AbstractXmlExperimentWriter {
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlExperimentWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
     }
 
     /**

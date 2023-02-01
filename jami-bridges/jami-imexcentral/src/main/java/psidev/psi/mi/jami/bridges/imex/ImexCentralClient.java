@@ -116,14 +116,11 @@ public interface ImexCentralClient extends PublicationFetcher {
      * Update publication pubmed identifier, DOI number or internal identifier of an existing record in IMEx central. The new publication identifier should not be already registered in IMEx central
      *
      * @param oldIdentifier : can be pubmed, imex, doi or internal identifier
-     * @param source: the source of old identifier
-     * @param source: the source pubmed, doi or imex
+     * @param oldSource: the source of old identifier
      * @param newIdentifier : can be pubmed, doi or internal identifier
-     * @param source: the source of old identifier
      * @param source: the source pubmed, doi or imex
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if no record found in IMEX central, identifier not recognized or new identifier is associated with another publication in IMEx central
-     * @param oldSource a {@link java.lang.String} object.
      * @return a {@link psidev.psi.mi.jami.model.Publication} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if no record found in IMEX central, identifier not recognized or new identifier is associated with another publication in IMEx central
      */
     public Publication updatePublicationIdentifier(String oldIdentifier, String oldSource, String newIdentifier, String source) throws BridgeFailedException;
 
@@ -140,8 +137,8 @@ public interface ImexCentralClient extends PublicationFetcher {
      *
      * @param identifier : valid pubmed id
      * @return the newly created record
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if identifier is not valid pubmed or if the pubmed id is already registered in IMEx central
      * @param source a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if identifier is not valid pubmed or if the pubmed id is already registered in IMEx central
      */
     public Publication createPublicationById(String identifier, String source) throws BridgeFailedException;
 

@@ -2,13 +2,14 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.InteractionUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlCausalRelationshipWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlOrganismWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml30.XmlBindingFeaturesWriter;
-import psidev.psi.mi.jami.xml.model.extension.xml300.ExtendedPsiXmlModelledInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -41,7 +42,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
 
     }
 

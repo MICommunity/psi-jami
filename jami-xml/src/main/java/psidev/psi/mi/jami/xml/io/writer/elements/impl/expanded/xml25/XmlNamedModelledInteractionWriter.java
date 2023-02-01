@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25;
 
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlNamedExperimentWriter;
 
@@ -19,22 +20,23 @@ public class XmlNamedModelledInteractionWriter extends XmlModelledInteractionWri
     /**
      * <p>Constructor for XmlNamedModelledInteractionWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlNamedModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlNamedModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
-        super.setParticipantWriter(new XmlNamedModelledParticipantWriter(getStreamWriter(), getObjectIndex()));
+        super.setParticipantWriter(new XmlNamedModelledParticipantWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
+        super.setExperimentWriter(new XmlNamedExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 }

@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.StringWriter;
@@ -742,13 +743,13 @@ public class LightExpandedXml25NamedWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter();
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultNamedInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter();
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 
@@ -756,7 +757,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_single_interaction() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -772,7 +773,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_several_interactions1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -793,7 +794,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_several_interactions2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -813,7 +814,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_interactions_same_interactors1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -834,7 +835,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_interactions_same_interactors2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -858,7 +859,7 @@ public class LightExpandedXml25NamedWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultNamedModelledParticipant(new DefaultProtein("test protein")));
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(complex);
         interaction.addParticipant(participant);
@@ -878,7 +879,7 @@ public class LightExpandedXml25NamedWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
         Interaction interaction = new DefaultNamedInteraction();
@@ -897,7 +898,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_interactions_different_entries1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -915,7 +916,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_interactions_different_entries2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));
@@ -937,7 +938,7 @@ public class LightExpandedXml25NamedWriterTest {
     public void test_interactions_different_entries3() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(stringWriter);
+        LightExpandedXmlNamedWriter writer = new LightExpandedXmlNamedWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         Interaction interaction = new DefaultNamedInteraction();
         Participant participant = new DefaultNamedParticipant(new DefaultProtein("protein test"));

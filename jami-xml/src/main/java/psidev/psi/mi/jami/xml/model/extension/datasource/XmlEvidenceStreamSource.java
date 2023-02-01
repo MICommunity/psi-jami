@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * Datasource for Psi-xml 2.5 interaction evidence
+ * Datasource for Psi-xml interaction evidence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

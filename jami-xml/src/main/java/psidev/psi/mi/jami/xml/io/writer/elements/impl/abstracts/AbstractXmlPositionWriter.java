@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Abstract Xml 2.5 writer for a range position
+ * Abstract Xml writer for a range position
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

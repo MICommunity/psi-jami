@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 25 Writer for Xref object
+ * Xml Writer for Xref object
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

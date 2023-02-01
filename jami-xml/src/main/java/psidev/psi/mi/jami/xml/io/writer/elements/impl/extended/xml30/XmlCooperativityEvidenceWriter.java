@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Xml 30 writer for cooperativity evidence
+ * Xml 3.0 writer for cooperativity evidence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

@@ -38,7 +38,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28BinaryWriter(File file) throws IOException {
@@ -49,7 +49,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28BinaryWriter(OutputStream output) {
         super(output);
@@ -59,7 +59,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28BinaryWriter(Writer writer) {
         super(writer);
@@ -135,7 +135,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>initialiseSubWritersWith.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     protected void initialiseSubWritersWith(Writer writer) {
 
@@ -166,7 +166,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>Setter for the field <code>modelledBinaryWriter</code>.</p>
      *
-     * @param modelledBinaryWriter a {@link AbstractMitab28BinaryWriter} object.
+     * @param modelledBinaryWriter a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab28BinaryWriter} object.
      */
     protected void setModelledBinaryWriter(AbstractMitab28BinaryWriter<ModelledBinaryInteraction, ModelledParticipant> modelledBinaryWriter) {
         this.modelledBinaryWriter = modelledBinaryWriter;
@@ -176,7 +176,7 @@ public class Mitab28BinaryWriter extends AbstractMitab28BinaryWriter<BinaryInter
     /**
      * <p>Setter for the field <code>binaryEvidenceWriter</code>.</p>
      *
-     * @param binaryEvidenceWriter a {@link AbstractMitab28BinaryWriter} object.
+     * @param binaryEvidenceWriter a {@link psidev.psi.mi.jami.tab.io.writer.AbstractMitab28BinaryWriter} object.
      */
     protected void setBinaryEvidenceWriter(AbstractMitab28BinaryWriter<BinaryInteractionEvidence, ParticipantEvidence> binaryEvidenceWriter) {
         this.binaryEvidenceWriter = binaryEvidenceWriter;

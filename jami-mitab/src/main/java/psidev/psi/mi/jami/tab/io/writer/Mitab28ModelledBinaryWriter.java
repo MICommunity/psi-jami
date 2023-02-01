@@ -28,7 +28,7 @@ public class Mitab28ModelledBinaryWriter extends AbstractMitab28BinaryWriter<Mod
     /**
      * <p>Constructor for Mitab28ModelledBinaryWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28ModelledBinaryWriter(File file) throws IOException {
@@ -38,7 +38,7 @@ public class Mitab28ModelledBinaryWriter extends AbstractMitab28BinaryWriter<Mod
     /**
      * <p>Constructor for Mitab28ModelledBinaryWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28ModelledBinaryWriter(OutputStream output) {
         super(output);
@@ -47,7 +47,7 @@ public class Mitab28ModelledBinaryWriter extends AbstractMitab28BinaryWriter<Mod
     /**
      * <p>Constructor for Mitab28ModelledBinaryWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28ModelledBinaryWriter(Writer writer) {
         super(writer);

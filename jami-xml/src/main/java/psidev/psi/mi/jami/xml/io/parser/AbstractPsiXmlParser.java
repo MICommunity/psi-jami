@@ -16,12 +16,17 @@ import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
 import psidev.psi.mi.jami.xml.model.Entry;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
+import psidev.psi.mi.jami.xml.model.extension.AbstractBaseXmlInteractor;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlInteraction;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
 import psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
 import javax.xml.stream.Location;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -36,7 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Parser for PSI-XML 2.5
+ * Parser for PSI-XML
  *
  * Returns an Iterator of interactions.
  *
@@ -146,7 +151,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
             return parseNextPreLoadedInteraction();
         }
 
-        // get next event from PSI-MI 2.5 schema without parsing it
+        // get next event from PSI-MI schema without parsing it
         if (currentElement == null){
             currentElement = getNextPsiXmlStartElement();
         }
@@ -397,7 +402,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
                 do {
                     start = null;
                     namespaceURI = null;
-                    // Skip all elements that are not from PSI-XML 2.5 schema and that are not start elements
+                    // Skip all elements that are not from PSI-XML schema and that are not start elements
                     while (this.streamReader.hasNext() && !this.streamReader.isStartElement()){
                         this.streamReader.next();
                     }
@@ -446,7 +451,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
             do {
                 start = null;
                 namespaceURI = null;
-                // Skip all elements that are not from PSI-XML 2.5 schema and that are not start elements
+                // Skip all elements that are not from PSI-XML schema and that are not start elements
                 while (this.streamReader.hasNext() && !this.streamReader.isStartElement()){
                     this.streamReader.next();
                 }
@@ -657,9 +662,8 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
             if (this.currentElement != null){
                 // load experimentDescription
                 while (this.currentElement != null && PsiXmlUtils.INTERACTOR_TAG.equals(this.currentElement)) {
-                    AbstractXmlInteractor interactorElement = (AbstractXmlInteractor)unmarshaller.unmarshal(this.streamReader);
-                    this.interactorFactory.
-                            createInteractorFromXmlInteractorInstance(interactorElement);
+                    AbstractBaseXmlInteractor interactorElement = (AbstractBaseXmlInteractor)unmarshaller.unmarshal(this.streamReader);
+                    this.interactorFactory.createInteractorFromXmlInteractorInstance(interactorElement);
                     this.currentElement = getNextPsiXmlStartElement();
                 }
             }
@@ -1167,11 +1171,11 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
                     this.indexOfObjects = new PsiXmlFileIndexCache(this.originalFile, this.unmarshaller, this.version);
                 } catch (IOException e) {
                     logger.log(Level.SEVERE, "cannot instantiate file index cache so will instantiate memory cache", e);
-                    this.indexOfObjects = new InMemoryPsiXmlCache();
+                    this.indexOfObjects = new InMemoryPsiXmlCache(this.version);
                 }
             }
             else{
-                this.indexOfObjects = new InMemoryPsiXmlCache();
+                this.indexOfObjects = new InMemoryPsiXmlCache(this.version);
             }
         }
     }

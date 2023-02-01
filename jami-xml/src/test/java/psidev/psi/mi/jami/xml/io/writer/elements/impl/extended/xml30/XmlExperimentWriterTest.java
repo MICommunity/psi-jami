@@ -7,7 +7,7 @@ import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
+import psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlExperiment;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.stream.XMLStreamException;
@@ -136,7 +136,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_imex() throws XMLStreamException, IOException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         exp.getPublication().assignImexId("IM-1");
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxxxx"));
         exp.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"),"12345"));
@@ -152,7 +152,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_attributes() throws XMLStreamException, IOException, ParseException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         Publication pub = exp.getPublication();
         pub.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         exp.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
@@ -174,7 +174,7 @@ public class XmlExperimentWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_experiment_pub_attributes() throws XMLStreamException, IOException, ParseException {
-        Experiment exp = new XmlExperiment(new DefaultPublication("xxxxxx"));
+        Experiment exp = new DefaultXmlExperiment(new DefaultPublication("xxxxxx"));
         Publication pub = exp.getPublication();
         pub.setTitle("test title");
         pub.setJournal("test journal");

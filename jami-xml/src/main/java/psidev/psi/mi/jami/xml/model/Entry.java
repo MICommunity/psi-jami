@@ -1,10 +1,10 @@
 package psidev.psi.mi.jami.xml.model;
 
+import javax.xml.bind.annotation.XmlTransient;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
 
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

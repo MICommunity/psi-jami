@@ -69,7 +69,6 @@ public class SimpleJsonInteractorWriter implements JsonElementWriter<Interactor>
      * @throws java.io.IOException if any.
      */
     public void write(Interactor object) throws IOException {
-        if (object == null) return;
         String[] interactorIds = MIJsonUtils.extractInteractorId(object.getPreferredIdentifier(), object);
         String interactorKey = interactorIds[0]+"_"+interactorIds[1];
         // if the interactor has not yet been processed, we write the interactor

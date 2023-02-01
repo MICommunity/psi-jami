@@ -2,10 +2,10 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -25,50 +25,56 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
 
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public CompactXmlModelledWriter() {
-        super(ModelledInteraction.class);
+    public CompactXmlModelledWriter(PsiXmlVersion version) {
+        super(version, ModelledInteraction.class);
     }
 
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(File file) throws IOException, XMLStreamException {
-        super(ModelledInteraction.class, file);
+    public CompactXmlModelledWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, ModelledInteraction.class, file);
     }
 
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(OutputStream output) throws XMLStreamException {
-        super(ModelledInteraction.class, output);
+    public CompactXmlModelledWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, ModelledInteraction.class, output);
     }
 
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlModelledWriter(Writer writer) throws XMLStreamException {
-        super(ModelledInteraction.class, writer);
+    public CompactXmlModelledWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, ModelledInteraction.class, writer);
     }
 
     /**
      * <p>Constructor for CompactXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public CompactXmlModelledWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(ModelledInteraction.class, streamWriter, cache);
+    public CompactXmlModelledWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, ModelledInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */
@@ -109,6 +115,6 @@ public class CompactXmlModelledWriter extends AbstractCompactXmlWriter<ModelledI
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
-        setDefaultSource(new XmlSource("Unknown source"));
+        setDefaultSource(newXmlSource("Unknown source"));
     }
 }

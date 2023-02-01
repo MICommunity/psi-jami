@@ -48,8 +48,8 @@ public class FailingGeneFetcher extends AbstractFailingFetcher<Collection<Gene>>
     /**
      * <p>addEntry.</p>
      *
-     * @param identifier a {@link String} object.
-     * @param gene       a {@link Protein} object.
+     * @param identifier a {@link java.lang.String} object.
+     * @param gene       a {@link psidev.psi.mi.jami.model.Protein} object.
      */
     public void addEntry(String identifier, Gene gene) {
         if (gene == null) return;

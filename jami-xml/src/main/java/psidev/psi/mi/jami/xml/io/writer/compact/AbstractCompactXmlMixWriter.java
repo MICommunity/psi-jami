@@ -31,44 +31,48 @@ public abstract class AbstractCompactXmlMixWriter<I extends Interaction, M exten
     /**
      * <p>Constructor for AbstractCompactXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type) {
-        super(type);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type) {
+        super(version, type);
     }
 
     /**
      * <p>Constructor for AbstractCompactXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, File file) throws IOException, XMLStreamException {
-        super(type,file);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, File file) throws IOException, XMLStreamException {
+        super(version, type,file);
     }
 
     /**
      * <p>Constructor for AbstractCompactXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, OutputStream output) throws XMLStreamException {
-        super(type,output);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, OutputStream output) throws XMLStreamException {
+        super(version, type,output);
     }
 
     /**
      * <p>Constructor for AbstractCompactXmlMixWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlMixWriter(Class<I> type, Writer writer) throws XMLStreamException {
-        super(type,writer);
+    public AbstractCompactXmlMixWriter(PsiXmlVersion version, Class<I> type, Writer writer) throws XMLStreamException {
+        super(version, type,writer);
     }
 
     /** {@inheritDoc} */

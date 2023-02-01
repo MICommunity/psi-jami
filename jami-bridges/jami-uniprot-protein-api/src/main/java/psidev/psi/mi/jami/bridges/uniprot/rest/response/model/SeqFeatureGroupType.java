@@ -46,7 +46,7 @@ public class SeqFeatureGroupType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getName() {
@@ -58,7 +58,7 @@ public class SeqFeatureGroupType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setName(String value) {
@@ -70,7 +70,7 @@ public class SeqFeatureGroupType {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getId() {
@@ -82,7 +82,7 @@ public class SeqFeatureGroupType {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setId(String value) {

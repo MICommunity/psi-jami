@@ -9,10 +9,10 @@ import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.InteractorUtils;
 import psidev.psi.mi.jami.utils.RangeUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.compact.xml25.XmlNamedModelledInteractionWriter;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -568,7 +568,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -584,7 +584,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -600,7 +600,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.setComplexAsInteractor(true);
         writer.write(interaction);
         streamWriter.flush();
@@ -616,7 +616,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -630,7 +630,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -645,7 +645,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((ModelledInteraction)interaction);
         streamWriter.flush();
 
@@ -661,7 +661,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((ModelledInteraction)interaction);
         streamWriter.flush();
 
@@ -677,7 +677,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -693,7 +693,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -735,7 +735,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.addParticipant(participant4);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -750,7 +750,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.setInteractionType(CvTermUtils.createMICvTerm("association", "MI:0914"));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -766,7 +766,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -782,7 +782,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         elementCache.extractIdForInteraction(new DefaultInteraction());
         elementCache.extractIdForInteraction(interaction);
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -797,7 +797,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getModelledParameters().add(new DefaultModelledParameter(new DefaultCvTerm("kd"), new ParameterValue(new BigDecimal(5))));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -812,7 +812,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getModelledConfidences().add(new DefaultModelledConfidence(new DefaultCvTerm("intact-miscore"), "0.8"));
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -830,7 +830,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getCooperativeEffects().add(assembly);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -849,7 +849,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getCooperativeEffects().add(assembly);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -870,7 +870,7 @@ public class XmlNamedModelledInteractionWriterTest extends AbstractXmlWriterTest
         interaction.getCooperativeEffects().add(allostery);
         elementCache.clear();
 
-        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlNamedModelledInteractionWriter writer = new XmlNamedModelledInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 

@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.impl.DefaultInteractionEvidence;
 import psidev.psi.mi.jami.model.impl.DefaultParticipantEvidence;
 import psidev.psi.mi.jami.model.impl.DefaultProtein;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.model.extension.factory.xml25.XmlBinaryInteractionFactory;
 
 import java.util.Collection;
@@ -74,7 +75,7 @@ public class ComplexExpansionWithJami {
         // for XML binary interactions,
         // The XML factory is closely linked to XML interactions and should not be used for other implementations
         //
-        spokeMethod.setBinaryInteractionFactory(new XmlBinaryInteractionFactory());
+        spokeMethod.setBinaryInteractionFactory(new XmlBinaryInteractionFactory(PsiXmlVersion.v2_5_4));
 
     }
 

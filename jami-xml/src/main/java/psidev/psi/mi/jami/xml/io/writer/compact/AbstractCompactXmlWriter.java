@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.compact;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.AbstractXmlWriter;
@@ -41,10 +42,11 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractCompactXmlWriter(Class<T> type) {
-        super();
+    public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type) {
+        super(version);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
@@ -52,13 +54,14 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlWriter(Class<T> type, File file) throws IOException, XMLStreamException {
-        super(file);
+    public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type, File file) throws IOException, XMLStreamException {
+        super(version, file);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
@@ -66,12 +69,13 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlWriter(Class<T> type, OutputStream output) throws XMLStreamException {
-        super(output);
+    public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type, OutputStream output) throws XMLStreamException {
+        super(version, output);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
@@ -79,12 +83,13 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractCompactXmlWriter(Class<T> type, Writer writer) throws XMLStreamException {
-        super(writer);
+    public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type, Writer writer) throws XMLStreamException {
+        super(version, writer);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }
@@ -92,12 +97,13 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    protected AbstractCompactXmlWriter(Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
-        super(streamWriter, elementCache);
+    protected AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        super(version, streamWriter, elementCache);
         this.type = type;
         this.subInteractionsToWrite = new ArrayList<T>();
     }

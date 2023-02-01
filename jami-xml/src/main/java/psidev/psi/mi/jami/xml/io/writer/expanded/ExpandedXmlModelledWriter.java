@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.model.InteractionCategory;
 import psidev.psi.mi.jami.model.ModelledInteraction;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 
 import javax.xml.stream.XMLStreamException;
@@ -25,50 +26,56 @@ public class ExpandedXmlModelledWriter extends AbstractExpandedXmlWriter<Modelle
 
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public ExpandedXmlModelledWriter() {
-        super(ModelledInteraction.class);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version) {
+        super(version, ModelledInteraction.class);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(File file) throws IOException, XMLStreamException {
-        super(ModelledInteraction.class, file);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, ModelledInteraction.class, file);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(OutputStream output) throws XMLStreamException {
-        super(ModelledInteraction.class, output);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, ModelledInteraction.class, output);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public ExpandedXmlModelledWriter(Writer writer) throws XMLStreamException {
-        super(ModelledInteraction.class, writer);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, ModelledInteraction.class, writer);
     }
 
     /**
      * <p>Constructor for ExpandedXmlModelledWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public ExpandedXmlModelledWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(ModelledInteraction.class, streamWriter, cache);
+    public ExpandedXmlModelledWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, ModelledInteraction.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */

@@ -214,7 +214,7 @@ public class XmlVariableParameterValueSet implements VariableParameterValueSet,F
      *
      * @return a {@link java.util.Set} object.
      */
-    @XmlElement(name = "variableValueRef", type = Integer.class, required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "variableValueRef", type = Integer.class, required = true)
     public Set<Integer> getJAXBVariableValueRefs() {
         return this.jaxbVariableValueRefList;
     }

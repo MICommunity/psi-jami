@@ -27,7 +27,7 @@ public class Mitab28BinaryWriter extends psidev.psi.mi.jami.tab.io.writer.Mitab2
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28BinaryWriter(File file) throws IOException {
@@ -38,7 +38,7 @@ public class Mitab28BinaryWriter extends psidev.psi.mi.jami.tab.io.writer.Mitab2
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28BinaryWriter(OutputStream output){
         super(output);
@@ -48,7 +48,7 @@ public class Mitab28BinaryWriter extends psidev.psi.mi.jami.tab.io.writer.Mitab2
     /**
      * <p>Constructor for Mitab28BinaryWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28BinaryWriter(Writer writer) {
         super(writer);
