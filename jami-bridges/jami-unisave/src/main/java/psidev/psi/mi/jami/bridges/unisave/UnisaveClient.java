@@ -207,8 +207,8 @@ public class UnisaveClient implements SequenceVersionFetcher{
      *
      * @param identifier a {@link java.lang.String} object.
      * @param date a {@link java.util.Date} object.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      * @return a {@link java.util.Map} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public Map<Integer, String> getAllSequencesBeforeDate(String identifier, Date date) throws BridgeFailedException {
 
@@ -242,8 +242,8 @@ public class UnisaveClient implements SequenceVersionFetcher{
      *
      * @param version the version for which we want the sequence
      * @return a fasta sequence.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if the version given doesn't have an entryId that can be found in UniSave.
      * @param identifier a {@link java.lang.String} object.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if the version given doesn't have an entryId that can be found in UniSave.
      */
     public FastaSequence getFastaSequence( String identifier, int version ) throws BridgeFailedException {
         String content = getContentForSequenceVersion(identifier, version);
@@ -258,8 +258,8 @@ public class UnisaveClient implements SequenceVersionFetcher{
      *
      * @param identifier a {@link java.lang.String} object.
      * @param sequence a {@link java.lang.String} object.
-     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      * @return a int.
+     * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public int getSequenceVersion(String identifier, String sequence) throws BridgeFailedException{
         JSONArray array = (JSONArray) getDataFromWebService(buildQuery(Type.ENTRIES, identifier, null));
