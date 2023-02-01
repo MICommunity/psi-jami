@@ -69,7 +69,8 @@ public class Sequence {
 
     /**
      * Gets the value of the length property.
-     * 
+     *
+     * @return an int value.
      */
     public int getLength() {
         return length;
@@ -77,7 +78,8 @@ public class Sequence {
 
     /**
      * Sets the value of the length property.
-     * 
+     *
+     * @param value an int value.
      */
     public void setLength(int value) {
         this.length = value;

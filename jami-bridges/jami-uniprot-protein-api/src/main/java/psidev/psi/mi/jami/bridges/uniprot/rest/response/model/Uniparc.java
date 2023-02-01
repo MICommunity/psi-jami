@@ -72,7 +72,7 @@ public class Uniparc {
      * Objects of the following type(s) are allowed in the list
      * {@link Entry }
      *
-     *
+     * @return a list of {@link Entry} objects.
      */
     public List<Entry> getEntry() {
         if (entry == null) {

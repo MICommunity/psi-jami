@@ -94,7 +94,7 @@ public class SeqFeatureType {
      * Objects of the following type(s) are allowed in the list
      * {@link LocationType }
      *
-     *
+     * @return a list of {@link LocationType} objects.
      */
     public List<LocationType> getLcn() {
         if (lcn == null) {

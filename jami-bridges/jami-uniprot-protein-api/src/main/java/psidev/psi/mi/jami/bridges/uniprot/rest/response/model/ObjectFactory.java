@@ -39,6 +39,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Uniparc }
      *
+     * @return a {@link Uniparc} object.
      */
     public Uniparc createUniparc() {
         return new Uniparc();
@@ -47,6 +48,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Entry }
      *
+     * @return a {@link Entry} object.
      */
     public Entry createEntry() {
         return new Entry();
@@ -55,6 +57,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link DbReferenceType }
      *
+     * @return a {@link DbReferenceType} object.
      */
     public DbReferenceType createDbReferenceType() {
         return new DbReferenceType();
@@ -63,6 +66,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link SeqFeatureType }
      *
+     * @return a {@link SeqFeatureType} object.
      */
     public SeqFeatureType createSeqFeatureType() {
         return new SeqFeatureType();
@@ -71,6 +75,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link Sequence }
      *
+     * @return a {@link Sequence} object.
      */
     public Sequence createSequence() {
         return new Sequence();
@@ -79,6 +84,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link PropertyType }
      *
+     * @return a {@link PropertyType} object.
      */
     public PropertyType createPropertyType() {
         return new PropertyType();
@@ -87,6 +93,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link LocationType }
      *
+     * @return a {@link LocationType} object.
      */
     public LocationType createLocationType() {
         return new LocationType();
@@ -95,6 +102,7 @@ public class ObjectFactory {
     /**
      * Create an instance of {@link SeqFeatureGroupType }
      *
+     * @return a {@link SeqFeatureGroupType} object.
      */
     public SeqFeatureGroupType createSeqFeatureGroupType() {
         return new SeqFeatureGroupType();

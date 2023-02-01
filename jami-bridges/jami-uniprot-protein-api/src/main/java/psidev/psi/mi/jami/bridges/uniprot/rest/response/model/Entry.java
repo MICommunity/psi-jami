@@ -103,7 +103,7 @@ public class Entry {
      * Objects of the following type(s) are allowed in the list
      * {@link DbReferenceType }
      *
-     *
+     * @return a list of {@link DbReferenceType} objects.
      */
     public List<DbReferenceType> getDbReference() {
         if (dbReference == null) {
@@ -132,7 +132,7 @@ public class Entry {
      * Objects of the following type(s) are allowed in the list
      * {@link SeqFeatureType }
      *
-     *
+     * @return a list of {@link SeqFeatureType} objects.
      */
     public List<SeqFeatureType> getSignatureSequenceMatch() {
         if (signatureSequenceMatch == null) {

@@ -84,7 +84,7 @@ public class DbReferenceType {
      * Objects of the following type(s) are allowed in the list
      * {@link PropertyType }
      *
-     *
+     * @return a list of {@link PropertyType} objects.
      */
     public List<PropertyType> getProperty() {
         if (property == null) {
@@ -143,7 +143,8 @@ public class DbReferenceType {
 
     /**
      * Gets the value of the versionI property.
-     * 
+     *
+     * @return an int value.
      */
     public int getVersionI() {
         return versionI;
@@ -151,7 +152,8 @@ public class DbReferenceType {
 
     /**
      * Sets the value of the versionI property.
-     * 
+     *
+     * @param value an int value.
      */
     public void setVersionI(int value) {
         this.versionI = value;
