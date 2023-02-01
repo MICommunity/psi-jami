@@ -30,7 +30,7 @@ import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
 public class DefaultAvailability extends AbstractAvailability
 {
     /**
-     * <p>Constructor for Availability.</p>
+     * <p>Constructor for DefaultAvailability.</p>
      */
     public DefaultAvailability() {
     }

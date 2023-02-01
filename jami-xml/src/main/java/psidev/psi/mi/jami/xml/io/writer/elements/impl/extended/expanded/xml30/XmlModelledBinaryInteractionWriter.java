@@ -3,7 +3,6 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml30;
 import psidev.psi.mi.jami.binary.ModelledBinaryInteraction;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Checksum;
-import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml30.AbstractXmlModelledInteractionWriter;
@@ -30,7 +29,7 @@ public class XmlModelledBinaryInteractionWriter extends AbstractXmlModelledInter
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
     public XmlModelledBinaryInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
+        super(writer, objectIndex);
     }
 
     /** {@inheritDoc} */

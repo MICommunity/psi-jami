@@ -19,13 +19,13 @@ import psidev.psi.mi.jami.model.Publication;
 public class DefaultXmlExperiment extends AbstractXmlExperiment {
 
     /**
-     * <p>Constructor for XmlExperiment.</p>
+     * <p>Constructor for DefaultXmlExperiment.</p>
      */
     public DefaultXmlExperiment() {
     }
 
     /**
-     * <p>Constructor for XmlExperiment.</p>
+     * <p>Constructor for DefaultXmlExperiment.</p>
      *
      * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      */
@@ -34,7 +34,7 @@ public class DefaultXmlExperiment extends AbstractXmlExperiment {
     }
 
     /**
-     * <p>Constructor for XmlExperiment.</p>
+     * <p>Constructor for DefaultXmlExperiment.</p>
      *
      * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -44,7 +44,7 @@ public class DefaultXmlExperiment extends AbstractXmlExperiment {
     }
 
     /**
-     * <p>Constructor for XmlExperiment.</p>
+     * <p>Constructor for DefaultXmlExperiment.</p>
      *
      * @param publication a {@link psidev.psi.mi.jami.model.Publication} object.
      * @param interactionDetectionMethod a {@link psidev.psi.mi.jami.model.CvTerm} object.

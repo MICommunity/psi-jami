@@ -45,7 +45,7 @@ public abstract class AbstractInferredInteractionParticipant implements FileSour
     private Locator locator;
 
     /**
-     * <p>Constructor for InferredInteractionParticipant.</p>
+     * <p>Constructor for AbstractInferredInteractionParticipant.</p>
      */
     public AbstractInferredInteractionParticipant(){
     }

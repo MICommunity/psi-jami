@@ -35,8 +35,8 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlInteractionEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(version, writer, objectIndex);
+    public AbstractXmlInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
 
     }
 

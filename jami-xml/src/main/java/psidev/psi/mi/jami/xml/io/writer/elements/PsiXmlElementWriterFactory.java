@@ -1622,6 +1622,7 @@ public class PsiXmlElementWriterFactory {
      * <p>createExperimentalCvWriter.</p>
      *
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param extended a boolean.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
@@ -1688,6 +1689,7 @@ public class PsiXmlElementWriterFactory {
      * <p>createHostOrganismWriter.</p>
      *
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param extended a boolean.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      * @param aliasWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
@@ -2187,6 +2189,7 @@ public class PsiXmlElementWriterFactory {
      * <p>createExperimentalInteractorWriter.</p>
      *
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      * @param xmlType a {@link psidev.psi.mi.jami.xml.PsiXmlType} object.
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter} object.
@@ -2377,6 +2380,7 @@ public class PsiXmlElementWriterFactory {
     /**
      * <p>createInteractorWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param extended a boolean.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.

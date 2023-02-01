@@ -17,6 +17,7 @@ public class XmlInteractorWriter extends psidev.psi.mi.jami.xml.io.writer.elemen
     /**
      * <p>Constructor for XmlInteractorWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */

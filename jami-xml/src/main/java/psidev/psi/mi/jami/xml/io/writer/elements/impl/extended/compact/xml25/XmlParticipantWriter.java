@@ -20,6 +20,7 @@ public class XmlParticipantWriter extends psidev.psi.mi.jami.xml.io.writer.eleme
     /**
      * <p>Constructor for XmlParticipantWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */

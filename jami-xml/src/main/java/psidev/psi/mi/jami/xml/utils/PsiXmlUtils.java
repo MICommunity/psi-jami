@@ -93,6 +93,7 @@ public class PsiXmlUtils {
     /**
      * <p>extractCooperativeEffectFrom.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param annots a {@link java.util.Collection} object.
      * @param experiments a {@link java.util.Collection} object.
      * @param listener a {@link psidev.psi.mi.jami.xml.listener.PsiXmlParserListener} object.

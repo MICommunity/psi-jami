@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 /**
- * Writer of a source in an entry.
+ * Abstract class for writer of a source in an entry.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -32,7 +32,7 @@ public abstract class AbstractXmlSourceWriter implements PsiXmlSourceWriter {
     private PsiXmlElementWriter<Annotation> attributeWriter;
 
     /**
-     * <p>Constructor for XmlSourceWriter.</p>
+     * <p>Constructor for AbstractXmlSourceWriter.</p>
      *
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      */

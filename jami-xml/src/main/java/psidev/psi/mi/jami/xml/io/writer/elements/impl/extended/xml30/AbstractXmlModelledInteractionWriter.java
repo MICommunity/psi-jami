@@ -41,8 +41,8 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(version, writer, objectIndex);
+    public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(PsiXmlVersion.v3_0_0, writer, objectIndex);
 
     }
 

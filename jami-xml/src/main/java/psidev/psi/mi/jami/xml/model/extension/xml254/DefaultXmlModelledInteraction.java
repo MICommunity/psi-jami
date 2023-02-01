@@ -17,13 +17,13 @@ import psidev.psi.mi.jami.model.CvTerm;
 public class DefaultXmlModelledInteraction extends AbstractXmlModelledInteraction {
 
     /**
-     * <p>Constructor for XmlModelledInteraction.</p>
+     * <p>Constructor for DefaultXmlModelledInteraction.</p>
      */
     public DefaultXmlModelledInteraction() {
     }
 
     /**
-     * <p>Constructor for XmlModelledInteraction.</p>
+     * <p>Constructor for DefaultXmlModelledInteraction.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      */
@@ -32,7 +32,7 @@ public class DefaultXmlModelledInteraction extends AbstractXmlModelledInteractio
     }
 
     /**
-     * <p>Constructor for XmlModelledInteraction.</p>
+     * <p>Constructor for DefaultXmlModelledInteraction.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.

@@ -38,6 +38,8 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
 
     /**
      * <p>Constructor for InMemoryPsiXmlCache.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
     public InMemoryPsiXmlCache(PsiXmlVersion version){
         this.version = version;

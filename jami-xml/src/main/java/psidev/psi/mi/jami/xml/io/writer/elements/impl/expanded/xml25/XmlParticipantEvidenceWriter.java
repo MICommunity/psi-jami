@@ -21,6 +21,7 @@ public class XmlParticipantEvidenceWriter extends AbstractXmlParticipantEvidence
     /**
      * <p>Constructor for XmlParticipantEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */

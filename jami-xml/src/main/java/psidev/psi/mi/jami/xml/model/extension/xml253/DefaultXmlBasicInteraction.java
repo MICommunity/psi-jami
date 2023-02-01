@@ -19,14 +19,14 @@ import psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlBasicInteraction
 public class DefaultXmlBasicInteraction extends AbstractXmlBasicInteraction {
 
     /**
-     * <p>Constructor for XmlBasicInteraction.</p>
+     * <p>Constructor for DefaultXmlBasicInteraction.</p>
      */
     public DefaultXmlBasicInteraction() {
         super();
     }
 
     /**
-     * <p>Constructor for XmlBasicInteraction.</p>
+     * <p>Constructor for DefaultXmlBasicInteraction.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      */
@@ -35,7 +35,7 @@ public class DefaultXmlBasicInteraction extends AbstractXmlBasicInteraction {
     }
 
     /**
-     * <p>Constructor for XmlBasicInteraction.</p>
+     * <p>Constructor for DefaultXmlBasicInteraction.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.

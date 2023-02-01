@@ -19,14 +19,14 @@ import psidev.psi.mi.jami.model.Xref;
 public class DefaultXmlComplex extends AbstractXmlComplex {
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      */
     public DefaultXmlComplex(){
         super();
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -36,7 +36,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -48,7 +48,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -59,7 +59,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -70,7 +70,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -80,7 +80,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -91,7 +91,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -101,7 +101,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -111,7 +111,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      */
@@ -120,7 +120,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -133,7 +133,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -144,7 +144,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -155,7 +155,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -167,7 +167,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -178,7 +178,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -190,7 +190,7 @@ public class DefaultXmlComplex extends AbstractXmlComplex {
     }
 
     /**
-     * <p>Constructor for XmlComplex.</p>
+     * <p>Constructor for DefaultXmlComplex.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.

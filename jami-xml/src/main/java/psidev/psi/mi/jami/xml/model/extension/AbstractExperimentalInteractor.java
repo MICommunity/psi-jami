@@ -53,7 +53,7 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
     private AbstractJAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
     /**
-     * <p>Constructor for ExperimentalInteractor.</p>
+     * <p>Constructor for AbstractExperimentalInteractor.</p>
      */
     public AbstractExperimentalInteractor() {
         this.interactorFactory =  XmlEntryContext.getInstance().getInteractorFactory();

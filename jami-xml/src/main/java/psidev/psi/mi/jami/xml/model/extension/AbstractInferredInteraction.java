@@ -47,7 +47,7 @@ public abstract class AbstractInferredInteraction implements FileSourceContext, 
     private AbstractJAXBExperimentRefWrapper jaxbExperimentRefWrapper;
 
     /**
-     * <p>Constructor for InferredInteraction.</p>
+     * <p>Constructor for AbstractInferredInteraction.</p>
      */
     public AbstractInferredInteraction() {
         XmlEntryContext.getInstance().registerInferredInteraction(this);

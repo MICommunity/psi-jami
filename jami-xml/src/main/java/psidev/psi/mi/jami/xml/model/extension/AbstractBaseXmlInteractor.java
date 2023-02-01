@@ -50,13 +50,13 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     protected Locator locator;
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      */
     public AbstractBaseXmlInteractor(){
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -75,7 +75,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -87,7 +87,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -99,7 +99,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -112,7 +112,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -124,7 +124,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -137,7 +137,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -150,7 +150,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -164,7 +164,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      */
@@ -177,7 +177,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -188,7 +188,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -200,7 +200,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -212,7 +212,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -224,7 +224,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -237,7 +237,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -250,7 +250,7 @@ public abstract class AbstractBaseXmlInteractor implements Interactor, FileSourc
     }
 
     /**
-     * <p>Constructor for AbstractXmlInteractor.</p>
+     * <p>Constructor for AbstractBaseXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.

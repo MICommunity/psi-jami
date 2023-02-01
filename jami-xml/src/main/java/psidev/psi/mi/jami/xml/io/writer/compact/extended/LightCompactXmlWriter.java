@@ -27,6 +27,8 @@ public class LightCompactXmlWriter extends AbstractCompactXmlWriter<Interaction>
 
     /**
      * <p>Constructor for LightCompactXmlWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
     public LightCompactXmlWriter(PsiXmlVersion version) {
         super(version, Interaction.class);
@@ -35,6 +37,7 @@ public class LightCompactXmlWriter extends AbstractCompactXmlWriter<Interaction>
     /**
      * <p>Constructor for LightCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
@@ -46,6 +49,7 @@ public class LightCompactXmlWriter extends AbstractCompactXmlWriter<Interaction>
     /**
      * <p>Constructor for LightCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
@@ -56,6 +60,7 @@ public class LightCompactXmlWriter extends AbstractCompactXmlWriter<Interaction>
     /**
      * <p>Constructor for LightCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
@@ -66,6 +71,7 @@ public class LightCompactXmlWriter extends AbstractCompactXmlWriter<Interaction>
     /**
      * <p>Constructor for LightCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */

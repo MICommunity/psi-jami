@@ -38,14 +38,14 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     private int id;
 
     /**
-     * <p>Constructor for XmlVariableParameterValue.</p>
+     * <p>Constructor for AbstractXmlVariableParameterValue.</p>
      */
     public AbstractXmlVariableParameterValue(){
 
     }
 
     /**
-     * <p>Constructor for XmlVariableParameterValue.</p>
+     * <p>Constructor for AbstractXmlVariableParameterValue.</p>
      *
      * @param value a {@link java.lang.String} object.
      * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.
@@ -59,7 +59,7 @@ public abstract class AbstractXmlVariableParameterValue implements VariableParam
     }
 
     /**
-     * <p>Constructor for XmlVariableParameterValue.</p>
+     * <p>Constructor for AbstractXmlVariableParameterValue.</p>
      *
      * @param value a {@link java.lang.String} object.
      * @param variableParameter a {@link psidev.psi.mi.jami.model.VariableParameter} object.

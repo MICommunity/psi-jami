@@ -21,13 +21,13 @@ import psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlInteractor;
 public class DefaultXmlInteractor extends AbstractXmlInteractor {
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      */
     public DefaultXmlInteractor() {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -37,7 +37,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -48,7 +48,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -59,7 +59,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -71,7 +71,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -82,7 +82,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -94,7 +94,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -106,7 +106,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -119,7 +119,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      */
@@ -128,7 +128,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -138,7 +138,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -148,7 +148,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -159,7 +159,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param uniqueId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -169,7 +169,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -180,7 +180,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param organism a {@link psidev.psi.mi.jami.model.Organism} object.
@@ -191,7 +191,7 @@ public class DefaultXmlInteractor extends AbstractXmlInteractor {
     }
 
     /**
-     * <p>Constructor for XmlInteractor.</p>
+     * <p>Constructor for DefaultXmlInteractor.</p>
      *
      * @param name a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.

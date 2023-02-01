@@ -25,6 +25,8 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
 
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
     public ExpandedXmlEvidenceWriter(PsiXmlVersion version) {
         super(version, InteractionEvidence.class);
@@ -33,6 +35,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
@@ -44,6 +47,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
@@ -54,6 +58,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
@@ -64,6 +69,7 @@ public class ExpandedXmlEvidenceWriter extends AbstractExpandedXmlWriter<Interac
     /**
      * <p>Constructor for ExpandedXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */

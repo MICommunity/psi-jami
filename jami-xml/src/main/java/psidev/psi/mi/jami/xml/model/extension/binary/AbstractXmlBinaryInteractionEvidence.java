@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Xml implementation of BinaryInteractionEvidence
+ * Abstract class for Xml BinaryInteractionEvidence
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -36,13 +36,13 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     private List<ExtendedPsiXmlExperiment> originalExperiments;
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      */
     public AbstractXmlBinaryInteractionEvidence() {
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      */
@@ -51,7 +51,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -61,7 +61,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
@@ -71,7 +71,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
@@ -82,7 +82,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -94,7 +94,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param complexExpansion a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
@@ -103,7 +103,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.
@@ -114,7 +114,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
      * @param participantB a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
@@ -125,7 +125,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param participantA a {@link psidev.psi.mi.jami.model.ParticipantEvidence} object.
@@ -137,7 +137,7 @@ public abstract class AbstractXmlBinaryInteractionEvidence extends AbstractExten
     }
 
     /**
-     * <p>Constructor for XmlBinaryInteractionEvidence.</p>
+     * <p>Constructor for AbstractXmlBinaryInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.

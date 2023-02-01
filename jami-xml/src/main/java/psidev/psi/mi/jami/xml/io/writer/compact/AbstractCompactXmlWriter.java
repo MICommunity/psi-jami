@@ -42,6 +42,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      */
     public AbstractCompactXmlWriter(PsiXmlVersion version, Class<T> type) {
@@ -53,6 +54,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
@@ -67,6 +69,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
@@ -80,6 +83,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
@@ -93,6 +97,7 @@ public abstract class AbstractCompactXmlWriter<T extends Interaction> extends Ab
     /**
      * <p>Constructor for AbstractCompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.

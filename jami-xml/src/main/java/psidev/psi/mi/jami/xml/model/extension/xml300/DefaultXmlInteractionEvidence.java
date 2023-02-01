@@ -17,14 +17,14 @@ import psidev.psi.mi.jami.model.CvTerm;
 public class DefaultXmlInteractionEvidence extends AbstractXmlInteractionEvidence {
 
     /**
-     * <p>Constructor for XmlInteractionEvidence.</p>
+     * <p>Constructor for DefaultXmlInteractionEvidence.</p>
      */
     public DefaultXmlInteractionEvidence() {
         super();
     }
 
     /**
-     * <p>Constructor for XmlInteractionEvidence.</p>
+     * <p>Constructor for DefaultXmlInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      */
@@ -33,7 +33,7 @@ public class DefaultXmlInteractionEvidence extends AbstractXmlInteractionEvidenc
     }
 
     /**
-     * <p>Constructor for XmlInteractionEvidence.</p>
+     * <p>Constructor for DefaultXmlInteractionEvidence.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param type a {@link psidev.psi.mi.jami.model.CvTerm} object.

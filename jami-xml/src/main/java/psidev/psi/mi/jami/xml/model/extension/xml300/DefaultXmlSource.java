@@ -33,13 +33,13 @@ public class DefaultXmlSource extends AbstractXmlSource
 {
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      */
     public DefaultXmlSource() {
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      */
@@ -48,7 +48,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -58,7 +58,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -69,7 +69,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param url a {@link java.lang.String} object.
@@ -81,7 +81,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param ontologyId a {@link psidev.psi.mi.jami.model.Xref} object.
@@ -94,7 +94,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -108,7 +108,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param miId a {@link java.lang.String} object.
@@ -118,7 +118,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.
@@ -129,7 +129,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param miId a {@link java.lang.String} object.
@@ -142,7 +142,7 @@ public class DefaultXmlSource extends AbstractXmlSource
     }
 
     /**
-     * <p>Constructor for XmlSource.</p>
+     * <p>Constructor for DefaultXmlSource.</p>
      *
      * @param shortName a {@link java.lang.String} object.
      * @param fullName a {@link java.lang.String} object.

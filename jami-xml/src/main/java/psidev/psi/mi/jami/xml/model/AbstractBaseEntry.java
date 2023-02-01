@@ -38,7 +38,7 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
     private AbstractJAXBAnnotationsWrapper annotationsWrapper;
 
     /**
-     * <p>Constructor for AbstractEntry.</p>
+     * <p>Constructor for AbstractBaseEntry.</p>
      */
     public AbstractBaseEntry() {
         super();

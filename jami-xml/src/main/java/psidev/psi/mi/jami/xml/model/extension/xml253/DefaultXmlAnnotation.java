@@ -21,13 +21,13 @@ import psidev.psi.mi.jami.xml.model.extension.xml253.AbstractXmlAnnotation;
 public class DefaultXmlAnnotation extends AbstractXmlAnnotation {
 
     /**
-     * <p>Constructor for XmlAnnotation.</p>
+     * <p>Constructor for DefaultXmlAnnotation.</p>
      */
     public DefaultXmlAnnotation() {
     }
 
     /**
-     * <p>Constructor for XmlAnnotation.</p>
+     * <p>Constructor for DefaultXmlAnnotation.</p>
      *
      * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
      * @param value a {@link java.lang.String} object.
@@ -37,7 +37,7 @@ public class DefaultXmlAnnotation extends AbstractXmlAnnotation {
     }
 
     /**
-     * <p>Constructor for XmlAnnotation.</p>
+     * <p>Constructor for DefaultXmlAnnotation.</p>
      *
      * @param topic a {@link psidev.psi.mi.jami.model.CvTerm} object.
      */
