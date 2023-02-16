@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.model.xml253;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.model.AbstractBaseEntry;
 
 import javax.xml.bind.annotation.*;
@@ -34,7 +35,7 @@ public abstract class AbstractEntry<T extends Interaction> extends AbstractBaseE
     public static class JAXBInteractorsWrapper extends AbstractJAXBInteractorsWrapper {
 
         public JAXBInteractorsWrapper(){
-            super();
+            super(PsiXmlVersion.v2_5_3);
         }
 
         @XmlElement(namespace = "net:sf:psidev:mi", type= DefaultXmlInteractor.class, name="interactor", required = true)

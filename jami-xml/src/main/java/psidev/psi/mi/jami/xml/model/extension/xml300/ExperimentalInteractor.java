@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.reference.xml300.AbstractExperimentRef;
@@ -70,7 +71,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
      */
     @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactor")
     public void setJAXBInteractor(DefaultXmlInteractor value) {
-        super.setJAXBInteractor(value);
+        super.setJAXBInteractor(value, PsiXmlVersion.v3_0_0);
     }
 
     /**
