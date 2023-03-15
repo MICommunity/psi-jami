@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.extension.AbstractBaseXmlInteractor;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlInteraction;
@@ -159,8 +160,8 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
         @XmlTransient
         private Locator locator;
 
-        public AbstractJAXBInteractorsWrapper(){
-            initialiseInteractors();
+        public AbstractJAXBInteractorsWrapper(PsiXmlVersion version){
+            initialiseInteractors(version);
         }
 
         @Override
@@ -187,8 +188,8 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
             }
         }
 
-        protected void initialiseInteractors(){
-            interactors = new InteractorList();
+        protected void initialiseInteractors(PsiXmlVersion version){
+            interactors = new InteractorList(version);
         }
 
         public List<Interactor> getJAXBInteractors() {
@@ -201,12 +202,18 @@ public abstract class AbstractBaseEntry<T extends Interaction> extends Entry imp
         }
 
         private class InteractorList extends AbstractListHavingProperties<Interactor> {
-            XmlInteractorFactory interactorFactory = XmlEntryContext.getInstance().getInteractorFactory();
+            private XmlInteractorFactory interactorFactory;
+            private PsiXmlVersion version;
+
+            public InteractorList(PsiXmlVersion version) {
+                this.interactorFactory = XmlEntryContext.getInstance().getInteractorFactory();
+                this.version = version;
+            }
 
             @Override
             protected void processAddedObjectEvent(Interactor added) {
                 // register new interactor instance according to type
-                this.interactorFactory.createInteractorFromXmlInteractorInstance((AbstractBaseXmlInteractor)added);
+                this.interactorFactory.createInteractorFromXmlInteractorInstance((AbstractBaseXmlInteractor) added, version);
             }
 
             @Override

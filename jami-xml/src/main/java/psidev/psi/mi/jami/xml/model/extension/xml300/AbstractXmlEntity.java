@@ -14,6 +14,7 @@ import psidev.psi.mi.jami.model.CausalRelationship;
 import psidev.psi.mi.jami.model.Feature;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.model.Stoichiometry;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
@@ -259,7 +260,7 @@ public abstract class AbstractXmlEntity<F extends Feature> implements ExtendedPs
             }
         }
         else{
-            this.interactor = this.interactorFactory.createInteractorFromXmlInteractorInstance(interactor);
+            this.interactor = this.interactorFactory.createInteractorFromXmlInteractorInstance(interactor, PsiXmlVersion.v3_0_0);
         }
     }
 

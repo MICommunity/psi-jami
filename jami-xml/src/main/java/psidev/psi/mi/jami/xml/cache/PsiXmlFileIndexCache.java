@@ -259,7 +259,7 @@ public class PsiXmlFileIndexCache implements PsiXmlIdCache {
         else {
             try {
                 AbstractBaseXmlInteractor interactor = loadFromFile(this.interactorPositions.get(location));
-                return XmlEntryContext.getInstance().getInteractorFactory().createInteractorFromXmlInteractorInstance(interactor);
+                return XmlEntryContext.getInstance().getInteractorFactory().createInteractorFromXmlInteractorInstance(interactor, version);
             } catch (IOException e) {
                 logger.log(Level.SEVERE, "cannot reload interactor "+id, e);
                 throw new MIIOException("cannot reload interactor "+id, e);

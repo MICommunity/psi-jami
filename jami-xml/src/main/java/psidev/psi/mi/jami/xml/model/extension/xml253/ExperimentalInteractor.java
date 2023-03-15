@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.model.extension.xml253;
 
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.Experiment;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.reference.xml253.AbstractExperimentRef;
@@ -66,7 +67,7 @@ public class ExperimentalInteractor extends AbstractExperimentalInteractor {
      */
     @XmlElement(namespace = "net:sf:psidev:mi", name = "interactor")
     public void setJAXBInteractor(DefaultXmlInteractor value) {
-        super.setJAXBInteractor(value);
+        super.setJAXBInteractor(value, PsiXmlVersion.v2_5_3);
     }
 
     /**

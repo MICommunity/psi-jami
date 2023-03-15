@@ -663,7 +663,7 @@ public abstract class AbstractPsiXmlParser<T extends Interaction> implements Psi
                 // load experimentDescription
                 while (this.currentElement != null && PsiXmlUtils.INTERACTOR_TAG.equals(this.currentElement)) {
                     AbstractBaseXmlInteractor interactorElement = (AbstractBaseXmlInteractor)unmarshaller.unmarshal(this.streamReader);
-                    this.interactorFactory.createInteractorFromXmlInteractorInstance(interactorElement);
+                    this.interactorFactory.createInteractorFromXmlInteractorInstance(interactorElement, this.version);
                     this.currentElement = getNextPsiXmlStartElement();
                 }
             }

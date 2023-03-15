@@ -10,6 +10,7 @@ import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
 import psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory;
 
@@ -121,12 +122,12 @@ public abstract class AbstractExperimentalInteractor implements FileSourceContex
      *     allowed object is
      *     {@link psidev.psi.mi.jami.model.Interactor}
      */
-    public void setJAXBInteractor(AbstractBaseXmlInteractor value) {
+    public void setJAXBInteractor(AbstractBaseXmlInteractor value, PsiXmlVersion version) {
         if (value == null){
             this.interactor = null;
         }
         else{
-            this.interactor = this.interactorFactory.createInteractorFromXmlInteractorInstance(value);
+            this.interactor = this.interactorFactory.createInteractorFromXmlInteractorInstance(value, version);
         }
     }
 
