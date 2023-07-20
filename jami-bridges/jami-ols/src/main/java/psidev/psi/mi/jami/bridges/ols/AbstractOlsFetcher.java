@@ -153,11 +153,10 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         // 1) query ols which returns full name.
         HashMap<String,String> termNamesMap = new HashMap<>();
         Term term = olsClient.getExactTermByName(searchName, olsOntologyName);
-        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
 
         // 2) if no results, return null
-        if(termNamesMap.size() != 1)
-            return null;
+        if (term == null) return null;
+        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
 
         Map.Entry<String, String> entry = termNamesMap.entrySet().iterator().next();
         String fullName = entry.getValue();
