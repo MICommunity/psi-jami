@@ -2,8 +2,11 @@ package psidev.psi.mi.jami.bridges.fetcher;
 
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.model.NucleicAcid;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Fetches the complete records which match an interactor.
@@ -33,6 +36,12 @@ public interface InteractorFetcher<I extends Interactor> {
      * @return              The proteins which match the search term. Empty if no matches.
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
-    public Collection<I> fetchByIdentifiers(Collection<String> identifiers)
-            throws BridgeFailedException;
+    public default Collection<I> fetchByIdentifiers(Collection<String> identifiers)
+            throws BridgeFailedException {
+        List<I> list = new ArrayList<>();
+        for (String identifier : identifiers) {
+            list.addAll(fetchByIdentifier(identifier));
+        }
+        return list;
+    }
 }

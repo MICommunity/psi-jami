@@ -25,6 +25,7 @@
         <module>jami-uniprot-protein-api</module>
         <module>jami-ontology-manager</module>
         <module>jami-imexcentral</module>
+        <module>jami-rna-central</module>
     </modules>
 
     <dependencies>
