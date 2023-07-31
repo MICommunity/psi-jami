@@ -10,8 +10,8 @@
     <artifactId>jami-ensembl</artifactId>
     <packaging>jar</packaging>
 
-    <name>PSI :: JAMI - Bridges - RNA Central</name>
-    <description>JAMI - RNA Central bridge</description>
+    <name>PSI :: JAMI - Bridges - Ensembl</name>
+    <description>JAMI - Ensembl bridge</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
