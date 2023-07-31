@@ -55,7 +55,7 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
 
                 DefaultXref id = new DefaultXref(rnaCentral, identifier, identity);
                 CvTerm type = olsFetcher.fetchByName(entree.getRnaType(), MI_ONTOLOGY_NAME);
-                if (type == null) type = new DefaultCvTerm(NucleicAcid.NULCEIC_ACID, NucleicAcid.NULCEIC_ACID_MI);
+                if (type == null) type = new DefaultCvTerm("ribonucleic acid", "MI:0320");
                 Organism organism = new DefaultOrganism(entree.getTaxid(), entree.getSpecies());
 
                 DefaultNucleicAcid nucleicAcid = new DefaultNucleicAcid(entree.getShortDescription(), type, organism, id);
