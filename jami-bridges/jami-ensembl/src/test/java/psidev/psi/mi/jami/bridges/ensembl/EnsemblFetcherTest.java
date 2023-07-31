@@ -1,4 +1,4 @@
-package psidev.psi.mi.jami.bridges.ensembl.fetchers;
+package psidev.psi.mi.jami.bridges.ensembl;
 
 import org.junit.Before;
 import org.junit.Test;

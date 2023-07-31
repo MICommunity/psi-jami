@@ -1,4 +1,4 @@
-package psidev.psi.mi.jami.bridges.ensembl.fetchers;
+package psidev.psi.mi.jami.bridges.ensembl;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

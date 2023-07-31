@@ -1,4 +1,4 @@
-package psidev.psi.mi.jami.bridges.ensembl.fetchers;
+package psidev.psi.mi.jami.bridges.ensembl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

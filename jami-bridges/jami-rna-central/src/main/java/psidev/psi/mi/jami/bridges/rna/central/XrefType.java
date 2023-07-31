@@ -1,4 +1,4 @@
-package psidev.psi.mi.jami.bridges.rna.central.fetchers;
+package psidev.psi.mi.jami.bridges.rna.central;
 
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +32,7 @@ enum XrefType {
             result -> null,
             List.of(),
             List.of(),
-            List.of((result, nucleicAcid) -> nucleicAcid.setRefseq(result.getAccession().getExternalId()))
+            List.of()
             ),
     ENSEMBL("Ensembl",
             result -> {

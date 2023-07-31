@@ -1,4 +1,4 @@
-package psidev.psi.mi.jami.bridges.rna.central.fetchers;
+package psidev.psi.mi.jami.bridges.rna.central;
 
 import org.junit.Before;
 import org.junit.Test;
