@@ -26,6 +26,7 @@
         <module>jami-ontology-manager</module>
         <module>jami-imexcentral</module>
         <module>jami-rna-central</module>
+        <module>jami-ensembl</module>
     </modules>
 
     <dependencies>
