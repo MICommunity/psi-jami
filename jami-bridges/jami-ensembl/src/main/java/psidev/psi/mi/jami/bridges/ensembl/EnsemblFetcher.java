@@ -41,14 +41,15 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
             "snRNA", new DefaultCvTerm("small nuclear rna", "MI:0607") // snRNA
     ));
 
+    public final CvTerm intactCV = new DefaultCvTerm("intact", "MI:0469");
     public final CvTerm ensemblCV = new DefaultCvTerm("ensembl", "MI:0476");
     public final CvTerm uniprotCV = new DefaultCvTerm("uniprot knowledge base", "MI:0486");
     public final CvTerm rnaCV = new DefaultCvTerm("ribonucleic acid", "MI:0320");
     public final CvTerm identityCv = new DefaultCvTerm(Xref.IDENTITY, Xref.IDENTITY_MI);
-    public final CvTerm geneCV = new DefaultCvTerm("gene", "MI:0250");
+    public final CvTerm geneCV = new DefaultCvTerm("gene ref", new DefaultXref(intactCV, "IA:3594", identityCv)); // TODO change to new MI ID
     public final CvTerm geneNameCV = new DefaultCvTerm("gene name", "MI:0301");
     public final CvTerm geneProductCV = new DefaultCvTerm("gene product", "MI:0251");
-    public final CvTerm transcriptCV = new DefaultCvTerm("transcript", "IA:3522"); // TODO change to new MI ID
+    public final CvTerm transcriptCV = new DefaultCvTerm("transcript", new DefaultXref(intactCV, "IA:3522", identityCv)); // TODO change to new MI ID
 
     public final static Set<ObjectType> supportedTypes = Set.of(ObjectType.GENE, ObjectType.TRANSCRIPT);
     private final ObjectMapper mapper = JsonMapper.builder()
