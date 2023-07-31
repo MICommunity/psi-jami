@@ -114,6 +114,8 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
 
     private void queryUniprotXrefs(List<String> ids, Map<String, Interactor> idToInteractor) throws IOException {
         if (ids == null || ids.isEmpty()) return;
+        // TODO Make it work for Transcripts when API updated
+        // TODO Filter to only get the main reference
         for (String id : ids) {
             URL uniprotURL = new URL(String.format(UNIPROT_URL, id));
             Collection<Xref> xrefs = idToInteractor.get(id).getXrefs();
