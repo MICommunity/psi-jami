@@ -48,16 +48,19 @@ public class RNACentralFetcherTest {
 
     @Test
     public void testEnsemblXref() throws BridgeFailedException {
-        // https://rnacentral.org/api/v1/rna/URS000077CD3E_9606.json
-        // https://rnacentral.org/api/v1/rna/URS000077CD3E/xrefs.json
-        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS000077CD3E_9606");
+        // https://rnacentral.org/api/v1/rna/URS0000031E12_9606.json
+        // https://rnacentral.org/api/v1/rna/URS0000031E12/xrefs.json
+        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS0000031E12_9606");
+//        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS000077CD3E_9606");
         NucleicAcid acid = nucleicAcids.iterator().next();
         List<Xref> xrefs = acid.getXrefs().stream().filter(xref -> xref.getDatabase().getShortName().equals("ensembl")).collect(Collectors.toList());
         assertFalse(xrefs.isEmpty());
 //        assertTrue("URS000077CD3E_9606 should have a transcript Xref to ENST00000618127",
 //                xrefs.stream().anyMatch(x -> x.getId().equals("ENST00000618127") && x.getQualifier().getShortName().equals("transcript")));
-        assertTrue("URS000077CD3E_9606 should have a gene Xref to ENSG00000225342.2",
-                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000225342.2") && x.getQualifier().getShortName().equals("gene")));
+        assertTrue("URS000077CD3E_9606 should have a gene Xref to ENSG00000199030.2",
+                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030.2") && x.getQualifier().getShortName().equals("gene")));
+        assertTrue( "Querying for a human identifier should only get human ensembl XRefs"
+                ,xrefs.stream().allMatch(xref -> xref.getId().startsWith("ENS")));
     }
 
     @Test

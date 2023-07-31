@@ -61,7 +61,7 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
                 DefaultNucleicAcid nucleicAcid = new DefaultNucleicAcid(entree.getShortDescription(), type, organism, id);
                 nucleicAcid.setSequence(entree.getSequence());
                 nucleicAcid.setFullName(entree.getDescription());
-                addXRefs(nucleicAcid, pureIdentifier);
+                addXRefs(nucleicAcid, pureIdentifier, organism);
 
                 return List.of(nucleicAcid);
             } else return List.of();
@@ -71,14 +71,16 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
         }
     }
 
-    private void addXRefs(NucleicAcid nucleicAcid, String pureIdentifier) {
+    private void addXRefs(NucleicAcid nucleicAcid, String pureIdentifier, Organism organism) {
         try {
             URL url = new URL(String.format(XREFS_URL, pureIdentifier));
 
             while (url != null) {
                 ApiXrefs xrefs = mapper.readValue(url, ApiXrefs.class);
-                url = xrefs.getNext();
-                xrefs.getResults().forEach(result -> this.extractXrefsAndAliases(nucleicAcid, result));
+                url = xrefs.getNext() != null ? new URL(xrefs.getNext().toString().replace("http", "https")) : null;
+                xrefs.getResults().stream()
+                        .filter(result -> result.getAccession().getSpecies().equals(organism.getScientificName()) || result.getTaxid().equals(organism.getTaxId()))
+                        .forEach(result -> this.extractXrefsAndAliases(nucleicAcid, result));
             }
 
         } catch (IOException e) {
