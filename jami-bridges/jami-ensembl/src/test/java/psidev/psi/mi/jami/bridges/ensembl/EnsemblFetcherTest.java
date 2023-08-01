@@ -39,30 +39,29 @@ public class EnsemblFetcherTest {
         assertNotNull(gene.getFullName());
         assertNotNull(gene.getEnsembl());
 
-        assertTrue("Should have gene name alias", gene.getAliases().stream().anyMatch(alias -> alias.getType().getShortName().equals("gene name")));
-        assertTrue("Should have gene product xref", gene.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).anyMatch(qualifier -> qualifier.getShortName().equals("gene product")));
-        assertTrue("Should have transcript xref", gene.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).anyMatch(qualifier -> qualifier.getShortName().equals("transcript")));
+        assertEquals("Should have 1 gene name alias",1, gene.getAliases().stream().filter(alias -> alias.getType().getShortName().equals("gene name")).count());
+        assertEquals("Should have 1 gene product xref, to UniProt/SWISSPROT as it is canonical",1, gene.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene product")).count());
+        assertEquals("Should have 1 transcript xref",1, gene.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("transcript")).count());
     }
 
     @Test
     public void fetchTranscript() throws BridgeFailedException {
         // https://rest.ensembl.org/lookup/id/ENST00000646891?content-type=application/json
-        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000646891");
+        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000677250.1");
         if (interactors.isEmpty()) fail();
         assertEquals(1, interactors.size());
         Interactor interactor = interactors.iterator().next();
         assertTrue(interactor instanceof NucleicAcid);
-        NucleicAcid gene = (NucleicAcid) interactor;
+        NucleicAcid rna = (NucleicAcid) interactor;
 
-        assertNotNull(gene.getPreferredIdentifier());
-        assertNotNull(gene.getShortName());
-        assertNotNull(gene.getFullName());
-        assertNotNull(gene.getSequence());
+        assertNotNull(rna.getPreferredIdentifier());
+        assertNotNull(rna.getShortName());
+        assertNotNull(rna.getFullName());
+        assertNotNull(rna.getSequence());
 
-        assertTrue(gene.getAliases().stream().anyMatch(alias -> alias.getType().getShortName().equals("gene name")));
-        // Not supported for transcripts so far
-        // assertTrue(gene.getXrefs().stream().anyMatch(xref -> xref.getQualifier().getShortName().equals("gene product")));
-        assertTrue(gene.getXrefs().stream().anyMatch(xref -> xref.getQualifier().getShortName().equals("gene")));
+        assertEquals("Should have 1 gene name alias",1, rna.getAliases().stream().filter(alias -> alias.getType().getShortName().equals("gene name")).count());
+        assertEquals("Should have 1 gene product xref, to UniProt/TrEMBL",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene product")).count());
+        assertEquals("Should have 1 gene ref xref",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene ref")).count());
     }
 
     @Test

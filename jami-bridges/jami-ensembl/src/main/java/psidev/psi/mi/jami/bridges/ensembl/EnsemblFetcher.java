@@ -23,6 +23,7 @@ import java.util.*;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EnsemblFetcher implements InteractorFetcher<Interactor> {
 
@@ -30,7 +31,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
     public static final String GET_SUFFIX = "%s?content-type=application/json";
     public static final String MAIN_URL = "https://rest.ensembl.org/lookup/id";
     public static final String SEQUENCE_URL = "https://rest.ensembl.org/sequence/id/";
-    public static final String UNIPROT_URL = "https://rest.ensembl.org/xrefs/id/" + GET_SUFFIX + ";external_db=Uniprot_gn";
+    public static final String UNIPROT_URL = "https://rest.ensembl.org/xrefs/id/" + GET_SUFFIX;
     public static final String MI_ONTOLOGY_NAME = "psi-mi";
 
     private static final Map<String, CvTerm> biotypeToCVId = new HashMap<>(Map.of(
@@ -64,6 +65,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
             .header("Content-Type", "application/json")
             .header("Accept", "application/json");
 
+
     public EnsemblFetcher() throws BridgeFailedException {
     }
 
@@ -76,17 +78,18 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
                     .map(id -> id.split("\\.")[0])
                     .collect(Collectors.toList());
 
-            Map<String, Interactor> idToInteractor = new HashMap<>();
 
-            queryInteractors(ids, idToInteractor);
+            Map<String, Interactor> idToInteractor = new HashMap<>();
+            Map<String, Interactor> translationIdToInteractor = new HashMap<>();
+
+            queryInteractors(ids, idToInteractor, translationIdToInteractor);
 
             List<String> transcriptIds = idToInteractor.entrySet().stream().filter(entry -> entry.getValue() instanceof NucleicAcid).map(Map.Entry::getKey).collect(Collectors.toList());
 
             querySequences(transcriptIds, idToInteractor);
 
-            List<String> geneIds = idToInteractor.entrySet().stream().filter(entry -> entry.getValue() instanceof Gene).map(Map.Entry::getKey).collect(Collectors.toList());
+            queryUniprotXrefs(translationIdToInteractor);
 
-            queryUniprotXrefs(geneIds, idToInteractor);
 
             return idToInteractor.values();
         } catch (Exception e) {
@@ -95,42 +98,41 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
         }
     }
 
-    private void queryInteractors(List<String> ids, Map<String, Interactor> output) throws IOException, InterruptedException {
-        this.postRequest(ids, MAIN_URL, new TypeReference<Map<String, ApiObject>>() {
+    private void queryInteractors(List<String> ids, Map<String, Interactor> output, Map<String, Interactor> translationIdToInteractor) throws IOException, InterruptedException {
+        this.postRequest(ids, MAIN_URL, new HashMap<>(Map.of("expand", 1)), new TypeReference<Map<String, ApiObject>>() {
                 }, idToEntree -> output.putAll(idToEntree.entrySet().stream()
                         .filter(entry -> entry.getValue() != null)
                         .filter(entry -> supportedTypes.contains(entry.getValue().getObjectType()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, entry -> EnsemblFetcher.this.buildInteractor(entry.getKey(), entry.getValue()))))
+                        .collect(Collectors.toMap(Map.Entry::getKey, entry -> buildInteractor(entry.getKey(), entry.getValue(), translationIdToInteractor))))
         );
     }
 
     private void querySequences(List<String> ids, Map<String, Interactor> idToInteractor) throws IOException, InterruptedException {
-        this.postRequest(ids, SEQUENCE_URL, new TypeReference<List<ApiSequence>>() {
+        this.postRequest(ids, SEQUENCE_URL,new HashMap<>(Map.of("type", "cdna")),  new TypeReference<List<ApiSequence>>() {
                 }, sequences -> sequences.forEach(
                         apiSequence -> ((NucleicAcid) idToInteractor.get(apiSequence.getId()))
                                 .setSequence(apiSequence.getSeq()))
         );
     }
 
-    private void queryUniprotXrefs(List<String> ids, Map<String, Interactor> idToInteractor) throws IOException {
-        if (ids == null || ids.isEmpty()) return;
-        // TODO Make it work for Transcripts when API updated
-        // TODO Filter to only get the main reference
-        for (String id : ids) {
+    private void queryUniprotXrefs(Map<String, Interactor> translationIdToInteractor) throws IOException {
+        for (String id : translationIdToInteractor.keySet()) {
             URL uniprotURL = new URL(String.format(UNIPROT_URL, id));
-            Collection<Xref> xrefs = idToInteractor.get(id).getXrefs();
+            Collection<Xref> xrefs = translationIdToInteractor.get(id).getXrefs();
             Arrays.stream(mapper.readValue(uniprotURL, ApiXref[].class))
+                    .filter(apiXref -> apiXref.getDbname().toUpperCase().contains("UNIPROT"))
                     .forEach(apiXref -> xrefs.add(
                             new DefaultXref(uniprotCV, apiXref.getPrimaryId(), geneProductCV)
                     ));
         }
     }
 
-    private <R> void postRequest(List<String> ids, String url, TypeReference<R> returnType, Consumer<R> consumer) throws IOException, InterruptedException {
+    private <R> void postRequest(List<String> ids, String url,Map<String, Object> extraParams, TypeReference<R> returnType, Consumer<R> consumer) throws IOException, InterruptedException {
         if (ids == null || ids.isEmpty()) return;
+        extraParams.put("ids", ids);
         HttpRequest request = requestBuilder
                 .uri(URI.create(url))
-                .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(Map.of("ids", ids))))
+                .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(extraParams)))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -138,7 +140,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
         consumer.accept(mapper.readValue(response.body(), returnType));
     }
 
-    private Interactor buildInteractor(String identifier, ApiObject entree) {
+    private Interactor buildInteractor(String identifier, ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
         DefaultXref id = new DefaultXref(ensemblCV, identifier, identityCv);
         OntologyTerm speciesTaxon = getTermByName(entree.getSpecies().replace("_", " "), "ncbi taxonomy");
 
@@ -160,6 +162,19 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
                 gene.getAliases().add(new DefaultAlias(geneNameCV, entree.getDisplayName()));
                 gene.getXrefs().add(new DefaultXref(ensemblCV, extractPureIdentifier(entree.getCanonicalTranscript()), transcriptCV));
 
+
+                Stream.of(entree.getTranscripts()) // Transcripts
+                        .filter(Objects::nonNull)
+                        .flatMap(List::stream)
+
+                        .filter(ApiObject::isCanonical) // Canonical transcripts (normally 1)
+                        .map(ApiObject::getTranslations) // Translations (normally 1)
+                        .filter(Objects::nonNull)
+                        .flatMap(List::stream)
+
+                        .map(ApiObject::getId) // Translation Ids
+                        .forEach(translationId -> translationIdToInteractor.put(translationId, gene));
+
                 interactor = gene;
                 break;
             case TRANSCRIPT:
@@ -172,6 +187,13 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
 
                 nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, entree.getParentId(), geneCV));
                 nucleicAcid.getAliases().add(new DefaultAlias(geneNameCV, geneName));
+
+                Stream.of(entree.getTranslations()) // Translations (normally 1)
+                    .filter(Objects::nonNull)
+                    .flatMap(List::stream)
+
+                    .map(ApiObject::getId) // Translation Ids
+                    .forEach(translationId -> translationIdToInteractor.put(translationId, nucleicAcid));
 
                 interactor = nucleicAcid;
             case TRANSLATION:
