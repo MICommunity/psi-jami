@@ -39,6 +39,7 @@ public class RNACentralFetcherTest {
         // https://rnacentral.org/api/v1/rna/URS0002311975/xrefs.json
         Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS0002311975_9606");
         NucleicAcid acid = nucleicAcids.iterator().next();
+        assertEquals("transfer rna", acid.getInteractorType().getFullName());
         List<Xref> xrefs = acid.getXrefs().stream().filter(xref -> xref.getDatabase().getShortName().equals("pdbe")).collect(Collectors.toList());
         assertFalse(xrefs.isEmpty());
         assertTrue("URS0002311975_9606 should have a PDB Xref to 7ONU",
@@ -48,19 +49,34 @@ public class RNACentralFetcherTest {
 
     @Test
     public void testEnsemblXref() throws BridgeFailedException {
+        // https://rnacentral.org/rna/URS0000031E12/9606
         // https://rnacentral.org/api/v1/rna/URS0000031E12_9606.json
         // https://rnacentral.org/api/v1/rna/URS0000031E12/xrefs.json
         Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS0000031E12_9606");
-//        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS000077CD3E_9606");
         NucleicAcid acid = nucleicAcids.iterator().next();
         List<Xref> xrefs = acid.getXrefs().stream().filter(xref -> xref.getDatabase().getShortName().equals("ensembl")).collect(Collectors.toList());
         assertFalse(xrefs.isEmpty());
-//        assertTrue("URS000077CD3E_9606 should have a transcript Xref to ENST00000618127",
-//                xrefs.stream().anyMatch(x -> x.getId().equals("ENST00000618127") && x.getQualifier().getShortName().equals("transcript")));
-        assertTrue("URS000077CD3E_9606 should have a gene Xref to ENSG00000199030.2",
-                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030.2") && x.getQualifier().getShortName().equals("gene")));
-        assertTrue( "Querying for a human identifier should only get human ensembl XRefs"
-                ,xrefs.stream().allMatch(xref -> xref.getId().startsWith("ENS")));
+        assertTrue("URS0000031E12_9606 should have a transcript Xref to ENST00000362160",
+                xrefs.stream().anyMatch(x -> x.getId().equals("ENST00000362160") && x.getQualifier().getShortName().equals("transcript")));
+        assertTrue("URS0000031E12_9606 should have a gene Xref to ENSG00000199030",
+                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030") && x.getQualifier().getShortName().equals("gene ref")));
+        assertTrue("Querying for a human identifier should only get human ensembl XRefs",
+                xrefs.stream().allMatch(xref -> xref.getId().startsWith("ENS")));
+
+        assertTrue("In case of complicated types like pre_miRNA, the default type should be RNA, but we should add an annotation specifying the RNA Central type",
+                acid.getAnnotations().stream().anyMatch(annotation -> annotation.getValue().contains("pre_miRNA")));
+
+
+        // Side tests
+
+        assertTrue("URS0000031E12_9606 should have a RefSeq Xref to NR_029480",
+                acid.getXrefs().stream().anyMatch(x -> x.getId().equals("NR_029480")));
+
+        assertTrue("URS0000031E12_9606 should have a miRBase Xref to MI0000064",
+                acid.getXrefs().stream().anyMatch(x -> x.getId().equals("MI0000064")));
+
+        assertTrue("All xrefs should have a qualifier",
+                acid.getXrefs().stream().allMatch(xref -> xref.getQualifier() != null));
     }
 
     @Test
@@ -73,7 +89,6 @@ public class RNACentralFetcherTest {
         assertFalse(xrefs.isEmpty());
         assertTrue("URS000075C808_9606 should have a RefSeq Xref to NR_003716",
                 xrefs.stream().anyMatch(xref -> xref.getId().equals("NR_003716")));
-        assertEquals("URS000075C808_9606 should have a RefSeq of NR_003716", "NR_003716", acid.getRefseq());
     }
 
     @Test

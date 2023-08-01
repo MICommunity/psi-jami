@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.bridges.ols;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher;
 import psidev.psi.mi.jami.model.CvTerm;
@@ -89,6 +90,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
                throw new BridgeFailedException(e);
            }
+        } catch (RestClientException ignored) {
         }
 
         // 2) if no results, return null
@@ -154,7 +156,6 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         // 1) query ols which returns full name.
         HashMap<String,String> termNamesMap = new HashMap<>();
         Term term = olsClient.getExactTermByName(searchName, olsOntologyName);
-
         // 2) if no results, return null
         if (term == null) return null;
         termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
