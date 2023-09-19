@@ -107,6 +107,12 @@ public class Mitab25Writer extends AbstractMitabWriter<Interaction, BinaryIntera
     /** {@inheritDoc} */
     @Override
     public void write(Interaction interaction) throws MIIOException {
+        write(interaction, null);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(Interaction interaction, Double miScore) throws MIIOException {
         if (this.interactionEvidenceWriter == null || this.modelledInteractionWriter == null){
             throw new IllegalStateException("The Mitab writer has not been initialised. The options for the Mitab writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
@@ -117,19 +123,19 @@ public class Mitab25Writer extends AbstractMitabWriter<Interaction, BinaryIntera
         }
 
         if (interaction instanceof InteractionEvidence){
-            this.interactionEvidenceWriter.write((InteractionEvidence) interaction);
+            this.interactionEvidenceWriter.write((InteractionEvidence) interaction, miScore);
             if (hasJustStarted){
-               this.modelledInteractionWriter.start();
+                this.modelledInteractionWriter.start();
             }
         }
         else if (interaction instanceof ModelledInteraction){
-            this.modelledInteractionWriter.write((ModelledInteraction) interaction);
+            this.modelledInteractionWriter.write((ModelledInteraction) interaction, miScore);
             if (hasJustStarted){
-               this.interactionEvidenceWriter.start();
+                this.interactionEvidenceWriter.start();
             }
         }
         else {
-            super.write(interaction);
+            super.write(interaction, miScore);
         }
     }
 

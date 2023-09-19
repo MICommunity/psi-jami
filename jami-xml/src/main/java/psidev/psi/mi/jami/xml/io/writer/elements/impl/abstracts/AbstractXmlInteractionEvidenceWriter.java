@@ -1,6 +1,8 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.DefaultConfidence;
+import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
@@ -184,11 +186,14 @@ public abstract class AbstractXmlInteractionEvidenceWriter<I extends Interaction
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(I object) throws XMLStreamException {
+    protected void writeConfidences(I object, Double miScore) throws XMLStreamException {
         // write confidences
-        if (!object.getConfidences().isEmpty()){
+        if (!object.getConfidences().isEmpty() || miScore != null) {
             // write start confidence list
             getStreamWriter().writeStartElement("confidenceList");
+            if (miScore != null) {
+                getConfidenceWriter().write(new DefaultConfidence(new DefaultCvTerm("intact-miscore"), Double.toString(miScore)));
+            }
             for (Object ann : object.getConfidences()){
                 getConfidenceWriter().write((Confidence)ann);
             }

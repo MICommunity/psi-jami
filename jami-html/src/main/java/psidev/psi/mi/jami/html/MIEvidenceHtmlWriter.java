@@ -61,9 +61,13 @@ public class MIEvidenceHtmlWriter extends AbstractMIHtmlWriter<InteractionEviden
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(InteractionEvidence interaction) throws IOException {
-        if (!interaction.getConfidences().isEmpty()){
+    protected void writeConfidences(InteractionEvidence interaction, Double miScore) throws IOException {
+        if (!interaction.getConfidences().isEmpty() || miScore != null) {
             writeSubTitle("Confidences: ");
+
+            if (miScore != null) {
+                writeProperty("intact-miscore", Double.toString(miScore));
+            }
 
             for (Confidence ref : interaction.getConfidences()){
                 writeProperty(ref.getType().getShortName(), ref.getValue());

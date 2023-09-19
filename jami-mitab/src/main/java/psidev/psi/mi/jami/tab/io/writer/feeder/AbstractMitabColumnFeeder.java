@@ -204,6 +204,16 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
     }
 
     /** {@inheritDoc} */
+    public void writeMiScore(Double miScore) throws IOException {
+        if (miScore != null){
+            escapeAndWriteString("intact-miscore");
+            // write MI score value
+            writer.write(MitabUtils.XREF_SEPARATOR);
+            escapeAndWriteString(Double.toString(miScore));
+        }
+    }
+
+    /** {@inheritDoc} */
     public void writeParameter(Parameter parameter) throws IOException {
         if (parameter != null){
             // first parameter type

@@ -83,4 +83,11 @@ public class SimpleJsonBinaryInteractionWriter<I extends BinaryInteraction> exte
         super.write(object);
         this.currentBinaryNumber++;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(I object, Double miScore) throws IOException {
+        super.write(object, miScore);
+        this.currentBinaryNumber++;
+    }
 }

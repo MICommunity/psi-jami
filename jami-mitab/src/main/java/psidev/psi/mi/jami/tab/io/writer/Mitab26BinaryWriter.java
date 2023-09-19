@@ -82,29 +82,35 @@ public class Mitab26BinaryWriter extends AbstractMitab26BinaryWriter<BinaryInter
     /** {@inheritDoc} */
     @Override
     public void write(BinaryInteraction interaction) throws MIIOException {
+        write(interaction, null);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(BinaryInteraction interaction, Double miScore) throws MIIOException {
         if (this.binaryEvidenceWriter == null || this.modelledBinaryWriter == null){
             throw new IllegalStateException("The Mitab writer has not been initialised. The options for the Mitab writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
 
         boolean hasJustStarted = !hasStarted();
         if (hasJustStarted){
-           start();
+            start();
         }
 
         if (interaction instanceof BinaryInteractionEvidence){
-            this.binaryEvidenceWriter.write((BinaryInteractionEvidence) interaction);
+            this.binaryEvidenceWriter.write((BinaryInteractionEvidence) interaction, miScore);
             if (hasJustStarted){
                 this.modelledBinaryWriter.start();
             }
         }
         else if (interaction instanceof ModelledBinaryInteraction){
-            this.modelledBinaryWriter.write((ModelledBinaryInteraction) interaction);
+            this.modelledBinaryWriter.write((ModelledBinaryInteraction) interaction, miScore);
             if (hasJustStarted){
                 this.binaryEvidenceWriter.start();
             }
         }
         else {
-            super.write(interaction);
+            super.write(interaction, miScore);
         }
     }
 

@@ -109,7 +109,7 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction>
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(T object) {
+    protected void writeConfidences(T object, Double miScore) {
         // nothing to do
     }
 

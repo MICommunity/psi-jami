@@ -91,6 +91,17 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public void write(T interaction) throws MIIOException {
+        write(interaction, null);
+    }
+
+    /**
+     * <p>write</p>
+     *
+     * @param interaction a T object.
+     * @param miScore : the MI score of the interaction to write
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
+    public void write(T interaction, Double miScore) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The HTML writer was not initialised. The options for the PSI-MI HTML Writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
@@ -159,7 +170,7 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
                 writeParameters(interaction);
 
                 // write confidences
-                writeConfidences(interaction);
+                writeConfidences(interaction, miScore);
 
                 // write cooperative effects
                 writeCooperativeEffects(interaction);
@@ -220,6 +231,18 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         write(binaryIterator);
     }
 
+    /**
+     * <p>write</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @param miScore : the MI score of the interactions to write
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
+    public void write(Collection<? extends T> interactions, Double miScore) throws MIIOException {
+        Iterator<? extends T> binaryIterator = interactions.iterator();
+        write(binaryIterator, miScore);
+    }
+
     /** {@inheritDoc} */
     public void write(Iterator<? extends T> interactions) throws MIIOException {
         if (!isInitialised){
@@ -227,6 +250,16 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
         }
         while(interactions.hasNext()){
             write(interactions.next());
+        }
+    }
+
+    /** {@inheritDoc} */
+    public void write(Iterator<? extends T> interactions, Double miScore) throws MIIOException {
+        if (!isInitialised){
+            throw new IllegalStateException("The HTML writer was not initialised. The options for the PSI-MI HTML Writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
+        }
+        while(interactions.hasNext()){
+            write(interactions.next(), miScore);
         }
     }
 
@@ -407,9 +440,10 @@ public abstract class AbstractMIHtmlWriter<T extends Interaction, P extends Part
      * <p>writeConfidences</p>
      *
      * @param interaction a T object.
+     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
-    protected abstract void writeConfidences(T interaction) throws IOException;
+    protected abstract void writeConfidences(T interaction, Double miScore) throws IOException;
 
     /**
      * <p>writeParameters</p>

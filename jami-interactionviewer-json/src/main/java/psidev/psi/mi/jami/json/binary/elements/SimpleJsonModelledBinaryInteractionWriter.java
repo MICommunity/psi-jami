@@ -83,4 +83,11 @@ public class SimpleJsonModelledBinaryInteractionWriter extends SimpleJsonModelle
         super.write(object);
         this.currentBinaryNumber++;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(ModelledBinaryInteraction object, Double miScore) throws IOException {
+        super.write(object, miScore);
+        this.currentBinaryNumber++;
+    }
 }

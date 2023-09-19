@@ -132,18 +132,24 @@ public class MIJsonWriter extends AbstractMIJsonWriter<Interaction> {
     /** {@inheritDoc} */
     @Override
     public void write(Interaction interaction) throws MIIOException {
+        write(interaction, null);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(Interaction interaction, Double miScore) throws MIIOException {
         if (this.evidenceWriter == null || this.modelledWriter == null){
             throw new IllegalStateException("The Json writer has not been initialised. The options for the Json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
 
         if (interaction instanceof InteractionEvidence){
-            this.evidenceWriter.write((InteractionEvidence) interaction);
+            this.evidenceWriter.write((InteractionEvidence) interaction, miScore);
         }
         else if (interaction instanceof ModelledInteraction){
-            this.modelledWriter.write((ModelledInteraction) interaction);
+            this.modelledWriter.write((ModelledInteraction) interaction, miScore);
         }
         else {
-            super.write(interaction);
+            super.write(interaction, miScore);
         }
     }
 

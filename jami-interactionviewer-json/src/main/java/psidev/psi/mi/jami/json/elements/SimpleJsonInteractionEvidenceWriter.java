@@ -3,6 +3,8 @@ package psidev.psi.mi.jami.json.elements;
 import psidev.psi.mi.jami.json.MIJsonUtils;
 import psidev.psi.mi.jami.json.IncrementalIdGenerator;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.model.impl.DefaultConfidence;
+import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
 import psidev.psi.mi.jami.utils.XrefUtils;
 
 import java.io.IOException;
@@ -58,16 +60,23 @@ public class SimpleJsonInteractionEvidenceWriter<I extends InteractionEvidence> 
      * @param object a I object.
      * @throws java.io.IOException if any.
      */
-    protected void writeOtherProperties(I object) throws IOException {
+    protected void writeOtherProperties(I object, Double miScore) throws IOException {
 
         // write experiment
         getExperimentWriter().write(object);
 
         // confidences
-        if (!object.getConfidences().isEmpty()) {
+        if (!object.getConfidences().isEmpty() || miScore != null) {
             MIJsonUtils.writeSeparator(getWriter());
             MIJsonUtils.writePropertyKey("confidences", getWriter());
             MIJsonUtils.writeOpenArray(getWriter());
+
+            if (miScore != null) {
+                getConfidenceWriter().write(new DefaultConfidence(new DefaultCvTerm("intact-miscore"), Double.toString(miScore)));
+                if (!object.getConfidences().isEmpty()) {
+                    MIJsonUtils.writeSeparator(getWriter());
+                }
+            }
 
             Iterator<Confidence> confIterator = object.getConfidences().iterator();
             while (confIterator.hasNext()) {

@@ -94,9 +94,9 @@ public class LightExpandedXmlWriter extends AbstractExpandedXmlWriter<Interactio
 
     /** {@inheritDoc} */
     @Override
-    protected void writeInteraction() throws XMLStreamException {
+    protected void writeInteraction(Double miScore) throws XMLStreamException {
         // write interaction
-        super.writeInteraction();
+        super.writeInteraction(miScore);
         // remove experiments
         for (Object exp : ((PsiXmlExtendedInteractionWriter)getInteractionWriter()).extractDefaultExperimentsFrom(getCurrentInteraction())){
             getElementCache().removeObject(exp);

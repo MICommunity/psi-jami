@@ -204,9 +204,13 @@ public class MIModelledHtmlWriter extends AbstractMIHtmlWriter<ModelledInteracti
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(ModelledInteraction interaction) throws IOException {
-        if (!interaction.getModelledConfidences().isEmpty()){
+    protected void writeConfidences(ModelledInteraction interaction, Double miScore) throws IOException {
+        if (!interaction.getModelledConfidences().isEmpty() || miScore != null) {
             writeSubTitle("Confidences: ");
+
+            if (miScore != null) {
+                writeProperty("intact-miscore", Double.toString(miScore));
+            }
 
             for (Confidence ref : interaction.getModelledConfidences()){
                 writeProperty(ref.getType().getShortName(), ref.getValue());

@@ -82,6 +82,17 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
      * @throws java.io.IOException if any.
      */
     public void write(I object) throws IOException {
+        write(object, null);
+    }
+
+    /**
+     * <p>write.</p>
+     *
+     * @param object a I object.
+     * @param miScore : the MI score of the interaction to write
+     * @throws java.io.IOException if any.
+     */
+    public void write(I object, Double miScore) throws IOException {
         Xref preferredIdentifier;
 
         if(object instanceof Complex){
@@ -116,7 +127,7 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
                 getCvWriter().write(object.getInteractionType());
             }
 
-            writeOtherProperties(object);
+            writeOtherProperties(object, miScore);
 
             // then interaction identifiers
             if (hasIdentifiers(object)){
@@ -235,9 +246,10 @@ public class SimpleJsonInteractionWriter<I extends Interaction> implements JsonE
      * <p>writeOtherProperties.</p>
      *
      * @param object a I object.
+     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
-    protected void writeOtherProperties(I object) throws IOException {
+    protected void writeOtherProperties(I object, Double miScore) throws IOException {
         // nothing to write here but can be overridden
     }
 

@@ -171,6 +171,12 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
     /** {@inheritDoc} */
     @Override
     public void write(Iterator<? extends I> interactions) throws MIIOException {
+        write(interactions, null);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(Iterator<? extends I> interactions, Double miScore) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
             throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
@@ -196,7 +202,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
                     }
                 }
                 while(interaction != null && this.evidenceWriter.getInteractionType().isAssignableFrom(interaction.getClass()));
-                this.evidenceWriter.write(evidences);
+                this.evidenceWriter.write(evidences, miScore);
             }
             else if (interaction != null && this.modelledWriter.getInteractionType() != null
                     && this.modelledWriter.getInteractionType().isAssignableFrom(interaction.getClass())){
@@ -211,7 +217,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
                     }
                 }
                 while(interaction != null && this.modelledWriter.getInteractionType().isAssignableFrom(interaction.getClass()));
-                this.modelledWriter.write(modelledList);
+                this.modelledWriter.write(modelledList, miScore);
             }
             else if (interaction != null){
                 interactionList.clear();
@@ -226,7 +232,7 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
                 }
                 while(interaction != null && !this.evidenceWriter.getInteractionType().isAssignableFrom(interaction.getClass())
                         && !this.modelledWriter.getInteractionType().isAssignableFrom(interaction.getClass()));
-                this.lightWriter.write(interactionList);
+                this.lightWriter.write(interactionList, miScore);
             }
             else{
                 break;
@@ -243,6 +249,12 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
 
     /** {@inheritDoc} */
     @Override
+    public void write(Collection<? extends I> interactions, Double miScore) throws MIIOException {
+        write(interactions.iterator(), miScore);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void write(I interaction) throws MIIOException {
         if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
             throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
@@ -255,6 +267,23 @@ public abstract class AbstractExpandedXmlMixWriter<I extends Interaction, M exte
         }
         else{
             this.lightWriter.write(interaction);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void write(I interaction, Double miScore) throws MIIOException {
+        if (this.modelledWriter == null || this.evidenceWriter == null || this.lightWriter == null){
+            throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
+        }
+        if (this.evidenceWriter.getInteractionType() != null && this.evidenceWriter.getInteractionType().isAssignableFrom(interaction.getClass())){
+            this.evidenceWriter.write((E)interaction, miScore);
+        }
+        else if (this.modelledWriter.getInteractionType() != null && this.modelledWriter.getInteractionType().isAssignableFrom(interaction.getClass())){
+            this.modelledWriter.write((M)interaction, miScore);
+        }
+        else{
+            this.lightWriter.write(interaction, miScore);
         }
     }
 

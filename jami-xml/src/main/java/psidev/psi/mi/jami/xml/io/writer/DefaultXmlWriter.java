@@ -126,6 +126,21 @@ public class DefaultXmlWriter implements InteractionWriter {
     /**
      * <p>write.</p>
      *
+     * @param interaction a {@link psidev.psi.mi.jami.model.Interaction} object.
+     * @param miScore : the MI score of the interaction to write
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
+    public void write(Interaction interaction, Double miScore) throws MIIOException {
+        if (this.delegate == null){
+            throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
+                    "should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
+        }
+        this.delegate.write(interaction, miScore);
+    }
+
+    /**
+     * <p>write.</p>
+     *
      * @param interactions a {@link java.util.Collection} object.
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
@@ -137,6 +152,21 @@ public class DefaultXmlWriter implements InteractionWriter {
         this.delegate.write(interactions);
     }
 
+    /**
+     * <p>write.</p>
+     *
+     * @param interactions a {@link java.util.Collection} object.
+     * @param miScore : the MI score of the interactions to write
+     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
+     */
+    public void write(Collection interactions, Double miScore) throws MIIOException {
+        if (this.delegate == null){
+            throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
+                    "should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
+        }
+        this.delegate.write(interactions, miScore);
+    }
+
     /** {@inheritDoc} */
     public void write(Iterator interactions) throws MIIOException {
         if (this.delegate == null){
@@ -144,6 +174,15 @@ public class DefaultXmlWriter implements InteractionWriter {
                     "should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
         this.delegate.write(interactions);
+    }
+
+    /** {@inheritDoc} */
+    public void write(Iterator interactions, Double miScore) throws MIIOException {
+        if (this.delegate == null){
+            throw new IllegalStateException("The PSI-MI XML interaction writer has not been initialised. The options for the interaction writer " +
+                    "should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
+        }
+        this.delegate.write(interactions, miScore);
     }
 
     /**

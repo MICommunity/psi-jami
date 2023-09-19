@@ -61,7 +61,7 @@ public class LightMIHtmlWriter extends AbstractMIHtmlWriter<Interaction, Partici
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(Interaction interaction) throws IOException {
+    protected void writeConfidences(Interaction interaction, Double miScore) throws IOException {
         // do nothing
     }
 

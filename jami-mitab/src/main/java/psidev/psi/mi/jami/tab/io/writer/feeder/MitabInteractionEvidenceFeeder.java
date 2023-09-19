@@ -200,10 +200,18 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
      * <p>writeInteractionConfidences.</p>
      *
      * @param interaction a {@link psidev.psi.mi.jami.binary.BinaryInteractionEvidence} object.
+     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
-    public void writeInteractionConfidences(BinaryInteractionEvidence interaction) throws IOException {
-        if (!interaction.getConfidences().isEmpty()){
+    public void writeInteractionConfidences(BinaryInteractionEvidence interaction, Double miScore) throws IOException {
+        if (!interaction.getConfidences().isEmpty() || miScore != null){
+
+            if (miScore != null) {
+                writeMiScore(miScore);
+                if (!interaction.getConfidences().isEmpty()) {
+                    getWriter().write(MitabUtils.FIELD_SEPARATOR);
+                }
+            }
 
             Iterator<Confidence> confIterator = interaction.getConfidences().iterator();
             while (confIterator.hasNext()) {
