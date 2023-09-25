@@ -3,8 +3,6 @@ package psidev.psi.mi.jami.json.elements;
 import psidev.psi.mi.jami.json.MIJsonUtils;
 import psidev.psi.mi.jami.json.IncrementalIdGenerator;
 import psidev.psi.mi.jami.model.*;
-import psidev.psi.mi.jami.model.impl.DefaultCvTerm;
-import psidev.psi.mi.jami.model.impl.DefaultModelledConfidence;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -58,7 +56,7 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
      * @param object a I object.
      * @throws java.io.IOException if any.
      */
-    protected void writeOtherProperties(I object, Double miScore) throws IOException {
+    protected void writeOtherProperties(I object) throws IOException {
 
         if (object instanceof Complex) {
             Complex complex = (Complex) object;
@@ -80,17 +78,10 @@ public class SimpleJsonModelledInteractionWriter<I extends ModelledInteraction> 
         }
 
         // confidences
-        if (!object.getModelledConfidences().isEmpty() || miScore != null) {
+        if (!object.getModelledConfidences().isEmpty()) {
             MIJsonUtils.writeSeparator(getWriter());
             MIJsonUtils.writePropertyKey("confidences", getWriter());
             MIJsonUtils.writeOpenArray(getWriter());
-
-            if (miScore != null) {
-                getConfidenceWriter().write(new DefaultModelledConfidence(new DefaultCvTerm("intact-miscore"), Double.toString(miScore)));
-                if (!object.getModelledConfidences().isEmpty()) {
-                    MIJsonUtils.writeSeparator(getWriter());
-                }
-            }
 
             Iterator<ModelledConfidence> confIterator = object.getModelledConfidences().iterator();
             while (confIterator.hasNext()) {

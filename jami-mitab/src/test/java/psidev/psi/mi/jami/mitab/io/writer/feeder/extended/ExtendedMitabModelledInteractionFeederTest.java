@@ -118,7 +118,7 @@ public class ExtendedMitabModelledInteractionFeederTest {
         binary.getModelledConfidences().add(new MitabConfidence(new DefaultCvTerm("mi-score"), "0.5", "test"));
         binary.getModelledConfidences().add(new DefaultModelledConfidence(new DefaultCvTerm("author-score"), "high"));
 
-        feeder.writeInteractionConfidences(binary, null);
+        feeder.writeInteractionConfidences(binary);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class ExtendedMitabModelledInteractionFeederTest {
         binary.getModelledConfidences().add(new MitabConfidence(new DefaultCvTerm("mi-score"), "0.5", "test"));
         binary.getModelledConfidences().add(new MitabConfidence(new DefaultCvTerm("author-score"), "high"));
 
-        feeder.writeInteractionConfidences(binary, null);
+        feeder.writeInteractionConfidences(binary);
         Assert.assertEquals("mi-score:0.5(test)|author-score:high", writer.toString());
     }
 

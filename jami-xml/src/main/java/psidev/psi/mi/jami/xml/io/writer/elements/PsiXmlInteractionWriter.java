@@ -1,6 +1,5 @@
 package psidev.psi.mi.jami.xml.io.writer.elements;
 
-import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interaction;
 
@@ -51,13 +50,4 @@ public interface PsiXmlInteractionWriter<T extends Interaction> extends PsiXmlEl
      * @param complexAsInteractor a boolean.
      */
     public void setComplexAsInteractor(boolean complexAsInteractor);
-
-    /**
-     * <p>write.</p>
-     *
-     * @param object a T object.
-     * @param miScore : the MI score of the interaction to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(T object, Double miScore) throws MIIOException;
 }

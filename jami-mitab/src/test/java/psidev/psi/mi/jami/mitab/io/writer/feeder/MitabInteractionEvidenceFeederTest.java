@@ -170,7 +170,7 @@ public class MitabInteractionEvidenceFeederTest {
         binary.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("mi-score"), "0.5"));
         binary.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("author-score"), "high"));
 
-        feeder.writeInteractionConfidences(binary, null);
+        feeder.writeInteractionConfidences(binary);
         Assert.assertEquals("mi-score:0.5|author-score:high", writer.toString());
     }
 

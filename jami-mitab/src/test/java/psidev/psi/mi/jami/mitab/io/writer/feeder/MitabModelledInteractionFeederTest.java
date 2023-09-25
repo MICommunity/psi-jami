@@ -134,7 +134,7 @@ public class MitabModelledInteractionFeederTest {
         binary.getModelledConfidences().add(new DefaultModelledConfidence(new DefaultCvTerm("mi-score"), "0.5"));
         binary.getModelledConfidences().add(new DefaultModelledConfidence(new DefaultCvTerm("author-score"), "high"));
 
-        feeder.writeInteractionConfidences(binary, null);
+        feeder.writeInteractionConfidences(binary);
         Assert.assertEquals("mi-score:0.5|author-score:high", writer.toString());
     }
 

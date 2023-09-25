@@ -311,17 +311,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
             throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
         registerInteractionForEntry(interaction);
-        writeInteractionListContent(null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(T interaction, Double miScore) throws MIIOException {
-        if (!isInitialised){
-            throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
-        }
-        registerInteractionForEntry(interaction);
-        writeInteractionListContent(miScore);
+        writeInteractionListContent();
     }
 
     /** {@inheritDoc} */
@@ -331,17 +321,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
             throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
         registerInteractionsForEntry(interactions);
-        writeInteractionListContent(null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(Collection<? extends T> interactions, Double miScore) throws MIIOException {
-        if (!isInitialised){
-            throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
-        }
-        registerInteractionsForEntry(interactions);
-        writeInteractionListContent(miScore);
+        writeInteractionListContent();
     }
 
     /** {@inheritDoc} */
@@ -351,17 +331,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
             throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
         registerInteractionsForEntry(interactions);
-        writeInteractionListContent(null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(Iterator<? extends T> interactions, Double miScore) throws MIIOException {
-        if (!isInitialised){
-            throw new IllegalStateException("The PSI-XML writer was not initialised. The options for the PSI-XML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
-        }
-        registerInteractionsForEntry(interactions);
-        writeInteractionListContent(miScore);
+        writeInteractionListContent();
     }
 
     /** {@inheritDoc} */
@@ -593,7 +563,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     /**
      * <p>writeInteractionListContent.</p>
      */
-    protected void writeInteractionListContent(Double miScore) {
+    protected void writeInteractionListContent() {
         started = true;
         try {
             while (this.interactionsIterator.hasNext()){
@@ -620,7 +590,7 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
 
                 // write interaction
                 if (getProcessedInteractions().add(this.currentInteraction)){
-                    writeInteraction(miScore);
+                    writeInteraction();
                 }
             }
 
@@ -664,9 +634,9 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
      *
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    protected void writeInteraction(Double miScore) throws XMLStreamException {
+    protected void writeInteraction() throws XMLStreamException {
         // write interaction
-        this.interactionWriter.write(this.currentInteraction, miScore);
+        this.interactionWriter.write(this.currentInteraction);
     }
 
     /**

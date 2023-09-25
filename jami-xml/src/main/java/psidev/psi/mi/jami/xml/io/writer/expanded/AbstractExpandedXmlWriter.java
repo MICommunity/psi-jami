@@ -130,9 +130,9 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
      *
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    protected void writeInteraction(Double miScore) throws XMLStreamException {
+    protected void writeInteraction() throws XMLStreamException {
         // write interaction
-        super.writeInteraction(miScore);
+        super.writeInteraction();
         // remove experiments
         getElementCache().removeObject(getInteractionWriter().extractDefaultExperimentFrom(getCurrentInteraction()));
     }

@@ -83,11 +83,4 @@ public class SimpleJsonBinaryInteractionEvidenceWriter extends SimpleJsonInterac
         super.write(object);
         this.currentBinaryNumber++;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(BinaryInteractionEvidence object, Double miScore) throws IOException {
-        super.write(object, miScore);
-        this.currentBinaryNumber++;
-    }
 }

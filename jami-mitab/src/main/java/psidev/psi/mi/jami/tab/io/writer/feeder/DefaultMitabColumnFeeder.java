@@ -87,7 +87,7 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
     }
 
     /** {@inheritDoc} */
-    public void writeInteractionConfidences(BinaryInteraction interaction, Double miScore) throws IOException {
+    public void writeInteractionConfidences(BinaryInteraction interaction) throws IOException {
         getWriter().write(MitabUtils.EMPTY_COLUMN);
     }
 
@@ -99,12 +99,6 @@ public class DefaultMitabColumnFeeder extends AbstractMitabColumnFeeder<BinaryIn
     /** {@inheritDoc} */
     @Override
     public void writeConfidence(Confidence conf) throws IOException {
-        // writes nothing
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void writeMiScore(Double miScore) throws IOException {
         // writes nothing
     }
 

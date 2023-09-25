@@ -102,9 +102,9 @@ public class ExpandedXmlBinaryEvidenceWriter extends AbstractExpandedXmlWriter<B
 
     /** {@inheritDoc} */
     @Override
-    protected void writeInteraction(Double miScore) throws XMLStreamException {
+    protected void writeInteraction() throws XMLStreamException {
         // write interaction
-        super.writeInteraction(miScore);
+        super.writeInteraction();
         // remove experiments
         for (Object exp : ((PsiXmlExtendedInteractionWriter)getInteractionWriter()).extractDefaultExperimentsFrom(getCurrentInteraction())){
             getElementCache().removeObject(exp);

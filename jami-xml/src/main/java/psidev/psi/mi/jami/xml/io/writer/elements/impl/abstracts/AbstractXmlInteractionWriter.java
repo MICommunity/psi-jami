@@ -234,12 +234,6 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
     /** {@inheritDoc} */
     @Override
     public void write(T object) throws MIIOException {
-        write(object, null);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(T object, Double miScore) throws MIIOException {
         try {
             // write start
             writeStartInteraction();
@@ -270,7 +264,7 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
             // write negative
             writeNegative(object);
             // write confidences
-            writeConfidences(object, miScore);
+            writeConfidences(object);
             // write parameters
             writeParameters(object);
             // write other properties
@@ -588,10 +582,9 @@ public abstract class AbstractXmlInteractionWriter<T extends Interaction, P exte
      * <p>writeConfidences.</p>
      *
      * @param object a T object.
-     * @param miScore : the MI score of the interaction to write
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    protected abstract void writeConfidences(T object, Double miScore) throws XMLStreamException;
+    protected abstract void writeConfidences(T object) throws XMLStreamException;
 
     /**
      * <p>writeNegative.</p>

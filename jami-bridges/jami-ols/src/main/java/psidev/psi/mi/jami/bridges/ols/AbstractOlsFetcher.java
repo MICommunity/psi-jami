@@ -45,6 +45,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         dbMap.put("psi-par", "PAR");
         dbMap.put("go", "GO");
         dbMap.put("evidence ontology", "ECO");
+        dbMap.put("ncbi taxonomy", "NCBITaxon");
     }
 
     /**

@@ -102,25 +102,8 @@ public class MIHtmlWriter extends AbstractMIHtmlWriter<Interaction, Participant,
 
     /** {@inheritDoc} */
     @Override
-    public void write(Iterator<? extends Interaction> interactions, Double miScore) throws MIIOException {
-        if (getComplexWriter() == null || this.evidenceWriter == null || this.lightWriter == null){
-            throw new IllegalStateException("The MI HTML writer was not initialised. The options for the HTML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
-        }
-        while(interactions.hasNext()){
-            write(interactions.next(), miScore);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void write(Collection<? extends Interaction> interactions) throws MIIOException {
         write(interactions.iterator());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void write(Collection<? extends Interaction> interactions, Double miScore) throws MIIOException {
-        write(interactions.iterator(), miScore);
     }
 
     /** {@inheritDoc} */
@@ -142,30 +125,13 @@ public class MIHtmlWriter extends AbstractMIHtmlWriter<Interaction, Participant,
 
     /** {@inheritDoc} */
     @Override
-    public void write(Interaction interaction, Double miScore) throws MIIOException {
-        if (getComplexesToWrite() == null || this.evidenceWriter == null || this.lightWriter == null){
-            throw new IllegalStateException("The MI HTML writer was not initialised. The options for the HTML writer should contains at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
-        }
-        if (InteractionEvidence.class.isAssignableFrom(interaction.getClass())){
-            this.evidenceWriter.write((InteractionEvidence)interaction, miScore);
-        }
-        else if (ModelledInteraction.class.isAssignableFrom(interaction.getClass())){
-            getComplexWriter().write((ModelledInteraction)interaction, miScore);
-        }
-        else{
-            this.lightWriter.write(interaction, miScore);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     protected void writeCooperativeEffects(Interaction interaction) {
         // do nothing
     }
 
     /** {@inheritDoc} */
     @Override
-    protected void writeConfidences(Interaction interaction, Double miScore) throws IOException {
+    protected void writeConfidences(Interaction interaction) throws IOException {
         // do nothing
     }
 

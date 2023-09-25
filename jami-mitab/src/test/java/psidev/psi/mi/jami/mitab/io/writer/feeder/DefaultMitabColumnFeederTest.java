@@ -364,7 +364,7 @@ public class DefaultMitabColumnFeederTest {
         MitabModelledBinaryInteraction binary = new MitabModelledBinaryInteraction();
         binary.getModelledConfidences().add(new DefaultModelledConfidence(new DefaultCvTerm("mi-score"), "0.5"));
 
-        feeder.writeInteractionConfidences(binary, null);
+        feeder.writeInteractionConfidences(binary);
         Assert.assertEquals("-", writer.toString());
     }
 

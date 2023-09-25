@@ -8,7 +8,6 @@ import psidev.psi.mi.jami.json.IncrementalIdGenerator;
 import psidev.psi.mi.jami.json.MIJsonUtils;
 import psidev.psi.mi.jami.json.MIJsonWriterOptions;
 import psidev.psi.mi.jami.json.elements.JsonElementWriter;
-import psidev.psi.mi.jami.json.elements.SimpleJsonInteractionWriter;
 import psidev.psi.mi.jami.json.elements.SimpleJsonInteractorWriter;
 import psidev.psi.mi.jami.model.*;
 
@@ -39,7 +38,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
     private IncrementalIdGenerator idGenerator;
     private OntologyTermFetcher fetcher;
     private JsonElementWriter<Interactor> interactorWriter;
-    private SimpleJsonInteractionWriter<I> interactionWriter;
+    private JsonElementWriter<I> interactionWriter;
 
     /**
      * <p>Constructor for AbstractMIJsonWriter.</p>
@@ -240,17 +239,6 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public void write(I interaction) throws MIIOException {
-        write(interaction, null);
-    }
-
-    /**
-     * <p>write.</p>
-     *
-     * @param interaction a I object.
-     * @param miScore : the MI score of the interaction to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(I interaction, Double miScore) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The json writer has not been initialised. The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
         }
@@ -264,7 +252,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
                 while(pIterator.hasNext()){
                     registerAndWriteInteractor(pIterator.next());
                 }
-                getInteractionWriter().write(interaction, miScore);
+                getInteractionWriter().write(interaction);
             }
             else {
                 logger.log(Level.WARNING, "Ignore interaction as it does not contain any participants : "+interaction.toString());
@@ -286,29 +274,10 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
         write(binaryIterator);
     }
 
-    /**
-     * <p>write.</p>
-     *
-     * @param interactions a {@link java.util.Collection} object.
-     * @param miScore : the MI score of the interactions to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(Collection<? extends I> interactions, Double miScore) throws MIIOException {
-        Iterator<? extends I> binaryIterator = interactions.iterator();
-        write(binaryIterator, miScore);
-    }
-
     /** {@inheritDoc} */
     public void write(Iterator<? extends I> interactions) throws MIIOException {
         while(interactions.hasNext()){
             write(interactions.next());
-        }
-    }
-
-    /** {@inheritDoc} */
-    public void write(Iterator<? extends I> interactions, Double miScore) throws MIIOException {
-        while(interactions.hasNext()){
-            write(interactions.next(), miScore);
         }
     }
 
@@ -518,7 +487,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
      *
      * @return a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
      */
-    public SimpleJsonInteractionWriter<I> getInteractionWriter() {
+    public JsonElementWriter<I> getInteractionWriter() {
         if (this.interactionWriter == null){
              initialiseInteractionWriter();
         }
@@ -535,7 +504,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction> implements Int
      *
      * @param interactionWriter a {@link psidev.psi.mi.jami.json.elements.JsonElementWriter} object.
      */
-    protected void setInteractionWriter(SimpleJsonInteractionWriter<I> interactionWriter) {
+    protected void setInteractionWriter(JsonElementWriter<I> interactionWriter) {
         this.interactionWriter = interactionWriter;
     }
 

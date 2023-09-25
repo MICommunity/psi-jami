@@ -190,21 +190,6 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public void write(T interaction) throws MIIOException {
-        write(interaction, null);
-    }
-
-    /**
-     * Writes a binary interaction.
-     * Does not write any extended properties from participants, interaction and features
-     * This method will write empty columns for interaction detection method, publication author and identifier,
-     * source and confidences.
-     * It will also ignore experimental roles, host organism, interaction parameters and participant identification methods
-     *
-     * @param interaction a T object.
-     * @param miScore : the MI score of the interaction to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(T interaction, Double miScore) throws MIIOException {
         if (!isInitialised){
             throw new IllegalStateException("The mitab writer was not initialised. The options for the Mitab25Writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions.");
         }
@@ -212,7 +197,7 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
         try{
             P A = (P) interaction.getParticipantA();
             P B = (P) interaction.getParticipantB();
-            writeBinary(interaction, A, B, miScore);
+            writeBinary(interaction, A, B);
         }
         catch (IOException e) {
             throw new MIIOException("Impossible to write " +interaction.toString(), e);
@@ -234,33 +219,10 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
         write(binaryIterator);
     }
 
-    /**
-     * Writes a collection of binary interactions.
-     * Does not write any extended properties from participants, interaction and features
-     * This method will write empty columns for interaction detection method, publication author and identifier,
-     * source and confidences.
-     * It will also ignore experimental roles, host organism, interaction parameters and participant identification methods
-     *
-     * @param interactions a {@link java.util.Collection} object.
-     * @param miScore : the MI score of the interactions to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(Collection<? extends T> interactions, Double miScore) throws MIIOException {
-        Iterator<? extends T> binaryIterator = interactions.iterator();
-        write(binaryIterator, miScore);
-    }
-
     /** {@inheritDoc} */
     public void write(Iterator<? extends T> interactions) throws MIIOException {
         while(interactions.hasNext()){
             write(interactions.next());
-        }
-    }
-
-    /** {@inheritDoc} */
-    public void write(Iterator<? extends T> interactions, Double miScore) throws MIIOException {
-        while(interactions.hasNext()){
-            write(interactions.next(), miScore);
         }
     }
 
@@ -360,10 +322,9 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
      * @param interaction a T object.
      * @param a a P object.
      * @param b a P object.
-     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
-    protected void writeBinary(T interaction, P a, P b, Double miScore) throws IOException {
+    protected void writeBinary(T interaction, P a, P b) throws IOException {
         if (hasStarted){
             writer.write(MitabUtils.LINE_BREAK);
         }
@@ -416,7 +377,7 @@ public abstract class AbstractMitab25BinaryWriter<T extends BinaryInteraction, P
         this.columnFeeder.writeInteractionIdentifiers(interaction);
         writer.write(MitabUtils.COLUMN_SEPARATOR);
         // skip interaction confidence
-        this.columnFeeder.writeInteractionConfidences(interaction, miScore);
+        this.columnFeeder.writeInteractionConfidences(interaction);
     }
 
     /**

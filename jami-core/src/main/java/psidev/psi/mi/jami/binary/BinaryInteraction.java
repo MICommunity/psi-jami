@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.binary;
 
+import psidev.psi.mi.jami.model.Confidence;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Participant;
@@ -72,4 +73,11 @@ public interface BinaryInteraction<T extends Participant> extends Interaction<T>
      * @param causalRegulatoryMechanism : the complex regulatory mechanism CvTerm
      */
     public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism);
+
+    /**
+     * The MI score of this binary interaction
+     *
+     * @return the MI score Confidence
+     */
+    public Confidence getMiScore();
 }

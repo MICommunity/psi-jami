@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.binary.impl;
 
 import psidev.psi.mi.jami.binary.BinaryInteraction;
+import psidev.psi.mi.jami.model.Confidence;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.impl.AbstractInteraction;
@@ -25,6 +26,7 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
     private T participantB;
     private CvTerm complexExpansion;
     private CvTerm causalRegulatoryMechanism;
+    private Confidence miScore;
 
     /**
      * <p>Constructor for AbstractBinaryInteraction.</p>
@@ -242,6 +244,14 @@ public abstract class AbstractBinaryInteraction<T extends Participant> extends A
      */
     public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
         this.causalRegulatoryMechanism = causalRegulatoryMechanism;
+    }
+
+    public Confidence getMiScore() {
+        return miScore;
+    }
+
+    public void setMiScore(Confidence miScore) {
+        this.miScore = miScore;
     }
 
     /**

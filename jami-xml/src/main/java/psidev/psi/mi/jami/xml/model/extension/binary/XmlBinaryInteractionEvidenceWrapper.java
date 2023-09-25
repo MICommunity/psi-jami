@@ -13,6 +13,7 @@ import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -112,6 +113,14 @@ public class XmlBinaryInteractionEvidenceWrapper implements BinaryInteractionEvi
     /** {@inheritDoc} */
     public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
         this.binaryWrapper.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
+    }
+
+    public Confidence getMiScore(){
+        return this.binaryWrapper.getMiScore();
+    }
+
+    public void setMiScore(Confidence miScore){
+        this.binaryWrapper.setMiScore(miScore);
     }
 
     /**

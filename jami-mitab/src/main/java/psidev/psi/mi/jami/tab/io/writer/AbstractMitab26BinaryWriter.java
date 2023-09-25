@@ -67,13 +67,12 @@ public abstract class AbstractMitab26BinaryWriter<T extends BinaryInteraction, P
      * @param interaction a binary interaction
      * @param a participant a
      * @param b participant b
-     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
     @Override
-    protected void writeBinary(T interaction, P a, P b, Double miScore) throws IOException {
+    protected void writeBinary(T interaction, P a, P b) throws IOException {
         // write tab 25 columns first
-        super.writeBinary(interaction, a, b, miScore);
+        super.writeBinary(interaction, a, b);
 
         MitabColumnFeeder<T, P> columnFeeder = getColumnFeeder();
         getWriter().write(MitabUtils.COLUMN_SEPARATOR);

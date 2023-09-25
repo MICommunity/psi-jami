@@ -102,10 +102,9 @@ public interface MitabColumnFeeder<T extends BinaryInteraction, P extends Partic
      * Writes the confidences of an interaction evidence
      *
      * @param interaction a T object.
-     * @param miScore : the MI score of the interaction to write
      * @throws java.io.IOException if any.
      */
-    public void writeInteractionConfidences(T interaction, Double miScore) throws IOException;
+    public void writeInteractionConfidences(T interaction) throws IOException;
 
     /**
      * This method will write a confidence with a text if text is not null
@@ -114,14 +113,6 @@ public interface MitabColumnFeeder<T extends BinaryInteraction, P extends Partic
      * @throws java.io.IOException if any.
      */
     public void writeConfidence(Confidence conf) throws IOException;
-
-    /**
-     * This method will write a MI score confidence
-     *
-     * @param miScore : the MI score of the interaction to write
-     * @throws java.io.IOException if any.
-     */
-    public void writeMiScore(Double miScore) throws IOException;
 
     /**
      * Write an organism.

@@ -184,17 +184,6 @@ public abstract class AbstractMIJsonWriter<I extends Interaction, B extends Bina
      * @throws psidev.psi.mi.jami.exception.MIIOException if any.
      */
     public void write(I interaction) throws MIIOException {
-        write(interaction, null);
-    }
-
-    /**
-     * <p>write.</p>
-     *
-     * @param interaction a I object.
-     * @param miScore : the MI score of the interaction to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(I interaction, Double miScore) throws MIIOException {
         if (this.binaryWriter == null){
             throw new IllegalStateException("The json writer has not been initialised. The options for the json writer should contain at least "+ InteractionWriterOptions.OUTPUT_OPTION_KEY + " to know where to write the interactions and "+ MIJsonWriterOptions.ONTOLOGY_FETCHER_OPTION_KEY+" to know which OntologyTermFetcher to use.");
         }
@@ -209,7 +198,7 @@ public abstract class AbstractMIJsonWriter<I extends Interaction, B extends Bina
                 this.binaryWriter.setExpansionId(currentExpansionId);
                 currentExpansionId++;
             }
-            this.binaryWriter.write(binaryInteractions, miScore);
+            this.binaryWriter.write(binaryInteractions);
         } catch (ComplexExpansionException e) {
             // do not write anything as this interaction cannot be expanded
         }
@@ -226,29 +215,10 @@ public abstract class AbstractMIJsonWriter<I extends Interaction, B extends Bina
         write(iterator);
     }
 
-    /**
-     * <p>write.</p>
-     *
-     * @param interactions a {@link java.util.Collection} object.
-     * @param miScore : the MI score of the interactions to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException if any.
-     */
-    public void write(Collection<? extends I> interactions, Double miScore) throws MIIOException {
-        Iterator<? extends I> iterator = interactions.iterator();
-        write(iterator, miScore);
-    }
-
     /** {@inheritDoc} */
     public void write(Iterator<? extends I> interactions) throws MIIOException {
         while(interactions.hasNext()){
             write(interactions.next());
-        }
-    }
-
-    /** {@inheritDoc} */
-    public void write(Iterator<? extends I> interactions, Double miScore) throws MIIOException {
-        while(interactions.hasNext()){
-            write(interactions.next(), miScore);
         }
     }
 

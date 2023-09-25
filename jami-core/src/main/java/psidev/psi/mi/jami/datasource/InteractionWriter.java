@@ -46,15 +46,6 @@ public interface InteractionWriter<T extends Interaction> {
     public void write(T interaction) throws MIIOException;
 
     /**
-     * Writes an interaction
-     *
-     * @param interaction : the interaction to write
-     * @param miScore : the MI score of the interaction to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot write
-     */
-    public void write(T interaction, Double miScore) throws MIIOException;
-
-    /**
      * Writes a collection of Interaction objects
      *
      * @param interactions : the interactions to write
@@ -63,30 +54,12 @@ public interface InteractionWriter<T extends Interaction> {
     public void write(Collection<? extends T> interactions) throws MIIOException;
 
     /**
-     * Writes a collection of Interaction objects
-     *
-     * @param interactions : the interactions to write
-     * @param miScore : the MI score of the interactions to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot write
-     */
-    public void write(Collection<? extends T> interactions, Double miScore) throws MIIOException;
-
-    /**
      * Writes Interaction objects using iterator
      *
      * @param interactions : the iterator of interactions to write
      * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot write
      */
     public void write(Iterator<? extends T> interactions) throws MIIOException;
-
-    /**
-     * Writes Interaction objects using iterator
-     *
-     * @param interactions : the iterator of interactions to write
-     * @param miScore : the MI score of the interactions to write
-     * @throws psidev.psi.mi.jami.exception.MIIOException : if cannot write
-     */
-    public void write(Iterator<? extends T> interactions, Double miScore) throws MIIOException;
 
     /**
      * Flushes the writer (commit or write on disk)
