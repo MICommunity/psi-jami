@@ -21,6 +21,7 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
     private T participantB;
     private CvTerm complexExpansion;
     private CvTerm causalRegulatoryMechanism;
+    private Confidence miScore;
 
     private boolean hasInitialisedA;
     private boolean hasInitialisedB;
@@ -150,6 +151,14 @@ public class AbstractBinaryInteractionWrapper<I extends Interaction<T>, T extend
      */
     public void setCausalRegulatoryMechanism(CvTerm causalRegulatoryMechanism) {
         this.causalRegulatoryMechanism = causalRegulatoryMechanism;
+    }
+
+    public Confidence getMiScore() {
+        return miScore;
+    }
+
+    public void setMiScore(Confidence miScore) {
+        this.miScore = miScore;
     }
 
     /**

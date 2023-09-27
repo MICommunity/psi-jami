@@ -118,7 +118,14 @@ public class MitabModelledInteractionFeeder extends AbstractMitabColumnFeeder<Mo
      * @throws java.io.IOException if any.
      */
     public void writeInteractionConfidences(ModelledBinaryInteraction interaction) throws IOException {
-        if (!interaction.getModelledConfidences().isEmpty()){
+        if (!interaction.getModelledConfidences().isEmpty() || interaction.getMiScore() != null) {
+
+            if (interaction.getMiScore() != null) {
+                writeConfidence(interaction.getMiScore());
+                if (!interaction.getModelledConfidences().isEmpty()) {
+                    getWriter().write(MitabUtils.FIELD_SEPARATOR);
+                }
+            }
 
             Iterator<ModelledConfidence> confIterator = interaction.getModelledConfidences().iterator();
             while (confIterator.hasNext()) {

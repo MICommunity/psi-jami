@@ -203,7 +203,14 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
      * @throws java.io.IOException if any.
      */
     public void writeInteractionConfidences(BinaryInteractionEvidence interaction) throws IOException {
-        if (!interaction.getConfidences().isEmpty()){
+        if (!interaction.getConfidences().isEmpty() || interaction.getMiScore() != null) {
+
+            if (interaction.getMiScore() != null) {
+                writeConfidence(interaction.getMiScore());
+                if (!interaction.getConfidences().isEmpty()) {
+                    getWriter().write(MitabUtils.FIELD_SEPARATOR);
+                }
+            }
 
             Iterator<Confidence> confIterator = interaction.getConfidences().iterator();
             while (confIterator.hasNext()) {
