@@ -34,13 +34,17 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
     public static final String UNIPROT_URL = "https://rest.ensembl.org/xrefs/id/" + GET_SUFFIX;
     public static final String MI_ONTOLOGY_NAME = "psi-mi";
 
-    private static final Map<String, CvTerm> biotypeToCVId = new HashMap<>(Map.of(
-            "protein_coding", new DefaultCvTerm("messenger rna", "MI:0324"), // mRNA
-            "protein_coding_CDS_not_defined", new DefaultCvTerm("long non-coding ribonucleic acid", "MI:2190"), // lncRNA
-            "lncRNA", new DefaultCvTerm("long non-coding ribonucleic acid", "MI:2190"), // lncRNA
-            "miRNA", new DefaultCvTerm("micro rna", "MI:2204"), // miRNA
-            "snRNA", new DefaultCvTerm("small nuclear rna", "MI:0607") // snRNA
+    private final CachedOlsOntologyTermFetcher ontologyFetcher = new CachedOlsOntologyTermFetcher();
+
+    private final Map<String, CvTerm> biotypeToCVId = new HashMap<>(Map.of(
+            "protein_coding", this.getCVByMIId("MI:0324"), // mRNA
+            "protein_coding_CDS_not_defined", this.getCVByMIId("MI:2190"), // lncRNA
+            "lncRNA", this.getCVByMIId("MI:2190"), // lncRNA
+            "miRNA", this.getCVByMIId("MI:2204"), // miRNA
+            "snRNA", this.getCVByMIId("MI:0607") // snRNA
     ));
+
+    private final Map<String, String> biotypeToShortestType = new HashMap<>();
 
     public final CvTerm intactCV = new DefaultCvTerm("intact", "MI:0469");
     public final CvTerm ensemblCV = new DefaultCvTerm("ensembl", "MI:0476");
@@ -59,7 +63,6 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
             .build();
 
     private final HttpClient client = HttpClient.newHttpClient();
-    private final CachedOlsOntologyTermFetcher ontologyFetcher = new CachedOlsOntologyTermFetcher();
     private final CachedOlsCvTermFetcher cvFetcher = new CachedOlsCvTermFetcher();
     private final HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
             .header("Content-Type", "application/json")
@@ -108,7 +111,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
     }
 
     private void querySequences(List<String> ids, Map<String, Interactor> idToInteractor) throws IOException, InterruptedException {
-        this.postRequest(ids, SEQUENCE_URL,new HashMap<>(Map.of("type", "cdna")),  new TypeReference<List<ApiSequence>>() {
+        this.postRequest(ids, SEQUENCE_URL, new HashMap<>(Map.of("type", "cdna")), new TypeReference<List<ApiSequence>>() {
                 }, sequences -> sequences.forEach(
                         apiSequence -> ((NucleicAcid) idToInteractor.get(apiSequence.getId()))
                                 .setSequence(apiSequence.getSeq()))
@@ -127,7 +130,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
         }
     }
 
-    private <R> void postRequest(List<String> ids, String url,Map<String, Object> extraParams, TypeReference<R> returnType, Consumer<R> consumer) throws IOException, InterruptedException {
+    private <R> void postRequest(List<String> ids, String url, Map<String, Object> extraParams, TypeReference<R> returnType, Consumer<R> consumer) throws IOException, InterruptedException {
         if (ids == null || ids.isEmpty()) return;
         extraParams.put("ids", ids);
         HttpRequest request = requestBuilder
@@ -146,7 +149,6 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
 
         int taxId = Integer.parseInt(speciesTaxon.getIdentifiers().iterator().next().getId().split(":")[1]);
         Organism organism = new DefaultOrganism(taxId, speciesTaxon.getShortName());
-        String shortSpecies = speciesTaxon.getSynonyms().stream().map(Alias::getName).findFirst().orElse("");
 
 
         Interactor interactor = null;
@@ -154,7 +156,7 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
 
         switch (entree.getObjectType()) {
             case GENE:
-                name = MessageFormat.format("{0} {1} gene", entree.getDisplayName(), shortSpecies);
+                name = entree.getDisplayName();
                 fullName = extractPureIdentifier(entree.getDescription());
                 DefaultGene gene = new DefaultGene(name, fullName, organism, id);
 
@@ -179,8 +181,9 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
                 break;
             case TRANSCRIPT:
                 CvTerm type = biotypeToCVId.computeIfAbsent(entree.getBiotype(), s -> getCVByName(entree.getBiotype(), rnaCV));
+                String shortType = biotypeToShortestType.computeIfAbsent(entree.getBiotype(), biotype -> getShortestSynonym(type));
                 String geneName = entree.getDisplayName().split("-")[0];
-                name = MessageFormat.format("{0} {1} transcript", geneName, shortSpecies);
+                name = MessageFormat.format("{0}_{1}", shortType, geneName);
                 fullName = entree.getDisplayName();
 
                 DefaultNucleicAcid nucleicAcid = new DefaultNucleicAcid(name, fullName, type, organism, id);
@@ -189,11 +192,11 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
                 nucleicAcid.getAliases().add(new DefaultAlias(geneNameCV, geneName));
 
                 Stream.of(entree.getTranslations()) // Translations (normally 1)
-                    .filter(Objects::nonNull)
-                    .flatMap(List::stream)
+                        .filter(Objects::nonNull)
+                        .flatMap(List::stream)
 
-                    .map(ApiObject::getId) // Translation Ids
-                    .forEach(translationId -> translationIdToInteractor.put(translationId, nucleicAcid));
+                        .map(ApiObject::getId) // Translation Ids
+                        .forEach(translationId -> translationIdToInteractor.put(translationId, nucleicAcid));
 
                 interactor = nucleicAcid;
             case TRANSLATION:
@@ -243,4 +246,15 @@ public class EnsemblFetcher implements InteractorFetcher<Interactor> {
         CvTerm cv = getCVByName(name);
         return cv != null ? cv : defaultValue;
     }
+
+    private String getShortestSynonym(CvTerm term) {
+       return Stream.concat(Stream.of(term.getShortName()), term.getSynonyms().stream().map(Alias::getName))
+                .min((s1, s2) -> {
+                    int diff = s1.length() - s2.length();
+                    if (diff !=0) return diff;
+                    if (s1.equals(s2)) return 0;
+                    return s1.chars().anyMatch(Character::isUpperCase) ? -1 : 1;
+                }).orElse(term.getShortName());
+    }
+
 }

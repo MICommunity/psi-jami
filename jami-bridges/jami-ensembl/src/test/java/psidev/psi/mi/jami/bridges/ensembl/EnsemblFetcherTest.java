@@ -25,6 +25,12 @@ public class EnsemblFetcherTest {
     }
 
     @Test
+    public void test() throws BridgeFailedException {
+        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000652534");
+        assertNotEquals(0, interactors.size());
+    }
+
+    @Test
     public void fetchGene() throws BridgeFailedException {
         // https://rest.ensembl.org/lookup/id/ENSG00000157764?content-type=application/json
         Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENSG00000157764");
@@ -47,7 +53,7 @@ public class EnsemblFetcherTest {
     @Test
     public void fetchTranscript() throws BridgeFailedException {
         // https://rest.ensembl.org/lookup/id/ENST00000646891?content-type=application/json
-        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000677250.1");
+        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000646891");
         if (interactors.isEmpty()) fail();
         assertEquals(1, interactors.size());
         Interactor interactor = interactors.iterator().next();
@@ -55,7 +61,7 @@ public class EnsemblFetcherTest {
         NucleicAcid rna = (NucleicAcid) interactor;
 
         assertNotNull(rna.getPreferredIdentifier());
-        assertNotNull(rna.getShortName());
+        assertEquals("mRNA_BRAF",rna.getShortName());
         assertNotNull(rna.getFullName());
         assertNotNull(rna.getSequence());
 
