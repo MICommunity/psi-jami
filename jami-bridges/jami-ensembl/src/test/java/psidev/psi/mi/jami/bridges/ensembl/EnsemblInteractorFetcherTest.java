@@ -15,13 +15,13 @@ import java.util.Objects;
 
 import static org.junit.Assert.*;
 
-public class EnsemblFetcherTest {
+public class EnsemblInteractorFetcherTest {
 
-    EnsemblFetcher fetcher;
+    EnsemblInteractorFetcher fetcher;
 
     @Before
     public void setUp() throws Exception {
-        fetcher = new EnsemblFetcher();
+        fetcher = new EnsemblInteractorFetcher();
     }
 
     @Test
