@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25;
 import psidev.psi.mi.jami.model.Alias;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.NamedInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAliasWriter;
@@ -20,23 +21,24 @@ import javax.xml.stream.XMLStreamWriter;
  * @version $Id$
  * @since <pre>18/11/13</pre>
  */
-public class XmlNamedInteractionEvidenceWriter extends XmlInteractionEvidenceWriter{
+public class XmlNamedInteractionEvidenceWriter extends XmlInteractionEvidenceWriter {
     private PsiXmlElementWriter<Alias> aliasWriter;
 
     /**
      * <p>Constructor for XmlNamedInteractionEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlNamedInteractionEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlNamedInteractionEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParticipantWriter() {
-        super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getStreamWriter(), getObjectIndex()));
+        super.setParticipantWriter(new XmlNamedParticipantEvidenceWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /**
@@ -63,7 +65,7 @@ public class XmlNamedInteractionEvidenceWriter extends XmlInteractionEvidenceWri
     /** {@inheritDoc} */
     @Override
     protected void initialiseExperimentWriter(){
-        super.setExperimentWriter(new XmlNamedExperimentWriter(getStreamWriter(), getObjectIndex()));
+        super.setExperimentWriter(new XmlNamedExperimentWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */

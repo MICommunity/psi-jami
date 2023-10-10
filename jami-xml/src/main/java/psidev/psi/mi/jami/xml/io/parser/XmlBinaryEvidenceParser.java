@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * Xml 2.5 parser creating binary interaction evidences
+ * Xml parser creating binary interaction evidences
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

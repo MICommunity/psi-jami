@@ -9,7 +9,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * XML 2.5 writer for attributes
+ * XML writer for attributes
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

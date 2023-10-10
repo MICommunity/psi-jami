@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParticipantWriter;
@@ -21,6 +22,7 @@ import java.util.Iterator;
  * @since <pre>12/11/13</pre>
  */
 public abstract class AbstractXmlParticipantWriter<P extends Participant, F extends Feature> implements PsiXmlParticipantWriter<P> {
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
     private PsiXmlElementWriter<Alias> aliasWriter;
@@ -34,16 +36,18 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
     /**
      * <p>Constructor for AbstractXmlParticipantWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlParticipantWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlParticipantWriter");
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the AbstractXmlParticipantWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the AbstractXmlParticipantWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }
@@ -356,7 +360,7 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
         // write interaction ref
         if (!writeComplexAsInteractor && interactor instanceof Complex){
             Complex complex = (Complex)interactor;
-            // write complex as an interactor if no participants as XML 25 interactions must have at least one participant
+            // write complex as an interactor if no participants as XML interactions must have at least one participant
             if (complex.getParticipants().isEmpty()){
                 writeMolecule(interactor);
             }
@@ -534,5 +538,9 @@ public abstract class AbstractXmlParticipantWriter<P extends Participant, F exte
      */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
     }
 }

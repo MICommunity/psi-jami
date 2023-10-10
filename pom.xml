@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.2.13</version>
+    <version>3.4.0</version>
 
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
@@ -12,14 +13,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<calimocho.version>2.5.2-SNAPSHOT</calimocho.version>-->
-        <!--<validator.version>3.0.2-SNAPSHOT</validator.version>-->
-        <spring.version>3.2.9.RELEASE</spring.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
 
-        <ontology.manager.version>2.0.13</ontology.manager.version>
-        <ols.client.version>2.13</ols.client.version>
-        <uniprot.japi.version>1.0.37</uniprot.japi.version>
+        <ontology.manager.version>2.1.0</ontology.manager.version>
+        <ols.client.version>2.14-SNAPSHOT</ols.client.version>
+        <uniprot.japi.version>1.2.4</uniprot.japi.version>
         <chebiws.client.version>2.4</chebiws.client.version>
+        <h2.version>1.4.197</h2.version>
 
     </properties>
 
@@ -88,16 +88,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.10.1</version>
                 <configuration>
-                    <target>1.8</target>
-                    <source>1.8</source>
+                    <target>11</target>
+                    <source>11</source>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-source</id>
@@ -110,14 +110,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>3.2.0</version>
                 <!--Excludes generated sources-->
                 <configuration>
-                    <excludePackageNames>uk.ac.ebi.cdb.webservice:uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral
+                    <excludePackageNames>
+                        uk.ac.ebi.cdb.webservice:
+                        uk.ac.ebi.picr:edu.ucla.mbi.imex.icentral:
+                        edu.ucla.mbi.imex.icentral.*:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb:
+                        psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb.*
                     </excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>docs</destDir>
-                    <aggregate>true</aggregate>
                 </configuration>
             </plugin>
         </plugins>
@@ -139,7 +143,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.2</version>
             <optional>true</optional>
             <scope>test</scope>
         </dependency>
@@ -148,20 +152,25 @@
     <!-- EBI repositories -->
     <repositories>
         <repository>
-            <id>imex-repo</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/imex-public</url>
+            <id>nexus-ebi-public</id>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/public/</url>
         </repository>
         <repository>
             <id>nexus-ebi-repo-old</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
+            <url>https://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
         </repository>
         <repository>
             <id>nexus-ebi-release-repo</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-repo/</url>
         </repository>
         <repository>
             <id>nexus-ebi-snapshot-repo</id>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
+        </repository>
+        <repository>
+            <id>ebiUniprotPublic</id>
+            <name>ebi-uniprot-public</name>
+            <url>https://www.ebi.ac.uk/uniprot/artifactory/public</url>
         </repository>
     </repositories>
 
@@ -171,14 +180,14 @@
         <repository>
             <id>pst-release</id>
             <name>EBI Nexus Repository</name>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-release/</url>
         </repository>
         <!-- EBI SNAPSHOT repo -->
         <snapshotRepository>
             <uniqueVersion>false</uniqueVersion>
             <id>pst-snapshots</id>
             <name>EBI Nexus Snapshots Repository</name>
-            <url>http://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots</url>
+            <url>https://www.ebi.ac.uk/Tools/maven/repos/content/repositories/pst-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

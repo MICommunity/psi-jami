@@ -33,7 +33,7 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28Writer(File file) throws IOException {
@@ -43,7 +43,7 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28Writer(OutputStream output) {
         super(output);
@@ -52,7 +52,7 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28Writer(Writer writer) {
         super(writer);
@@ -61,8 +61,8 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param file a {@link File} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param file a {@link java.io.File} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      * @throws IOException if any.
      */
     public Mitab28Writer(File file, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) throws IOException {
@@ -72,8 +72,8 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param output a {@link OutputStream} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      * @throws IOException if any.
      */
     public Mitab28Writer(OutputStream output, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) throws IOException {
@@ -83,8 +83,8 @@ public class Mitab28Writer extends Mitab27Writer {
     /**
      * <p>Constructor for Mitab28Writer.</p>
      *
-     * @param writer a {@link Writer} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      * @throws IOException if any.
      */
     public Mitab28Writer(Writer writer, ComplexExpansionMethod<Interaction, BinaryInteraction> expansionMethod) throws IOException {

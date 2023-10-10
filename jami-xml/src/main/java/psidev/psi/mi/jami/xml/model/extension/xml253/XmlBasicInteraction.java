@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.xml.model.extension.xml253;
 
 import psidev.psi.mi.jami.model.CvTerm;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlBasicInteraction;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version $Id$
  * @since <pre>08/10/13</pre>
  */
-@XmlRootElement(name = "interaction", namespace = "net:sf:psidev:mi")
+@XmlRootElement(namespace = "net:sf:psidev:mi", name = "interaction")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlBasicInteraction extends AbstractXmlBasicInteraction {
 

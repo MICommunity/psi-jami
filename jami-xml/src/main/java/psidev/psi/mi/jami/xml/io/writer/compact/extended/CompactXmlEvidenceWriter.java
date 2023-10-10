@@ -2,10 +2,10 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.PsiXmlType;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlExtendedInteractionWriter;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -25,50 +25,56 @@ public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<Interacti
 
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public CompactXmlEvidenceWriter() {
-        super(InteractionEvidence.class);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version) {
+        super(version, InteractionEvidence.class);
     }
 
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlEvidenceWriter(File file) throws IOException, XMLStreamException {
-        super(InteractionEvidence.class, file);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, InteractionEvidence.class, file);
     }
 
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlEvidenceWriter(OutputStream output) throws XMLStreamException {
-        super(InteractionEvidence.class, output);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, InteractionEvidence.class, output);
     }
 
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlEvidenceWriter(Writer writer) throws XMLStreamException {
-        super(InteractionEvidence.class, writer);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, InteractionEvidence.class, writer);
     }
 
     /**
      * <p>Constructor for CompactXmlEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param cache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public CompactXmlEvidenceWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
-        super(InteractionEvidence.class, streamWriter, cache);
+    public CompactXmlEvidenceWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache cache) {
+        super(version, InteractionEvidence.class, streamWriter, cache);
     }
 
     /** {@inheritDoc} */
@@ -104,7 +110,7 @@ public class CompactXmlEvidenceWriter extends AbstractCompactXmlWriter<Interacti
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
-        setDefaultSource(new XmlSource("Unknown source"));
+        setDefaultSource(newXmlSource("Unknown source"));
     }
 }
 

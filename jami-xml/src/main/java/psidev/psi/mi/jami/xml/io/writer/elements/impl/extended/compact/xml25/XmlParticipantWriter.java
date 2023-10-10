@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25;
 
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.XmlDbXrefWriter;
@@ -19,11 +20,12 @@ public class XmlParticipantWriter extends psidev.psi.mi.jami.xml.io.writer.eleme
     /**
      * <p>Constructor for XmlParticipantWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlParticipantWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlParticipantWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
@@ -47,6 +49,6 @@ public class XmlParticipantWriter extends psidev.psi.mi.jami.xml.io.writer.eleme
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
-        super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
+        super.setInteractorWriter(new XmlInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 }

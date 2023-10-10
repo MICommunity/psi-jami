@@ -10,7 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Expanded XML 2.5 writer for a participant evidence with full experimental details
+ * Expanded XML 3.0 writer for a participant evidence with full experimental details
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

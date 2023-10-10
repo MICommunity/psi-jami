@@ -10,7 +10,7 @@ import psidev.psi.mi.jami.xml.cache.PsiXmlFileIndexCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
 import psidev.psi.mi.jami.xml.exception.PsiXmlParserException;
 import psidev.psi.mi.jami.xml.listener.PsiXmlParserListener;
-import psidev.psi.mi.jami.xml.model.AbstractEntry;
+import psidev.psi.mi.jami.xml.model.AbstractBaseEntry;
 import psidev.psi.mi.jami.xml.model.AbstractEntrySet;
 import psidev.psi.mi.jami.xml.model.extension.factory.XmlInteractorFactory;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
@@ -42,9 +42,9 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
     private PushbackReader reader;
     private Unmarshaller unmarshaller;
     private Iterator<T> interactionIterator;
-    private Iterator<AbstractEntry<T>> entryIterator;
+    private Iterator<AbstractBaseEntry<T>> entryIterator;
     private PsiXmlParserListener listener;
-    private AbstractEntrySet<AbstractEntry<T>> entrySet;
+    private AbstractEntrySet<AbstractBaseEntry<T>> entrySet;
     private XmlInteractorFactory interactorFactory;
 
     private PsiXmlIdCache indexOfObjects=null;
@@ -311,7 +311,7 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
      * @return a {@link psidev.psi.mi.jami.xml.model.AbstractEntrySet} object.
      * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
-    public AbstractEntrySet<AbstractEntry<T>> getEntrySet() throws PsiXmlParserException {
+    public AbstractEntrySet<AbstractBaseEntry<T>> getEntrySet() throws PsiXmlParserException {
         if (this.entrySet == null){
             this.entrySet = parseEntrySet();
             this.entryIterator = this.entrySet.getEntries().iterator();
@@ -333,12 +333,12 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
      * @return a {@link psidev.psi.mi.jami.xml.model.AbstractEntrySet} object.
      * @throws psidev.psi.mi.jami.xml.exception.PsiXmlParserException if any.
      */
-    protected AbstractEntrySet<AbstractEntry<T>> parseEntrySet() throws PsiXmlParserException {
+    protected AbstractEntrySet<AbstractBaseEntry<T>> parseEntrySet() throws PsiXmlParserException {
         if (this.reader != null){
             try {
                 initialiseEntryContext(XmlEntryContext.getInstance());
 
-                return (AbstractEntrySet<AbstractEntry<T>>) this.unmarshaller.unmarshal(this.reader);
+                return (AbstractEntrySet<AbstractBaseEntry<T>>) this.unmarshaller.unmarshal(this.reader);
             } catch (JAXBException e) {
                 throw createPsiXmlExceptionFrom("Error parsing entrySet from a file.", e);
             }
@@ -392,11 +392,11 @@ public abstract class AbstractFullPsiXmlParser<T extends Interaction> implements
                     this.indexOfObjects = new PsiXmlFileIndexCache(this.originalFile, this.unmarshaller, this.version);
                 } catch (IOException e) {
                     logger.log(Level.SEVERE, "cannot instantiate file index cache so will instantiate memory cache", e);
-                    this.indexOfObjects = new InMemoryPsiXmlCache();
+                    this.indexOfObjects = new InMemoryPsiXmlCache(this.version);
                 }
             }
             else{
-                this.indexOfObjects = new InMemoryPsiXmlCache();
+                this.indexOfObjects = new InMemoryPsiXmlCache(this.version);
             }
         }
     }

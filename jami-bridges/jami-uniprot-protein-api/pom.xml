@@ -4,7 +4,7 @@
     <parent>
         <groupId>psidev.psi.mi.jami.bridges</groupId>
         <artifactId>jami-bridges</artifactId>
-        <version>3.2.13</version>
+        <version>3.4.0</version>
     </parent>
 
     <artifactId>jami-uniprot-protein-api</artifactId>
@@ -12,8 +12,8 @@
     <description>Jami Uniprot Protein API client module</description>
 
     <properties>
-        <java.version>1.8</java.version>
-        <spring.version>4.3.12.RELEASE</spring.version>
+        <java.version>11</java.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
     </properties>
 
     <build>
@@ -26,7 +26,7 @@
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.2</version>
+                <version>0.15.1</version>
                 <configuration>
                     <schemaDirectory>src/main/resources</schemaDirectory>
                     <generatePackage>psidev.psi.mi.jami.bridges.uniprot.rest.response.model.jaxb</generatePackage>
@@ -44,8 +44,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
         </plugins>

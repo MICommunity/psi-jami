@@ -7,7 +7,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * PSI-XML 2.5 writer for host organism
+ * PSI-XML writer for host organism
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

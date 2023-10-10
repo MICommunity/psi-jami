@@ -4,7 +4,7 @@ import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interaction;
 
 /**
- * Interface for PSI-XML 2.5 interaction writers that have to write an experiment in XML 2.5 even if the interaction
+ * Interface for PSI-XML interaction writers that have to write an experiment in XML even if the interaction
  * does not have any experimental details
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
@@ -14,7 +14,7 @@ import psidev.psi.mi.jami.model.Interaction;
 public interface PsiXmlInteractionWriter<T extends Interaction> extends PsiXmlElementWriter<T> {
 
     /**
-     * The default experiment that will be used to write a valid XML 2.5 file but is not a real experiment attached
+     * The default experiment that will be used to write a valid XML file but is not a real experiment attached
      * to the interaction.
      * It can be null in some specific cases.
      *
@@ -23,7 +23,7 @@ public interface PsiXmlInteractionWriter<T extends Interaction> extends PsiXmlEl
     public Experiment getDefaultExperiment();
 
     /**
-     * Sets the default experiment that will be used to write a valid XML 2.5 file even if the interaction does not have any valid experiment
+     * Sets the default experiment that will be used to write a valid XML file even if the interaction does not have any valid experiment
      *
      * @param exp : default experiment
      */

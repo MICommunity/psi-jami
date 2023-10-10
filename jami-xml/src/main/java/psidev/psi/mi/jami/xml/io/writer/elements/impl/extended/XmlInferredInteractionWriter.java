@@ -3,21 +3,21 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended;
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteraction;
-import psidev.psi.mi.jami.xml.model.extension.InferredInteractionParticipant;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteraction;
+import psidev.psi.mi.jami.xml.model.extension.AbstractInferredInteractionParticipant;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * XML 2.5 writer for an expanded inferred interaction
+ * XML writer for an expanded inferred interaction
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public class XmlInferredInteractionWriter implements PsiXmlElementWriter<InferredInteraction> {
+public class XmlInferredInteractionWriter implements PsiXmlElementWriter<AbstractInferredInteraction> {
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
@@ -33,20 +33,20 @@ public class XmlInferredInteractionWriter implements PsiXmlElementWriter<Inferre
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlInferredInteractionWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlInferredInteractionWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void write(InferredInteraction object) throws MIIOException {
+    public void write(AbstractInferredInteraction object) throws MIIOException {
         try {
             if (object != null){
                 // write start
                 this.streamWriter.writeStartElement("inferredInteraction");
                 // write participants
-                for (InferredInteractionParticipant participant : object.getParticipants()){
+                for (AbstractInferredInteractionParticipant participant : object.getParticipants()){
                     if (participant != null){
                         this.streamWriter.writeStartElement("participant");
                         if (participant.getFeature() != null){

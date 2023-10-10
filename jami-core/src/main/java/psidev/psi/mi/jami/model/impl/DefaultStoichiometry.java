@@ -17,6 +17,9 @@ public class DefaultStoichiometry implements Stoichiometry {
     private int minValue;
     private int maxValue;
 
+    public DefaultStoichiometry() {
+    }
+
     /**
      * <p>Constructor for DefaultStoichiometry.</p>
      *
@@ -59,6 +62,14 @@ public class DefaultStoichiometry implements Stoichiometry {
      */
     public int getMaxValue() {
         return this.maxValue;
+    }
+
+    public void setMinValue(int minValue) {
+        this.minValue = minValue;
+    }
+
+    public void setMaxValue(int maxValue) {
+        this.maxValue = maxValue;
     }
 
     /** {@inheritDoc} */

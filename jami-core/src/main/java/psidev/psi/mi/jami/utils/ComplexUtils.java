@@ -62,11 +62,14 @@ public class ComplexUtils {
 
         return id;
     }
-     /**
+    /**
      * Expands the given complex participant.
      * Changes/expands the stoichiometry in expanded participants.
      * Inherit the features in expanded participants.
      * Expanded participants created are new instances.
+     *
+     * @param parentParticipant a {@link psidev.psi.mi.jami.model.ModelledParticipant} object.
+     * @return a collection of {@link psidev.psi.mi.jami.model.ModelledParticipant} objects.
      */
     public static Collection<ModelledParticipant> expandComplexIntoParticipants(ModelledParticipant parentParticipant) {
 

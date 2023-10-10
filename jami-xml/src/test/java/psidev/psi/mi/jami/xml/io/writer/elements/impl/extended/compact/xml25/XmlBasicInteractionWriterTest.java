@@ -9,12 +9,12 @@ import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.InteractorUtils;
 import psidev.psi.mi.jami.utils.RangeUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.compact.xml25.XmlBasicInteractionWriter;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
-import psidev.psi.mi.jami.xml.model.extension.XmlBasicInteraction;
+import psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlBasicInteraction;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -444,12 +444,12 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -458,14 +458,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
         Participant participant = new DefaultParticipant(complex);
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -474,14 +474,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex_as_interactor() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultModelledParticipant(new DefaultProtein("test protein")));
         Participant participant = new DefaultParticipant(complex);
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.setComplexAsInteractor(true);
         writer.write(interaction);
         streamWriter.flush();
@@ -491,13 +491,13 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_participant_complex_no_participants() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Complex complex = new DefaultComplex("test complex");
         Participant participant = new DefaultParticipant(complex);
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -506,12 +506,12 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_shortName() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction("interaction test");
+        Interaction interaction = new DefaultXmlBasicInteraction("interaction test");
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -520,13 +520,13 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_fullName() throws XMLStreamException, IOException, IllegalRangeException {
-        NamedInteraction interaction = new XmlBasicInteraction();
+        NamedInteraction interaction = new DefaultXmlBasicInteraction();
         interaction.setFullName("interaction test");
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((Interaction)interaction);
         streamWriter.flush();
 
@@ -535,14 +535,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_alias() throws XMLStreamException, IOException, IllegalRangeException {
-        NamedInteraction interaction = new XmlBasicInteraction();
+        NamedInteraction interaction = new DefaultXmlBasicInteraction();
         interaction.getAliases().add(new DefaultAlias(new DefaultCvTerm("synonym"), "interaction synonym"));
         interaction.getAliases().add(new DefaultAlias("test"));
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((Interaction)interaction);
         streamWriter.flush();
 
@@ -551,14 +551,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_identifier() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.getIdentifiers().add(new DefaultXref(new DefaultCvTerm("intact"), "EBI-xxx"));
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -567,14 +567,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_xref() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test2"), "xxxx2"));
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -584,7 +584,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
     @Test
     @Ignore
     public void test_write_interaction_inferred() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant2 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         Participant participant3 = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
@@ -616,7 +616,7 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant4);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -625,13 +625,13 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_type() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.setInteractionType(CvTermUtils.createMICvTerm("association", "MI:0914"));
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -640,14 +640,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_attributes() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test2")));
         interaction.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -656,14 +656,14 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_registered() throws XMLStreamException, IOException, IllegalRangeException {
-        Interaction interaction = new XmlBasicInteraction();
+        Interaction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         elementCache.clear();
         elementCache.extractIdForInteraction(new DefaultInteraction());
         elementCache.extractIdForInteraction(interaction);
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 
@@ -672,13 +672,13 @@ public class XmlBasicInteractionWriterTest extends AbstractXmlWriterTest {
 
     @Test
     public void test_write_interaction_intraMolecular() throws XMLStreamException, IOException, IllegalRangeException {
-        ExtendedPsiXmlInteraction interaction = new XmlBasicInteraction();
+        ExtendedPsiXmlInteraction interaction = new DefaultXmlBasicInteraction();
         Participant participant = new DefaultParticipant(InteractorUtils.createUnknownBasicInteractor());
         interaction.addParticipant(participant);
         interaction.setIntraMolecular(true);
         elementCache.clear();
 
-        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(createStreamWriter(), this.elementCache);
+        XmlBasicInteractionWriter writer = new XmlBasicInteractionWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
 

@@ -1,7 +1,6 @@
 package psidev.psi.mi.jami.xml.model.extension.xml254;
 
 import psidev.psi.mi.jami.model.CvTerm;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlAnnotation;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

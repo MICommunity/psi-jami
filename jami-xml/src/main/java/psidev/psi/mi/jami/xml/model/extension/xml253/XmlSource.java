@@ -10,7 +10,6 @@ package psidev.psi.mi.jami.xml.model.extension.xml253;
 
 import psidev.psi.mi.jami.model.Publication;
 import psidev.psi.mi.jami.model.Xref;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlSource;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
 
  */
-@XmlRootElement(name = "source", namespace = "net:sf:psidev:mi")
+@XmlRootElement(namespace = "net:sf:psidev:mi", name = "source")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlSource extends AbstractXmlSource
 {

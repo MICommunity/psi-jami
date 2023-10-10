@@ -11,7 +11,6 @@ import psidev.psi.mi.jami.model.VariableParameter;
 import psidev.psi.mi.jami.model.VariableParameterValue;
 import psidev.psi.mi.jami.utils.comparator.experiment.UnambiguousVariableParameterComparator;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.bind.annotation.*;
@@ -243,7 +242,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
      *
      * @param desc a {@link java.lang.String} object.
      */
-    @XmlElement(name = "description", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "description", required = true)
     public void setJAXBDescription(String desc){
         this.description = desc;
     }
@@ -251,9 +250,9 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     /**
      * <p>setJAXBUnit.</p>
      *
-     * @param unit a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param unit a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name = "unit")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "unit")
     public void setJAXBUnit(XmlCvTerm unit){
         this.unit = unit;
     }
@@ -263,7 +262,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
      *
      * @param jaxbVariableValueList a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlVariableParameter.JAXBVariableValueWrapper} object.
      */
-    @XmlElement(name = "variableValueList", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "variableValueList", required = true)
     public void setJAXBVariableParameterValuesWrapper(JAXBVariableValueWrapper jaxbVariableValueList) {
         this.jaxbVariableValueWrapper = jaxbVariableValueList;
         // initialise all variable values because of back references
@@ -277,7 +276,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
     //////////////////////////////////////////////////
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="variableValuesWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="variableValuesWrapper")
     public static class JAXBVariableValueWrapper implements Locatable, FileSourceContext{
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -321,7 +320,7 @@ public class XmlVariableParameter implements VariableParameter,FileSourceContext
             this.variableValues = new ArrayList<VariableParameterValue>();
         }
 
-        @XmlElement(type=XmlVariableParameterValue.class, name="variableValue", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlVariableParameterValue.class, name="variableValue", required = true)
         public List<VariableParameterValue> getJAXBVariableParameterValues() {
             return this.variableValues;
         }

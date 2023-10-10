@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.exception.IllegalRangeException;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.RangeUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
@@ -682,7 +683,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         ParticipantEvidence participant = new DefaultNamedParticipantEvidence(new DefaultProtein("protein test"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -696,7 +697,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         ParticipantEvidence participant = new DefaultNamedParticipantEvidence(complex);
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -710,7 +711,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         ParticipantEvidence participant = new DefaultNamedParticipantEvidence(complex);
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.setComplexAsInteractor(true);
         writer.write(participant);
         streamWriter.flush();
@@ -724,7 +725,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         ParticipantEvidence participant = new DefaultNamedParticipantEvidence(complex);
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -738,7 +739,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getAliases().add(new DefaultAlias("test"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -753,7 +754,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.setShortName("participant test");
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((ParticipantEvidence)participant);
         streamWriter.flush();
 
@@ -768,7 +769,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.setFullName("participant test");
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write((ParticipantEvidence)participant);
         streamWriter.flush();
 
@@ -782,7 +783,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -797,7 +798,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.addFeature(feature);
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -811,7 +812,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -824,7 +825,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.setStoichiometry(1);
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -837,7 +838,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.setStoichiometry(new DefaultStoichiometry(1,4));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -851,7 +852,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         elementCache.extractIdForParticipant(new DefaultParticipant(new DefaultProtein("protein test")));
         elementCache.extractIdForParticipant(participant);
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -864,7 +865,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getIdentificationMethods().add(new DefaultCvTerm("inference", "MI:0362"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -877,7 +878,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getExperimentalPreparations().add(new DefaultCvTerm("sample process","MI:0342"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -890,7 +891,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.setExpressedInOrganism(new DefaultOrganism(9606, "human"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -903,7 +904,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getParameters().add(new DefaultParameter(new DefaultCvTerm("kd"), new ParameterValue(new BigDecimal(5))));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 
@@ -916,7 +917,7 @@ public class XmlNamedParticipantEvidenceWriterTest extends AbstractXmlWriterTest
         participant.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("intact-miscore"), "0.8"));
         elementCache.clear();
 
-        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(createStreamWriter(), this.elementCache);
+        XmlNamedParticipantEvidenceWriter writer = new XmlNamedParticipantEvidenceWriter(PsiXmlVersion.v2_5_4, createStreamWriter(), this.elementCache);
         writer.write(participant);
         streamWriter.flush();
 

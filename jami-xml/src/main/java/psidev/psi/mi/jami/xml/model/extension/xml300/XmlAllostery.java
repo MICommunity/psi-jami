@@ -3,8 +3,8 @@ package psidev.psi.mi.jami.xml.model.extension.xml300;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
-import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.reference.AbstractEntityRef;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
+import psidev.psi.mi.jami.xml.model.reference.xml300.AbstractEntityRef;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -153,7 +153,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
      *
      * @param ref a int.
      */
-    @XmlElement(name = "allostericMoleculeRef", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostericMoleculeRef", required = true)
     public void setJAXBAllostericMoleculeRef(int ref) {
         this.allostericMolecule = new AllostericMoleculeRef(ref);
     }
@@ -163,7 +163,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
      *
      * @param effector a int.
      */
-    @XmlElement(name = "allostericEffectorRef", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostericEffectorRef", required = true)
     public void setJAXBMoleculeEffectorRef(int effector) {
         this.moleculeEffector = new XmlMoleculeEffector(effector, (PsiXmlLocator)sourceLocation());
     }
@@ -173,7 +173,7 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
      *
      * @param effector a int.
      */
-    @XmlElement(name = "allostericModificationRef", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostericModificationRef", required = true)
     public void setJAXBFeatureEffectorRef(int effector) {
         this.featureEffector = new XmlFeatureModificationEffector(effector, (PsiXmlLocator)sourceLocation());
     }
@@ -181,9 +181,9 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
     /**
      * <p>setJAXBAllostericMechanism.</p>
      *
-     * @param mechanism a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param mechanism a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name = "allostericMechanism")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostericMechanism")
     public void setJAXBAllostericMechanism(XmlCvTerm mechanism) {
         this.allostericMechanism = mechanism;
     }
@@ -191,9 +191,9 @@ public class XmlAllostery extends AbstractXmlCooperativeEffect implements Allost
     /**
      * <p>setJAXBAllosteryType.</p>
      *
-     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param type a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name = "allosteryType")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allosteryType")
     public void setJAXBAllosteryType(XmlCvTerm type) {
         this.allosteryType = type;
     }

@@ -1,13 +1,15 @@
 package psidev.psi.mi.jami.xml.model.extension;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlValue;
 import com.sun.xml.bind.Locatable;
 import com.sun.xml.bind.annotation.XmlLocation;
 import org.xml.sax.Locator;
 import psidev.psi.mi.jami.datasource.FileSourceContext;
 import psidev.psi.mi.jami.datasource.FileSourceLocator;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
-
-import javax.xml.bind.annotation.*;
 
 /**
  * A text describing the availability of data, e.g. a copyright statement.
@@ -80,7 +82,6 @@ public abstract class AbstractAvailability implements FileSourceContext, Locatab
      *
      * @param value a int.
      */
-    @XmlAttribute(name = "id", required = true)
     public void setId(int value) {
         this.id = value;
         XmlEntryContext.getInstance().registerAvailability(this.id, this);

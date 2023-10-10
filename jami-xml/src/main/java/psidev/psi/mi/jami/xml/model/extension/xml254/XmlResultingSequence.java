@@ -1,0 +1,194 @@
+package psidev.psi.mi.jami.xml.model.extension.xml254;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+import com.sun.xml.bind.Locatable;
+import com.sun.xml.bind.annotation.XmlLocation;
+import org.xml.sax.Locator;
+import psidev.psi.mi.jami.datasource.FileSourceContext;
+import psidev.psi.mi.jami.datasource.FileSourceLocator;
+import psidev.psi.mi.jami.model.ResultingSequence;
+import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.utils.comparator.range.ResultingSequenceComparator;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
+
+import java.util.Collection;
+
+/**
+ * Xml implementation of resulting sequence for XML 2.5
+ *
+ * @author Marine Dumousseau (marine@ebi.ac.uk)
+ * @version $Id$
+ * @since <pre>25/04/14</pre>
+ */
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlType(namespace = "http://psi.hupo.org/mi/mif")
+public class XmlResultingSequence implements ResultingSequence, FileSourceContext, Locatable {
+    private String originalSequence;
+    private String newSequence;
+    private XrefContainer xrefContainer;
+
+    @XmlLocation
+    @XmlTransient
+    private Locator locator;
+    private PsiXmlLocator sourceLocator;
+
+    /**
+     * <p>Constructor for XmlResultingSequence.</p>
+     */
+    public XmlResultingSequence(){
+        this.originalSequence = null;
+        this.newSequence = null;
+    }
+
+    /**
+     * <p>Constructor for XmlResultingSequence.</p>
+     *
+     * @param oldSequence a {@link java.lang.String} object.
+     * @param newSequence a {@link java.lang.String} object.
+     */
+    public XmlResultingSequence(String oldSequence, String newSequence){
+        this.originalSequence = oldSequence;
+        this.newSequence = newSequence;
+    }
+
+    /**
+     * <p>Getter for the field <code>newSequence</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getNewSequence() {
+        return newSequence;
+    }
+
+    /**
+     * <p>Getter for the field <code>originalSequence</code>.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
+    public String getOriginalSequence() {
+        return originalSequence;
+    }
+
+    /**
+     * <p>getXrefs.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
+    public Collection<Xref> getXrefs() {
+        if (xrefContainer == null){
+            xrefContainer = new XrefContainer();
+        }
+        return this.xrefContainer.getXrefs();
+    }
+
+    /** {@inheritDoc} */
+    public void setNewSequence(String sequence) {
+        this.newSequence = sequence;
+    }
+
+    /** {@inheritDoc} */
+    public void setOriginalSequence(String sequence) {
+        this.originalSequence = sequence;
+    }
+
+    /**
+     * <p>setJAXBNewSequence.</p>
+     *
+     * @param sequence a {@link java.lang.String} object.
+     */
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "newSequence", required = true)
+    public void setJAXBNewSequence(String sequence) {
+        setNewSequence(sequence);
+    }
+
+    /**
+     * <p>setJAXBOriginalSequence.</p>
+     *
+     * @param sequence a {@link java.lang.String} object.
+     */
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "originalSequence", required = true)
+    public void setJAXBOriginalSequence(String sequence) {
+        setOriginalSequence(sequence);
+    }
+
+    /**
+     * <p>setJAXBXref.</p>
+     *
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml254.XrefContainer} object.
+     */
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif", name = "xref")
+    public void setJAXBXref(XrefContainer value) {
+        this.xrefContainer = value;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+
+        if (!(o instanceof ResultingSequence)){
+            return false;
+        }
+
+        return ResultingSequenceComparator.areEquals(this, (ResultingSequence) o);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int hashCode() {
+        return ResultingSequenceComparator.hashCode(this);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return (originalSequence != null ? "original sequence: "+originalSequence : "") +
+                (newSequence != null ? "new sequence: "+newSequence : "");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Locator sourceLocation() {
+        return (Locator)getSourceLocator();
+    }
+
+    /**
+     * <p>Getter for the field <code>sourceLocator</code>.</p>
+     *
+     * @return a {@link psidev.psi.mi.jami.datasource.FileSourceLocator} object.
+     */
+    public FileSourceLocator getSourceLocator() {
+        if (sourceLocator == null && locator != null){
+            sourceLocator = new PsiXmlLocator(locator.getLineNumber(), locator.getColumnNumber(), null);
+        }
+        return sourceLocator;
+    }
+
+    /** {@inheritDoc} */
+    public void setSourceLocator(FileSourceLocator sourceLocator) {
+        if (sourceLocator == null){
+            this.sourceLocator = null;
+        }
+        else if (sourceLocator instanceof PsiXmlLocator){
+            this.sourceLocator = (PsiXmlLocator)sourceLocator;
+        }
+        else {
+            this.sourceLocator = new PsiXmlLocator(sourceLocator.getLineNumber(), sourceLocator.getCharNumber(), null);
+        }
+    }
+
+    /**
+     * <p>setSourceLocation.</p>
+     *
+     * @param sourceLocator a {@link psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator} object.
+     */
+    public void setSourceLocation(PsiXmlLocator sourceLocator) {
+        this.sourceLocator = sourceLocator;
+    }
+}

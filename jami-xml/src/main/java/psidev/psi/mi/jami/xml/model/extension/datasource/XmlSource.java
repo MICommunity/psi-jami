@@ -11,7 +11,7 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * PSI-XML 2.5 data source that provides interactions (mix of abstract interactions and interaction evidences).
+ * PSI-XML data source that provides interactions (mix of abstract interactions and interaction evidences).
  * It will load the full interaction dataset
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

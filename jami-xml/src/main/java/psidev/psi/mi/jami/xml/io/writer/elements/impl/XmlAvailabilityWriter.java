@@ -8,7 +8,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * XML 2.5 availability writer
+ * XML availability writer
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -31,7 +31,7 @@ public class XmlAvailabilityWriter implements PsiXmlElementWriter<String> {
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlAvailabilityWriter. It is necessary for generating an id to availability");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlAvailabilityWriter. It is necessary for generating an id to availability");
         }
         this.objectIndex = objectIndex;
     }

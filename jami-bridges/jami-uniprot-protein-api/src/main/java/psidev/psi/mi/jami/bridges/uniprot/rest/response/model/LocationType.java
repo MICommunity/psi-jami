@@ -43,7 +43,8 @@ public class LocationType {
 
     /**
      * Gets the value of the start property.
-     * 
+     *
+     * @return an int value.
      */
     public int getStart() {
         return start;
@@ -51,7 +52,8 @@ public class LocationType {
 
     /**
      * Sets the value of the start property.
-     * 
+     *
+     * @param value an int value.
      */
     public void setStart(int value) {
         this.start = value;
@@ -59,7 +61,8 @@ public class LocationType {
 
     /**
      * Gets the value of the end property.
-     * 
+     *
+     * @return an int value.
      */
     public int getEnd() {
         return end;
@@ -67,7 +70,8 @@ public class LocationType {
 
     /**
      * Sets the value of the end property.
-     * 
+     *
+     * @param value an int value.
      */
     public void setEnd(int value) {
         this.end = value;

@@ -48,7 +48,7 @@ public class Sequence {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getContent() {
@@ -60,7 +60,7 @@ public class Sequence {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setContent(String value) {
@@ -69,7 +69,8 @@ public class Sequence {
 
     /**
      * Gets the value of the length property.
-     * 
+     *
+     * @return an int value.
      */
     public int getLength() {
         return length;
@@ -77,7 +78,8 @@ public class Sequence {
 
     /**
      * Sets the value of the length property.
-     * 
+     *
+     * @param value an int value.
      */
     public void setLength(int value) {
         this.length = value;
@@ -88,7 +90,7 @@ public class Sequence {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getChecksum() {
@@ -100,7 +102,7 @@ public class Sequence {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setChecksum(String value) {

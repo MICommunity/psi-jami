@@ -1,17 +1,15 @@
 package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 
 import psidev.psi.mi.jami.model.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlParameterWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlAliasWriter;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
-import psidev.psi.mi.jami.xml.model.extension.XmlExperiment;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import java.util.Date;
 
 /**
  * Abstract class for XML writers of modelled interaction
@@ -28,11 +26,12 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     /**
      * <p>Constructor for AbstractXmlModelledInteractionWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlModelledInteractionWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public AbstractXmlModelledInteractionWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /**
@@ -111,7 +110,10 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultExperiment() {
-        Experiment defaultExperiment = new XmlExperiment(new BibRef("Mock publication and experiment for abstract interactions that are not interaction evidences.",(String)null,(Date)null));
+        Experiment defaultExperiment = newExperiment(newPublication(
+                "Mock publication and experiment for abstract interactions that are not interaction evidences.",
+                null,
+                null));
         setDefaultExperiment(defaultExperiment);
     }
 
@@ -237,7 +239,7 @@ public abstract class AbstractXmlModelledInteractionWriter<I extends ModelledInt
                 CooperativityEvidence evidence = effect.getCooperativityEvidences().iterator().next();
                 // set first experiment as default experiment
                 if (evidence.getPublication() != null){
-                    NamedExperiment exp = new XmlExperiment(evidence.getPublication());
+                    NamedExperiment exp = newExperiment(evidence.getPublication());
                     exp.setFullName(evidence.getPublication().getTitle());
                     setDefaultExperiment(exp);
                 }

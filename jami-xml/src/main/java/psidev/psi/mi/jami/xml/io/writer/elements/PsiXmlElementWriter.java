@@ -3,7 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.elements;
 import psidev.psi.mi.jami.exception.MIIOException;
 
 /**
- * Interface for writers of PSI-XML 2.5 elements
+ * Interface for writers of PSI-XML elements
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

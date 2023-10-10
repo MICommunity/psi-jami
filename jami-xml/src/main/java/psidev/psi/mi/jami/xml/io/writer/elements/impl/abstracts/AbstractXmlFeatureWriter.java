@@ -42,7 +42,7 @@ public abstract class AbstractXmlFeatureWriter<F extends Feature> implements Psi
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the AbstractXmlFeatureWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the AbstractXmlFeatureWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
 

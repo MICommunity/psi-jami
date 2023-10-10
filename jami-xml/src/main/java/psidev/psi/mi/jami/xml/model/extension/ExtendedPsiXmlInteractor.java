@@ -3,7 +3,7 @@ package psidev.psi.mi.jami.xml.model.extension;
 import psidev.psi.mi.jami.model.Interactor;
 
 /**
- * Interface for interactors in PSI-XML 2.5 standards
+ * Interface for interactors in PSI-XML standards
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

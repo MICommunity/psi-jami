@@ -12,6 +12,7 @@ import psidev.psi.mi.jami.xml.PsiXmlType;
 import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.*;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlSource;
 import psidev.psi.mi.jami.xml.model.extension.factory.options.PsiXmlWriterOptions;
 import psidev.psi.mi.jami.xml.utils.PsiXmlUtils;
 
@@ -51,13 +52,16 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     private Collection<Annotation> entryAnnotations=null;
     private PsiXmlElementWriter<Annotation> annotationsWriter=null;
 
-    private PsiXmlVersion version = PsiXmlVersion.v2_5_4;
+    private PsiXmlVersion version;
     private PsiXmlElementWriterFactory subWritersFactory;
 
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public AbstractXmlWriter(){
+    public AbstractXmlWriter(PsiXmlVersion version){
+        this.version = version;
         this.interactionsToWrite = new ArrayList<T>();
         this.subWritersFactory = PsiXmlElementWriterFactory.getInstance();
     }
@@ -65,12 +69,13 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(File file) throws IOException, XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        this.version = version;
         initialiseFile(file);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -80,11 +85,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(OutputStream output) throws XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        this.version = version;
         initialiseOutputStream(output);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -94,11 +100,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractXmlWriter(Writer writer) throws XMLStreamException {
-
+    public AbstractXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        this.version = version;
         initialiseWriter(writer);
         isInitialised = true;
         this.interactionsToWrite = new ArrayList<T>();
@@ -108,10 +115,12 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
     /**
      * <p>Constructor for AbstractXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    protected AbstractXmlWriter(XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+    protected AbstractXmlWriter(PsiXmlVersion version, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        this.version = version;
         if (streamWriter == null){
             throw new IllegalArgumentException("The stream writer cannot be null.");
         }
@@ -738,13 +747,13 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
                 attributeWriter, xrefWriter, openCvWriter);
 
         // host organism (expressed in) writer
-        PsiXmlElementWriter<Organism> hostOrganismWriter = this.subWritersFactory.createHostOrganismWriter(this.streamWriter, extended, getElementCache(), aliasWriter,
+        PsiXmlElementWriter<Organism> hostOrganismWriter = this.subWritersFactory.createHostOrganismWriter(this.streamWriter, version, extended, getElementCache(), aliasWriter,
                 attributeWriter, xrefWriter, openCvWriter);
 
         // checksum writer
         PsiXmlElementWriter<Checksum> checksumWriter = this.subWritersFactory.createChecksumWriter(this.streamWriter);
         // interactor writer
-        PsiXmlElementWriter<Interactor> interactorWriter = this.subWritersFactory.createInteractorWriter(this.streamWriter, extended, getElementCache(),
+        PsiXmlElementWriter<Interactor> interactorWriter = this.subWritersFactory.createInteractorWriter(version, this.streamWriter, extended, getElementCache(),
                 aliasWriter, attributeWriter, xrefWriter, cvWriter, organismWriter, checksumWriter);
         // experiment Writer
         PsiXmlExperimentWriter experimentWriter = this.subWritersFactory.createExperimentWriter(this.streamWriter, extended, getElementCache(),
@@ -1003,5 +1012,17 @@ public abstract class AbstractXmlWriter<T extends Interaction> implements Intera
         this.interactionsToWrite.clear();
         this.interactionsIterator = interactions;
         this.currentInteraction = null;
+    }
+
+    protected ExtendedPsiXmlSource newXmlSource(String shortName) {
+        switch (getVersion()) {
+            case v2_5_3:
+                return new psidev.psi.mi.jami.xml.model.extension.xml253.DefaultXmlSource(shortName);
+            case v3_0_0:
+                return new psidev.psi.mi.jami.xml.model.extension.xml300.DefaultXmlSource(shortName);
+            case v2_5_4:
+            default:
+                return new psidev.psi.mi.jami.xml.model.extension.xml254.DefaultXmlSource(shortName);
+        }
     }
 }

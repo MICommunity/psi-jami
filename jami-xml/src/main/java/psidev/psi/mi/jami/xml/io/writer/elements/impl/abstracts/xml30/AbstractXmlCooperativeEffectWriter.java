@@ -13,7 +13,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Abstract Xml 30 writer for cooperative effect
+ * Abstract Xml 3.0 writer for cooperative effect
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -38,7 +38,7 @@ public abstract class AbstractXmlCooperativeEffectWriter<C extends CooperativeEf
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the AbstractXmlCooperativeEffectWriter. It is necessary for generating an id to an interaction");
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the AbstractXmlCooperativeEffectWriter. It is necessary for generating an id to an interaction");
         }
         this.objectIndex = objectIndex;
     }

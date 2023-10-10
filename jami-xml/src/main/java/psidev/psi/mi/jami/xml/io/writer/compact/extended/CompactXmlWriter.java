@@ -3,8 +3,8 @@ package psidev.psi.mi.jami.xml.io.writer.compact.extended;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.io.writer.compact.AbstractCompactXmlMixWriter;
-import psidev.psi.mi.jami.xml.model.extension.XmlSource;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.File;
@@ -23,53 +23,58 @@ public class CompactXmlWriter extends AbstractCompactXmlMixWriter<Interaction, M
 
     /**
      * <p>Constructor for CompactXmlWriter.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public CompactXmlWriter() {
-        super(Interaction.class);
+    public CompactXmlWriter(PsiXmlVersion version) {
+        super(version, Interaction.class);
     }
 
     /**
      * <p>Constructor for CompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(File file) throws IOException, XMLStreamException {
-        super(Interaction.class, file);
+    public CompactXmlWriter(PsiXmlVersion version, File file) throws IOException, XMLStreamException {
+        super(version, Interaction.class, file);
     }
 
     /**
      * <p>Constructor for CompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(OutputStream output) throws XMLStreamException {
-        super(Interaction.class, output);
+    public CompactXmlWriter(PsiXmlVersion version, OutputStream output) throws XMLStreamException {
+        super(version, Interaction.class, output);
     }
 
     /**
      * <p>Constructor for CompactXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public CompactXmlWriter(Writer writer) throws XMLStreamException {
-        super(Interaction.class, writer);
+    public CompactXmlWriter(PsiXmlVersion version, Writer writer) throws XMLStreamException {
+        super(version, Interaction.class, writer);
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDelegateWriters() {
-        setModelledWriter(new CompactXmlModelledWriter(getStreamWriter(), getElementCache()));
-        setEvidenceWriter(new CompactXmlEvidenceWriter(getStreamWriter(), getElementCache()));
-        setLightWriter(new LightCompactXmlWriter(getStreamWriter(), getElementCache()));
+        setModelledWriter(new CompactXmlModelledWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setEvidenceWriter(new CompactXmlEvidenceWriter(getVersion(), getStreamWriter(), getElementCache()));
+        setLightWriter(new LightCompactXmlWriter(getVersion(), getStreamWriter(), getElementCache()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseDefaultSource() {
-        setDefaultSource(new XmlSource("Unknown source"));
+        setDefaultSource(newXmlSource("Unknown source"));
     }
 }

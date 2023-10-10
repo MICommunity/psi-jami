@@ -32,7 +32,7 @@ public class XmlBindingFeaturesWriter implements PsiXmlElementWriter<Set<Feature
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlBindingFeaturesWriter. It is necessary for generating an id to a feature");
+            throw new IllegalArgumentException("The PsiXml 3.0 object index is mandatory for the XmlBindingFeaturesWriter. It is necessary for generating an id to a feature");
         }
         this.objectIndex = objectIndex;
     }

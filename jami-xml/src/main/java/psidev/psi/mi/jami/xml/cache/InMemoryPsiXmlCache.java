@@ -1,7 +1,16 @@
 package psidev.psi.mi.jami.xml.cache;
 
 import psidev.psi.mi.jami.model.*;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
+import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlEntity;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeatureEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlModelledInteraction;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlFeature;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipant;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +23,8 @@ import java.util.Map;
  * @since <pre>06/11/13</pre>
  */
 public class InMemoryPsiXmlCache implements PsiXmlIdCache {
+
+    private PsiXmlVersion version;
     private Map<Integer, Complex> mapOfReferencedComplexes;
     private Map<Integer, ModelledEntity> mapOfReferencedComplexParticipants;
     private Map<Integer, ModelledFeature> mapOfReferencedComplexFeatures;
@@ -27,8 +38,11 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
 
     /**
      * <p>Constructor for InMemoryPsiXmlCache.</p>
+     *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      */
-    public InMemoryPsiXmlCache(){
+    public InMemoryPsiXmlCache(PsiXmlVersion version){
+        this.version = version;
         this.mapOfReferencedAvailabilities = new HashMap<Integer, AbstractAvailability>();
         this.mapOfReferencedExperiments = new HashMap<Integer, Experiment>();
         this.mapOfReferencedFeatures = new HashMap<Integer, Feature>();
@@ -288,13 +302,29 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
         }
 
         if (f instanceof ExtendedPsiXmlFeatureEvidence){
-            return new XmlFeatureEvidenceWrapper((ExtendedPsiXmlFeatureEvidence)f, registeredEntity);
+            switch (version) {
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlFeatureEvidenceWrapper((ExtendedPsiXmlFeatureEvidence)f, registeredEntity);
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlFeatureEvidenceWrapper((ExtendedPsiXmlFeatureEvidence)f, registeredEntity);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlFeatureEvidenceWrapper((ExtendedPsiXmlFeatureEvidence)f, registeredEntity);
+            }
         }
         else if (f instanceof ModelledFeature){
             return (ModelledFeature)f;
         }
         else {
-            return new XmlFeatureWrapper((ExtendedPsiXmlFeature)f, registeredEntity);
+            switch (version) {
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlFeatureWrapper((ExtendedPsiXmlFeature)f, registeredEntity);
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlFeatureWrapper((ExtendedPsiXmlFeature)f, registeredEntity);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlFeatureWrapper((ExtendedPsiXmlFeature)f, registeredEntity);
+            }
         }
     }
 
@@ -313,13 +343,29 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
             }
 
             if (f instanceof ExperimentalParticipantCandidate){
-                return new XmlExperimentalParticipantCandidateWrapper((ExperimentalParticipantCandidate)f, registeredEntity);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlExperimentalParticipantCandidateWrapper((ExperimentalParticipantCandidate)f, registeredEntity);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlExperimentalParticipantCandidateWrapper((ExperimentalParticipantCandidate)f, registeredEntity);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlExperimentalParticipantCandidateWrapper((ExperimentalParticipantCandidate)f, registeredEntity);
+                }
             }
             else if (f instanceof ModelledParticipantCandidate){
                 return (ModelledParticipantCandidate)f;
             }
             else {
-                return new XmlParticipantCandidateWrapper((ParticipantCandidate)f, registeredEntity);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantCandidateWrapper((ParticipantCandidate)f, registeredEntity);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantCandidateWrapper((ParticipantCandidate)f, registeredEntity);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipantCandidateWrapper((ParticipantCandidate)f, registeredEntity);
+                }
             }
         }
         else {
@@ -334,19 +380,63 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
             }
 
             if (f instanceof ExperimentalParticipantPool){
-                return new XmlExperimentalParticipantPoolWrapper((ExperimentalParticipantPool)f, (XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlExperimentalParticipantPoolWrapper(
+                                (ExperimentalParticipantPool)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlExperimentalParticipantPoolWrapper(
+                                (ExperimentalParticipantPool)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlExperimentalParticipantPoolWrapper(
+                                (ExperimentalParticipantPool)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                }
             }
             else if (f instanceof ExtendedPsiXmlParticipantEvidence){
-                return new XmlParticipantEvidenceWrapper((ExtendedPsiXmlParticipantEvidence)f, (XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantEvidenceWrapper(
+                                (ExtendedPsiXmlParticipantEvidence)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantEvidenceWrapper(
+                                (ExtendedPsiXmlParticipantEvidence)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipantEvidenceWrapper(
+                                (ExtendedPsiXmlParticipantEvidence)f,
+                                (psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper)registeredComplex);
+                }
             }
             else if (f instanceof ModelledParticipant){
                 return (ModelledParticipant)f;
             }
             else if (f instanceof ParticipantPool){
-                return new XmlParticipantPoolWrapper((ParticipantPool)f, registeredComplex);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantPoolWrapper((ParticipantPool)f, registeredComplex);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantPoolWrapper((ParticipantPool)f, registeredComplex);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipantPoolWrapper((ParticipantPool)f, registeredComplex);
+                }
             }
             else {
-                return new XmlParticipantWrapper((ExtendedPsiXmlParticipant)f, registeredComplex);
+                switch (version) {
+                    case v3_0_0:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlParticipantWrapper((ExtendedPsiXmlParticipant)f, registeredComplex);
+                    case v2_5_3:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlParticipantWrapper((ExtendedPsiXmlParticipant)f, registeredComplex);
+                    case v2_5_4:
+                    default:
+                        return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlParticipantWrapper((ExtendedPsiXmlParticipant)f, registeredComplex);
+                }
             }
         }
     }
@@ -357,15 +447,39 @@ public class InMemoryPsiXmlCache implements PsiXmlIdCache {
 
         // convert interaction evidence in a complex
         if (f instanceof ExtendedPsiXmlInteractionEvidence){
-            return new XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)f);
+            switch (version) {
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)f);
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)f);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlInteractionEvidenceComplexWrapper((ExtendedPsiXmlInteractionEvidence)f);
+            }
         }
         // wrap modelled interaction
         else if (f instanceof ExtendedPsiXmlModelledInteraction){
-            return new XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)f);
+            switch (version) {
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)f);
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)f);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlModelledInteractionComplexWrapper((ExtendedPsiXmlModelledInteraction)f);
+            }
         }
         // wrap basic interaction
         else if (f instanceof ExtendedPsiXmlInteraction){
-            return new XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)f);
+            switch (version) {
+                case v3_0_0:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml300.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)f);
+                case v2_5_3:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml253.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)f);
+                case v2_5_4:
+                default:
+                    return new psidev.psi.mi.jami.xml.model.extension.xml254.XmlBasicInteractionComplexWrapper((ExtendedPsiXmlInteraction)f);
+            }
         }
         else{
             return null;

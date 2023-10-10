@@ -27,7 +27,7 @@ public interface ExtendedPsiXmlInteraction<T extends Participant> extends PsiXml
      *
      * @return a {@link java.util.List} object.
      */
-    public List<InferredInteraction> getInferredInteractions();
+    public List<AbstractInferredInteraction> getInferredInteractions();
     /**
      * <p>getAliases.</p>
      *

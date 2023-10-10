@@ -70,9 +70,9 @@ public class Uniparc {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Entry }
+     * {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry}
      *
-     *
+     * @return a list of {@link psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry} objects.
      */
     public List<Entry> getEntry() {
         if (entry == null) {
@@ -86,7 +86,7 @@ public class Uniparc {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getCopyright() {
@@ -98,7 +98,7 @@ public class Uniparc {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setCopyright(String value) {
@@ -110,7 +110,7 @@ public class Uniparc {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link java.lang.Integer}
      *     
      */
     public Integer getCheckpoint() {
@@ -122,7 +122,7 @@ public class Uniparc {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link java.lang.Integer}
      *     
      */
     public void setCheckpoint(Integer value) {
@@ -134,7 +134,7 @@ public class Uniparc {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public String getVersion() {
@@ -146,7 +146,7 @@ public class Uniparc {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String}
      *     
      */
     public void setVersion(String value) {

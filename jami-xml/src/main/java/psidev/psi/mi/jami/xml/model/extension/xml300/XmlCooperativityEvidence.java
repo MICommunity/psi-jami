@@ -9,11 +9,10 @@ import psidev.psi.mi.jami.model.CooperativityEvidence;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Publication;
 import psidev.psi.mi.jami.utils.comparator.cooperativity.UnambiguousCooperativityEvidenceComparator;
-import psidev.psi.mi.jami.xml.model.extension.BibRef;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.extension.XmlCvTerm;
 
 import javax.xml.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -162,9 +161,9 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     /**
      * <p>setJAXBPublication.</p>
      *
-     * @param bibRef a {@link psidev.psi.mi.jami.xml.model.extension.BibRef} object.
+     * @param bibRef a {@link psidev.psi.mi.jami.xml.model.extension.xml300.BibRef} object.
      */
-    @XmlElement(name = "bibref", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "bibref", required = true)
     public void setJAXBPublication(BibRef bibRef) {
         this.publication = bibRef;
     }
@@ -174,7 +173,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCooperativityEvidence.JAXBEvidenceMethodWrapper} object.
      */
-    @XmlElement(name="evidenceMethodList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="evidenceMethodList")
     public void setJAXBEvidenceMethodWrapper(JAXBEvidenceMethodWrapper wrapper) {
         this.jaxbEvidenceMethodWrapper = wrapper;
     }
@@ -182,7 +181,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
     ////////////////////////////////////////////////////////////////// classes
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name = "evidenceMethodList")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name = "evidenceMethodList")
     public static class JAXBEvidenceMethodWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -218,7 +217,7 @@ public class XmlCooperativityEvidence implements CooperativityEvidence, FileSour
             }
         }
 
-        @XmlElement(name = "evidenceMethod", type = XmlCvTerm.class, required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "evidenceMethod", type = XmlCvTerm.class, required = true)
         public List<CvTerm> getJAXBEvidenceMethods() {
             return evidenceMethods;
         }

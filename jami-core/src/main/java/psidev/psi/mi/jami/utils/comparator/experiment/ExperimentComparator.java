@@ -9,7 +9,8 @@ import java.util.Comparator;
 
 /**
  * Basic experiment comparator.
- * It will look first at the publications using a {@link java.util.Comparator} of type {@link Publication}. If the publications are the same, it will look at the
+ * It will look first at the publications using a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Publication}.
+ * If the publications are the same, it will look at the
  * interaction detection methods using AbstractCvTermComparator. If the interaction detection methods are the same, it will look at
  * the host organisms using OrganismComparator.
  * If the host organisms are the same, it will look at the variableParameters using VariableParameterComparator.
@@ -28,7 +29,8 @@ public class ExperimentComparator implements Comparator<Experiment>{
     private CollectionComparator<VariableParameter> variableParameterCollectionComparator;
 
     /**
-     * Creates a new ExperimentComparator. It needs a {@link java.util.Comparator} of type {@link Publication} to compare publications, a OrganismComparator to compare host organisms
+     * Creates a new ExperimentComparator. It needs a {@link java.util.Comparator} of type {@link psidev.psi.mi.jami.model.Publication}
+     * to compare publications, a OrganismComparator to compare host organisms
      * and a AbstractCvTermComparator to compare interaction detection methods.
      *
      * @param publicationComparator : comparator for the publication which is required

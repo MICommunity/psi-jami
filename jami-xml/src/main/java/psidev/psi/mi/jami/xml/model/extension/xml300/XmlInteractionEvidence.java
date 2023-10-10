@@ -9,10 +9,9 @@ import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.VariableParameterValueSet;
 import psidev.psi.mi.jami.xml.cache.PsiXmlIdCache;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlInteractionEvidence;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlExperiment;
 import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
-import psidev.psi.mi.jami.xml.model.reference.AbstractExperimentRef;
+import psidev.psi.mi.jami.xml.model.reference.xml300.AbstractExperimentRef;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import java.util.List;
  * @version $Id$
  * @since <pre>08/10/13</pre>
  */
-@XmlRootElement(name = "interaction", namespace = "http://psi.hupo.org/mi/mif300")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interaction")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence implements ExtendedPsiXmlInteractionEvidence {
 
@@ -82,7 +81,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
      *
      * @param jaxbVariableValueList a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidence.JAXBVariableParameterValueSetWrapper} object.
      */
-    @XmlElement(name = "experimentalVariableValueList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "experimentalVariableValueList")
     public void setJAXBVariableParameterValueSetWrapper(JAXBVariableParameterValueSetWrapper jaxbVariableValueList) {
         this.jaxbVariableParameterValueSetWrapper = jaxbVariableValueList;
     }
@@ -92,7 +91,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
      *
      * @param jaxbCausalRelationshipWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlInteractionEvidence.JAXBCausalRelationshipWrapper} object.
      */
-    @XmlElement(name="causalRelationshipList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="causalRelationshipList")
     public void setJAXBCausalRelationshipWrapper(JAXBCausalRelationshipWrapper jaxbCausalRelationshipWrapper) {
         this.jaxbCausalRelationshipWrapper = jaxbCausalRelationshipWrapper;
     }
@@ -100,7 +99,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
     ////////////////////////////////////////////////////////////////// classes
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name = "experimentListType")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name = "experimentListType")
     public static class JAXBExperimentWrapper implements Locatable, FileSourceContext{
 
         private List<ExtendedPsiXmlExperiment> jaxbExperiments;
@@ -110,13 +109,13 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
         private Locator locator;
         private List<Experiment> experiments;
         private JAXBExperimentRefList jaxbExperimentRefList;
-        private psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence parent;
+        private ExtendedPsiXmlInteractionEvidence parent;
 
         public JAXBExperimentWrapper(){
             this.experiments = new ArrayList<Experiment>();
         }
 
-        @XmlElement(name="experimentDescription", required = true, type = XmlExperiment.class)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentDescription", required = true, type = XmlExperiment.class)
         public List<ExtendedPsiXmlExperiment> getJAXBExperimentDescriptions() {
             if (jaxbExperiments == null){
                 jaxbExperiments = new ArrayList<ExtendedPsiXmlExperiment>();
@@ -124,7 +123,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
             return jaxbExperiments;
         }
 
-        @XmlElement(name="experimentRef", required = true, type = Integer.class)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="experimentRef", required = true, type = Integer.class)
         public List<Integer> getJAXBExperimentRefs() {
             if (this.jaxbExperimentRefList == null){
                 this.jaxbExperimentRefList = new JAXBExperimentRefList();
@@ -279,7 +278,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name = "variableParameterValueSetList")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name = "variableParameterValueSetList")
     public static class JAXBVariableParameterValueSetWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -323,7 +322,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
             this.variableValueSets = new ArrayList<VariableParameterValueSet>();
         }
 
-        @XmlElement(type=XmlVariableParameterValueSet.class, name="experimentalVariableValues", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlVariableParameterValueSet.class, name="experimentalVariableValues", required = true)
         public List<VariableParameterValueSet> getJAXBVariableParameterValues() {
             return this.variableValueSets;
         }
@@ -335,7 +334,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="experimentalCausalRelationshipWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="experimentalCausalRelationshipWrapper")
     public static class JAXBCausalRelationshipWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -371,7 +370,7 @@ public class XmlInteractionEvidence extends AbstractXmlInteractionEvidence imple
             }
         }
 
-        @XmlElement(name = "causalRelationship", type = XmlCausalRelationship.class, required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "causalRelationship", type = XmlCausalRelationship.class, required = true)
         public List<ExtendedPsiXmlCausalRelationship> getJAXBCausalRelationships() {
             return this.causalRelationships;
         }

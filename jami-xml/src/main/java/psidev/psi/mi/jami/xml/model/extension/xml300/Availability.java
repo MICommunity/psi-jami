@@ -1,10 +1,10 @@
 package psidev.psi.mi.jami.xml.model.extension.xml300;
 
-import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import psidev.psi.mi.jami.xml.model.extension.AbstractAvailability;
 
 /**
  * A text describing the availability of data, e.g. a copyright statement.
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
 
  */
-@XmlRootElement(name = "availability", namespace = "http://psi.hupo.org/mi/mif300")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif300", name = "availability")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Availability extends AbstractAvailability
 {
@@ -34,5 +34,15 @@ public class Availability extends AbstractAvailability
      * <p>Constructor for Availability.</p>
      */
     public Availability() {
+    }
+
+    /**
+     * Sets the value of the id property.
+     *
+     * @param value a int.
+     */
+    @XmlAttribute(name = "id", required = true)
+    public void setId(int value) {
+        super.setId(value);
     }
 }

@@ -5,8 +5,6 @@ import psidev.psi.mi.jami.model.ModelledInteraction;
 import psidev.psi.mi.jami.model.ModelledParticipantCandidate;
 import psidev.psi.mi.jami.model.ModelledParticipantPool;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
-import psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant;
-import psidev.psi.mi.jami.xml.model.extension.XmlModelledParticipant;
 
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -31,7 +29,7 @@ implements ModelledParticipantPool{
     /**
      * <p>Constructor for XmlModelledParticipantPool.</p>
      *
-     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.AbstractXmlParticipant} object.
+     * @param delegate a {@link psidev.psi.mi.jami.xml.model.extension.xml300.AbstractXmlParticipant} object.
      */
     public XmlModelledParticipantPool(AbstractXmlParticipant<ModelledInteraction, ModelledFeature> delegate) {
         super(delegate);

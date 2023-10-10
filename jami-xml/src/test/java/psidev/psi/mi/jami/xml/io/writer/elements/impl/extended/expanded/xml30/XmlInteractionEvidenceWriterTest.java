@@ -12,7 +12,8 @@ import psidev.psi.mi.jami.utils.RangeUtils;
 import psidev.psi.mi.jami.xml.cache.InMemoryIdentityObjectCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.AbstractXmlWriterTest;
-import psidev.psi.mi.jami.xml.model.extension.*;
+import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlInteractionEvidence;
+import psidev.psi.mi.jami.xml.model.extension.xml300.*;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
@@ -1406,7 +1407,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1423,7 +1424,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1440,7 +1441,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.setComplexAsInteractor(true);
         writer.write(interaction);
@@ -1457,7 +1458,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1472,7 +1473,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1488,7 +1489,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        ((InteractionEvidence)interaction).setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        ((InteractionEvidence)interaction).setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write((InteractionEvidence)interaction);
         streamWriter.flush();
@@ -1505,7 +1506,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant);
         elementCache.clear();
 
-        ((InteractionEvidence)interaction).setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        ((InteractionEvidence)interaction).setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);        writer.write((InteractionEvidence)interaction);
         streamWriter.flush();
 
@@ -1521,7 +1522,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1538,7 +1539,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.getXrefs().add(new DefaultXref(new DefaultCvTerm("test"), "xxxx1"));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1581,7 +1582,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.addParticipant(participant4);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1597,7 +1598,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.setInteractionType(CvTermUtils.createMICvTerm("association", "MI:0914"));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1614,7 +1615,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.getAnnotations().add(new DefaultAnnotation(new DefaultCvTerm("test3")));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1631,7 +1632,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         elementCache.extractIdForInteraction(new DefaultInteraction());
         elementCache.extractIdForInteraction(interaction);
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1647,7 +1648,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.setNegative(true);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1663,7 +1664,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.getConfidences().add(new DefaultConfidence(new DefaultCvTerm("intact-miscore"), "0.8"));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1679,7 +1680,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.getParameters().add(new DefaultParameter(new DefaultCvTerm("kd"), new ParameterValue(new BigDecimal(5))));
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1695,7 +1696,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.setIntraMolecular(true);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1711,7 +1712,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.setModelled(true);
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();
@@ -1727,7 +1728,7 @@ public class XmlInteractionEvidenceWriterTest extends AbstractXmlWriterTest {
         interaction.setAvailability("copyright");
         elementCache.clear();
 
-        interaction.setExperiment(new XmlExperiment(new DefaultPublication("xxxxxx")));
+        interaction.setExperiment(new DefaultXmlExperiment(new DefaultPublication("xxxxxx")));
         XmlInteractionEvidenceWriter writer = new XmlInteractionEvidenceWriter(createStreamWriter(), this.elementCache);
         writer.write(interaction);
         streamWriter.flush();

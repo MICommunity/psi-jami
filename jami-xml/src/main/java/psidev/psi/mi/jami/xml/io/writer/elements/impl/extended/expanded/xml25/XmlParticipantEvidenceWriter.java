@@ -3,13 +3,13 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.xml25;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Organism;
 import psidev.psi.mi.jami.model.ParticipantEvidence;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.*;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.expanded.XmlExperimentalInteractorWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlFeatureEvidenceWriter;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.XmlParameterWriter;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 import psidev.psi.mi.jami.xml.model.extension.ExtendedPsiXmlParticipantEvidence;
 
 import javax.xml.stream.XMLStreamException;
@@ -23,16 +23,17 @@ import javax.xml.stream.XMLStreamWriter;
  * @since <pre>14/11/13</pre>
  */
 public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writer.elements.impl.expanded.xml25.XmlNamedParticipantEvidenceWriter {
-    private ExpandedPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter;
+    private ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> experimentalInteractorWriter;
 
     /**
      * <p>Constructor for XmlParticipantEvidenceWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public XmlParticipantEvidenceWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
-        super(writer, objectIndex);
+    public XmlParticipantEvidenceWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex) {
+        super(version, writer, objectIndex);
     }
 
     /** {@inheritDoc} */
@@ -50,31 +51,63 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
     /** {@inheritDoc} */
     @Override
     protected void initialiseInteractorWriter() {
-        super.setInteractorWriter(new XmlInteractorWriter(getStreamWriter(), getObjectIndex()));
+        super.setInteractorWriter(new XmlInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex()));
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseConfidenceWriter() {
-        super.setConfidenceWriter(new XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setConfidenceWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setConfidenceWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlConfidenceWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseHostOrganismWriter() {
-        super.setHostOrganismWriter(new XmlHostOrganismWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setHostOrganismWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlHostOrganismWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setHostOrganismWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlHostOrganismWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseParameterWriter() {
-        super.setParameterWriter(new XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setParameterWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlParameterWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     protected void initialiseCvWriter() {
-        super.setExperimentalCvWriter(new XmlExperimentalCvTermWriter(getStreamWriter(), getObjectIndex()));
+        switch (getVersion()) {
+            case v2_5_3:
+                super.setExperimentalCvWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml253.XmlExperimentalCvTermWriter(getStreamWriter(), getObjectIndex()));
+                break;
+            case v2_5_4:
+            default:
+                super.setExperimentalCvWriter(new psidev.psi.mi.jami.xml.io.writer.elements.impl.extended.xml25.xml254.XmlExperimentalCvTermWriter(getStreamWriter(), getObjectIndex()));
+                break;
+        }
     }
 
     /** {@inheritDoc} */
@@ -88,9 +121,9 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
      *
      * @return a {@link psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter} object.
      */
-    public ExpandedPsiXmlElementWriter<ExperimentalInteractor> getExperimentalInteractorWriter() {
+    public ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> getExperimentalInteractorWriter() {
         if (this.experimentalInteractorWriter == null){
-            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getStreamWriter(), getObjectIndex());
+            this.experimentalInteractorWriter = new XmlExperimentalInteractorWriter(getVersion(), getStreamWriter(), getObjectIndex());
 
         }
         return experimentalInteractorWriter;
@@ -101,7 +134,7 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
      *
      * @param experimentalInteractorWriter a {@link psidev.psi.mi.jami.xml.io.writer.elements.ExpandedPsiXmlElementWriter} object.
      */
-    public void setExperimentalInteractorWriter(ExpandedPsiXmlElementWriter<ExperimentalInteractor> experimentalInteractorWriter) {
+    public void setExperimentalInteractorWriter(ExpandedPsiXmlElementWriter<AbstractExperimentalInteractor> experimentalInteractorWriter) {
         this.experimentalInteractorWriter = experimentalInteractorWriter;
     }
 
@@ -146,7 +179,7 @@ public class XmlParticipantEvidenceWriter extends psidev.psi.mi.jami.xml.io.writ
             ExtendedPsiXmlParticipantEvidence xmlParticipant = (ExtendedPsiXmlParticipantEvidence)object;
             if (!xmlParticipant.getExperimentalInteractors().isEmpty()){
                 getStreamWriter().writeStartElement("experimentalInteractorList");
-                for (ExperimentalInteractor expInt : xmlParticipant.getExperimentalInteractors()){
+                for (AbstractExperimentalInteractor expInt : xmlParticipant.getExperimentalInteractors()) {
                     getExperimentalInteractorWriter().write(expInt);
                 }
                 getStreamWriter().writeEndElement();

@@ -1,7 +1,7 @@
 package psidev.psi.mi.jami.xml.io.writer.elements;
 
 /**
- * Interface for a compact XML 2.5 element writer.
+ * Interface for a compact XML element writer.
  * If an element writer is compact, it will write references rather than object descriptions.
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)

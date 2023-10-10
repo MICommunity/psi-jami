@@ -10,10 +10,10 @@ import psidev.psi.mi.jami.utils.AnnotationUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.collection.AbstractListHavingProperties;
 import psidev.psi.mi.jami.xml.XmlEntryContext;
-import psidev.psi.mi.jami.xml.model.extension.*;
-import psidev.psi.mi.jami.xml.model.extension.XmlAnnotation;
 
 import javax.xml.bind.annotation.*;
+import psidev.psi.mi.jami.xml.model.extension.PsiXmlLocator;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  * @version $Id$
  * @since <pre>08/10/13</pre>
  */
-@XmlRootElement(name = "abstractInteraction", namespace = "http://psi.hupo.org/mi/mif300")
+@XmlRootElement(namespace = "http://psi.hupo.org/mi/mif300", name = "abstractInteraction")
 @XmlAccessorType(XmlAccessType.NONE)
 public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParticipant> implements ExtendedPsiXmlModelledInteraction {
 
@@ -230,7 +230,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
             if (propAnnot != null){
                 complexAnnotationList.removeOnly(propAnnot);
             }
-            getAttributeWrapper().physicalProperties = new XmlAnnotation(propTopic, properties);
+            getAttributeWrapper().physicalProperties = new DefaultXmlAnnotation(propTopic, properties);
             complexAnnotationList.addOnly(getAttributeWrapper().physicalProperties);
         }
         // remove all url if the collection is not empty
@@ -399,16 +399,16 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBNames.</p>
      *
-     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.ComplexNamesContainer} object.
+     * @param value a {@link psidev.psi.mi.jami.xml.model.extension.xml300.ComplexNamesContainer} object.
      */
-    @XmlElement(name = "names")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "names")
     public void setJAXBNames(ComplexNamesContainer value) {
         super.setInteractionNamesContainer(value);
     }
 
     /** {@inheritDoc} */
     @Override
-    @XmlElement(name = "xref")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "xref")
     public void setInteractionXrefContainer(InteractionXrefContainer value) {
         super.setInteractionXrefContainer(value);
     }
@@ -418,7 +418,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param intra a boolean.
      */
-    @XmlElement(name = "intraMolecular", defaultValue = "false", type = Boolean.class)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "intraMolecular", defaultValue = "false", type = Boolean.class)
     public void setJAXBIntraMolecular(boolean intra) {
         super.setIntraMolecular(intra);
     }
@@ -428,7 +428,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param jaxbAttributeWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBAttributeWrapper} object.
      */
-    @XmlElement(name="attributeList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="attributeList")
     public void setJAXBAttributeWrapper(JAXBAttributeWrapper jaxbAttributeWrapper) {
         super.setJAXBAttributeWrapper(jaxbAttributeWrapper);
     }
@@ -450,7 +450,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param jaxbParticipantWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBParticipantWrapper} object.
      */
-    @XmlElement(name="participantList", required = true)
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="participantList", required = true)
     public void setJAXBParticipantWrapper(JAXBParticipantWrapper jaxbParticipantWrapper) {
         super.setParticipantWrapper(jaxbParticipantWrapper);
     }
@@ -460,7 +460,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBConfidenceWrapper} object.
      */
-    @XmlElement(name="confidenceList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="confidenceList")
     public void setJAXBConfidenceWrapper(JAXBConfidenceWrapper wrapper) {
         this.jaxbConfidenceWrapper = wrapper;
     }
@@ -470,7 +470,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param wrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBParameterWrapper} object.
      */
-    @XmlElement(name="parameterList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="parameterList")
     public void setJAXBParameterWrapper(JAXBParameterWrapper wrapper) {
         this.jaxbParameterWrapper = wrapper;
     }
@@ -478,9 +478,9 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBOrganism.</p>
      *
-     * @param organism a {@link psidev.psi.mi.jami.xml.model.extension.XmlOrganism} object.
+     * @param organism a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlOrganism} object.
      */
-    @XmlElement(name="organism")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="organism")
     public void setJAXBOrganism(XmlOrganism organism) {
         this.organism = organism;
     }
@@ -488,9 +488,9 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBInteractorType.</p>
      *
-     * @param interactorType a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param interactorType a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name = "interactorType")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "interactorType")
     public void setJAXBInteractorType(XmlCvTerm interactorType) {
         this.interactorType = interactorType;
     }
@@ -498,9 +498,9 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBInteractionType.</p>
      *
-     * @param term a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param term a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name="interactionType")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="interactionType")
     public void setJAXBInteractionType(XmlCvTerm term) {
         setInteractionType(term);
     }
@@ -510,7 +510,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param jaxbInferredWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBBindingFeaturesWrapper} object.
      */
-    @XmlElement(name="bindingFeatureList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="bindingFeatureList")
     public void setJAXBBindingFeaturesWrapper(JAXBBindingFeaturesWrapper jaxbInferredWrapper) {
         this.jaxbBindingFeaturesWrapper = jaxbInferredWrapper;
     }
@@ -520,7 +520,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param jaxbEffectWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBCooperativeEffectWrapper} object.
      */
-    @XmlElement(name="cooperativeEffectList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="cooperativeEffectList")
     public void setJAXBCooperativeEffectWrapper(JAXBCooperativeEffectWrapper jaxbEffectWrapper) {
         this.jaxbCooperativeEffectWrapper = jaxbEffectWrapper;
     }
@@ -530,7 +530,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
      *
      * @param jaxbCausalRelationshipWrapper a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlModelledInteraction.JAXBCausalRelationshipWrapper} object.
      */
-    @XmlElement(name="causalRelationshipList")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="causalRelationshipList")
     public void setJAXBCausalRelationshipWrapper(JAXBCausalRelationshipWrapper jaxbCausalRelationshipWrapper) {
         this.jaxbCausalRelationshipWrapper = jaxbCausalRelationshipWrapper;
     }
@@ -538,9 +538,9 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     /**
      * <p>setJAXBEvidenceType.</p>
      *
-     * @param evidenceType a {@link psidev.psi.mi.jami.xml.model.extension.XmlCvTerm} object.
+     * @param evidenceType a {@link psidev.psi.mi.jami.xml.model.extension.xml300.XmlCvTerm} object.
      */
-    @XmlElement(name = "evidenceType")
+    @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "evidenceType")
     public void setJAXBEvidenceType(XmlCvTerm evidenceType) {
         this.evidenceType = evidenceType;
     }
@@ -581,21 +581,21 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     ////////////////////////////////////////////////////// classes
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="modelledParticipantWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="modelledParticipantWrapper")
     public static class JAXBParticipantWrapper extends AbstractPsiXmlInteraction.JAXBParticipantWrapper<ModelledParticipant> {
 
         public JAXBParticipantWrapper(){
             super();
         }
 
-        @XmlElement(type=XmlModelledParticipant.class, name="participant", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type= XmlModelledParticipant.class, name="participant", required = true)
         public List<ModelledParticipant> getJAXBParticipants() {
             return super.getJAXBParticipants();
         }
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="modelledConfidenceWrapper30")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="modelledConfidenceWrapper30")
     public static class JAXBConfidenceWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -644,7 +644,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="modelledParameterWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="modelledParameterWrapper")
     public static class JAXBParameterWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -677,7 +677,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
             }
         }
 
-        @XmlElement(type=XmlModelledParameter.class, name="parameter", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", type=XmlModelledParameter.class, name="parameter", required = true)
         public List<ModelledParameter> getJAXBParameters() {
             return this.parameters;
         }
@@ -693,7 +693,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="cooperativeEffectWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="cooperativeEffectWrapper")
     public static class JAXBCooperativeEffectWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -727,8 +727,8 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
         }
 
         @XmlElements({
-                @XmlElement(name = "preassembly", type = XmlPreAssembly.class),
-                @XmlElement(name = "allostery", type = XmlAllostery.class)
+                @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "preassembly", type = XmlPreAssembly.class),
+                @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "allostery", type = XmlAllostery.class)
         })
         public List<CooperativeEffect> getJAXBCooperativeEffects() {
             return this.cooperativeEffects;
@@ -745,7 +745,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="modelledCausalRelationshipWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="modelledCausalRelationshipWrapper")
     public static class JAXBCausalRelationshipWrapper implements Locatable, FileSourceContext {
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -778,7 +778,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
             }
         }
 
-        @XmlElement(name = "causalRelationship", type = XmlCausalRelationship.class, required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name = "causalRelationship", type = XmlCausalRelationship.class, required = true)
         public List<ExtendedPsiXmlCausalRelationship> getJAXBCausalRelationships() {
             return this.causalRelationships;
         }
@@ -794,7 +794,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="bindingFeaturesWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="bindingFeaturesWrapper")
     public static class JAXBBindingFeaturesWrapper implements Locatable, FileSourceContext{
         private PsiXmlLocator sourceLocator;
         @XmlLocation
@@ -831,7 +831,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
             bindingFeatures = new ArrayList<BindingFeatures>();
         }
 
-        @XmlElement(name="bindingFeatures", required = true)
+        @XmlElement(namespace = "http://psi.hupo.org/mi/mif300", name="bindingFeatures", required = true)
         public List<BindingFeatures> getJAXBBindingFeatures() {
             return bindingFeatures;
         }
@@ -843,7 +843,7 @@ public class XmlModelledInteraction extends AbstractXmlInteraction<ModelledParti
     }
 
     @XmlAccessorType(XmlAccessType.NONE)
-    @XmlType(name="complexAttributeWrapper")
+    @XmlType(namespace = "http://psi.hupo.org/mi/mif300", name="complexAttributeWrapper")
     public static class JAXBAttributeWrapper extends AbstractXmlInteraction.JAXBAttributeWrapper{
         private Annotation physicalProperties;
 

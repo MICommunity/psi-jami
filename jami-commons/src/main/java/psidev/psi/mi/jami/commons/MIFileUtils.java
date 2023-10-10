@@ -19,9 +19,9 @@ public class MIFileUtils {
      *
      * @param is the input stream to store.
      * @return a File descriptor describing a temporary file storing the content of the given input stream.
-     * @throws java.io.IOException if an IO error occur.
      * @param name a {@link java.lang.String} object.
      * @param extension a {@link java.lang.String} object.
+     * @throws java.io.IOException if an IO error occur.
      */
     public static File storeAsTemporaryFile( InputStream is, String name, String extension ) throws IOException {
 
@@ -60,9 +60,9 @@ public class MIFileUtils {
      *
      * @param reader the reader to use.
      * @return a File descriptor describing a temporary file storing the content of the given input stream.
-     * @throws java.io.IOException if an IO error occur.
      * @param name a {@link java.lang.String} object.
      * @param extension a {@link java.lang.String} object.
+     * @throws java.io.IOException if an IO error occur.
      */
     public static File storeAsTemporaryFile( Reader reader, String name, String extension ) throws IOException {
 

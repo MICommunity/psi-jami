@@ -4,6 +4,7 @@ import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultPublication;
 import psidev.psi.mi.jami.utils.ExperimentUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.*;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.*;
@@ -21,6 +22,8 @@ import java.util.Iterator;
  * @since <pre>12/11/13</pre>
  */
 public abstract class AbstractXmlExperimentWriter implements PsiXmlExperimentWriter {
+
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
     private PsiXmlPublicationWriter publicationWriter;
@@ -34,16 +37,18 @@ public abstract class AbstractXmlExperimentWriter implements PsiXmlExperimentWri
     /**
      * <p>Constructor for AbstractXmlExperimentWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlExperimentWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlExperimentWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the XmlExperimentWriter");
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlExperimentWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlExperimentWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }
@@ -493,5 +498,9 @@ public abstract class AbstractXmlExperimentWriter implements PsiXmlExperimentWri
      */
     protected void initialiseDefaultPublication(){
         this.defaultPublication = new DefaultPublication("Mock publication for experiments that do not have a publication reference",(String)null,(Date)null);
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
     }
 }

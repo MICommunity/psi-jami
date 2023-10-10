@@ -95,7 +95,7 @@ public class PublicationAdminGroupSynchronizerImpl implements PublicationAdminGr
      * <p>checks any of the sources is a imex partner.</p>
      *
      * @param adminGroupList a {@link java.util.List} object.
-     * @param imexPartners
+     * @param imexPartners a set of {@link java.lang.String} objects.
      * @return a boolean.
      */
     protected Source getImexPublicationOwnerGroup(List<Source> adminGroupList, Set<String> imexPartners){

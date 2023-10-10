@@ -29,7 +29,7 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param file a {@link File} object.
+     * @param file a {@link java.io.File} object.
      * @throws IOException if any.
      */
     public Mitab28EvidenceWriter(File file) throws IOException {
@@ -39,7 +39,7 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
+     * @param output a {@link java.io.OutputStream} object.
      */
     public Mitab28EvidenceWriter(OutputStream output) {
         super(output);
@@ -48,7 +48,7 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param writer a {@link Writer} object.
+     * @param writer a {@link java.io.Writer} object.
      */
     public Mitab28EvidenceWriter(Writer writer) {
         super(writer);
@@ -57,8 +57,8 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param output a {@link OutputStream} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param output a {@link java.io.OutputStream} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      */
     public Mitab28EvidenceWriter(OutputStream output, ComplexExpansionMethod<InteractionEvidence, BinaryInteractionEvidence> expansionMethod) {
         super(output, expansionMethod);
@@ -67,8 +67,8 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param file a {@link File} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param file a {@link java.io.File} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      * @throws IOException if any.
      */
     public Mitab28EvidenceWriter(File file, ComplexExpansionMethod<InteractionEvidence, BinaryInteractionEvidence> expansionMethod) throws IOException {
@@ -78,8 +78,8 @@ public class Mitab28EvidenceWriter extends Mitab27EvidenceWriter {
     /**
      * <p>Constructor for Mitab28EvidenceWriter.</p>
      *
-     * @param writer a {@link Writer} object.
-     * @param expansionMethod a {@link ComplexExpansionMethod} object.
+     * @param writer a {@link java.io.Writer} object.
+     * @param expansionMethod a {@link psidev.psi.mi.jami.binary.expansion.ComplexExpansionMethod} object.
      */
     public Mitab28EvidenceWriter(Writer writer, ComplexExpansionMethod<InteractionEvidence, BinaryInteractionEvidence> expansionMethod) {
         super(writer, expansionMethod);

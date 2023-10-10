@@ -6,7 +6,7 @@ import psidev.psi.mi.jami.model.Range;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlCvTermWriter;
 import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlDbXrefWriter;
-import psidev.psi.mi.jami.xml.io.writer.elements.impl.xml25.XmlRangeWriter;
+import psidev.psi.mi.jami.xml.io.writer.elements.impl.XmlRangeWriter;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;

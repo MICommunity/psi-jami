@@ -11,6 +11,7 @@ import psidev.psi.mi.jami.model.Preassembly;
 import psidev.psi.mi.jami.model.Source;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.CvTermUtils;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -1056,13 +1057,13 @@ public class CompactXml25NamedModelledBinaryWriterTest {
             "</entrySet>";
     @Test(expected = IllegalStateException.class)
     public void test_not_initialised_writer() {
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter();
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.write(new DefaultNamedModelledBinaryInteraction());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void test_not_initialised_no_options() {
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter();
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4);
         writer.initialiseContext(null);
     }
 
@@ -1070,7 +1071,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_single_interaction() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1087,7 +1088,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_several_interactions1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1109,7 +1110,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_several_interactions2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1130,7 +1131,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_same_interactors1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1152,7 +1153,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_same_interactors2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1176,7 +1177,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultNamedModelledParticipant(new DefaultProtein("test protein")));
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(complex);
         interaction.addParticipant(participant);
@@ -1196,7 +1197,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultNamedModelledParticipant(new DefaultProtein("test protein")));
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         writer.setWriteComplexesAsInteractors(true);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
@@ -1215,7 +1216,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_different_entries1() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1234,7 +1235,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_different_entries2() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1257,7 +1258,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_different_entries3() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1279,7 +1280,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interaction_source() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
         interaction.addParticipant(participant);
@@ -1305,7 +1306,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
     public void test_interactions_different_sources() throws XMLStreamException {
         StringWriter stringWriter = new StringWriter();
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
 
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(new DefaultProtein("protein test"));
@@ -1346,7 +1347,7 @@ public class CompactXml25NamedModelledBinaryWriterTest {
         Complex complex = new DefaultComplex("test complex");
         complex.getParticipants().add(new DefaultNamedModelledParticipant(new DefaultProtein("test protein")));
 
-        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(stringWriter);
+        CompactXmlNamedModelledBinaryWriter writer = new CompactXmlNamedModelledBinaryWriter(PsiXmlVersion.v2_5_4, stringWriter);
         ModelledBinaryInteraction interaction = new DefaultNamedModelledBinaryInteraction();
         ModelledParticipant participant = new DefaultNamedModelledParticipant(complex.getParticipants().iterator().next().getInteractor());
         interaction.addParticipant(participant);

@@ -5,7 +5,7 @@ import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.xml.io.parser.PsiXmlParser;
 
 /**
- * Xml 2.5 binary interaction evidence iterator
+ * Xml binary interaction evidence iterator
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$

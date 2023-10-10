@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.xml.io.writer.expanded;
 import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.model.ModelledInteraction;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.InMemoryLightIdentityObjectCache;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
 import psidev.psi.mi.jami.xml.io.writer.AbstractXmlWriter;
@@ -17,7 +18,7 @@ import java.io.OutputStream;
 import java.io.Writer;
 
 /**
- * Abstract class for expanded PSI-xml 2.5 writers
+ * Abstract class for expanded PSI-xml writers
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
@@ -30,47 +31,51 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
     /**
      * <p>Constructor for AbstractExpandedXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      */
-    public AbstractExpandedXmlWriter(Class<T> type) {
-        super();
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type) {
+        super(version);
         this.type = type;
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param file a {@link java.io.File} object.
      * @throws java.io.IOException if any.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, File file) throws IOException, XMLStreamException {
-        super(file);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, File file) throws IOException, XMLStreamException {
+        super(version, file);
         this.type = type;
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param output a {@link java.io.OutputStream} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, OutputStream output) throws XMLStreamException {
-        super(output);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, OutputStream output) throws XMLStreamException {
+        super(version, output);
         this.type = type;
     }
 
     /**
      * <p>Constructor for AbstractExpandedXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param writer a {@link java.io.Writer} object.
      * @throws javax.xml.stream.XMLStreamException if any.
      */
-    public AbstractExpandedXmlWriter(Class<T> type, Writer writer) throws XMLStreamException {
-        super(writer);
+    public AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, Writer writer) throws XMLStreamException {
+        super(version, writer);
         this.type = type;
     }
 
@@ -84,12 +89,13 @@ public abstract class AbstractExpandedXmlWriter<T extends Interaction> extends A
     /**
      * <p>Constructor for AbstractExpandedXmlWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param type a {@link java.lang.Class} object.
      * @param streamWriter a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param elementCache a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    protected AbstractExpandedXmlWriter(Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
-        super(streamWriter, elementCache);
+    protected AbstractExpandedXmlWriter(PsiXmlVersion version, Class<T> type, XMLStreamWriter streamWriter, PsiXmlObjectCache elementCache) {
+        super(version, streamWriter, elementCache);
         this.type = type;
     }
 

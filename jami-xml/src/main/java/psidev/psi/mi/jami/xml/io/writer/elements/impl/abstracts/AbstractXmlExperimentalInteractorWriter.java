@@ -3,43 +3,49 @@ package psidev.psi.mi.jami.xml.io.writer.elements.impl.abstracts;
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Interactor;
+import psidev.psi.mi.jami.xml.PsiXmlVersion;
 import psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache;
-import psidev.psi.mi.jami.xml.model.extension.ExperimentalInteractor;
 import psidev.psi.mi.jami.xml.io.writer.elements.PsiXmlElementWriter;
+import psidev.psi.mi.jami.xml.model.extension.AbstractExperimentalInteractor;
 
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 /**
- * Abstract class for experimental interactor XML 2.5 writer
+ * Abstract class for experimental interactor XML writer
  *
  * @author Marine Dumousseau (marine@ebi.ac.uk)
  * @version $Id$
  * @since <pre>14/11/13</pre>
  */
-public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<ExperimentalInteractor> {
+public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlElementWriter<AbstractExperimentalInteractor> {
+
+    private PsiXmlVersion version;
     private XMLStreamWriter streamWriter;
     private PsiXmlObjectCache objectIndex;
 
     /**
      * <p>Constructor for AbstractXmlExperimentalInteractorWriter.</p>
      *
+     * @param version a {@link psidev.psi.mi.jami.xml.PsiXmlVersion} object.
      * @param writer a {@link javax.xml.stream.XMLStreamWriter} object.
      * @param objectIndex a {@link psidev.psi.mi.jami.xml.cache.PsiXmlObjectCache} object.
      */
-    public AbstractXmlExperimentalInteractorWriter(XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+    public AbstractXmlExperimentalInteractorWriter(PsiXmlVersion version, XMLStreamWriter writer, PsiXmlObjectCache objectIndex){
+        this.version = version;
         if (writer == null){
             throw new IllegalArgumentException("The XML stream writer is mandatory for the AbstractXmlExperimentalInteractorWriter");
         }
         this.streamWriter = writer;
         if (objectIndex == null){
-            throw new IllegalArgumentException("The PsiXml 2.5 object index is mandatory for the XmlInteractorWriter. It is necessary for generating an id to an experimentDescription");
+            throw new IllegalArgumentException("The PsiXml object index is mandatory for the XmlInteractorWriter. It is necessary for generating an id to an experimentDescription");
         }
         this.objectIndex = objectIndex;
     }
+
     /** {@inheritDoc} */
     @Override
-    public void write(ExperimentalInteractor object) throws MIIOException {
+    public void write(AbstractExperimentalInteractor object) throws MIIOException {
         try {
             // write start
             this.streamWriter.writeStartElement("experimentalInteractor");
@@ -87,5 +93,9 @@ public abstract class AbstractXmlExperimentalInteractorWriter implements PsiXmlE
      */
     protected PsiXmlObjectCache getObjectIndex() {
         return objectIndex;
+    }
+
+    protected PsiXmlVersion getVersion() {
+        return version;
     }
 }
