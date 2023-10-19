@@ -151,8 +151,18 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         if(dbMap.containsKey(miOntologyName))
             olsOntologyName = dbMap.get(miOntologyName).toLowerCase();
 
-        // 1) query ols which returns full name.
-        Term term = olsClient.getExactTermByName(searchName, olsOntologyName);
+        Term term = null;
+        try {
+            // 1) query ols which returns full name.
+            term = olsClient.getExactTermByName(searchName, olsOntologyName);
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+                throw new BridgeFailedException(e);
+            }
+        }
 
         // 2) if no results, return null
         if (term == null) {
@@ -172,8 +182,18 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         if(searchName == null || searchName.isEmpty())
             throw new IllegalArgumentException("Can not search for an identifier without a value.");
 
-        // 1) query ols which returns full name.
-        Term term = olsClient.getExactTermByName(searchName, null);
+        Term term = null;
+        try {
+            // 1) query ols which returns full name.
+            term = olsClient.getExactTermByName(searchName, null);
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+                throw new BridgeFailedException(e);
+            }
+        }
 
         // 2) if no results, return null
         if (term == null) {
