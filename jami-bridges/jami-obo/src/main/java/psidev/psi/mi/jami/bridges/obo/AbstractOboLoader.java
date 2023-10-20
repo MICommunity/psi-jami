@@ -339,18 +339,20 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
             ontologyTerm.getAnnotations().add(validation);
         }
         // search url
-        else if (db == null && accession.startsWith(SEARCH_URL)){
-            String url = accession.substring(SEARCH_URL.length());
+        else if (db == null) {
+            if (accession.startsWith(SEARCH_URL)) {
+                String url = accession.substring(SEARCH_URL.length());
 
-            if (url.startsWith("\\")){
-                url = url.substring(1);
-            }
-            if (url.endsWith("\\")){
-                url = url.substring(0, url.length() - 1);
-            }
+                if (url.startsWith("\\")) {
+                    url = url.substring(1);
+                }
+                if (url.endsWith("\\")) {
+                    url = url.substring(0, url.length() - 1);
+                }
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
-            ontologyTerm.getAnnotations().add(validation);
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
+                ontologyTerm.getAnnotations().add(validation);
+            }
         }
         else if (db.equalsIgnoreCase(SEARCH_URL)){
             String url = accession.trim();
