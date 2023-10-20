@@ -111,6 +111,14 @@ public class XmlModelledBinaryInteractionWrapper implements ModelledBinaryIntera
         this.binaryWrapper.setCausalRegulatoryMechanism(causalRegulatoryMechanism);
     };
 
+    public Confidence getMiScore(){
+        return this.binaryWrapper.getMiScore();
+    }
+
+    public void setMiScore(Confidence miScore){
+        this.binaryWrapper.setMiScore(miScore);
+    }
+
     /**
      * {@inheritDoc}
      *

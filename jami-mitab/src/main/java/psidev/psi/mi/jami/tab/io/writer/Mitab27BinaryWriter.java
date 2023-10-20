@@ -124,7 +124,7 @@ public class Mitab27BinaryWriter extends AbstractMitab27BinaryWriter<BinaryInter
         else if (interaction instanceof ModelledBinaryInteraction){
             this.modelledBinaryWriter.write((ModelledBinaryInteraction) interaction);
             if (hasJustStarted){
-               this.binaryEvidenceWriter.start();
+                this.binaryEvidenceWriter.start();
             }
         }
         else {

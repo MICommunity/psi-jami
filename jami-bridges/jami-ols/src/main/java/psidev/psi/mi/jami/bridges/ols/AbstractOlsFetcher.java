@@ -153,18 +153,29 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         if(dbMap.containsKey(miOntologyName))
             olsOntologyName = dbMap.get(miOntologyName).toLowerCase();
 
-        // 1) query ols which returns full name.
-        HashMap<String,String> termNamesMap = new HashMap<>();
-        Term term = olsClient.getExactTermByName(searchName, olsOntologyName);
-        // 2) if no results, return null
-        if (term == null) return null;
-        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
+        Term term = null;
+        try {
+            // 1) query ols which returns full name.
+            term = olsClient.getExactTermByName(searchName, olsOntologyName);
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+                throw new BridgeFailedException(e);
+            }
+        }
 
-        Map.Entry<String, String> entry = termNamesMap.entrySet().iterator().next();
-        String fullName = entry.getValue();
+        // 2) if no results, return null
+        if (term == null) {
+            return null;
+        }
+
+        String identifier = term.getTermOBOId().getIdentifier();
+        String fullName = term.getLabel();
 
         // 3) if a result, call instantiateCvTerm with provided fullName and create identity xref
-        return instantiateCvTerm(fullName , createXref(entry.getKey() , miOntologyName), olsOntologyName);
+        return instantiateCvTerm(fullName , createXref(identifier , miOntologyName), olsOntologyName);
     }
 
     /** {@inheritDoc} */
@@ -173,24 +184,30 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
         if(searchName == null || searchName.isEmpty())
             throw new IllegalArgumentException("Can not search for an identifier without a value.");
 
-        // 1) query ols which returns full name.
-        HashMap<String,String> termNamesMap = new HashMap<>();
-        Term term = olsClient.getExactTermByName(searchName, null);
-        termNamesMap.put(term.getTermOBOId().getIdentifier(), term.getLabel());
-
-        // 2) if no results, return null
-        if(termNamesMap.isEmpty())
-            return Collections.EMPTY_LIST;
-
-        Collection<T> results = new ArrayList<T>(termNamesMap.size());
-
-        for (String key : termNamesMap.keySet()){
-            String fullName = termNamesMap.get(key);
-
-            // 3) if a result, call instantiateCvTerm with provided fullName and create identity xref
-            results.add(instantiateCvTerm(fullName, createXref(key, "unknown"), term.getOntologyName().toLowerCase()));
+        Term term = null;
+        try {
+            // 1) query ols which returns full name.
+            term = olsClient.getExactTermByName(searchName, null);
+        }
+        catch (HttpClientErrorException e){
+            //If the exception is different to 404 (not found) we pass it,
+            // in other case we ignore it a return null
+            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
+                throw new BridgeFailedException(e);
+            }
         }
 
+        // 2) if no results, return null
+        if (term == null) {
+            return Collections.emptyList();
+        }
+
+        String identifier = term.getTermOBOId().getIdentifier();
+        String fullName = term.getLabel();
+
+        // 3) if a result, call instantiateCvTerm with provided fullName and create identity xref
+        Collection<T> results = new ArrayList<T>(1);
+        results.add(instantiateCvTerm(fullName, createXref(identifier, "unknown"), term.getOntologyName().toLowerCase()));
         return results;
     }
 

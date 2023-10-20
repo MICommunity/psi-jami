@@ -175,13 +175,13 @@ public class Mitab25Writer extends AbstractMitabWriter<Interaction, BinaryIntera
 
         boolean hasJustStarted = !hasStarted();
         if (hasJustStarted){
-           start();
+            start();
         }
 
         if (interaction instanceof InteractionEvidence){
             this.interactionEvidenceWriter.write((InteractionEvidence) interaction);
             if (hasJustStarted){
-               this.modelledInteractionWriter.start();
+                this.modelledInteractionWriter.start();
             }
         }
         else if (interaction instanceof ModelledInteraction){
