@@ -373,38 +373,42 @@ public class LazyCvTerm extends DefaultCvTerm {
             super.getAnnotations().add(validation);
         }
         // search url
-        else if (db == null && accession.startsWith(SEARCH_URL)){
-            String url = accession.substring(SEARCH_URL.length());
+        else if (db == null) {
+            if (accession.startsWith(SEARCH_URL)) {
+                String url = accession.substring(SEARCH_URL.length());
 
-            if (url.startsWith("\\")){
-                url = url.substring(1);
-            }
-            if (url.endsWith("\\")){
-                url = url.substring(0, url.length() - 1);
-            }
+                if (url.startsWith("\\")) {
+                    url = url.substring(1);
+                }
+                if (url.endsWith("\\")) {
+                    url = url.substring(0, url.length() - 1);
+                }
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
-            super.getAnnotations().add(validation);
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+                super.getAnnotations().add(validation);
+            }
         }
-        else if (db != null && db.equalsIgnoreCase(SEARCH_URL)){
-            String url = accession.trim();
+        else {
+            if (db.equalsIgnoreCase(SEARCH_URL)){
+                String url = accession.trim();
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
-            super.getAnnotations().add(validation);
-        }
-        else if (db != null && db.startsWith(SEARCH_URL)){
-            String prefix = db.substring(SEARCH_URL.length());
-            String url = prefix + META_XREF_SEPARATOR + accession;
-
-            if (url.startsWith("\"")){
-                url = url.substring(1);
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+                super.getAnnotations().add(validation);
             }
-            if (url.endsWith("\"")){
-                url = url.substring(0, url.length() - 1);
-            }
+            else if (db.startsWith(SEARCH_URL)){
+                String prefix = db.substring(SEARCH_URL.length());
+                String url = prefix + META_XREF_SEPARATOR + accession;
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
-            super.getAnnotations().add(validation);
+                if (url.startsWith("\"")){
+                    url = url.substring(1);
+                }
+                if (url.endsWith("\"")){
+                    url = url.substring(0, url.length() - 1);
+                }
+
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, Annotation.SEARCH_URL_MI, url);  // MI xref
+                super.getAnnotations().add(validation);
+            }
         }
     }
 
