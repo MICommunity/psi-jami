@@ -26,7 +26,7 @@ public class EnsemblInteractorFetcherTest {
 
     @Test
     public void test() throws BridgeFailedException {
-        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000652534");
+        Collection<Interactor> interactors = fetcher.fetchByIdentifier("ENST00000650905");
         assertNotEquals(0, interactors.size());
     }
 
