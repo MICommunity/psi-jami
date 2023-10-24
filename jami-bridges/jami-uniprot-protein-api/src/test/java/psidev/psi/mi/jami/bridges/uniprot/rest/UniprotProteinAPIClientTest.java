@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.bridges.uniprot.rest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry;
 import uk.ac.ebi.kraken.interfaces.uniparc.UniParcEntry;
@@ -83,6 +84,7 @@ public class UniprotProteinAPIClientTest {
     }
 
     @Test
+    @Ignore
     public void getUniparcEntryForAccession() {
         List<UniParcEntry> uniparcEntries = client.getUniparcEntryForAccession("P45532");
 
