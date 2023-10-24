@@ -17,6 +17,7 @@ import uk.ac.ebi.kraken.interfaces.uniprot.description.FieldType;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.GeneNameSynonym;
 import uk.ac.ebi.uniprot.dataservice.client.Client;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
+import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
 import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
@@ -70,10 +71,23 @@ public class UniprotGeneFetcher implements GeneFetcher {
                 query.and(UniProtQueryBuilder.taxonID(taxID));
             }
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            while (entries.hasNext()) {
-                UniProtEntry e = entries.next();
-                Gene gene = createGenesFromEntry(e, identifier);
-                genes.add(gene);
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    Gene gene = createGenesFromEntry(e, identifier);
+                    genes.add(gene);
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
             }
         }catch (ServiceException e){
             uniProtQueryService.stop();

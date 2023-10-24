@@ -25,6 +25,7 @@ import uk.ac.ebi.kraken.interfaces.uniprot.genename.ORFName;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.OrderedLocusName;
 import uk.ac.ebi.uniprot.dataservice.client.Client;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
+import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
 import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
@@ -164,9 +165,22 @@ public class UniprotProteinFetcher
             uniProtQueryService.start();
             Query query = UniProtQueryBuilder.accession(identifier).or(UniProtQueryBuilder.id(identifier));
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            while (entries.hasNext()) {
-                UniProtEntry e = entries.next();
-                proteins.add(createMasterProteinFromEntry(e));
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    proteins.add(createMasterProteinFromEntry(e));
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
             }
         } catch (ServiceException e) {
             uniProtQueryService.stop();
@@ -199,9 +213,22 @@ public class UniprotProteinFetcher
             }
             uniProtQueryService.start();
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            while (entries.hasNext()) {
-                UniProtEntry e = entries.next();
-                proteins.add(createMasterProteinFromEntry(e));
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    proteins.add(createMasterProteinFromEntry(e));
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
+                }
             }
         } catch (ServiceException e) {
             uniProtQueryService.stop();
@@ -267,14 +294,27 @@ public class UniprotProteinFetcher
             }
             uniProtQueryService.start();
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            while (entries.hasNext()) {
-                UniProtEntry e = entries.next();
-                Collection<AlternativeProductsIsoform> matchingIsoform = findIsoformsInEntry(e, identifiers);
-                if (matchingIsoform.isEmpty()) log.warning("No isoform in entry " + e.getUniProtId());
-                else {
-                    for (AlternativeProductsIsoform isoform : matchingIsoform) {
-                        proteins.add(createIsoformFrom(e, isoform));
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    Collection<AlternativeProductsIsoform> matchingIsoform = findIsoformsInEntry(e, identifiers);
+                    if (matchingIsoform.isEmpty()) log.warning("No isoform in entry " + e.getUniProtId());
+                    else {
+                        for (AlternativeProductsIsoform isoform : matchingIsoform) {
+                            proteins.add(createIsoformFrom(e, isoform));
+                        }
                     }
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
                 }
             }
         } catch (ServiceException e) {
@@ -307,12 +347,25 @@ public class UniprotProteinFetcher
                             .or(UniProtQueryBuilder.features(FeatureType.PROPEP, identifier)));
 
             QueryResult<UniProtEntry> entries = uniProtQueryService.getEntries(query);
-            while (entries.hasNext()) {
-                UniProtEntry e = entries.next();
-                Feature feature = findFeatureInEntry(e, identifier);
-                if (feature == null) log.warning("No feature in entry " + e.getUniProtId());
-                else {
-                    proteins.add(createProteinFeatureFrom(e, feature));
+            QueryResultPage<UniProtEntry> currentPage = entries.getCurrentPage();
+            int count = 0;
+            while (true) {
+                for (UniProtEntry e : currentPage.getResults()) {
+                    Feature feature = findFeatureInEntry(e, identifier);
+                    if (feature == null) log.warning("No feature in entry " + e.getUniProtId());
+                    else {
+                        proteins.add(createProteinFeatureFrom(e, feature));
+                    }
+                    count++;
+                }
+                if (count < entries.getNumberOfHits()) {
+                    try {
+                        currentPage.fetchNextPage();
+                    } catch (ServiceException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    break;
                 }
             }
         } catch (ServiceException e) {

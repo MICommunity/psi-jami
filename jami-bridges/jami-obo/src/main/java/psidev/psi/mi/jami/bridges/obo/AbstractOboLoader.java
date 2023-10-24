@@ -354,25 +354,27 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
                 ontologyTerm.getAnnotations().add(validation);
             }
         }
-        else if (db.equalsIgnoreCase(SEARCH_URL)){
-            String url = accession.trim();
+        else {
+            if (db.equalsIgnoreCase(SEARCH_URL)){
+                String url = accession.trim();
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
-            ontologyTerm.getAnnotations().add(validation);
-        }
-        else if (db.startsWith(SEARCH_URL)){
-            String prefix = db.substring(SEARCH_URL.length());
-            String url = prefix + META_XREF_SEPARATOR + accession;
-
-            if (url.startsWith("\"")){
-                url = url.substring(1);
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
+                ontologyTerm.getAnnotations().add(validation);
             }
-            if (url.endsWith("\"")){
-                url = url.substring(0, url.length() - 1);
-            }
+            else if (db.startsWith(SEARCH_URL)){
+                String prefix = db.substring(SEARCH_URL.length());
+                String url = prefix + META_XREF_SEPARATOR + accession;
 
-            Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
-            ontologyTerm.getAnnotations().add(validation);
+                if (url.startsWith("\"")){
+                    url = url.substring(1);
+                }
+                if (url.endsWith("\"")){
+                    url = url.substring(0, url.length() - 1);
+                }
+
+                Annotation validation = AnnotationUtils.createAnnotation(SEARCH_URL, SEARCH_URL_MI_REF, url);  // MI xref
+                ontologyTerm.getAnnotations().add(validation);
+            }
         }
     }
 
@@ -395,26 +397,27 @@ public abstract class AbstractOboLoader<T extends CvTerm> extends BaseOBO2Abstra
      * @param ontologyTerm a T object.
      */
     protected void processDefinition(String definition, T ontologyTerm) {
-        if ( definition.contains( LINE_BREAK ) ) {
-            String[] defArray = definition.split( LINE_BREAK );
+        if (definition != null) {
+            if (definition.contains(LINE_BREAK)) {
+                String[] defArray = definition.split(LINE_BREAK);
 
-            String otherInfoString = null;
+                String otherInfoString = null;
 
-            if ( defArray.length == 2 ) {
-                createDefinitionFor(defArray[0], ontologyTerm);
-                otherInfoString = defArray[1];
-                processInfoInDescription(definition, otherInfoString, ontologyTerm);
-            } else if ( defArray.length > 2 ) {
-                createDefinitionFor(defArray[0], ontologyTerm);
-
-                for (int i = 1; i < defArray.length; i++){
-                    otherInfoString = defArray[i];
+                if (defArray.length == 2) {
+                    createDefinitionFor(defArray[0], ontologyTerm);
+                    otherInfoString = defArray[1];
                     processInfoInDescription(definition, otherInfoString, ontologyTerm);
+                } else if (defArray.length > 2) {
+                    createDefinitionFor(defArray[0], ontologyTerm);
+
+                    for (int i = 1; i < defArray.length; i++) {
+                        otherInfoString = defArray[i];
+                        processInfoInDescription(definition, otherInfoString, ontologyTerm);
+                    }
                 }
+            } else {
+                processInfoInDescription(definition, definition, ontologyTerm);
             }
-        }
-        else {
-            processInfoInDescription(definition, definition, ontologyTerm);
         }
     }
 
