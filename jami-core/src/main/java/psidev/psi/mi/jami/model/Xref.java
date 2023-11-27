@@ -20,6 +20,10 @@ public interface Xref {
     public static final String ENSEMBL = "ensembl";
     /** Constant <code>ENSEMBL_MI="MI:0476"</code> */
     public static final String ENSEMBL_MI = "MI:0476";
+    /** Constant <code>RNA_CENTRAL="RNAcentral"</code> */
+    public static final String RNA_CENTRAL = "RNAcentral";
+    /** Constant <code>RNA_CENTRAL_MI="MI:1357"</code> */
+    public static final String RNA_CENTRAL_MI = "MI:1357";
     /** Constant <code>ENSEMBL_GENOMES="ensemblgenomes"</code> */
     public static final String ENSEMBL_GENOMES = "ensemblgenomes";
     /** Constant <code>ENSEMBL_GENOMES_MI="MI:1013"</code> */

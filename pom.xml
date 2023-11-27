@@ -5,7 +5,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.4.1</version>
+    <version>3.5.0</version>
 
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
@@ -15,9 +15,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.30.RELEASE</spring.version>
 
-        <ontology.manager.version>2.1.0</ontology.manager.version>
+        <ontology.manager.version>2.1.1</ontology.manager.version>
         <ols.client.version>2.14-SNAPSHOT</ols.client.version>
-        <uniprot.japi.version>1.2.4</uniprot.japi.version>
+        <uniprot.japi.version>1.1.2</uniprot.japi.version>
         <chebiws.client.version>2.4</chebiws.client.version>
         <h2.version>1.4.197</h2.version>
 
@@ -166,11 +166,6 @@
         <repository>
             <id>nexus-ebi-snapshot-repo</id>
             <url>https://www.ebi.ac.uk/Tools/maven/repos/content/groups/ebi-snapshots/</url>
-        </repository>
-        <repository>
-            <id>ebiUniprotPublic</id>
-            <name>ebi-uniprot-public</name>
-            <url>https://www.ebi.ac.uk/uniprot/artifactory/public</url>
         </repository>
     </repositories>
 

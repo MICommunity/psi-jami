@@ -1,6 +1,7 @@
 package psidev.psi.mi.jami.enricher.impl.minimal;
 
 import psidev.psi.mi.jami.bridges.fetcher.GeneFetcher;
+import psidev.psi.mi.jami.bridges.fetcher.NucleicAcidFetcher;
 import psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher;
 import psidev.psi.mi.jami.enricher.impl.AbstractInteractorUpdater;
 import psidev.psi.mi.jami.model.Gene;
@@ -17,6 +18,15 @@ import psidev.psi.mi.jami.model.Gene;
 
  */
 public class MinimalGeneUpdater extends AbstractInteractorUpdater<Gene> {
+
+    public GeneFetcher getEnsemblFetcher() {
+        return ((MinimalGeneEnricher) getInteractorEnricher()).getEnsemblFetcher();
+    }
+
+    public void setEnsemblFetcher(GeneFetcher ensemblFetcher) {
+        ((MinimalGeneEnricher) getInteractorEnricher()).setEnsemblFetcher(ensemblFetcher);
+    }
+
 
     /**
      * <p>Constructor for MinimalGeneUpdater.</p>

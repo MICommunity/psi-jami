@@ -2,13 +2,14 @@ package psidev.psi.mi.jami.bridges.ols;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.CvTermFetcher;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import uk.ac.ebi.pride.utilities.ols.web.service.client.OLSClient;
-import uk.ac.ebi.pride.utilities.ols.web.service.config.OLSWsConfigProd;
+import uk.ac.ebi.pride.utilities.ols.web.service.config.OLSWsConfig;
 import uk.ac.ebi.pride.utilities.ols.web.service.model.Identifier;
 import uk.ac.ebi.pride.utilities.ols.web.service.model.Term;
 
@@ -32,7 +33,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
      * @throws psidev.psi.mi.jami.bridges.exception.BridgeFailedException if any.
      */
     public AbstractOlsFetcher() throws BridgeFailedException {
-        this.olsClient = new OLSClient(new OLSWsConfigProd());
+        this.olsClient = new OLSClient(new OLSWsConfig("www.ebi.ac.uk/ols4/"));
         initialiseDbMap();
     }
 
@@ -89,6 +90,7 @@ public abstract class AbstractOlsFetcher<T extends CvTerm> implements CvTermFetc
            if(!HttpStatus.NOT_FOUND.equals(e.getStatusCode())){
                throw new BridgeFailedException(e);
            }
+        } catch (RestClientException ignored) {
         }
 
         // 2) if no results, return null
