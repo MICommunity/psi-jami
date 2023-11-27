@@ -15,7 +15,7 @@ import java.util.Collection;
  * @version $Id$
  * @since <pre>11/02/14</pre>
  */
-public class CompositeInteractorEnricher implements InteractorEnricher<Interactor>{
+public class CompositeInteractorEnricher implements InteractorEnricher<Interactor> {
 
     private AbstractInteractorEnricher<Interactor> interactorBaseEnricher;
     private InteractorEnricher<Polymer> polymerBaseEnricher;
@@ -23,6 +23,7 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
     private ProteinEnricher proteinEnricher;
     private InteractorEnricher<BioactiveEntity> bioactiveEntityEnricher;
     private InteractorEnricher<Gene> geneEnricher;
+    private InteractorEnricher<NucleicAcid> nucleicAcidEnricher;
     private ComplexEnricher complexEnricher;
 
     /**
@@ -30,10 +31,10 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
      *
      * @param interactorBaseEnricher a {@link psidev.psi.mi.jami.enricher.impl.AbstractInteractorEnricher} object.
      */
-    public CompositeInteractorEnricher(AbstractInteractorEnricher<Interactor> interactorBaseEnricher){
+    public CompositeInteractorEnricher(AbstractInteractorEnricher<Interactor> interactorBaseEnricher) {
         super();
-        if (interactorBaseEnricher == null){
-            throw new IllegalArgumentException("At least the interactor base enricher is needed and cannot be null") ;
+        if (interactorBaseEnricher == null) {
+            throw new IllegalArgumentException("At least the interactor base enricher is needed and cannot be null");
         }
         this.interactorBaseEnricher = interactorBaseEnricher;
     }
@@ -128,6 +129,14 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         this.geneEnricher = geneEnricher;
     }
 
+    public InteractorEnricher<NucleicAcid> getNucleicAcidEnricher() {
+        return nucleicAcidEnricher;
+    }
+
+    public void setNucleicAcidEnricher(InteractorEnricher<NucleicAcid> nucleicAcidEnricher) {
+        this.nucleicAcidEnricher = nucleicAcidEnricher;
+    }
+
     /**
      * <p>Getter for the field <code>complexEnricher</code>.</p>
      *
@@ -162,32 +171,27 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
      * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void enrich(Interactor object) throws EnricherException {
-        if(object == null)
+        if (object == null)
             throw new IllegalArgumentException("Cannot enrich a null interactor.");
-        if (object instanceof Polymer){
-            if (object instanceof Protein && this.proteinEnricher != null){
-               this.proteinEnricher.enrich((Protein)object);
-            }
-            else if (this.polymerBaseEnricher != null){
-               this.polymerBaseEnricher.enrich((Polymer)object);
-            }
-            else{
+        if (object instanceof Polymer) {
+            if (object instanceof Protein && this.proteinEnricher != null) {
+                this.proteinEnricher.enrich((Protein) object);
+            } else if (this.polymerBaseEnricher != null) {
+                this.polymerBaseEnricher.enrich((Polymer) object);
+            } else {
                 this.interactorBaseEnricher.enrich(object);
             }
-        }
-        else if (object instanceof Gene && this.geneEnricher != null){
-            this.geneEnricher.enrich((Gene)object);
-        }
-        else if (object instanceof BioactiveEntity && this.bioactiveEntityEnricher != null){
-             this.bioactiveEntityEnricher.enrich((BioactiveEntity)object);
-        }
-        else if (object instanceof Complex && this.complexEnricher != null){
-           this.complexEnricher.enrich((Complex)object);
-        }
-        else if (object instanceof InteractorPool && this.interactorPoolEnricher != null){
-            this.interactorPoolEnricher.enrich((InteractorPool)object);
-        }
-        else{
+        } else if (object instanceof Gene && this.geneEnricher != null) {
+            this.geneEnricher.enrich((Gene) object);
+        } else if (object instanceof NucleicAcid && this.nucleicAcidEnricher != null) {
+            this.nucleicAcidEnricher.enrich((NucleicAcid) object);
+        } else if (object instanceof BioactiveEntity && this.bioactiveEntityEnricher != null) {
+            this.bioactiveEntityEnricher.enrich((BioactiveEntity) object);
+        } else if (object instanceof Complex && this.complexEnricher != null) {
+            this.complexEnricher.enrich((Complex) object);
+        } else if (object instanceof InteractorPool && this.interactorPoolEnricher != null) {
+            this.interactorPoolEnricher.enrich((InteractorPool) object);
+        } else {
             this.interactorBaseEnricher.enrich(object);
         }
     }
@@ -199,10 +203,10 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
      * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void enrich(Collection<Interactor> objects) throws EnricherException {
-        if(objects == null)
+        if (objects == null)
             throw new IllegalArgumentException("Cannot enrich a null collection of interactors.");
 
-        for (Interactor object : objects){
+        for (Interactor object : objects) {
             enrich(object);
         }
     }
@@ -210,35 +214,28 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
     /**
      * <p>enrich.</p>
      *
-     * @param object a {@link psidev.psi.mi.jami.model.Interactor} object.
+     * @param object       a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @param objectSource a {@link psidev.psi.mi.jami.model.Interactor} object.
      * @throws psidev.psi.mi.jami.enricher.exception.EnricherException if any.
      */
     public void enrich(Interactor object, Interactor objectSource) throws EnricherException {
-        if (object instanceof Polymer && objectSource instanceof Polymer){
-            if (object instanceof Protein && objectSource instanceof Protein && this.proteinEnricher != null){
-                this.proteinEnricher.enrich((Protein)object, (Protein)objectSource);
-            }
-            else if (this.polymerBaseEnricher != null){
-                this.polymerBaseEnricher.enrich((Polymer)object, (Polymer)objectSource);
-            }
-            else{
+        if (object instanceof Polymer && objectSource instanceof Polymer) {
+            if (object instanceof Protein && objectSource instanceof Protein && this.proteinEnricher != null) {
+                this.proteinEnricher.enrich((Protein) object, (Protein) objectSource);
+            } else if (this.polymerBaseEnricher != null) {
+                this.polymerBaseEnricher.enrich((Polymer) object, (Polymer) objectSource);
+            } else {
                 this.interactorBaseEnricher.enrich(object, objectSource);
             }
-        }
-        else if (object instanceof Gene && objectSource instanceof Gene && this.geneEnricher != null){
-            this.geneEnricher.enrich((Gene)object, (Gene)objectSource);
-        }
-        else if (object instanceof BioactiveEntity && objectSource instanceof BioactiveEntity && this.bioactiveEntityEnricher != null){
-            this.bioactiveEntityEnricher.enrich((BioactiveEntity)object, (BioactiveEntity)objectSource);
-        }
-        else if (object instanceof Complex && objectSource instanceof Complex && this.complexEnricher != null){
-            this.complexEnricher.enrich((Complex)object, (Complex)objectSource);
-        }
-        else if (object instanceof InteractorPool && objectSource instanceof InteractorPool && this.interactorPoolEnricher != null){
-            this.interactorPoolEnricher.enrich((InteractorPool)object, (InteractorPool)objectSource);
-        }
-        else{
+        } else if (object instanceof Gene && objectSource instanceof Gene && this.geneEnricher != null) {
+            this.geneEnricher.enrich((Gene) object, (Gene) objectSource);
+        } else if (object instanceof BioactiveEntity && objectSource instanceof BioactiveEntity && this.bioactiveEntityEnricher != null) {
+            this.bioactiveEntityEnricher.enrich((BioactiveEntity) object, (BioactiveEntity) objectSource);
+        } else if (object instanceof Complex && objectSource instanceof Complex && this.complexEnricher != null) {
+            this.complexEnricher.enrich((Complex) object, (Complex) objectSource);
+        } else if (object instanceof InteractorPool && objectSource instanceof InteractorPool && this.interactorPoolEnricher != null) {
+            this.interactorPoolEnricher.enrich((InteractorPool) object, (InteractorPool) objectSource);
+        } else {
             this.interactorBaseEnricher.enrich(object, objectSource);
         }
     }
@@ -279,53 +276,59 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         return this.interactorBaseEnricher.getOrganismEnricher();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setListener(InteractorEnricherListener<Interactor> listener) {
         this.interactorBaseEnricher.setListener(listener);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setCvTermEnricher(CvTermEnricher<CvTerm> enricher) {
         this.interactorBaseEnricher.setCvTermEnricher(enricher);
-        if (getProteinEnricher() != null){
+        if (getProteinEnricher() != null) {
             getProteinEnricher().setCvTermEnricher(enricher);
         }
-        if (getPolymerBaseEnricher() != null){
+        if (getPolymerBaseEnricher() != null) {
             getPolymerBaseEnricher().setCvTermEnricher(enricher);
         }
-        if (getGeneEnricher() != null){
+        if (getGeneEnricher() != null) {
             getGeneEnricher().setCvTermEnricher(enricher);
         }
-        if (getBioactiveEntityEnricher() != null){
+        if (getBioactiveEntityEnricher() != null) {
             getBioactiveEntityEnricher().setCvTermEnricher(enricher);
         }
-        if (getComplexEnricher() != null){
+        if (getComplexEnricher() != null) {
             getComplexEnricher().setCvTermEnricher(enricher);
         }
-        if (getInteractorPoolEnricher() != null){
+        if (getInteractorPoolEnricher() != null) {
             getInteractorPoolEnricher().setCvTermEnricher(enricher);
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public void setOrganismEnricher(OrganismEnricher enricher) {
         this.interactorBaseEnricher.setOrganismEnricher(enricher);
-        if (getProteinEnricher() != null){
+        if (getProteinEnricher() != null) {
             getProteinEnricher().setOrganismEnricher(enricher);
         }
-        if (getPolymerBaseEnricher() != null){
+        if (getPolymerBaseEnricher() != null) {
             getPolymerBaseEnricher().setOrganismEnricher(enricher);
         }
-        if (getGeneEnricher() != null){
+        if (getGeneEnricher() != null) {
             getGeneEnricher().setOrganismEnricher(enricher);
         }
-        if (getBioactiveEntityEnricher() != null){
+        if (getBioactiveEntityEnricher() != null) {
             getBioactiveEntityEnricher().setOrganismEnricher(enricher);
         }
-        if (getComplexEnricher() != null){
+        if (getComplexEnricher() != null) {
             getComplexEnricher().setOrganismEnricher(enricher);
         }
-        if (getInteractorPoolEnricher() != null){
+        if (getInteractorPoolEnricher() != null) {
             getInteractorPoolEnricher().setOrganismEnricher(enricher);
         }
     }

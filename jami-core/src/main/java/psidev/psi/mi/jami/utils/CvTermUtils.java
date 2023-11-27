@@ -487,6 +487,10 @@ public class CvTermUtils {
         return createMICvTerm(Xref.ENSEMBL_GENOMES, Xref.ENSEMBL_GENOMES_MI);
     }
 
+    public static CvTerm createRNACentralDatabase(){
+        return createMICvTerm(Xref.RNA_CENTRAL, Xref.RNA_CENTRAL_MI);
+    }
+
     /**
      * <p>createEntrezGeneIdDatabase</p>
      *

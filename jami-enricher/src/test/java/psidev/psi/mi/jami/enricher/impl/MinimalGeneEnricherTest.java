@@ -20,6 +20,7 @@ import psidev.psi.mi.jami.utils.CvTermUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static junit.framework.Assert.*;
 
@@ -33,6 +34,7 @@ import static junit.framework.Assert.*;
 public class MinimalGeneEnricherTest {
 
     private MinimalGeneEnricher geneEnricher;
+    private MockGeneFetcher mockEnsemblGeneFetcher;
     private MockGeneFetcher mockGeneFetcher;
 
     Gene persistentGene;
@@ -42,30 +44,40 @@ public class MinimalGeneEnricherTest {
     private static final String TEST_OLD_FULLNAME = "test old fullName";
     private static final String TEST_AC_CUSTOM_GENE = "ENSG00000139617";
     private static final String TEST_SHORTNAME = "test shortName";
+    private static final String TEST_SHORTNAME_REF_SEQ = TEST_SHORTNAME + " : RefSeq";
     private static final String TEST_FULLNAME = "test fullName";
+    private static final String TEST_FULLNAME_REF_SEQ = TEST_FULLNAME + " : RefSeq";
     private static final String TEST_AC_FULL_GENE = "ENSG00000139618";
     private static final String TEST_AC_HALF_GENE = "ENSG00000139616";
+    private static final String TEST_AC_REF_SEQ = "NM_058074.4";
     private static final int TEST_ORGANISM_ID = 1234;
     private static final String TEST_ORGANISM_COMMON = "Common";
     private static final String TEST_ORGANISM_SCIENTIFIC = "Scientific";
 
     @Before
     public void initialiseFetcherAndEnricher() {
+        mockEnsemblGeneFetcher = new MockGeneFetcher();
         mockGeneFetcher = new MockGeneFetcher();
         geneEnricher = new MinimalGeneEnricher(mockGeneFetcher);
+        geneEnricher.setEnsemblFetcher(mockEnsemblGeneFetcher);
+
+        Organism organism = new DefaultOrganism(TEST_ORGANISM_ID, TEST_ORGANISM_COMMON, TEST_ORGANISM_SCIENTIFIC);
 
         Gene fullGene = new DefaultGene(TEST_SHORTNAME, TEST_FULLNAME);
         fullGene.setEnsembl(TEST_AC_FULL_GENE);
-        fullGene.setOrganism(new DefaultOrganism(TEST_ORGANISM_ID, TEST_ORGANISM_COMMON, TEST_ORGANISM_SCIENTIFIC));
-        Collection<Gene> fullGeneList = new ArrayList<Gene>();
-        fullGeneList.add(fullGene);
-        mockGeneFetcher.addEntry(TEST_AC_FULL_GENE, fullGeneList);
+        fullGene.setOrganism(organism);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_FULL_GENE, List.of(fullGene));
 
         Gene halfGene = new DefaultGene(TEST_SHORTNAME);
         halfGene.setEnsembl(TEST_AC_HALF_GENE);
         Collection<Gene> halfGeneList = new ArrayList<Gene>();
         halfGeneList.add(halfGene);
-        mockGeneFetcher.addEntry(TEST_AC_HALF_GENE, halfGeneList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_HALF_GENE, halfGeneList);
+
+        Gene fullGeneRefSeq = new DefaultGene(TEST_SHORTNAME_REF_SEQ, TEST_FULLNAME_REF_SEQ);
+        fullGene.setEnsembl(TEST_AC_REF_SEQ);
+        fullGene.setOrganism(organism);
+        mockGeneFetcher.addEntry(TEST_AC_REF_SEQ, List.of(fullGeneRefSeq));
 
         persistentGene = null;
         persistentInt = 0;
@@ -366,7 +378,7 @@ public class MinimalGeneEnricherTest {
         customGene.setOrganism(new DefaultOrganism(9898));
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         persistentGene = new DefaultGene(TEST_OLD_SHORTNAME, TEST_OLD_FULLNAME);
         persistentGene.setEnsembl(TEST_AC_CUSTOM_GENE);
@@ -487,7 +499,7 @@ public class MinimalGeneEnricherTest {
         customGene.setOrganism(new DefaultOrganism(9898));
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         persistentGene = new DefaultGene(TEST_OLD_SHORTNAME, TEST_OLD_FULLNAME);
         persistentGene.setEnsembl(TEST_AC_CUSTOM_GENE);
@@ -847,7 +859,7 @@ public class MinimalGeneEnricherTest {
         customGene.setEnsembl(TEST_AC_CUSTOM_GENE);
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         assertNotNull(persistentGene.getShortName());
         assertEquals(TEST_OLD_SHORTNAME, persistentGene.getShortName());
@@ -967,7 +979,7 @@ public class MinimalGeneEnricherTest {
 
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         assertNull(persistentGene.getFullName());
 
@@ -1087,7 +1099,7 @@ public class MinimalGeneEnricherTest {
         customGene.setEnsembl(TEST_AC_CUSTOM_GENE);
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         assertNotNull(persistentGene.getFullName());
         assertEquals(TEST_OLD_FULLNAME, persistentGene.getFullName());
@@ -1210,7 +1222,7 @@ public class MinimalGeneEnricherTest {
 
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
 
         assertEquals(2, persistentGene.getIdentifiers().size());
@@ -1354,7 +1366,7 @@ public class MinimalGeneEnricherTest {
 
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         assertEquals(1, persistentGene.getAliases().size());
 
@@ -1497,7 +1509,7 @@ public class MinimalGeneEnricherTest {
 
         Collection<Gene> customList = new ArrayList<Gene>();
         customList.add(customGene);
-        mockGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
+        mockEnsemblGeneFetcher.addEntry(TEST_AC_CUSTOM_GENE, customList);
 
         assertEquals(1, persistentGene.getXrefs().size());
 
@@ -1625,6 +1637,27 @@ public class MinimalGeneEnricherTest {
     }
 
     // TODO  onRefseqUpdate, onGeneNameUpdate
+
+    // == Fetcher ====================================================================================
+    @Test
+    public void test_correct_fetcher_used() throws EnricherException {
+        Gene gene_ref_seq = new DefaultGene(TEST_SHORTNAME_REF_SEQ);
+        gene_ref_seq.setRefseq(TEST_AC_REF_SEQ);
+        assertNull(gene_ref_seq.getFullName());
+
+        this.geneEnricher.enrich(gene_ref_seq);
+
+        assertTrue(gene_ref_seq.getFullName().endsWith("RefSeq"));
+
+        Gene gene_ensembl = new DefaultGene(TEST_SHORTNAME);
+        gene_ensembl.setEnsembl(TEST_AC_FULL_GENE);
+        assertNull(gene_ensembl.getFullName());
+
+        this.geneEnricher.enrich(gene_ensembl);
+
+        assertFalse(gene_ensembl.getFullName().endsWith("RefSeq"));
+    }
+
 
 
 }
