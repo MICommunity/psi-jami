@@ -124,6 +124,8 @@ public class MinimalNucleicAcidEnricher extends AbstractInteractorEnricher<Nucle
         // if the interactor type is not a valid bioactive entity interactor type, we cannot enrich
         if (entityToEnrich.getInteractorType() != null &&
                 !CvTermUtils.isCvTerm(entityToEnrich.getInteractorType(), NucleicAcid.NULCEIC_ACID_MI, NucleicAcid.NULCEIC_ACID)
+                && !CvTermUtils.isCvTerm(entityToEnrich.getInteractorType(), NucleicAcid.MRNA_MI, NucleicAcid.MRNA)
+                && !CvTermUtils.isCvTerm(entityToEnrich.getInteractorType(), NucleicAcid.MIRNA_MI, NucleicAcid.MIRNA)
                 && !CvTermUtils.isCvTerm(entityToEnrich.getInteractorType(), Interactor.UNKNOWN_INTERACTOR_MI, Interactor.UNKNOWN_INTERACTOR)) {
             return false;
         }

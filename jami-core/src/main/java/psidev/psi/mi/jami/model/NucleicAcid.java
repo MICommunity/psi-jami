@@ -13,6 +13,10 @@ public interface NucleicAcid extends Polymer {
     public static final String NULCEIC_ACID="nucleic acid";
     /** Constant <code>NULCEIC_ACID_MI="MI:0318"</code> */
     public static final String NULCEIC_ACID_MI="MI:0318";
+    public static final String MRNA = "mrna";
+    public static final String MRNA_MI = "MI:0324";
+    public static final String MIRNA = "mirna";
+    public static final String MIRNA_MI = "MI:2204";
 
     /**
      * The unique DDBJ/EMBL/GemBank identifier which identifies the nucleic acid.
