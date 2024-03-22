@@ -2,12 +2,9 @@ package psidev.psi.mi.jami.enricher.impl.full;
 
 import psidev.psi.mi.jami.bridges.fetcher.GeneFetcher;
 import psidev.psi.mi.jami.bridges.fetcher.NucleicAcidFetcher;
-import psidev.psi.mi.jami.enricher.impl.minimal.MinimalGeneUpdater;
 import psidev.psi.mi.jami.enricher.impl.minimal.MinimalNucleicAcidUpdater;
 import psidev.psi.mi.jami.enricher.listener.NucleicAcidEnricherListener;
-import psidev.psi.mi.jami.enricher.listener.ProteinEnricherListener;
 import psidev.psi.mi.jami.model.NucleicAcid;
-import psidev.psi.mi.jami.model.Protein;
 
 /**
  * A full updater for genes.
