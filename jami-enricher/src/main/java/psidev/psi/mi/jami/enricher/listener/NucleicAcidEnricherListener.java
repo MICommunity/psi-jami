@@ -9,5 +9,5 @@ import psidev.psi.mi.jami.model.NucleicAcid;
  * @since 03/09/13
 
  */
-public interface NucleicAcidEnricherListener extends PolymerEnricherListener<NucleicAcid> {
+public interface NucleicAcidEnricherListener extends PolymerEnricherListener<NucleicAcid>, InteractorEnricherListener<NucleicAcid> {
 }

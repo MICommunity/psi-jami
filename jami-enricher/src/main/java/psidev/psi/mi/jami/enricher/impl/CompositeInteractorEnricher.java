@@ -176,6 +176,8 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         if (object instanceof Polymer) {
             if (object instanceof Protein && this.proteinEnricher != null) {
                 this.proteinEnricher.enrich((Protein) object);
+            } else if (object instanceof NucleicAcid && this.nucleicAcidEnricher != null) {
+                this.nucleicAcidEnricher.enrich((NucleicAcid) object);
             } else if (this.polymerBaseEnricher != null) {
                 this.polymerBaseEnricher.enrich((Polymer) object);
             } else {
@@ -183,8 +185,6 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
             }
         } else if (object instanceof Gene && this.geneEnricher != null) {
             this.geneEnricher.enrich((Gene) object);
-        } else if (object instanceof NucleicAcid && this.nucleicAcidEnricher != null) {
-            this.nucleicAcidEnricher.enrich((NucleicAcid) object);
         } else if (object instanceof BioactiveEntity && this.bioactiveEntityEnricher != null) {
             this.bioactiveEntityEnricher.enrich((BioactiveEntity) object);
         } else if (object instanceof Complex && this.complexEnricher != null) {
@@ -222,6 +222,8 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         if (object instanceof Polymer && objectSource instanceof Polymer) {
             if (object instanceof Protein && objectSource instanceof Protein && this.proteinEnricher != null) {
                 this.proteinEnricher.enrich((Protein) object, (Protein) objectSource);
+            } else if (object instanceof NucleicAcid && objectSource instanceof NucleicAcid && this.nucleicAcidEnricher != null) {
+                this.nucleicAcidEnricher.enrich((NucleicAcid) object, (NucleicAcid) objectSource);
             } else if (this.polymerBaseEnricher != null) {
                 this.polymerBaseEnricher.enrich((Polymer) object, (Polymer) objectSource);
             } else {
@@ -294,6 +296,9 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         if (getPolymerBaseEnricher() != null) {
             getPolymerBaseEnricher().setCvTermEnricher(enricher);
         }
+        if (getNucleicAcidEnricher() != null) {
+            getNucleicAcidEnricher().setCvTermEnricher(enricher);
+        }
         if (getGeneEnricher() != null) {
             getGeneEnricher().setCvTermEnricher(enricher);
         }
@@ -318,6 +323,9 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
         if (getPolymerBaseEnricher() != null) {
             getPolymerBaseEnricher().setOrganismEnricher(enricher);
+        }
+        if (getNucleicAcidEnricher() != null) {
+            getNucleicAcidEnricher().setOrganismEnricher(enricher);
         }
         if (getGeneEnricher() != null) {
             getGeneEnricher().setOrganismEnricher(enricher);
