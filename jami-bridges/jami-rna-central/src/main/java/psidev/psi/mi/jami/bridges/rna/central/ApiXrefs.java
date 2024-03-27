@@ -61,7 +61,7 @@ class ApiXrefs {
         private String gencodeTranscriptId;
         private URL gencodeEnsemblUrl;
 
-        private List<URL> quickgoHits;
+        private Integer quickgoHits;
 
         @Jacksonized
         @Data
