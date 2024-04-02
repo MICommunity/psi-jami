@@ -324,9 +324,7 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
 
                 if (pub != null){
                     getWriter().write(MitabUtils.FIELD_SEPARATOR);
-                    writeInteractionAnnotationTagsFrom(pub);
-
-
+                    writeInteractionAnnotationTagsFrom(pub, false);
                 }
             }
         }
@@ -334,9 +332,10 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
             Publication pub = interaction.getExperiment().getPublication();
 
             if (pub != null){
-
                 // writes curation depth first
-                writeInteractionAnnotationTagsFrom(pub);
+                writeInteractionAnnotationTagsFrom(pub, true);
+            } else {
+                getWriter().write(MitabUtils.EMPTY_COLUMN);
             }
         }
         else{
@@ -450,7 +449,7 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
      * @param pub a {@link psidev.psi.mi.jami.model.Publication} object.
      * @throws java.io.IOException if any.
      */
-    protected void writeInteractionAnnotationTagsFrom(Publication pub) throws IOException {
+    protected void writeInteractionAnnotationTagsFrom(Publication pub, boolean writeEmptyColumn) throws IOException {
         boolean isFirst = true;
         // writes curation depth first
         switch (pub.getCurationDepth()){
@@ -495,6 +494,11 @@ public class MitabInteractionEvidenceFeeder extends AbstractMitabColumnFeeder<Bi
                 }
             }
             while (next != null && publicationAnnotationIterator.hasNext()) ;
+        }
+
+        // If isFirst is true, it means no annotation has been written
+        if (isFirst && writeEmptyColumn) {
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
         }
     }
 }

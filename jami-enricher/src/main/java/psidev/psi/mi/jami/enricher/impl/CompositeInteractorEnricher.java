@@ -311,6 +311,9 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         if (getInteractorPoolEnricher() != null) {
             getInteractorPoolEnricher().setCvTermEnricher(enricher);
         }
+        if (getNucleicAcidEnricher() != null) {
+            getNucleicAcidEnricher().setCvTermEnricher(enricher);
+        }
     }
 
     /**
@@ -338,6 +341,9 @@ public class CompositeInteractorEnricher implements InteractorEnricher<Interacto
         }
         if (getInteractorPoolEnricher() != null) {
             getInteractorPoolEnricher().setOrganismEnricher(enricher);
+        }
+        if (getNucleicAcidEnricher() != null) {
+            getNucleicAcidEnricher().setOrganismEnricher(enricher);
         }
     }
 }

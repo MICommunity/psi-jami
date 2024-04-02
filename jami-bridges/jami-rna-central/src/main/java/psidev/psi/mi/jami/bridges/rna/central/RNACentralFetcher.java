@@ -11,6 +11,7 @@ import psidev.psi.mi.jami.model.NucleicAcid;
 import psidev.psi.mi.jami.model.Organism;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.model.impl.*;
+import psidev.psi.mi.jami.utils.XrefUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,6 +94,7 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
 
     private void extractXrefsAndAliases(NucleicAcid nucleicAcid, ApiXrefs.Result result) {
         Collection<Xref> xrefs = nucleicAcid.getXrefs();
+        Collection<Xref> identifiers = nucleicAcid.getIdentifiers();
 
         XrefType xrefType = XrefType.getByDatabase(result.getDatabase());
 
@@ -105,7 +107,13 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
                     .map(PartialCvTerm::complete)
                     .findFirst().orElse(OLSUtils.secondaryAcCV);
 
-            xrefs.add(new DefaultXref(database, result.getAccession().getExternalId(), qualifier));
+            Xref newXref = new DefaultXref(database, result.getAccession().getExternalId(), qualifier);
+
+            if (XrefUtils.isXrefAnIdentifier(newXref)) {
+                identifiers.add(newXref);
+            } else {
+                xrefs.add(newXref);
+            }
 
             xrefType.extraReferenceBuilders.stream()
                     .map(builder -> builder.apply(result))
@@ -113,7 +121,13 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
                             PartialXref.builder()
                                     .database(PartialCvTerm.from(database))
                                     .build()))
-                    .forEach(xrefs::add);
+                    .forEach(xref -> {
+                        if (XrefUtils.isXrefAnIdentifier(xref)) {
+                            identifiers.add(xref);
+                        } else {
+                            xrefs.add(xref);
+                        }
+                    });
         }
 
         xrefType.aliasBuilders.stream()
