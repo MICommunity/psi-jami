@@ -41,9 +41,11 @@ public class RNACentralFetcherTest {
         NucleicAcid acid = nucleicAcids.iterator().next();
         assertEquals("transfer rna", acid.getInteractorType().getFullName());
         List<Xref> xrefs = acid.getXrefs().stream().filter(xref -> xref.getDatabase().getShortName().equals("pdbe")).collect(Collectors.toList());
-        assertFalse(xrefs.isEmpty());
+        assertTrue(xrefs.isEmpty());
+        List<Xref> identifiers = acid.getIdentifiers().stream().filter(xref -> xref.getDatabase().getShortName().equals("pdbe")).collect(Collectors.toList());
+        assertFalse(identifiers.isEmpty());
         assertTrue("URS0002311975_9606 should have a PDB Xref to 7ONU",
-                xrefs.stream().anyMatch(xref -> xref.getId().equals("7ONU")));
+                identifiers.stream().anyMatch(xref -> xref.getId().equals("7ONU")));
     }
 
 
@@ -70,36 +72,38 @@ public class RNACentralFetcherTest {
         // Side tests
 
         assertTrue("URS0000031E12_9606 should have a RefSeq Xref to NR_029480",
-                acid.getXrefs().stream().anyMatch(x -> x.getId().equals("NR_029480")));
+                acid.getIdentifiers().stream().anyMatch(x -> x.getId().equals("NR_029480")));
 
         assertTrue("URS0000031E12_9606 should have a miRBase Xref to MI0000064",
-                acid.getXrefs().stream().anyMatch(x -> x.getId().equals("MI0000064")));
+                acid.getIdentifiers().stream().anyMatch(x -> x.getId().equals("MI0000064")));
 
         assertTrue("All xrefs should have a qualifier",
-                acid.getXrefs().stream().allMatch(xref -> xref.getQualifier() != null));
+                acid.getIdentifiers().stream().allMatch(xref -> xref.getQualifier() != null));
     }
 
     @Test
     public void testRefSeqXref() throws BridgeFailedException {
-        // https://rnacentral.org/api/v1/rna/URS000075C808_9606.json
-        // https://rnacentral.org/api/v1/rna/URS000075C808/xrefs.json
-        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS000075C808_9606");
+        // https://rnacentral.org/api/v1/rna/URS00026A23F2_9606.json
+        // https://rnacentral.org/api/v1/rna/URS00026A23F2/xrefs.json
+        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS00026A23F2_9606");
         NucleicAcid acid = nucleicAcids.iterator().next();
         List<Xref> xrefs = acid.getXrefs().stream().filter(xref -> xref.getDatabase().getShortName().equals("refseq")).collect(Collectors.toList());
-        assertFalse(xrefs.isEmpty());
-        assertTrue("URS000075C808_9606 should have a RefSeq Xref to NR_003716",
-                xrefs.stream().anyMatch(xref -> xref.getId().equals("NR_003716")));
+        assertTrue(xrefs.isEmpty());
+        List<Xref> identifiers = acid.getIdentifiers().stream().filter(xref -> xref.getDatabase().getShortName().equals("refseq")).collect(Collectors.toList());
+        assertFalse(identifiers.isEmpty());
+        assertTrue("URS00026A23F2_9606 should have a RefSeq Xref to NR_003716",
+                identifiers.stream().anyMatch(xref -> xref.getId().equals("NR_003716")));
     }
 
     @Test
     public void testGeneNameAlias() throws BridgeFailedException {
-        // https://rnacentral.org/api/v1/rna/URS000075C808_9606.json
-        // https://rnacentral.org/api/v1/rna/URS000075C808/xrefs.json
-        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS000075C808_9606");
+        // https://rnacentral.org/api/v1/rna/URS00026A23F2_9606.json
+        // https://rnacentral.org/api/v1/rna/URS00026A23F2/xrefs.json
+        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS00026A23F2_9606");
         NucleicAcid acid = nucleicAcids.iterator().next();
         List<Alias> aliases = acid.getAliases().stream().filter(alias -> alias.getType().getShortName().equals("gene name")).collect(Collectors.toList());
-        assertEquals("URS000075C808_9606 should only have one Gene Name alias", 1, aliases.size());
-        assertTrue("URS000075C808_9606 gene name should be HOTAIR",
+        assertEquals("URS00026A23F2_9606 should only have one Gene Name alias", 1, aliases.size());
+        assertTrue("URS00026A23F2_9606 gene name should be HOTAIR",
                 aliases.stream().anyMatch(alias -> alias.getName().equals("HOTAIR")));
     }
 }
