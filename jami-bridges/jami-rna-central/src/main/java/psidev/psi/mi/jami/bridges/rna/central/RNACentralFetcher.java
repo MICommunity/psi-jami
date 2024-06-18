@@ -83,7 +83,8 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
                 count += xrefs.getResults().size();
                 url = xrefs.getNext() != null ? new URL(xrefs.getNext().toString().replace("http", "https")) : null;
                 xrefs.getResults().stream()
-                        .filter(result -> result.getAccession().getSpecies().equals(organism.getScientificName()) || result.getTaxid().equals(organism.getTaxId()))
+                        .filter(result -> result.getTaxid().equals(organism.getTaxId()) ||
+                                (result.getAccession().getSpecies() != null && result.getAccession().getSpecies().equals(organism.getScientificName())))
                         .forEach(result -> this.extractXrefsAndAliases(nucleicAcid, result));
             } while (count < targetCount);
 
