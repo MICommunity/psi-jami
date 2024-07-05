@@ -176,135 +176,7 @@ public class UnisaveClientTest {
         Assert.assertNotNull(sv);
         Assert.assertNotNull(sv.getSequence());
         Assert.assertEquals("MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKMNLGVGAYRDDNGKPYVLPSVRKAEAQIAAKGLDKEYLPIGGLAEFCRASAELALGENSEVVKSGRFVTVQTISGTGALRIGASFLQRFFKFSRDVFLPKPSWGNHTPIFRDAGMQLQSYRYYDPKTCGFDFTGALEDISKIPEQSVLLLHACAHNPTGVDPRPEQWKEIATVVKKRNLFAFFDMAYQGFASGDGDKDAWAVRHFIEQGINVCLCQSYAKNMGLYGERVGAFTVICKDADEAKRVESQLKILIRPMYSNPPIHGARIASTILTSPDLRKQWLQEVKGMADRIIGMRTQLVSNLKKEGSTHSWQHITDQIGMFCFTGLKPEQVERLTKEFSIYMTKDGRISVAGVTSGNVGYLAHAIHQVTK", sv.getSequence().getSequence());
-        Assert.assertEquals("FT   TRANSIT         1..29\n" +
-                "FT                   /note=\"Mitochondrion\"\n" +
-                "FT                   /evidence=\"ECO:0000269|PubMed:4030726\"\n" +
-                "FT   CHAIN           30..430\n" +
-                "FT                   /note=\"Aspartate aminotransferase, mitochondrial\"\n" +
-                "FT                   /id=\"PRO_0000123886\"\n" +
-                "FT   BINDING         65\n" +
-                "FT                   /ligand=\"substrate\"\n" +
-                "FT                   /evidence=\"ECO:0000250\"\n" +
-                "FT   BINDING         162\n" +
-                "FT                   /ligand=\"substrate\"\n" +
-                "FT                   /evidence=\"ECO:0000250\"\n" +
-                "FT   BINDING         215\n" +
-                "FT                   /ligand=\"substrate\"\n" +
-                "FT                   /evidence=\"ECO:0000250\"\n" +
-                "FT   BINDING         407\n" +
-                "FT                   /ligand=\"substrate\"\n" +
-                "FT                   /evidence=\"ECO:0000250\"\n" +
-                "FT   MOD_RES         48\n" +
-                "FT                   /note=\"Phosphothreonine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         59\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         73\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         73\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         82\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         90\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         90\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         96\n" +
-                "FT                   /note=\"3'-nitrotyrosine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         96\n" +
-                "FT                   /note=\"Phosphotyrosine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         122\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         122\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         143\n" +
-                "FT                   /note=\"Phosphoserine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         159\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         159\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         185\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         185\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         227\n" +
-                "FT                   /note=\"N6-succinyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         234\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         279\n" +
-                "FT                   /note=\"N6-(pyridoxal phosphate)lysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250\"\n" +
-                "FT   MOD_RES         279\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         296\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         296\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         302\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         309\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         309\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P12344\"\n" +
-                "FT   MOD_RES         313\n" +
-                "FT                   /note=\"Asymmetric dimethylarginine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         338\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         338\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         345\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         363\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         363\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         364\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         387\n" +
-                "FT                   /note=\"N6-acetyllysine\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         396\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         396\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"\n" +
-                "FT   MOD_RES         404\n" +
-                "FT                   /note=\"N6-acetyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P00505\"\n" +
-                "FT   MOD_RES         404\n" +
-                "FT                   /note=\"N6-succinyllysine; alternate\"\n" +
-                "FT                   /evidence=\"ECO:0000250|UniProtKB:P05202\"", sv.getSequence().getHeader());
+        Assert.assertEquals("sp|P12345|AATM_RABIT Aspartate aminotransferase, mitochondrial OS=Oryctolagus cuniculus OX=9986 GN=GOT2 PE=1 SV=2", sv.getSequence().getHeader());
         Assert.assertEquals(2, sv.getVersion());
     }
 
@@ -324,15 +196,14 @@ public class UnisaveClientTest {
         Assert.assertNotNull(sv);
         Assert.assertNotNull(sv.getSequence());
         Assert.assertEquals("VPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence());
-        Assert.assertEquals("FT   NON_TER         1\n" +
-                "FT                   /evidence=\"ECO:0000313|EMBL:AAC55469.2\"", sv.getSequence().getHeader());
+        Assert.assertEquals("tr|Q98753|Release 2024_02/2024_02|27-Mar-2024", sv.getSequence().getHeader());
         Assert.assertEquals(2, sv.getVersion());
 
         sv = updateIterator.next();
         Assert.assertNotNull(sv);
         Assert.assertNotNull(sv.getSequence());
         Assert.assertEquals("XPFLSKAVRCGPVIPFVIHHFNFRRVTTTKRRRNKYVLVPGYGWVLQDDYLVNSVKMTGENDLPPNQLPHDDDLLFTYAKILLYDYISYFPKFRHNNPDLLDHKTELELFPLKADSAARNKANFYARTLWNDTITDKSAFKPGTYNDTVAGLLLWQQCALMWSLPKSVINRTISGVCDALTNRTSLTLLKRISDWLKQLGLACSPIHRLFIELPTLLGRGAIPGDADKDIKHRLAFDPSITVDVPKEQLHLLIYRLLSRNLNITKVNSFEHHLEERLLWSKSGSHYYPDDKINELLPPQPTRKEFLDVVTTEYIKECKPQVFIRQSRKLEHGKERFIYNCDTVSYVYFDFILKLFETGWQDSEAILSPGDYTSERLHAKISSYKYKAMLDYTDFNSQHTIQSMRLIFETMKELLPPEATFALDWCIASFDNMQTSDGLKWMATLPSGHRATTFINTVLNWCYTQMVGLKFDSFMCAGDDVILMSQQPISLAPILTSHFKFNPSKQSTGTRGEFLRKHYSEAGVFAYPCRAIASLVSGNWLSQSLRENTPILVPIQNGIDRLRSRAGLLGVPWKLGLSELIEREAIPKEVGMALLNSHAAGPGLITRDYSSFTVTPKPPKLSSTLEYTATRYGLQDLSKHVPWKQLTTVESDKLSRQIKKISYRHCSQAKITYNCTYEVFKPRGLPTVLSGSSQPSLSMLWWQAMLKQAIQDDSTKKIDARMFAANACTSSVSGDAFLRANASMAGVLITSLITSSS", sv.getSequence().getSequence());
-        Assert.assertEquals(null, sv.getSequence().getHeader());
+        Assert.assertEquals("tr|Q98753|Release 13|01-May-2000", sv.getSequence().getHeader());
         Assert.assertEquals(1, sv.getVersion());
 
     }

@@ -77,27 +77,24 @@ public class ComplexUtils {
         if (parentParticipant.getInteractor() instanceof Complex) {
             Complex complex = (Complex) parentParticipant.getInteractor();
             for (ModelledParticipant complexParticipant : complex.getParticipants()) {
-
-                // expand stoichiometry
-                int minStoichiometry = 0;
-                int maxStoichiometry = 0;
-                Stoichiometry expandedStoichiometry = null;
-                if (complexParticipant.getStoichiometry() != null && parentParticipant.getStoichiometry() != null) {
-                    minStoichiometry = (complexParticipant.getStoichiometry().getMinValue())
-                            *
-                            (parentParticipant.getStoichiometry().getMinValue());
-                    maxStoichiometry = (complexParticipant.getStoichiometry().getMaxValue())
-                            *
-                            (parentParticipant.getStoichiometry().getMaxValue());
-                    Class stoichiometryClass = complexParticipant.getStoichiometry().getClass();
-                    try {
-                        expandedStoichiometry = (Stoichiometry) stoichiometryClass.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                expandComplexIntoParticipants(complexParticipant).forEach(participant -> {
+                    // expand stoichiometry
+                    int minStoichiometry = 0;
+                    int maxStoichiometry = 0;
+                    Stoichiometry expandedStoichiometry = null;
+                    if (participant.getStoichiometry() != null && parentParticipant.getStoichiometry() != null) {
+                        minStoichiometry = participant.getStoichiometry().getMinValue() * parentParticipant.getStoichiometry().getMinValue();
+                        maxStoichiometry = participant.getStoichiometry().getMaxValue() * parentParticipant.getStoichiometry().getMaxValue();
+                        Class stoichiometryClass = participant.getStoichiometry().getClass();
+                        try {
+                            expandedStoichiometry = (Stoichiometry) stoichiometryClass.getConstructor(Integer.TYPE, Integer.TYPE).newInstance(minStoichiometry, maxStoichiometry);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-                DefaultModelledParticipant defaultModelledParticipant=new DefaultModelledParticipant(complexParticipant.getInteractor(),expandedStoichiometry);
-                expandedModelledParticipants.add(defaultModelledParticipant);
+                    DefaultModelledParticipant defaultModelledParticipant = new DefaultModelledParticipant(participant.getInteractor(),expandedStoichiometry);
+                    expandedModelledParticipants.add(defaultModelledParticipant);
+                });
             }
             return expandedModelledParticipants;
         }

@@ -167,4 +167,52 @@ public class CollectionComparatorTest {
         Assert.assertTrue(collectionComparator.compare(complex1.getComparableParticipants(), complex2.getComparableParticipants()) == -1);
         Assert.assertTrue(collectionComparator.compare(complex2.getComparableParticipants(), complex1.getComparableParticipants()) == 1);
     }
+
+    @Test
+    public void test_complex_with_sub_sub_complexes(){
+        //complex1
+        Complex subSubComplex1 = new DefaultComplex("CPX-5692", new DefaultCvTerm("protein complex"));
+        subSubComplex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subSubComplex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449628"))));
+        subSubComplex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449631"))));
+
+        Complex subSubComplex2 = new DefaultComplex("CPX-6442", new DefaultCvTerm("protein complex"));
+        subSubComplex2.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449625")), new DefaultStoichiometry(1, 1)));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449626")), new DefaultStoichiometry(1, 1)));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449626")), new DefaultStoichiometry(1, 1)));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449629")), new DefaultStoichiometry(1, 1)));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449630")), new DefaultStoichiometry(1, 1)));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449630")), new DefaultStoichiometry(1, 1)));
+
+        Complex subComplex = new DefaultComplex("CPX-7041", new DefaultCvTerm("protein complex"));
+        subComplex.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subComplex.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449627")), new DefaultStoichiometry(1, 1)));
+        subComplex.addParticipant(new DefaultModelledParticipant(subSubComplex1, new DefaultStoichiometry(1, 1)));
+        subComplex.addParticipant(new DefaultModelledParticipant(subSubComplex2, new DefaultStoichiometry(1, 1)));
+
+        Complex complex1 = new DefaultComplex("CPX-7083", new DefaultCvTerm("protein complex"));
+        complex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        complex1.addParticipant(new DefaultModelledParticipant(subComplex, new DefaultStoichiometry(1, 1)));
+        complex1.addParticipant(new DefaultModelledParticipant(subComplex, new DefaultStoichiometry(1, 1)));
+
+        //complex2
+        Complex complex2 = new DefaultComplex("CPX-5687", new DefaultCvTerm("protein complex"));
+        complex2.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        complex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449627")), new DefaultStoichiometry(1, 1)));
+        complex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test protein",
+                XrefUtils.createUniprotIdentity("P0DTD1-PRO_0000449627")), new DefaultStoichiometry(1, 1)));
+
+        Assert.assertNotEquals(0, collectionComparator.compare(complex1.getComparableParticipants(), complex2.getComparableParticipants()));
+    }
 }
