@@ -113,6 +113,61 @@ public class ComplexUtilsTest {
     }
 
     @Test
+    public void test_expand_complex_with_multiple_levels_of_subcomplexes() {
+        // Sub-Sub-Complex-1
+        Complex subSubComplex1 = new DefaultComplex("sub-sub-complex-1", new DefaultCvTerm("protein complex"));
+        subSubComplex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subSubComplex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12345")), new DefaultStoichiometry(1, 3)));
+
+        // Sub-Sub-Complex-2
+        Complex subSubComplex2 = new DefaultComplex("sub-sub-complex-2", new DefaultCvTerm("protein complex"));
+        subSubComplex2.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subSubComplex2.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12346"))));
+
+        // Sub-Complex
+        Complex subComplex = new DefaultComplex("sub-complex", new DefaultCvTerm("protein complex"));
+        subComplex.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        subComplex.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12347")), new DefaultStoichiometry(2, 3)));
+        subComplex.addParticipant(new DefaultModelledParticipant(subSubComplex1, new DefaultStoichiometry(1, 2)));
+        subComplex.addParticipant(new DefaultModelledParticipant(subSubComplex2, new DefaultStoichiometry(1, 2)));
+
+        // Complex
+        Complex complex = new DefaultComplex("complex", new DefaultCvTerm("protein complex"));
+        complex.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        complex.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test2 protein",
+                XrefUtils.createUniprotIdentity("P12348"))));
+        complex.addParticipant(new DefaultModelledParticipant(subComplex, new DefaultStoichiometry(2, 2)));
+
+        ModelledParticipant complexAsParticipant = new DefaultModelledParticipant(complex, new DefaultStoichiometry(1, 1));
+
+        Collection<ModelledParticipant> expandedParticipants = ComplexUtils.expandComplexIntoParticipants(complexAsParticipant);
+        Assert.assertEquals(4, expandedParticipants.size());
+
+        for (ModelledParticipant expandedParticipant : expandedParticipants) {
+            if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12345")) {
+                Assert.assertEquals(2, expandedParticipant.getStoichiometry().getMinValue());
+                Assert.assertEquals(12, expandedParticipant.getStoichiometry().getMaxValue());
+                Assert.assertEquals(0, expandedParticipant.getFeatures().size());
+            } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12346")) {
+                Assert.assertNull(expandedParticipant.getStoichiometry());
+                Assert.assertNull(expandedParticipant.getStoichiometry());
+                Assert.assertEquals(0, expandedParticipant.getFeatures().size());
+            } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12347")) {
+                Assert.assertEquals(4, expandedParticipant.getStoichiometry().getMinValue());
+                Assert.assertEquals(6, expandedParticipant.getStoichiometry().getMaxValue());
+                Assert.assertEquals(0, expandedParticipant.getFeatures().size());
+            } else if (expandedParticipant.getInteractor().getPreferredIdentifier().getId().equals("P12348")) {
+                Assert.assertNull(expandedParticipant.getStoichiometry());
+                Assert.assertNull(expandedParticipant.getStoichiometry());
+                Assert.assertEquals(0, expandedParticipant.getFeatures().size());
+            }
+        }
+    }
+
+    @Test
     public void testMaintainProteinComparableParticipantMap() {
         ModelledParticipant modelledParticipant1 = new DefaultModelledParticipant(new DefaultProtein("test1 protein",
                 XrefUtils.createUniprotIdentity("UNIPROTID1")), new DefaultStoichiometry(1, 3));
