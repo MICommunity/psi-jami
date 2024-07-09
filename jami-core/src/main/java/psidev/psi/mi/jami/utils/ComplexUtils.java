@@ -9,54 +9,65 @@ public class ComplexUtils {
 
     public static void maintainProteinComparableParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
         if (map == null) {
-            map = new HashMap<String, ModelledComparableParticipant>();
+            map = new HashMap<>();
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
             if (modelledParticipant.getInteractor() instanceof Protein) {
-                String proteinId = extractIdentifier((Protein) modelledParticipant.getInteractor());
-                if(proteinId!=null) {
-                    delegateMapMaintenance(proteinId, modelledParticipant, map);
-                }
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map);
             } else if (modelledParticipant.getInteractor() instanceof InteractorPool) {
-                Iterator<Interactor> poolIterator = ((InteractorPool) modelledParticipant.getInteractor()).iterator();
-                while (poolIterator.hasNext()) {
-                    Interactor interactor = poolIterator.next();
+                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
                     if (interactor instanceof Protein) {
-                        String proteinId = extractIdentifier((Protein)interactor);
-                        if(proteinId!=null) {
-                            delegateMapMaintenance(proteinId, modelledParticipant, map);
-                        }
+                        delegateMapMaintenance(interactor, modelledParticipant, map);
                     }
                 }
             }
         }
     }
 
-    private static void delegateMapMaintenance(String proteinId, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
-        if (map.get(proteinId) != null) {
-            ModelledComparableParticipant modelledComparableParticipant = map.get(proteinId);
-            if (modelledParticipant.getStoichiometry() != null) {
-                int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
-                modelledComparableParticipant.setStoichiometry(addedStoichiometry);
+    public static void maintainParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        for (ModelledParticipant modelledParticipant : modelledParticipants) {
+            if (modelledParticipant.getInteractor() instanceof InteractorPool) {
+                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
+                    delegateMapMaintenance(interactor, modelledParticipant, map);
+                }
+            } else {
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map);
             }
-        } else {
-            ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
-            modelledComparableParticipant.setProteinId(proteinId);
-            if (modelledParticipant.getStoichiometry() != null) {
-                modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
-            }
-            map.put(proteinId, modelledComparableParticipant);
         }
     }
 
-    private static String extractIdentifier(Protein protein){
+    private static void delegateMapMaintenance(Interactor interactor, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
+        String interactorId = extractIdentifier(interactor);
+        if (interactorId != null) {
+            if (map.get(interactorId) != null) {
+                ModelledComparableParticipant modelledComparableParticipant = map.get(interactorId);
+                if (modelledParticipant.getStoichiometry() != null) {
+                    int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
+                    modelledComparableParticipant.setStoichiometry(addedStoichiometry);
+                }
+            } else {
+                ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
+                modelledComparableParticipant.setInteractorId(interactorId);
+                modelledComparableParticipant.setInteractorType(interactor.getInteractorType());
+                if (modelledParticipant.getStoichiometry() != null) {
+                    modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
+                }
+                map.put(interactorId, modelledComparableParticipant);
+            }
+        }
+    }
+
+    private static String extractIdentifier(Interactor interactor){
         String id=null;
-        if(protein.getUniprotkb()!=null&&!protein.getUniprotkb().isEmpty()){
-            id=protein.getUniprotkb();
-        }else {
-            String ac=CommonUtils.extractIntactAcFromIdentifier(protein.getIdentifiers());
+        if (interactor.getPreferredIdentifier() !=null && !interactor.getPreferredIdentifier().getId().isEmpty()) {
+            id = interactor.getPreferredIdentifier().getId();
+        } else {
+            String ac = CommonUtils.extractIntactAcFromIdentifier(interactor.getIdentifiers());
             if (ac != null && !ac.isEmpty()) {
-              id=ac;
+              id = ac;
             }
         }
 

@@ -131,16 +131,41 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * @return a collection of {@link psidev.psi.mi.jami.model.ModelledComparableParticipant} objects.
      */
     default Collection<ModelledComparableParticipant> getComparableParticipants() {
-        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
 
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
             if (modelledParticipant.getInteractor() instanceof Complex) {
                 Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
-                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
-                        complexExpandedParticipants.toArray(new ModelledParticipant[complexExpandedParticipants.size()]));
+                ComplexUtils.maintainProteinComparableParticipantMap(
+                        interactorParticipantMap,
+                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
             } else {
-                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
-                        modelledParticipant);
+                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap, modelledParticipant);
+            }
+        }
+
+        return interactorParticipantMap.values();
+    }
+
+    /**
+     * Gets all participants for a complex.
+     * It will expand complex participant, pools.
+     * It will combine stoichiometry for same interactors
+     * Comparable participants are per interactor and are new instances.
+     *
+     * @return a collection of {@link psidev.psi.mi.jami.model.ModelledComparableParticipant} objects.
+     */
+    default Collection<ModelledComparableParticipant> getAllExpandedParticipants() {
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
+
+        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
+            if (modelledParticipant.getInteractor() instanceof Complex) {
+                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
+                ComplexUtils.maintainParticipantMap(
+                        interactorParticipantMap,
+                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
+            } else {
+                ComplexUtils.maintainParticipantMap(interactorParticipantMap, modelledParticipant);
             }
         }
 
