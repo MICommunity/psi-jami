@@ -4,20 +4,28 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ComplexUtils {
 
-    public static void maintainProteinComparableParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
+    public static void maintainProteinComparableParticipantMap(
+            Map<String, ModelledComparableParticipant> map,
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction,
+            ModelledParticipant... modelledParticipants) {
+
         if (map == null) {
             map = new HashMap<>();
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
             if (modelledParticipant.getInteractor() instanceof Protein) {
-                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map);
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
             } else if (modelledParticipant.getInteractor() instanceof InteractorPool) {
                 for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
                     if (interactor instanceof Protein) {
-                        delegateMapMaintenance(interactor, modelledParticipant, map);
+                        delegateMapMaintenance(interactor, modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
                     }
                 }
             }
@@ -31,16 +39,22 @@ public class ComplexUtils {
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
             if (modelledParticipant.getInteractor() instanceof InteractorPool) {
                 for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
-                    delegateMapMaintenance(interactor, modelledParticipant, map);
+                    delegateMapMaintenance(interactor, modelledParticipant, map, false, null);
                 }
             } else {
-                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map);
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, false, null);
             }
         }
     }
 
-    private static void delegateMapMaintenance(Interactor interactor, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
-        String interactorId = extractIdentifier(interactor);
+    private static void delegateMapMaintenance(
+            Interactor interactor,
+            ModelledParticipant modelledParticipant,
+            Map<String, ModelledComparableParticipant> map,
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction) {
+
+        String interactorId = extractIdentifier(interactor, useChainParentId, fetchInteractorByAcFunction);
         if (interactorId != null) {
             if (map.get(interactorId) != null) {
                 ModelledComparableParticipant modelledComparableParticipant = map.get(interactorId);
@@ -60,19 +74,46 @@ public class ComplexUtils {
         }
     }
 
-    private static String extractIdentifier(Interactor interactor){
+    private static String extractIdentifier(Interactor interactor, boolean useChainParentId, Function<String, Interactor> fetchInteractorByAcFunction) {
+        if (useChainParentId) {
+            Collection<Xref> chainParentXrefs = Stream.concat(interactor.getXrefs().stream(), interactor.getIdentifiers().stream())
+                    .filter(xref -> xref.getQualifier() != null)
+                    .filter(xref -> Xref.CHAIN_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()) ||
+                            Xref.ISOFORM_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()))
+                    .collect(Collectors.toList());
+
+            Optional<Xref> intactChainParentXref = chainParentXrefs.stream()
+                    .filter(xref -> xref.getDatabase() != null && Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier()))
+                    .findAny();
+            if (intactChainParentXref.isPresent()) {
+                Interactor chainParentInteractor = fetchInteractorByAcFunction.apply(intactChainParentXref.get().getId());
+                if (chainParentInteractor != null) {
+                    return extractIdentifier(chainParentInteractor);
+                }
+            }
+
+            Optional<Xref> anyChainParentXref = chainParentXrefs.stream().findAny();
+            if (anyChainParentXref.isPresent()) {
+                return anyChainParentXref.get().getId();
+            }
+        }
+        return extractIdentifier(interactor);
+    }
+
+    private static String extractIdentifier(Interactor interactor) {
         String id=null;
         if (interactor.getPreferredIdentifier() !=null && !interactor.getPreferredIdentifier().getId().isEmpty()) {
             id = interactor.getPreferredIdentifier().getId();
         } else {
             String ac = CommonUtils.extractIntactAcFromIdentifier(interactor.getIdentifiers());
             if (ac != null && !ac.isEmpty()) {
-              id = ac;
+                id = ac;
             }
         }
 
         return id;
     }
+
     /**
      * Expands the given complex participant.
      * Changes/expands the stoichiometry in expanded participants.

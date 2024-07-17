@@ -216,8 +216,8 @@ public class ComplexUtilsTest {
 
         //test
         ModelledParticipant[] modelledParticipantsArray = new ModelledParticipant[8];
-        ComplexUtils.maintainProteinComparableParticipantMap(testMap, modelledParticipants.toArray(modelledParticipantsArray));
-        ComplexUtils.maintainProteinComparableParticipantMap(testMap, modelledParticipant9);
+        ComplexUtils.maintainProteinComparableParticipantMap(testMap, false, null, modelledParticipants.toArray(modelledParticipantsArray));
+        ComplexUtils.maintainProteinComparableParticipantMap(testMap, false, null, modelledParticipant9);
 
         Assert.assertEquals(5, testMap.size());
 
