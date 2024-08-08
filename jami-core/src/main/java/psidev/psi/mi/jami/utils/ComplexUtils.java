@@ -4,64 +4,116 @@ import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.model.impl.DefaultModelledParticipant;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ComplexUtils {
 
-    public static void maintainProteinComparableParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
+    public static void maintainProteinComparableParticipantMap(
+            Map<String, ModelledComparableParticipant> map,
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction,
+            ModelledParticipant... modelledParticipants) {
+
         if (map == null) {
-            map = new HashMap<String, ModelledComparableParticipant>();
+            map = new HashMap<>();
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
             if (modelledParticipant.getInteractor() instanceof Protein) {
-                String proteinId = extractIdentifier((Protein) modelledParticipant.getInteractor());
-                if(proteinId!=null) {
-                    delegateMapMaintenance(proteinId, modelledParticipant, map);
-                }
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
             } else if (modelledParticipant.getInteractor() instanceof InteractorPool) {
-                Iterator<Interactor> poolIterator = ((InteractorPool) modelledParticipant.getInteractor()).iterator();
-                while (poolIterator.hasNext()) {
-                    Interactor interactor = poolIterator.next();
+                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
                     if (interactor instanceof Protein) {
-                        String proteinId = extractIdentifier((Protein)interactor);
-                        if(proteinId!=null) {
-                            delegateMapMaintenance(proteinId, modelledParticipant, map);
-                        }
+                        delegateMapMaintenance(interactor, modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
                     }
                 }
             }
         }
     }
 
-    private static void delegateMapMaintenance(String proteinId, ModelledParticipant modelledParticipant, Map<String, ModelledComparableParticipant> map) {
-        if (map.get(proteinId) != null) {
-            ModelledComparableParticipant modelledComparableParticipant = map.get(proteinId);
-            if (modelledParticipant.getStoichiometry() != null) {
-                int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
-                modelledComparableParticipant.setStoichiometry(addedStoichiometry);
+    public static void maintainParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        for (ModelledParticipant modelledParticipant : modelledParticipants) {
+            if (modelledParticipant.getInteractor() instanceof InteractorPool) {
+                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
+                    delegateMapMaintenance(interactor, modelledParticipant, map, false, null);
+                }
+            } else {
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, false, null);
             }
-        } else {
-            ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
-            modelledComparableParticipant.setProteinId(proteinId);
-            if (modelledParticipant.getStoichiometry() != null) {
-                modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
-            }
-            map.put(proteinId, modelledComparableParticipant);
         }
     }
 
-    private static String extractIdentifier(Protein protein){
+    private static void delegateMapMaintenance(
+            Interactor interactor,
+            ModelledParticipant modelledParticipant,
+            Map<String, ModelledComparableParticipant> map,
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction) {
+
+        String interactorId = extractIdentifier(interactor, useChainParentId, fetchInteractorByAcFunction);
+        if (interactorId != null) {
+            if (map.get(interactorId) != null) {
+                ModelledComparableParticipant modelledComparableParticipant = map.get(interactorId);
+                if (modelledParticipant.getStoichiometry() != null) {
+                    int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
+                    modelledComparableParticipant.setStoichiometry(addedStoichiometry);
+                }
+            } else {
+                ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
+                modelledComparableParticipant.setInteractorId(interactorId);
+                modelledComparableParticipant.setInteractorType(interactor.getInteractorType());
+                if (modelledParticipant.getStoichiometry() != null) {
+                    modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
+                }
+                map.put(interactorId, modelledComparableParticipant);
+            }
+        }
+    }
+
+    private static String extractIdentifier(Interactor interactor, boolean useChainParentId, Function<String, Interactor> fetchInteractorByAcFunction) {
+        if (useChainParentId) {
+            Collection<Xref> chainParentXrefs = Stream.concat(interactor.getXrefs().stream(), interactor.getIdentifiers().stream())
+                    .filter(xref -> xref.getQualifier() != null)
+                    .filter(xref -> Xref.CHAIN_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()) ||
+                            Xref.ISOFORM_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()))
+                    .collect(Collectors.toList());
+
+            Optional<Xref> intactChainParentXref = chainParentXrefs.stream()
+                    .filter(xref -> xref.getDatabase() != null && Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier()))
+                    .findAny();
+            if (intactChainParentXref.isPresent()) {
+                Interactor chainParentInteractor = fetchInteractorByAcFunction.apply(intactChainParentXref.get().getId());
+                if (chainParentInteractor != null) {
+                    return extractIdentifier(chainParentInteractor);
+                }
+            }
+
+            Optional<Xref> anyChainParentXref = chainParentXrefs.stream().findAny();
+            if (anyChainParentXref.isPresent()) {
+                return anyChainParentXref.get().getId();
+            }
+        }
+        return extractIdentifier(interactor);
+    }
+
+    private static String extractIdentifier(Interactor interactor) {
         String id=null;
-        if(protein.getUniprotkb()!=null&&!protein.getUniprotkb().isEmpty()){
-            id=protein.getUniprotkb();
-        }else {
-            String ac=CommonUtils.extractIntactAcFromIdentifier(protein.getIdentifiers());
+        if (interactor.getPreferredIdentifier() !=null && !interactor.getPreferredIdentifier().getId().isEmpty()) {
+            id = interactor.getPreferredIdentifier().getId();
+        } else {
+            String ac = CommonUtils.extractIntactAcFromIdentifier(interactor.getIdentifiers());
             if (ac != null && !ac.isEmpty()) {
-              id=ac;
+                id = ac;
             }
         }
 
         return id;
     }
+
     /**
      * Expands the given complex participant.
      * Changes/expands the stoichiometry in expanded participants.

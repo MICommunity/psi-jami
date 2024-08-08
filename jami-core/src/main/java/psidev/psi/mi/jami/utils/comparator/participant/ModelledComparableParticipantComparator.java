@@ -22,8 +22,8 @@ public class ModelledComparableParticipantComparator implements Comparator<Model
             return BEFORE;
         } else {
 
-            int identifierComparisonResult = comparableParticipant1.getProteinId()
-                    .compareTo(comparableParticipant2.getProteinId());
+            int identifierComparisonResult = comparableParticipant1.getInteractorId()
+                    .compareTo(comparableParticipant2.getInteractorId());
 
             if (identifierComparisonResult != 0) {
                 return identifierComparisonResult;
