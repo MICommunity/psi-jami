@@ -54,13 +54,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
 
     private final CachedOlsOntologyTermFetcher ontologyFetcher = new CachedOlsOntologyTermFetcher();
 
-    private final Map<String, CvTerm> biotypeToCVId = new HashMap<>(Map.of(
-            "protein_coding", this.getCVByMIId("MI:0324"), // mRNA
-            "protein_coding_CDS_not_defined", this.getCVByMIId("MI:2190"), // lncRNA
-            "lncRNA", this.getCVByMIId("MI:2190"), // lncRNA
-            "miRNA", this.getCVByMIId("MI:2204"), // miRNA
-            "snRNA", this.getCVByMIId("MI:0607") // snRNA
-    ));
+    private final Map<String, CvTerm> biotypeToCVId = this.buildInitialBioTypeMap();
 
     private final Map<String, String> biotypeToShortestType = new HashMap<>();
 
@@ -228,6 +222,16 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
 
     private String extractPureIdentifier(String id) {
         return id.split("\\.")[0];
+    }
+
+    private Map<String, CvTerm> buildInitialBioTypeMap() {
+        Map<String, CvTerm> map = new HashMap<>();
+        map.computeIfAbsent("protein_coding", k -> this.getCVByMIId("MI:0324")); // mRNA
+        map.computeIfAbsent("protein_coding_CDS_not_defined", k -> this.getCVByMIId("MI:2190")); // lncRNA
+        map.computeIfAbsent("lncRNA", k -> this.getCVByMIId("MI:2190")); // lncRNA
+        map.computeIfAbsent("miRNA", k -> this.getCVByMIId("MI:2204")); // miRNA
+        map.computeIfAbsent("snRNA", k -> this.getCVByMIId("MI:0607")); // snRNA
+        return map;
     }
 
     private CvTerm getCVByMIId(String id) {
