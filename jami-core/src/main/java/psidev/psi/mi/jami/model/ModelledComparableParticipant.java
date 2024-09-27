@@ -2,23 +2,25 @@ package psidev.psi.mi.jami.model;
 
 public class ModelledComparableParticipant {
 
-    private String proteinId;// only uniprot or intact ac
+    private String interactorId;
     private int stoichiometry;
+    private CvTerm interactorType;
 
     public ModelledComparableParticipant() {
     }
 
-    public ModelledComparableParticipant(String proteinId, int stoichiometry) {
-        this.proteinId = proteinId;
+    public ModelledComparableParticipant(String interactorId, int stoichiometry, CvTerm interactorType) {
+        this.interactorId = interactorId;
         this.stoichiometry = stoichiometry;
+        this.interactorType = interactorType;
     }
 
-    public String getProteinId() {
-        return proteinId;
+    public String getInteractorId() {
+        return interactorId;
     }
 
-    public void setProteinId(String proteinId) {
-        this.proteinId = proteinId;
+    public void setInteractorId(String interactorId) {
+        this.interactorId = interactorId;
     }
 
     public int getStoichiometry() {
@@ -27,5 +29,13 @@ public class ModelledComparableParticipant {
 
     public void setStoichiometry(int stoichiometry) {
         this.stoichiometry = stoichiometry;
+    }
+
+    public CvTerm getInteractorType() {
+        return interactorType;
+    }
+
+    public void setInteractorType(CvTerm interactorType) {
+        this.interactorType = interactorType;
     }
 }

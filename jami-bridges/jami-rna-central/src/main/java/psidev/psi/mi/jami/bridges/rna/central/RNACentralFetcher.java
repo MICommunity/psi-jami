@@ -60,7 +60,8 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
                 nucleicAcid.setSequence(entree.getSequence());
                 nucleicAcid.setFullName(entree.getDescription());
                 addXRefs(nucleicAcid, pureIdentifier, organism);
-                if (type == OLSUtils.rnaCV) nucleicAcid.getAnnotations().add(new DefaultAnnotation(OLSUtils.getCVByName("comment"), "RNA-Central type: " + entree.getRnaType()));
+                if (type == OLSUtils.rnaCV)
+                    nucleicAcid.getAnnotations().add(new DefaultAnnotation(OLSUtils.getCVByName("comment"), "RNA-Central type: " + entree.getRnaType()));
 
                 return List.of(nucleicAcid);
             } else return List.of();
@@ -73,14 +74,19 @@ public class RNACentralFetcher implements NucleicAcidFetcher {
     private void addXRefs(NucleicAcid nucleicAcid, String pureIdentifier, Organism organism) {
         try {
             URL url = new URL(String.format(XREFS_URL, pureIdentifier));
+            int count = 0;
+            int targetCount;
 
-            while (url != null) {
+            do {
                 ApiXrefs xrefs = OLSUtils.mapper.readValue(url, ApiXrefs.class);
+                targetCount = xrefs.getCount();
+                count += xrefs.getResults().size();
                 url = xrefs.getNext() != null ? new URL(xrefs.getNext().toString().replace("http", "https")) : null;
                 xrefs.getResults().stream()
-                        .filter(result -> result.getAccession().getSpecies().equals(organism.getScientificName()) || result.getTaxid().equals(organism.getTaxId()))
+                        .filter(result -> result.getTaxid().equals(organism.getTaxId()) ||
+                                (result.getAccession().getSpecies() != null && result.getAccession().getSpecies().equals(organism.getScientificName())))
                         .forEach(result -> this.extractXrefsAndAliases(nucleicAcid, result));
-            }
+            } while (count < targetCount);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

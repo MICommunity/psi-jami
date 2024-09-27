@@ -43,7 +43,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(8, upis.size());
+        Assert.assertEquals(3, upis.size());
 
     }
 
@@ -128,7 +128,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(8, upis.size());
+        Assert.assertEquals(3, upis.size());
 
     }
 
@@ -152,7 +152,7 @@ public class UniprotProteinAPIClientTest {
         System.out.println(upi.getAccession());
         Assert.assertNotNull(upi);
         Assert.assertEquals("UPI000003EADC", upi.getAccession());
-        Assert.assertEquals(12, upi.getDbReference().size());
+        Assert.assertEquals(7, upi.getDbReference().size());
 
     }
 

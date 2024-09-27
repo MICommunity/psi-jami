@@ -5,6 +5,7 @@ import psidev.psi.mi.jami.utils.ComplexUtils;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * An interactor composed of interacting molecules that can be copurified.
@@ -131,16 +132,54 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      * @return a collection of {@link psidev.psi.mi.jami.model.ModelledComparableParticipant} objects.
      */
     default Collection<ModelledComparableParticipant> getComparableParticipants() {
-        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap();
+        return getComparableParticipants(false, null);
+    }
+
+    default Collection<ModelledComparableParticipant> getComparableParticipants(
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction) {
+
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
 
         for (ModelledParticipant modelledParticipant : this.getParticipants()) {
             if (modelledParticipant.getInteractor() instanceof Complex) {
                 Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
-                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
-                        complexExpandedParticipants.toArray(new ModelledParticipant[complexExpandedParticipants.size()]));
+                ComplexUtils.maintainProteinComparableParticipantMap(
+                        interactorParticipantMap,
+                        useChainParentId,
+                        fetchInteractorByAcFunction,
+                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
             } else {
-                ComplexUtils.maintainProteinComparableParticipantMap(interactorParticipantMap,
+                ComplexUtils.maintainProteinComparableParticipantMap(
+                        interactorParticipantMap,
+                        useChainParentId,
+                        fetchInteractorByAcFunction,
                         modelledParticipant);
+            }
+        }
+
+        return interactorParticipantMap.values();
+    }
+
+    /**
+     * Gets all participants for a complex.
+     * It will expand complex participant, pools.
+     * It will combine stoichiometry for same interactors
+     * Comparable participants are per interactor and are new instances.
+     *
+     * @return a collection of {@link psidev.psi.mi.jami.model.ModelledComparableParticipant} objects.
+     */
+    default Collection<ModelledComparableParticipant> getAllExpandedParticipants() {
+        Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
+
+        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
+            if (modelledParticipant.getInteractor() instanceof Complex) {
+                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
+                ComplexUtils.maintainParticipantMap(
+                        interactorParticipantMap,
+                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
+            } else {
+                ComplexUtils.maintainParticipantMap(interactorParticipantMap, modelledParticipant);
             }
         }
 
