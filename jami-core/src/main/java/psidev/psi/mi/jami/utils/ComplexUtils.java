@@ -20,14 +20,8 @@ public class ComplexUtils {
             map = new HashMap<>();
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
-            if (modelledParticipant.getInteractor() instanceof Protein) {
+            if (modelledParticipant.getInteractor() instanceof Protein || modelledParticipant.getInteractor() instanceof InteractorPool) {
                 delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
-            } else if (modelledParticipant.getInteractor() instanceof InteractorPool) {
-                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
-                    if (interactor instanceof Protein) {
-                        delegateMapMaintenance(interactor, modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
-                    }
-                }
             }
         }
     }
@@ -37,13 +31,7 @@ public class ComplexUtils {
             map = new HashMap<>();
         }
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
-            if (modelledParticipant.getInteractor() instanceof InteractorPool) {
-                for (Interactor interactor : (InteractorPool) modelledParticipant.getInteractor()) {
-                    delegateMapMaintenance(interactor, modelledParticipant, map, false, null);
-                }
-            } else {
-                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, false, null);
-            }
+            delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, false, null);
         }
     }
 
@@ -65,6 +53,7 @@ public class ComplexUtils {
             } else {
                 ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
                 modelledComparableParticipant.setInteractorId(interactorId);
+                modelledComparableParticipant.setIdentifiers(extractAllIdentifiers(interactor, useChainParentId, fetchInteractorByAcFunction));
                 modelledComparableParticipant.setInteractorType(interactor.getInteractorType());
                 if (modelledParticipant.getStoichiometry() != null) {
                     modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
@@ -74,14 +63,35 @@ public class ComplexUtils {
         }
     }
 
+    private static Collection<Xref> extractAllIdentifiers(Interactor interactor, boolean useChainParentId, Function<String, Interactor> fetchInteractorByAcFunction) {
+        Set<Xref> identifiers = new HashSet<>(interactor.getIdentifiers());
+
+        if (useChainParentId) {
+            Collection<Xref> chainParentXrefs = getChainParentXrefs(interactor);
+            Optional<Xref> intactChainParentXref = chainParentXrefs.stream()
+                    .filter(xref -> xref.getDatabase() != null && Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier()))
+                    .findAny();
+            if (intactChainParentXref.isPresent()) {
+                Interactor chainParentInteractor = fetchInteractorByAcFunction.apply(intactChainParentXref.get().getId());
+                if (chainParentInteractor != null) {
+                    identifiers.addAll(chainParentInteractor.getIdentifiers());
+                }
+            } else {
+                identifiers.addAll(chainParentXrefs);
+            }
+        }
+        if (interactor instanceof InteractorPool) {
+            for (Interactor subInteractor : (InteractorPool) interactor) {
+                identifiers.addAll(extractAllIdentifiers(subInteractor, useChainParentId, fetchInteractorByAcFunction));
+            }
+
+        }
+        return identifiers;
+    }
+
     private static String extractIdentifier(Interactor interactor, boolean useChainParentId, Function<String, Interactor> fetchInteractorByAcFunction) {
         if (useChainParentId) {
-            Collection<Xref> chainParentXrefs = Stream.concat(interactor.getXrefs().stream(), interactor.getIdentifiers().stream())
-                    .filter(xref -> xref.getQualifier() != null)
-                    .filter(xref -> Xref.CHAIN_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()) ||
-                            Xref.ISOFORM_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()))
-                    .collect(Collectors.toList());
-
+            Collection<Xref> chainParentXrefs = getChainParentXrefs(interactor);
             Optional<Xref> intactChainParentXref = chainParentXrefs.stream()
                     .filter(xref -> xref.getDatabase() != null && Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier()))
                     .findAny();
@@ -97,7 +107,24 @@ public class ComplexUtils {
                 return anyChainParentXref.get().getId();
             }
         }
-        return extractIdentifier(interactor);
+        String identifier = extractIdentifier(interactor);
+        if (identifier == null && interactor instanceof InteractorPool) {
+            for (Interactor subInteractor : (InteractorPool) interactor) {
+                identifier = extractIdentifier(subInteractor, useChainParentId, fetchInteractorByAcFunction);
+                if (identifier != null) {
+                    return identifier;
+                }
+            }
+        }
+        return identifier;
+    }
+
+    private static Collection<Xref> getChainParentXrefs(Interactor interactor) {
+        return Stream.concat(interactor.getXrefs().stream(), interactor.getIdentifiers().stream())
+                .filter(xref -> xref.getQualifier() != null)
+                .filter(xref -> Xref.CHAIN_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()) ||
+                        Xref.ISOFORM_PARENT_MI.equals(xref.getQualifier().getMIIdentifier()))
+                .collect(Collectors.toList());
     }
 
     private static String extractIdentifier(Interactor interactor) {

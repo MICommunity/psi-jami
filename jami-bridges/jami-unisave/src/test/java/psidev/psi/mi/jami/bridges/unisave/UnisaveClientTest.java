@@ -164,7 +164,7 @@ public class UnisaveClientTest {
     }
 
     @Test
-    public void getAvailableSequenceUpdate_P12345() throws Exception {
+    public void getAvailableSequence_P12345() throws Exception {
 
         // example of a sequence that doesn't have any update through its history
 
@@ -176,7 +176,7 @@ public class UnisaveClientTest {
         Assert.assertNotNull(sv);
         Assert.assertNotNull(sv.getSequence());
         Assert.assertEquals("MALLHSARVLSGVASAFHPGLAAAASARASSWWAHVEMGPPDPILGVTEAYKRDTNSKKMNLGVGAYRDDNGKPYVLPSVRKAEAQIAAKGLDKEYLPIGGLAEFCRASAELALGENSEVVKSGRFVTVQTISGTGALRIGASFLQRFFKFSRDVFLPKPSWGNHTPIFRDAGMQLQSYRYYDPKTCGFDFTGALEDISKIPEQSVLLLHACAHNPTGVDPRPEQWKEIATVVKKRNLFAFFDMAYQGFASGDGDKDAWAVRHFIEQGINVCLCQSYAKNMGLYGERVGAFTVICKDADEAKRVESQLKILIRPMYSNPPIHGARIASTILTSPDLRKQWLQEVKGMADRIIGMRTQLVSNLKKEGSTHSWQHITDQIGMFCFTGLKPEQVERLTKEFSIYMTKDGRISVAGVTSGNVGYLAHAIHQVTK", sv.getSequence().getSequence());
-        Assert.assertEquals("sp|P12345|Release 2024_03/2024_03|29-May-2024", sv.getSequence().getHeader());
+        Assert.assertEquals("sp|P12345|AATM_RABIT Aspartate aminotransferase, mitochondrial OS=Oryctolagus cuniculus OX=9986 GN=GOT2 PE=1 SV=2", sv.getSequence().getHeader());
         Assert.assertEquals(2, sv.getVersion());
     }
 

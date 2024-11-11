@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class CollectionComparator<T> implements Comparator<Collection<? extends T>> {
 
-    private Comparator<T> objectComparator;
+    private final Comparator<T> objectComparator;
 
     /**
      * Creates a new CollectionComparator. It requires a Comparator for the obejcts in the Collection
@@ -69,15 +69,22 @@ public class CollectionComparator<T> implements Comparator<Collection<? extends 
             else if (ts1.size() > ts2.size()){
                 return AFTER;
             }
-            else {
-                List<T> list1 = new ArrayList<T>(ts1);
-                List<T> list2 = new ArrayList<T>(ts2);
 
-                Collections.sort(list1, objectComparator);
-                Collections.sort(list2, objectComparator);
-
-                Iterator<T> iterator1 = list1.iterator();
-                Iterator<T> iterator2 = list2.iterator();
+            List<T> ts1ElementsNotFound = new ArrayList<>();
+            List<T> ts2ElementsToCompare = new ArrayList<>(ts2);
+            for (T object : ts1) {
+                int indexOfObjectInTs2 = getIndexOfObjectInList(object, ts2ElementsToCompare);
+                if (indexOfObjectInTs2 != -1) {
+                    ts2ElementsToCompare.remove(indexOfObjectInTs2);
+                } else {
+                    ts1ElementsNotFound.add(object);
+                }
+            }
+            if (ts1ElementsNotFound.isEmpty() && ts2ElementsToCompare.isEmpty()) {
+                return EQUAL;
+            } else {
+                Iterator<T> iterator1 = ts1ElementsNotFound.iterator();
+                Iterator<T> iterator2 = ts2ElementsToCompare.iterator();
                 int comp2 = 0;
                 while (comp2 == 0 && iterator1.hasNext() && iterator2.hasNext()){
                     comp2 = objectComparator.compare(iterator1.next(), iterator2.next());
@@ -97,5 +104,14 @@ public class CollectionComparator<T> implements Comparator<Collection<? extends 
                 }
             }
         }
+    }
+
+    private int getIndexOfObjectInList(T object, List<T> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (objectComparator.compare(object, list.get(i)) == 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
