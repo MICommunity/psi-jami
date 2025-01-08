@@ -24,8 +24,6 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         extends AbstractTabColumnFeeder
         implements MitabColumnFeeder<T, P> {
 
-    private Writer writer;
-
     /**
      * <p>Constructor for AbstractMitabColumnFeeder.</p>
      *
@@ -43,7 +41,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
      */
     public void writeUniqueIdentifier(P participant) throws IOException {
         if (participant == null){
-            writer.write(MitabUtils.EMPTY_COLUMN);
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
         }
         else {
             Interactor interactor = participant.getInteractor();
@@ -52,7 +50,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
                 writeIdentifier(interactor.getPreferredIdentifier());
             }
             else{
-                writer.write(MitabUtils.EMPTY_COLUMN);
+                getWriter().write(MitabUtils.EMPTY_COLUMN);
             }
         }
     }
@@ -65,7 +63,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
      */
     public void writeAlternativeIdentifiers(P participant) throws IOException {
         if (participant == null){
-            writer.write(MitabUtils.EMPTY_COLUMN);
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
         }
         else {
             Interactor interactor = participant.getInteractor();
@@ -98,7 +96,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
                 while (next != null && identifierIterator.hasNext()) ;
             }
             else{
-                writer.write(MitabUtils.EMPTY_COLUMN);
+                getWriter().write(MitabUtils.EMPTY_COLUMN);
             }
         }
     }
@@ -111,28 +109,28 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
      */
     public void writeAliases(P participant) throws IOException {
         if (participant == null){
-            writer.write(MitabUtils.EMPTY_COLUMN);
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
         }
         else {
             Interactor interactor = participant.getInteractor();
 
             // write shortlabel first
-            writer.write(CvTerm.PSI_MI);
-            writer.write(":");
+            getWriter().write(CvTerm.PSI_MI);
+            getWriter().write(":");
             escapeAndWriteString(interactor.getShortName());
-            writer.write("(");
-            writer.write(MitabUtils.DISPLAY_SHORT);
-            writer.write(")");
+            getWriter().write("(");
+            getWriter().write(MitabUtils.DISPLAY_SHORT);
+            getWriter().write(")");
 
             // write fullName then
             if (interactor.getFullName() != null){
-                writer.write("|");
-                writer.write(CvTerm.PSI_MI);
-                writer.write(":");
+                getWriter().write("|");
+                getWriter().write(CvTerm.PSI_MI);
+                getWriter().write(":");
                 escapeAndWriteString(interactor.getFullName());
-                writer.write("(");
-                writer.write(MitabUtils.DISPLAY_LONG);
-                writer.write(")");
+                getWriter().write("(");
+                getWriter().write(MitabUtils.DISPLAY_LONG);
+                getWriter().write(")");
             }
 
             // write aliases
@@ -140,7 +138,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
                 Iterator<Alias> aliasIterator = interactor.getAliases().iterator();
 
                 while (aliasIterator.hasNext()){
-                    writer.write(MitabUtils.FIELD_SEPARATOR);
+                    getWriter().write(MitabUtils.FIELD_SEPARATOR);
 
                     writeAlias(participant, aliasIterator.next());
                 }
@@ -150,7 +148,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
                 Iterator<Alias> aliasIterator = participant.getAliases().iterator();
 
                 while (aliasIterator.hasNext()){
-                    writer.write(MitabUtils.FIELD_SEPARATOR);
+                    getWriter().write(MitabUtils.FIELD_SEPARATOR);
 
                     writeAlias(participant, aliasIterator.next());
                 }
@@ -171,7 +169,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
             writeOrganism(interactor.getOrganism());
         }
         else{
-            writer.write(MitabUtils.EMPTY_COLUMN);
+            getWriter().write(MitabUtils.EMPTY_COLUMN);
         }
     }
 
@@ -197,7 +195,7 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
             }
 
             // write confidence value
-            writer.write(MitabUtils.XREF_SEPARATOR);
+            getWriter().write(MitabUtils.XREF_SEPARATOR);
             escapeAndWriteString(conf.getValue());
         }
     }

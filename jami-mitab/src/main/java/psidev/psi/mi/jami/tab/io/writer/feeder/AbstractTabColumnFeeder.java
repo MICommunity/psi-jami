@@ -143,8 +143,6 @@ public abstract class AbstractTabColumnFeeder {
                 escapeAndWriteString(alias.getType().getShortName());
                 writer.write(")");
             }
-        } else {
-            writer.write(MitabUtils.EMPTY_COLUMN);
         }
     }
 
@@ -156,8 +154,6 @@ public abstract class AbstractTabColumnFeeder {
             writer.write(MitabUtils.XREF_SEPARATOR);
             // write id
             escapeAndWriteString(identifier.getId());
-        } else {
-            writer.write(MitabUtils.EMPTY_COLUMN);
         }
     }
 
@@ -188,8 +184,6 @@ public abstract class AbstractTabColumnFeeder {
                 getWriter().write(MitabUtils.XREF_SEPARATOR);
                 escapeAndWriteString(annotation.getValue());
             }
-        } else {
-            writer.write(MitabUtils.EMPTY_COLUMN);
         }
     }
 
