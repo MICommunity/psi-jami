@@ -4,9 +4,9 @@ import psidev.psi.mi.jami.model.Alias;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Feature;
-import psidev.psi.mi.jami.model.Interaction;
+import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.model.Interactor;
-import psidev.psi.mi.jami.model.Participant;
+import psidev.psi.mi.jami.model.ParticipantEvidence;
 import psidev.psi.mi.jami.model.Range;
 import psidev.psi.mi.jami.model.Xref;
 import psidev.psi.mi.jami.tab.utils.MitabUtils;
@@ -23,9 +23,9 @@ import java.util.Iterator;
 /**
  * Abstract FeatureTab column feeder
  */
-public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extends Interaction, E extends Experiment>
+public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extends InteractionEvidence>
         extends AbstractTabColumnFeeder
-        implements FeatureTabColumnFeeder<F, I, E> {
+        implements FeatureTabColumnFeeder<F, I> {
 
     /**
      * <p>Constructor for AbstractFeatureTabColumnFeeder.</p>
@@ -170,10 +170,10 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
 
     /** {@inheritDoc} */
     public void writeAffectedProteinSymbol(F feature) throws IOException {
-        if (feature.getParticipant() != null) {
-            Participant participant = (Participant) feature.getParticipant();
-            if (!participant.getAliases().isEmpty()) {
-                Alias geneNameAlias = AliasUtils.collectFirstAliasWithType(participant.getAliases(), Alias.GENE_NAME_MI, Alias.GENE_NAME);
+        if (feature.getParticipant() != null && feature.getParticipant().getInteractor() != null) {
+            Interactor interactor = feature.getParticipant().getInteractor();
+            if (!interactor.getAliases().isEmpty()) {
+                Alias geneNameAlias = AliasUtils.collectFirstAliasWithType(interactor.getAliases(), Alias.GENE_NAME_MI, Alias.GENE_NAME);
                 if (geneNameAlias != null) {
                     writeAlias(geneNameAlias);
                 } else {
@@ -207,6 +207,8 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
             Interactor interactor = feature.getParticipant().getInteractor();
             if (interactor.getOrganism() != null) {
                 writeOrganism(interactor.getOrganism());
+            } else {
+                getWriter().write(MitabUtils.EMPTY_COLUMN);
             }
         } else {
             getWriter().write(MitabUtils.EMPTY_COLUMN);
@@ -216,18 +218,22 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
     /** {@inheritDoc} */
     public void writeInteractionParticipants(I interaction) throws IOException {
         if (!interaction.getParticipants().isEmpty()) {
-            Iterator<Participant> participantIterator = interaction.getParticipants().iterator();
+            Iterator<ParticipantEvidence> participantIterator = interaction.getParticipants().iterator();
             while (participantIterator.hasNext()) {
-                Participant participant = participantIterator.next();
+                ParticipantEvidence participant = participantIterator.next();
                 Interactor interactor = participant.getInteractor();
                 if (interactor != null) {
                     getWriter().write("(");
-                    writeIdentifier(interactor.getPreferredIdentifier());
+                    if (interactor.getPreferredIdentifier() != null) {
+                        writeIdentifier(interactor.getPreferredIdentifier());
+                    } else {
+                        getWriter().write(MitabUtils.EMPTY_COLUMN);
+                    }
                     getWriter().write("(");
                     writeCvTerm(interactor.getInteractorType());
                     getWriter().write("), ");
                     writeOrganism(interactor.getOrganism());
-                    getWriter().write("(");
+                    getWriter().write(")");
                 } else {
                     getWriter().write(MitabUtils.EMPTY_COLUMN);
                 }
@@ -241,10 +247,14 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
     }
 
     /** {@inheritDoc} */
-    public void writePubMedId(E experiment) throws IOException {
+    public void writePubMedId(Experiment experiment) throws IOException {
         if (experiment != null && experiment.getPublication() != null) {
             Collection<Xref> pubmedIds = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(
                     experiment.getPublication().getIdentifiers(), Xref.PUBMED_MI, Xref.PUBMED, Xref.PRIMARY_MI, Xref.PRIMARY);
+            if (pubmedIds.isEmpty()) {
+                pubmedIds = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(
+                        experiment.getPublication().getIdentifiers(), Xref.PUBMED_MI, Xref.PUBMED, Xref.IDENTITY_MI, Xref.IDENTITY);
+            }
             Collection<Xref> imexIds = XrefUtils.collectAllXrefsHavingDatabaseAndQualifier(
                     experiment.getPublication().getXrefs(), Xref.IMEX_MI, Xref.IMEX, Xref.IMEX_PRIMARY_MI, Xref.IMEX_PRIMARY);
             if (!pubmedIds.isEmpty() || !imexIds.isEmpty()) {
@@ -257,7 +267,7 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
                     }
                 }
                 // If any Pubmed ids have been written and there are IMEx ids to be written, then we need a field separator
-                if (!pubmedIds.isEmpty()) {
+                if (!pubmedIds.isEmpty() && !imexIds.isEmpty()) {
                     getWriter().write(MitabUtils.FIELD_SEPARATOR);
                 }
                 Iterator<Xref> imexIdIterator = imexIds.iterator();
@@ -277,7 +287,7 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
     }
 
     /** {@inheritDoc} */
-    public void writeFigureLegends(E experiment) throws IOException {
+    public void writeFigureLegends(Experiment experiment) throws IOException {
         if (experiment != null) {
             Collection<Annotation> annotations = AnnotationUtils.collectAllAnnotationsHavingTopic(
                     experiment.getAnnotations(), Annotation.FIGURE_LEGEND_MI, Annotation.FIGURE_LEGEND);

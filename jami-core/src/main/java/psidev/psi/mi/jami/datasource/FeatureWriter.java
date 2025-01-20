@@ -2,6 +2,7 @@ package psidev.psi.mi.jami.datasource;
 
 import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.model.Feature;
+import psidev.psi.mi.jami.model.InteractionEvidence;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * The FeatureWriter can write features in a datasource (files, database)
  */
-public interface FeatureWriter<F extends Feature> {
+public interface FeatureWriter<F extends Feature, I extends InteractionEvidence> {
 
     /**
      * Initialise the context of the FeatureWriter given a map of options.
@@ -56,6 +57,14 @@ public interface FeatureWriter<F extends Feature> {
      * @throws MIIOException : if cannot write
      */
     void write(Iterator<? extends F> features) throws MIIOException;
+
+    /**
+     * Writes the features of an interaction.
+     *
+     * @param interaction : the interaction to write
+     * @throws MIIOException : if cannot write
+     */
+    void write(I interaction) throws MIIOException;
 
     /**
      * Flushes the writer (commit or write on disk).

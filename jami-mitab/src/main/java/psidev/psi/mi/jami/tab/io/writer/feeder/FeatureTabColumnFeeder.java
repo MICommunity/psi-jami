@@ -2,14 +2,14 @@ package psidev.psi.mi.jami.tab.io.writer.feeder;
 
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Feature;
-import psidev.psi.mi.jami.model.Interaction;
+import psidev.psi.mi.jami.model.InteractionEvidence;
 
 import java.io.IOException;
 
 /**
  * A FeatureTab column feeder will write the content of FeatureTab columns
  */
-public interface FeatureTabColumnFeeder<F extends Feature, I extends Interaction, E extends Experiment> {
+public interface FeatureTabColumnFeeder<F extends Feature, I extends InteractionEvidence> {
 
     /**
      * This method will write the accession number of a feature.
@@ -102,7 +102,7 @@ public interface FeatureTabColumnFeeder<F extends Feature, I extends Interaction
     /**
      * This method writes the identifiers of the participants in the interaction affected by the feature.
      *
-     * @param interaction a I object.
+     * @param interaction an I object.
      * @throws IOException if any.
      */
     void writeInteractionParticipants(I interaction) throws IOException;
@@ -111,24 +111,24 @@ public interface FeatureTabColumnFeeder<F extends Feature, I extends Interaction
      * This method writes the PubMed ID of the publication where the interaction evidence affected by the feature
      * was reported.
      *
-     * @param experiment a E object.
+     * @param experiment an Experiment object.
      * @throws IOException if any.
      */
-    void writePubMedId(E experiment) throws IOException;
+    void writePubMedId(Experiment experiment) throws IOException;
 
     /**
      * This method writes the reference to the specific figures in the paper where the interaction evidence affected
      * by the feature was reported.
      *
-     * @param experiment a E object.
+     * @param experiment an Experiment object.
      * @throws IOException if any.
      */
-    void writeFigureLegends(E experiment) throws IOException;
+    void writeFigureLegends(Experiment experiment) throws IOException;
 
     /**
      * This method writes the accession number of the interaction affected by the feature.
      *
-     * @param interaction a I object.
+     * @param interaction an I object.
      * @throws IOException if any.
      */
     void writeInteractionAc(I interaction) throws IOException;

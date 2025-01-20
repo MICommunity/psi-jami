@@ -5,9 +5,8 @@ import psidev.psi.mi.jami.exception.MIIOException;
 import psidev.psi.mi.jami.factory.options.InteractionWriterOptions;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Feature;
-import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
-import psidev.psi.mi.jami.model.Participant;
+import psidev.psi.mi.jami.model.ParticipantEvidence;
 import psidev.psi.mi.jami.tab.FeatureTabColumnName;
 import psidev.psi.mi.jami.tab.extension.factory.options.MitabWriterOptions;
 import psidev.psi.mi.jami.tab.io.writer.feeder.FeatureTabColumnFeeder;
@@ -27,13 +26,12 @@ import java.util.Map;
 /**
  * Abstract class for Feature writer.
  */
-public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Interaction, E extends Experiment>
-        implements FeatureWriter<F> {
+public abstract class AbstractFeatureTabWriter<F extends Feature, I extends InteractionEvidence> implements FeatureWriter<F, I> {
 
     private Writer writer;
     private boolean isInitialised = false;
     private boolean writeHeader = true;
-    private FeatureTabColumnFeeder<F, I, E> columnFeeder;
+    private FeatureTabColumnFeeder<F, I> columnFeeder;
     private boolean hasStarted;
 
     /**
@@ -186,9 +184,7 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
         }
 
         try{
-            Interaction interaction = ((Participant) feature.getParticipant()).getInteraction();
-            Experiment experiment = ((InteractionEvidence) interaction).getExperiment();
-            writeFeature(feature, (I) interaction, (E) experiment);
+            writeFeature(feature);
         } catch (IOException e) {
             throw new MIIOException("Impossible to write " + feature.toString(), e);
         }
@@ -214,6 +210,18 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
     public void write(Iterator<? extends F> features) throws MIIOException {
         while(features.hasNext()){
             write(features.next());
+        }
+    }
+
+    /**
+     * Writes the features of an interaction.
+     *
+     * @param interaction an I object.
+     * @throws MIIOException if any.
+     */
+    public void write(I interaction) throws MIIOException {
+        for (ParticipantEvidence participant : interaction.getParticipants()) {
+            write(participant.getFeatures());
         }
     }
 
@@ -287,7 +295,7 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
      *
      * @return a {@link FeatureTabColumnFeeder} object.
      */
-    protected FeatureTabColumnFeeder<F, I, E> getColumnFeeder() {
+    protected FeatureTabColumnFeeder<F, I> getColumnFeeder() {
         return columnFeeder;
     }
 
@@ -296,7 +304,7 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
      *
      * @param columnFeeder a {@link FeatureTabColumnFeeder} object.
      */
-    protected void setColumnFeeder(FeatureTabColumnFeeder<F, I, E> columnFeeder) {
+    protected void setColumnFeeder(FeatureTabColumnFeeder<F, I> columnFeeder) {
         this.columnFeeder = columnFeeder;
     }
 
@@ -311,7 +319,10 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
      * @param feature a F object.
      * @throws IOException if any.
      */
-    protected void writeFeature(F feature, I interaction, E experiment) throws IOException {
+    protected void writeFeature(F feature) throws IOException {
+        I interaction = (I) ((ParticipantEvidence) feature.getParticipant()).getInteraction();
+        Experiment experiment = interaction.getExperiment();
+
         if (hasStarted){
             writer.write(MitabUtils.LINE_BREAK);
         } else {

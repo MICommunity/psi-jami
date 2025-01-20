@@ -1,8 +1,7 @@
 package psidev.psi.mi.jami.tab.io.writer;
 
-import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Feature;
-import psidev.psi.mi.jami.model.Interaction;
+import psidev.psi.mi.jami.model.InteractionEvidence;
 import psidev.psi.mi.jami.tab.io.writer.feeder.DefaultFeatureTabColumnFeeder;
 
 import java.io.File;
@@ -13,7 +12,7 @@ import java.io.Writer;
 /**
  * FeatureTab writer for features
  */
-public class FeatureTabWriter extends AbstractFeatureTabWriter<Feature, Interaction, Experiment> {
+public class FeatureTabWriter extends AbstractFeatureTabWriter<Feature, InteractionEvidence> {
 
     /**
      * <p>Constructor for FeatureTabWriter.</p>
