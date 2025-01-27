@@ -4,9 +4,7 @@ import org.junit.Test;
 import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.Experiment;
 import psidev.psi.mi.jami.model.Feature;
-import psidev.psi.mi.jami.model.Interaction;
 import psidev.psi.mi.jami.model.InteractionEvidence;
-import psidev.psi.mi.jami.model.Participant;
 import psidev.psi.mi.jami.model.ParticipantEvidence;
 import psidev.psi.mi.jami.model.Protein;
 import psidev.psi.mi.jami.model.Range;
@@ -17,9 +15,7 @@ import psidev.psi.mi.jami.model.impl.DefaultOrganism;
 import psidev.psi.mi.jami.model.impl.DefaultResultingSequence;
 import psidev.psi.mi.jami.tab.extension.MitabExperiment;
 import psidev.psi.mi.jami.tab.extension.MitabFeatureEvidence;
-import psidev.psi.mi.jami.tab.extension.MitabInteraction;
 import psidev.psi.mi.jami.tab.extension.MitabInteractionEvidence;
-import psidev.psi.mi.jami.tab.extension.MitabParticipant;
 import psidev.psi.mi.jami.tab.extension.MitabParticipantEvidence;
 import psidev.psi.mi.jami.tab.extension.MitabProtein;
 import psidev.psi.mi.jami.tab.extension.MitabPublication;
@@ -196,6 +192,7 @@ public class DefaultFeatureTabColumnFeederTest {
         MitabFeatureEvidence feature = new MitabFeatureEvidence();
         feature.getAnnotations().add(AnnotationUtils.createAnnotation("comment", "comment1"));
         feature.getAnnotations().add(AnnotationUtils.createAnnotation("caution", "\tcaution1"));
+        feature.getAnnotations().add(AnnotationUtils.createAnnotation("hidden", "secret annotation content"));
 
         StringWriter writer = new StringWriter();
         DefaultFeatureTabColumnFeeder feeder = new DefaultFeatureTabColumnFeeder(writer);
@@ -418,11 +415,13 @@ public class DefaultFeatureTabColumnFeederTest {
     public void writeXrefIds() throws IOException {
         MitabFeatureEvidence featureWithNoXrefs = new MitabFeatureEvidence();
         MitabFeatureEvidence feature = new MitabFeatureEvidence();
-        feature.getIdentifiers().add(XrefUtils.createXref(Xref.IMEX, Xref.IMEX_MI, "imex_test_id"));
+        feature.getXrefs().add(XrefUtils.createXref(Xref.IMEX, Xref.IMEX_MI, "imex_test_id"));
+        feature.getXrefs().add(XrefUtils.createXref("intact", Xref.INTACT_MI, "EBI-1"));
         feature.getIdentifiers().add(XrefUtils.createXrefWithQualifier(
                 Xref.PUBMED, Xref.PUBMED_MI, "pubmed_test_id", Xref.PRIMARY, Xref.PRIMARY_MI));
         MitabFeatureEvidence feature2 = new MitabFeatureEvidence();
-        feature2.getIdentifiers().add(XrefUtils.createXref(Xref.IMEX, Xref.IMEX_MI, "imex_test_id_2"));
+        feature2.getIdentifiers().add(XrefUtils.createXref("intact", Xref.INTACT_MI, "EBI-2"));
+        feature2.getXrefs().add(XrefUtils.createXref(Xref.IMEX, Xref.IMEX_MI, "imex_test_id_2"));
 
         StringWriter writer = new StringWriter();
         DefaultFeatureTabColumnFeeder feeder = new DefaultFeatureTabColumnFeeder(writer);
@@ -432,7 +431,7 @@ public class DefaultFeatureTabColumnFeederTest {
         writer = new StringWriter();
         feeder = new DefaultFeatureTabColumnFeeder(writer);
         feeder.writeXrefIds(feature);
-        assertEquals("imex:imex_test_id|pubmed:pubmed_test_id", writer.toString());
+        assertEquals("pubmed:pubmed_test_id(primary-reference)|imex:imex_test_id", writer.toString());
 
         writer = new StringWriter();
         feeder = new DefaultFeatureTabColumnFeeder(writer);

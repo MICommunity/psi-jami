@@ -188,7 +188,7 @@ public class FeatureTabWriterTest {
                 "\tpubmed:123" +
                 "\tfigure legend:test figure 1|figure legend:  test figure 2" +
                 "\t-" +
-                "\timex:imex_test_id|pubmed:pubmed_test_id";
+                "\timex:imex_test_id|pubmed:pubmed_test_id(primary-reference)";
     }
 
     private Feature createFeature1() {

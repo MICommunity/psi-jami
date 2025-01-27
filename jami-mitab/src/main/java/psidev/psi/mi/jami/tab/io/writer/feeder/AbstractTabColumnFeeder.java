@@ -157,6 +157,20 @@ public abstract class AbstractTabColumnFeeder {
         }
     }
 
+    public void writeXref(Xref xref) throws IOException {
+        if (xref != null){
+            // write identifier first
+            writeIdentifier(xref);
+
+            // write qualifier
+            if (xref.getQualifier() != null){
+                getWriter().write("(");
+                escapeAndWriteString(xref.getQualifier().getShortName());
+                getWriter().write(")");
+            }
+        }
+    }
+
     public void escapeAndWriteString(String stringToEscape) throws IOException {
         // replace first tabs and break line with a space and escape double quote
         String replaced = stringToEscape.replaceAll(MitabUtils.LINE_BREAK + "|" + MitabUtils.COLUMN_SEPARATOR, " ");

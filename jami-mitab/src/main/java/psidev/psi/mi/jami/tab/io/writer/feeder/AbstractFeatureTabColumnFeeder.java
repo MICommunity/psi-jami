@@ -141,7 +141,8 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
     /** {@inheritDoc} */
     public void writeAnnotations(F feature) throws IOException {
         if (!feature.getAnnotations().isEmpty()) {
-            Iterator<Annotation> annotationIterator = feature.getAnnotations().iterator();
+            Collection<Annotation> annotations = AnnotationUtils.collectAllVisibleAnnotations(feature.getAnnotations());
+            Iterator<Annotation> annotationIterator = annotations.iterator();
             while (annotationIterator.hasNext()) {
                 Annotation annot = annotationIterator.next();
                 writeAnnotation(annot);
@@ -310,13 +311,31 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
 
     /** {@inheritDoc} */
     public void writeXrefIds(F feature) throws IOException {
-        if (!feature.getIdentifiers().isEmpty()) {
-            Iterator<Xref> identifierIterator = feature.getIdentifiers().iterator();
+        Collection<Xref> identifiers = XrefUtils.collectAllNoneIntactXrefs(feature.getIdentifiers());
+        Collection<Xref> xrefs = XrefUtils.collectAllNoneIntactXrefs(feature.getXrefs());
+
+        if (!identifiers.isEmpty() || !xrefs.isEmpty()) {
+            Iterator<Xref> identifierIterator = identifiers.iterator();
             while (identifierIterator.hasNext()) {
                 Xref identifier = identifierIterator.next();
-                writeIdentifier(identifier);
+                writeXref(identifier);
                 if (identifierIterator.hasNext()) {
                     getWriter().write(MitabUtils.FIELD_SEPARATOR);
+                }
+            }
+
+            if (!identifiers.isEmpty() && !xrefs.isEmpty()) {
+                getWriter().write(MitabUtils.FIELD_SEPARATOR);
+            }
+
+            Iterator<Xref> xrefIterator = xrefs.iterator();
+            while (xrefIterator.hasNext()) {
+                Xref xref = xrefIterator.next();
+                if (!Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier())) {
+                    writeXref(xref);
+                    if (xrefIterator.hasNext()) {
+                        getWriter().write(MitabUtils.FIELD_SEPARATOR);
+                    }
                 }
             }
         } else {

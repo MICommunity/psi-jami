@@ -499,21 +499,6 @@ public abstract class AbstractMitabColumnFeeder<T extends BinaryInteraction, P e
         }
     }
 
-    /** {@inheritDoc} */
-    public void writeXref(Xref xref) throws IOException {
-        if (xref != null){
-            // write identifier first
-            writeIdentifier(xref);
-
-            // write qualifier
-            if (xref.getQualifier() != null){
-                getWriter().write("(");
-                escapeAndWriteString(xref.getQualifier().getShortName());
-                getWriter().write(")");
-            }
-        }
-    }
-
     /**
      * <p>writeParticipantFeatures.</p>
      *

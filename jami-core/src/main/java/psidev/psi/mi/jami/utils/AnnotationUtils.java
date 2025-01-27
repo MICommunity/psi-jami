@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.function.Predicate;
 
 /**
  * Utility class for Annotation
@@ -17,6 +19,12 @@ import java.util.Iterator;
  * @since <pre>05/02/13</pre>
  */
 public class AnnotationUtils {
+
+    private static final Set<String> HIDDEN_ANNOTATION_TOPICS = Set.of(
+            "hidden",
+            "no-export",
+            "obsolete",
+            "remark-internal");
 
     /**
      * To know if the annotation does have a specific topic
@@ -358,5 +366,42 @@ public class AnnotationUtils {
      */
     public static Annotation createCaution(String caution){
         return new DefaultAnnotation(CvTermUtils.createMICvTerm(Annotation.CAUTION, Annotation.CAUTION_MI), caution);
+    }
+
+    /**
+     * Collect all annotations that match a filter
+     *
+     * @param annots : the annotations
+     * @param filter :  the predicate used to filter annotations
+     * @return the annotations that have matches the filter
+     */
+    public static Collection<Annotation> collectAllAnnotationsWithFilter(Collection<? extends Annotation> annots, Predicate<Annotation> filter) {
+
+        if (annots == null || annots.isEmpty()) {
+            return Collections.emptyList();
+        }
+        Collection<Annotation> annotations = new ArrayList<>(annots.size());
+
+        for (Annotation annot : annots) {
+            if (filter.test(annot)) {
+                annotations.add(annot);
+            }
+        }
+
+        return annotations;
+    }
+
+    /**
+     * Collect all annotations that have a public visible topic
+     *
+     * @param annots : the annotations
+     * @return the annotations that have a public visible topic
+     */
+    public static Collection<Annotation> collectAllVisibleAnnotations(Collection<? extends Annotation> annots) {
+        return collectAllAnnotationsWithFilter(
+                annots,
+                annotation ->
+                        annotation.getTopic() == null ||
+                                !HIDDEN_ANNOTATION_TOPICS.contains(annotation.getTopic().getShortName()));
     }
 }
