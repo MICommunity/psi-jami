@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.commons;
 
+import psidev.psi.mi.jami.factory.FeatureWriterFactory;
 import psidev.psi.mi.jami.factory.InteractionWriterFactory;
 import psidev.psi.mi.jami.factory.MIDataSourceFactory;
 import psidev.psi.mi.jami.factory.options.InteractionWriterOptions;
@@ -12,6 +13,7 @@ import psidev.psi.mi.jami.tab.extension.datasource.DefaultMitabSource;
 import psidev.psi.mi.jami.tab.extension.datasource.DefaultMitabStreamSource;
 import psidev.psi.mi.jami.tab.extension.factory.options.MitabWriterOptions;
 import psidev.psi.mi.jami.tab.io.writer.DefaultMitabWriter;
+import psidev.psi.mi.jami.tab.io.writer.FeatureTabWriter;
 import psidev.psi.mi.jami.xml.PsiXmlType;
 import psidev.psi.mi.jami.xml.io.writer.DefaultXmlWriter;
 import psidev.psi.mi.jami.xml.model.extension.datasource.DefaultPsiXmlSource;
@@ -34,10 +36,9 @@ public class PsiJami {
      * <p>initialiseAllFactories.</p>
      */
     public static void initialiseAllFactories(){
-
         initialiseAllMIDataSources();
-
         initialiseAllInteractionWriters();
+        initialiseAllFeatureWriters();
     }
 
     /**
@@ -51,6 +52,12 @@ public class PsiJami {
 
         Map<String, Object> supportedOptions4 = createXMLInteractionWriterOptions(null, null, null, null, null);
         writerFactory.registerDataSourceWriter(DefaultXmlWriter.class, supportedOptions4);
+    }
+
+    public static void initialiseAllFeatureWriters() {
+        FeatureWriterFactory writerFactory = FeatureWriterFactory.getInstance();
+        Map<String, Object> supportedOptions = createMITABInteractionWriterOptions(null, null, null, null);
+        writerFactory.registerDataSourceWriter(FeatureTabWriter.class, supportedOptions);
     }
 
     /**

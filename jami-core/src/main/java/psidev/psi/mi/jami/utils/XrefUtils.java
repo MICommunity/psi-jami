@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 /**
  * Utility class for Xrefs
@@ -860,5 +861,41 @@ public class XrefUtils {
      */
     public static Xref createPsiModSecondary(String id){
         return createSecondaryXref(CvTerm.PSI_MOD, CvTerm.PSI_MOD_MI, id);
+    }
+
+    /**
+     * Collect all xrefs that match a filter
+     *
+     * @param refs : the xrefs
+     * @param filter :  the predicate used to filter xrefs
+     * @return the xrefs that have matches the filter
+     */
+    public static Collection<Xref> collectAllXrefsWithFilter(Collection<? extends Xref> refs, Predicate<Xref> filter) {
+
+        if (refs == null || refs.isEmpty()) {
+            return Collections.emptyList();
+        }
+        Collection<Xref> xrefs = new ArrayList<>(refs.size());
+
+        for (Xref xref : refs) {
+            if (filter.test(xref)) {
+                xrefs.add(xref);
+            }
+        }
+
+        return xrefs;
+    }
+
+    /**
+     * Collect all xrefs that are not from IntAct DB
+     *
+     * @param refs : the xrefs
+     * @return the xrefs that are not from IntAct DB
+     */
+    public static Collection<Xref> collectAllNoneIntactXrefs(Collection<? extends Xref> refs) {
+        return collectAllXrefsWithFilter(
+                refs,
+                xref ->
+                        xref.getDatabase() == null || !Xref.INTACT_MI.equals(xref.getDatabase().getMIIdentifier()));
     }
 }
