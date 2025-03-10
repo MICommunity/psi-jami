@@ -140,24 +140,12 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
             Function<String, Interactor> fetchInteractorByAcFunction) {
 
         Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
-
-        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
-            if (modelledParticipant.getInteractor() instanceof Complex) {
-                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
-                ComplexUtils.maintainProteinComparableParticipantMap(
-                        interactorParticipantMap,
-                        useChainParentId,
-                        fetchInteractorByAcFunction,
-                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
-            } else {
-                ComplexUtils.maintainProteinComparableParticipantMap(
-                        interactorParticipantMap,
-                        useChainParentId,
-                        fetchInteractorByAcFunction,
-                        modelledParticipant);
-            }
-        }
-
+        Collection<ModelledParticipant> allExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(this);
+        ComplexUtils.maintainProteinComparableParticipantMap(
+                interactorParticipantMap,
+                useChainParentId,
+                fetchInteractorByAcFunction,
+                allExpandedParticipants.toArray(new ModelledParticipant[0]));
         return interactorParticipantMap.values();
     }
 
@@ -171,18 +159,8 @@ public interface Complex extends Interactor, ModelledInteraction, NamedInteracti
      */
     default Collection<ModelledComparableParticipant> getAllExpandedParticipants() {
         Map<String, ModelledComparableParticipant> interactorParticipantMap = new HashMap<>();
-
-        for (ModelledParticipant modelledParticipant : this.getParticipants()) {
-            if (modelledParticipant.getInteractor() instanceof Complex) {
-                Collection<ModelledParticipant> complexExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(modelledParticipant);
-                ComplexUtils.maintainParticipantMap(
-                        interactorParticipantMap,
-                        complexExpandedParticipants.toArray(new ModelledParticipant[0]));
-            } else {
-                ComplexUtils.maintainParticipantMap(interactorParticipantMap, modelledParticipant);
-            }
-        }
-
+        Collection<ModelledParticipant> allExpandedParticipants = ComplexUtils.expandComplexIntoParticipants(this);
+        ComplexUtils.maintainParticipantMap(interactorParticipantMap, allExpandedParticipants.toArray(new ModelledParticipant[0]));
         return interactorParticipantMap.values();
     }
 }

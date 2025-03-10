@@ -16,22 +16,43 @@ public class ComplexUtils {
             Function<String, Interactor> fetchInteractorByAcFunction,
             ModelledParticipant... modelledParticipants) {
 
-        if (map == null) {
-            map = new HashMap<>();
-        }
-        for (ModelledParticipant modelledParticipant : modelledParticipants) {
-            if (modelledParticipant.getInteractor() instanceof Protein || modelledParticipant.getInteractor() instanceof InteractorPool) {
-                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
-            }
-        }
+        maintainProteinComparableParticipantMap(map, useChainParentId, fetchInteractorByAcFunction, false, modelledParticipants);
     }
 
     public static void maintainParticipantMap(Map<String, ModelledComparableParticipant> map, ModelledParticipant... modelledParticipants) {
+        maintainProteinComparableParticipantMap(map, false, null, true, modelledParticipants);
+    }
+
+    private static void maintainProteinComparableParticipantMap(
+            Map<String, ModelledComparableParticipant> map,
+            boolean useChainParentId,
+            Function<String, Interactor> fetchInteractorByAcFunction,
+            boolean includeAllParticipants,
+            ModelledParticipant... modelledParticipants) {
+
         if (map == null) {
             map = new HashMap<>();
         }
+        // First we deal with the interactor pools to make sure we group all proteins in the same pool together,
+        // instead of havign each protein in the pool as separate entries
         for (ModelledParticipant modelledParticipant : modelledParticipants) {
-            delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, false, null);
+            if (modelledParticipant.getInteractor() instanceof InteractorPool) {
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
+            }
+        }
+        // Then we continue with the proteins. If 2 proteins are in the same pool, they will be merged as the same participant
+        for (ModelledParticipant modelledParticipant : modelledParticipants) {
+            if (modelledParticipant.getInteractor() instanceof Protein) {
+                delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
+            }
+        }
+        if (includeAllParticipants) {
+            // Finally, if we want to compare all participants, we check those not interactor pools or proteins
+            for (ModelledParticipant modelledParticipant : modelledParticipants) {
+                if (!(modelledParticipant.getInteractor() instanceof Protein) && !(modelledParticipant.getInteractor() instanceof Protein)) {
+                    delegateMapMaintenance(modelledParticipant.getInteractor(), modelledParticipant, map, useChainParentId, fetchInteractorByAcFunction);
+                }
+            }
         }
     }
 
@@ -51,14 +72,31 @@ public class ComplexUtils {
                     modelledComparableParticipant.setStoichiometry(addedStoichiometry);
                 }
             } else {
-                ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
-                modelledComparableParticipant.setInteractorId(interactorId);
-                modelledComparableParticipant.setIdentifiers(extractAllIdentifiers(interactor, useChainParentId, fetchInteractorByAcFunction));
-                modelledComparableParticipant.setInteractorType(interactor.getInteractorType());
-                if (modelledParticipant.getStoichiometry() != null) {
-                    modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
+                // If we cannot find a comparable participant with the main id, we check for any other id.
+                // This is to deal with interactor pools that may have ids for multiple proteins,
+                // and we want to match against any of them
+                Optional<ModelledComparableParticipant> modelledComparableParticipantOp = map.values().stream()
+                        .filter(comparableParticipant -> comparableParticipant.getIdentifiers()
+                                .stream()
+                                .map(Xref::getId)
+                                .anyMatch(interactorId::equals))
+                        .findFirst();
+                if (modelledComparableParticipantOp.isPresent()) {
+                    ModelledComparableParticipant modelledComparableParticipant = modelledComparableParticipantOp.get();
+                    if (modelledParticipant.getStoichiometry() != null) {
+                        int addedStoichiometry = modelledComparableParticipant.getStoichiometry() + modelledParticipant.getStoichiometry().getMinValue();
+                        modelledComparableParticipant.setStoichiometry(addedStoichiometry);
+                    }
+                } else {
+                    ModelledComparableParticipant modelledComparableParticipant = new ModelledComparableParticipant();
+                    modelledComparableParticipant.setInteractorId(interactorId);
+                    modelledComparableParticipant.setIdentifiers(extractAllIdentifiers(interactor, useChainParentId, fetchInteractorByAcFunction));
+                    modelledComparableParticipant.setInteractorType(interactor.getInteractorType());
+                    if (modelledParticipant.getStoichiometry() != null) {
+                        modelledComparableParticipant.setStoichiometry(modelledParticipant.getStoichiometry().getMinValue());
+                    }
+                    map.put(interactorId, modelledComparableParticipant);
                 }
-                map.put(interactorId, modelledComparableParticipant);
             }
         }
     }
@@ -181,5 +219,17 @@ public class ComplexUtils {
         // return back the participant if not complex
         expandedModelledParticipants.add(parentParticipant);
         return expandedModelledParticipants;
+    }
+
+    public static Collection<ModelledParticipant> expandComplexIntoParticipants(Complex complex) {
+        Collection<ModelledParticipant> allExpandedParticipants = new ArrayList<>();
+        for (ModelledParticipant modelledParticipant : complex.getParticipants()) {
+            if (modelledParticipant.getInteractor() instanceof Complex) {
+                allExpandedParticipants.addAll(ComplexUtils.expandComplexIntoParticipants(modelledParticipant));
+            } else {
+                allExpandedParticipants.add(modelledParticipant);
+            }
+        }
+        return allExpandedParticipants;
     }
 }

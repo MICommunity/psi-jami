@@ -219,19 +219,16 @@ public class ComplexUtilsTest {
         ComplexUtils.maintainProteinComparableParticipantMap(testMap, false, null, modelledParticipants.toArray(modelledParticipantsArray));
         ComplexUtils.maintainProteinComparableParticipantMap(testMap, false, null, modelledParticipant9);
 
-        Assert.assertEquals(4, testMap.size());
+        Assert.assertEquals(3, testMap.size());
 
         Assert.assertEquals("UNIPROTID1", testMap.get("UNIPROTID1").getInteractorId());
-        Assert.assertEquals(4, testMap.get("UNIPROTID1").getStoichiometry());
+        Assert.assertEquals(5, testMap.get("UNIPROTID1").getStoichiometry());
 
         Assert.assertEquals("UNIPROTID2", testMap.get("UNIPROTID2").getInteractorId());
         Assert.assertEquals(0, testMap.get("UNIPROTID2").getStoichiometry());
 
         Assert.assertEquals("UNIPROTID3", testMap.get("UNIPROTID3").getInteractorId());
         Assert.assertEquals(1, testMap.get("UNIPROTID3").getStoichiometry());
-
-        Assert.assertEquals("EBI-AC1", testMap.get("EBI-AC1").getInteractorId());
-        Assert.assertEquals(1, testMap.get("EBI-AC1").getStoichiometry());
 
     }
 
@@ -259,7 +256,7 @@ public class ComplexUtilsTest {
 
         InteractorPool interactorPool2 = new DefaultInteractorPool("test pool 2");
         interactorPool2.add(new DefaultProtein("test7 protein",
-                XrefUtils.createUniprotIdentity("UNIPROTID1")));
+                XrefUtils.createUniprotIdentity("UNIPROTID2")));
         interactorPool2.add(new DefaultProtein("test8 protein",
                 XrefUtils.createUniprotIdentity("UNIPROTID4")));
 
@@ -288,10 +285,10 @@ public class ComplexUtilsTest {
         ComplexUtils.maintainParticipantMap(testMap, modelledParticipants.toArray(modelledParticipantsArray));
         ComplexUtils.maintainParticipantMap(testMap, modelledParticipant9);
 
-        Assert.assertEquals(6, testMap.size());
+        Assert.assertEquals(5, testMap.size());
 
         Assert.assertEquals("UNIPROTID1", testMap.get("UNIPROTID1").getInteractorId());
-        Assert.assertEquals(3, testMap.get("UNIPROTID1").getStoichiometry());
+        Assert.assertEquals(4, testMap.get("UNIPROTID1").getStoichiometry());
 
         Assert.assertEquals("UNIPROTID2", testMap.get("UNIPROTID2").getInteractorId());
         Assert.assertEquals(0, testMap.get("UNIPROTID2").getStoichiometry());
@@ -304,9 +301,6 @@ public class ComplexUtilsTest {
 
         Assert.assertEquals("test gene", testMap.get("test gene").getInteractorId());
         Assert.assertEquals(1, testMap.get("test gene").getStoichiometry());
-
-        Assert.assertEquals("nucleic acid 1", testMap.get("nucleic acid 1").getInteractorId());
-        Assert.assertEquals(0, testMap.get("nucleic acid 1").getStoichiometry());
 
     }
 }

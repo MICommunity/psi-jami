@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Complex;
 import psidev.psi.mi.jami.model.ModelledComparableParticipant;
 import psidev.psi.mi.jami.model.ModelledFeature;
 import psidev.psi.mi.jami.model.ModelledParticipant;
+import psidev.psi.mi.jami.model.Protein;
 import psidev.psi.mi.jami.model.impl.*;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.comparator.CollectionComparator;
@@ -379,6 +380,44 @@ public class CollectionComparatorTest {
         complex2.addParticipant(new DefaultModelledParticipant(protein1));
         complex2.addParticipant(new DefaultModelledParticipant(protein2));
         complex2.addParticipant(new DefaultModelledParticipant(protein3));
+
+        Assert.assertEquals(0, collectionComparator.compare(complex1.getComparableParticipants(), complex2.getComparableParticipants()));
+    }
+
+    @Test
+    public void test_protein_and_molecule_set(){
+        Protein commonProtein = new DefaultProtein("test protein", XrefUtils.createUniprotIdentity("P0DP24"));
+
+        //complex1
+        Complex complex1 = new DefaultComplex("test", new DefaultCvTerm("protein complex"));
+        complex1.setInteractionType(new DefaultCvTerm("phosphorylation"));
+        complex1.addParticipant(new DefaultModelledParticipant(commonProtein));
+        complex1.addParticipant(new DefaultModelledParticipant(new DefaultProtein("test1 protein",
+                XrefUtils.createUniprotIdentity("P53355"))));
+
+        //complex2
+        Complex complex2 = new DefaultComplex("test", new DefaultCvTerm("protein complex"));
+        complex2.setInteractionType(new DefaultCvTerm("phosphorylation"));
+
+        DefaultInteractorPool interactorPool = new DefaultInteractorPool("calm_human");
+        interactorPool.getIdentifiers().add(XrefUtils.createUniprotIdentity("P0DP23"));
+        interactorPool.getIdentifiers().add(XrefUtils.createUniprotIdentity("P0DP24"));
+        DefaultProtein protein1 = new DefaultProtein("calm2_human",
+                XrefUtils.createEnsemblIdentity("ENSP00000272298.7"));
+        protein1.getIdentifiers().add(XrefUtils.createUniprotIdentity("P0DP24"));
+        interactorPool.add(protein1);
+        DefaultProtein protein2 = new DefaultProtein("calm1_human",
+                XrefUtils.createEnsemblIdentity("ENSP00000349467.4"));
+        protein2.getIdentifiers().add(XrefUtils.createUniprotIdentity("P0DP23"));
+        interactorPool.add(protein2);
+        complex2.addParticipant(new DefaultModelledParticipant(interactorPool));
+
+        DefaultProtein protein = new DefaultProtein("dapk1_human",
+                XrefUtils.createEnsemblIdentity("ENSP00000350785.5"));
+        protein.getIdentifiers().add(XrefUtils.createUniprotIdentity("P53355"));
+        complex2.addParticipant(new DefaultModelledParticipant(protein));
+
+        complex2.addParticipant(new DefaultModelledParticipant(commonProtein));
 
         Assert.assertEquals(0, collectionComparator.compare(complex1.getComparableParticipants(), complex2.getComparableParticipants()));
     }
