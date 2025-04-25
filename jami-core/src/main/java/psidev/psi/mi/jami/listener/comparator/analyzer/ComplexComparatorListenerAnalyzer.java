@@ -16,13 +16,28 @@ public class ComplexComparatorListenerAnalyzer {
             for (ComplexComparatorObserver complexComparatorObserver : complexComparatorListener.getComplexComparatorObservations()) {
                 for (ComplexComparisonEvent complexComparisonEvent : complexComparatorObserver.getDifferentObservations()) {
                     if (ComplexComparisonEvent.EventType.ONLY_STOICHIOMETRY_DIFFERENT.equals(complexComparisonEvent.getEventType())) {
-                        complexesDiffOnlyByStoichiometry.add(CommonUtils.extractIntactAcFromIdentifier(complexComparatorObserver.getComplex2().getIdentifiers()));
+                        complexesDiffOnlyByStoichiometry.add(complexComparatorObserver.getComplex2().getComplexAc());
                         break;
                     }
                 }
             }
         }
         return complexesDiffOnlyByStoichiometry;
+    }
+
+    public static Collection<String> getComplexAcsDifferentOnlyByNonProteinComponents(ComplexComparatorListener complexComparatorListener) {
+        Collection<String> complexesDiffOnlyByNonProteinComponents = new ArrayList<>();
+        if (complexComparatorListener != null && !complexComparatorListener.getComplexComparatorObservations().isEmpty()) {
+            for (ComplexComparatorObserver complexComparatorObserver : complexComparatorListener.getComplexComparatorObservations()) {
+                for (ComplexComparisonEvent complexComparisonEvent : complexComparatorObserver.getDifferentObservations()) {
+                    if (ComplexComparisonEvent.EventType.ONLY_NON_PROTEINS_DIFFERENT.equals(complexComparisonEvent.getEventType())) {
+                        complexesDiffOnlyByNonProteinComponents.add(complexComparatorObserver.getComplex2().getComplexAc());
+                        break;
+                    }
+                }
+            }
+        }
+        return complexesDiffOnlyByNonProteinComponents;
     }
 }
 

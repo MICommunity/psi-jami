@@ -32,7 +32,8 @@ public class ComplexComparisonEvent {
     }
 
     public enum EventType {
-        ONLY_STOICHIOMETRY_DIFFERENT("Only Stoichiometry is different");
+        ONLY_STOICHIOMETRY_DIFFERENT("Only Stoichiometry is different"),
+        ONLY_NON_PROTEINS_DIFFERENT("Only non protein components are different");
 
         private String message;
 
