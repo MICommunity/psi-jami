@@ -378,21 +378,21 @@ public class DefaultFeatureTabColumnFeederTest {
 
     @Test
     public void writeFigureLegends() throws IOException {
-        Experiment experimentWithNoAnnotations = ExperimentUtils.createExperimentWithoutPublication();
-        Experiment experiment = ExperimentUtils.createExperimentWithoutPublication();
-        experiment.getAnnotations().add(AnnotationUtils.createAnnotation(
+        InteractionEvidence interactionWithNoAnnotations = new MitabInteractionEvidence();
+        InteractionEvidence interaction = new MitabInteractionEvidence();
+        interaction.getAnnotations().add(AnnotationUtils.createAnnotation(
                 Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "test figure 1"));
-        experiment.getAnnotations().add(AnnotationUtils.createAnnotation(
+        interaction.getAnnotations().add(AnnotationUtils.createAnnotation(
                 Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "\n\ttest figure 2"));
 
         StringWriter writer = new StringWriter();
         DefaultFeatureTabColumnFeeder feeder = new DefaultFeatureTabColumnFeeder(writer);
-        feeder.writeFigureLegends(experimentWithNoAnnotations);
+        feeder.writeFigureLegends(interactionWithNoAnnotations);
         assertEquals("-", writer.toString());
 
         writer = new StringWriter();
         feeder = new DefaultFeatureTabColumnFeeder(writer);
-        feeder.writeFigureLegends(experiment);
+        feeder.writeFigureLegends(interaction);
         assertEquals("figure legend:test figure 1|figure legend:  test figure 2", writer.toString());
     }
 

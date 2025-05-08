@@ -355,7 +355,7 @@ public abstract class AbstractFeatureTabWriter<F extends Feature, I extends Inte
         writer.write(MitabUtils.COLUMN_SEPARATOR);
         this.columnFeeder.writePubMedId(experiment);
         writer.write(MitabUtils.COLUMN_SEPARATOR);
-        this.columnFeeder.writeFigureLegends(experiment);
+        this.columnFeeder.writeFigureLegends(interaction);
         writer.write(MitabUtils.COLUMN_SEPARATOR);
         this.columnFeeder.writeInteractionAc(interaction);
         writer.write(MitabUtils.COLUMN_SEPARATOR);

@@ -288,10 +288,10 @@ public abstract class AbstractFeatureTabColumnFeeder<F extends Feature, I extend
     }
 
     /** {@inheritDoc} */
-    public void writeFigureLegends(Experiment experiment) throws IOException {
-        if (experiment != null) {
+    public void writeFigureLegends(I interaction) throws IOException {
+        if (interaction != null) {
             Collection<Annotation> annotations = AnnotationUtils.collectAllAnnotationsHavingTopic(
-                    experiment.getAnnotations(), Annotation.FIGURE_LEGEND_MI, Annotation.FIGURE_LEGEND);
+                    interaction.getAnnotations(), Annotation.FIGURE_LEGEND_MI, Annotation.FIGURE_LEGEND);
             if (!annotations.isEmpty()) {
                 Iterator<Annotation> annotationIterator = annotations.iterator();
                 while (annotationIterator.hasNext()) {

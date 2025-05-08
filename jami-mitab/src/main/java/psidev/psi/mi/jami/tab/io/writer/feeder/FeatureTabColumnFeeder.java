@@ -120,10 +120,10 @@ public interface FeatureTabColumnFeeder<F extends Feature, I extends Interaction
      * This method writes the reference to the specific figures in the paper where the interaction evidence affected
      * by the feature was reported.
      *
-     * @param experiment an Experiment object.
+     * @param interaction an I object.
      * @throws IOException if any.
      */
-    void writeFigureLegends(Experiment experiment) throws IOException;
+    void writeFigureLegends(I interaction) throws IOException;
 
     /**
      * This method writes the accession number of the interaction affected by the feature.

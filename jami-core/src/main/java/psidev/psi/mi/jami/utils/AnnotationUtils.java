@@ -23,8 +23,7 @@ public class AnnotationUtils {
     private static final Set<String> HIDDEN_ANNOTATION_TOPICS = Set.of(
             "hidden",
             "no-export",
-            "obsolete",
-            "remark-internal");
+            "obsolete");
 
     /**
      * To know if the annotation does have a specific topic
@@ -392,7 +391,11 @@ public class AnnotationUtils {
     }
 
     /**
-     * Collect all annotations that have a public visible topic
+     * Collect all annotations that have a public visible topic.
+     * An annotation is visible if either:
+     * - It has no topic
+     * - Its topic is not hidden, no-export or obsolete; and the topic does not have an annotation which topic
+     *   is either of those topics mentioned
      *
      * @param annots : the annotations
      * @return the annotations that have a public visible topic
@@ -400,8 +403,19 @@ public class AnnotationUtils {
     public static Collection<Annotation> collectAllVisibleAnnotations(Collection<? extends Annotation> annots) {
         return collectAllAnnotationsWithFilter(
                 annots,
-                annotation ->
-                        annotation.getTopic() == null ||
-                                !HIDDEN_ANNOTATION_TOPICS.contains(annotation.getTopic().getShortName()));
+                annotation -> {
+                    CvTerm topic = annotation.getTopic();
+                    if (topic == null) {
+                        return true;
+                    }
+
+                    if (HIDDEN_ANNOTATION_TOPICS.contains(annotation.getTopic().getShortName())) {
+                        return false;
+                    }
+
+                    return topic.getAnnotations().stream()
+                            .noneMatch(topicAnnotation -> topicAnnotation.getTopic() != null &&
+                                    HIDDEN_ANNOTATION_TOPICS.contains(topicAnnotation.getTopic().getShortName()));
+                });
     }
 }
