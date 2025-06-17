@@ -106,7 +106,7 @@ public class FeatureTabWriterTest {
         FeatureTabWriter featureTabWriter = new FeatureTabWriter(writer);
         featureTabWriter.setWriteHeader(false);
 
-        InteractionEvidence interaction = new MitabInteractionEvidence();
+        InteractionEvidence interaction = createInteraction();
 
         Protein protein = new MitabProtein("p12345_human", "protein test");
         protein.getIdentifiers().add(XrefUtils.createXref("uniprotkb", "P12345"));
@@ -120,11 +120,11 @@ public class FeatureTabWriterTest {
         interaction.getParticipants().add(participant2);
         participant2.setInteraction(interaction);
 
-        Feature feature = createFeature("feature 1", participant, interaction);
+        Feature feature = createFeature("feature 1", participant);
         participant.getFeatures().add((FeatureEvidence) feature);
-        Feature feature2 = createFeature("feature 2", participant, interaction);
+        Feature feature2 = createFeature("feature 2", participant);
         participant.getFeatures().add((FeatureEvidence) feature2);
-        Feature feature3 = createFeature("feature 3", participant2, interaction);
+        Feature feature3 = createFeature("feature 3", participant2);
         participant2.getFeatures().add((FeatureEvidence) feature3);
 
         featureTabWriter.write(interaction);
@@ -200,7 +200,7 @@ public class FeatureTabWriterTest {
     }
 
     private Feature createFeature(String featureLabel) {
-        InteractionEvidence interaction = new MitabInteractionEvidence();
+        InteractionEvidence interaction = createInteraction();
 
         Protein protein = new MitabProtein("p12345_human", "protein test");
         protein.getIdentifiers().add(XrefUtils.createXref("uniprotkb", "P12345"));
@@ -214,12 +214,26 @@ public class FeatureTabWriterTest {
         interaction.getParticipants().add(participant2);
         participant2.setInteraction(interaction);
 
-        Feature feature = createFeature(featureLabel, participant, interaction);
+        Feature feature = createFeature(featureLabel, participant);
         participant.getFeatures().add((FeatureEvidence) feature);
         return feature;
     }
 
-    private Feature createFeature(String featureLabel, ParticipantEvidence participant, InteractionEvidence interaction) {
+    private InteractionEvidence createInteraction() {
+        InteractionEvidence interaction = new MitabInteractionEvidence();
+
+        Experiment experiment = new MitabExperiment(new MitabPublication(XrefUtils.createXrefWithQualifier(
+                Xref.PUBMED, Xref.PUBMED_MI, "123", Xref.PRIMARY, Xref.PRIMARY_MI)));
+        interaction.getAnnotations().add(AnnotationUtils.createAnnotation(
+                Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "test figure 1"));
+        interaction.getAnnotations().add(AnnotationUtils.createAnnotation(
+                Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "\n\ttest figure 2"));
+        interaction.setExperiment(experiment);
+
+        return interaction;
+    }
+
+    private Feature createFeature(String featureLabel, ParticipantEvidence participant) {
         Feature feature = new MitabFeatureEvidence(
                 featureLabel, "test description", new DefaultCvTerm("binding site", "MI:0001"));
 
@@ -236,14 +250,6 @@ public class FeatureTabWriterTest {
         feature.getAnnotations().add(AnnotationUtils.createAnnotation("caution", "\tcaution1"));
 
         feature.setParticipant(participant);
-
-        Experiment experiment = new MitabExperiment(new MitabPublication(XrefUtils.createXrefWithQualifier(
-                Xref.PUBMED, Xref.PUBMED_MI, "123", Xref.PRIMARY, Xref.PRIMARY_MI)));
-        experiment.getAnnotations().add(AnnotationUtils.createAnnotation(
-                Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "test figure 1"));
-        experiment.getAnnotations().add(AnnotationUtils.createAnnotation(
-                Annotation.FIGURE_LEGEND, Annotation.FIGURE_LEGEND_MI, "\n\ttest figure 2"));
-        interaction.setExperiment(experiment);
 
         feature.getIdentifiers().add(XrefUtils.createXref(Xref.IMEX, Xref.IMEX_MI, "imex_test_id"));
         feature.getIdentifiers().add(XrefUtils.createXrefWithQualifier(
