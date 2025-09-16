@@ -5,7 +5,7 @@
 
     <groupId>psidev.psi.mi.jami</groupId>
     <artifactId>psi-jami</artifactId>
-    <version>3.8.0-SNAPSHOT</version>
+    <version>3.9.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
     <name>PSI :: JAMI - Java framework for molecular interactions</name>
@@ -18,7 +18,6 @@
         <ontology.manager.version>2.1.2</ontology.manager.version>
         <ols.client.version>2.14-SNAPSHOT</ols.client.version>
         <uniprot.japi.version>1.1.2</uniprot.japi.version>
-        <chebiws.client.version>2.4</chebiws.client.version>
         <h2.version>1.4.197</h2.version>
 
     </properties>
