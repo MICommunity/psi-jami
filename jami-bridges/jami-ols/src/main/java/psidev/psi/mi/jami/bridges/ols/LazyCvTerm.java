@@ -187,6 +187,8 @@ public class LazyCvTerm extends DefaultCvTerm {
                         Annotation url = processDefinition(description);
                         if (url != null) {
                             description = description.replaceAll(url.getValue(), "");
+                            description = description.replaceAll("\\(\\)", "");
+                            description = description.trim();
                         }
                         initialiseDefinition(description);
                     }
@@ -286,6 +288,10 @@ public class LazyCvTerm extends DefaultCvTerm {
     private Annotation processInfoInDescription(String otherInfoString, int defLength) {
 
         // URL
+        if (otherInfoString.startsWith("(") && otherInfoString.endsWith(")")) {
+            otherInfoString = otherInfoString.substring(1, otherInfoString.length() - 1);
+        }
+
         if ( otherInfoString.startsWith( OlsUtils.HTTP_DEF ) ) {
             Annotation annot = AnnotationUtils.createAnnotation(Annotation.URL, Annotation.URL_MI, otherInfoString);
             super.getAnnotations().add(annot);
