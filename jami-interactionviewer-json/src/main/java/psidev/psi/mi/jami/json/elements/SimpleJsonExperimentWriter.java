@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.json.elements;
 
+import org.json.simple.JSONValue;
 import psidev.psi.mi.jami.json.MIJsonUtils;
 import psidev.psi.mi.jami.model.*;
 import psidev.psi.mi.jami.utils.AnnotationUtils;
@@ -81,6 +82,12 @@ public class SimpleJsonExperimentWriter implements JsonElementWriter<Interaction
                 writeAnnotations(figures);
             }
 
+            // variable parameters
+            if (!experiment.getVariableParameters().isEmpty()) {
+                MIJsonUtils.writeSeparator(writer);
+                writeVariableParameters(experiment);
+            }
+
             MIJsonUtils.writeEndObject(this.writer);
         }
         else if (!figures.isEmpty()){
@@ -113,6 +120,64 @@ public class SimpleJsonExperimentWriter implements JsonElementWriter<Interaction
             }
         }
         MIJsonUtils.writeEndArray(this.writer);
+    }
+
+    private void writeVariableParameters(Experiment experiment) throws IOException {
+        MIJsonUtils.writePropertyKey("variableParameterList", writer);
+        MIJsonUtils.writeOpenArray(writer);
+
+        Iterator<VariableParameter> variableParameterIterator = experiment.getVariableParameters().iterator();
+        while (variableParameterIterator.hasNext()) {
+            VariableParameter variableParameter = variableParameterIterator.next();
+            MIJsonUtils.writeStartObject(writer);
+
+            MIJsonUtils.writePropertyKey("variableValueList", writer);
+            MIJsonUtils.writeOpenArray(writer);
+            Iterator<VariableParameterValue> variableParameterValueIterator = variableParameter.getVariableValues().iterator();
+            while (variableParameterValueIterator.hasNext()) {
+                VariableParameterValue variableParameterValue = variableParameterValueIterator.next();
+                MIJsonUtils.writeStartObject(writer);
+                MIJsonUtils.writeProperty(
+                        "value",
+                        variableParameterValue.getValue() != null ? JSONValue.escape(variableParameterValue.getValue()) : "",
+                        writer);
+                MIJsonUtils.writeSeparator(writer);
+                MIJsonUtils.writeProperty(
+                        "order",
+                        variableParameterValue.getOrder() != null ? Integer.toString(variableParameterValue.getOrder()) : "",
+                        writer);
+                MIJsonUtils.writeEndObject(writer);
+
+                if (variableParameterValueIterator.hasNext()) {
+                    MIJsonUtils.writeSeparator(writer);
+                }
+            }
+            MIJsonUtils.writeEndArray(writer);
+
+            if (variableParameter.getDescription() != null) {
+                MIJsonUtils.writeSeparator(writer);
+                MIJsonUtils.writeProperty(
+                        "description",
+                        JSONValue.escape(variableParameter.getDescription()),
+                        writer);
+            }
+
+            if (variableParameter.getUnit() != null) {
+                MIJsonUtils.writeSeparator(writer);
+                MIJsonUtils.writeProperty(
+                        "unit",
+                        JSONValue.escape(variableParameter.getUnit().getShortName()),
+                        writer);
+            }
+
+            MIJsonUtils.writeEndObject(writer);
+
+            if (variableParameterIterator.hasNext()) {
+                MIJsonUtils.writeSeparator(writer);
+            }
+        }
+
+        MIJsonUtils.writeEndArray(writer);
     }
 
     /**

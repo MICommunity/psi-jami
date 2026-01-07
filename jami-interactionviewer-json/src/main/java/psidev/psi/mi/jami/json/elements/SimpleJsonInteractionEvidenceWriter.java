@@ -110,9 +110,11 @@ public class SimpleJsonInteractionEvidenceWriter<I extends InteractionEvidence> 
 
         Iterator<VariableParameterValueSet> variableParameterValueSetIterator = object.getVariableParameterValues().iterator();
         while (variableParameterValueSetIterator.hasNext()) {
+            VariableParameterValueSet variableParameterValueSet = variableParameterValueSetIterator.next();
+            MIJsonUtils.writeStartObject(getWriter());
+
             MIJsonUtils.writePropertyKey("experimentalVariableValues", getWriter());
             MIJsonUtils.writeOpenArray(getWriter());
-            VariableParameterValueSet variableParameterValueSet = variableParameterValueSetIterator.next();
             Iterator<VariableParameterValue> variableParameterValueIterator = variableParameterValueSet.iterator();
             while (variableParameterValueIterator.hasNext()) {
                 VariableParameterValue variableParameterValue = variableParameterValueIterator.next();
@@ -122,6 +124,12 @@ public class SimpleJsonInteractionEvidenceWriter<I extends InteractionEvidence> 
                         "value",
                         variableParameterValue.getValue() != null ? JSONValue.escape(variableParameterValue.getValue()) : "",
                         getWriter());
+                MIJsonUtils.writeSeparator(getWriter());
+                MIJsonUtils.writeProperty(
+                        "order",
+                        variableParameterValue.getOrder() != null ? Integer.toString(variableParameterValue.getOrder()) : "",
+                        getWriter());
+
                 if (variableParameter != null) {
                     if (variableParameter.getDescription() != null) {
                         MIJsonUtils.writeSeparator(getWriter());
@@ -130,11 +138,12 @@ public class SimpleJsonInteractionEvidenceWriter<I extends InteractionEvidence> 
                                 JSONValue.escape(variableParameter.getDescription()),
                                 getWriter());
                     }
+
                     if (variableParameter.getUnit() != null) {
                         MIJsonUtils.writeSeparator(getWriter());
                         MIJsonUtils.writeProperty(
                                 "unit",
-                                JSONValue.escape(variableParameterValue.getVariableParameter().getUnit().getShortName()),
+                                JSONValue.escape(variableParameter.getUnit().getShortName()),
                                 getWriter());
                     }
                 }
@@ -144,8 +153,9 @@ public class SimpleJsonInteractionEvidenceWriter<I extends InteractionEvidence> 
                     MIJsonUtils.writeSeparator(getWriter());
                 }
             }
-
             MIJsonUtils.writeEndArray(getWriter());
+
+            MIJsonUtils.writeEndObject(getWriter());
 
             if (variableParameterValueSetIterator.hasNext()) {
                 MIJsonUtils.writeSeparator(getWriter());
