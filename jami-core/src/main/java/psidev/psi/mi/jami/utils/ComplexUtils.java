@@ -102,7 +102,10 @@ public class ComplexUtils {
     }
 
     private static Collection<Xref> extractAllIdentifiers(Interactor interactor, boolean useChainParentId, Function<String, Interactor> fetchInteractorByAcFunction) {
-        Set<Xref> identifiers = new HashSet<>(interactor.getIdentifiers());
+        Set<Xref> identifiers = new HashSet<>();
+        interactor.getIdentifiers().stream()
+                .filter(x -> Xref.IDENTITY_MI.equals(x.getQualifier().getMIIdentifier()))
+                .forEach(identifiers::add);
 
         if (useChainParentId) {
             Collection<Xref> chainParentXrefs = getChainParentXrefs(interactor);
@@ -112,7 +115,9 @@ public class ComplexUtils {
             if (intactChainParentXref.isPresent()) {
                 Interactor chainParentInteractor = fetchInteractorByAcFunction.apply(intactChainParentXref.get().getId());
                 if (chainParentInteractor != null) {
-                    identifiers.addAll(chainParentInteractor.getIdentifiers());
+                    chainParentInteractor.getIdentifiers().stream()
+                            .filter(x -> Xref.IDENTITY_MI.equals(x.getQualifier().getMIIdentifier()))
+                            .forEach(identifiers::add);
                 }
             } else {
                 identifiers.addAll(chainParentXrefs);

@@ -1,6 +1,9 @@
 package psidev.psi.mi.jami.bridges.chebi;
 
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
 import psidev.psi.mi.jami.bridges.fetcher.BioactiveEntityFetcher;
 import psidev.psi.mi.jami.model.Alias;
@@ -11,11 +14,6 @@ import psidev.psi.mi.jami.utils.AliasUtils;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 import psidev.psi.mi.jami.utils.XrefUtils;
 import psidev.psi.mi.jami.utils.collection.ListUtils;
-import uk.ac.ebi.chebi.webapps.chebiWS.client.ChebiWebServiceClient;
-import uk.ac.ebi.chebi.webapps.chebiWS.model.ChebiWebServiceFault_Exception;
-import uk.ac.ebi.chebi.webapps.chebiWS.model.DataItem;
-import uk.ac.ebi.chebi.webapps.chebiWS.model.Entity;
-import uk.ac.ebi.chebi.webapps.chebiWS.model.OntologyDataItem;
 
 import java.util.*;
 
@@ -26,19 +24,21 @@ import java.util.*;
  * @since 07/08/13
  *
  */
-public class ChebiFetcher
-        implements BioactiveEntityFetcher {
+public class ChebiFetcher implements BioactiveEntityFetcher {
 
-    private ChebiWebServiceClient client;
     private static final int MAX_SIZE_CHEBI_IDS = 50;
-    /** Constant <code>CHEBI_POLYSACCHARYDE_PARENT="CHEBI:18154"</code> */
-    public final static String CHEBI_POLYSACCHARYDE_PARENT="CHEBI:18154";
+    /** Constant <code>CHEBI_POLYSACCHARYDE_PARENT_ID="18154"</code> */
+    public final static String CHEBI_POLYSACCHARYDE_PARENT_ID = "18154";
+    private static final String GET_SINGLE_COMPOUND_URL = "https://www.ebi.ac.uk/chebi/backend/api/public/compound/";
+    private static final String GET_COMPOUNDS_URL = "https://www.ebi.ac.uk/chebi/backend/api/public/compounds?chebi_ids=";
+
+    private final RestTemplate restTemplate;
 
     /**
      * <p>Constructor for ChebiFetcher.</p>
      */
-    public ChebiFetcher(){
-        client = new ChebiWebServiceClient();
+    public ChebiFetcher() {
+        this.restTemplate = new RestTemplate();
     }
 
     /**
@@ -53,112 +53,135 @@ public class ChebiFetcher
      * @throws BridgeFailedException    Thrown if the fetcher encounters a problem.
      */
     public Collection<BioactiveEntity> fetchByIdentifier (String identifier) throws BridgeFailedException {
-        if(identifier == null) throw new IllegalArgumentException("Can not fetch on null identifier");
+        if (identifier == null) {
+            throw new IllegalArgumentException("Can not fetch on null identifier");
+        }
 
-        BioactiveEntity bioactiveEntity = null;
         try {
-            Entity entity = client.getCompleteEntity(identifier);
-            if(entity == null) return null;
-            bioactiveEntity = createNewBioactiveEntity(entity);
+            String query = GET_SINGLE_COMPOUND_URL + identifier;
+            JsonNode response = restTemplate.getForObject(query, JsonNode.class);
 
-        } catch ( ChebiWebServiceFault_Exception e ) {
+            if (response == null) {
+                return null;
+            }
+            return Collections.singleton(createNewBioactiveEntity(response));
+
+        } catch (RestClientException e) {
             throw new BridgeFailedException("Cannot fetch the bioactive entity from CHEBI",e);
-        }
-        if (bioactiveEntity != null){
-            return Collections.singleton(bioactiveEntity);
-        }
-        else {
-            return Collections.EMPTY_LIST;
         }
     }
 
-    private BioactiveEntity createNewBioactiveEntity(Entity entity) {
+    private BioactiveEntity createNewBioactiveEntity(JsonNode jsonNode) {
+        CvTerm entityType = retrieveMoleculeTypeFrom(jsonNode);
 
-        CvTerm entityType = retrieveMoleculeTypeFrom(entity);
-
-        BioactiveEntity bioactiveEntity = new DefaultBioactiveEntity(entity.getChebiAsciiName(), entity.getChebiAsciiName(), entityType);
+        String chebiAsciiName = jsonNode.get("ascii_name").asText();
+        BioactiveEntity bioactiveEntity = new DefaultBioactiveEntity(chebiAsciiName, chebiAsciiName, entityType);
 
         // == Chebi ID
-        bioactiveEntity.setChebi( entity.getChebiId() );
+        bioactiveEntity.setChebi(jsonNode.get("chebi_accession").asText());
 
         // == Secondary CHEBI IDs
-        for(String secondaryId : entity.getSecondaryChEBIIds()){
-            bioactiveEntity.getIdentifiers().add(XrefUtils.createChebiSecondary(secondaryId));
+        if (jsonNode.has("secondary_ids") && !jsonNode.get("secondary_ids").isNull() && jsonNode.get("secondary_ids").isArray()) {
+            ArrayNode secondaryIds = (ArrayNode) jsonNode.get("secondary_ids");
+            for (JsonNode secondaryId : secondaryIds) {
+                bioactiveEntity.getIdentifiers().add(XrefUtils.createChebiSecondary(secondaryId.asText()));
+            }
         }
 
-        // == Smile
-        bioactiveEntity.setSmile( entity.getSmiles() );
+        if (jsonNode.has("default_structure") && !jsonNode.get("default_structure").isNull()) {
+            JsonNode defaultStructure = jsonNode.get("default_structure");
 
-        // == Inchi / Inchi Key
-        bioactiveEntity.setStandardInchi( entity.getInchi() );
-        bioactiveEntity.setStandardInchiKey( entity.getInchiKey() );
+            // == Smile
+            if (defaultStructure.has("smiles") && !defaultStructure.get("smiles").isNull()) {
+                bioactiveEntity.setSmile(defaultStructure.get("smiles").asText());
+            }
 
-        // == SYNONYMS
-        for(DataItem syn : entity.getSynonyms()){
-            bioactiveEntity.getAliases().add(AliasUtils.createAlias(
-                    Alias.SYNONYM, Alias.SYNONYM_MI, syn.getData()));
+            // == Inchi / Inchi Key
+            if (defaultStructure.has("standard_inchi") && !defaultStructure.get("standard_inchi").isNull()) {
+                bioactiveEntity.setStandardInchi(defaultStructure.get("standard_inchi").asText());
+            }
+            if (defaultStructure.has("standard_inchi_key") && !defaultStructure.get("standard_inchi_key").isNull()) {
+                bioactiveEntity.setStandardInchiKey(defaultStructure.get("standard_inchi_key").asText());
+            }
         }
 
-        // == IUPAC names
-        for(DataItem syn : entity.getIupacNames()){
-            bioactiveEntity.getAliases().add(AliasUtils.createAlias(
-                    Alias.IUPAC ,  Alias.IUPAC_MI , syn.getData()));
+        if (jsonNode.has("names") && !jsonNode.get("names").isNull()) {
+            JsonNode names = jsonNode.get("names");
+
+            names.fields().forEachRemaining(entry -> {
+                String key = entry.getKey();
+                JsonNode value = entry.getValue();
+                if (key.equals("IUPAC NAME")) {
+                    // == IUPAC names
+                    for (JsonNode name : value) {
+                        bioactiveEntity.getAliases().add(AliasUtils.createAlias(
+                                Alias.IUPAC, Alias.IUPAC_MI, name.get("ascii_name").asText()));
+                    }
+                } else {
+                    // == SYNONYMS
+                    for (JsonNode name : value) {
+                        bioactiveEntity.getAliases().add(AliasUtils.createAlias(
+                                Alias.SYNONYM, Alias.SYNONYM_MI, name.get("ascii_name").asText()));
+                    }
+                }
+            });
         }
+
         return bioactiveEntity;
     }
 
-    private CvTerm retrieveMoleculeTypeFrom(Entity entity) {
+    private CvTerm retrieveMoleculeTypeFrom(JsonNode jsonNode) {
         CvTerm entityType = null;
-        if (entity.getChebiId().equals(CHEBI_POLYSACCHARYDE_PARENT)){
+        if (jsonNode.has("id") && !jsonNode.get("id").isNull() && jsonNode.get("id").asText().equals(CHEBI_POLYSACCHARYDE_PARENT_ID)) {
             entityType = CvTermUtils.createMICvTerm(BioactiveEntity.POLYSACCHARIDE, BioactiveEntity.POLYSACCHARIDE_MI);
-        }
-        else{
-            List<OntologyDataItem> parents = entity.getOntologyParents();
-            if (parents != null && !parents.isEmpty()){
-                for (OntologyDataItem item : parents){
-                    if (item.getChebiId().equals(CHEBI_POLYSACCHARYDE_PARENT)){
+        } else {
+            if (jsonNode.has("outgoing_relations") && !jsonNode.get("outgoing_relations").isNull() && jsonNode.get("outgoing_relations").isArray()) {
+                ArrayNode outgoingRelations = (ArrayNode) jsonNode.get("outgoing_relations");
+                for (JsonNode outgoingRelation : outgoingRelations) {
+                    if (outgoingRelation.has("init_id") && !outgoingRelation.get("init_id").isNull() &&
+                            outgoingRelation.get("init_id").asText().equals(CHEBI_POLYSACCHARYDE_PARENT_ID)) {
                         entityType = CvTermUtils.createMICvTerm(BioactiveEntity.POLYSACCHARIDE, BioactiveEntity.POLYSACCHARIDE_MI);
                         break;
                     }
                 }
-
-                if (entityType == null){
-                    entityType = CvTermUtils.createMICvTerm(BioactiveEntity.SMALL_MOLECULE, BioactiveEntity.SMALL_MOLECULE_MI);
-                }
-            }
-            else{
-                entityType = CvTermUtils.createMICvTerm(BioactiveEntity.SMALL_MOLECULE, BioactiveEntity.SMALL_MOLECULE_MI);
             }
         }
+
+        if (entityType == null) {
+            entityType = CvTermUtils.createMICvTerm(BioactiveEntity.SMALL_MOLECULE, BioactiveEntity.SMALL_MOLECULE_MI);
+        }
+
         return entityType;
     }
 
     /** {@inheritDoc} */
     public Collection<BioactiveEntity> fetchByIdentifiers(Collection<String> identifiers) throws BridgeFailedException {
-
         if (identifiers == null) {
             throw new IllegalArgumentException("The collection of identifiers cannot be null");
         }
-        Collection<BioactiveEntity> results = new ArrayList<BioactiveEntity>();
-        List<Entity> entities = null;
+        Collection<BioactiveEntity> results = new ArrayList<>();
 
-        List<List<String>> parts = ListUtils.splitter(new ArrayList<String>(identifiers), MAX_SIZE_CHEBI_IDS);
+        List<List<String>> parts = ListUtils.splitter(new ArrayList<>(identifiers), MAX_SIZE_CHEBI_IDS);
 
         for (List<String> part : parts) {
             try {
-                //If we have the same Id in the list, we will have only one Entity
-                entities = client.getCompleteEntityByList(part);
+                // If we have the same Id in the list, we will have only one Entity
+                String query = GET_COMPOUNDS_URL + String.join(",", part);
+                JsonNode response = restTemplate.getForObject(query, JsonNode.class);
 
-                if (entities != null && !entities.isEmpty()) {
-                    for (Entity entity : entities) {
-                        results.add(createNewBioactiveEntity(entity));
-                    }
+                if (response != null) {
+                    response.fields().forEachRemaining(entry -> {
+                        JsonNode value = entry.getValue();
+                        if (value != null && value.has("data") && !value.get("data").isNull()) {
+                            JsonNode data = value.get("data");
+                            results.add(createNewBioactiveEntity(data));
+                        }
+                    });
                 }
 
-            } catch (ChebiWebServiceFault_Exception e) {
+            } catch (RestClientException e) {
                 throw new BridgeFailedException("Cannot fetch the bioactive entity from CHEBI",e);
             }
-            entities.clear();
         }
 
         return results;

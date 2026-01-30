@@ -145,12 +145,12 @@ public class FeatureTabWriterTest {
                 "\tResulting sequence" +
                 "\tFeature type" +
                 "\tFeature annotation(s)" +
-                "\tAffected protein AC" +
-                "\tAffected protein symbol" +
-                "\tAffected protein full name" +
-                "\tAffected protein organism" +
+                "\tAffected molecule identifier" +
+                "\tAffected molecule symbol" +
+                "\tAffected molecule full name" +
+                "\tAffected molecule organism" +
                 "\tInteraction participants" +
-                "\tPubMedID" +
+                "\tPubMed ID" +
                 "\tFigure legend(s)" +
                 "\tInteraction AC" +
                 "\tXref ID(s)";
