@@ -63,7 +63,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
     public final CvTerm uniprotCV = new DefaultCvTerm("uniprot knowledge base", "MI:0486");
     public final CvTerm rnaCV = new DefaultCvTerm("ribonucleic acid", "MI:0320");
     public final CvTerm identityCv = new DefaultCvTerm(Xref.IDENTITY, Xref.IDENTITY_MI);
-    public final CvTerm geneCV = new DefaultCvTerm("gene ref", new DefaultXref(intactCV, "IA:3594", identityCv)); // TODO change to new MI ID
+    public final CvTerm geneCV = new DefaultCvTerm("gene reference",  "MI:2423");
     public final CvTerm geneNameCV = new DefaultCvTerm("gene name", "MI:0301");
     public final CvTerm geneProductCV = new DefaultCvTerm("gene product", "MI:0251");
     public final CvTerm transcriptCV = new DefaultCvTerm("transcript", new DefaultXref(intactCV, "IA:3522", identityCv)); // TODO change to new MI ID
