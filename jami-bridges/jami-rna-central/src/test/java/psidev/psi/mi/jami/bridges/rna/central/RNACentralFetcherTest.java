@@ -61,7 +61,7 @@ public class RNACentralFetcherTest {
         assertTrue("URS0000031E12_9606 should have a transcript Xref to ENST00000362160",
                 xrefs.stream().anyMatch(x -> x.getId().equals("ENST00000362160") && x.getQualifier().getShortName().equals("transcript")));
         assertTrue("URS0000031E12_9606 should have a gene Xref to ENSG00000199030",
-                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030") && x.getQualifier().getShortName().equals("gene ref")));
+                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030") && x.getQualifier().getShortName().equals("gene reference")));
         assertTrue("Querying for a human identifier should only get human ensembl XRefs",
                 xrefs.stream().allMatch(xref -> xref.getId().startsWith("ENS")));
 

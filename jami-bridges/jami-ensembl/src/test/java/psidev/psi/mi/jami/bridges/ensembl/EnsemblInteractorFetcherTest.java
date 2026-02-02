@@ -67,7 +67,7 @@ public class EnsemblInteractorFetcherTest {
 
         assertEquals("Should have 1 gene name alias",1, rna.getAliases().stream().filter(alias -> alias.getType().getShortName().equals("gene name")).count());
         assertEquals("Should have 1 gene product xref, to UniProt/TrEMBL",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene product")).count());
-        assertEquals("Should have 1 gene ref xref",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene ref")).count());
+        assertEquals("Should have 1 gene reference xref",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene reference")).count());
     }
 
     @Test
