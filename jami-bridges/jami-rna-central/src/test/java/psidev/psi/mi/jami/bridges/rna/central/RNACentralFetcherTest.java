@@ -106,4 +106,13 @@ public class RNACentralFetcherTest {
         assertTrue("URS00026A23F2_9606 gene name should be HOTAIR",
                 aliases.stream().anyMatch(alias -> alias.getName().equals("HOTAIR")));
     }
+
+
+    @Test
+    public void testWithModifications() throws BridgeFailedException {
+        // https://rnacentral.org/api/v1/rna/URS00005FEB83_9606.json
+        // https://rnacentral.org/api/v1/rna/URS00005FEB83/xrefs.json
+        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS00005FEB83_9606");
+        assertFalse("RNA Central entries with modification like URS00005FEB83_9606 should be importable", nucleicAcids.isEmpty());
+    }
 }

@@ -41,7 +41,7 @@ class ApiXrefs {
 
         private Accession accession;
 
-        private List<String> modifications;
+        private List<Modification> modifications;
         private Boolean isRfamSeed;
 
         private String ncbiGeneId;
@@ -62,6 +62,33 @@ class ApiXrefs {
         private URL gencodeEnsemblUrl;
 
         private Integer quickgoHits;
+
+        @Jacksonized
+        @Data
+        @Builder
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+        public static class Modification {
+            private Integer authorAssignedPosition;
+            private Integer position;
+            private ChemicalComposition chemComp;
+
+            @Jacksonized
+            @Data
+            @Builder
+            @JsonIgnoreProperties(ignoreUnknown = true)
+            @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+            public static class ChemicalComposition {
+                private String ccdId;
+                private String description;
+                private String id;
+                private String modomicsShortName;
+                private String modomicsUrl;
+                private String oneLetterCode;
+                private String pdbUrl;
+                private String source;
+            }
+        }
 
         @Jacksonized
         @Data
