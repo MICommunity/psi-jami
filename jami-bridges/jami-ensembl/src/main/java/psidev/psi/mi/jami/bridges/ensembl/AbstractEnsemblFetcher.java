@@ -79,7 +79,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
             .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS, true)
             .build();
 
-    private final HttpClient client = HttpClient.newHttpClient();
+    private final HttpClient.Builder clientBuilder = HttpClient.newBuilder();
     private final CachedOlsCvTermFetcher cvFetcher = new CachedOlsCvTermFetcher();
     private final HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
             .header("Content-Type", "application/json")
@@ -156,7 +156,9 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
                 .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(extraParams)))
                 .build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = clientBuilder.version(HttpClient.Version.HTTP_1_1)
+                .build()
+                .send(request, HttpResponse.BodyHandlers.ofString());
 
         consumer.accept(mapper.readValue(response.body(), returnType));
     }
