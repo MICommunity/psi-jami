@@ -13,8 +13,8 @@ public class EnsemblNucleicAcidFetcher extends AbstractEnsemblFetcher<NucleicAci
     public EnsemblNucleicAcidFetcher() throws BridgeFailedException {
     }
 
-    protected NucleicAcid buildInteractor(String identifier, ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
-        return buildNucleicAcid(identifier, entree, translationIdToInteractor);
+    protected NucleicAcid buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
+        return buildNucleicAcid(entree, translationIdToInteractor);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package psidev.psi.mi.jami.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import psidev.psi.mi.jami.listener.EntityInteractorChangeListener;
 
 import java.util.Collection;
@@ -103,6 +104,7 @@ public interface Entity<F extends Feature> {
      */
     public Stoichiometry getStoichiometry();
 
+    @JsonIgnore
     /**
      * Sets the mean stoichiometry for this participant.
      *

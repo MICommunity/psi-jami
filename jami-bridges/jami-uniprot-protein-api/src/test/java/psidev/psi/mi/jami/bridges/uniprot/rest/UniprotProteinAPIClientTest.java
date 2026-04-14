@@ -5,7 +5,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.feature.DbReference;
 import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry;
+import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.feature.EntryFeature;
+import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.feature.Feature;
 import uk.ac.ebi.kraken.interfaces.uniparc.UniParcEntry;
 import uk.ac.ebi.kraken.interfaces.uniprot.UniProtEntry;
 
@@ -43,7 +46,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(3, upis.size());
+        Assert.assertEquals(6, upis.size());
 
     }
 
@@ -128,7 +131,7 @@ public class UniprotProteinAPIClientTest {
         for (String upi : upis) {
             System.out.println(upi);
         }
-        Assert.assertEquals(3, upis.size());
+        Assert.assertEquals(6, upis.size());
 
     }
 
@@ -152,7 +155,7 @@ public class UniprotProteinAPIClientTest {
         System.out.println(upi.getAccession());
         Assert.assertNotNull(upi);
         Assert.assertEquals("UPI000003EADC", upi.getAccession());
-        Assert.assertEquals(7, upi.getDbReference().size());
+        Assert.assertEquals(10, upi.getDbReference().size());
 
     }
 
@@ -205,5 +208,26 @@ public class UniprotProteinAPIClientTest {
         //Uniprot AC
         String[] result = client.getUniprotBestGuessFor("ENSG00000139618", null);
         Assert.assertNull(result);
+    }
+
+    @Test
+    public void getEpitopesForAccession() throws UniprotProteinAPIClientException {
+        EntryFeature epitope = client.getEpitopesForAccession("Q9HD40");
+
+        Assert.assertEquals("Q9HD40", epitope.getAccession());
+        Assert.assertFalse(epitope.getFeature().isEmpty());
+        for (Feature feature: epitope.getFeature()) {
+            Assert.assertEquals("epitope", feature.getType());
+            Assert.assertEquals(1, feature.getDbReference().size());
+
+            DbReference dbReference = feature.getDbReference().get(0);
+            Assert.assertEquals("IEDB", dbReference.getType());
+
+            String id = dbReference.getId();
+            Assert.assertTrue(id.matches("[0-9]+"));
+            Assert.assertNotNull(dbReference.getProperty());
+            Assert.assertEquals("URL", dbReference.getProperty().getType());
+            Assert.assertEquals("https://www.iedb.org/epitope/" + id, dbReference.getProperty().getValue());
+        }
     }
 }

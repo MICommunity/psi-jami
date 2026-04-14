@@ -259,7 +259,7 @@ public class DefaultComplexTest {
         try {
             for (ModelledComparableParticipant comparableParticipant : comparableParticipants) {
                 if (comparableParticipant.getInteractorId().equals("P12345")) {
-                    Assert.assertEquals(4,comparableParticipant.getStoichiometry());
+                    Assert.assertEquals(5,comparableParticipant.getStoichiometry());
                     testedCase1 = true;
                 } else if (comparableParticipant.getInteractorId().equals("P12347")) {
                     Assert.assertEquals(0, comparableParticipant.getStoichiometry());

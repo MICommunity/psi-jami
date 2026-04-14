@@ -9,6 +9,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.DbReferenceType;
 import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Entry;
+import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.feature.EntryFeature;
 import psidev.psi.mi.jami.bridges.uniprot.rest.response.model.Uniparc;
 import uk.ac.ebi.kraken.interfaces.uniparc.UniParcEntry;
 import uk.ac.ebi.kraken.interfaces.uniprot.UniProtEntry;
@@ -486,6 +487,39 @@ public class UniprotProteinAPIClient {
             }
         }
         return query;
+    }
+
+    /**
+     * Get the protein epitopes for this accession
+     *
+     * @param accession the accession to look at
+     * @return Entry with features and xrefs for the epitopes found
+     * @throws UniprotProteinAPIClientException if the given accession is null
+     */
+    public EntryFeature getEpitopesForAccession(String accession) throws UniprotProteinAPIClientException {
+        String query = "https://www.ebi.ac.uk/proteins/api/epitope/{accession}";
+        EntryFeature entry = null;
+
+        try {
+            entry = restTemplate.getForObject(query, EntryFeature.class, accession);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
+                log.log(Level.SEVERE, "UniProt Protein API could not found any entry for "+ accession);
+            } else if (e.getStatusCode().equals(HttpStatus.SERVICE_UNAVAILABLE)) {
+                log.log(Level.SEVERE, "Couldn't connect to UniProt. Will wait 5 min seconds before retrying.");
+                try {
+                    Thread.sleep(300*1000);
+                    entry = restTemplate.getForObject(query, EntryFeature.class, accession);
+                } catch (InterruptedException ie) {
+                    throw new UniprotProteinAPIClientException("Problem while waiting before retrying for "+ accession, ie);
+                }
+            }
+        } catch (RestClientException e) {
+            log.log(Level.SEVERE, "UniProt Protein API did not work properly", e);
+            throw new UniprotProteinAPIClientException("UniProt Protein API did not work properly.");
+        }
+
+        return entry;
     }
 }
 

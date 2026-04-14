@@ -3,6 +3,7 @@ package psidev.psi.mi.jami.bridges.ols;
 import org.junit.Before;
 import org.junit.Test;
 import psidev.psi.mi.jami.bridges.exception.BridgeFailedException;
+import psidev.psi.mi.jami.model.Annotation;
 import psidev.psi.mi.jami.model.CvTerm;
 import psidev.psi.mi.jami.utils.CvTermUtils;
 
@@ -133,5 +134,28 @@ public class OlsFetcherTest {
         assertEquals(1, cvTermFetched.size());
         assertEquals(term, cvTermFetched.iterator().next().getShortName());
         assertEquals("GO:0051666" , cvTermFetched.iterator().next().getIdentifiers().iterator().next().getId());
+    }
+
+    @Test
+    public void test_new() throws BridgeFailedException {
+        String identifier = "MI:2440";
+        CvTerm ontology = CvTermUtils.createPsiMiDatabase();
+        CvTerm cvTermFetched =  fetcher.fetchByIdentifier(identifier, ontology);
+
+        assertNotNull(cvTermFetched);
+        assertEquals("antibody" , cvTermFetched.getShortName());
+        assertEquals(identifier , cvTermFetched.getMIIdentifier());
+
+        assertEquals(2 , cvTermFetched.getAnnotations().size());
+        for (Annotation annotation : cvTermFetched.getAnnotations()) {
+            if (Annotation.URL_MI.equals(annotation.getTopic().getMIIdentifier())) {
+                assertEquals("http://purl.obolibrary.org/obo/XCO_0000194", annotation.getValue());
+            } else {
+                assertEquals("definition", annotation.getTopic().getShortName());
+                assertEquals(
+                        "An immunoglobulin molecule having a specific amino acid sequence that gives each antibody the ability to adhere to and interact with the antigen that induced its synthesis and with molecules containing structures similar to that antigen.",
+                        annotation.getValue());
+            }
+        }
     }
 }

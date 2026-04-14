@@ -49,10 +49,9 @@ enum XrefType {
                                 .build(); // TODO Update to new MI id
                     case 'G':
                         return PartialCvTerm.builder()
-                                .id("IA:3594")
-                                .name("gene ref")
-                                .ontology(OLSUtils.intactCV)
-                                .build(); // TODO Update to new MI id
+                                .id("MI:2423")
+                                .name("gene reference")
+                                .build();
                     case 'P':
                         return PartialCvTerm.builder()
                                 .id("MI:0251")
@@ -66,9 +65,8 @@ enum XrefType {
                     result -> PartialXref.builder()
                             .identifier(result.getAccession().getGene().split("\\.")[0])
                             .qualifier(PartialCvTerm.builder()
-                                    .id("IA:3594")
-                                    .name("gene ref")
-                                    .ontology(OLSUtils.intactCV)
+                                    .id("MI:2423")
+                                    .name("gene reference")
                                     .build())
                             .build()),
             List.of(),

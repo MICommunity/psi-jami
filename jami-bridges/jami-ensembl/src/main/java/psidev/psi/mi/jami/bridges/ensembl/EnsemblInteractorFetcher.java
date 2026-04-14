@@ -10,13 +10,13 @@ public class EnsemblInteractorFetcher extends AbstractEnsemblFetcher<Interactor>
     public EnsemblInteractorFetcher() throws BridgeFailedException {
     }
 
-    protected Interactor buildInteractor(String identifier, ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
+    protected Interactor buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
 
         switch (entree.getObjectType()) {
             case GENE:
-                return buildGeneInteractor(identifier, entree, translationIdToInteractor);
+                return buildGeneInteractor(entree, translationIdToInteractor);
             case TRANSCRIPT:
-                return buildNucleicAcid(identifier, entree, translationIdToInteractor);
+                return buildNucleicAcid(entree, translationIdToInteractor);
             case TRANSLATION:
             case EXON:
                 break;
