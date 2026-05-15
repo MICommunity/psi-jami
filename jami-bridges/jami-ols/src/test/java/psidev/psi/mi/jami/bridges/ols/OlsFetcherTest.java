@@ -137,6 +137,23 @@ public class OlsFetcherTest {
     }
 
     @Test
+    public void test_getDefinition() throws BridgeFailedException {
+        String identifier = "MI:0108";
+        CvTerm ontology = CvTermUtils.createPsiMiDatabase();
+        CvTerm cvTermFetched =  fetcher.fetchByIdentifier(identifier, ontology);
+
+        assertEquals("t7 phage", cvTermFetched.getShortName());
+        assertEquals(1, cvTermFetched.getAnnotations().size());
+        assertEquals("definition", cvTermFetched.getAnnotations().iterator().next().getTopic().getShortName());
+        assertEquals(
+                "T7 is a double stranded DNA bacteriophage with a thin-walled icosahedral capsid, ~550 Angstrom in diameter, " +
+                        "which is decorated by 415 copies of the capsid protein, the product of gene 10. gp10 can tolerate insertions " +
+                        "at the carboxyterminus without loosing its ability to be inserted into functional phage capsids. Both low " +
+                        "density and high density display (albeit only with short peptides) can be achieved.",
+                cvTermFetched.getAnnotations().iterator().next().getValue());
+    }
+
+    @Test
     public void test_new() throws BridgeFailedException {
         String identifier = "MI:2440";
         CvTerm ontology = CvTermUtils.createPsiMiDatabase();
