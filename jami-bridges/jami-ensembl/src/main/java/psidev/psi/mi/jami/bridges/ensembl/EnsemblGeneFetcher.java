@@ -13,8 +13,8 @@ public class EnsemblGeneFetcher extends AbstractEnsemblFetcher<Gene> implements 
     public EnsemblGeneFetcher() throws BridgeFailedException {
     }
 
-    protected Gene buildInteractor(String identifier, ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
-        return buildGeneInteractor(identifier, entree, translationIdToInteractor);
+    protected Gene buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
+        return buildGeneInteractor(entree, translationIdToInteractor);
     }
 
     @Override

@@ -7,6 +7,7 @@ import psidev.psi.mi.jami.model.Gene;
 import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.model.NucleicAcid;
 import psidev.psi.mi.jami.model.Xref;
+import psidev.psi.mi.jami.utils.comparator.interactor.DefaultNucleicAcidComparator;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -67,7 +68,7 @@ public class EnsemblInteractorFetcherTest {
 
         assertEquals("Should have 1 gene name alias",1, rna.getAliases().stream().filter(alias -> alias.getType().getShortName().equals("gene name")).count());
         assertEquals("Should have 1 gene product xref, to UniProt/TrEMBL",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene product")).count());
-        assertEquals("Should have 1 gene ref xref",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene ref")).count());
+        assertEquals("Should have 1 gene reference xref",1, rna.getXrefs().stream().map(Xref::getQualifier).filter(Objects::nonNull).filter(qualifier -> qualifier.getShortName().equals("gene reference")).count());
     }
 
     @Test
@@ -87,4 +88,20 @@ public class EnsemblInteractorFetcherTest {
         assertEquals(1, interactors.stream().filter(interactor -> interactor instanceof NucleicAcid).count());
 
     }
+    @Test
+    public void fetchNonHumanTranscript() throws BridgeFailedException {
+        Collection<Interactor> interactors = fetcher.fetchByIdentifier("FBtr0071420");
+        assertEquals(1, interactors.size());
+        assertEquals(1, interactors.stream().filter(interactor -> interactor instanceof NucleicAcid).count());
+    }
+
+    @Test
+    public void fetchFromUppercase() throws BridgeFailedException {
+        NucleicAcid upperCase = (NucleicAcid) fetcher.fetchByIdentifier("FBTR0071420").iterator().next();
+        NucleicAcid normalCase = (NucleicAcid) fetcher.fetchByIdentifier("FBtr0071420").iterator().next();
+        assertTrue("Case of identifier shouldn't impact import", DefaultNucleicAcidComparator.areEquals( normalCase, upperCase));
+        assertEquals("Identifiers of uppercased queries should be normalised ", "FBtr0071420", upperCase.getPreferredIdentifier().getId());
+    }
+
+
 }

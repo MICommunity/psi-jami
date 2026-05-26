@@ -194,7 +194,7 @@ public class UnisaveClient implements SequenceVersionFetcher{
 
         JSONObject jo = (JSONObject) getJsonDataFromWebService(buildJsonQuery(identifier));
         JSONArray results = (JSONArray) jo.get("results");
-        DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         Date auxDate;
         for (Object result : results) {
             jo = (JSONObject) result;
@@ -231,7 +231,7 @@ public class UnisaveClient implements SequenceVersionFetcher{
         Map<Integer, String> oldSequences = new HashMap<>();
         JSONObject jo = (JSONObject) getJsonDataFromWebService(buildJsonQuery(identifier));
         JSONArray results = (JSONArray) jo.get("results");
-        DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         Date auxDate;
         for (Object result : results) {
             jo = (JSONObject) result;

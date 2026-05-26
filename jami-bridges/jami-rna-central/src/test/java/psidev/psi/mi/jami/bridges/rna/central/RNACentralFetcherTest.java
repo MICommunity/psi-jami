@@ -61,7 +61,7 @@ public class RNACentralFetcherTest {
         assertTrue("URS0000031E12_9606 should have a transcript Xref to ENST00000362160",
                 xrefs.stream().anyMatch(x -> x.getId().equals("ENST00000362160") && x.getQualifier().getShortName().equals("transcript")));
         assertTrue("URS0000031E12_9606 should have a gene Xref to ENSG00000199030",
-                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030") && x.getQualifier().getShortName().equals("gene ref")));
+                xrefs.stream().anyMatch(x -> x.getId().equals("ENSG00000199030") && x.getQualifier().getShortName().equals("gene reference")));
         assertTrue("Querying for a human identifier should only get human ensembl XRefs",
                 xrefs.stream().allMatch(xref -> xref.getId().startsWith("ENS")));
 
@@ -105,5 +105,14 @@ public class RNACentralFetcherTest {
         assertEquals("URS00026A23F2_9606 should only have one Gene Name alias", 1, aliases.size());
         assertTrue("URS00026A23F2_9606 gene name should be HOTAIR",
                 aliases.stream().anyMatch(alias -> alias.getName().equals("HOTAIR")));
+    }
+
+
+    @Test
+    public void testWithModifications() throws BridgeFailedException {
+        // https://rnacentral.org/api/v1/rna/URS00005FEB83_9606.json
+        // https://rnacentral.org/api/v1/rna/URS00005FEB83/xrefs.json
+        Collection<NucleicAcid> nucleicAcids = fetcher.fetchByIdentifier("URS00005FEB83_9606");
+        assertFalse("RNA Central entries with modification like URS00005FEB83_9606 should be importable", nucleicAcids.isEmpty());
     }
 }
