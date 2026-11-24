@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Interactor;
 import psidev.psi.mi.jami.model.NucleicAcid;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class EnsemblNucleicAcidFetcher extends AbstractEnsemblFetcher<NucleicAcid> implements NucleicAcidFetcher {
@@ -13,8 +14,8 @@ public class EnsemblNucleicAcidFetcher extends AbstractEnsemblFetcher<NucleicAci
     public EnsemblNucleicAcidFetcher() throws BridgeFailedException {
     }
 
-    protected NucleicAcid buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
-        return buildNucleicAcid(entree, translationIdToInteractor);
+    protected NucleicAcid buildInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
+        return buildNucleicAcid(entree, translationIdToInteractors);
     }
 
     @Override

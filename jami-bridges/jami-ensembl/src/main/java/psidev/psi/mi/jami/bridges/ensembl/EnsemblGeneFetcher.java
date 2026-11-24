@@ -6,6 +6,7 @@ import psidev.psi.mi.jami.model.Gene;
 import psidev.psi.mi.jami.model.Interactor;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class EnsemblGeneFetcher extends AbstractEnsemblFetcher<Gene> implements GeneFetcher {
@@ -13,8 +14,8 @@ public class EnsemblGeneFetcher extends AbstractEnsemblFetcher<Gene> implements 
     public EnsemblGeneFetcher() throws BridgeFailedException {
     }
 
-    protected Gene buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
-        return buildGeneInteractor(entree, translationIdToInteractor);
+    protected Gene buildInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
+        return buildGeneInteractor(entree, translationIdToInteractors);
     }
 
     @Override

@@ -34,6 +34,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -101,9 +102,9 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
 
 
             Map<String, T> idToInteractor = new HashMap<>();
-            Map<String, Interactor> translationIdToInteractor = new HashMap<>();
+            Map<String, List<Interactor>> translationIdToInteractors = new HashMap<>();
 
-            queryInteractors(ids, idToInteractor, translationIdToInteractor);
+            queryInteractors(ids, idToInteractor, translationIdToInteractors);
             logger.info("Fetched {} from Ensembl", idToInteractor);
 
             Map<String, List<String>> sequenceIdsByType = idToInteractor.entrySet().stream()
@@ -116,7 +117,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
                 querySequences(entry.getValue(), idToInteractor, entry.getKey());
             }
             logger.info("Fetching transcript uniprot id");
-            queryUniprotXrefs(translationIdToInteractor);
+            queryUniprotXrefs(translationIdToInteractors);
 
             return idToInteractor.values();
         } catch (Exception e) {
@@ -125,12 +126,12 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         }
     }
 
-    private void queryInteractors(List<String> ids, Map<String, T> output, Map<String, Interactor> translationIdToInteractor) throws IOException, InterruptedException {
+    private void queryInteractors(List<String> ids, Map<String, T> output, Map<String, List<Interactor>> translationIdToInteractors) throws IOException, InterruptedException {
         this.postRequest(ids, MAIN_URL, new HashMap<>(Map.of("expand", 1)), new TypeReference<Map<String, ApiObject>>() {
                 }, idToEntree -> output.putAll(idToEntree.entrySet().stream()
                         .filter(entry -> entry.getValue() != null)
                         .filter(entry -> supportedTypes.contains(entry.getValue().getObjectType()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, entry -> buildInteractor(entry.getValue(), translationIdToInteractor))))
+                        .collect(Collectors.toMap(Map.Entry::getKey, entry -> buildInteractor(entry.getValue(), translationIdToInteractors))))
         );
     }
 
@@ -142,16 +143,19 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         );
     }
 
-    private void queryUniprotXrefs(Map<String, Interactor> translationIdToInteractor) throws IOException {
-        for (String id : translationIdToInteractor.keySet()) {
-            URL uniprotURL = new URL(String.format(UNIPROT_URL, id));
-            Collection<Xref> xrefs = translationIdToInteractor.get(id).getXrefs();
-            Arrays.stream(mapper.readValue(uniprotURL, ApiXref[].class))
+    private void queryUniprotXrefs(Map<String, List<Interactor>> translationIdToInteractors) throws IOException {
+        for (Map.Entry<String, List<Interactor>> entry : translationIdToInteractors.entrySet()) {
+            URL uniprotURL = new URL(String.format(UNIPROT_URL, entry.getKey()));
+            List<ApiXref> uniprotXrefs = Arrays.stream(mapper.readValue(uniprotURL, ApiXref[].class))
                     .filter(apiXref -> apiXref.getDbname().toUpperCase().contains("UNIPROT"))
                     .distinct()
-                    .forEach(apiXref -> xrefs.add(
-                            new DefaultXref(uniprotCV, apiXref.getPrimaryId(), geneProductCV)
-                    ));
+                    .collect(Collectors.toList());
+            // A translation can be shared, e.g. by a gene and its canonical transcript fetched together
+            for (Interactor interactor : entry.getValue()) {
+                uniprotXrefs.forEach(apiXref -> interactor.getXrefs().add(
+                        new DefaultXref(uniprotCV, apiXref.getPrimaryId(), geneProductCV)
+                ));
+            }
         }
     }
 
@@ -174,9 +178,9 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         consumer.accept(mapper.readValue(response.body(), returnType));
     }
 
-    protected abstract T buildInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor);
+    protected abstract T buildInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors);
 
-    protected Gene buildGeneInteractor(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
+    protected Gene buildGeneInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
         // entree.id is the one queried, so potentially in the wrong case
         String idValue = Stream.of(entree.getTranscripts())
                 .flatMap(List::stream)
@@ -212,12 +216,12 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
                 .flatMap(List::stream)
 
                 .map(ApiObject::getId) // Translation Ids
-                .forEach(translationId -> translationIdToInteractor.put(translationId, gene));
+                .forEach(translationId -> translationIdToInteractors.computeIfAbsent(translationId, k -> new ArrayList<>()).add(gene));
 
         return gene;
     }
 
-    protected NucleicAcid buildNucleicAcid(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
+    protected NucleicAcid buildNucleicAcid(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
         boolean isGene = entree.getObjectType() == ObjectType.GENE;
         String idValue = isGene ? ensureIdCase(entree, ApiObject::getTranscripts)
                 : ensureIdCase(entree, e -> Stream.of(e.getTranslations(), e.getExons())
@@ -257,7 +261,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         }
         translations
                 .map(ApiObject::getId) // Translation Ids
-                .forEach(translationId -> translationIdToInteractor.put(translationId, nucleicAcid));
+                .forEach(translationId -> translationIdToInteractors.computeIfAbsent(translationId, k -> new ArrayList<>()).add(nucleicAcid));
 
         return nucleicAcid;
     }
