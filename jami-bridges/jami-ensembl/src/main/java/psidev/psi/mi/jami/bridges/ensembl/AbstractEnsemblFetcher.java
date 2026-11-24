@@ -67,6 +67,7 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
     public final CvTerm ensemblCV = new DefaultCvTerm("ensembl", "MI:0476");
     public final CvTerm uniprotCV = new DefaultCvTerm("uniprot knowledge base", "MI:0486");
     public final CvTerm rnaCV = new DefaultCvTerm("ribonucleic acid", "MI:0320");
+    public final CvTerm dnaCV = new DefaultCvTerm(NucleicAcid.DNA, NucleicAcid.DNA_MI);
     public final CvTerm identityCv = new DefaultCvTerm(Xref.IDENTITY, Xref.IDENTITY_MI);
     public final CvTerm geneCV = new DefaultCvTerm("gene reference", "MI:2423");
     public final CvTerm geneNameCV = new DefaultCvTerm("gene name", "MI:0301");
@@ -181,96 +182,84 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
     protected abstract T buildInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors);
 
     protected Gene buildGeneInteractor(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
-        // entree.id is the one queried, so potentially in the wrong case
-        String idValue = Stream.of(entree.getTranscripts())
-                .flatMap(List::stream)
-                .map(ApiObject::getParentId) // so taking the parent of the first child
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElse(entree.getId());
-        DefaultXref id = new DefaultXref(ensemblCV, idValue, identityCv);
-
-        OntologyTerm speciesTaxon = getTermByName(entree.getSpecies().replace("_", " "), "ncbi taxonomy");
-
-        int taxId = Integer.parseInt(speciesTaxon.getIdentifiers().iterator().next().getId().split(":")[1]);
-        Organism organism = new DefaultOrganism(taxId, speciesTaxon.getShortName());
-
-        String name, fullName;
-
-        name = entree.getDisplayName();
-        fullName = extractPureIdentifier(entree.getDescription());
-        DefaultGene gene = new DefaultGene(name, fullName, organism, id);
+        DefaultXref id = new DefaultXref(ensemblCV, ensureIdCase(entree, ApiObject::getTranscripts), identityCv);
+        DefaultGene gene = new DefaultGene(entree.getDisplayName(), extractPureIdentifier(entree.getDescription()), buildOrganism(entree), id);
 
         gene.setEnsembl(entree.getId());
         gene.getAliases().add(new DefaultAlias(geneNameCV, entree.getDisplayName()));
-        gene.getXrefs().add(new DefaultXref(ensemblCV, extractPureIdentifier(entree.getCanonicalTranscript()), transcriptCV));
-
-
-        Stream.of(entree.getTranscripts()) // Transcripts
-                .filter(Objects::nonNull)
-                .flatMap(List::stream)
-
-                .filter(ApiObject::isCanonical) // Canonical transcripts (normally 1)
-                .map(ApiObject::getTranslations) // Translations (normally 1)
-                .filter(Objects::nonNull)
-                .flatMap(List::stream)
-
-                .map(ApiObject::getId) // Translation Ids
-                .forEach(translationId -> translationIdToInteractors.computeIfAbsent(translationId, k -> new ArrayList<>()).add(gene));
+        addCanonicalTranscriptXref(gene, entree);
+        registerTranslations(canonicalTranslations(entree), gene, translationIdToInteractors);
 
         return gene;
     }
 
     protected NucleicAcid buildNucleicAcid(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
-        boolean isGene = entree.getObjectType() == ObjectType.GENE;
-        String idValue = isGene ? ensureIdCase(entree, ApiObject::getTranscripts)
-                : ensureIdCase(entree, e -> Stream.of(e.getTranslations(), e.getExons())
-                        .filter(Objects::nonNull).flatMap(List::stream).collect(Collectors.toList()));
-        DefaultXref id = new DefaultXref(ensemblCV, idValue, identityCv);
-        OntologyTerm speciesTaxon = getTermByName(entree.getSpecies().replace("_", " "), "ncbi taxonomy");
+        return entree.getObjectType() == ObjectType.GENE
+                ? buildGenomicDna(entree, translationIdToInteractors)
+                : buildTranscript(entree, translationIdToInteractors);
+    }
 
-        int taxId = Integer.parseInt(speciesTaxon.getIdentifiers().iterator().next().getId().split(":")[1]);
-        Organism organism = new DefaultOrganism(taxId, speciesTaxon.getShortName());
+    private NucleicAcid buildGenomicDna(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
+        String idValue = ensureIdCase(entree, ApiObject::getTranscripts);
+        String geneName = entree.getDisplayName() != null ? entree.getDisplayName() : idValue;
+        DefaultNucleicAcid dna = new DefaultNucleicAcid(MessageFormat.format("{0}_{1}", NucleicAcid.DNA, geneName),
+                entree.getDescription(), dnaCV, buildOrganism(entree), new DefaultXref(ensemblCV, idValue, identityCv));
 
-        CvTerm type = isGene ? new DefaultCvTerm(NucleicAcid.DNA, NucleicAcid.DNA_MI)
-                : biotypeToCVId.computeIfAbsent(entree.getBiotype(), s -> getCVByName(entree.getBiotype(), rnaCV));
-        String shortType = isGene ? NucleicAcid.DNA
-                : biotypeToShortestType.computeIfAbsent(entree.getBiotype(), biotype -> getShortestSynonym(type));
+        dna.getAliases().add(new DefaultAlias(geneNameCV, geneName));
+        addCanonicalTranscriptXref(dna, entree);
+        registerTranslations(canonicalTranslations(entree), dna, translationIdToInteractors);
+
+        return dna;
+    }
+
+    private NucleicAcid buildTranscript(ApiObject entree, Map<String, List<Interactor>> translationIdToInteractors) {
+        String idValue = ensureIdCase(entree, e -> Stream.concat(children(e.getTranslations()), children(e.getExons())).collect(Collectors.toList()));
         String displayName = entree.getDisplayName() != null ? entree.getDisplayName() : idValue;
-        String geneName = isGene ? displayName : displayName.split("-")[0];
-        String name = MessageFormat.format("{0}_{1}", shortType, geneName);
-        String fullName = isGene ? entree.getDescription() : displayName;
+        String geneName = displayName.split("-")[0];
+        CvTerm type = biotypeToCVId.computeIfAbsent(entree.getBiotype(), biotype -> getCVByName(biotype, rnaCV));
+        String shortType = biotypeToShortestType.computeIfAbsent(entree.getBiotype(), biotype -> getShortestSynonym(type));
+        DefaultNucleicAcid transcript = new DefaultNucleicAcid(MessageFormat.format("{0}_{1}", shortType, geneName),
+                displayName, type, buildOrganism(entree), new DefaultXref(ensemblCV, idValue, identityCv));
 
-        DefaultNucleicAcid nucleicAcid = new DefaultNucleicAcid(name, fullName, type, organism, id);
-
-        nucleicAcid.getAliases().add(new DefaultAlias(geneNameCV, geneName));
-
-        Stream<ApiObject> translations;
-        if (isGene) {
-            if (entree.getCanonicalTranscript() != null) {
-                nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, extractPureIdentifier(entree.getCanonicalTranscript()), transcriptCV));
-            }
-            translations = Stream.of(entree.getTranscripts()).filter(Objects::nonNull)
-                    .flatMap(List::stream).filter(ApiObject::isCanonical)
-                    .map(ApiObject::getTranslations).filter(Objects::nonNull).flatMap(List::stream);
-        } else {
-            if (entree.getParentId() != null) {
-                nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, entree.getParentId(), geneCV));
-            }
-            translations = Stream.of(entree.getTranslations()).filter(Objects::nonNull).flatMap(List::stream);
+        transcript.getAliases().add(new DefaultAlias(geneNameCV, geneName));
+        if (entree.getParentId() != null) {
+            transcript.getXrefs().add(new DefaultXref(ensemblCV, entree.getParentId(), geneCV));
         }
-        translations
-                .map(ApiObject::getId) // Translation Ids
-                .forEach(translationId -> translationIdToInteractors.computeIfAbsent(translationId, k -> new ArrayList<>()).add(nucleicAcid));
+        registerTranslations(children(entree.getTranslations()), transcript, translationIdToInteractors);
 
-        return nucleicAcid;
+        return transcript;
+    }
+
+    private Organism buildOrganism(ApiObject entree) {
+        OntologyTerm speciesTaxon = getTermByName(entree.getSpecies().replace("_", " "), "ncbi taxonomy");
+        int taxId = Integer.parseInt(speciesTaxon.getIdentifiers().iterator().next().getId().split(":")[1]);
+        return new DefaultOrganism(taxId, speciesTaxon.getShortName());
+    }
+
+    private void addCanonicalTranscriptXref(Interactor interactor, ApiObject gene) {
+        if (gene.getCanonicalTranscript() != null) {
+            interactor.getXrefs().add(new DefaultXref(ensemblCV, extractPureIdentifier(gene.getCanonicalTranscript()), transcriptCV));
+        }
+    }
+
+    private Stream<ApiObject> canonicalTranslations(ApiObject gene) {
+        return children(gene.getTranscripts())
+                .filter(ApiObject::isCanonical) // Canonical transcripts (normally 1)
+                .flatMap(transcript -> children(transcript.getTranslations())); // Translations (normally 1)
+    }
+
+    private void registerTranslations(Stream<ApiObject> translations, Interactor interactor, Map<String, List<Interactor>> translationIdToInteractors) {
+        translations.map(ApiObject::getId)
+                .forEach(translationId -> translationIdToInteractors.computeIfAbsent(translationId, k -> new ArrayList<>()).add(interactor));
+    }
+
+    private static Stream<ApiObject> children(List<ApiObject> children) {
+        return children != null ? children.stream() : Stream.empty();
     }
 
     private String ensureIdCase(ApiObject entree, Function<ApiObject, List<ApiObject>> childrenAccessor) {
         // entree.id is the one queried, so potentially in the wrong case
-        return Stream.of(childrenAccessor.apply(entree))
-                .filter(Objects::nonNull)
-                .flatMap(List::stream)
+        return children(childrenAccessor.apply(entree))
                 .map(ApiObject::getParentId) // so taking the parent of the first child
                 .filter(Objects::nonNull)
                 .findFirst()
