@@ -25,6 +25,7 @@ import psidev.psi.mi.jami.model.impl.DefaultGene;
 import psidev.psi.mi.jami.model.impl.DefaultNucleicAcid;
 import psidev.psi.mi.jami.model.impl.DefaultOrganism;
 import psidev.psi.mi.jami.model.impl.DefaultXref;
+import psidev.psi.mi.jami.utils.CvTermUtils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -105,16 +106,22 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
             queryInteractors(ids, idToInteractor, translationIdToInteractor);
             logger.info("Fetched {} from Ensembl", idToInteractor);
 
-            List<String> transcriptIds = idToInteractor.entrySet().stream().filter(entry -> entry.getValue() instanceof NucleicAcid).map(Map.Entry::getKey).collect(Collectors.toList());
-            logger.info("Fetching sequences for {} transcripts", transcriptIds);
-            querySequences(transcriptIds, idToInteractor);
+            Map<String, List<String>> sequenceIdsByType = idToInteractor.entrySet().stream()
+                    .filter(entry -> entry.getValue() instanceof NucleicAcid)
+                    .collect(Collectors.groupingBy(entry -> CvTermUtils.isCvTerm(entry.getValue().getInteractorType(),
+                                    NucleicAcid.DNA_MI, NucleicAcid.DNA) ? "genomic" : "cdna",
+                            Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
+            for (Map.Entry<String, List<String>> entry : sequenceIdsByType.entrySet()) {
+                logger.info("Fetching {} sequences for {}", entry.getKey(), entry.getValue());
+                querySequences(entry.getValue(), idToInteractor, entry.getKey());
+            }
             logger.info("Fetching transcript uniprot id");
             queryUniprotXrefs(translationIdToInteractor);
 
             return idToInteractor.values();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new BridgeFailedException(e.getMessage());
+            throw new BridgeFailedException("Could not fetch Ensembl identifiers " + identifiers, e);
         }
     }
 
@@ -127,8 +134,8 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         );
     }
 
-    private void querySequences(List<String> ids, Map<String, T> idToInteractor) throws IOException, InterruptedException {
-        this.postRequest(ids, SEQUENCE_URL, new HashMap<>(Map.of("type", "cdna")), new TypeReference<List<ApiSequence>>() {
+    private void querySequences(List<String> ids, Map<String, T> idToInteractor, String sequenceType) throws IOException, InterruptedException {
+        this.postRequest(ids, SEQUENCE_URL, new HashMap<>(Map.of("type", sequenceType)), new TypeReference<List<ApiSequence>>() {
                 }, sequences -> sequences.forEach(
                         apiSequence -> ((NucleicAcid) idToInteractor.get(apiSequence.getQuery()))
                                 .setSequence(apiSequence.getSeq()))
@@ -159,6 +166,10 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
         HttpResponse<String> response = clientBuilder.version(HttpClient.Version.HTTP_1_1)
                 .build()
                 .send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
+            throw new IOException("Ensembl request to " + url + " failed with HTTP " + response.statusCode());
+        }
 
         consumer.accept(mapper.readValue(response.body(), returnType));
     }
@@ -207,29 +218,44 @@ public abstract class AbstractEnsemblFetcher<T extends Interactor> implements In
     }
 
     protected NucleicAcid buildNucleicAcid(ApiObject entree, Map<String, Interactor> translationIdToInteractor) {
-        DefaultXref id = new DefaultXref(ensemblCV, ensureIdCase(entree, e -> Stream.concat(e.getTranslations().stream(), e.getExons().stream()).collect(Collectors.toList())), identityCv);
+        boolean isGene = entree.getObjectType() == ObjectType.GENE;
+        String idValue = isGene ? ensureIdCase(entree, ApiObject::getTranscripts)
+                : ensureIdCase(entree, e -> Stream.of(e.getTranslations(), e.getExons())
+                        .filter(Objects::nonNull).flatMap(List::stream).collect(Collectors.toList()));
+        DefaultXref id = new DefaultXref(ensemblCV, idValue, identityCv);
         OntologyTerm speciesTaxon = getTermByName(entree.getSpecies().replace("_", " "), "ncbi taxonomy");
 
         int taxId = Integer.parseInt(speciesTaxon.getIdentifiers().iterator().next().getId().split(":")[1]);
         Organism organism = new DefaultOrganism(taxId, speciesTaxon.getShortName());
 
-        String name, fullName;
-
-        CvTerm type = biotypeToCVId.computeIfAbsent(entree.getBiotype(), s -> getCVByName(entree.getBiotype(), rnaCV));
-        String shortType = biotypeToShortestType.computeIfAbsent(entree.getBiotype(), biotype -> getShortestSynonym(type));
-        String geneName = entree.getDisplayName().split("-")[0];
-        name = MessageFormat.format("{0}_{1}", shortType, geneName);
-        fullName = entree.getDisplayName();
+        CvTerm type = isGene ? new DefaultCvTerm(NucleicAcid.DNA, NucleicAcid.DNA_MI)
+                : biotypeToCVId.computeIfAbsent(entree.getBiotype(), s -> getCVByName(entree.getBiotype(), rnaCV));
+        String shortType = isGene ? NucleicAcid.DNA
+                : biotypeToShortestType.computeIfAbsent(entree.getBiotype(), biotype -> getShortestSynonym(type));
+        String displayName = entree.getDisplayName() != null ? entree.getDisplayName() : idValue;
+        String geneName = isGene ? displayName : displayName.split("-")[0];
+        String name = MessageFormat.format("{0}_{1}", shortType, geneName);
+        String fullName = isGene ? entree.getDescription() : displayName;
 
         DefaultNucleicAcid nucleicAcid = new DefaultNucleicAcid(name, fullName, type, organism, id);
 
-        nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, entree.getParentId(), geneCV));
         nucleicAcid.getAliases().add(new DefaultAlias(geneNameCV, geneName));
 
-        Stream.of(entree.getTranslations()) // Translations (normally 1)
-                .filter(Objects::nonNull)
-                .flatMap(List::stream)
-
+        Stream<ApiObject> translations;
+        if (isGene) {
+            if (entree.getCanonicalTranscript() != null) {
+                nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, extractPureIdentifier(entree.getCanonicalTranscript()), transcriptCV));
+            }
+            translations = Stream.of(entree.getTranscripts()).filter(Objects::nonNull)
+                    .flatMap(List::stream).filter(ApiObject::isCanonical)
+                    .map(ApiObject::getTranslations).filter(Objects::nonNull).flatMap(List::stream);
+        } else {
+            if (entree.getParentId() != null) {
+                nucleicAcid.getXrefs().add(new DefaultXref(ensemblCV, entree.getParentId(), geneCV));
+            }
+            translations = Stream.of(entree.getTranslations()).filter(Objects::nonNull).flatMap(List::stream);
+        }
+        translations
                 .map(ApiObject::getId) // Translation Ids
                 .forEach(translationId -> translationIdToInteractor.put(translationId, nucleicAcid));
 
