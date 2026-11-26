@@ -23,12 +23,10 @@ import uk.ac.ebi.kraken.interfaces.uniprot.features.*;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.GeneNameSynonym;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.ORFName;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.OrderedLocusName;
-import uk.ac.ebi.uniprot.dataservice.client.Client;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
 import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
-import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
 import uk.ac.ebi.uniprot.dataservice.query.Query;
 
 import java.util.*;
@@ -45,7 +43,7 @@ public class UniprotProteinFetcher
 
     private final Logger log = Logger.getLogger(UniprotProteinFetcher.class.getName());
 
-    private UniProtService uniProtQueryService;
+    private final UniprotQueryService uniProtQueryService;
 
     private Map<DatabaseType, CvTerm> selectedDatabases = null;
     private RogidGenerator rogidGenerator;
@@ -54,7 +52,7 @@ public class UniprotProteinFetcher
      * <p>Constructor for UniprotProteinFetcher.</p>
      */
     public UniprotProteinFetcher() {
-        uniProtQueryService = Client.getServiceFactoryInstance().getUniProtQueryService();
+        uniProtQueryService = new UniprotQueryService();
         rogidGenerator = new RogidGenerator();
     }
 
@@ -173,11 +171,7 @@ public class UniprotProteinFetcher
                     count++;
                 }
                 if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
+                    currentPage = currentPage.fetchNextPage();
                 } else {
                     break;
                 }
@@ -221,11 +215,7 @@ public class UniprotProteinFetcher
                     count++;
                 }
                 if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
+                    currentPage = currentPage.fetchNextPage();
                 } else {
                     break;
                 }
@@ -308,11 +298,7 @@ public class UniprotProteinFetcher
                     count++;
                 }
                 if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
+                    currentPage = currentPage.fetchNextPage();
                 } else {
                     break;
                 }
@@ -359,11 +345,7 @@ public class UniprotProteinFetcher
                     count++;
                 }
                 if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
+                    currentPage = currentPage.fetchNextPage();
                 } else {
                     break;
                 }

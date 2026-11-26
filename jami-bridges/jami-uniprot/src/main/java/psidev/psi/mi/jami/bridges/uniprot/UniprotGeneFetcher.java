@@ -15,12 +15,10 @@ import uk.ac.ebi.kraken.interfaces.uniprot.UniProtEntry;
 import uk.ac.ebi.kraken.interfaces.uniprot.description.Field;
 import uk.ac.ebi.kraken.interfaces.uniprot.description.FieldType;
 import uk.ac.ebi.kraken.interfaces.uniprot.genename.GeneNameSynonym;
-import uk.ac.ebi.uniprot.dataservice.client.Client;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResult;
 import uk.ac.ebi.uniprot.dataservice.client.QueryResultPage;
 import uk.ac.ebi.uniprot.dataservice.client.exception.ServiceException;
 import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtQueryBuilder;
-import uk.ac.ebi.uniprot.dataservice.client.uniprot.UniProtService;
 import uk.ac.ebi.uniprot.dataservice.query.Query;
 
 import java.util.ArrayList;
@@ -37,13 +35,13 @@ import java.util.Collections;
 public class UniprotGeneFetcher implements GeneFetcher {
 
 
-    private UniProtService uniProtQueryService;
+    private final UniprotQueryService uniProtQueryService;
 
     /**
      * <p>Constructor for UniprotGeneFetcher.</p>
      */
     public UniprotGeneFetcher() {
-        uniProtQueryService = Client.getServiceFactoryInstance().getUniProtQueryService();
+        uniProtQueryService = new UniprotQueryService();
     }
 
     /**
@@ -80,11 +78,7 @@ public class UniprotGeneFetcher implements GeneFetcher {
                     count++;
                 }
                 if (count < entries.getNumberOfHits()) {
-                    try {
-                        currentPage.fetchNextPage();
-                    } catch (ServiceException e) {
-                        e.printStackTrace();
-                    }
+                    currentPage = currentPage.fetchNextPage();
                 } else {
                     break;
                 }

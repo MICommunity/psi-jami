@@ -25,6 +25,12 @@
             <artifactId>japi</artifactId>
             <version>${uniprot.japi.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.7.6</version>
+        </dependency>
     </dependencies>
 
     <build>
